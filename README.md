@@ -1,17 +1,25 @@
 # ProgramowanieZaspolowe-Ankiety
 
-Diagram aktywności
-
-![Alt text](https://github.com/KamDziok/ProgramowanieZaspolowe-Ankiety/blob/master/diagramy/diagramaktywności.jpg)
-
 Diagram przypadków użycia
 
-![Alt text](https://github.com/KamDziok/ProgramowanieZaspolowe-Ankiety/blob/master/diagramy/DiagramPrzypadkowUzycia.jpg)
+![Alt text](./diagramy/DiagramPrzypadkowUzycia.jpg)
+
 
 Diagram klas
 
-![Alt text](https://github.com/KamDziok/ProgramowanieZaspolowe-Ankiety/blob/master/diagramy/Ankieta.png)
+![Alt text](./diagramy/Ankieta.png)
+
 
 Diagram encji
 
 ![Alt text](./diagramy/DiagramEncji.png)
+
+
+Diagram aktywności
+
+![Alt text](./diagramy/diagramaktywności.jpg)
+
+
+Diagram stanów
+
+![Alt text](./diagramy/diagramStanow.jpg)
