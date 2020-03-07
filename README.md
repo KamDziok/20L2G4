@@ -14,4 +14,4 @@ Diagram klas
 
 Diagram encji
 
-![Alt text](./diagramy/Ankieta.png)
+![Alt text](./diagramy/DiagramEncji.png)
