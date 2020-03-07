@@ -1,4 +1,7 @@
 # ProgramowanieZaspolowe-Ankiety
+Diagram aktywności
+
+![Alt text](https://github.com/KamDziok/ProgramowanieZaspolowe-Ankiety/blob/master/diagramy/diagramaktywności.jpg)
 
 Diagram przypadków użycia
 
