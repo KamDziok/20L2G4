@@ -17,7 +17,7 @@
 
 ### Diagram aktywności
 
-![Alt text](./diagramy/diagramaktywności.jpg)
+![Alt text](./diagramy/diagramAktywności.jpg)
 
 
 ### Diagram stanów
