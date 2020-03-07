@@ -1,11 +1,11 @@
 # ProgramowanieZaspolowe-Ankiety
 
-Diagram przypadków użycia
+####Diagram przypadków użycia
 
 ![Alt text](./diagramy/DiagramPrzypadkowUzycia.jpg)
 
 
-Diagram klas
+###Diagram klas
 
 ![Alt text](./diagramy/Ankieta.png)
 
