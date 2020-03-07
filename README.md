@@ -1,6 +1,6 @@
 # ProgramowanieZaspolowe-Ankiety
 
-#### Diagram przypadków użycia
+### Diagram przypadków użycia
 
 ![Alt text](./diagramy/DiagramPrzypadkowUzycia.jpg)
 
@@ -10,16 +10,16 @@
 ![Alt text](./diagramy/Ankieta.png)
 
 
-Diagram encji
+### Diagram encji
 
 ![Alt text](./diagramy/DiagramEncji.png)
 
 
-Diagram aktywności
+### Diagram aktywności
 
 ![Alt text](./diagramy/diagramaktywności.jpg)
 
 
-Diagram stanów
+### Diagram stanów
 
 ![Alt text](./diagramy/diagramStanow.jpg)
