@@ -21,7 +21,7 @@
 
 ### Diagram aktywności Twórcy
 
-![Alt text](./diagramy/diagramaktywnościTwórca)
+![Alt text](./diagramy/diagramaktywnościTwórca.jpg)
 
 
 
