@@ -19,6 +19,11 @@
 
 ![Alt text](./diagramy/diagramaktywności.jpg)
 
+### Diagram aktywności Twórcy
+
+![Alt text](./diagramy/diagramaktywnościTwórca)
+
+
 
 ### Diagram stanów
 
