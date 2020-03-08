@@ -27,7 +27,7 @@
 
 ![Alt text](./diagramy/diagramaktywnościTwórcaNagród.jpg)
 
-### Diagram aktywności Odpowiedzialnego za nagrody
+### Diagram aktywności Administratora
 
 ![Alt text](./diagramy/diagramaktywnościAdministrator.jpg)
 
