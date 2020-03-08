@@ -19,6 +19,18 @@
 
 ![Alt text](./diagramy/diagramaktywności.jpg)
 
+### Diagram aktywności Twórcy Ankiet
+
+![Alt text](./diagramy/diagramaktywnościTwórca.jpg)
+
+### Diagram aktywności Odpowiedzialnego za nagrody
+
+![Alt text](./diagramy/diagramaktywnościTwórcaNagród.jpg)
+
+### Diagram aktywności Administratora
+
+![Alt text](./diagramy/diagramaktywnościAdministrator.jpg)
+
 
 ### Diagram stanów
 
