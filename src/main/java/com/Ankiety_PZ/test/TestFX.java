@@ -1,18 +1,40 @@
 package com.Ankiety_PZ.test;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class TestFX extends Application {
+//    @Override
+//    public void start(Stage stage) throws Exception {
+//        stage.setScene(new Scene(new Pane(), 800, 600));
+//        stage.show();
+//    }
+
+    private static Scene scene;
+
     @Override
-    public void start(Stage stage) throws Exception {
-        stage.setScene(new Scene(new Pane(), 800, 600));
+    public void start(Stage stage) throws IOException {
+        scene = new Scene(loadFXML("PanelLogin"));
+        stage.setScene(scene);
         stage.show();
     }
 
+    static void setRoot(String fxml) throws IOException {
+        scene.setRoot(loadFXML(fxml));
+    }
+
+    private static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(TestFX.class.getResource(fxml + ".fxml"));
+        return fxmlLoader.load();
+    }
+
     public static void main(String[] args) {
-        launch(args);
+        launch();
     }
 }
