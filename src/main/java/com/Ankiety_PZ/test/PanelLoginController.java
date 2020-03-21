@@ -28,8 +28,16 @@ public class PanelLoginController {
     @FXML // fx:id="panelLoginButtonLogin"
     private Button panelLoginButtonLogin; // Value injected by FXMLLoader
 
+    @FXML // fx:id="panelLoginButtonRegi"
+    private Button panelLoginButtonRegi; // Value injected by FXMLLoader
+
     @FXML
     void panelLoginButtonLoginAcept(ActionEvent event) {
+
+    }
+
+    @FXML
+    void panelLoginButtonRegiAcept(ActionEvent event) {
 
     }
 
@@ -38,6 +46,7 @@ public class PanelLoginController {
         assert panelLoginTFEmail != null : "fx:id=\"panelLoginTFEmail\" was not injected: check your FXML file 'PanelLogin.fxml'.";
         assert panelLoginPFPassword != null : "fx:id=\"panelLoginPFPassword\" was not injected: check your FXML file 'PanelLogin.fxml'.";
         assert panelLoginButtonLogin != null : "fx:id=\"panelLoginButtonLogin\" was not injected: check your FXML file 'PanelLogin.fxml'.";
+        assert panelLoginButtonRegi != null : "fx:id=\"panelLoginButtonRegi\" was not injected: check your FXML file 'PanelLogin.fxml'.";
 
     }
 }
