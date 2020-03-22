@@ -12,5 +12,9 @@ public class SceneFXML {
      * Odnośnik do poliku z panele logowania
      */
     public static final String PANEL_LOGIN = "PanelLogin";
+    /**
+     * Odnośnik do poliku z panele rejestracji
+     */
+    public static final String PANEL_REGI = "PanelRegi";
 
 }

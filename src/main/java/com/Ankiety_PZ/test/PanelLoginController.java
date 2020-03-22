@@ -11,7 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class PanelLoginController {
+public class PanelLoginController extends BulidStage {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -38,7 +38,8 @@ public class PanelLoginController {
 
     @FXML
     void panelLoginButtonRegiAcept(ActionEvent event) {
-
+        loadingFXML(event, SceneFXML.PANEL_REGI);
+        activeScene(event);
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
