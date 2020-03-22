@@ -20,7 +20,7 @@
 
 ##### - administratora
 
-![diagram aktywności administratora](./diagramy/diagramaktywnościAdministratora.jpg)
+![diagram aktywności administratora](./diagramy/diagramaktywnościAdministrator.jpg)
 
 ##### - twórcy ankiet
 
