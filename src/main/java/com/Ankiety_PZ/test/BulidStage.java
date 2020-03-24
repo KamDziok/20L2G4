@@ -7,6 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.Node;
 
+import javax.swing.text.StyledEditorKit;
+
 public abstract class BulidStage {
 
     protected Parent home;
@@ -25,11 +27,12 @@ public abstract class BulidStage {
 
     }
 
-    public void activeScene(ActionEvent event) {
+    public void activeScene(ActionEvent event, Boolean maximized) {
 
         try {
             Scene homeScene = new Scene(home);
             app = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            app.setMaximized(maximized);
             app.hide();
             app.setScene(homeScene);
             app.show();
