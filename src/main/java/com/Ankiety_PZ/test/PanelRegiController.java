@@ -23,8 +23,7 @@ public class PanelRegiController extends BulidStage {
 
     @FXML
     void panelRegiButtonRegiAction(ActionEvent event) {
-        loadingFXML(event, SceneFXML.PANEL_LOGIN);
-        activeScene(event, false);
+        deleteStage(event);
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete

@@ -9,13 +9,26 @@ import javafx.scene.Node;
 
 import javax.swing.text.StyledEditorKit;
 
+/**
+ * Klasa abstrakcyja z metodami do tworzenia nowych scen i okien.
+ *
+ * @author KamDziok
+ */
+
 public abstract class BulidStage {
 
-    protected Parent home;
+    private Parent home;
     protected FXMLLoader load;
-    protected Stage app;
+    private Stage app;
 
-    public void loadingFXML(ActionEvent event, String sceneFXML) {
+    /**
+     * Metoda ładująca odpowiednia scenę fxml'ową.
+     *
+     * @param event zdarzenie na rzecz, którego została wywołana funkcja
+     * @param sceneFXML nazwa pliku ze sceną.
+     */
+
+    protected void loadingFXML(ActionEvent event, String sceneFXML) {
 
         try {
             load = new FXMLLoader(getClass().getResource(sceneFXML + ".fxml"));
@@ -27,11 +40,22 @@ public abstract class BulidStage {
 
     }
 
-    public void activeScene(ActionEvent event, Boolean maximized) {
+    /**
+     * Metoda do tworzenia okna z załadowaną sceną.
+     *
+     * @param event zdarzenie na rzecz, którego została wywołana funkcja.
+     * @param maximized ustawienie czy okno ma być maksymalnego rozmiaru.
+     * @param newStage ustawienie czy scena zostanie załadowana w nowym oknie, czy w aktualnym.
+     */
+    protected void activeScene(ActionEvent event, Boolean maximized, Boolean newStage) {
 
         try {
             Scene homeScene = new Scene(home);
-            app = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            if(newStage){
+                app = new Stage();
+            }else {
+                app = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            }
             app.setMaximized(maximized);
             app.hide();
             app.setScene(homeScene);
@@ -41,6 +65,20 @@ public abstract class BulidStage {
             System.out.println(e.getLocalizedMessage());
         }
 
+    }
+
+    /**
+     * Metoda do usuwania okna.
+     *
+     * @param event zdarzenie na rzecz, którego została wywołana funkcja.
+     */
+    protected void deleteStage(ActionEvent event){
+        try {
+            app = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            app.close();
+        }catch(Exception e){
+            System.out.println(e.getLocalizedMessage());
+        }
     }
 
 }

@@ -39,7 +39,9 @@ public class PanelLoginController extends BulidStage {
     @FXML
     void panelLoginButtonRegiAcept(ActionEvent event) {
         loadingFXML(event, SceneFXML.PANEL_REGI);
-        activeScene(event, true);
+        PanelRegiController panelRegiController = load.getController();
+        //panelRegiController.setValues();
+        activeScene(event, false, true);
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
