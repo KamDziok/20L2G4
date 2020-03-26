@@ -20,7 +20,7 @@ public class TestFX extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML(SceneFXML.PANEL_LOGIN));
+        scene = new Scene(loadFXML(SceneFXML.PANEL_Nagrod));
         stage.setScene(scene);
         stage.show();
     }
