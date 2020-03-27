@@ -14,7 +14,7 @@
         <tabs>
           <Tab text="Nagrody">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="779.0" prefWidth="1350.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="815.0" prefWidth="1353.0">
                      <children>
                         <AnchorPane layoutX="337.0" minHeight="0.0" minWidth="0.0" prefHeight="240.0" prefWidth="336.0">
                            <children>
