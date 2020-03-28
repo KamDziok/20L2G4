@@ -7,7 +7,7 @@ import java.net.URL;
         import java.util.ResourceBundle;
         import javafx.fxml.FXML;
 
-public class public class PanelAnkieterController {
+public class PanelAnkieterController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;

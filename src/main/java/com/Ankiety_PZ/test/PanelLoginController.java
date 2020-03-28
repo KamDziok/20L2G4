@@ -67,10 +67,12 @@ public class PanelLoginController extends BulidStage {
                ///otwórz panel administratora
            }
             if(email.equals("ank")){
-                //otwórz panel ankietera
+                loadingFXML(event, SceneFXML.PANEL_ANKIETERA);
+                activeScene(event, true, false);
             }
             if(email.equals("nag")){
-                //otwórz panel nagrodziarza
+                loadingFXML(event, SceneFXML.PANEL_NAGROD);
+                activeScene(event, true, false);
             }
         }else{
             panelLoginLabelError.setText("Nie podałeś wszyszkich danych.");
