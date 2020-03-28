@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 
 /**
  * Klasa kontroler do ramki 'PanelLogin.fxml', jest potomkiem klasy {@link BulidStage}.
@@ -33,7 +34,7 @@ public class PanelLoginController extends BulidStage {
     private TextField panelLoginTFEmail; // Value injected by FXMLLoader
 
     @FXML // fx:id="panelLoginPFPassword"
-    private TextField panelLoginPFPassword; // Value injected by FXMLLoader
+    private PasswordField panelLoginPFPassword; // Value injected by FXMLLoader
 
     @FXML // fx:id="panelLoginButtonLogin"
     private Button panelLoginButtonLogin; // Value injected by FXMLLoader
