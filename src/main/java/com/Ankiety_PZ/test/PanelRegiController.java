@@ -14,7 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 
 /**
- * Klasa kontroler do ramki PanelRegi.fxml, jest potomkiem klasy  {@link BulidStage}.
+ * Klasa kontroler do ramki 'PanelRegi.fxml', jest potomkiem klasy {@link BulidStage}.
  *
  * @author KamDziok
  */
