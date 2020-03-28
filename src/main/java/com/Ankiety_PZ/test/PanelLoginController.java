@@ -10,8 +10,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
+
+/**
+ * Klasa kontroler do ramki 'PanelLogin.fxml', jest potomkiem klasy {@link BulidStage}.
+ *
+ * @author KamDziok
+ */
 
 public class PanelLoginController extends BulidStage {
+
+    private String email;
+    private String password;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -31,10 +41,48 @@ public class PanelLoginController extends BulidStage {
     @FXML // fx:id="panelLoginButtonRegi"
     private Button panelLoginButtonRegi; // Value injected by FXMLLoader
 
+    @FXML // fx:id="panelLoginLabelError"
+    private Label panelLoginLabelError; // Value injected by FXMLLoader
+
+    /**
+     * Metoda obsługi przycisku zaloguj.
+     *
+     * @author KamDziok
+     * @param event zdarzenie, po którym funkcja ma się wywołać
+     */
+
     @FXML
     void panelLoginButtonLoginAcept(ActionEvent event) {
+        email = panelLoginTFEmail.getText();
+        password = panelLoginPFPassword.getText();
 
+        if(!email.isEmpty() && !password.isEmpty()){
+            //selectUserByEmailAndPassword(email, password);
+
+            //tymczasowe
+           if(email.equals("uzy")){
+               //otwótrz panel uzytkownika
+           }
+           if(email.equals("admin")){
+               ///otwórz panel administratora
+           }
+            if(email.equals("ank")){
+                //otwórz panel ankietera
+            }
+            if(email.equals("nag")){
+                //otwórz panel nagrodziarza
+            }
+        }else{
+            panelLoginLabelError.setText("Nie podałeś wszyszkich danych.");
+        }
     }
+
+    /**
+     * Metoda obsługi przycisku zarejestruj.
+     *
+     * @author KamDziok
+     * @param event zdarzenie, po którym funkcja ma się wywołać
+     */
 
     @FXML
     void panelLoginButtonRegiAcept(ActionEvent event) {
@@ -50,6 +98,8 @@ public class PanelLoginController extends BulidStage {
         assert panelLoginPFPassword != null : "fx:id=\"panelLoginPFPassword\" was not injected: check your FXML file 'PanelLogin.fxml'.";
         assert panelLoginButtonLogin != null : "fx:id=\"panelLoginButtonLogin\" was not injected: check your FXML file 'PanelLogin.fxml'.";
         assert panelLoginButtonRegi != null : "fx:id=\"panelLoginButtonRegi\" was not injected: check your FXML file 'PanelLogin.fxml'.";
+        assert panelLoginLabelError != null : "fx:id=\"panelLoginLabelError\" was not injected: check your FXML file 'PanelLogin.fxml'.";
 
+        panelLoginLabelError.setText("");
     }
 }
