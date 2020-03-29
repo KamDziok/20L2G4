@@ -4,6 +4,7 @@ package com.Ankiety_PZ.test;
         import javafx.fxml.FXML;
         import javafx.fxml.Initializable;
         import javafx.scene.control.Button;
+
         import javafx.scene.layout.AnchorPane;
         import javafx.stage.FileChooser;
         import javafx.stage.Stage;
@@ -11,7 +12,7 @@ package com.Ankiety_PZ.test;
         import java.net.URL;
         import java.util.ResourceBundle;
 
-public class PanelEdycjiNagrod implements Initializable {
+public class PanelEdycjiNagrodController implements Initializable {
 
 
     @FXML
