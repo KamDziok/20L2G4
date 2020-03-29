@@ -22,6 +22,9 @@ public class SceneFXML {
      */
     public static final String PANEL_REGI = "PanelRegi";
 
+    /** Odnośnik do pliku z panelem admina */
+    public static  final String PANEL_ADMINA = "PanelAdmina";
+
     /** Odnośnik do pliku z panelem ankietera */
     public static  final String PANEL_ANKIETERA = "PanelAnkieter";
 }

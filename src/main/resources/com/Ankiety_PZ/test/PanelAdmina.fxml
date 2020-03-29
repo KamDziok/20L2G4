@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="681.0" prefWidth="1201.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <TabPane prefHeight="681.0" prefWidth="1201.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Użytkownicy">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="1201.0">
+                            <children>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="584.0" prefWidth="1180.0">
+                                      <children>
+                                          <AnchorPane layoutY="64.0" prefHeight="103.0" prefWidth="1169.0" style="-fx-border-color: black;">
+                                              <children>
+                                                  <Label alignment="CENTER" layoutX="24.0" layoutY="21.0" prefHeight="50.0" prefWidth="171.0" style="-fx-border-color: black;" text="alepiekny@gmail.com" />
+                                                  <Label alignment="CENTER" layoutX="211.0" layoutY="22.0" prefHeight="50.0" prefWidth="171.0" style="-fx-border-color: black;" text="Aleksander" />
+                                                  <Label alignment="CENTER" layoutX="382.0" layoutY="22.0" prefHeight="50.0" prefWidth="171.0" style="-fx-border-color: black;" text="Piękny" />
+                                                  <Button layoutX="1022.0" layoutY="14.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="143.0" text="Edytuj" />
+                                                  <Button layoutX="1022.0" layoutY="56.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="143.0" text="Usuń" />
+                                                  <Label alignment="CENTER" layoutX="618.0" layoutY="22.0" prefHeight="50.0" prefWidth="171.0" style="-fx-border-color: black;" text="300 punktów" />
+                                                  <Label alignment="CENTER" layoutX="817.0" layoutY="21.0" prefHeight="50.0" prefWidth="171.0" style="-fx-border-color: black;" text="Leżajsk" />
+                                              </children>
+                                          </AnchorPane>
+                                          <AnchorPane layoutY="167.0" prefHeight="102.0" prefWidth="1169.0" style="-fx-border-color: black;">
+                                              <children>
+                                                  <Label alignment="CENTER" layoutX="24.0" layoutY="22.0" prefHeight="50.0" prefWidth="171.0" style="-fx-border-color: black;" text="boskawiola@gmail.com" />
+                                                  <Label alignment="CENTER" layoutX="211.0" layoutY="22.0" prefHeight="50.0" prefWidth="171.0" style="-fx-border-color: black;" text="Wioletta" />
+                                                  <Label alignment="CENTER" layoutX="382.0" layoutY="22.0" prefHeight="50.0" prefWidth="171.0" style="-fx-border-color: black;" text="Boska" />
+                                                  <Button layoutX="1022.0" layoutY="14.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="143.0" text="Edytuj" />
+                                                  <Button layoutX="1022.0" layoutY="56.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="143.0" text="Usuń" />
+                                                  <Label alignment="CENTER" layoutX="618.0" layoutY="22.0" prefHeight="50.0" prefWidth="171.0" style="-fx-border-color: black;" text="400 punktów" />
+                                                  <Label alignment="CENTER" layoutX="819.0" layoutY="27.0" prefHeight="50.0" prefWidth="171.0" style="-fx-border-color: black;" text="Rzeszów" />
+                                              </children>
+                                          </AnchorPane>
+                                          <AnchorPane layoutY="269.0" prefHeight="106.0" prefWidth="1169.0" style="-fx-border-color: black;">
+                                              <children>
+                                                  <Label alignment="CENTER" layoutX="24.0" layoutY="22.0" prefHeight="50.0" prefWidth="171.0" style="-fx-border-color: black;" text="kacper.szok@gmail.com" />
+                                                  <Label alignment="CENTER" layoutX="211.0" layoutY="22.0" prefHeight="50.0" prefWidth="171.0" style="-fx-border-color: black;" text="Kacper" />
+                                                  <Label alignment="CENTER" layoutX="382.0" layoutY="22.0" prefHeight="50.0" prefWidth="171.0" style="-fx-border-color: black;" text="Szok" />
+                                                  <Button layoutX="1022.0" layoutY="14.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="143.0" text="Edytuj" />
+                                                  <Button layoutX="1022.0" layoutY="56.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="143.0" text="Usuń" />
+                                                  <Label alignment="CENTER" layoutX="618.0" layoutY="22.0" prefHeight="50.0" prefWidth="171.0" style="-fx-border-color: black;" text="100 punktów" />
+                                                  <Label alignment="CENTER" layoutX="822.0" layoutY="22.0" prefHeight="50.0" prefWidth="171.0" style="-fx-border-color: black;" text="Tyczyn" />
+                                              </children>
+                                          </AnchorPane>
+                                          <AnchorPane layoutY="375.0" prefHeight="101.0" prefWidth="1169.0" style="-fx-border-color: black;">
+                                              <children>
+                                                  <Label alignment="CENTER" layoutX="24.0" layoutY="22.0" prefHeight="50.0" prefWidth="171.0" style="-fx-border-color: black;" text="marito.a@icloud.com" />
+                                                  <Label alignment="CENTER" layoutX="211.0" layoutY="22.0" prefHeight="50.0" prefWidth="171.0" style="-fx-border-color: black;" text="Adrianna" />
+                                                  <Label alignment="CENTER" layoutX="382.0" layoutY="22.0" prefHeight="50.0" prefWidth="171.0" style="-fx-border-color: black;" text="Marito" />
+                                                  <Button layoutX="1022.0" layoutY="14.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="143.0" text="Edytuj" />
+                                                  <Button layoutX="1022.0" layoutY="56.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="143.0" text="Usuń" />
+                                                  <Label alignment="CENTER" layoutX="618.0" layoutY="22.0" prefHeight="50.0" prefWidth="171.0" style="-fx-border-color: black;" text="500 punktów" />
+                                                  <Label alignment="CENTER" layoutX="823.0" layoutY="22.0" prefHeight="50.0" prefWidth="171.0" style="-fx-border-color: black;" text="Kolbuszowa" />
+                                              </children>
+                                          </AnchorPane>
+                                      <Label alignment="CENTER" layoutX="28.0" layoutY="10.0" prefHeight="50.0" prefWidth="171.0" text="E-mail">
+                                          <font>
+                                              <Font size="18.0" />
+                                          </font>
+                                          <effect>
+                                              <Bloom />
+                                          </effect>
+                                      </Label>
+                                      <Label alignment="CENTER" layoutX="382.0" layoutY="14.0" prefHeight="50.0" prefWidth="171.0" text="Nazwisko">
+                                          <font>
+                                              <Font size="18.0" />
+                                          </font>
+                                          <effect>
+                                              <Bloom />
+                                          </effect>
+                                      </Label>
+                                      <Label alignment="CENTER" layoutX="618.0" layoutY="14.0" prefHeight="50.0" prefWidth="171.0" text="Liczba punktów">
+                                          <font>
+                                              <Font size="18.0" />
+                                          </font>
+                                          <effect>
+                                              <Bloom />
+                                          </effect>
+                                      </Label>
+                                      <Label alignment="CENTER" layoutX="814.0" layoutY="14.0" prefHeight="50.0" prefWidth="189.0" text="Miasto">
+                                          <font>
+                                              <Font size="18.0" />
+                                          </font>
+                                          <effect>
+                                              <Bloom />
+                                          </effect>
+                                      </Label>
+                                      </children>
+                                  </AnchorPane>
+                                <Label alignment="CENTER" layoutX="213.0" layoutY="14.0" prefHeight="50.0" prefWidth="171.0" text="Imię">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                    <effect>
+                                        <Bloom />
+                                    </effect>
+                                </Label>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Konto">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <Label alignment="TOP_LEFT" layoutX="24.0" layoutY="26.0" prefHeight="41.0" prefWidth="191.0" text="Nazwa użytkownika">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <TextField layoutX="18.0" layoutY="107.0" prefHeight="46.0" prefWidth="270.0" />
+                                <Label layoutX="24.0" layoutY="67.0" prefHeight="41.0" prefWidth="191.0" text="Hasło:">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <TextField layoutX="336.0" layoutY="107.0" prefHeight="46.0" prefWidth="289.0" />
+                                <Label layoutX="336.0" layoutY="67.0" prefHeight="41.0" prefWidth="191.0" text="Nowe hasło:">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="24.0" layoutY="181.0" prefHeight="41.0" prefWidth="191.0" text="Aktyalny email">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <TextField layoutX="336.0" layoutY="219.0" prefHeight="46.0" prefWidth="289.0" />
+                                <Label layoutX="336.0" layoutY="179.0" prefHeight="41.0" prefWidth="191.0" text="Nowy email:">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label alignment="CENTER" layoutX="24.0" layoutY="222.0" prefHeight="39.0" prefWidth="264.0" style="-fx-border-color: black;" text="jakisemiallosowy@asiahfg.as">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="24.0" layoutY="286.0" prefHeight="41.0" prefWidth="191.0" text="Stworzone ankiety:">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="24.0" layoutY="327.0" prefHeight="39.0" prefWidth="264.0" style="-fx-border-color: black;" text="15">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="336.0" layoutY="286.0" prefHeight="41.0" prefWidth="191.0" text="Aktywne ankiety:">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="336.0" layoutY="327.0" prefHeight="39.0" prefWidth="264.0" style="-fx-border-color: black;" text="2">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="642.0" layoutY="287.0" prefHeight="41.0" prefWidth="191.0" text="Wygasłe ankiety:">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="642.0" layoutY="328.0" prefHeight="39.0" prefWidth="264.0" style="-fx-border-color: black;" text="13">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <Button layoutX="1049.0" layoutY="584.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="126.0" text="Usuń konto" />
+                                <Button layoutX="24.0" layoutY="406.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="126.0" text="Wyloguj" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>
