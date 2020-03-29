@@ -11,7 +11,7 @@ public class SceneFXML {
     /**
      * Odnośnik do poliku z panelu Osoby odpowiedzialnej za nagrody
      */
-    public static final String PANEL_NAGROD = "PanelOsobyOdNagrod";
+    public static final String PANEL_NAGROD = "PanelEdycjiNagrod";
 
     /**
      * Odnośnik do poliku z panele logowania
