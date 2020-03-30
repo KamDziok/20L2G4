@@ -14,7 +14,11 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PanelEdycjiNagrodController implements Initializable {
+/**
+ * Sample Skeleton for 'PanelEdycjiNagrod.fxml' Controller Class
+ */
+
+public class PanelEdycjiNagrodController extends BulidStage implements Initializable {
 
     File file = new File("C:\\Users\\Banan\\Pictures\\a.jpg");
     @FXML
@@ -22,6 +26,12 @@ public class PanelEdycjiNagrodController implements Initializable {
 
     @FXML
     private AnchorPane anchorpane;
+
+    @FXML
+    private Button panelEdycjiNagrodButtonUsun;
+
+    @FXML
+    private Button panelEdycjiNagrodButtonAnuluj;
 
     @FXML
     private Button PanelEdycjiNagrod;
@@ -41,17 +51,29 @@ public class PanelEdycjiNagrodController implements Initializable {
 
             imageview.setImage(image);
         }catch(IllegalArgumentException argumentException){
-            System.out.println("Nie wybrałeś zdjęcia, lub rozszerzenie nie jest obsługiwane. " + argumentException.getMessage());
+            System.out.println("Nie wybrałeś zdjęcia lub rozszerzenie nie jest obsługiwane. " + argumentException.getMessage());
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
     }
 
+    @FXML
+    void panelEdycjiNagrodButtonAnuluj(ActionEvent event) {
+        loadingFXML(event, SceneFXML.PANEL_NAGROD);
+        activeScene(event, false, false);
+    }
 
+    @FXML
+    void panelEdycjiNagrodButtonUsun(ActionEvent event) {
+        loadingFXML(event, SceneFXML.PANEL_NAGROD);
+        activeScene(event, false, false);
+    }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert PanelEdycjiNagrod != null : "fx:id=\"panelEdycjiNagrodButtonDodajZdjecie\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
+        assert panelEdycjiNagrodButtonUsun != null : "fx:id=\"panelEdycjiNagrodButtonUsun\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
+        assert panelEdycjiNagrodButtonAnuluj != null : "fx:id=\"panelEdycjiNagrodButtonAnuluj\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
 
 
     }

@@ -18,8 +18,8 @@
                      <children>
                         <AnchorPane layoutX="337.0" minHeight="0.0" minWidth="0.0" prefHeight="240.0" prefWidth="336.0">
                            <children>
-                              <Button layoutX="268.0" layoutY="194.0" mnemonicParsing="false" text="Usuń" />
-                              <Button layoutX="204.0" layoutY="194.0" mnemonicParsing="false" text="Edytuj" />
+                              <Button fx:id="panelnagroddodajnagrode" layoutX="268.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Usuń" />
+                              <Button fx:id="panelnagroddodajnagrode" layoutX="204.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Edytuj" />
                               <ImageView fitHeight="141.0" fitWidth="275.0" layoutX="27.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../media/allegro-logo.jpg" />
@@ -33,8 +33,8 @@
                         </AnchorPane>
                         <AnchorPane layoutX="672.0" minHeight="0.0" minWidth="0.0" prefHeight="240.0" prefWidth="336.0">
                            <children>
-                              <Button layoutX="268.0" layoutY="194.0" mnemonicParsing="false" text="Usuń" />
-                              <Button layoutX="204.0" layoutY="194.0" mnemonicParsing="false" text="Edytuj" />
+                              <Button fx:id="panelnagroddodajnagrode" layoutX="268.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Usuń" />
+                              <Button fx:id="panelnagroddodajnagrode" layoutX="204.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Edytuj" />
                               <ImageView fitHeight="85.0" fitWidth="275.0" layoutX="31.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../media/galeria-rzeszow-logo.png" />
@@ -48,8 +48,8 @@
                         </AnchorPane>
                         <AnchorPane layoutX="1012.0" minHeight="0.0" minWidth="0.0" prefHeight="240.0" prefWidth="336.0">
                            <children>
-                              <Button layoutX="268.0" layoutY="194.0" mnemonicParsing="false" text="Usuń" />
-                              <Button layoutX="204.0" layoutY="194.0" mnemonicParsing="false" text="Edytuj" />
+                              <Button fx:id="panelnagroddodajnagrode" layoutX="268.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Usuń" />
+                              <Button fx:id="panelnagroddodajnagrode" layoutX="204.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Edytuj" />
                               <ImageView fitHeight="85.0" fitWidth="275.0" layoutX="31.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../media/galeria-rzeszow-logo.png" />
@@ -63,8 +63,8 @@
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="240.0" prefWidth="336.0">
                            <children>
-                              <Button layoutX="268.0" layoutY="194.0" mnemonicParsing="false" text="Usuń" />
-                              <Button layoutX="204.0" layoutY="194.0" mnemonicParsing="false" text="Edytuj" />
+                              <Button fx:id="panelnagroddodajnagrode" layoutX="268.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Usuń" />
+                              <Button fx:id="panelnagroddodajnagrode" layoutX="204.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Edytuj" />
                               <ImageView fitHeight="141.0" fitWidth="275.0" layoutX="27.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../media/allegro-logo.jpg" />
@@ -78,8 +78,8 @@
                         </AnchorPane>
                         <AnchorPane layoutY="241.0" minHeight="0.0" minWidth="0.0" prefHeight="240.0" prefWidth="336.0">
                            <children>
-                              <Button layoutX="268.0" layoutY="194.0" mnemonicParsing="false" text="Usuń" />
-                              <Button layoutX="204.0" layoutY="194.0" mnemonicParsing="false" text="Edytuj" />
+                              <Button fx:id="panelnagroddodajnagrode" layoutX="268.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Usuń" />
+                              <Button fx:id="panelnagroddodajnagrode" layoutX="204.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Edytuj" />
                               <ImageView fitHeight="118.0" fitWidth="293.0" layoutX="27.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../media/s20.jpg" />
@@ -93,8 +93,8 @@
                         </AnchorPane>
                         <AnchorPane layoutX="347.0" layoutY="241.0" minHeight="0.0" minWidth="0.0" prefHeight="240.0" prefWidth="336.0">
                            <children>
-                              <Button layoutX="268.0" layoutY="194.0" mnemonicParsing="false" text="Usuń" />
-                              <Button layoutX="204.0" layoutY="194.0" mnemonicParsing="false" text="Edytuj" />
+                              <Button fx:id="panelnagroddodajnagrode" layoutX="268.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Usuń" />
+                              <Button fx:id="panelnagroddodajnagrode" layoutX="204.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Edytuj" />
                               <ImageView fitHeight="141.0" fitWidth="293.0" layoutX="75.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../media/dlugobisczarny.jpg" />
@@ -106,7 +106,7 @@
                               <Label contentDisplay="BOTTOM" layoutX="221.0" layoutY="153.0" prefHeight="18.0" prefWidth="94.0" text="1000 punktów" textFill="#0090ff" />
                            </children>
                         </AnchorPane>
-                        <Button layoutX="1233.0" layoutY="733.0" mnemonicParsing="false" text="Dodaj nagrodę" />
+                        <Button fx:id="panelnagroddodajnagrode" layoutX="1233.0" layoutY="733.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Dodaj nagrodę" />
                      </children>
                   </AnchorPane>
             </content>
