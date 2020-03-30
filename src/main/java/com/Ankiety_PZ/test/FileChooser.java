@@ -10,7 +10,7 @@ public class FileChooser extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("PanelEdycjiNagrod.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("testPanelEdycjiNagrod.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
