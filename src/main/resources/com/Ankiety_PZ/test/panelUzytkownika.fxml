@@ -1,14 +1,241 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.Ankiety_PZ.test.PanelUzytkownikaController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="681.0" prefWidth="1201.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.PanelUzytkownikaController">
+   <children>
+      <TabPane prefHeight="681.0" prefWidth="1201.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Panel użytkownika">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="1201.0">
+                     <children>
+                        <AnchorPane layoutX="93.0" layoutY="101.0" prefHeight="80.0" prefWidth="1016.0" style="-fx-border-color: grey;">
+                           <children>
+                              <Label layoutX="14.0" layoutY="25.0" text="Ankieta - Żabka">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font></Label>
+                              <Button layoutX="902.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Wypełnij" />
+                              <Label layoutX="390.0" layoutY="27.0" text="Data wygasniecia:  01.04.2020">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font></Label>
+                              <Label layoutX="740.0" layoutY="27.0" text="50 pkt">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font></Label>
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="67.0" layoutY="33.0" text="Dostępne ankiety">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane layoutX="93.0" layoutY="203.0" prefHeight="80.0" prefWidth="1016.0" style="-fx-border-color: grey;">
+                           <children>
+                              <Label layoutX="14.0" layoutY="25.0" text="Ankieta - Biedronka">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Button layoutX="902.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Wypełnij" />
+                              <Label layoutX="390.0" layoutY="27.0" text="Data wygasniecia:  21.04.2020">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="740.0" layoutY="27.0" text="50 pkt">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Nagrody">
+                <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="1201.0">
+                        <children>
+                            <AnchorPane layoutX="337.0" minHeight="0.0" minWidth="0.0" prefHeight="240.0" prefWidth="336.0">
+                                <children>
+                                    <Button fx:id="panelnagroddodajnagrode" layoutX="268.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Usuń" />
+                                    <Button fx:id="panelnagroddodajnagrode" layoutX="204.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Edytuj" />
+                                    <ImageView fitHeight="141.0" fitWidth="275.0" layoutX="27.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                                        <image>
+                                            <Image url="@../../../media/allegro-logo.jpg" />
+                                        </image>
+                                    </ImageView>
+                                    <Button layoutX="14.0" layoutY="194.0" mnemonicParsing="false" text="Wymień punkty" />
+                                    <Label contentDisplay="BOTTOM" layoutX="12.0" layoutY="126.0" prefHeight="18.0" prefWidth="313.0" text="Kupon do allegro.pl o wartości 100 zł" />
+                                    <Label contentDisplay="BOTTOM" layoutX="12.0" layoutY="153.0" prefHeight="18.0" prefWidth="94.0" text="Koszt wymiany" />
+                                    <Label contentDisplay="BOTTOM" layoutX="221.0" layoutY="153.0" prefHeight="18.0" prefWidth="94.0" text="10000 punktów" textFill="#0090ff" />
+                                </children>
+                            </AnchorPane>
+                            <AnchorPane layoutX="672.0" minHeight="0.0" minWidth="0.0" prefHeight="240.0" prefWidth="336.0">
+                                <children>
+                                    <Button fx:id="panelnagroddodajnagrode" layoutX="268.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Usuń" />
+                                    <Button fx:id="panelnagroddodajnagrode" layoutX="204.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Edytuj" />
+                                    <ImageView fitHeight="85.0" fitWidth="275.0" layoutX="31.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                                        <image>
+                                            <Image url="@../../../media/galeria-rzeszow-logo.png" />
+                                        </image>
+                                    </ImageView>
+                                    <Button layoutX="14.0" layoutY="194.0" mnemonicParsing="false" text="Wymień punkty" />
+                                    <Label contentDisplay="BOTTOM" layoutX="12.0" layoutY="126.0" prefHeight="18.0" prefWidth="313.0" text="Kupon do Galerii Rzeszów o wartości 100 zł" />
+                                    <Label contentDisplay="BOTTOM" layoutX="12.0" layoutY="153.0" prefHeight="18.0" prefWidth="94.0" text="Koszt wymiany" />
+                                    <Label contentDisplay="BOTTOM" layoutX="221.0" layoutY="153.0" prefHeight="18.0" prefWidth="94.0" text="10000 punktów" textFill="#0090ff" />
+                                </children>
+                            </AnchorPane>
+                            <AnchorPane layoutX="1012.0" minHeight="0.0" minWidth="0.0" prefHeight="240.0" prefWidth="336.0">
+                                <children>
+                                    <Button fx:id="panelnagroddodajnagrode" layoutX="268.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Usuń" />
+                                    <Button fx:id="panelnagroddodajnagrode" layoutX="204.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Edytuj" />
+                                    <ImageView fitHeight="85.0" fitWidth="275.0" layoutX="31.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                                        <image>
+                                            <Image url="@../../../media/galeria-rzeszow-logo.png" />
+                                        </image>
+                                    </ImageView>
+                                    <Button layoutX="14.0" layoutY="194.0" mnemonicParsing="false" text="Wymień punkty" />
+                                    <Label contentDisplay="BOTTOM" layoutX="12.0" layoutY="126.0" prefHeight="18.0" prefWidth="313.0" text="Kupon do Galerii Rzeszów o wartości 200 zł" />
+                                    <Label contentDisplay="BOTTOM" layoutX="12.0" layoutY="153.0" prefHeight="18.0" prefWidth="94.0" text="Koszt wymiany" />
+                                    <Label contentDisplay="BOTTOM" layoutX="221.0" layoutY="153.0" prefHeight="18.0" prefWidth="94.0" text="20000 punktów" textFill="#0090ff" />
+                                </children>
+                            </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="240.0" prefWidth="336.0">
+                                <children>
+                                    <Button fx:id="panelnagroddodajnagrode" layoutX="268.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Usuń" />
+                                    <Button fx:id="panelnagroddodajnagrode" layoutX="204.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Edytuj" />
+                                    <ImageView fitHeight="141.0" fitWidth="275.0" layoutX="27.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                                        <image>
+                                            <Image url="@../../../media/allegro-logo.jpg" />
+                                        </image>
+                                    </ImageView>
+                                    <Button layoutX="14.0" layoutY="194.0" mnemonicParsing="false" text="Wymień punkty" />
+                                    <Label contentDisplay="BOTTOM" layoutX="12.0" layoutY="126.0" prefHeight="18.0" prefWidth="313.0" text="Kupon do allegro.pl o wartości 50 zł" />
+                                    <Label contentDisplay="BOTTOM" layoutX="12.0" layoutY="153.0" prefHeight="18.0" prefWidth="94.0" text="Koszt wymiany" />
+                                    <Label contentDisplay="BOTTOM" layoutX="221.0" layoutY="153.0" prefHeight="18.0" prefWidth="94.0" text="5000 punktów" textFill="#0090ff" />
+                                </children>
+                            </AnchorPane>
+                            <AnchorPane layoutY="241.0" minHeight="0.0" minWidth="0.0" prefHeight="240.0" prefWidth="336.0">
+                                <children>
+                                    <Button fx:id="panelnagroddodajnagrode" layoutX="268.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Usuń" />
+                                    <Button fx:id="panelnagroddodajnagrode" layoutX="204.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Edytuj" />
+                                    <ImageView fitHeight="118.0" fitWidth="293.0" layoutX="27.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                                        <image>
+                                            <Image url="@../../../media/s20.jpg" />
+                                        </image>
+                                    </ImageView>
+                                    <Button layoutX="14.0" layoutY="194.0" mnemonicParsing="false" text="Wymień punkty" />
+                                    <Label contentDisplay="BOTTOM" layoutX="12.0" layoutY="126.0" prefHeight="18.0" prefWidth="313.0" text="Smartfon Samsung Galaxy S20" />
+                                    <Label contentDisplay="BOTTOM" layoutX="12.0" layoutY="153.0" prefHeight="18.0" prefWidth="94.0" text="Koszt wymiany" />
+                                    <Label contentDisplay="BOTTOM" layoutX="214.0" layoutY="153.0" prefHeight="18.0" prefWidth="101.0" text="400000 punktów" textFill="#0090ff" />
+                                </children>
+                            </AnchorPane>
+                            <AnchorPane layoutX="347.0" layoutY="241.0" minHeight="0.0" minWidth="0.0" prefHeight="240.0" prefWidth="336.0">
+                                <children>
+                                    <Button fx:id="panelnagroddodajnagrode" layoutX="268.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Usuń" />
+                                    <Button fx:id="panelnagroddodajnagrode" layoutX="204.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Edytuj" />
+                                    <ImageView fitHeight="141.0" fitWidth="293.0" layoutX="75.0" pickOnBounds="true" preserveRatio="true">
+                                        <image>
+                                            <Image url="@../../../media/dlugobisczarny.jpg" />
+                                        </image>
+                                    </ImageView>
+                                    <Button layoutX="14.0" layoutY="194.0" mnemonicParsing="false" text="Wymień punkty" />
+                                    <Label contentDisplay="BOTTOM" layoutX="12.0" layoutY="126.0" prefHeight="18.0" prefWidth="313.0" text="Długopis czarny" />
+                                    <Label contentDisplay="BOTTOM" layoutX="12.0" layoutY="153.0" prefHeight="18.0" prefWidth="94.0" text="Koszt wymiany" />
+                                    <Label contentDisplay="BOTTOM" layoutX="221.0" layoutY="153.0" prefHeight="18.0" prefWidth="94.0" text="1000 punktów" textFill="#0090ff" />
+                                </children>
+                            </AnchorPane>
+                            <Button fx:id="panelnagroddodajnagrode" layoutX="1233.0" layoutY="733.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Dodaj nagrodę" />
+                        </children>
+                    </AnchorPane>
+                </content>
+            </Tab>
+            <Tab text="Ustawienia">
+                <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="340.0" prefWidth="644.0">
+                        <children>
+                            <Label alignment="TOP_LEFT" layoutX="24.0" layoutY="26.0" prefHeight="41.0" prefWidth="191.0" text="Nazwa użytkownika">
+                                <font>
+                                    <Font size="18.0" />
+                                </font>
+                            </Label>
+                            <TextField layoutX="18.0" layoutY="107.0" prefHeight="46.0" prefWidth="270.0" />
+                            <Label layoutX="24.0" layoutY="67.0" prefHeight="41.0" prefWidth="191.0" text="Hasło:">
+                                <font>
+                                    <Font size="18.0" />
+                                </font>
+                            </Label>
+                            <TextField layoutX="336.0" layoutY="107.0" prefHeight="46.0" prefWidth="289.0" />
+                            <Label layoutX="336.0" layoutY="67.0" prefHeight="41.0" prefWidth="191.0" text="Nowe hasło:">
+                                <font>
+                                    <Font size="18.0" />
+                                </font>
+                            </Label>
+                            <Label layoutX="24.0" layoutY="181.0" prefHeight="41.0" prefWidth="191.0" text="Aktualny email">
+                                <font>
+                                    <Font size="18.0" />
+                                </font>
+                            </Label>
+                            <TextField layoutX="336.0" layoutY="219.0" prefHeight="46.0" prefWidth="289.0" />
+                            <Label layoutX="336.0" layoutY="179.0" prefHeight="41.0" prefWidth="191.0" text="Nowy email:">
+                                <font>
+                                    <Font size="18.0" />
+                                </font>
+                            </Label>
+                            <Label alignment="CENTER" layoutX="24.0" layoutY="222.0" prefHeight="39.0" prefWidth="264.0" style="-fx-border-color: black;" text="jakisemiallosowy@asiahfg.as">
+                                <font>
+                                    <Font size="16.0" />
+                                </font>
+                            </Label>
+                            <Label layoutX="24.0" layoutY="286.0" prefHeight="41.0" prefWidth="191.0" text="Stworzone ankiety:">
+                                <font>
+                                    <Font size="18.0" />
+                                </font>
+                            </Label>
+                            <Label layoutX="24.0" layoutY="327.0" prefHeight="39.0" prefWidth="264.0" style="-fx-border-color: black;" text="15">
+                                <font>
+                                    <Font size="18.0" />
+                                </font>
+                            </Label>
+                            <Label layoutX="336.0" layoutY="286.0" prefHeight="41.0" prefWidth="191.0" text="Aktywne ankiety:">
+                                <font>
+                                    <Font size="18.0" />
+                                </font>
+                            </Label>
+                            <Label layoutX="336.0" layoutY="327.0" prefHeight="39.0" prefWidth="264.0" style="-fx-border-color: black;" text="2">
+                                <font>
+                                    <Font size="18.0" />
+                                </font>
+                            </Label>
+                            <Label layoutX="642.0" layoutY="287.0" prefHeight="41.0" prefWidth="191.0" text="Wygasłe ankiety:">
+                                <font>
+                                    <Font size="18.0" />
+                                </font>
+                            </Label>
+                            <Label layoutX="642.0" layoutY="328.0" prefHeight="39.0" prefWidth="264.0" style="-fx-border-color: black;" text="13">
+                                <font>
+                                    <Font size="18.0" />
+                                </font>
+                            </Label>
+                            <Button layoutX="1061.0" layoutY="560.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="126.0" text="Usuń konto" />
+                            <Button layoutX="24.0" layoutY="406.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="126.0" text="Wyloguj" />
+                        <Button layoutX="711.0" layoutY="64.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="126.0" text="Zmień" />
+                        <Button layoutX="711.0" layoutY="178.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="126.0" text="Zmień" />
+                        </children>
+                    </AnchorPane>
+                </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
 </AnchorPane>
