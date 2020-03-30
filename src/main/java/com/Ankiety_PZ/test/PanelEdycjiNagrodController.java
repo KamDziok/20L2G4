@@ -23,11 +23,11 @@ public class PanelEdycjiNagrodController implements Initializable {
 
     @FXML
     void panelEdycjiNagrodButtonDodajZdjecie(ActionEvent event) {
-
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Wybierz zdjęcie");
-        Stage stage = (Stage)anchorpane.getScene().getWindow();
-        fileChooser.showOpenDialog(null);
+        //Stage stage = (Stage) anchorpane.getScene().getWindow();
+        Stage stage = new Stage();
+        fileChooser.showOpenDialog(stage);
     }
 
 
