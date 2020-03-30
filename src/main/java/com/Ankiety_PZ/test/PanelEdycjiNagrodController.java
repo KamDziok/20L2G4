@@ -36,8 +36,16 @@ public class PanelEdycjiNagrodController implements Initializable {
                 ,new FileChooser.ExtensionFilter("Inne", "*")
         );
         file = fileChooser.showOpenDialog(stage);
-        System.out.println(file);
+        try {
+            Image image = new Image(file.toURI().toString());
+
+            imageview.setImage(image);
+        }catch(IllegalArgumentException argumentException){
+            System.out.println("Nie wybrałeś zdjęcia, lub rozszerzenie nie jest obsługiwane. " + argumentException.getMessage());
+        }catch(Exception e){
+            System.out.println(e.getMessage());
         }
+    }
 
 
 
