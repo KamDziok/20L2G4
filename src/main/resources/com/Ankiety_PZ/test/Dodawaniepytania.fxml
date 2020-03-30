@@ -21,7 +21,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="900.0" prefWidth="1155.0">
                <children>
-                  <CheckBox layoutX="8.0" layoutY="46.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="470.0" text="pytanie zamknięte wielokrotnegokrotnego wyboru">
+                  <CheckBox layoutX="8.0" layoutY="46.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="470.0" text="pytanie zamknięte Jednokrotnegokrotnego wyboru">
                      <font>
                         <Font size="18.0" />
                      </font>
