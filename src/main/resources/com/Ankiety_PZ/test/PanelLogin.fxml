@@ -27,6 +27,10 @@
                   <Font size="24.0" />
                </font>
             </Label>
+            <PasswordField fx:id="panelLoginPFPassword" layoutX="10.0" layoutY="160.0" prefHeight="51.0" prefWidth="522.0">
+               <font>
+                  <Font size="24.0" />
+               </font></PasswordField>
             <Button fx:id="panelLoginButtonLogin" layoutX="381.0" layoutY="288.0" mnemonicParsing="false" onAction="#panelLoginButtonLoginAcept" prefHeight="51.0" prefWidth="151.0" text="Zaloguj">
                <font>
                   <Font size="24.0" />
@@ -42,10 +46,6 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <PasswordField fx:id="panelLoginPFPassword" layoutX="10.0" layoutY="160.0" prefHeight="51.0" prefWidth="522.0">
-               <font>
-                  <Font size="24.0" />
-               </font></PasswordField>
          </children>
       </Pane>
    </children>
