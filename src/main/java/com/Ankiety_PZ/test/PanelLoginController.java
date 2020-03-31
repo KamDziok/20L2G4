@@ -62,6 +62,8 @@ public class PanelLoginController extends BulidStage {
 
             //tymczasowe
            if(email.equals("uzy")){
+               loadingFXML(event, SceneFXML.PANEL_UZYTKOWNIKA);
+               activeScene(event, false, false);
                //otwórz panel uzytkownika
            }
            if(email.equals("admin")){

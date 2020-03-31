@@ -2,15 +2,18 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="681.0" prefWidth="1201.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.PanelUzytkownikaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1201.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.PanelUzytkownikaController">
    <children>
-      <TabPane prefHeight="681.0" prefWidth="1201.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="720.0" prefWidth="1201.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Panel użytkownika">
             <content>
@@ -22,7 +25,7 @@
                                  <font>
                                     <Font size="20.0" />
                                  </font></Label>
-                              <Button layoutX="902.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Wypełnij" />
+                              <Button layoutX="902.0" layoutY="15.0" mnemonicParsing="false" onAction="#panelUzytkownikaButtonMakeAnkiet" prefHeight="50.0" prefWidth="100.0" text="Wypełnij" />
                               <Label layoutX="390.0" layoutY="27.0" text="Data wygasniecia:  01.04.2020">
                                  <font>
                                     <Font size="18.0" />
@@ -67,8 +70,6 @@
                         <children>
                             <AnchorPane layoutX="337.0" minHeight="0.0" minWidth="0.0" prefHeight="240.0" prefWidth="336.0">
                                 <children>
-                                    <Button fx:id="panelnagroddodajnagrode" layoutX="268.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Usuń" />
-                                    <Button fx:id="panelnagroddodajnagrode" layoutX="204.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Edytuj" />
                                     <ImageView fitHeight="141.0" fitWidth="275.0" layoutX="27.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
                                             <Image url="@../../../media/allegro-logo.jpg" />
@@ -82,8 +83,6 @@
                             </AnchorPane>
                             <AnchorPane layoutX="672.0" minHeight="0.0" minWidth="0.0" prefHeight="240.0" prefWidth="336.0">
                                 <children>
-                                    <Button fx:id="panelnagroddodajnagrode" layoutX="268.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Usuń" />
-                                    <Button fx:id="panelnagroddodajnagrode" layoutX="204.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Edytuj" />
                                     <ImageView fitHeight="85.0" fitWidth="275.0" layoutX="31.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
                                             <Image url="@../../../media/galeria-rzeszow-logo.png" />
@@ -97,8 +96,6 @@
                             </AnchorPane>
                             <AnchorPane layoutX="1012.0" minHeight="0.0" minWidth="0.0" prefHeight="240.0" prefWidth="336.0">
                                 <children>
-                                    <Button fx:id="panelnagroddodajnagrode" layoutX="268.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Usuń" />
-                                    <Button fx:id="panelnagroddodajnagrode" layoutX="204.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Edytuj" />
                                     <ImageView fitHeight="85.0" fitWidth="275.0" layoutX="31.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
                                             <Image url="@../../../media/galeria-rzeszow-logo.png" />
@@ -112,8 +109,6 @@
                             </AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="240.0" prefWidth="336.0">
                                 <children>
-                                    <Button fx:id="panelnagroddodajnagrode" layoutX="268.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Usuń" />
-                                    <Button fx:id="panelnagroddodajnagrode" layoutX="204.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Edytuj" />
                                     <ImageView fitHeight="141.0" fitWidth="275.0" layoutX="27.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
                                             <Image url="@../../../media/allegro-logo.jpg" />
@@ -127,8 +122,6 @@
                             </AnchorPane>
                             <AnchorPane layoutY="241.0" minHeight="0.0" minWidth="0.0" prefHeight="240.0" prefWidth="336.0">
                                 <children>
-                                    <Button fx:id="panelnagroddodajnagrode" layoutX="268.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Usuń" />
-                                    <Button fx:id="panelnagroddodajnagrode" layoutX="204.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Edytuj" />
                                     <ImageView fitHeight="118.0" fitWidth="293.0" layoutX="27.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
                                             <Image url="@../../../media/s20.jpg" />
@@ -142,8 +135,6 @@
                             </AnchorPane>
                             <AnchorPane layoutX="347.0" layoutY="241.0" minHeight="0.0" minWidth="0.0" prefHeight="240.0" prefWidth="336.0">
                                 <children>
-                                    <Button fx:id="panelnagroddodajnagrode" layoutX="268.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Usuń" />
-                                    <Button fx:id="panelnagroddodajnagrode" layoutX="204.0" layoutY="194.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Edytuj" />
                                     <ImageView fitHeight="141.0" fitWidth="293.0" layoutX="75.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
                                             <Image url="@../../../media/dlugobisczarny.jpg" />
@@ -155,82 +146,147 @@
                                     <Label contentDisplay="BOTTOM" layoutX="221.0" layoutY="153.0" prefHeight="18.0" prefWidth="94.0" text="1000 punktów" textFill="#0090ff" />
                                 </children>
                             </AnchorPane>
-                            <Button fx:id="panelnagroddodajnagrode" layoutX="1233.0" layoutY="733.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" text="Dodaj nagrodę" />
                         </children>
                     </AnchorPane>
                 </content>
             </Tab>
             <Tab text="Ustawienia">
                 <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="340.0" prefWidth="644.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1112.0" prefWidth="1201.0">
                         <children>
-                            <Label alignment="TOP_LEFT" layoutX="24.0" layoutY="26.0" prefHeight="41.0" prefWidth="191.0" text="Nazwa użytkownika">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                            <TextField layoutX="18.0" layoutY="107.0" prefHeight="46.0" prefWidth="270.0" />
-                            <Label layoutX="24.0" layoutY="67.0" prefHeight="41.0" prefWidth="191.0" text="Hasło:">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                            <TextField layoutX="336.0" layoutY="107.0" prefHeight="46.0" prefWidth="289.0" />
-                            <Label layoutX="336.0" layoutY="67.0" prefHeight="41.0" prefWidth="191.0" text="Nowe hasło:">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                            <Label layoutX="24.0" layoutY="181.0" prefHeight="41.0" prefWidth="191.0" text="Aktualny email">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                            <TextField layoutX="336.0" layoutY="219.0" prefHeight="46.0" prefWidth="289.0" />
-                            <Label layoutX="336.0" layoutY="179.0" prefHeight="41.0" prefWidth="191.0" text="Nowy email:">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                            <Label alignment="CENTER" layoutX="24.0" layoutY="222.0" prefHeight="39.0" prefWidth="264.0" style="-fx-border-color: black;" text="jakisemiallosowy@asiahfg.as">
-                                <font>
-                                    <Font size="16.0" />
-                                </font>
-                            </Label>
-                            <Label layoutX="24.0" layoutY="286.0" prefHeight="41.0" prefWidth="191.0" text="Stworzone ankiety:">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                            <Label layoutX="24.0" layoutY="327.0" prefHeight="39.0" prefWidth="264.0" style="-fx-border-color: black;" text="15">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                            <Label layoutX="336.0" layoutY="286.0" prefHeight="41.0" prefWidth="191.0" text="Aktywne ankiety:">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                            <Label layoutX="336.0" layoutY="327.0" prefHeight="39.0" prefWidth="264.0" style="-fx-border-color: black;" text="2">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                            <Label layoutX="642.0" layoutY="287.0" prefHeight="41.0" prefWidth="191.0" text="Wygasłe ankiety:">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                            <Label layoutX="642.0" layoutY="328.0" prefHeight="39.0" prefWidth="264.0" style="-fx-border-color: black;" text="13">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                            <Button layoutX="1061.0" layoutY="560.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="126.0" text="Usuń konto" />
-                            <Button layoutX="24.0" layoutY="406.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="126.0" text="Wyloguj" />
-                        <Button layoutX="711.0" layoutY="64.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="126.0" text="Zmień" />
-                        <Button layoutX="711.0" layoutY="178.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="126.0" text="Zmień" />
+                        <ScrollPane prefHeight="660.0" prefWidth="1201.0">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1050.0" prefWidth="1187.0">
+                                 <children>
+                                    <Label layoutX="16.0" layoutY="20.0" text="e-mail:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField editable="false" layoutX="16.0" layoutY="58.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" text="lk@interia.pl" />
+                                    <Label layoutX="16.0" layoutY="110.0" text="nowy e-mail:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="16.0" layoutY="148.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
+                                    <Button layoutX="296.0" layoutY="145.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
+                                    <Label layoutX="16.0" layoutY="200.0" text="hasło:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="16.0" layoutY="238.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
+                                    <Label layoutX="16.0" layoutY="290.0" text="nowe hasło:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="16.0" layoutY="328.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
+                                    <Label layoutX="16.0" layoutY="380.0" text="powtórz hasło:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="16.0" layoutY="418.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
+                                    <Button layoutX="296.0" layoutY="415.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
+                                    <Label layoutX="16.0" layoutY="480.0" text="imie:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField editable="false" layoutX="16.0" layoutY="518.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" text="Łukasz" />
+                                    <Label layoutX="16.0" layoutY="570.0" text="nowe imie:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="16.0" layoutY="608.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
+                                    <Button layoutX="296.0" layoutY="605.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
+                                    <Label layoutX="16.0" layoutY="670.0" text="nazwisko:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField editable="false" layoutX="16.0" layoutY="708.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" text="Kwaśny" />
+                                    <Label layoutX="16.0" layoutY="760.0" text="nowe nazwisko:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="16.0" layoutY="798.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
+                                    <Button layoutX="294.0" layoutY="795.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
+                                    <Label layoutX="16.0" layoutY="860.0" text="miejscowość:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField editable="false" layoutX="16.0" layoutY="898.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" text="Rzeszów" />
+                                    <Label layoutX="16.0" layoutY="960.0" text="nowa miejscowość:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="16.0" layoutY="998.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
+                                    <Button layoutX="296.0" layoutY="995.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
+                                    <Label layoutX="600.0" layoutY="570.0" text="kod pocztowy:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField editable="false" layoutX="600.0" layoutY="608.0" prefHeight="26.0" prefWidth="40.0" style="-fx-border-color: black;" text="22" />
+                                    <Label layoutX="600.0" layoutY="670.0" text="nowy kod:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="600.0" layoutY="708.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
+                                    <Button layoutX="880.0" layoutY="705.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
+                                    <Label layoutX="600.0" layoutY="20.0" text="ulica:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField editable="false" layoutX="600.0" layoutY="58.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" text="Kosynierów" />
+                                    <Label layoutX="600.0" layoutY="120.0" text="nowa ulica:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="600.0" layoutY="158.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
+                                    <Button layoutX="880.0" layoutY="155.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
+                                    <Label layoutX="600.0" layoutY="200.0" text="numer budynku:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField editable="false" layoutX="600.0" layoutY="238.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" text="22" />
+                                    <Label layoutX="600.0" layoutY="290.0" text="nowy numer:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="600.0" layoutY="328.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
+                                    <Button layoutX="880.0" layoutY="325.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
+                                    <Label layoutX="600.0" layoutY="380.0" text="numer lokalu:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField editable="false" layoutX="600.0" layoutY="418.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" text="11" />
+                                    <Label layoutX="600.0" layoutY="480.0" text="nowy numer:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="600.0" layoutY="518.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
+                                    <Button layoutX="880.0" layoutY="515.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
+                                    <Label layoutX="646.0" layoutY="611.0" text="-" />
+                                    <TextField editable="false" layoutX="656.0" layoutY="608.0" prefHeight="26.0" prefWidth="40.0" style="-fx-border-color: black;" text="222" />
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </ScrollPane>
                         </children>
                     </AnchorPane>
                 </content>

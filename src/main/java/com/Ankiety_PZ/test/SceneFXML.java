@@ -32,4 +32,10 @@ public class SceneFXML {
 
     /** Odnośnik do pliku z panelem ankietera */
     public static  final String PANEL_ANKIETERA = "PanelAnkieter";
+
+    /** Odnośnik do pliku z panelem uzytkownika */
+    public static  final String PANEL_UZYTKOWNIKA = "panelUzytkownika";
+
+    /** Odnośnik do pliku z panelem uzytkownika */
+    public static  final String OKNO_ANKIETA = "oknoAnkiety";
 }
