@@ -45,6 +45,6 @@
             <Font size="14.0" />
          </font>
       </CheckBox>
-      <Button layoutX="92.0" layoutY="462.0" mnemonicParsing="false" text="Następne/Zakończ" />
+      <Button layoutX="92.0" layoutY="462.0" mnemonicParsing="false" onAction="#oknoAnkietyButtonFinish" text="Następne/Zakończ" />
    </children>
 </AnchorPane>
