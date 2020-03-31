@@ -10,41 +10,41 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="681.0" prefWidth="1201.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.OknoAnkiety">
    <children>
-      <Label layoutX="14.0" layoutY="14.0" text="Tytuł ankiety">
+      <Label layoutX="25.0" layoutY="43.0" text="Tytuł ankiety">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="88.0" layoutY="133.0" text="Pytanie">
+      <Label layoutX="92.0" layoutY="187.0" text="Pytanie">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-       <ImageView fitHeight="300.0" fitWidth="400.0" layoutX="670.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true">
+       <ImageView fitHeight="300.0" fitWidth="400.0" layoutX="674.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
            <image>
                <Image url="@../../../media/space.jpg" />
            </image>
         </ImageView>
-      <CheckBox layoutX="149.0" layoutY="208.0" mnemonicParsing="false" text="CheckBox">
+      <CheckBox layoutX="153.0" layoutY="262.0" mnemonicParsing="false" text="CheckBox">
          <font>
             <Font size="14.0" />
          </font>
       </CheckBox>
-      <CheckBox layoutX="149.0" layoutY="247.0" mnemonicParsing="false" text="CheckBox">
+      <CheckBox layoutX="153.0" layoutY="301.0" mnemonicParsing="false" text="CheckBox">
          <font>
             <Font size="14.0" />
          </font>
       </CheckBox>
-      <CheckBox layoutX="149.0" layoutY="285.0" mnemonicParsing="false" text="CheckBox">
+      <CheckBox layoutX="153.0" layoutY="339.0" mnemonicParsing="false" text="CheckBox">
          <font>
             <Font size="14.0" />
          </font>
       </CheckBox>
-      <CheckBox layoutX="149.0" layoutY="321.0" mnemonicParsing="false" text="CheckBox">
+      <CheckBox layoutX="153.0" layoutY="375.0" mnemonicParsing="false" text="CheckBox">
          <font>
             <Font size="14.0" />
          </font>
       </CheckBox>
-      <Button layoutX="88.0" layoutY="408.0" mnemonicParsing="false" text="Następne/Zakończ" />
+      <Button layoutX="92.0" layoutY="462.0" mnemonicParsing="false" text="Następne/Zakończ" />
    </children>
 </AnchorPane>
