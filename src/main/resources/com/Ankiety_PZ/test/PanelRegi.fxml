@@ -28,7 +28,7 @@
          <content>
             <BorderPane prefHeight="945.0" prefWidth="583.0">
                <top>
-                  <Pane maxWidth="1.7976931348623157E308" prefHeight="286.0" prefWidth="583.0" style="-fx-pref-width: 100vh;" BorderPane.alignment="CENTER">
+                  <Pane maxWidth="1.7976931348623157E308" prefHeight="286.0" prefWidth="583.0" BorderPane.alignment="CENTER">
                      <children>
                         <Label text="Dane do logowania">
                            <font>
@@ -37,7 +37,7 @@
                         </Label>
                         <Line endX="444.0" layoutX="119.0" layoutY="16.0" startX="75.0" />
                         <Label layoutY="35.0" text="E-mail*:" />
-                        <TextField fx:id="paneliRegiTFEmail" layoutY="65.0" prefHeight="25.0" prefWidth="564.0" style="-fx-pref-width: 90vh;" />
+                        <TextField fx:id="paneliRegiTFEmail" layoutY="65.0" prefHeight="25.0" prefWidth="564.0" />
                         <Label layoutY="115.0" text="Hasło*:" />
                         <PasswordField fx:id="panelRegiPFPassword" layoutY="145.0" prefHeight="25.0" prefWidth="564.0" />
                         <Label layoutY="195.0" text="Powtórz hasło*:" />
