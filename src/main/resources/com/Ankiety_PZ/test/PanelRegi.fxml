@@ -67,9 +67,9 @@
                         <Label layoutY="435.0" text="Numer lokalu:" />
                         <TextField fx:id="panelRegiTFNumberFlat" layoutY="465.0" prefHeight="25.0" prefWidth="564.0" />
                         <Label layoutX="3.0" layoutY="515.0" text="Kod pocztowy*:" />
-                        <TextField fx:id="panelRegiTFPostCodeFirst" layoutY="545.0" prefHeight="25.0" prefWidth="41.0" />
-                        <Label layoutX="44.0" layoutY="545.0" text="-" />
-                        <TextField fx:id="panelRegiTFPostCodeSecond" layoutX="58.0" layoutY="545.0" prefHeight="25.0" prefWidth="74.0" />
+                        <TextField fx:id="panelRegiTFPostCodeFirst" layoutY="545.0" prefHeight="47.0" prefWidth="50.0" />
+                        <Label layoutX="63.0" layoutY="552.0" text="-" />
+                        <TextField fx:id="panelRegiTFPostCodeSecond" layoutX="84.0" layoutY="545.0" prefHeight="25.0" prefWidth="74.0" />
                         <Label layoutX="7.0" layoutY="607.0" text="* - pola wymagane" />
                      </children>
                   </Pane>
