@@ -1,0 +1,71 @@
+.button
+{
+    -fx-background-color : #00ccff;
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+}
+.text-field {
+    -fx-border-color: #00ccff;
+    -fx-border-width: 3;
+    -fx-font-size: 22px;
+}
+.label {
+     -fx-text-fill: black;
+     -fx-font-size: 22px;
+
+ }
+
+.labelbold {
+    -fx-text-fill: black;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.error {
+    -fx-text-fill: red;
+    -fx-font-size: 22px;
+}
+
+.scroll-pane{
+    -fx-background-color : white;
+}
+
+.hbox{
+    -fx-background-color : white;
+}
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane
+{
+    -fx-tab-min-width:90px;
+
+}
+
+.tab{
+    -fx-background-insets: 0 1 0 1,0,0;
+    -fx-font-size: 22px;
+}
+.tab-pane .tab
+{
+    -fx-background-color: #e6e6e6;
+
+}
+
+.tab-pane .tab:selected
+{
+    -fx-background-color: #00ccff;
+}
+
+.tab .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: black;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.tab:selected .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
+}

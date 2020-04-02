@@ -67,7 +67,13 @@
         <artifactId>javafx-fxml</artifactId>
         <version>11</version>
     </dependency>
+    <dependency>
+        <groupId>com.guigarage</groupId>
+        <artifactId>flatter</artifactId>
+        <version>0.7</version>
+    </dependency>
 </dependencies>
+
 
 <build>
     <plugins>
