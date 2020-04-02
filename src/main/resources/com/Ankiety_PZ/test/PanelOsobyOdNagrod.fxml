@@ -25,10 +25,10 @@
                                         <Font size="24.0" />
                                     </font>
                                 </Label>
-                                <Button layoutX="31.0" layoutY="618.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
+                                <Button fx:id="wyloguj" layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
                                 <AnchorPane layoutX="58.0" layoutY="101.0" prefHeight="139.0" prefWidth="1090.0" styleClass="text-field" stylesheets="@style.css">
                                     <children>
-                                        <Button layoutX="937.0" layoutY="14.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="Edytuj" />
+                                        <Button fx:id="panelnagroddodajnagrode" layoutX="937.0" layoutY="14.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" prefHeight="50.0" prefWidth="125.0" text="Edytuj" />
                                         <ImageView fitHeight="95.0" fitWidth="297.0" layoutX="562.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../../../media/allegro-logo.jpg" />
@@ -48,7 +48,7 @@
                                         </ImageView>
                                         <Label contentDisplay="BOTTOM" layoutX="14.0" layoutY="25.0" prefHeight="32.0" prefWidth="485.0" text="Kupon do allegro.pl o wartości 100 zł" />
                                         <Label contentDisplay="BOTTOM" layoutX="14.0" layoutY="74.0" prefHeight="32.0" prefWidth="191.0" styleClass="labelbold" text="10000 pkt" textFill="#0090ff" />
-                              <Button layoutX="937.0" layoutY="11.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="Edytuj" />
+                              <Button fx:id="panelnagroddodajnagrode" layoutX="937.0" layoutY="11.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" prefHeight="50.0" prefWidth="125.0" text="Edytuj" />
                               <Button layoutX="937.0" layoutY="71.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="Usuń" />
                                     </children>
                                 </AnchorPane>
@@ -61,7 +61,7 @@
                                         </ImageView>
                                         <Label contentDisplay="BOTTOM" layoutX="14.0" layoutY="25.0" prefHeight="32.0" prefWidth="356.0" text="Smartfon Samsung Galaxy S20" />
                                         <Label contentDisplay="BOTTOM" layoutX="14.0" layoutY="74.0" prefHeight="32.0" prefWidth="191.0" styleClass="labelbold" text="400000 pkt" textFill="#0090ff" />
-                              <Button layoutX="939.0" layoutY="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="Edytuj" />
+                              <Button fx:id="panelnagroddodajnagrode" layoutX="939.0" layoutY="15.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" prefHeight="50.0" prefWidth="125.0" text="Edytuj" />
                               <Button layoutX="939.0" layoutY="75.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="Usuń" />
                                     </children>
                                 </AnchorPane>
@@ -73,7 +73,7 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="1201.0" styleClass="hbox" stylesheets="@style.css">
                             <children>
-                                <Button layoutX="31.0" layoutY="618.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
+                                <Button fx:id="wyloguj" layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
                                 <Button layoutX="997.0" layoutY="625.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="173.0" text="Zapisz zmiany" />
                                 <Label layoutX="728.0" layoutY="22.0" prefHeight="57.0" prefWidth="459.0" stylesheets="@style.css" text="Anna Nowak - konto zarządzania nagrodami" />
                                 <Label layoutX="60.0" layoutY="34.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Konto użytkownika">

@@ -18,7 +18,7 @@
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="1201.0" styleClass="hbox" stylesheets="@style.css">
                     <children>
-                        <Button layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#panelUzytkownikaButtonMakeAnkiet" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
+                        <Button fx:id="wyloguj" layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
                         <AnchorPane layoutX="58.0" layoutY="101.0" prefHeight="80.0" prefWidth="1090.0" styleClass="text-field" stylesheets="@style.css">
                             <children>
                                 <Label layoutX="14.0" layoutY="25.0" text="Ankieta - Żabka">
@@ -83,7 +83,7 @@
                               <Label contentDisplay="BOTTOM" layoutX="14.0" layoutY="74.0" prefHeight="32.0" prefWidth="191.0" styleClass="labelbold" text="5000 pkt" textFill="#0090ff" />
                                 </children>
                             </AnchorPane>
-                            <Button layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#panelUzytkownikaButtonMakeAnkiet" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
+                            <Button layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
                             <Label layoutX="727.0" layoutY="21.0" prefHeight="57.0" prefWidth="313.0" stylesheets="@style.css" text="Anna Nowak posiadasz obecnie" />
                             <Label layoutX="1040.0" layoutY="21.0" prefHeight="57.0" prefWidth="147.0" styleClass="labelbold" stylesheets="@style.css" text="1000 pkt" />
                             <Label layoutX="60.0" layoutY="34.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Dostępne nagrody">
@@ -122,7 +122,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="1201.0" styleClass="hbox" stylesheets="@style.css">
                      <children>
-                         <Button layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#panelUzytkownikaButtonMakeAnkiet" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
+                         <Button layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
                          <Button layoutX="997.0" layoutY="625.0" mnemonicParsing="false" onAction="#panelUzytkownikaButtonMakeAnkiet" prefHeight="50.0" prefWidth="173.0" text="Zapisz zmiany" />
                         <Label layoutX="727.0" layoutY="21.0" prefHeight="57.0" prefWidth="313.0" stylesheets="@style.css" text="Anna Nowak posiadasz obecnie" />
                         <Label layoutX="1040.0" layoutY="21.0" prefHeight="57.0" prefWidth="147.0" styleClass="labelbold" stylesheets="@style.css" text="1000 pkt" />

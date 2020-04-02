@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1201.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.PanelEdycjiNagrodController">
    <children>
-      <Button layoutX="14.0" layoutY="658.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
+      <Button fx:id="wyloguj" layoutX="14.0" layoutY="658.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
       <Button fx:id="panelEdycjiNagrodButtonUsun" layoutX="1029.0" layoutY="659.0" mnemonicParsing="false" onAction="#panelEdycjiNagrodButtonUsun" prefHeight="47.0" prefWidth="158.0" text="Zapisz" />
       <Button fx:id="panelEdycjiNagrodButtonAnuluj" layoutX="884.0" layoutY="659.0" mnemonicParsing="false" onAction="#panelEdycjiNagrodButtonAnuluj" prefHeight="47.0" prefWidth="126.0" text="Anuluj" />
       <Label layoutX="70.0" layoutY="44.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Dostępne ankiety">
