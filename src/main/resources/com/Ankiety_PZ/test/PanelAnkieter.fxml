@@ -72,7 +72,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <Button fx:id="panelEdycjiNagrodButtonUsun" layoutX="1016.0" layoutY="620.0" mnemonicParsing="false" onAction="#panelEdycjiNagrodButtonUsun" prefHeight="47.0" prefWidth="158.0" text="Dodaj ankietę" />
+                        <Button fx:id="panelEdycjiNagrodButtonUsun" layoutX="1016.0" layoutY="620.0" mnemonicParsing="false"  prefHeight="47.0" prefWidth="158.0" text="Dodaj ankietę" />
                         <Label layoutX="854.0" layoutY="22.0" prefHeight="57.0" prefWidth="347.0" stylesheets="@style.css" text="Anna Nowak - konto ankietera" />
                   </children></AnchorPane>
             </content>
