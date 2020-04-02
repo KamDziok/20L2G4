@@ -69,3 +69,22 @@
     -fx-alignment: CENTER;
     -fx-text-fill: white;
 }
+
+.check-box .box {
+    -fx-font-size: 1.8em;
+    -fx-background-color: white;
+    -fx-border-color: #00ccff;
+    -fx-border-width: 3;
+
+}
+
+.check-box:selected .mark {
+    -fx-font-size: 1.8em;
+    -fx-background-color: white;
+
+}
+
+.check-box:selected .box {
+    -fx-font-size: 1.8em;
+    -fx-background-color: #00ccff;
+}
