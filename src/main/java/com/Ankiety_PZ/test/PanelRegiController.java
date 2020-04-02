@@ -192,7 +192,8 @@ public class PanelRegiController extends BulidStage {
                     if(checkPassword()){
                         //User user = new User(...);
                         //addUser();
-                        deleteStage(event);
+                        loadingFXML(event, SceneFXML.PANEL_LOGIN);
+                        activeScene(event,false, false);
                     }
                 }
             }
