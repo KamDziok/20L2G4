@@ -56,7 +56,7 @@
                                 </Label>
                             </children>
                         </AnchorPane>
-                        <Button layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#panelUzytkownikaButtonMakeAnkiet" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
+                        <Button layoutX="1062.0" layoutY="625.0" mnemonicParsing="false" onAction="#panelUzytkownikaButtonMakeAnkiet" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
                         <Label layoutX="727.0" layoutY="21.0" prefHeight="57.0" prefWidth="313.0" stylesheets="@style.css" text="Anna Nowak posiadasz obecnie" />
                         <Label layoutX="1040.0" layoutY="21.0" prefHeight="57.0" prefWidth="147.0" styleClass="labelbold" stylesheets="@style.css" text="1000 pkt" />
                         <Label layoutX="60.0" layoutY="34.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Dostępne ankiety">
@@ -67,192 +67,6 @@
                     </children></AnchorPane>
             </content>
         </Tab>
-          <Tab text="Konto użytkownika">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="1201.0" styleClass="hbox" stylesheets="@style.css">
-                     <children>
-                        <AnchorPane layoutX="58.0" layoutY="101.0" prefHeight="80.0" prefWidth="1090.0" styleClass="text-field" stylesheets="@style.css">
-                           <children>
-                              <Label layoutX="14.0" layoutY="25.0" text="Ankieta - Żabka">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <Button layoutX="936.0" layoutY="16.0" mnemonicParsing="false" onAction="#panelUzytkownikaButtonMakeAnkiet" prefHeight="50.0" prefWidth="125.0" text="Wypełnij" />
-                              <Label layoutX="390.0" layoutY="27.0" prefHeight="27.0" prefWidth="238.0" text="Wygasa:  01.04.2020">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font></Label>
-                              <Label layoutX="740.0" layoutY="27.0" text="50 pkt">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font></Label>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane layoutX="59.0" layoutY="203.0" prefHeight="80.0" prefWidth="1090.0" styleClass="text-field">
-                           <children>
-                              <Label layoutX="14.0" layoutY="25.0" text="Ankieta - Biedronka">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <Button layoutX="936.0" layoutY="16.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="Wypełnij" />
-                              <Label layoutX="390.0" layoutY="27.0" text="Wygasa:  21.04.2020">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="740.0" layoutY="27.0" text="50 pkt">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                        <Button layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#panelUzytkownikaButtonMakeAnkiet" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
-                        <Label layoutX="727.0" layoutY="21.0" prefHeight="57.0" prefWidth="313.0" stylesheets="@style.css" text="Anna Nowak posiadasz obecnie" />
-                        <Label layoutX="1040.0" layoutY="21.0" prefHeight="57.0" prefWidth="147.0" styleClass="labelbold" stylesheets="@style.css" text="1000 pkt" />
-                        <Label layoutX="60.0" layoutY="34.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Konto użytkownika">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                        <ScrollPane layoutY="76.0" prefHeight="523.0" prefWidth="1201.0">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="960.0" prefWidth="1185.0">
-                                 <children>
-                                    <Label layoutX="16.0" layoutY="20.0" text="e-mail:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField editable="false" layoutX="16.0" layoutY="58.0" prefHeight="26.0" prefWidth="260.0" text="lk@interia.pl" />
-                                    <Label layoutX="16.0" layoutY="110.0" text="nowy e-mail:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField layoutX="16.0" layoutY="148.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
-                                    <Button layoutX="296.0" layoutY="145.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
-                                    <Label layoutX="16.0" layoutY="200.0" text="hasło:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField layoutX="16.0" layoutY="238.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
-                                    <Label layoutX="16.0" layoutY="290.0" text="nowe hasło:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField layoutX="16.0" layoutY="328.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
-                                    <Label layoutX="16.0" layoutY="380.0" text="powtórz hasło:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField layoutX="16.0" layoutY="418.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
-                                    <Button layoutX="296.0" layoutY="415.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
-                                    <Label layoutX="16.0" layoutY="480.0" text="imie:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField editable="false" layoutX="16.0" layoutY="518.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" text="Łukasz" />
-                                    <Label layoutX="16.0" layoutY="570.0" text="nowe imie:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField layoutX="16.0" layoutY="608.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
-                                    <Button layoutX="296.0" layoutY="605.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
-                                    <Label layoutX="16.0" layoutY="670.0" text="nazwisko:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField editable="false" layoutX="16.0" layoutY="708.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" text="Kwaśny" />
-                                    <Label layoutX="16.0" layoutY="760.0" text="nowe nazwisko:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField layoutX="16.0" layoutY="798.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
-                                    <Button layoutX="294.0" layoutY="795.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
-                                    <Label layoutX="16.0" layoutY="860.0" text="miejscowość:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField editable="false" layoutX="16.0" layoutY="898.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" text="Rzeszów" />
-                                    <Label layoutX="16.0" layoutY="960.0" text="nowa miejscowość:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField layoutX="16.0" layoutY="998.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
-                                    <Button layoutX="296.0" layoutY="995.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
-                                    <Label layoutX="600.0" layoutY="570.0" text="kod pocztowy:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField editable="false" layoutX="600.0" layoutY="608.0" prefHeight="26.0" prefWidth="40.0" style="-fx-border-color: black;" text="22" />
-                                    <Label layoutX="600.0" layoutY="670.0" text="nowy kod:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField layoutX="600.0" layoutY="708.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
-                                    <Button layoutX="880.0" layoutY="705.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
-                                    <Label layoutX="600.0" layoutY="20.0" text="ulica:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField editable="false" layoutX="600.0" layoutY="58.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" text="Kosynierów" />
-                                    <Label layoutX="600.0" layoutY="120.0" text="nowa ulica:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField layoutX="600.0" layoutY="158.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
-                                    <Button layoutX="880.0" layoutY="155.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
-                                    <Label layoutX="600.0" layoutY="200.0" text="numer budynku:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField editable="false" layoutX="600.0" layoutY="238.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" text="22" />
-                                    <Label layoutX="600.0" layoutY="290.0" text="nowy numer:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField layoutX="600.0" layoutY="328.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
-                                    <Button layoutX="880.0" layoutY="325.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
-                                    <Label layoutX="600.0" layoutY="380.0" text="numer lokalu:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField editable="false" layoutX="600.0" layoutY="418.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" text="11" />
-                                    <Label layoutX="600.0" layoutY="480.0" text="nowy numer:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField layoutX="600.0" layoutY="518.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
-                                    <Button layoutX="880.0" layoutY="515.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
-                                    <Label layoutX="646.0" layoutY="611.0" text="-" />
-                                    <TextField editable="false" layoutX="656.0" layoutY="608.0" prefHeight="26.0" prefWidth="40.0" style="-fx-border-color: black;" text="222" />
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </ScrollPane>
-                     </children></AnchorPane>
-            </content>
-          </Tab>
             <Tab text="Nagrody">
                 <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="1201.0" styleClass="hbox" stylesheets="@style.css">
@@ -304,86 +118,59 @@
                         </children></AnchorPane>
                 </content>
             </Tab>
-
-            <Tab text="Konto użytkownika">
-                <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1112.0" prefWidth="1201.0">
-                        <children>
-                        <ScrollPane prefHeight="660.0" prefWidth="1201.0">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="960.0" prefWidth="1187.0">
+          <Tab text="Konto użytkownika">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="1201.0" styleClass="hbox" stylesheets="@style.css">
+                     <children>
+                         <Button layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#panelUzytkownikaButtonMakeAnkiet" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
+                         <Button layoutX="1014.0" layoutY="625.0" mnemonicParsing="false" onAction="#panelUzytkownikaButtonMakeAnkiet" prefHeight="50.0" prefWidth="173.0" text="Zapisz zmiany" />
+                        <Label layoutX="727.0" layoutY="21.0" prefHeight="57.0" prefWidth="313.0" stylesheets="@style.css" text="Anna Nowak posiadasz obecnie" />
+                        <Label layoutX="1040.0" layoutY="21.0" prefHeight="57.0" prefWidth="147.0" styleClass="labelbold" stylesheets="@style.css" text="1000 pkt" />
+                        <Label layoutX="60.0" layoutY="34.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Konto użytkownika">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <ScrollPane layoutY="76.0" prefHeight="523.0" prefWidth="1201.0">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="960.0" prefWidth="1185.0" styleClass="hbox">
                                  <children>
-                                    <Label layoutX="16.0" layoutY="20.0" text="e-mail:">
+                                    <Label layoutX="16.0" layoutY="20.0" prefHeight="32.0" prefWidth="258.0" text="E-mail:">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField editable="false" layoutX="16.0" layoutY="58.0" prefHeight="26.0" prefWidth="260.0" text="lk@interia.pl" />
-                                    <Label layoutX="16.0" layoutY="110.0" text="nowy e-mail:">
+                                    <TextField layoutX="16.0" layoutY="58.0" prefHeight="26.0" prefWidth="260.0" text="lk@interia.pl" />
+                                    <Label layoutX="16.0" layoutY="120.0" prefHeight="32.0" prefWidth="262.0" text="Hasło:">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="16.0" layoutY="148.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
-                                    <Button layoutX="296.0" layoutY="145.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
-                                    <Label layoutX="16.0" layoutY="200.0" text="hasło:">
+                                    <TextField layoutX="16.0" layoutY="158.0" prefHeight="26.0" prefWidth="260.0" />
+                                    <Label layoutX="16.0" layoutY="220.0" text="Nowe hasło:">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="16.0" layoutY="238.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
-                                    <Label layoutX="16.0" layoutY="290.0" text="nowe hasło:">
+                                    <TextField layoutX="16.0" layoutY="258.0" prefHeight="26.0" prefWidth="260.0" />
+                                    <Label layoutX="16.0" layoutY="320.0" text="Powtórz hasło:">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="16.0" layoutY="328.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
-                                    <Label layoutX="16.0" layoutY="380.0" text="powtórz hasło:">
+                                    <TextField layoutX="16.0" layoutY="358.0" prefHeight="26.0" prefWidth="260.0" />
+
+                                    <Label layoutX="16.0" layoutY="420.0" text="Imie:">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="16.0" layoutY="418.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
-                                    <Button layoutX="296.0" layoutY="415.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
-                                    <Label layoutX="16.0" layoutY="480.0" text="imie:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
+                                    <TextField layoutX="16.0" layoutY="458.0" prefHeight="26.0" prefWidth="260.0" text="Łukasz" />
+                                      <Label layoutX="16.0" layoutY="520.0" text="Nazwisko:">
+
                                     </Label>
-                                    <TextField editable="false" layoutX="16.0" layoutY="518.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" text="Łukasz" />
-                                    <Label layoutX="16.0" layoutY="570.0" text="nowe imie:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField layoutX="16.0" layoutY="608.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
-                                    <Button layoutX="296.0" layoutY="605.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
-                                    <Label layoutX="16.0" layoutY="670.0" text="nazwisko:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField editable="false" layoutX="16.0" layoutY="708.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" text="Kwaśny" />
-                                    <Label layoutX="16.0" layoutY="760.0" text="nowe nazwisko:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField layoutX="16.0" layoutY="798.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
-                                    <Button layoutX="294.0" layoutY="795.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
-                                    <Label layoutX="16.0" layoutY="860.0" text="miejscowość:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField editable="false" layoutX="16.0" layoutY="898.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" text="Rzeszów" />
-                                    <Label layoutX="16.0" layoutY="960.0" text="nowa miejscowość:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField layoutX="16.0" layoutY="998.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
-                                    <Button layoutX="296.0" layoutY="995.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
+                                     <TextField layoutX="16.0" layoutY="558.0" prefHeight="26.0" prefWidth="260.0" text="Kwaśny" />
+
                                     <Label layoutX="600.0" layoutY="570.0" text="kod pocztowy:">
                                        <font>
                                           <Font size="18.0" />
@@ -397,55 +184,37 @@
                                     </Label>
                                     <TextField layoutX="600.0" layoutY="708.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
                                     <Button layoutX="880.0" layoutY="705.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
-                                    <Label layoutX="600.0" layoutY="20.0" text="ulica:">
+                                    <Label layoutX="680.0" layoutY="20.0" text="Miejscowość:">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField editable="false" layoutX="600.0" layoutY="58.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" text="Kosynierów" />
-                                    <Label layoutX="600.0" layoutY="120.0" text="nowa ulica:">
+                                    <TextField editable="false" layoutX="680.0" layoutY="58.0" prefHeight="26.0" prefWidth="260.0" text="Chrząszczyżewoszyce" />
+                                    <Label layoutX="680.0" layoutY="120.0" text="Ulica:">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="600.0" layoutY="158.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
-                                    <Button layoutX="880.0" layoutY="155.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
-                                    <Label layoutX="600.0" layoutY="200.0" text="numer budynku:">
+                                    <TextField layoutX="678.0" layoutY="158.0" prefHeight="26.0" prefWidth="260.0" text="Łękołody" />
+                                    <Label layoutX="680.0" layoutY="220.0" text="Numer budynku:">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField editable="false" layoutX="600.0" layoutY="238.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" text="22" />
-                                    <Label layoutX="600.0" layoutY="290.0" text="nowy numer:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField layoutX="600.0" layoutY="328.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
-                                    <Button layoutX="880.0" layoutY="325.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
-                                    <Label layoutX="600.0" layoutY="380.0" text="numer lokalu:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField editable="false" layoutX="600.0" layoutY="418.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" text="11" />
-                                    <Label layoutX="600.0" layoutY="480.0" text="nowy numer:">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField layoutX="600.0" layoutY="518.0" prefHeight="26.0" prefWidth="260.0" style="-fx-border-color: black;" />
-                                    <Button layoutX="880.0" layoutY="515.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Zmień" />
-                                    <Label layoutX="646.0" layoutY="611.0" text="-" />
-                                    <TextField editable="false" layoutX="656.0" layoutY="608.0" prefHeight="26.0" prefWidth="40.0" style="-fx-border-color: black;" text="222" />
+                                    <TextField editable="false" layoutX="680.0" layoutY="258.0" prefHeight="26.0" prefWidth="260.0" text="22" />
+                                    <Label layoutX="680.0" layoutY="320.0" text="Numer lokalu:">                                                                    </Label>
+                                    <TextField layoutX="680.0" layoutY="358.0" prefHeight="26.0" prefWidth="260.0" />
+                                     <Label layoutX="680.0" layoutY="420.0" text="Kod pocztowy:">                                                                    </Label>
+                                    <Label layoutX="747.0" layoutY="469.0" text="-" />
+                                    <TextField layoutX="680.0" layoutY="458.0" prefHeight="54.0" prefWidth="61.0" text="37" />
+                                    <TextField layoutX="762.0" layoutY="458.0" prefHeight="54.0" prefWidth="69.0" text="800" />
                                  </children>
                               </AnchorPane>
-                          </content>
+                           </content>
                         </ScrollPane>
-                        </children>
-                    </AnchorPane>
-                </content>
-            </Tab>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
         </tabs>
       </TabPane>
    </children>
