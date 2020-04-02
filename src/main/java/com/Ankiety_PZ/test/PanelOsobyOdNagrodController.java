@@ -17,8 +17,17 @@ public class PanelOsobyOdNagrodController extends BulidStage {
     private Button panelnagroddodajnagrode;
 
     @FXML
+    private Button wyloguj;
+
+    @FXML
     void panelnagroddodajnagrode(ActionEvent event) {
         loadingFXML(event, SceneFXML.PANEL_EDIT_NAGROD);
+        activeScene(event, false, false);
+    }
+
+    @FXML
+    void wyloguj(ActionEvent event) {
+        loadingFXML(event, SceneFXML.PANEL_LOGIN);
         activeScene(event, false, false);
     }
 
@@ -30,6 +39,7 @@ public class PanelOsobyOdNagrodController extends BulidStage {
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        assert panelnagroddodajnagrode != null : "fx:id=\"panelnagroddodajnagrode\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
+        assert panelnagroddodajnagrode != null : "fx:id=\"panelnagroddodajnagrode\" was not injected: check your FXML file 'PanelOsobyOdNagrod.fxml'.";
+        assert wyloguj != null : "fx:id=\"wyloguj\" was not injected: check your FXML file 'PanelOsobyOdNagrod.fxml'.";
     }
 }
