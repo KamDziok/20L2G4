@@ -25,6 +25,10 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
     private ImageView imageview;
 
     @FXML
+    private Button wyloguj;
+
+
+    @FXML
     private AnchorPane anchorpane;
 
     @FXML
@@ -35,6 +39,12 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
 
     @FXML
     private Button PanelEdycjiNagrod;
+
+    @FXML
+    void wyloguj(ActionEvent event) {
+        loadingFXML(event, SceneFXML.PANEL_LOGIN);
+        activeScene(event, false, false);
+    }
 
     @FXML
     void panelEdycjiNagrodButtonDodajZdjecie(ActionEvent event) {
@@ -75,7 +85,7 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         assert panelEdycjiNagrodButtonUsun != null : "fx:id=\"panelEdycjiNagrodButtonUsun\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
         assert panelEdycjiNagrodButtonAnuluj != null : "fx:id=\"panelEdycjiNagrodButtonAnuluj\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
 
-
+        assert wyloguj != null : "fx:id=\"wyloguj\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
     }
 
     @Override

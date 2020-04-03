@@ -8,40 +8,40 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.PanelLoginController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="scroll-pane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.PanelLoginController">
    <children>
-      <Pane layoutX="14.0" layoutY="18.0" prefHeight="372.0" prefWidth="574.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+      <Pane layoutX="14.0" layoutY="18.0" prefHeight="372.0" prefWidth="574.0" styleClass="scroll-pane" stylesheets="@style.css" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
          <children>
-            <Label layoutX="10.0" layoutY="15.0" prefHeight="35.0" prefWidth="88.0" text="E-mail:">
+            <Label layoutX="10.0" layoutY="15.0" prefHeight="35.0" prefWidth="88.0" stylesheets="@style.css" text="E-mail:">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="panelLoginTFEmail" layoutX="10.0" layoutY="55.0" prefHeight="35.0" prefWidth="522.0">
+            <TextField fx:id="panelLoginTFEmail" layoutX="10.0" layoutY="55.0" prefHeight="35.0" prefWidth="522.0" stylesheets="@style.css">
                <font>
                   <Font size="24.0" />
                </font>
             </TextField>
-            <Label layoutX="10.0" layoutY="120.0" prefHeight="35.0" prefWidth="88.0" text="Hasło:">
+            <Label layoutX="10.0" layoutY="120.0" prefHeight="35.0" prefWidth="88.0" stylesheets="@style.css" text="Hasło:">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <PasswordField fx:id="panelLoginPFPassword" layoutX="10.0" layoutY="160.0" prefHeight="51.0" prefWidth="522.0">
+            <PasswordField fx:id="panelLoginPFPassword" layoutX="10.0" layoutY="160.0" prefHeight="51.0" prefWidth="522.0" stylesheets="@style.css">
                <font>
                   <Font size="24.0" />
                </font></PasswordField>
-            <Button fx:id="panelLoginButtonLogin" layoutX="381.0" layoutY="288.0" mnemonicParsing="false" onAction="#panelLoginButtonLoginAcept" prefHeight="51.0" prefWidth="151.0" text="Zaloguj">
+            <Button fx:id="panelLoginButtonLogin" layoutX="381.0" layoutY="288.0" mnemonicParsing="false" onAction="#panelLoginButtonLoginAcept" prefHeight="51.0" prefWidth="151.0" stylesheets="@style.css" text="Zaloguj">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="panelLoginButtonRegi" layoutX="212.0" layoutY="288.0" mnemonicParsing="false" onAction="#panelLoginButtonRegiAcept" prefHeight="51.0" prefWidth="151.0" text="Zarejestruj">
+            <Button fx:id="panelLoginButtonRegi" layoutX="212.0" layoutY="288.0" mnemonicParsing="false" onAction="#panelLoginButtonRegiAcept" prefHeight="51.0" prefWidth="151.0" stylesheets="@style.css" text="Zarejestruj">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Label fx:id="panelLoginLabelError" layoutX="14.0" layoutY="241.0" prefHeight="17.0" prefWidth="522.0" textFill="#dd1010">
+            <Label fx:id="panelLoginLabelError" layoutX="14.0" layoutY="241.0" prefHeight="17.0" prefWidth="522.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
                <font>
                   <Font size="24.0" />
                </font>

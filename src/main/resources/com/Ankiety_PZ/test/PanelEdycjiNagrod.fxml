@@ -3,33 +3,48 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="839.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.PanelEdycjiNagrodController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1201.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.PanelEdycjiNagrodController">
    <children>
-      <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-      <Button fx:id="panelEdycjiNagrodButtonUsun" layoutX="1210.0" layoutY="778.0" mnemonicParsing="false" onAction="#panelEdycjiNagrodButtonUsun" prefHeight="47.0" prefWidth="126.0" text="Usuń nagrodę" />
-      <Button fx:id="panelEdycjiNagrodButtonAnuluj" layoutX="1067.0" layoutY="778.0" mnemonicParsing="false" onAction="#panelEdycjiNagrodButtonAnuluj" prefHeight="47.0" prefWidth="126.0" text="Anuluj" />
-      <TextField layoutX="27.0" layoutY="69.0" prefHeight="46.0" prefWidth="270.0" />
-      <Label layoutX="33.0" layoutY="29.0" prefHeight="41.0" prefWidth="191.0" text="Tytuł nagrody">
+      <Button fx:id="wyloguj" layoutX="14.0" layoutY="658.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
+      <Button fx:id="panelEdycjiNagrodButtonUsun" layoutX="1029.0" layoutY="659.0" mnemonicParsing="false" onAction="#panelEdycjiNagrodButtonUsun" prefHeight="47.0" prefWidth="158.0" text="Zapisz" />
+      <Button fx:id="panelEdycjiNagrodButtonAnuluj" layoutX="884.0" layoutY="659.0" mnemonicParsing="false" onAction="#panelEdycjiNagrodButtonAnuluj" prefHeight="47.0" prefWidth="126.0" text="Anuluj" />
+      <Label layoutX="70.0" layoutY="44.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Dostępne ankiety">
          <font>
-            <Font size="18.0" />
+            <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="345.0" layoutY="29.0" prefHeight="41.0" prefWidth="191.0" text="Zdjęcie poglądowe">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="33.0" layoutY="143.0" prefHeight="41.0" prefWidth="191.0" text="Liczba punktów">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <TextField layoutX="27.0" layoutY="181.0" prefHeight="46.0" prefWidth="270.0" />
-      <ImageView fx:id="imageview" fitHeight="263.0" fitWidth="432.0" layoutX="345.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="PanelEdycjiNagrod" layoutX="651.0" layoutY="348.0" mnemonicParsing="false" onAction="#panelEdycjiNagrodButtonDodajZdjecie" prefHeight="47.0" prefWidth="126.0" text="Dodaj zdjęcie" />
+      <AnchorPane layoutY="87.0" minHeight="0.0" minWidth="0.0" prefHeight="507.0" prefWidth="1201.0">
+         <children>
+            <Label layoutX="16.0" layoutY="120.0" prefHeight="32.0" prefWidth="258.0" text="Liczba punktów">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="16.0" layoutY="58.0" prefHeight="47.0" prefWidth="595.0" text="Smartfon Samsung Galaxy S20" />
+            <Label layoutX="16.0" layoutY="20.0" prefHeight="32.0" prefWidth="258.0" text="Tytuł nagrody">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="735.0" layoutY="16.0" prefHeight="41.0" prefWidth="191.0" text="Zdjęcie poglądowe">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+      
+            <TextField layoutX="16.0" layoutY="158.0" prefHeight="26.0" prefWidth="260.0" text="400000" />
+            <ImageView fx:id="imageview" fitHeight="263.0" fitWidth="432.0" layoutX="735.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../media/s20.jpg" />
+               </image>
+            </ImageView>
+            <Button fx:id="PanelEdycjiNagrod" layoutX="439.0" layoutY="158.0" mnemonicParsing="false" onAction="#panelEdycjiNagrodButtonDodajZdjecie" prefHeight="47.0" prefWidth="172.0" text="Dodaj zdjęcie" />
+         </children></AnchorPane>
+      <Label layoutX="738.0" layoutY="32.0" prefHeight="57.0" prefWidth="450.0" stylesheets="@style.css" text="Anna Nowak - konto zarządzania nagrodami" />
    </children>
 </AnchorPane>

@@ -8,43 +8,43 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="681.0" prefWidth="1201.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.OknoAnkietyController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1201.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.OknoAnkietyController">
    <children>
-      <Label layoutX="25.0" layoutY="43.0" text="Tytuł ankiety">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label layoutX="92.0" layoutY="187.0" text="Pytanie">
+      <Label layoutX="26.0" layoutY="115.0" prefHeight="33.0" prefWidth="436.0" text="Ile wynosi wynik działania 1+2+3+4?">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-       <ImageView fitHeight="300.0" fitWidth="400.0" layoutX="674.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
+       <ImageView fitHeight="300.0" fitWidth="400.0" layoutX="799.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
            <image>
                <Image url="@../../../media/space.jpg" />
            </image>
         </ImageView>
-      <CheckBox layoutX="153.0" layoutY="262.0" mnemonicParsing="false" text="CheckBox">
+      <CheckBox layoutX="36.0" layoutY="165.0" mnemonicParsing="false" text="1">
          <font>
-            <Font size="14.0" />
+            <Font size="22.0" />
          </font>
       </CheckBox>
-      <CheckBox layoutX="153.0" layoutY="301.0" mnemonicParsing="false" text="CheckBox">
+      <CheckBox layoutX="36.0" layoutY="208.0" mnemonicParsing="false" text="8">
          <font>
-            <Font size="14.0" />
+            <Font size="22.0" />
          </font>
       </CheckBox>
-      <CheckBox layoutX="153.0" layoutY="339.0" mnemonicParsing="false" text="CheckBox">
+      <CheckBox layoutX="36.0" layoutY="251.0" mnemonicParsing="false" text="10">
          <font>
-            <Font size="14.0" />
+            <Font size="22.0" />
          </font>
       </CheckBox>
-      <CheckBox layoutX="153.0" layoutY="375.0" mnemonicParsing="false" text="CheckBox">
+      <CheckBox layoutX="36.0" layoutY="293.0" mnemonicParsing="false" text="12">
          <font>
-            <Font size="14.0" />
+            <Font size="22.0" />
          </font>
       </CheckBox>
-      <Button layoutX="92.0" layoutY="462.0" mnemonicParsing="false" onAction="#oknoAnkietyButtonFinish" text="Następne/Zakończ" />
+      <Button layoutX="1105.0" layoutY="665.0" mnemonicParsing="false" onAction="#oknoAnkietyButtonFinish" prefHeight="41.0" prefWidth="82.0" text="Dalej" />
+      <Label layoutX="80.0" layoutY="54.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Tytuł ankiety">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

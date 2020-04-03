@@ -1,0 +1,90 @@
+.button
+{
+    -fx-background-color : #00ccff;
+    -fx-text-fill: white;
+    -fx-font-size: 1.8em;
+}
+.text-field {
+    -fx-border-color: #00ccff;
+    -fx-border-width: 3;
+    -fx-font-size: 1.8em;
+}
+.label {
+     -fx-text-fill: black;
+     -fx-font-size: 1.8em;
+
+ }
+
+.labelbold {
+    -fx-text-fill: black;
+    -fx-font-size: 1.8em;
+    -fx-font-weight: bold;
+}
+
+.error {
+    -fx-text-fill: red;
+    -fx-font-size: 1.8em;
+}
+
+.scroll-pane{
+    -fx-background-color : white;
+}
+
+.hbox{
+    -fx-background-color : white;
+}
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane
+{
+    -fx-tab-min-width:90px;
+
+}
+
+.tab{
+    -fx-background-insets: 0 1 0 1,0,0;
+    -fx-font-size: 1.8em;
+}
+.tab-pane .tab
+{
+    -fx-background-color: #e6e6e6;
+
+}
+
+.tab-pane .tab:selected
+{
+    -fx-background-color: #00ccff;
+}
+
+.tab .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: black;
+    -fx-font-size: 0.7em;
+    -fx-font-weight: bold;
+}
+
+.tab:selected .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
+}
+
+.check-box .box {
+    -fx-font-size: 1.8em;
+    -fx-background-color: white;
+    -fx-border-color: #00ccff;
+    -fx-border-width: 3;
+
+}
+
+.check-box:selected .mark {
+    -fx-font-size: 1.8em;
+    -fx-background-color: white;
+
+}
+
+.check-box:selected .box {
+    -fx-font-size: 1.8em;
+    -fx-background-color: #00ccff;
+}
