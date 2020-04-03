@@ -4,7 +4,6 @@
  */
 
 package com.Ankiety_PZ.test;
-        import javafx.fxml.Initializable;
         import java.net.URL;
         import java.util.ResourceBundle;
         import javafx.event.ActionEvent;
@@ -14,13 +13,11 @@ package com.Ankiety_PZ.test;
         import javafx.scene.image.ImageView;
         import javafx.stage.FileChooser;
         import javafx.stage.Stage;
-
         import java.io.File;
-        import java.net.URL;
-        import java.util.ResourceBundle;
 
 
-public class DodawaniepytaniaController extends BulidStage implements Initializable {
+
+public class DodawaniepytaniaController extends BulidStage{
     File file = new File("C:\\Users\\wlasciciel\\Pictures\\a.jpg");
 
     @FXML
@@ -99,20 +96,11 @@ public class DodawaniepytaniaController extends BulidStage implements Initializa
 
 
     }
-
-    @FXML // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
-        assert dodajzdjecie != null : "fx:id=\"dodajzdjecie\" was not injected: check your FXML file 'Dodawaniepytania.fxml'.";
-        assert wyloguj1 != null : "fx:id=\"wyloguj1\" was not injected: check your FXML file 'Dodawaniepytania.fxml'.";
-        assert anuluj != null : "fx:id=\"anuluj\" was not injected: check your FXML file 'Dodawaniepytania.fxml'.";
-
-    }
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-
-        Image image = new Image(file.toURI().toString());
-        imageview.setImage(image);
+    @FXML
+    void dodajpytanieAction(ActionEvent event) {
+        loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
+        PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
+        activeScene(event, false, false);
 
 
     }

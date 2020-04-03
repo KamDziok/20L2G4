@@ -19,7 +19,7 @@
       </Label>
       <TextField alignment="TOP_LEFT" layoutX="174.0" layoutY="80.0" prefHeight="118.0" prefWidth="992.0" />
       <Button fx:id="wyloguj1" layoutX="16.0" layoutY="658.0" mnemonicParsing="false" onAction="#wyloguj1Action" prefHeight="47.0" prefWidth="158.0" text="Wyloguj" />
-      <Button layoutX="1029.0" layoutY="659.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="158.0" text="Dodaj pytanie" />
+      <Button fx:id="dodajpytanie" layoutX="1029.0" layoutY="659.0" mnemonicParsing="false" onAction="#dodajpytanieAction" prefHeight="47.0" prefWidth="158.0" text="Dodaj pytanie" />
       <Button fx:id="anuluj" layoutX="884.0" layoutY="659.0" mnemonicParsing="false" onAction="#anulujAction" prefHeight="47.0" prefWidth="126.0" text="Anuluj" />
       <Label layoutX="21.0" layoutY="24.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Kreator pytań">
          <font>
@@ -42,21 +42,27 @@
             <Font size="18.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="474.0" layoutY="261.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="415.0" text="Pytanie z możliwością rozdzielenia punktacji">
+      <RadioButton layoutX="474.0" layoutY="261.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="509.0" text="Pytanie z możliwością rozdzielenia wartości procentowych">
          <font>
             <Font size="18.0" />
          </font>
       </RadioButton>
-      <ScrollPane layoutX="21.0" layoutY="357.0" prefHeight="290.0" prefWidth="1121.0">
+      <ScrollPane layoutX="21.0" layoutY="434.0" prefHeight="213.0" prefWidth="1121.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
         </content>
       </ScrollPane>
-      <Label layoutX="474.0" layoutY="317.0" prefHeight="40.0" prefWidth="136.0" text="Odpowiedzi">
+      <Label layoutX="21.0" layoutY="372.0" prefHeight="40.0" prefWidth="136.0" text="Odpowiedzi">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="621.0" layoutY="314.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="206.0" text="Dodaj Odpowiedz" />
+      <Button layoutX="204.0" layoutY="369.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="206.0" text="Dodaj Odpowiedz" />
+      <RadioButton layoutX="11.0" layoutY="302.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="392.0" text="Pytanie z możliwością rozdzielenia punktacji">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </RadioButton>
+      <TextField layoutX="403.0" layoutY="299.0" prefHeight="47.0" prefWidth="64.0" />
    </children>
 </AnchorPane>

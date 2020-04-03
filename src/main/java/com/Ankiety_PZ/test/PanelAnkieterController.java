@@ -18,6 +18,12 @@ public class PanelAnkieterController extends BulidStage {
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
 
+    @FXML
+    private Button wyloguj2;
+
+    @FXML
+    private Button wyloguj1;
+
     @FXML // fx:id="panelAnkietButtonDodaj"
     private Button panelAnkietButtonDodaj; // Value injected by FXMLLoader
     /**
