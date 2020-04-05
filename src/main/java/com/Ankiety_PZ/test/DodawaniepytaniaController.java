@@ -14,11 +14,15 @@ package com.Ankiety_PZ.test;
         import javafx.stage.FileChooser;
         import javafx.stage.Stage;
         import java.io.File;
+        import javafx.scene.control.RadioButton;
+        import javafx.scene.control.ToggleGroup;
 
 
 
 public class DodawaniepytaniaController extends BulidStage{
     File file = new File("C:\\Users\\wlasciciel\\Pictures\\a.jpg");
+
+    private final ToggleGroup radioButtonGroup = new ToggleGroup();
 
     @FXML
     private ImageView imageview;
@@ -37,6 +41,22 @@ public class DodawaniepytaniaController extends BulidStage{
 
     @FXML // fx:id="anuluj"
     private Button anuluj; // Value injected by FXMLLoader
+
+    @FXML // fx:id="dodawaniePytaniaRBQuestionOpen"
+    private RadioButton dodawaniePytaniaRBQuestionOpen; // Value injected by FXMLLoader
+
+    @FXML // fx:id="dodawaniePytaniaRBQuestionCloseMoreThenOne"
+    private RadioButton dodawaniePytaniaRBQuestionCloseMoreThenOne; // Value injected by FXMLLoader
+
+    @FXML // fx:id="dodawaniePytaniaRBQuestionCloseOnlyOne"
+    private RadioButton dodawaniePytaniaRBQuestionCloseOnlyOne; // Value injected by FXMLLoader
+
+    @FXML // fx:id="dodawaniePytaniaRBQuestionPercentages"
+    private RadioButton dodawaniePytaniaRBQuestionPercentages; // Value injected by FXMLLoader
+
+    @FXML // fx:id="dodawaniePytaniaRBQuestionPoints"
+    private RadioButton dodawaniePytaniaRBQuestionPoints; // Value injected by FXMLLoader
+
     /**
      * Metoda obsługująca przyciśk anuluj.
      *
@@ -110,6 +130,16 @@ public class DodawaniepytaniaController extends BulidStage{
         assert wyloguj1 != null : "fx:id=\"wyloguj1\" was not injected: check your FXML file 'Dodawaniepytania.fxml'.";
         assert anuluj != null : "fx:id=\"anuluj\" was not injected: check your FXML file 'Dodawaniepytania.fxml'.";
         assert imageview != null : "fx:id=\"imageview\" was not injected: check your FXML file 'Dodawaniepytania.fxml'.";
+        assert dodawaniePytaniaRBQuestionOpen != null : "fx:id=\"dodawaniePytaniaRBQuestionOpen\" was not injected: check your FXML file 'Dodawaniepytania.fxml'.";
+        assert dodawaniePytaniaRBQuestionCloseMoreThenOne != null : "fx:id=\"dodawaniePytaniaRBQuestionCloseMoreThenOne\" was not injected: check your FXML file 'Dodawaniepytania.fxml'.";
+        assert dodawaniePytaniaRBQuestionCloseOnlyOne != null : "fx:id=\"dodawaniePytaniaRBQuestionCloseOnlyOne\" was not injected: check your FXML file 'Dodawaniepytania.fxml'.";
+        assert dodawaniePytaniaRBQuestionPercentages != null : "fx:id=\"dodawaniePytaniaRBQuestionPercentages\" was not injected: check your FXML file 'Dodawaniepytania.fxml'.";
+        assert dodawaniePytaniaRBQuestionPoints != null : "fx:id=\"dodawaniePytaniaRBQuestionPoints\" was not injected: check your FXML file 'Dodawaniepytania.fxml'.";
 
+        dodawaniePytaniaRBQuestionOpen.setToggleGroup(radioButtonGroup);
+        dodawaniePytaniaRBQuestionCloseMoreThenOne.setToggleGroup(radioButtonGroup);
+        dodawaniePytaniaRBQuestionCloseOnlyOne.setToggleGroup(radioButtonGroup);
+        dodawaniePytaniaRBQuestionPercentages.setToggleGroup(radioButtonGroup);
+        dodawaniePytaniaRBQuestionPoints.setToggleGroup(radioButtonGroup);
     }
 }

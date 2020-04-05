@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1201.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.DodawaniepytaniaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1201.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.DodawaniepytaniaController">
    <children>
       <Button fx:id="dodajzdjecie" layoutX="14.0" layoutY="60.0" mnemonicParsing="false" onAction="#dodajzdjecieAction" text="Dodaj zdjęcie" />
       <Label layoutX="174.0" layoutY="21.0" prefHeight="40.0" prefWidth="136.0" text="Treść pytania">
@@ -27,22 +27,27 @@
          </font>
       </Label>
       <ImageView fx:id="imageview" fitHeight="118.0" fitWidth="145.0" layoutX="16.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true" />
-      <RadioButton layoutX="13.0" layoutY="221.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="296.0" text="Pytanie otwarte">
+      <RadioButton fx:id="dodawaniePytaniaRBQuestionOpen" layoutX="13.0" layoutY="221.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="296.0" text="Pytanie otwarte">
          <font>
             <Font size="18.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="11.0" layoutY="261.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="399.0" text="Pytanie zamnięte wielokrotengo wyboru">
+      <RadioButton fx:id="dodawaniePytaniaRBQuestionCloseMoreThenOne" layoutX="11.0" layoutY="261.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="399.0" text="Pytanie zamnięte wielokrotengo wyboru">
          <font>
             <Font size="18.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="474.0" layoutY="221.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="377.0" text="Pytanie zamnięte jednokrotnego wyboru">
+      <RadioButton fx:id="dodawaniePytaniaRBQuestionCloseOnlyOne" layoutX="474.0" layoutY="221.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="377.0" text="Pytanie zamnięte jednokrotnego wyboru">
          <font>
             <Font size="18.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="474.0" layoutY="261.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="509.0" text="Pytanie z możliwością rozdzielenia wartości procentowych">
+      <RadioButton fx:id="dodawaniePytaniaRBQuestionPercentages" layoutX="474.0" layoutY="261.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="509.0" text="Pytanie z możliwością rozdzielenia wartości procentowych">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="dodawaniePytaniaRBQuestionPoints" layoutX="11.0" layoutY="302.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="392.0" text="Pytanie z możliwością rozdzielenia punktacji">
          <font>
             <Font size="18.0" />
          </font>
@@ -58,11 +63,6 @@
          </font>
       </Label>
       <Button layoutX="204.0" layoutY="369.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="206.0" text="Dodaj Odpowiedz" />
-      <RadioButton layoutX="11.0" layoutY="302.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="392.0" text="Pytanie z możliwością rozdzielenia punktacji">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </RadioButton>
       <TextField layoutX="403.0" layoutY="299.0" prefHeight="47.0" prefWidth="64.0" />
    </children>
 </AnchorPane>
