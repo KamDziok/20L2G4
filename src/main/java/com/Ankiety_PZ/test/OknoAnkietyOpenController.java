@@ -1,5 +1,5 @@
 /**
- * Sample Skeleton for 'oknoAnkiety.fxml' Controller Class
+ * Sample Skeleton for 'oknoAnkietyOpen.fxml' Controller Class
  */
 
 package com.Ankiety_PZ.test;
@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-public class OknoAnkietyController extends BulidStage{
+public class OknoAnkietyOpenController extends BulidStage{
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -18,8 +18,9 @@ public class OknoAnkietyController extends BulidStage{
     private URL location;
 
     @FXML
-    void oknoAnkietyButtonFinish(ActionEvent event) {
-        deleteStage(event);
+    void oknoAnkietyButtonNext(ActionEvent event) {
+        loadingFXML(event, SceneFXML.OKNO_ANKIETA_CHECK);
+        activeScene(event, false, false);
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete

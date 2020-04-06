@@ -37,5 +37,12 @@ public class SceneFXML {
     public static  final String PANEL_UZYTKOWNIKA = "panelUzytkownika";
 
     /** Odnośnik do pliku z panelem uzytkownika */
-    public static  final String OKNO_ANKIETA = "oknoAnkiety";
+    public static  final String OKNO_ANKIETA_CHECK = "oknoAnkietyCheck";
+
+    /** Odnośnik do pliku z panelem uzytkownika */
+    public static  final String OKNO_ANKIETA_OPEN = "oknoAnkietyOpen";
+
+    /** Odnośnik do pliku z panelem uzytkownika */
+    public static  final String OKNO_ANKIETA_RADIO = "oknoAnkietyRadio";
+
 }

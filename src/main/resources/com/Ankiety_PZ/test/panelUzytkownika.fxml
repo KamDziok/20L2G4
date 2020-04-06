@@ -44,7 +44,7 @@
                                         <Font size="20.0" />
                                     </font>
                                 </Label>
-                                <Button layoutX="936.0" layoutY="16.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="Wypełnij" />
+                                <Button layoutX="936.0" layoutY="16.0" mnemonicParsing="false" onAction="#panelUzytkownikaButtonMakeAnkiet" prefHeight="50.0" prefWidth="125.0" text="Wypełnij" />
                                 <Label layoutX="390.0" layoutY="27.0" text="Wygasa:  21.04.2020">
                                     <font>
                                         <Font size="18.0" />
@@ -73,7 +73,7 @@
                         <children>
                             <AnchorPane layoutX="58.0" layoutY="101.0" prefHeight="139.0" prefWidth="1090.0" styleClass="text-field" stylesheets="@style.css">
                                 <children>
-                                    <Button layoutX="936.0" layoutY="41.0" mnemonicParsing="false" onAction="#panelUzytkownikaButtonMakeAnkiet" prefHeight="50.0" prefWidth="125.0" text="Wymień" />
+                                    <Button layoutX="936.0" layoutY="41.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="Wymień" />
                               <ImageView fitHeight="95.0" fitWidth="297.0" layoutX="562.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../media/allegro-logo.jpg" />
@@ -93,7 +93,7 @@
                             </Label>
                         <AnchorPane layoutX="58.0" layoutY="261.0" prefHeight="139.0" prefWidth="1090.0" styleClass="text-field" stylesheets="@style.css">
                            <children>
-                              <Button layoutX="936.0" layoutY="41.0" mnemonicParsing="false" onAction="#panelUzytkownikaButtonMakeAnkiet" prefHeight="50.0" prefWidth="125.0" text="Wymień" />
+                              <Button layoutX="936.0" layoutY="41.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="Wymień" />
                               <ImageView fitHeight="95.0" fitWidth="297.0" layoutX="562.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../media/allegro-logo.jpg" />
@@ -105,7 +105,7 @@
                         </AnchorPane>
                         <AnchorPane layoutX="58.0" layoutY="420.0" prefHeight="139.0" prefWidth="1090.0" styleClass="text-field" stylesheets="@style.css">
                            <children>
-                              <Button layoutX="936.0" layoutY="41.0" mnemonicParsing="false" onAction="#panelUzytkownikaButtonMakeAnkiet" prefHeight="50.0" prefWidth="125.0" text="Wymień" />
+                              <Button layoutX="936.0" layoutY="41.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="Wymień" />
                               <ImageView fitHeight="95.0" fitWidth="299.0" layoutX="596.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../media/s20.jpg" />

@@ -29,7 +29,7 @@ public class PanelUzytkownikaController extends BulidStage{
 
     @FXML
     void panelUzytkownikaButtonMakeAnkiet(ActionEvent event) {
-        loadingFXML(event, SceneFXML.OKNO_ANKIETA);
+        loadingFXML(event, SceneFXML.OKNO_ANKIETA_RADIO);
         activeScene(event, false, true);
     }
 
