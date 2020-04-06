@@ -45,4 +45,10 @@ public class SceneFXML {
     /** Odnośnik do pliku z panelem uzytkownika */
     public static  final String OKNO_ANKIETA_RADIO = "oknoAnkietyRadio";
 
+    /** Odnośnik do pliku z panelem towrzenia ankiety */
+    public static  final String TWORZENIE_ANKIETY = "PanelTworzeniaankiety";
+
+    /** Odnośnik do pliku z panelem dodawania pytań do ankiety */
+    public static  final String DODAJ_PYTANIE = "Dodawaniepytania";
+
 }

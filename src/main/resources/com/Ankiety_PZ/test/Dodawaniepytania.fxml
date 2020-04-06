@@ -1,95 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1201.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1201.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.DodawaniepytaniaController">
    <children>
-      <Button layoutX="17.0" layoutY="198.0" mnemonicParsing="false" text="Dodaj zdjęcie" />
-      <Label layoutX="21.0" layoutY="106.0" prefHeight="40.0" prefWidth="136.0" text="Treść pytania">
+      <Button fx:id="dodajzdjecie" layoutX="14.0" layoutY="60.0" mnemonicParsing="false" onAction="#dodajzdjecieAction" text="Dodaj zdjęcie" />
+      <Label layoutX="174.0" layoutY="21.0" prefHeight="40.0" prefWidth="136.0" text="Treść pytania">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField alignment="TOP_LEFT" layoutX="184.0" layoutY="126.0" prefHeight="118.0" prefWidth="992.0" />
-      <ScrollPane layoutX="14.0" layoutY="260.0" prefHeight="370.0" prefWidth="1170.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="851.0" prefWidth="1155.0">
-               <children>
-                  <CheckBox layoutX="8.0" layoutY="46.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="470.0" text="Pytanie zamknięte jednokrotnego wyboru">
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                  </CheckBox>
-                  <CheckBox layoutX="8.0" layoutY="14.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="470.0" text="Pytanie otwarte">
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                  </CheckBox>
-                  <ScrollPane layoutX="8.0" layoutY="78.0" prefHeight="209.0" prefWidth="1122.0">
-                     <content>
-                        <AnchorPane prefHeight="205.0" prefWidth="1104.0">
-                           <children>
-                              <TextField layoutX="9.0" layoutY="14.0" prefHeight="25.0" prefWidth="997.0" />
-                              <Button layoutX="1014.0" layoutY="14.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="76.0" text="Dodaj" />
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </ScrollPane>
-                  <CheckBox layoutX="8.0" layoutY="294.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="470.0" text="Pytanie zamknięte wielokrotnego wyboru">
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                  </CheckBox>
-                  <ScrollPane layoutX="14.0" layoutY="336.0" prefHeight="209.0" prefWidth="1122.0" vvalue="0.61">
-                     <content>
-                        <AnchorPane pickOnBounds="false" prefHeight="205.0" prefWidth="1116.0">
-                           <children>
-                              <TextField layoutX="10.0" layoutY="14.0" prefHeight="25.0" prefWidth="986.0" />
-                              <Button layoutX="1006.0" layoutY="14.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="76.0" text="Dodaj" />
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </ScrollPane>
-                  <CheckBox layoutX="8.0" layoutY="555.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="470.0" text="Pytanie procentowe/punktowe">
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                  </CheckBox>
-                  <CheckBox layoutX="390.0" layoutY="563.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Procenty" />
-                  <CheckBox layoutX="496.0" layoutY="563.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Punkty" />
-                  <TextField layoutX="569.0" layoutY="563.0" prefWidth="43.0" />
-                  <ScrollPane layoutX="14.0" layoutY="602.0" prefHeight="239.0" prefWidth="1121.0">
-                    <content>
-                      <AnchorPane prefHeight="237.0" prefWidth="1118.0">
-                           <children>
-                              <TextField layoutX="14.0" layoutY="29.0" prefHeight="25.0" prefWidth="986.0" />
-                              <Button layoutX="1011.0" layoutY="29.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="76.0" text="Dodaj" />
-                           </children>
-                        </AnchorPane>
-                    </content>
-                  </ScrollPane>
-               </children>
-            </AnchorPane>
-        </content>
-      </ScrollPane>
-      <Button layoutX="16.0" layoutY="658.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="158.0" text="Wyloguj" />
-      <Button layoutX="1029.0" layoutY="659.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="158.0" text="Dodaj pytanie" />
-      <Button layoutX="884.0" layoutY="659.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="126.0" text="Anuluj" />
-      <CheckBox layoutX="21.0" layoutY="151.0" mnemonicParsing="false" text="Zdjęcie">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </CheckBox>
-      <Label layoutX="80.0" layoutY="54.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Kreator pytań">
+      <TextField alignment="TOP_LEFT" layoutX="174.0" layoutY="80.0" prefHeight="118.0" prefWidth="992.0" />
+      <Button fx:id="wyloguj1" layoutX="16.0" layoutY="658.0" mnemonicParsing="false" onAction="#wyloguj1Action" prefHeight="47.0" prefWidth="158.0" text="Wyloguj" />
+      <Button fx:id="dodajpytanie" layoutX="1029.0" layoutY="659.0" mnemonicParsing="false" onAction="#dodajpytanieAction" prefHeight="47.0" prefWidth="158.0" text="Dodaj pytanie" />
+      <Button fx:id="anuluj" layoutX="884.0" layoutY="659.0" mnemonicParsing="false" onAction="#anulujAction" prefHeight="47.0" prefWidth="126.0" text="Anuluj" />
+      <Label layoutX="21.0" layoutY="24.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Kreator pytań">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
+      <ImageView fx:id="imageview" fitHeight="118.0" fitWidth="145.0" layoutX="16.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true" />
+      <RadioButton fx:id="dodawaniePytaniaRBQuestionOpen" layoutX="13.0" layoutY="221.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="296.0" text="Pytanie otwarte">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="dodawaniePytaniaRBQuestionCloseMoreThenOne" layoutX="11.0" layoutY="261.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="399.0" text="Pytanie zamnięte wielokrotengo wyboru">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="dodawaniePytaniaRBQuestionCloseOnlyOne" layoutX="474.0" layoutY="221.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="377.0" text="Pytanie zamnięte jednokrotnego wyboru">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="dodawaniePytaniaRBQuestionPercentages" layoutX="474.0" layoutY="261.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="509.0" text="Pytanie z możliwością rozdzielenia wartości procentowych">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="dodawaniePytaniaRBQuestionPoints" layoutX="11.0" layoutY="302.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="392.0" text="Pytanie z możliwością rozdzielenia punktacji">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </RadioButton>
+      <ScrollPane layoutX="21.0" layoutY="434.0" prefHeight="213.0" prefWidth="1121.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="208.0" prefWidth="1113.0">
+               <children>
+                  <TextField alignment="TOP_LEFT" layoutX="8.0" layoutY="14.0" prefHeight="47.0" prefWidth="891.0" />
+                  <Button layoutX="912.0" layoutY="17.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="91.0" text="Dodaj " />
+                  <Button layoutX="1008.0" layoutY="17.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="91.0" text="Usuń" />
+               </children></AnchorPane>
+        </content>
+      </ScrollPane>
+      <Label layoutX="21.0" layoutY="372.0" prefHeight="40.0" prefWidth="136.0" text="Odpowiedzi">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField layoutX="403.0" layoutY="299.0" prefHeight="47.0" prefWidth="64.0" />
    </children>
 </AnchorPane>
