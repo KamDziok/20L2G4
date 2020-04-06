@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1201.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.DodawaniepytaniaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1201.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.DodawaniepytaniaController">
    <children>
       <Button fx:id="dodajzdjecie" layoutX="14.0" layoutY="60.0" mnemonicParsing="false" onAction="#dodajzdjecieAction" text="Dodaj zdjęcie" />
       <Label layoutX="174.0" layoutY="21.0" prefHeight="40.0" prefWidth="136.0" text="Treść pytania">
@@ -54,7 +54,12 @@
       </RadioButton>
       <ScrollPane layoutX="21.0" layoutY="434.0" prefHeight="213.0" prefWidth="1121.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="208.0" prefWidth="1113.0">
+               <children>
+                  <TextField alignment="TOP_LEFT" layoutX="8.0" layoutY="14.0" prefHeight="47.0" prefWidth="891.0" />
+                  <Button layoutX="912.0" layoutY="17.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="91.0" text="Dodaj " />
+                  <Button layoutX="1008.0" layoutY="17.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="91.0" text="Usuń" />
+               </children></AnchorPane>
         </content>
       </ScrollPane>
       <Label layoutX="21.0" layoutY="372.0" prefHeight="40.0" prefWidth="136.0" text="Odpowiedzi">
@@ -62,7 +67,6 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="204.0" layoutY="369.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="206.0" text="Dodaj Odpowiedz" />
       <TextField layoutX="403.0" layoutY="299.0" prefHeight="47.0" prefWidth="64.0" />
    </children>
 </AnchorPane>
