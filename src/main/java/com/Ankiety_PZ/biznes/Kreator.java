@@ -9,7 +9,7 @@ public class Kreator extends Uzytkownik{
 
     public Kreator(int id, String imie, String nazwisko, String mail, String haslo) {
         super(id, imie, nazwisko, mail, haslo);
-        listaAnkiet = new LinkedList();   //zastapic lista ankirt z Hibernate
+        listaAnkiet = new LinkedList();   //zastapic lista ankiet z Hibernate
     }
 
 
