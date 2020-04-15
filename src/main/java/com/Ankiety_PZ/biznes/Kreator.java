@@ -14,7 +14,7 @@ public class Kreator extends Uzytkownik{
 
 
 //    public boolean dodajAnkiete() {
-//
+//        cos
 //        return true;
 //    }
 
