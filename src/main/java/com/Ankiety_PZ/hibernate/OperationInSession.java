@@ -5,7 +5,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class OperationInSession {
+public abstract class OperationInSession {
 
     protected Session session = null;
     protected Query query = null;
