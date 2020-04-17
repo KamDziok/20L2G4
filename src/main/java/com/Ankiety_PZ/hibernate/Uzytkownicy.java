@@ -2,10 +2,7 @@ package com.Ankiety_PZ.hibernate;
 // Generated 2020-04-16 17:33:57 by Hibernate Tools 4.3.1
 
 
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -27,8 +24,23 @@ public class Uzytkownicy  implements java.io.Serializable {
      private String kodPocztowy;
      private int liczbaPunktow;
 
+    @ManyToMany
+    @JoinTable(name = "uzytkownicy_ankiety",
+            joinColumns = {@JoinColumn(name = "idUzytkownika")},
+            inverseJoinColumns = {@JoinColumn(name = "idAnkiety")})
     private List<Ankiety> ankiety;
+
+    @ManyToMany
+    @JoinTable(name = "uzytkownicy_nagrody",
+            joinColumns = {@JoinColumn(name = "idUzytkownika")},
+            inverseJoinColumns = {@JoinColumn(name = "idNagrody")})
     private List<Nagrody> nagrody;
+
+    @OneToMany(
+            mappedBy = "odpowiedzi",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<OdpowiedziUzytkownicy> odpowiedziUzytkownicy;
 
 
     public Uzytkownicy() {
@@ -146,10 +158,7 @@ public class Uzytkownicy  implements java.io.Serializable {
         this.liczbaPunktow = liczbaPunktow;
     }
 
-    @ManyToMany
-    @JoinTable(name = "uzytkownicy_ankiety",
-            joinColumns = {@JoinColumn(name = "idUzytkownika")},
-            inverseJoinColumns = {@JoinColumn(name = "idAnkiety")})
+
     public List<Ankiety> getAnkiety() {
         return ankiety;
     }
@@ -158,16 +167,22 @@ public class Uzytkownicy  implements java.io.Serializable {
         this.ankiety = ankiety;
     }
 
-    @ManyToMany
-    @JoinTable(name = "uzytkownicy_nagrody",
-            joinColumns = {@JoinColumn(name = "idUzytkownika")},
-            inverseJoinColumns = {@JoinColumn(name = "idNagrody")})
+
     public List<Nagrody> getNagrody() {
         return nagrody;
     }
 
     public void setNagrody(List<Nagrody> nagrody) {
         this.nagrody = nagrody;
+    }
+
+    
+    public List<OdpowiedziUzytkownicy> getOdpowiedziUzytkownicy() {
+        return odpowiedziUzytkownicy;
+    }
+
+    public void setOdpowiedziUzytkownicy(List<OdpowiedziUzytkownicy> odpowiedziUzytkownicy) {
+        this.odpowiedziUzytkownicy = odpowiedziUzytkownicy;
     }
 }
 
