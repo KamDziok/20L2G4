@@ -3,6 +3,7 @@ package com.Ankiety_PZ.hibernate;
 
 
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import java.util.List;
@@ -26,7 +27,8 @@ public class Uzytkownicy  implements java.io.Serializable {
      private String kodPocztowy;
      private int liczbaPunktow;
 
-
+    private List<Ankiety> ankiety;
+    private List<Nagrody> nagrody;
 
 
     public Uzytkownicy() {
@@ -144,9 +146,29 @@ public class Uzytkownicy  implements java.io.Serializable {
         this.liczbaPunktow = liczbaPunktow;
     }
 
+    @ManyToMany
+    @JoinTable(name = "uzytkownicy_ankiety",
+            joinColumns = {@JoinColumn(name = "idUzytkownika")},
+            inverseJoinColumns = {@JoinColumn(name = "idAnkiety")})
+    public List<Ankiety> getAnkiety() {
+        return ankiety;
+    }
 
+    public void setAnkiety(List<Ankiety> ankiety) {
+        this.ankiety = ankiety;
+    }
 
+    @ManyToMany
+    @JoinTable(name = "uzytkownicy_nagrody",
+            joinColumns = {@JoinColumn(name = "idUzytkownika")},
+            inverseJoinColumns = {@JoinColumn(name = "idNagrody")})
+    public List<Nagrody> getNagrody() {
+        return nagrody;
+    }
 
+    public void setNagrody(List<Nagrody> nagrody) {
+        this.nagrody = nagrody;
+    }
 }
 
 

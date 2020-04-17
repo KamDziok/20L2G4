@@ -4,7 +4,7 @@
 <!-- Generated 2020-04-16 17:34:00 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.Ankiety_PZ.hibernate.Nagrody" table="nagrody" catalog="ankiety" optimistic-lock="version">
-        <id name="id" type="java.lang.Integer">
+        <id name="idNagrody" type="java.lang.Integer">
             <column name="ID" />
             <generator class="identity" />
         </id>

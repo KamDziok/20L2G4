@@ -2,8 +2,12 @@ package com.Ankiety_PZ.hibernate;
 // Generated 2020-04-16 17:33:57 by Hibernate Tools 4.3.1
 
 
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -18,6 +22,9 @@ public class Ankiety  implements java.io.Serializable {
      private Date dataRozpoczecia;
      private Date dataZakonczenia;
      private Set pytanias = new HashSet(0);
+
+     private List<Uzytkownicy> uzytkownicy;
+
 
     public Ankiety() {
     }
@@ -80,7 +87,17 @@ public class Ankiety  implements java.io.Serializable {
         this.pytanias = pytanias;
     }
 
+    @ManyToMany
+    @JoinTable(name = "uzytkownicy_ankiety",
+            joinColumns = {@JoinColumn(name = "idAnkiety")},
+            inverseJoinColumns = {@JoinColumn(name = "idUzytkownika")})
+    public List<Uzytkownicy> getUzytkownicy() {
+        return uzytkownicy;
+    }
 
+    public void setUzytkownicy(List<Uzytkownicy> uzytkownicy) {
+        this.uzytkownicy = uzytkownicy;
+    }
 
 
 }
