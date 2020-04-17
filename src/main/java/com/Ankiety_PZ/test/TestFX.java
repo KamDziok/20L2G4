@@ -1,6 +1,5 @@
 package com.Ankiety_PZ.test;
 
-import com.Ankiety_PZ.hibernate.NagrodyQuery;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

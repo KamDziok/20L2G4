@@ -2,7 +2,10 @@ package com.Ankiety_PZ.hibernate;
 // Generated 2020-04-16 17:33:57 by Hibernate Tools 4.3.1
 
 
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -11,13 +14,18 @@ import java.util.Set;
 public class Pytania  implements java.io.Serializable {
 
 
-     private Integer id;
+     private Integer idPytania;
      private Ankiety ankiety;
      private String tresc;
      private byte[] zdjecie;
      private Integer punktowe;
      private int rodzajPytania;
      private Set odpowiedzis = new HashSet(0);
+
+    @OneToMany(mappedBy = "uzytkownicy",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<PytaniaUzytkownicy> pytaniaUzytkownicy;
 
     public Pytania() {
     }
@@ -37,12 +45,12 @@ public class Pytania  implements java.io.Serializable {
        this.odpowiedzis = odpowiedzis;
     }
    
-    public Integer getId() {
-        return this.id;
+    public Integer getIdPytania() {
+        return this.idPytania;
     }
     
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdPytania(Integer id) {
+        this.idPytania = id;
     }
     public Ankiety getAnkiety() {
         return this.ankiety;

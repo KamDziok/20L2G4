@@ -19,7 +19,7 @@ public class OdpowiedziUzytkownicy {
     private Uzytkownicy uzytkownik;
 
     @Column(name = "punktowe")
-    private int punktowe;
+    private Integer punktowe;
 
     public OdpowiedziUzytkownicy() {
     }
@@ -27,9 +27,10 @@ public class OdpowiedziUzytkownicy {
     public OdpowiedziUzytkownicy(Odpowiedzi odpowiedz, Uzytkownicy uzytkownik) {
         this.odpowiedz = odpowiedz;
         this.uzytkownik = uzytkownik;
+        this.id = new OdpowiedziUzytkownicyId(odpowiedz.getIdOdpowiedzi(), uzytkownik.getIdUzytkownika());
     }
 
-    public OdpowiedziUzytkownicy(Odpowiedzi odpowiedz, Uzytkownicy uzytkownik, int punktowe) {
+    public OdpowiedziUzytkownicy(Odpowiedzi odpowiedz, Uzytkownicy uzytkownik, Integer punktowe) {
         this.odpowiedz = odpowiedz;
         this.uzytkownik = uzytkownik;
         this.punktowe = punktowe;
@@ -56,7 +57,7 @@ public class OdpowiedziUzytkownicy {
         return punktowe;
     }
 
-    public void setPunktowe(int punktowe) {
+    public void setPunktowe(Integer punktowe) {
         this.punktowe = punktowe;
     }
 }

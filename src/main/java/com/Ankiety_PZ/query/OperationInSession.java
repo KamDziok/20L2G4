@@ -1,5 +1,6 @@
-package com.Ankiety_PZ.hibernate;
+package com.Ankiety_PZ.query;
 
+import com.Ankiety_PZ.hibernate.HibernateUtil;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;

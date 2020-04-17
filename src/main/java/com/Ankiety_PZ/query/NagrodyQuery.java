@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.Ankiety_PZ.hibernate;
+package com.Ankiety_PZ.query;
 
-import java.lang.Throwable;
-
+import com.Ankiety_PZ.hibernate.Nagrody;
 import org.hibernate.*;
 
 import java.util.ArrayList;

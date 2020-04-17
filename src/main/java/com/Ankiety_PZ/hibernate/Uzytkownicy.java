@@ -42,6 +42,11 @@ public class Uzytkownicy  implements java.io.Serializable {
             orphanRemoval = true)
     private List<OdpowiedziUzytkownicy> odpowiedziUzytkownicy;
 
+    @OneToMany(
+            mappedBy = "pytania",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<PytaniaUzytkownicy> pytaniaUzytkownicy;
 
     public Uzytkownicy() {
     }
@@ -176,13 +181,22 @@ public class Uzytkownicy  implements java.io.Serializable {
         this.nagrody = nagrody;
     }
 
-    
+
     public List<OdpowiedziUzytkownicy> getOdpowiedziUzytkownicy() {
         return odpowiedziUzytkownicy;
     }
 
     public void setOdpowiedziUzytkownicy(List<OdpowiedziUzytkownicy> odpowiedziUzytkownicy) {
         this.odpowiedziUzytkownicy = odpowiedziUzytkownicy;
+    }
+
+
+    public List<PytaniaUzytkownicy> getPytaniaUzytkownicy() {
+        return pytaniaUzytkownicy;
+    }
+
+    public void setPytaniaUzytkownicy(List<PytaniaUzytkownicy> pytaniaUzytkownicy) {
+        this.pytaniaUzytkownicy = pytaniaUzytkownicy;
     }
 }
 
