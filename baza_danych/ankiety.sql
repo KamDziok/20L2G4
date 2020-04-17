@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 15 Kwi 2020, 11:04
+-- Czas generowania: 16 Kwi 2020, 17:47
 -- Wersja serwera: 10.4.11-MariaDB
--- Wersja PHP: 7.4.4
+-- Wersja PHP: 7.3.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -165,28 +165,28 @@ ALTER TABLE `nagrody`
 --
 ALTER TABLE `odpowiedzi`
   ADD PRIMARY KEY (`ID`),
-  ADD UNIQUE KEY `ID_pytania` (`ID_pytania`);
+  ADD KEY `ID_pytania` (`ID_pytania`) USING BTREE;
 
 --
 -- Indeksy dla tabeli `odpowiedzi_uzytkownicy`
 --
 ALTER TABLE `odpowiedzi_uzytkownicy`
-  ADD UNIQUE KEY `ID_odpowiedzi` (`ID_odpowiedzi`),
-  ADD UNIQUE KEY `ID_uzytkownika` (`ID_uzytkownika`);
+  ADD KEY `ID_odpowiedzi` (`ID_odpowiedzi`) USING BTREE,
+  ADD KEY `ID_uzytkownika` (`ID_uzytkownika`) USING BTREE;
 
 --
 -- Indeksy dla tabeli `pytania`
 --
 ALTER TABLE `pytania`
   ADD PRIMARY KEY (`ID`),
-  ADD UNIQUE KEY `ID_ankiety` (`ID_ankiety`);
+  ADD KEY `ID_ankiety` (`ID_ankiety`) USING BTREE;
 
 --
 -- Indeksy dla tabeli `pytania_uzytkownicy`
 --
 ALTER TABLE `pytania_uzytkownicy`
-  ADD UNIQUE KEY `ID_uzytkownika` (`ID_uzytkownika`),
-  ADD UNIQUE KEY `ID_pytania` (`ID_pytania`);
+  ADD KEY `ID_uzytkownika` (`ID_uzytkownika`) USING BTREE,
+  ADD KEY `ID_pytania` (`ID_pytania`) USING BTREE;
 
 --
 -- Indeksy dla tabeli `uzytkownicy`
@@ -198,15 +198,15 @@ ALTER TABLE `uzytkownicy`
 -- Indeksy dla tabeli `uzytkownicy_ankiety`
 --
 ALTER TABLE `uzytkownicy_ankiety`
-  ADD UNIQUE KEY `ID_uzytkownika` (`ID_uzytkownika`),
-  ADD UNIQUE KEY `ID_ankiety` (`ID_ankiety`);
+  ADD KEY `ID_uzytkownika` (`ID_uzytkownika`) USING BTREE,
+  ADD KEY `ID_ankiety` (`ID_ankiety`) USING BTREE;
 
 --
 -- Indeksy dla tabeli `uzytkownicy_nagrody`
 --
 ALTER TABLE `uzytkownicy_nagrody`
-  ADD UNIQUE KEY `ID_uzytkownika` (`ID_uzytkownika`),
-  ADD UNIQUE KEY `ID_nagrody` (`ID_nagrody`);
+  ADD KEY `ID_uzytkownika` (`ID_uzytkownika`) USING BTREE,
+  ADD KEY `ID_nagrody` (`ID_nagrody`) USING BTREE;
 
 --
 -- AUTO_INCREMENT for dumped tables
