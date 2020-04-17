@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2020-04-16 17:34:00 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.Ankiety_PZ.hibernate.Pytania" table="pytania" catalog="ankiety" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="ankiety" class="com.Ankiety_PZ.hibernate.Ankiety" fetch="select">
+            <column name="ID_ankiety" not-null="true" unique="true" />
+        </many-to-one>
+        <property name="tresc" type="string">
+            <column name="tresc" length="65535" not-null="true" />
+        </property>
+        <property name="zdjecie" type="binary">
+            <column name="zdjecie" />
+        </property>
+        <property name="punktowe" type="java.lang.Integer">
+            <column name="punktowe" />
+        </property>
+        <property name="rodzajPytania" type="int">
+            <column name="rodzaj_pytania" not-null="true" />
+        </property>
+        <set name="odpowiedzis" table="odpowiedzi" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_pytania" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="com.Ankiety_PZ.hibernate.Odpowiedzi" />
+        </set>
+    </class>
+</hibernate-mapping>

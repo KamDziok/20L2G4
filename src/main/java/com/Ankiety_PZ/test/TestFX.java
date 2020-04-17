@@ -1,5 +1,6 @@
 package com.Ankiety_PZ.test;
 
+import com.Ankiety_PZ.hibernate.NagrodyQuery;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -35,7 +36,5 @@ public class TestFX extends Application {
         return fxmlLoader.load();
     }
 
-    public static void main(String[] args) {
-        launch();
-    }
+    public static void main(String[] args) { launch(); }
 }
