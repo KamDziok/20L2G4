@@ -1,57 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.Ankiety_PZ.query;
 
-import com.Ankiety_PZ.hibernate.Nagrody;
-import org.hibernate.*;
+import com.Ankiety_PZ.hibernate.Uzytkownicy;
+import org.hibernate.HibernateException;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author KamDziok
- */
-public class NagrodyQuery extends OperationInSession{
-    
-    public List<Nagrody> selectAll() throws HibernateException {
-        List<Nagrody> nagrody = new ArrayList<>();
+public class UzytkownicyQuery extends OperationInSession {
+
+    public List<Uzytkownicy> selectAll() throws HibernateException {
+        List<Uzytkownicy> uzytkowink = new ArrayList<>();
         try {
             session = openSession();
-            criteria = session.createCriteria(Nagrody.class);
-            nagrody = criteria.list();
+            criteria = session.createCriteria(Uzytkownicy.class);
+            uzytkowink = criteria.list();
         } catch(Exception e){
             logException(e);
         }finally{
             sessionClose(session);
         }
-        return nagrody;
+        return uzytkowink;
     }
 
-    public Nagrody selectByID(int id){
-        Nagrody nagroda = new Nagrody();
-        try{
-            session = openSession();
-            String hgl = "from Nagrody where ID = " + id;
-            query = session.createQuery(hgl);
-            nagroda = (Nagrody) query.uniqueResult();
-        }catch(Exception e){
-            logException(e);
-        }finally {
-            sessionClose(session);
-        }
-        return nagroda;
-    }
-
-    public Boolean addNagrody(Nagrody nagroda){
+    public Boolean addUzytkownik(Uzytkownicy uzytkownik){
         Boolean result = false;
         try{
             session = openSession();
             transaction = beginTransaction(session);
-            session.save(nagroda);
+            session.save(uzytkownik);
             commitTransaction(transaction);
             result = true;
         }catch(Exception e){
@@ -63,12 +39,12 @@ public class NagrodyQuery extends OperationInSession{
         return result;
     }
 
-    public Boolean updateNagrody(Nagrody nagroda){
+    public Boolean updateUzytkownik(Uzytkownicy uzytkownik){
         Boolean result = false;
         try{
             session = openSession();
             transaction = beginTransaction(session);;
-            session.update(nagroda);
+            session.update(uzytkownik);
             commitTransaction(transaction);
             result = true;
         }catch(Exception e){
@@ -80,12 +56,12 @@ public class NagrodyQuery extends OperationInSession{
         return result;
     }
 
-    public Boolean delNagrody(Nagrody nagroda){
+    public Boolean delUzytkownik(Uzytkownicy uzytkownik){
         Boolean result = false;
         try{
             session = openSession();
             transaction = beginTransaction(session);;
-            session.delete(nagroda);
+            session.delete(uzytkownik);
             commitTransaction(transaction);
             result = true;
         }catch(Exception e){
