@@ -38,7 +38,12 @@ public class TestFX extends Application {
 
     public static void main(String[] args) {
         LoadDump test = new LoadDump();
-        test.loadDump("/baza_danych/bazadanychtest/ankiety.sql");
+        try {
+            test.loadDump("/baza_danych/bazadanychtest/ankiety.sql");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
         launch();
     }
 }
