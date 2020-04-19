@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/ankiety</property>
+    <property name="hibernate.connection.username">ankiety</property>
+    <property name="hibernate.connection.password">Dziabaducha423425</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
+    <mapping resource="com/Ankiety_PZ/hibernate/Pytania.hbm.xml"/>
+    <mapping resource="com/Ankiety_PZ/hibernate/Uzytkownicy.hbm.xml"/>
+    <mapping resource="com/Ankiety_PZ/hibernate/Ankiety.hbm.xml"/>
+    <mapping resource="com/Ankiety_PZ/hibernate/Odpowiedzi.hbm.xml"/>
+    <mapping resource="com/Ankiety_PZ/hibernate/Nagrody.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>
