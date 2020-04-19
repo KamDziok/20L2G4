@@ -1,5 +1,6 @@
 package com.Ankiety_PZ.test;
 
+import com.Ankiety_PZ.query.LoadDump;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -35,5 +36,9 @@ public class TestFX extends Application {
         return fxmlLoader.load();
     }
 
-    public static void main(String[] args) { launch(); }
+    public static void main(String[] args) {
+        LoadDump test = new LoadDump();
+        test.loadDump("/baza_danych/bazadanychtest/ankiety.sql");
+        launch();
+    }
 }

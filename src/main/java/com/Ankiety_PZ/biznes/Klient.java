@@ -13,8 +13,6 @@ public class Klient extends Uzytkownik{
     private String numerBloku;
     private String numerLokalu;
     private String kodPocztowy;
-    private String plec;
-    private LocalDate wiek;
 
 
     public Klient(int id, String imie, String nazwisko, String mail, String haslo,
@@ -29,8 +27,6 @@ public class Klient extends Uzytkownik{
         this.numerBloku = numerBloku;
         this.numerLokalu = numerLokalu;
         this.kodPocztowy = kodPocztowy;
-        this.plec = plec;
-        this.wiek = wiek;
     }
 
 
@@ -132,14 +128,6 @@ public class Klient extends Uzytkownik{
         return kodPocztowy;
     }
 
-    public String getPlec() {
-        return plec;
-    }
-
-    public LocalDate getWiek() {
-        return wiek;
-    }
-
     private void setListaAnkiet(LinkedList listaAnkiet) {
         this.listaAnkiet = listaAnkiet;
     }
@@ -170,14 +158,6 @@ public class Klient extends Uzytkownik{
 
     private void setKodPocztowy(String kodPocztowy) {
         this.kodPocztowy = kodPocztowy;
-    }
-
-    private void setPlec(String plec) {
-        this.plec = plec;
-    }
-
-    private void setWiek(LocalDate wiek) {
-        this.wiek = wiek;
     }
 
 }
