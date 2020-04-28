@@ -62,25 +62,18 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
         activeScene(event, false, false);
     }
 
+
     @Override
     public void setStartValues(Uzytkownicy user) {
-        System.out.println(user.getImie());
-
-        imie = user.getImie();
-        // email.setText(user.getMail());
-        //  imie.setText(user.getImie());
-        //  nazwisko.setText(user.getNazwisko());
-        //   miejscowosc.setText(user.getMiejscowosc());
-        //   ulica.setText(user.getUlica());
-        //  budynek.setText(user.getNumerBudynku());
-        //  kod.setText(user.getKodPocztowy());
+        this.curentUser = user;
+        imie_nazwisko_rola.setText(curentUser.getImie() + " " + curentUser.getNazwisko());
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert wyloguj != null : "fx:id=\"wyloguj\" was not injected: check your FXML file 'PanelAdmina.fxml'.";
         assert imie_nazwisko_rola != null : "fx:id=\"imie_nazwisko_rola\" was not injected: check your FXML file 'PanelAdmina.fxml'.";
-       imie_nazwisko_rola.setText(imie);
+
     }
 
 }
