@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 public class TestFX extends Application {
 //    @Override
@@ -39,11 +40,12 @@ public class TestFX extends Application {
     public static void main(String[] args) {
         LoadDump test = new LoadDump();
         try {
-            test.loadDump("/baza_danych/bazadanychtest/ankiety.sql");
+            test.loadDump("baza_danych/bazadanychtest/ankiety2.sql");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
         }
+        System.out.println("Current dir using System:" + Paths.get("") .toAbsolutePath().toString());
         launch();
     }
 }
