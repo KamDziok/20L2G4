@@ -27,8 +27,7 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
     private TextField nowehaslo;
     @FXML
     private TextField hasloznowu;
-    @FXML
-    private Button imie;
+
     @FXML
     private TextField nazwisko;
     @FXML
@@ -45,6 +44,7 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
     @FXML
     private Label imie_nazwisko_rola;
 
+
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
@@ -55,28 +55,32 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
     private Button wyloguj;
 
     @FXML
+    private String imie;
+    @FXML
     void wyloguj(ActionEvent event) {
         loadingFXML(event, SceneFXML.PANEL_LOGIN);
         activeScene(event, false, false);
+    }
+
+    @Override
+    public void setStartValues(Uzytkownicy user) {
+        System.out.println(user.getImie());
+
+        imie = user.getImie();
+        // email.setText(user.getMail());
+        //  imie.setText(user.getImie());
+        //  nazwisko.setText(user.getNazwisko());
+        //   miejscowosc.setText(user.getMiejscowosc());
+        //   ulica.setText(user.getUlica());
+        //  budynek.setText(user.getNumerBudynku());
+        //  kod.setText(user.getKodPocztowy());
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert wyloguj != null : "fx:id=\"wyloguj\" was not injected: check your FXML file 'PanelAdmina.fxml'.";
         assert imie_nazwisko_rola != null : "fx:id=\"imie_nazwisko_rola\" was not injected: check your FXML file 'PanelAdmina.fxml'.";
-    }
-    @Override
-    public void setStartValues(Uzytkownicy user) {
-        System.out.println(user.getImie());
-        curentUser = user;
-        imie_nazwisko_rola.setText(user.getImie()+" "+user.getNazwisko()+" - konto administratora");
-       // email.setText(user.getMail());
-      //  imie.setText(user.getImie());
-      //  nazwisko.setText(user.getNazwisko());
-     //   miejscowosc.setText(user.getMiejscowosc());
-     //   ulica.setText(user.getUlica());
-      //  budynek.setText(user.getNumerBudynku());
-      //  kod.setText(user.getKodPocztowy());
+       imie_nazwisko_rola.setText(imie);
     }
 
 }

@@ -55,7 +55,7 @@
                                     </Label>
                                 </children>
                             </AnchorPane>
-                            <Label layoutX="804.0" layoutY="22.0" prefHeight="57.0" prefWidth="374.0" stylesheets="@style.css" text="Anna Nowak - konto administratora" />
+                            <Label fx:id="imie_nazwisko_rola" layoutX="804.0" layoutY="22.0" prefHeight="57.0" prefWidth="374.0" stylesheets="@style.css" text="Anna Nowak - konto administratora" />
                             <Label layoutX="60.0" layoutY="34.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Panel administratora">
                                 <font>
                                     <Font size="24.0" />
