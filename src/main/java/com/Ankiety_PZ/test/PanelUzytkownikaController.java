@@ -4,8 +4,7 @@
 
 package com.Ankiety_PZ.test;
 
-import com.Ankiety_PZ.biznes.Klient;
-import com.Ankiety_PZ.biznes.Uzytkownik;
+import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,7 +15,7 @@ import java.util.ResourceBundle;
 
 public class PanelUzytkownikaController extends BulidStage implements SetStartValues{
 
-    private Uzytkownik curentUser;
+    private Uzytkownicy curentUser;
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
     @FXML // URL location of the FXML file that was given to the FXMLLoader
@@ -63,15 +62,16 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     }
 
     @Override
-    public void setStartValues(Uzytkownik user, Klient customer) {
+    public void setStartValues(Uzytkownicy user) {
+        System.out.println(user.getImie());
         curentUser = user;
         email.setText(user.getMail());
         imie.setText(user.getImie());
         nazwisko.setText(user.getNazwisko());
-        miejscowosc.setText(customer.getMiejscowosc());
-        ulica.setText(customer.getUlica());
-        budynek.setText(customer.getNumerBloku());
-        lokal.setText(customer.getNumerLokalu());
-        kod.setText(customer.getKodPocztowy());
+        miejscowosc.setText(user.getMiejscowosc());
+        ulica.setText(user.getUlica());
+        budynek.setText(user.getNumerBudynku());
+        lokal.setText(user.getNumerLokalu());
+        kod.setText(user.getKodPocztowy());
     }
 }

@@ -146,30 +146,30 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="16.0" layoutY="158.0" prefHeight="26.0" prefWidth="260.0" />
+                                    <TextField fx:id="haslo" layoutX="16.0" layoutY="158.0" prefHeight="26.0" prefWidth="260.0" />
                                     <Label layoutX="16.0" layoutY="220.0" text="Nowe hasło:">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="16.0" layoutY="258.0" prefHeight="26.0" prefWidth="260.0" />
+                                    <TextField fx:id="nowehaslo" layoutX="16.0" layoutY="258.0" prefHeight="26.0" prefWidth="260.0" />
                                     <Label layoutX="16.0" layoutY="320.0" text="Powtórz hasło:">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="16.0" layoutY="358.0" prefHeight="26.0" prefWidth="260.0" />
+                                    <TextField fx:id="hasloznowu" layoutX="16.0" layoutY="358.0" prefHeight="26.0" prefWidth="260.0" />
 
                                     <Label layoutX="16.0" layoutY="420.0" text="Imie:">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="16.0" layoutY="458.0" prefHeight="26.0" prefWidth="260.0" text="Anna" />
+                                    <TextField fx:id="imie" layoutX="16.0" layoutY="458.0" prefHeight="26.0" prefWidth="260.0" text="Anna" />
                                       <Label layoutX="16.0" layoutY="520.0" text="Nazwisko:">
 
                                     </Label>
-                                     <TextField layoutX="16.0" layoutY="558.0" prefHeight="26.0" prefWidth="260.0" text="Nowak" />
+                                     <TextField fx:id="nazwisko" layoutX="16.0" layoutY="558.0" prefHeight="26.0" prefWidth="260.0" text="Nowak" />
 
 
 
@@ -179,21 +179,21 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField editable="false" layoutX="680.0" layoutY="58.0" prefHeight="26.0" prefWidth="260.0" text="Chrząszczyżewoszyce" />
+                                    <TextField fx:id="miejscowosc" editable="false" layoutX="680.0" layoutY="58.0" prefHeight="26.0" prefWidth="260.0" text="Chrząszczyżewoszyce" />
                                     <Label layoutX="680.0" layoutY="120.0" text="Ulica:">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="678.0" layoutY="158.0" prefHeight="26.0" prefWidth="260.0" text="Łękołody" />
+                                    <TextField fx:id="ulica" layoutX="678.0" layoutY="158.0" prefHeight="26.0" prefWidth="260.0" text="Łękołody" />
                                     <Label layoutX="680.0" layoutY="220.0" text="Numer budynku:">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField editable="false" layoutX="680.0" layoutY="258.0" prefHeight="26.0" prefWidth="260.0" text="22" />
+                                    <TextField fx:id="budynek" editable="false" layoutX="680.0" layoutY="258.0" prefHeight="26.0" prefWidth="260.0" text="22" />
                                     <Label layoutX="680.0" layoutY="320.0" text="Numer lokalu:">                                                                    </Label>
-                                    <TextField layoutX="680.0" layoutY="358.0" prefHeight="26.0" prefWidth="260.0" />
+                                    <TextField fx:id="lokal" layoutX="680.0" layoutY="358.0" prefHeight="26.0" prefWidth="260.0" />
                                      <Label layoutX="680.0" layoutY="420.0" text="Kod pocztowy:">                                                                    </Label>
                                     <Label layoutX="747.0" layoutY="469.0" text="-" />
                                     <TextField layoutX="680.0" layoutY="458.0" prefHeight="54.0" prefWidth="61.0" text="37" />

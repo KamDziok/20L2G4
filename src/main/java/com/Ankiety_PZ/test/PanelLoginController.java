@@ -4,17 +4,17 @@
 
 package com.Ankiety_PZ.test;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.UzytkownicyQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Klasa kontroler do ramki 'PanelLogin.fxml', jest potomkiem klasy {@link BulidStage}.
@@ -69,7 +69,7 @@ public class PanelLoginController extends BulidStage {
                     case Permissions.ADMIN:
                         loadingFXML(event, SceneFXML.PANEL_ADMINA);
                         PanelAdminaController panelAdminaController = load.getController();
-                        //panelAdminaController.setStartValues();
+//                        panelAdminaController.setStartValues();
                         activeScene(event, false, false);
                         break;
                     case Permissions.ANKIETER:
@@ -87,7 +87,7 @@ public class PanelLoginController extends BulidStage {
                     case Permissions.KLIENT:
                          loadingFXML(event, SceneFXML.PANEL_UZYTKOWNIKA);
                          PanelUzytkownikaController panelUzytkownikaController = load.getController();
-                         //panelUzytkownikaController.setStartValues();
+                         panelUzytkownikaController.setStartValues(user);
                          activeScene(event, false, false);
                          break;
                     default:
