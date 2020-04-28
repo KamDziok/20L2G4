@@ -5,7 +5,14 @@
 package com.Ankiety_PZ.test;
 
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.ResourceBundle;
+
+import com.Ankiety_PZ.hibernate.Uzytkownicy;
+import com.Ankiety_PZ.query.UzytkownicyQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -121,6 +128,33 @@ public class PanelRegiController extends BulidStage {
         return false;
     }
 
+    /**
+     * Metoda sprawdza, czy w podanym adresie e-mail znajduje się @.
+     *
+     * @return true jeśli sdres e-mail posiada @, w przeciwnym wypadku false.
+     */
+    private boolean chechEmail(){
+        if(email.indexOf('@') != -1){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Metoda sprawdza, czy użytkownik o podanym adresie e-mail istnieje w stystemie.
+     *
+     * @param query obiekt klasy UzytkownicyQuery.
+     * @return true jeśli nie ma użytkownika o podanym adresie e-mail w bazie, w przeciwnym wypadku false.
+     */
+    private boolean userExist(UzytkownicyQuery query){
+        Uzytkownicy user = query.selectByMail(email);
+        System.out.println(user);
+        if(user == null) {
+            return true;
+        }
+        return false;
+    }
+
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
@@ -187,15 +221,29 @@ public class PanelRegiController extends BulidStage {
         postCodeSecondString = panelRegiTFPostCodeSecond.getText();
 
         if(compulsoryFildNotNull()){
-            if(numberFlatIsNumber()){
-                if(postCodeIsNumber()){
-                    if(checkPassword()){
-                        //User user = new User(...);
-                        //addUser();
-                        loadingFXML(event, SceneFXML.PANEL_LOGIN);
-                        activeScene(event,false, false);
+            if(postCodeIsNumber()){
+                if(checkPassword()){
+                    if(chechEmail()) {
+                        UzytkownicyQuery query = new UzytkownicyQuery();
+                        if (userExist(query)) {
+                            String postCode = postCodeFirstInt + "-" + postCodeSecondInt;
+
+                            Uzytkownicy user = new Uzytkownicy(name, surname, email, password, Permissions.KLIENT, city, street, numberHouseString, numberFlatString, postCode, 0);
+                            query.addUzytkownik(user);
+
+                            loadingFXML(event, SceneFXML.PANEL_LOGIN);
+                            activeScene(event, false, false);
+                        } else {
+                            panelRegiLabelError.setText("Istnieje użytkownik o tym e-mailu!");
+                        }
+                    }else{
+                        panelRegiLabelError.setText("Podany adres e-mailu jest nieprawidłowy!");
                     }
+                }else{
+                    panelRegiLabelError.setText("Podane hasłą różnią się od siebie!");
                 }
+            }else{
+                panelRegiLabelError.setText("Nieprawidłowy kod pocztowy!");
             }
         }else{
             panelRegiLabelError.setText("Wymagane pola są puste!");

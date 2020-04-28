@@ -6,6 +6,9 @@ package com.Ankiety_PZ.test;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.Ankiety_PZ.hibernate.Uzytkownicy;
+import com.Ankiety_PZ.query.UzytkownicyQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -58,7 +61,42 @@ public class PanelLoginController extends BulidStage {
         password = panelLoginPFPassword.getText();
 
         if(!email.isEmpty() && !password.isEmpty()){
-            //selectUserByEmailAndPassword(email, password);
+            UzytkownicyQuery query = new UzytkownicyQuery();
+            Uzytkownicy user = query.selectByMailAndPassword(email, password);
+            System.out.println(user);
+            if(user != null){
+                switch (user.getUprawnienia()) {
+                    case Permissions.ADMIN:
+                        loadingFXML(event, SceneFXML.PANEL_ADMINA);
+                        PanelAdminaController panelAdminaController = load.getController();
+                        //panelAdminaController.setStartValues();
+                        activeScene(event, false, false);
+                        break;
+                    case Permissions.ANKIETER:
+                        loadingFXML(event, SceneFXML.PANEL_ANKIETERA);
+                        PanelAnkieterController panelAnkieterController = load.getController();
+                        //panelAnkieterController.setStartValues();
+                        activeScene(event, false, false);
+                        break;
+                    case Permissions.OSOBA_OD_NAGROD:
+                        loadingFXML(event, SceneFXML.PANEL_NAGROD);
+                        PanelOsobyOdNagrodController panelOsobyOdNagrodController = load.getController();
+                        //panelOsobyOdNagrodController.setStartValues();
+                        activeScene(event, false, false);
+                        break;
+                    case Permissions.KLIENT:
+                         loadingFXML(event, SceneFXML.PANEL_UZYTKOWNIKA);
+                         PanelUzytkownikaController panelUzytkownikaController = load.getController();
+                         //panelUzytkownikaController.setStartValues();
+                         activeScene(event, false, false);
+                         break;
+                    default:
+                         panelLoginLabelError.setText("Twoje konto zaostało zawieszone.");
+
+                }
+            }else{
+                panelLoginLabelError.setText("Błędny e-mail lub hasło.");
+            }
 
             //tymczasowe
            if(email.equals("uzy")){
