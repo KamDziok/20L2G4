@@ -4,7 +4,6 @@ import com.Ankiety_PZ.hibernate.Uzytkownicy;
 
 public interface SetStartValues {
 
-    default void setStartValues(Uzytkownicy user) {
+    public abstract void setStartValues(Uzytkownicy user);
 
-    }
 }

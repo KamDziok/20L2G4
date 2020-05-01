@@ -69,19 +69,19 @@ public class PanelLoginController extends BulidStage {
                     case Permissions.ADMIN:
                         loadingFXML(event, SceneFXML.PANEL_ADMINA);
                         PanelAdminaController panelAdminaController = load.getController();
-//                        panelAdminaController.setStartValues();
+                        panelAdminaController.setStartValues(user);
                         activeScene(event, false, false);
                         break;
                     case Permissions.ANKIETER:
                         loadingFXML(event, SceneFXML.PANEL_ANKIETERA);
                         PanelAnkieterController panelAnkieterController = load.getController();
-                        //panelAnkieterController.setStartValues();
+                        //panelAnkieterController.setStartValues(user);
                         activeScene(event, false, false);
                         break;
                     case Permissions.OSOBA_OD_NAGROD:
                         loadingFXML(event, SceneFXML.PANEL_NAGROD);
                         PanelOsobyOdNagrodController panelOsobyOdNagrodController = load.getController();
-                        //panelOsobyOdNagrodController.setStartValues();
+                        //panelOsobyOdNagrodController.setStartValues(user);
                         activeScene(event, false, false);
                         break;
                     case Permissions.KLIENT:
