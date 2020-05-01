@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 
 public class PanelOsobyOdNagrodController extends BulidStage implements SetStartValues {
 
+    
     private Uzytkownicy curentUser;
     @FXML
     private Button panelnagroddodajnagrode;
