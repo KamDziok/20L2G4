@@ -161,9 +161,9 @@ public class UzytkownicyQuery extends OperationInSession {
         List<Uzytkownicy> users = new ArrayList<>();
         String hql;
         if(ban){
-            hql = "from Uzytkownicy as u where u.Uprawnienia<=" + Permissions.BAN;
+            hql = "from Uzytkownicy as u where u.uprawnienia<=" + Permissions.BAN;
         }else{
-            hql = "from Uzytkownicy as u where u.Uprawnienia>" + Permissions.BAN;
+            hql = "from Uzytkownicy as u where u.uprawnienia>" + Permissions.BAN;
         }
         try{
             session = openSession();
