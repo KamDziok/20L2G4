@@ -23,6 +23,28 @@ public class UzytkownicyQuery extends OperationInSession {
         return uzytkowink;
     }
 
+    /**
+     * Odczyt pojedynczego użytkownika z bazy.
+     *
+     * @author KamDziok
+     * @param id identyfikarot użytkownika.
+     * @return obiekt Uzytkownicy jeśli istnieje w zazie użytkownika o podanym id, w przeciwnym wypadku null.
+     */
+    public Uzytkownicy selectById(int id){
+        Uzytkownicy user = null;
+        try{
+            session = openSession();
+            user = (Uzytkownicy) session
+                    .createQuery("from Uzytkownicy as u where u.idUzytkownika = id")
+                    .uniqueResult();
+        }catch(Exception e){
+            logException(e);
+        }finally{
+            sessionClose(session);
+        }
+        return user;
+    }
+
     public Boolean addUzytkownik(Uzytkownicy uzytkownik){
         Boolean result = false;
         try{
@@ -104,6 +126,14 @@ public class UzytkownicyQuery extends OperationInSession {
         }
         return user;
     }
+
+    /**
+     * Zablokowanie konta użytkownika.
+     *
+     * @author KamDziok
+     * @param user obiet Uzytkownicy, który chcemy zablokować.
+     * @return true jeśli operacja się udała, w przeciwnym wypadku false.
+     */
 
     public boolean ban(Uzytkownicy user){
         boolean result = false;

@@ -35,6 +35,7 @@ public class AnkietyQuery extends OperationInSession {
     /**
      * Metoda przesyła listę Ankiet aktywnych.
      *
+     * @author KamDziok
      * @return lista aktywnych Ankiet, jeśli rozmiar listy wynosi 0 znaczy, że nie ma dostępnych ankiet.
      */
     public List<Ankiety> selectAllActiveAnkiety(){
