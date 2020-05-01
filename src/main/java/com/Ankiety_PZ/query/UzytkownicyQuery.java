@@ -147,4 +147,32 @@ public class UzytkownicyQuery extends OperationInSession {
         }
         return result;
     }
+
+    /**
+     * Wyszukanie użytkowników pod względem uprawnień.
+     *
+     * @author KamDziok
+     * @param ban true jeśli chcemy, żeby wyszukało nam użytkowników zablokowanych,
+     *            false jeśli chcemu listę użytkowników niezblokowanych.
+     * @return listę użytkowników spełniajaćych kryterium, jeśli lista jest pusta nie znaleziono określonych użytkowników
+     */
+
+    public List<Uzytkownicy> selectBy(boolean ban){
+        List<Uzytkownicy> users = new ArrayList<>();
+        String hql;
+        if(ban){
+            hql = "from Uzytkownicy as u where u.Uprawnienia<=" + Permissions.BAN;
+        }else{
+            hql = "from Uzytkownicy as u where u.Uprawnienia>" + Permissions.BAN;
+        }
+        try{
+            session = openSession();
+            users = session.createQuery(hql).list();
+        }catch(Exception e){
+            logException(e);
+        }finally {
+            sessionClose(session);
+        }
+        return users;
+    }
 }
