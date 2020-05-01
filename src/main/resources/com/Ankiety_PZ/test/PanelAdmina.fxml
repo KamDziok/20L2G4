@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1201.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.PanelAdminaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1201.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.PanelAdminaController">
     <children>
         <TabPane prefHeight="720.0" prefWidth="1201.0" stylesheets="@style.css" tabClosingPolicy="UNAVAILABLE">
             <tabs>  <Tab text="Panel administratora">
@@ -55,7 +55,7 @@
                                     </Label>
                                 </children>
                             </AnchorPane>
-                            <Label fx:id="imie_nazwisko_rola" layoutX="804.0" layoutY="22.0" prefHeight="57.0" prefWidth="374.0" stylesheets="@style.css" />
+                            <Label fx:id="imie_nazwisko_rola2" layoutX="804.0" layoutY="22.0" prefHeight="57.0" prefWidth="374.0" stylesheets="@style.css" />
                             <Label layoutX="60.0" layoutY="34.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Panel administratora">
                                 <font>
                                     <Font size="24.0" />
@@ -146,7 +146,7 @@
                                         </AnchorPane>
                                     </content>
                                 </ScrollPane>
-                        <Label layoutX="804.0" layoutY="22.0" prefHeight="57.0" prefWidth="374.0" stylesheets="@style.css" text="Anna Nowak - konto administratora" />
+                        <Label fx:id="imie_nazwisko_rola" layoutX="804.0" layoutY="22.0" prefHeight="57.0" prefWidth="374.0" stylesheets="@style.css" text="Anna Nowak - konto administratora" />
                             </children></AnchorPane>
                     </content>
                 </Tab>

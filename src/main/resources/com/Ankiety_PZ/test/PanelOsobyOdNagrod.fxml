@@ -19,7 +19,7 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="1201.0" styleClass="hbox" stylesheets="@style.css">
                             <children>
-                                <Label layoutX="728.0" layoutY="22.0" prefHeight="57.0" prefWidth="450.0" stylesheets="@style.css" text="Anna Nowak - konto zarządzania nagrodami" />
+                                <Label fx:id="imie_nazwisko_rola" layoutX="728.0" layoutY="22.0" prefHeight="57.0" prefWidth="450.0" stylesheets="@style.css" />
                                 <Label layoutX="60.0" layoutY="34.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Dostępne nagrody">
                                     <font>
                                         <Font size="24.0" />
@@ -75,7 +75,7 @@
                             <children>
                                 <Button fx:id="wyloguj" layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
                                 <Button layoutX="997.0" layoutY="625.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="173.0" text="Zapisz zmiany" />
-                                <Label layoutX="728.0" layoutY="22.0" prefHeight="57.0" prefWidth="459.0" stylesheets="@style.css" text="Anna Nowak - konto zarządzania nagrodami" />
+                                <Label fx:id="imie_nazwisko_rola2" layoutX="728.0" layoutY="22.0" prefHeight="57.0" prefWidth="459.0" stylesheets="@style.css" />
                                 <Label layoutX="60.0" layoutY="34.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Konto użytkownika">
                                     <font>
                                         <Font size="24.0" />
