@@ -81,7 +81,7 @@ public class PanelLoginController extends BulidStage {
                     case Permissions.OSOBA_OD_NAGROD:
                         loadingFXML(event, SceneFXML.PANEL_NAGROD);
                         PanelOsobyOdNagrodController panelOsobyOdNagrodController = load.getController();
-                        //panelOsobyOdNagrodController.setStartValues(user);
+                        panelOsobyOdNagrodController.setStartValues(user);
                         activeScene(event, false, false);
                         break;
                     case Permissions.KLIENT:
