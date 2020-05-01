@@ -68,8 +68,10 @@
                         </Label>
                         <TableView fx:id="tableAnkiety" layoutX="60.0" layoutY="330.0" prefHeight="200.0" prefWidth="1090.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
+                            <TableColumn fx:id="tytul" prefWidth="418.0" text="Tytuł" />
+                            <TableColumn fx:id="wygasa" prefWidth="251.0" text="Wygasa" />
+                              <TableColumn fx:id="pkt" prefWidth="204.0" text="Punkty" />
+                              <TableColumn fx:id="przycisk" prefWidth="216.0" />
                           </columns>
                         </TableView>
                     </children></AnchorPane>

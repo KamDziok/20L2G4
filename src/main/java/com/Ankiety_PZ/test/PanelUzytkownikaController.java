@@ -4,64 +4,51 @@
 
 package com.Ankiety_PZ.test;
 
+import com.Ankiety_PZ.hibernate.Ankiety;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
+import com.Ankiety_PZ.query.AnkietyQuery;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
-public class PanelUzytkownikaController extends BulidStage implements SetStartValues{
+public class PanelUzytkownikaController extends BulidStage implements SetStartValues {
 
     private Uzytkownicy curentUser;
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
-    @FXML
-    private Button wyloguj;
-    @FXML
-    private Label punkty;
-    @FXML
-    private Label labelPunkty;
-    @FXML
-    private Label punktyNagrody;
-    @FXML
-    private Label labelPunktyNagrody;
-    @FXML
-    private Label punktyUstawienia;
-    @FXML
-    private Label labelPunktyUstawienia;
-    @FXML
-    private TextField email;
-    @FXML
-    private TextField haslo;
-    @FXML
-    private TextField nowehaslo;
-    @FXML
-    private TextField hasloznowu;
-    @FXML
-    private TextField imie;
-    @FXML
-    private TextField nazwisko;
-    @FXML
-    private TextField miejscowosc;
-    @FXML
-    private TextField ulica;
-    @FXML
-    private TextField budynek;
-    @FXML
-    private TextField lokal;
-    @FXML
-    private TextField kod1;
-    @FXML
-    private TextField kod2;
-    @FXML
-    private TableView tableAnkiety;
+    @FXML private Button wyloguj;
+    @FXML private Label punkty;
+    @FXML private Label labelPunkty;
+    @FXML private Label punktyNagrody;
+    @FXML private Label labelPunktyNagrody;
+    @FXML private Label punktyUstawienia;
+    @FXML private Label labelPunktyUstawienia;
+    @FXML private TextField email;
+    @FXML private TextField haslo;
+    @FXML private TextField nowehaslo;
+    @FXML private TextField hasloznowu;
+    @FXML private TextField imie;
+    @FXML private TextField nazwisko;
+    @FXML private TextField miejscowosc;
+    @FXML private TextField ulica;
+    @FXML private TextField budynek;
+    @FXML private TextField lokal;
+    @FXML private TextField kod1;
+    @FXML private TextField kod2;
+    @FXML private TableView tableAnkiety;
+    @FXML private TableColumn tytul;
+    @FXML private TableColumn wygasa;
+    @FXML private TableColumn pkt;
+    @FXML private TableColumn przycisk;
 
     @FXML
     void wyloguj(ActionEvent event) {
@@ -104,9 +91,19 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     }
 
     private void setAnkiety() {
-//        String[] kolumny = {"Tytuł", "Wygasa", "Punkty", ""};
-//        String[][] dane = {{"Tytuł", "Wygasa", "Punkty", ""}};
-
+        AnkietyQuery query = new AnkietyQuery();
+        List<Ankiety> ankiety = query.selectAll();
+        ObservableList<AnikietaTabelka> dane = FXCollections.observableArrayList();
+        for (Ankiety ankieta:ankiety
+             ) {
+            dane.add(new AnikietaTabelka(ankieta));
+        }
+        System.out.println();
+        tableAnkiety.itemsProperty().setValue(dane);
+        tytul.setCellValueFactory(new PropertyValueFactory("tytul"));
+        wygasa.setCellValueFactory(new PropertyValueFactory("dataZakonczenia"));
+        pkt.setCellValueFactory(new PropertyValueFactory("liczbaPunktow"));
+        przycisk.setCellValueFactory(new PropertyValueFactory("button"));
     }
 
     private void setNagrody() {
