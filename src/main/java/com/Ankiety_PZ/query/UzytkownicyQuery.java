@@ -1,6 +1,7 @@
 package com.Ankiety_PZ.query;
 
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
+import com.Ankiety_PZ.test.Permissions;
 import org.hibernate.HibernateException;
 
 import java.util.ArrayList;
@@ -102,5 +103,17 @@ public class UzytkownicyQuery extends OperationInSession {
             sessionClose(session);
         }
         return user;
+    }
+
+    public boolean ban(Uzytkownicy user){
+        boolean result = false;
+        user.setUprawnienia(Permissions.BAN);
+        try {
+            updateUzytkownik(user);
+            result = true;
+        }catch (Exception e){
+            logException(e);
+        }
+        return result;
     }
 }
