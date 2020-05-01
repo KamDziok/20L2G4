@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Klasa zawiera metody do przesyłu danych z bazą danych dla tabeli Nagrody.
  *
  * @author KamDziok
  */
