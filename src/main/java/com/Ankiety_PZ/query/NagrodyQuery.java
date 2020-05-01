@@ -6,6 +6,7 @@
 package com.Ankiety_PZ.query;
 
 import com.Ankiety_PZ.hibernate.Nagrody;
+import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import org.hibernate.*;
 
 import java.util.ArrayList;
