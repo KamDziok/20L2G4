@@ -8,6 +8,8 @@ import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
@@ -23,6 +25,18 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     @FXML
     private Button wyloguj;
     @FXML
+    private Label punkty;
+    @FXML
+    private Label labelPunkty;
+    @FXML
+    private Label punktyNagrody;
+    @FXML
+    private Label labelPunktyNagrody;
+    @FXML
+    private Label punktyUstawienia;
+    @FXML
+    private Label labelPunktyUstawienia;
+    @FXML
     private TextField email;
     @FXML
     private TextField haslo;
@@ -31,7 +45,7 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     @FXML
     private TextField hasloznowu;
     @FXML
-    private Button imie;
+    private TextField imie;
     @FXML
     private TextField nazwisko;
     @FXML
@@ -43,7 +57,11 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     @FXML
     private TextField lokal;
     @FXML
-    private TextField kod;
+    private TextField kod1;
+    @FXML
+    private TextField kod2;
+    @FXML
+    private TableView tableAnkiety;
 
     @FXML
     void wyloguj(ActionEvent event) {
@@ -61,17 +79,45 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
             assert wyloguj != null : "fx:id=\"wyloguj\" was not injected: check your FXML file 'panelUzytkownika.fxml'.";
     }
 
+    private void setUstawienia() {
+        String imie = curentUser.getImie();
+        String nazwisko = curentUser.getNazwisko();
+        String textPkt = imie + " " + nazwisko + " posiadasz ";
+        String pkt = curentUser.getLiczbaPunktow() + "pkt";
+        String[] kod = curentUser.getKodPocztowy().split("-");
+        System.out.println(kod[0]);
+        labelPunkty.setText(textPkt);
+        punkty.setText(pkt);
+        labelPunktyUstawienia.setText(textPkt);
+        punktyUstawienia.setText(pkt);
+        labelPunktyNagrody.setText(textPkt);
+        punktyNagrody.setText(pkt);
+        email.setText(curentUser.getMail());
+        this.imie.setText(imie);
+        this.nazwisko.setText(nazwisko);
+        miejscowosc.setText(curentUser.getMiejscowosc());
+        ulica.setText(curentUser.getUlica());
+        budynek.setText(curentUser.getNumerBudynku());
+        lokal.setText(curentUser.getNumerLokalu());
+        kod1.setText(kod[0]);
+        kod2.setText(kod[1]);
+    }
+
+    private void setAnkiety() {
+//        String[] kolumny = {"Tytuł", "Wygasa", "Punkty", ""};
+//        String[][] dane = {{"Tytuł", "Wygasa", "Punkty", ""}};
+
+    }
+
+    private void setNagrody() {
+
+    }
+
     @Override
     public void setStartValues(Uzytkownicy user) {
-        System.out.println(user.getImie());
         curentUser = user;
-        email.setText(user.getMail());
-        imie.setText(user.getImie());
-        nazwisko.setText(user.getNazwisko());
-        miejscowosc.setText(user.getMiejscowosc());
-        ulica.setText(user.getUlica());
-        budynek.setText(user.getNumerBudynku());
-        lokal.setText(user.getNumerLokalu());
-        kod.setText(user.getKodPocztowy());
+        setUstawienia();
+        setAnkiety();
+        setNagrody();
     }
 }

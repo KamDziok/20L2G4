@@ -5,6 +5,8 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -16,7 +18,7 @@
       <TabPane prefHeight="720.0" prefWidth="1201.0" stylesheets="@style.css" tabClosingPolicy="UNAVAILABLE">
         <tabs>  <Tab text="Panel użytkownika">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="1201.0" styleClass="hbox" stylesheets="@style.css">
+                <AnchorPane fx:id="panelAnkiety" minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="1201.0" styleClass="hbox" stylesheets="@style.css">
                     <children>
                         <Button fx:id="wyloguj" layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
                         <AnchorPane layoutX="58.0" layoutY="101.0" prefHeight="80.0" prefWidth="1090.0" styleClass="text-field" stylesheets="@style.css">
@@ -57,13 +59,19 @@
                                 </Label>
                             </children>
                         </AnchorPane>
-                        <Label layoutX="727.0" layoutY="21.0" prefHeight="57.0" prefWidth="313.0" stylesheets="@style.css" text="Anna Nowak posiadasz obecnie" />
-                        <Label layoutX="1040.0" layoutY="21.0" prefHeight="57.0" prefWidth="147.0" styleClass="labelbold" stylesheets="@style.css" text="1000 pkt" />
+                        <Label fx:id="labelPunkty" layoutX="727.0" layoutY="21.0" prefHeight="57.0" prefWidth="313.0" stylesheets="@style.css" text="Anna Nowak posiadasz obecnie" />
+                        <Label fx:id="punkty" layoutX="1040.0" layoutY="21.0" prefHeight="57.0" prefWidth="147.0" styleClass="labelbold" stylesheets="@style.css" text="1000 pkt" />
                         <Label layoutX="60.0" layoutY="34.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Dostępne ankiety">
                             <font>
                                 <Font size="24.0" />
                             </font>
                         </Label>
+                        <TableView fx:id="tableAnkiety" layoutX="60.0" layoutY="330.0" prefHeight="200.0" prefWidth="1090.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                          </columns>
+                        </TableView>
                     </children></AnchorPane>
             </content>
         </Tab>
@@ -84,8 +92,8 @@
                                 </children>
                             </AnchorPane>
                             <Button layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
-                            <Label layoutX="727.0" layoutY="21.0" prefHeight="57.0" prefWidth="313.0" stylesheets="@style.css" text="Anna Nowak posiadasz obecnie" />
-                            <Label layoutX="1040.0" layoutY="21.0" prefHeight="57.0" prefWidth="147.0" styleClass="labelbold" stylesheets="@style.css" text="1000 pkt" />
+                            <Label fx:id="labelPunktyNagrody" layoutX="727.0" layoutY="21.0" prefHeight="57.0" prefWidth="313.0" stylesheets="@style.css" text="Anna Nowak posiadasz obecnie" />
+                            <Label fx:id="punktyNagrody" layoutX="1040.0" layoutY="21.0" prefHeight="57.0" prefWidth="147.0" styleClass="labelbold" stylesheets="@style.css" text="1000 pkt" />
                             <Label layoutX="60.0" layoutY="34.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Dostępne nagrody">
                                 <font>
                                     <Font size="24.0" />
@@ -124,8 +132,8 @@
                      <children>
                          <Button layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
                          <Button layoutX="997.0" layoutY="625.0" mnemonicParsing="false" onAction="#panelUzytkownikaButtonMakeAnkiet" prefHeight="50.0" prefWidth="173.0" text="Zapisz zmiany" />
-                        <Label layoutX="727.0" layoutY="21.0" prefHeight="57.0" prefWidth="313.0" stylesheets="@style.css" text="Anna Nowak posiadasz obecnie" />
-                        <Label layoutX="1040.0" layoutY="21.0" prefHeight="57.0" prefWidth="147.0" styleClass="labelbold" stylesheets="@style.css" text="1000 pkt" />
+                        <Label fx:id="labelPunktyUstawienia" layoutX="727.0" layoutY="21.0" prefHeight="57.0" prefWidth="313.0" stylesheets="@style.css" text="Anna Nowak posiadasz obecnie" />
+                        <Label fx:id="punktyUstawienia" layoutX="1040.0" layoutY="21.0" prefHeight="57.0" prefWidth="147.0" styleClass="labelbold" stylesheets="@style.css" text="1000 pkt" />
                         <Label layoutX="60.0" layoutY="34.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Konto użytkownika">
                            <font>
                               <Font size="24.0" />
@@ -196,8 +204,8 @@
                                     <TextField fx:id="lokal" layoutX="680.0" layoutY="358.0" prefHeight="26.0" prefWidth="260.0" />
                                      <Label layoutX="680.0" layoutY="420.0" text="Kod pocztowy:">                                                                    </Label>
                                     <Label layoutX="747.0" layoutY="469.0" text="-" />
-                                    <TextField layoutX="680.0" layoutY="458.0" prefHeight="54.0" prefWidth="61.0" text="37" />
-                                    <TextField layoutX="762.0" layoutY="458.0" prefHeight="54.0" prefWidth="69.0" text="800" />
+                                    <TextField fx:id="kod1" layoutX="680.0" layoutY="458.0" prefHeight="54.0" prefWidth="61.0" text="37" />
+                                    <TextField fx:id="kod2" layoutX="762.0" layoutY="458.0" prefHeight="54.0" prefWidth="69.0" text="800" />
                                  </children>
                               </AnchorPane>
                            </content>
