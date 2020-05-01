@@ -35,7 +35,8 @@ public class UzytkownicyQuery extends OperationInSession {
         try{
             session = openSession();
             user = (Uzytkownicy) session
-                    .createQuery("from Uzytkownicy as u where u.idUzytkownika = id")
+                    .createQuery("from Uzytkownicy as u where u.idUzytkownika=:id")
+                    .setParameter("id",id)
                     .uniqueResult();
         }catch(Exception e){
             logException(e);
