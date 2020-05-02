@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 16 Kwi 2020, 17:47
+-- Czas generowania: 02 Maj 2020, 21:21
 -- Wersja serwera: 10.4.11-MariaDB
 -- Wersja PHP: 7.3.16
 
@@ -34,7 +34,9 @@ CREATE TABLE `ankiety` (
   `tytul` varchar(150) COLLATE utf8_polish_ci NOT NULL,
   `liczba_punktow` int(10) NOT NULL,
   `data_rozpoczecia` date NOT NULL,
-  `data_zakonczenia` date NOT NULL
+  `data_zakonczenia` date NOT NULL,
+  `liczba_wypelnien` int(11) NOT NULL,
+  `ID_uzytkownika` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 -- --------------------------------------------------------
@@ -125,17 +127,6 @@ CREATE TABLE `uzytkownicy` (
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `uzytkownicy_ankiety`
---
-
-CREATE TABLE `uzytkownicy_ankiety` (
-  `ID_uzytkownika` int(11) NOT NULL,
-  `ID_ankiety` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
-
--- --------------------------------------------------------
-
---
 -- Struktura tabeli dla tabeli `uzytkownicy_nagrody`
 --
 
@@ -152,7 +143,8 @@ CREATE TABLE `uzytkownicy_nagrody` (
 -- Indeksy dla tabeli `ankiety`
 --
 ALTER TABLE `ankiety`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `ID_uzytkownika` (`ID_uzytkownika`);
 
 --
 -- Indeksy dla tabeli `nagrody`
@@ -193,13 +185,6 @@ ALTER TABLE `pytania_uzytkownicy`
 --
 ALTER TABLE `uzytkownicy`
   ADD PRIMARY KEY (`ID`);
-
---
--- Indeksy dla tabeli `uzytkownicy_ankiety`
---
-ALTER TABLE `uzytkownicy_ankiety`
-  ADD KEY `ID_uzytkownika` (`ID_uzytkownika`) USING BTREE,
-  ADD KEY `ID_ankiety` (`ID_ankiety`) USING BTREE;
 
 --
 -- Indeksy dla tabeli `uzytkownicy_nagrody`
@@ -247,10 +232,10 @@ ALTER TABLE `uzytkownicy`
 --
 
 --
--- Ograniczenia dla tabeli `nagrody`
+-- Ograniczenia dla tabeli `ankiety`
 --
-ALTER TABLE `nagrody`
-  ADD CONSTRAINT `nagrody_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `uzytkownicy_nagrody` (`ID_nagrody`);
+ALTER TABLE `ankiety`
+  ADD CONSTRAINT `ankiety_ibfk_1` FOREIGN KEY (`ID_uzytkownika`) REFERENCES `uzytkownicy` (`ID`);
 
 --
 -- Ograniczenia dla tabeli `odpowiedzi`
@@ -279,17 +264,11 @@ ALTER TABLE `pytania_uzytkownicy`
   ADD CONSTRAINT `pytania_uzytkownicy_ibfk_2` FOREIGN KEY (`ID_pytania`) REFERENCES `pytania` (`ID`);
 
 --
--- Ograniczenia dla tabeli `uzytkownicy_ankiety`
---
-ALTER TABLE `uzytkownicy_ankiety`
-  ADD CONSTRAINT `uzytkownicy_ankiety_ibfk_1` FOREIGN KEY (`ID_uzytkownika`) REFERENCES `uzytkownicy` (`ID`),
-  ADD CONSTRAINT `uzytkownicy_ankiety_ibfk_2` FOREIGN KEY (`ID_ankiety`) REFERENCES `ankiety` (`ID`);
-
---
 -- Ograniczenia dla tabeli `uzytkownicy_nagrody`
 --
 ALTER TABLE `uzytkownicy_nagrody`
-  ADD CONSTRAINT `uzytkownicy_nagrody_ibfk_1` FOREIGN KEY (`ID_uzytkownika`) REFERENCES `uzytkownicy` (`ID`);
+  ADD CONSTRAINT `uzytkownicy_nagrody_ibfk_1` FOREIGN KEY (`ID_uzytkownika`) REFERENCES `uzytkownicy` (`ID`),
+  ADD CONSTRAINT `uzytkownicy_nagrody_ibfk_2` FOREIGN KEY (`ID_nagrody`) REFERENCES `nagrody` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
