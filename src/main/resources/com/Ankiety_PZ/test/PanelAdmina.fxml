@@ -5,6 +5,8 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -17,50 +19,20 @@
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="1201.0" styleClass="hbox" stylesheets="@style.css">
                         <children>
                             <Button fx:id="wyloguj" layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
-                            <AnchorPane layoutX="58.0" layoutY="101.0" prefHeight="80.0" prefWidth="1090.0" styleClass="text-field" stylesheets="@style.css">
-                                <children>
-                                    <Label layoutX="14.0" layoutY="25.0" prefHeight="33.0" prefWidth="271.0" text="Adam Adamczyk">
-                                        <font>
-                                            <Font size="20.0" />
-                                        </font>
-                                    </Label>
-                                    <Button layoutX="936.0" layoutY="16.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="Usuń" />
-                                    <Label layoutX="390.0" layoutY="27.0" prefHeight="27.0" prefWidth="238.0" text="dsa@gmail.com">
-                                        <font>
-                                            <Font size="18.0" />
-                                        </font></Label>
-                                    <Label layoutX="740.0" layoutY="27.0" prefHeight="33.0" prefWidth="107.0" text="5100 pkt">
-                                        <font>
-                                            <Font size="18.0" />
-                                        </font></Label>
-                                </children>
-                            </AnchorPane>
-                            <AnchorPane layoutX="59.0" layoutY="203.0" prefHeight="80.0" prefWidth="1090.0" styleClass="text-field">
-                                <children>
-                                    <Label layoutX="14.0" layoutY="25.0" prefHeight="33.0" prefWidth="268.0" text="Wolfgang Amadeusz">
-                                        <font>
-                                            <Font size="20.0" />
-                                        </font>
-                                    </Label>
-                                    <Button layoutX="936.0" layoutY="16.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="Usuń" />
-                                    <Label layoutX="390.0" layoutY="27.0" text="3242@eg.pl">
-                                        <font>
-                                            <Font size="18.0" />
-                                        </font>
-                                    </Label>
-                                    <Label layoutX="740.0" layoutY="27.0" text="5000 pkt">
-                                        <font>
-                                            <Font size="18.0" />
-                                        </font>
-                                    </Label>
-                                </children>
-                            </AnchorPane>
-                            <Label fx:id="imie_nazwisko_rola2" layoutX="804.0" layoutY="22.0" prefHeight="57.0" prefWidth="374.0" stylesheets="@style.css" />
+                            <Label fx:id="imie_nazwisko_rola2" alignment="CENTER_RIGHT" layoutX="766.0" layoutY="22.0" prefHeight="57.0" prefWidth="412.0" stylesheets="@style.css" />
                             <Label layoutX="60.0" layoutY="34.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Panel administratora">
                                 <font>
                                     <Font size="24.0" />
                                 </font>
                             </Label>
+                            <TableView fx:id="tableUzytkownicy" layoutX="58.0" layoutY="101.0" prefHeight="487.0" prefWidth="1090.0">
+                                <columns>
+                                    <TableColumn fx:id="imie_i_nazwisko" maxWidth="338.0" minWidth="200.0" prefWidth="338.0" text="Imię i nazwisko" />
+                                    <TableColumn fx:id="mail" maxWidth="276.0" minWidth="200.0" prefWidth="276.0" text="E-mail" />
+                                    <TableColumn fx:id="pkt" maxWidth="256.0" minWidth="100.0" prefWidth="256.0" text="Punkty" />
+                                    <TableColumn fx:id="przycisk" maxWidth="182.0" minWidth="153.0" prefWidth="182.0" text="Akcja" />
+                                </columns>
+                            </TableView>
                         </children></AnchorPane>
                 </content>
             </Tab>
@@ -146,7 +118,7 @@
                                         </AnchorPane>
                                     </content>
                                 </ScrollPane>
-                        <Label fx:id="imie_nazwisko_rola" layoutX="804.0" layoutY="22.0" prefHeight="57.0" prefWidth="374.0" stylesheets="@style.css" text="Anna Nowak - konto administratora" />
+                        <Label fx:id="imie_nazwisko_rola" alignment="CENTER_RIGHT" layoutX="766.0" layoutY="22.0" prefHeight="57.0" prefWidth="412.0" stylesheets="@style.css" text="Anna Nowak - konto administratora" />
                             </children></AnchorPane>
                     </content>
                 </Tab>
