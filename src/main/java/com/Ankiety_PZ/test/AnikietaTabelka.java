@@ -7,12 +7,12 @@ import javafx.scene.control.Button;
 
 import java.util.Date;
 
-public class AnikietaTabelka extends BulidStage{
+public class AnikietaTabelka extends BulidStage {
 
-    public String tytul;
-    public int liczbaPunktow;
-    public Date dataZakonczenia;
-    public Button button;
+    private String tytul;
+    private int liczbaPunktow;
+    private Date dataZakonczenia;
+    private Button button;
 
     AnikietaTabelka(Ankiety ankieta) {
         tytul = ankieta.getTytul();

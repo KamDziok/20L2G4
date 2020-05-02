@@ -5,8 +5,10 @@
 package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.hibernate.Ankiety;
+import com.Ankiety_PZ.hibernate.Nagrody;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.AnkietyQuery;
+import com.Ankiety_PZ.query.NagrodyQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -49,6 +51,11 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     @FXML private TableColumn wygasa;
     @FXML private TableColumn pkt;
     @FXML private TableColumn przycisk;
+    @FXML private TableView tableNagrody;
+    @FXML private TableColumn nazwa;
+    @FXML private TableColumn cena;
+    @FXML private TableColumn obrazek;
+    @FXML private TableColumn kup;
 
     @FXML
     void wyloguj(ActionEvent event) {
@@ -98,7 +105,6 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
              ) {
             dane.add(new AnikietaTabelka(ankieta));
         }
-        System.out.println();
         tableAnkiety.itemsProperty().setValue(dane);
         tytul.setCellValueFactory(new PropertyValueFactory("tytul"));
         wygasa.setCellValueFactory(new PropertyValueFactory("dataZakonczenia"));
@@ -107,7 +113,18 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     }
 
     private void setNagrody() {
-
+        NagrodyQuery query = new NagrodyQuery();
+        List<Nagrody> nagrody = query.selectAll();
+        ObservableList<NagrodaTabelka> dane = FXCollections.observableArrayList();
+        for (Nagrody nagroda:nagrody
+        ) {
+            dane.add(new NagrodaTabelka(nagroda));
+        }
+        tableNagrody.itemsProperty().setValue(dane);
+        nazwa.setCellValueFactory(new PropertyValueFactory("nazwa"));
+        cena.setCellValueFactory(new PropertyValueFactory("cena"));
+        obrazek.setCellValueFactory(new PropertyValueFactory("obrazek"));
+        kup.setCellValueFactory(new PropertyValueFactory("button"));
     }
 
     @Override
