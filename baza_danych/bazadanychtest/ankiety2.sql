@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 
 INSERT INTO `uzytkownicy` (`ID`, `imie`, `nazwisko`, `mail`, `haslo`, `uprawnienia`, `miejscowosc`, `ulica`, `numer_budynku`, `numer_lokalu`, `kod_pocztowy`, `liczba_punktow`) VALUES
 (1, 'Hubert', 'Jakobsze', 'hubertjakobsze@gmail.com', '1234567890', 3, 'Rzeszów', 'Hanasiewicza', '13', '12', '36-128', 0),
-(2, 'Czesław', 'Nowak', 'aleluja@interia.pl', '02846523', 0, 'Warszawa', '3 maja', '1', '32', '52-123', 20),
+(2, 'Czesław', 'Nowak', 'aleluja@interia.pl', '02846523', -1, 'Warszawa', '3 maja', '1', '32', '52-123', 20),
 (3, 'Natalia', 'Nowak', 'NNowak@interia.com', 'hgfy376g3', 1, 'Sandomierz', '3 maja', '35', '3', '23-412', 7),
 (4, 'Samanta', 'Wójcik', 'AkAgnieszka@gmail.com', '01271997', 0, 'Markuszowa', '', '102', '', '38-126', 0),
 (5, 'Daniel', 'Dom', 'DD321@gmail.com', '0987654321asdw', 0, 'Kraków', 'Kościuszki', '3', '12', '12-671', 70),
@@ -48,10 +48,10 @@ INSERT INTO `uzytkownicy` (`ID`, `imie`, `nazwisko`, `mail`, `haslo`, `uprawnien
 -- Zrzut danych tabeli `ankiety`
 --
 
-INSERT INTO `ankiety` (`ID`, `tytul`, `liczba_punktow`, `data_rozpoczecia`, `data_zakonczenia`) VALUES
-(12, 'Profilaktyka przeciwstarzeniowa', 50, '2020-04-16', '2020-04-30'),
-(13, 'Test Drogowy', 100, '2020-04-17', '2020-07-17'),
-(14, 'Internet', 50, '2020-04-16', '2020-04-30');
+INSERT INTO `ankiety` (`ID`, `tytul`, `liczba_punktow`, `data_rozpoczecia`, `data_zakonczenia`, `liczba_wypelnien`, `ID_uzytkownika`) VALUES
+(12, 'Profilaktyka przeciwstarzeniowa', 50, '2020-04-16', '2020-04-30', 0, 1),
+(13, 'Test Drogowy', 100, '2020-04-17', '2020-07-17', 0, 1),
+(14, 'Internet', 50, '2020-04-16', '2020-04-30',  0, 1);
 
 
 --
@@ -164,32 +164,6 @@ INSERT INTO `odpowiedzi_uzytkownicy` (`ID_odpowiedzi`, `ID_uzytkownika`, `punkto
 (64, 4, NULL);
 
 --
--- Zrzut danych tabeli `uzytkownicy_ankiety`
---
-
-INSERT INTO `uzytkownicy_ankiety` (`ID_uzytkownika`, `ID_ankiety`) VALUES
-(6, 12),
-(3, 12),
-(6, 14);
-
---
--- Zrzut danych tabeli `uzytkownicy_nagrody`
---
-
-INSERT INTO `uzytkownicy_nagrody` (`ID_uzytkownika`, `ID_nagrody`) VALUES
-(1, 1),
-(1, 0),
-(1, 2),
-(1, 3),
-(1, 4),
-(1, 5);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
---
 -- Zrzut danych tabeli `nagrody`
 --
 
@@ -202,5 +176,19 @@ INSERT INTO `nagrody` (`ID`, `liczba_punktow`, `nazwa`, `zdjecie`) VALUES
 INSERT INTO `nagrody` (`ID`, `liczba_punktow`, `nazwa`, `zdjecie`) VALUES
 (5, 70, 'Kuchenka mikrofalowa SAMSUNG ME83M ', NULL);
 
+--
+-- Zrzut danych tabeli `uzytkownicy_nagrody`
+--
 
+INSERT INTO `uzytkownicy_nagrody` (`ID_uzytkownika`, `ID_nagrody`) VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(1, 4),
+(1, 5);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
