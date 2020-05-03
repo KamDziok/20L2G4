@@ -5,9 +5,9 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -26,46 +26,17 @@
                                     </font>
                                 </Label>
                                 <Button fx:id="wyloguj" layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
-                                <AnchorPane layoutX="58.0" layoutY="101.0" prefHeight="139.0" prefWidth="1090.0" styleClass="text-field" stylesheets="@style.css">
-                                    <children>
-                                        <Button fx:id="panelnagroddodajnagrode" layoutX="937.0" layoutY="14.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" prefHeight="50.0" prefWidth="125.0" text="Edytuj" />
-                                        <ImageView fitHeight="95.0" fitWidth="297.0" layoutX="562.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../../../media/allegro-logo.jpg" />
-                                            </image>
-                                        </ImageView>
-                                        <Label contentDisplay="BOTTOM" layoutX="14.0" layoutY="25.0" prefHeight="32.0" prefWidth="356.0" text="Kupon do allegro.pl o wartości 50 zł" />
-                                        <Label contentDisplay="BOTTOM" layoutX="14.0" layoutY="74.0" prefHeight="32.0" prefWidth="191.0" styleClass="labelbold" text="5000 pkt" textFill="#0090ff" />
-                              <Button layoutX="937.0" layoutY="74.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="Usuń" />
-                                    </children>
-                                </AnchorPane>
-                                <AnchorPane layoutX="58.0" layoutY="261.0" prefHeight="139.0" prefWidth="1090.0" styleClass="text-field" stylesheets="@style.css">
-                                    <children>
-                                        <ImageView fitHeight="95.0" fitWidth="297.0" layoutX="562.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../../../media/allegro-logo.jpg" />
-                                            </image>
-                                        </ImageView>
-                                        <Label contentDisplay="BOTTOM" layoutX="14.0" layoutY="25.0" prefHeight="32.0" prefWidth="485.0" text="Kupon do allegro.pl o wartości 100 zł" />
-                                        <Label contentDisplay="BOTTOM" layoutX="14.0" layoutY="74.0" prefHeight="32.0" prefWidth="191.0" styleClass="labelbold" text="10000 pkt" textFill="#0090ff" />
-                              <Button fx:id="panelnagroddodajnagrode" layoutX="937.0" layoutY="11.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" prefHeight="50.0" prefWidth="125.0" text="Edytuj" />
-                              <Button layoutX="937.0" layoutY="71.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="Usuń" />
-                                    </children>
-                                </AnchorPane>
-                                <AnchorPane layoutX="58.0" layoutY="420.0" prefHeight="139.0" prefWidth="1090.0" styleClass="text-field" stylesheets="@style.css">
-                                    <children>
-                                        <ImageView fitHeight="95.0" fitWidth="299.0" layoutX="596.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../../../media/s20.jpg" />
-                                            </image>
-                                        </ImageView>
-                                        <Label contentDisplay="BOTTOM" layoutX="14.0" layoutY="25.0" prefHeight="32.0" prefWidth="356.0" text="Smartfon Samsung Galaxy S20" />
-                                        <Label contentDisplay="BOTTOM" layoutX="14.0" layoutY="74.0" prefHeight="32.0" prefWidth="191.0" styleClass="labelbold" text="400000 pkt" textFill="#0090ff" />
-                              <Button fx:id="panelnagroddodajnagrode" layoutX="939.0" layoutY="15.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" prefHeight="50.0" prefWidth="125.0" text="Edytuj" />
-                              <Button layoutX="939.0" layoutY="75.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="Usuń" />
-                                    </children>
-                                </AnchorPane>
                         <Button fx:id="panelnagroddodajnagrode" layoutX="997.0" layoutY="618.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" prefHeight="50.0" prefWidth="173.0" text="Dodaj nagrodę" />
+                                <TableView fx:id="tableNagrody" layoutX="58.0" layoutY="101.0" prefHeight="487.0" prefWidth="1090.0">
+                                    <columns>
+                                        <TableColumn fx:id="nagrody" maxWidth="400.0" minWidth="200.0" prefWidth="400.0" text="Nagrody" />
+                                        <TableColumn fx:id="zdjecie" maxWidth="340.0" minWidth="200.0" prefWidth="340.0" text="Zdjęcie" />
+                                        <TableColumn fx:id="pkt" maxWidth="120.0" minWidth="100.0" prefWidth="120.0" text="Punkty" />
+                                        <TableColumn fx:id="usun" maxWidth="100.0" minWidth="70.0" prefWidth="100.0" text="Usuń" />
+                                        <TableColumn fx:id="edytuj" maxWidth="100.0" minWidth="70.0" prefWidth="100.0" text="Edytuj" />
+                                    </columns>
+                                </TableView>
+
                             </children></AnchorPane>
                     </content>
                 </Tab>
