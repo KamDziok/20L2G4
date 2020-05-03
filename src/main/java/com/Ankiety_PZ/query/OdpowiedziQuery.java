@@ -4,7 +4,9 @@ import com.Ankiety_PZ.hibernate.Odpowiedzi;
 import org.hibernate.HibernateException;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class OdpowiedziQuery extends OperationInSession {
 
@@ -17,6 +19,21 @@ public class OdpowiedziQuery extends OperationInSession {
         } catch(Exception e){
             logException(e);
         }finally{
+            sessionClose(session);
+        }
+        return odpowiedzi;
+    }
+
+    public Odpowiedzi selectByID(int id){
+        Odpowiedzi odpowiedzi = new Odpowiedzi();
+        try{
+            session = openSession();
+            String hgl = "from Odpowiedzi where id=" + id;
+            query = session.createQuery(hgl);
+            odpowiedzi = (Odpowiedzi) query.uniqueResult();
+        }catch(Exception e){
+            logException(e);
+        }finally {
             sessionClose(session);
         }
         return odpowiedzi;
@@ -71,5 +88,30 @@ public class OdpowiedziQuery extends OperationInSession {
             sessionClose(session);
         }
         return result;
+    }
+
+    /**
+     * Metoda zwraca liste mozliwych idOdpowiedzi dla konkretnej pytania.
+     *
+     * @author KamDziok
+     * @param idPytania Identyfikator pytania, których możliwych odpowiedzi szukamy.
+     * @return List idOdpowiedzia dla konkretnej Pytania, w przeciwnym wypadku null.
+     */
+    public List<Integer> selectSetOdpowiedziByIdPytania(Integer idPytania){
+        List<Integer> odpowiedzi = new ArrayList<>();
+        try{
+            session = openSession();
+            odpowiedzi = session
+                    .createQuery("select o.idOdpowiedzi from Odpowiedzi as o " +
+                            "inner join o.pytania as p " +
+                            "where p.idPytania=:id")
+                    .setParameter("id", idPytania)
+                    .list();
+        }catch(Exception e){
+            logException(e);
+        }finally {
+            sessionClose(session);
+        }
+        return odpowiedzi;
     }
 }

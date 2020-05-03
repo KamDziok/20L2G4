@@ -87,6 +87,10 @@ public class Ankiety  implements java.io.Serializable {
         this.pytanias = pytanias;
     }
 
+    public void initHashSetPytania(){
+        this.pytanias = new HashSet<Pytania>();
+    }
+
     @ManyToMany
     @JoinTable(name = "uzytkownicy_ankiety",
             joinColumns = {@JoinColumn(name = "idAnkiety")},
