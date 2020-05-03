@@ -25,6 +25,13 @@ public class NagrodyTabelka extends BulidStage{
                 usun.delNagrody(nagroda);
             }
         });
+        edytuj.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                NagrodyQuery usun = new NagrodyQuery();
+                usun.delNagrody(nagroda);
+            }
+        });
     }
 
     public String getTytul() {
