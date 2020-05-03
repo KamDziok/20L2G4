@@ -51,6 +51,10 @@ public class TestFX extends Application {
 //        System.out.println("Current dir using System:" + Paths.get("") .toAbsolutePath().toString());
 //        PytaniaQuery pq = new PytaniaQuery();
 //        System.out.println(pq.selectSetPytaniaByIdAnkiety(12).size());
+        AnkietyQuery aq = new AnkietyQuery();
+        Ankiety a = new Ankiety();
+        a.setIdAnkiety(12);
+        System.out.println(aq.selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(a).getPytanias().size());
         launch();
     }
 }
