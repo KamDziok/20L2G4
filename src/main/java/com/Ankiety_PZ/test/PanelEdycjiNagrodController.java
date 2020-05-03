@@ -4,9 +4,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -22,14 +23,7 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
 
     File file = new File("C:\\Users\\Banan\\Pictures\\a.jpg");
     @FXML
-    private ImageView imageview;
-
-    @FXML
     private Button wyloguj;
-
-
-    @FXML
-    private AnchorPane anchorpane;
 
     @FXML
     private Button panelEdycjiNagrodButtonUsun;
@@ -38,12 +32,28 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
     private Button panelEdycjiNagrodButtonAnuluj;
 
     @FXML
+    private TextField nag;
+
+    @FXML
+    private TextField pkt;
+
+    @FXML
+    private ImageView imageview;
+
+    @FXML
     private Button PanelEdycjiNagrod;
+
+    @FXML
+    private Label imie_nazwisko_rola;
 
     @FXML
     void wyloguj(ActionEvent event) {
         loadingFXML(event, SceneFXML.PANEL_LOGIN);
         activeScene(event, false, false);
+    }
+
+    void setNagroda(){
+
     }
 
     @FXML
@@ -84,7 +94,6 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         assert PanelEdycjiNagrod != null : "fx:id=\"panelEdycjiNagrodButtonDodajZdjecie\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
         assert panelEdycjiNagrodButtonUsun != null : "fx:id=\"panelEdycjiNagrodButtonUsun\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
         assert panelEdycjiNagrodButtonAnuluj != null : "fx:id=\"panelEdycjiNagrodButtonAnuluj\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
-
         assert wyloguj != null : "fx:id=\"wyloguj\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
     }
 
