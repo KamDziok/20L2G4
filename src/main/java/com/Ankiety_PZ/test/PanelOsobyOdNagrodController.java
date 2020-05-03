@@ -86,6 +86,8 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
         edytuj.setCellValueFactory(new PropertyValueFactory("edytuj"));
     }
 
+
+
     @Override
     public void setStartValues(Uzytkownicy user) {
         this.curentUser = user;
