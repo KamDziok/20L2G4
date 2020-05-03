@@ -28,8 +28,7 @@ public class NagrodyTabelka extends BulidStage{
         edytuj.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                NagrodyQuery usun = new NagrodyQuery();
-                usun.delNagrody(nagroda);
+                NagrodaPrzekazwanie przekaz = new NagrodaPrzekazwanie(nagroda);
             }
         });
     }
