@@ -3,6 +3,7 @@ package com.Ankiety_PZ.query;
 import com.Ankiety_PZ.hibernate.Ankiety;
 import com.Ankiety_PZ.hibernate.Odpowiedzi;
 import com.Ankiety_PZ.hibernate.Pytania;
+import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.test.TypeOfQuestion;
 
 import java.util.ArrayList;
@@ -31,6 +32,21 @@ public class AnkietyQuery extends OperationInSession {
         } catch(Exception e){
             logException(e);
         }finally{
+            sessionClose(session);
+        }
+        return ankiety;
+    }
+
+    public Ankiety selectById(Integer id){
+        Ankiety ankiety = null;
+        try{
+            session = openSession();
+            String hgl = "from Ankiety where ID = " + id;
+            query = session.createQuery(hgl);
+            ankiety = (Ankiety) query.uniqueResult();
+        }catch(Exception e){
+            logException(e);
+        }finally {
             sessionClose(session);
         }
         return ankiety;
@@ -92,6 +108,30 @@ public class AnkietyQuery extends OperationInSession {
         return ankiety;
     }
 
-
+    public List<Ankiety> selectAllActiveAndNotDoAnkiety(Uzytkownicy user){
+        List<Ankiety> ankiety = new ArrayList<>();
+        List<Integer> idAnkietyList = new ArrayList<>();
+        try{
+            session = openSession();
+            Date date = new Date();
+            idAnkietyList = session
+                    .createSQLQuery("select distinct a.ID from ankiety AS a " +
+                            "inner join pytania as p ON a.ID=p.ID_ankiety " +
+                            "inner join odpowiedzi as o ON p.ID=o.ID_pytania " +
+                            "inner join odpowiedzi_uzytkownicy as ou ON o.ID=ou.ID_odpowiedzi " +
+                            "WHERE ou.ID_uzytkownika!=:id and :date BETWEEN a.data_rozpoczecia and a.data_zakonczenia")
+                    .setParameter("date", date)
+                    .setParameter("id", user.getIdUzytkownika())
+                    .list();
+            for(int idAnkiety : idAnkietyList){
+                ankiety.add(selectById(idAnkiety));
+            }
+        }catch(Exception e){
+            logException(e);
+        }finally {
+            sessionClose(session);
+        }
+        return ankiety;
+    }
 
 }
