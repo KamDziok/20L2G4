@@ -28,7 +28,7 @@ public class NagrodyTabelka extends BulidStage {
         edytuj.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                loadingFXML(event, SceneFXML.PANEL_NAGROD);
+                loadingFXML(event, SceneFXML.PANEL_EDIT_NAGROD);
                 activeScene(event, false, false);
             }
         });
