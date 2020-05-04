@@ -22,7 +22,7 @@ public class NagrodyTabelka extends BulidStage {
             @Override
             public void handle(ActionEvent event) {
                 NagrodyQuery usun = new NagrodyQuery();
-                usun.delNagrody(nagroda);
+                usun.deactivateNagrody(nagroda);
             }
         });
         edytuj.setOnAction(new EventHandler<ActionEvent>() {
