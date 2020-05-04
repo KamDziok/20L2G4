@@ -40,45 +40,31 @@ public class OdpowiedziQuery extends OperationInSession {
     }
 
     public Boolean addOdpoweidz(Odpowiedzi odpowiedzi){
-        Boolean result = false;
-        try{
-            session = openSession();
-            transaction = beginTransaction(session);
-            session.save(odpowiedzi);
-            commitTransaction(transaction);
-            result = true;
-        }catch(Exception e){
-            transactionRollback(transaction);
-            logException(e);
-        }finally {
-            sessionClose(session);
-        }
-        return result;
+        return modifyOdpowiedzi(odpowiedzi, true, false, false);
     }
 
     public Boolean updateOdpowiedzi(Odpowiedzi odpowiedzi){
-        Boolean result = false;
-        try{
-            session = openSession();
-            transaction = beginTransaction(session);;
-            session.update(odpowiedzi);
-            commitTransaction(transaction);
-            result = true;
-        }catch(Exception e){
-            transactionRollback(transaction);
-            logException(e);
-        }finally {
-            sessionClose(session);
-        }
-        return result;
+        return modifyOdpowiedzi(odpowiedzi, false, true, false);
     }
 
     public Boolean delOdpowiedzi(Odpowiedzi odpowiedzi){
+        return modifyOdpowiedzi(odpowiedzi, false, false, true);
+    }
+
+    private Boolean modifyOdpowiedzi(Odpowiedzi odpowiedzi, boolean add, boolean update, boolean delete){
         Boolean result = false;
         try{
             session = openSession();
             transaction = beginTransaction(session);;
-            session.delete(odpowiedzi);
+            if(add){
+                session.save(odpowiedzi);
+            }
+            if(update){
+                session.update(odpowiedzi);
+            }
+            if(delete) {
+                session.delete(odpowiedzi);
+            }
             commitTransaction(transaction);
             result = true;
         }catch(Exception e){

@@ -41,45 +41,31 @@ public class PytaniaQuery extends OperationInSession {
 
 
     public Boolean addPytania(Pytania pytanie){
-        Boolean result = false;
-        try{
-            session = openSession();
-            transaction = beginTransaction(session);
-            session.save(pytanie);
-            commitTransaction(transaction);
-            result = true;
-        }catch(Exception e){
-            transactionRollback(transaction);
-            logException(e);
-        }finally {
-            sessionClose(session);
-        }
-        return result;
+        return modifyPytania(pytanie, true, false,false);
     }
 
     public Boolean updatePytania(Pytania pytanie){
-        Boolean result = false;
-        try{
-            session = openSession();
-            transaction = beginTransaction(session);;
-            session.update(pytanie);
-            commitTransaction(transaction);
-            result = true;
-        }catch(Exception e){
-            transactionRollback(transaction);
-            logException(e);
-        }finally {
-            sessionClose(session);
-        }
-        return result;
+        return modifyPytania(pytanie, false, true, false);
     }
 
     public Boolean delPytania(Pytania pytania){
+        return modifyPytania(pytania, false, false, true);
+    }
+
+    private Boolean modifyPytania(Pytania pytania, boolean add, boolean update, boolean delete){
         Boolean result = false;
         try{
             session = openSession();
             transaction = beginTransaction(session);;
-            session.delete(pytania);
+            if(add){
+                session.save(pytania);
+            }
+            if(update){
+                session.update(pytania);
+            }
+            if(delete) {
+                session.delete(pytania);
+            }
             commitTransaction(transaction);
             result = true;
         }catch(Exception e){

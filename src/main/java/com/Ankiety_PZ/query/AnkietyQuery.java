@@ -52,6 +52,43 @@ public class AnkietyQuery extends OperationInSession {
         return ankiety;
     }
 
+    public Boolean addAnkiety(Ankiety ankiety){
+        return modifyAnkiety(ankiety, true, false, false);
+    }
+
+    public Boolean updateSnkiety(Ankiety ankiety){
+        return modifyAnkiety(ankiety, false, true, false);
+    }
+
+    public Boolean deleteAnkiety(Ankiety ankiety){
+        return modifyAnkiety(ankiety, false, false, true);
+    }
+
+    private Boolean modifyAnkiety(Ankiety ankiety, boolean add, boolean update, boolean delete){
+        Boolean result = false;
+        try{
+            session = openSession();
+            transaction = beginTransaction(session);;
+            if(add){
+                session.save(ankiety);
+            }
+            if(update){
+                session.update(ankiety);
+            }
+            if(delete) {
+                session.delete(ankiety);
+            }
+            commitTransaction(transaction);
+            result = true;
+        }catch(Exception e){
+            transactionRollback(transaction);
+            logException(e);
+        }finally {
+            sessionClose(session);
+        }
+        return result;
+    }
+
     /**
      * Metoda przesyła listę Ankiet aktywnych.
      *

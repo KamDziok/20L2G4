@@ -47,45 +47,31 @@ public class UzytkownicyQuery extends OperationInSession {
     }
 
     public Boolean addUzytkownik(Uzytkownicy uzytkownik){
-        Boolean result = false;
-        try{
-            session = openSession();
-            transaction = beginTransaction(session);
-            session.save(uzytkownik);
-            commitTransaction(transaction);
-            result = true;
-        }catch(Exception e){
-            transactionRollback(transaction);
-            logException(e);
-        }finally {
-            sessionClose(session);
-        }
-        return result;
+        return modifyUzytkownik(uzytkownik, true, false, false);
     }
 
     public Boolean updateUzytkownik(Uzytkownicy uzytkownik){
-        Boolean result = false;
-        try{
-            session = openSession();
-            transaction = beginTransaction(session);;
-            session.update(uzytkownik);
-            commitTransaction(transaction);
-            result = true;
-        }catch(Exception e){
-            transactionRollback(transaction);
-            logException(e);
-        }finally {
-            sessionClose(session);
-        }
-        return result;
+        return modifyUzytkownik(uzytkownik, false, true, false);
     }
 
     public Boolean delUzytkownik(Uzytkownicy uzytkownik){
+        return modifyUzytkownik(uzytkownik, false, false, true);
+    }
+
+    private Boolean modifyUzytkownik(Uzytkownicy uzytkownik, boolean add, boolean update, boolean delete){
         Boolean result = false;
         try{
             session = openSession();
             transaction = beginTransaction(session);;
-            session.delete(uzytkownik);
+            if(add){
+                session.save(uzytkownik);
+            }
+            if(update){
+                session.update(uzytkownik);
+            }
+            if(delete) {
+                session.delete(uzytkownik);
+            }
             commitTransaction(transaction);
             result = true;
         }catch(Exception e){
