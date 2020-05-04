@@ -2,9 +2,6 @@ package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.query.ConnectToDataBase;
 import com.Ankiety_PZ.query.LoadDump;
-import com.Ankiety_PZ.hibernate.Ankiety;
-import com.Ankiety_PZ.hibernate.Odpowiedzi;
-import com.Ankiety_PZ.query.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 
 public class TestFX extends Application {
 //    @Override
@@ -43,13 +39,13 @@ public class TestFX extends Application {
 
     public static void main(String[] args) {
         ConnectToDataBase.connectToDataBase();
-//        LoadDump test = new LoadDump();
-//        try {
-//            test.loadDump("baza_danych/bazadanychtest/ankiety2.sql");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            System.out.println(e.getMessage());
-//        }
+        LoadDump test = new LoadDump();
+        try {
+            test.loadDump("baza_danych/bazadanychtest/ankiety2.sql");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
 //        System.out.println("Current dir using System:" + Paths.get("") .toAbsolutePath().toString());
 //        PytaniaQuery pq = new PytaniaQuery();
 //        System.out.println(pq.selectSetPytaniaByIdAnkiety(12).size());

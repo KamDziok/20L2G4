@@ -45,7 +45,7 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="1201.0" styleClass="hbox" stylesheets="@style.css">
                             <children>
                                 <Button fx:id="wyloguj" layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
-                                <Button layoutX="997.0" layoutY="625.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="173.0" text="Zapisz zmiany" />
+                                <Button layoutX="997.0" layoutY="625.0" mnemonicParsing="false" onAction="#panelOsobyOdNagrodButtonZmienUstawienia" prefHeight="50.0" prefWidth="173.0" text="Zapisz zmiany" />
                                 <Label fx:id="imie_nazwisko_rola2" layoutX="728.0" layoutY="22.0" prefHeight="57.0" prefWidth="459.0" stylesheets="@style.css" />
                                 <Label layoutX="60.0" layoutY="34.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Konto użytkownika">
                                     <font>
@@ -61,36 +61,36 @@
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Label>
-                                                <TextField layoutX="16.0" layoutY="58.0" prefHeight="26.0" prefWidth="260.0" text="annanowak@interia.pl" />
+                                                <TextField fx:id="email" layoutX="16.0" layoutY="58.0" prefHeight="26.0" prefWidth="260.0" text="annanowak@interia.pl" />
                                                 <Label layoutX="16.0" layoutY="120.0" prefHeight="32.0" prefWidth="262.0" text="Hasło:">
                                                     <font>
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Label>
-                                                <TextField layoutX="16.0" layoutY="158.0" prefHeight="26.0" prefWidth="260.0" />
+                                                <TextField fx:id="haslo" layoutX="16.0" layoutY="158.0" prefHeight="26.0" prefWidth="260.0" />
                                                 <Label layoutX="16.0" layoutY="220.0" text="Nowe hasło:">
                                                     <font>
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Label>
-                                                <TextField layoutX="16.0" layoutY="258.0" prefHeight="26.0" prefWidth="260.0" />
+                                                <TextField fx:id="nowehaslo" layoutX="16.0" layoutY="258.0" prefHeight="26.0" prefWidth="260.0" />
                                                 <Label layoutX="16.0" layoutY="320.0" text="Powtórz hasło:">
                                                     <font>
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Label>
-                                                <TextField layoutX="16.0" layoutY="358.0" prefHeight="26.0" prefWidth="260.0" />
+                                                <TextField fx:id="hasloznowu" layoutX="16.0" layoutY="358.0" prefHeight="26.0" prefWidth="260.0" />
 
                                                 <Label layoutX="16.0" layoutY="420.0" text="Imie:">
                                                     <font>
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Label>
-                                                <TextField layoutX="16.0" layoutY="458.0" prefHeight="26.0" prefWidth="260.0" text="Anna" />
+                                                <TextField fx:id="imie" layoutX="16.0" layoutY="458.0" prefHeight="26.0" prefWidth="260.0" text="Anna" />
                                                 <Label layoutX="16.0" layoutY="520.0" text="Nazwisko:">
 
                                                 </Label>
-                                                <TextField layoutX="16.0" layoutY="558.0" prefHeight="26.0" prefWidth="260.0" text="Nowak" />
+                                                <TextField fx:id="nazwisko" layoutX="16.0" layoutY="558.0" prefHeight="26.0" prefWidth="260.0" text="Nowak" />
 
 
 
@@ -100,25 +100,25 @@
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Label>
-                                                <TextField editable="false" layoutX="680.0" layoutY="58.0" prefHeight="26.0" prefWidth="260.0" text="Żewoszyce" />
+                                                <TextField fx:id="miejscowosc" editable="false" layoutX="680.0" layoutY="58.0" prefHeight="26.0" prefWidth="260.0" text="Żewoszyce" />
                                                 <Label layoutX="680.0" layoutY="120.0" text="Ulica:">
                                                     <font>
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Label>
-                                                <TextField layoutX="678.0" layoutY="158.0" prefHeight="26.0" prefWidth="260.0" text="Lekołody" />
+                                                <TextField fx:id="ulica" layoutX="678.0" layoutY="158.0" prefHeight="26.0" prefWidth="260.0" text="Lekołody" />
                                                 <Label layoutX="680.0" layoutY="220.0" text="Numer budynku:">
                                                     <font>
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Label>
-                                                <TextField editable="false" layoutX="680.0" layoutY="258.0" prefHeight="26.0" prefWidth="260.0" text="222" />
+                                                <TextField fx:id="budynek" layoutX="680.0" layoutY="258.0" prefHeight="26.0" prefWidth="260.0" text="222" />
                                                 <Label layoutX="680.0" layoutY="320.0" text="Numer lokalu:">                                                                    </Label>
-                                                <TextField layoutX="680.0" layoutY="358.0" prefHeight="26.0" prefWidth="260.0" text="1" />
+                                                <TextField fx:id="lokal" layoutX="680.0" layoutY="358.0" prefHeight="26.0" prefWidth="260.0" text="1" />
                                                 <Label layoutX="680.0" layoutY="420.0" text="Kod pocztowy:">                                                                    </Label>
                                                 <Label layoutX="747.0" layoutY="469.0" text="-" />
-                                                <TextField layoutX="680.0" layoutY="458.0" prefHeight="54.0" prefWidth="61.0" text="37" />
-                                                <TextField layoutX="762.0" layoutY="458.0" prefHeight="54.0" prefWidth="69.0" text="800" />
+                                                <TextField fx:id="kod1" layoutX="680.0" layoutY="458.0" prefHeight="54.0" prefWidth="61.0" text="37" />
+                                                <TextField fx:id="kod2" layoutX="762.0" layoutY="458.0" prefHeight="54.0" prefWidth="69.0" text="800" />
                                             </children>
                                         </AnchorPane>
                                     </content>

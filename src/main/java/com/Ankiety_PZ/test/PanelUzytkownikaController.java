@@ -120,7 +120,6 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
              ) {
             dane.add(new AnikietaTabelka(ankieta));
         }
-        System.out.println(dane.get(0).getTytul());
         tableAnkiety.itemsProperty().setValue(dane);
         tytul.setCellValueFactory(new PropertyValueFactory("tytul"));
         wygasa.setCellValueFactory(new PropertyValueFactory("dataZakonczenia"));
