@@ -26,5 +26,11 @@
             </key>
             <one-to-many class="com.Ankiety_PZ.hibernate.Pytania" />
         </set>
+        <property name="liczbaWypelnien" type="int">
+            <column name="liczba_wypelnien" not-null="true" />
+        </property>
+        <many-to-one name="uzytkownicy" class="com.Ankiety_PZ.hibernate.Uzytkownicy" fetch="select">
+            <column name="ID_uzytkownika" not-null="true" unique="true" />
+        </many-to-one>
     </class>
 </hibernate-mapping>

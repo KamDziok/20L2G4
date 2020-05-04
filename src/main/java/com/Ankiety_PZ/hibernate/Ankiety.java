@@ -21,26 +21,30 @@ public class Ankiety  implements java.io.Serializable {
      private int liczbaPunktow;
      private Date dataRozpoczecia;
      private Date dataZakonczenia;
+     private Integer liczbaWypelnien;
+    private Uzytkownicy uzytkownicy;
      private Set pytanias = new HashSet(0);
-
-     private List<Uzytkownicy> uzytkownicy;
 
 
     public Ankiety() {
     }
 
 	
-    public Ankiety(String tytul, int liczbaPunktow, Date dataRozpoczecia, Date dataZakonczenia) {
+    public Ankiety(String tytul, int liczbaPunktow, Date dataRozpoczecia, Date dataZakonczenia, Integer liczbaWypelnien, Uzytkownicy user) {
         this.tytul = tytul;
         this.liczbaPunktow = liczbaPunktow;
         this.dataRozpoczecia = dataRozpoczecia;
         this.dataZakonczenia = dataZakonczenia;
+        this.liczbaWypelnien = liczbaWypelnien;
+        this.uzytkownicy = user;
     }
-    public Ankiety(String tytul, int liczbaPunktow, Date dataRozpoczecia, Date dataZakonczenia, Set pytanias) {
+    public Ankiety(String tytul, int liczbaPunktow, Date dataRozpoczecia, Date dataZakonczenia, Integer liczbaWypelnien, Uzytkownicy user, Set pytanias) {
        this.tytul = tytul;
        this.liczbaPunktow = liczbaPunktow;
        this.dataRozpoczecia = dataRozpoczecia;
        this.dataZakonczenia = dataZakonczenia;
+       this.liczbaWypelnien = liczbaWypelnien;
+       this.uzytkownicy = user;
        this.pytanias = pytanias;
     }
    
@@ -87,16 +91,25 @@ public class Ankiety  implements java.io.Serializable {
         this.pytanias = pytanias;
     }
 
-    @ManyToMany
-    @JoinTable(name = "uzytkownicy_ankiety",
-            joinColumns = {@JoinColumn(name = "idAnkiety")},
-            inverseJoinColumns = {@JoinColumn(name = "idUzytkownika")})
-    public List<Uzytkownicy> getUzytkownicy() {
+    public Integer getLiczbaWypelnien() {
+        return liczbaWypelnien;
+    }
+
+    public void setLiczbaWypelnien(Integer liczbaWypelnien) {
+        this.liczbaWypelnien = liczbaWypelnien;
+    }
+
+    public Uzytkownicy getUzytkownicy() {
         return uzytkownicy;
     }
 
-    public void setUzytkownicy(List<Uzytkownicy> uzytkownicy) {
+    public void setUzytkownicy(Uzytkownicy uzytkownicy) {
         this.uzytkownicy = uzytkownicy;
+    }
+
+
+    public void initHashSetPytania(){
+        this.pytanias = new HashSet<Pytania>();
     }
 
 

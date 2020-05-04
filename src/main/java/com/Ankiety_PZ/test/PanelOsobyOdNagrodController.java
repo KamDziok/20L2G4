@@ -4,13 +4,20 @@
 
 package com.Ankiety_PZ.test;
 
+import com.Ankiety_PZ.hibernate.Nagrody;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
+import com.Ankiety_PZ.query.NagrodyQuery;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.util.List;
 
 public class PanelOsobyOdNagrodController extends BulidStage implements SetStartValues {
 
@@ -20,12 +27,6 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
     private String imie_nazwisko_rola_tmp;
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
     private Label imie_nazwisko_rola;
 
     @FXML
@@ -33,6 +34,24 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
 
     @FXML
     private Button panelnagroddodajnagrode;
+
+    @FXML
+    private TableView tableNagrody;
+
+    @FXML
+    private TableColumn nagrody;
+
+    @FXML
+    private TableColumn zdjecie;
+
+    @FXML
+    private TableColumn pkt;
+
+    @FXML
+    private TableColumn usun;
+
+    @FXML
+    private TableColumn edytuj;
 
     @FXML
     private Label imie_nazwisko_rola2;
@@ -50,6 +69,25 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
         activeScene(event, false, false);
     }
 
+    void setNagrody() {
+        NagrodyQuery query = new NagrodyQuery();
+        List<Nagrody> nagrodies = query.selectAll();
+        ObservableList<NagrodyTabelka> dane = FXCollections.observableArrayList();
+        for (Nagrody nagroda:nagrodies
+        ) {
+            dane.add(new NagrodyTabelka (nagroda));
+
+        }
+        System.out.println();
+        tableNagrody.itemsProperty().setValue(dane);
+        nagrody.setCellValueFactory(new PropertyValueFactory("tytul"));
+        pkt.setCellValueFactory(new PropertyValueFactory("liczbaPunktow"));
+        usun.setCellValueFactory(new PropertyValueFactory("usun"));
+        edytuj.setCellValueFactory(new PropertyValueFactory("edytuj"));
+    }
+
+
+
     @Override
     public void setStartValues(Uzytkownicy user) {
         this.curentUser = user;
@@ -57,6 +95,7 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
         System.out.print(imie_nazwisko_rola_tmp);
         imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
         imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
+        setNagrody();
     }
 
     @FXML

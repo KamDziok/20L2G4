@@ -117,3 +117,46 @@
     -fx-background-radius: 15px;
     -fx-padding: 8px;
 }
+
+.table-view, .tree-table-view {
+
+
+    -fx-table-header-border-color: transparent;
+    -fx-table-cell-border-color: #00ccff;
+    -fx-background-color: transparent;
+    -fx-font-size: 1.8em;
+    -fx-alignment:center;
+}
+
+.table-view .filler, .tree-table-view .filler, .table-view .column-header,
+.tree-table-view .column-header {
+    -fx-font-size: 1.8em;
+
+    -fx-border-style: null;
+    -fx-border-color: #00ccff;
+    -fx-border-width: 0 0 2 0;
+    -fx-background-color: transparent;
+    -fx-alignment:center;
+}
+
+.table-view .show-hide-columns-button, .tree-table-view .show-hide-columns-button
+{
+    -fx-font-size: 1.8em;
+    -fx-background-color: transparent;
+    -fx-alignment:center;
+}
+
+.table-view .column-header-background, .tree-table-view .column-header-background
+{
+    -fx-font-size: 1.8em;
+    -fx-background-color: transparent;
+    -fx-alignment:center;
+}
+
+
+.table-cell {
+    -fx-font-size: 1.8em;
+    -fx-border-color: transparent;
+    -fx-border-width: 1;
+    -fx-alignment:center;
+}

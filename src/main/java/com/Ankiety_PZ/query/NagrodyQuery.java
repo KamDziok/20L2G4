@@ -48,29 +48,45 @@ public class NagrodyQuery extends OperationInSession{
         return nagroda;
     }
 
-    public Boolean addNagrody(Nagrody nagroda){
-        Boolean result = false;
-        try{
+    public List<Nagrody> selectAllActive() {
+        List<Nagrody> nagrody = new ArrayList<>();
+        try {
             session = openSession();
-            transaction = beginTransaction(session);
-            session.save(nagroda);
-            commitTransaction(transaction);
-            result = true;
-        }catch(Exception e){
-            transactionRollback(transaction);
+            nagrody = session.createQuery("from Nagrody as n where n.liczbaPunktow>=0").list();
+        } catch(Exception e){
             logException(e);
-        }finally {
+        }finally{
             sessionClose(session);
         }
-        return result;
+        return nagrody;
+    }
+
+    public Boolean addNagrody(Nagrody nagroda){
+        return modifyNagrody(nagroda, true, false, false);
     }
 
     public Boolean updateNagrody(Nagrody nagroda){
+        return modifyNagrody(nagroda, false, true, false);
+    }
+
+    public Boolean delNagrody(Nagrody nagroda){
+        return modifyNagrody(nagroda, false, false, true);
+    }
+
+    private Boolean modifyNagrody(Nagrody nagrody, boolean add, boolean update, boolean delete){
         Boolean result = false;
         try{
             session = openSession();
             transaction = beginTransaction(session);;
-            session.update(nagroda);
+            if(add){
+                session.save(nagrody);
+            }
+            if(update){
+                session.update(nagrody);
+            }
+            if(delete) {
+                session.delete(nagrody);
+            }
             commitTransaction(transaction);
             result = true;
         }catch(Exception e){
@@ -82,20 +98,9 @@ public class NagrodyQuery extends OperationInSession{
         return result;
     }
 
-    public Boolean delNagrody(Nagrody nagroda){
-        Boolean result = false;
-        try{
-            session = openSession();
-            transaction = beginTransaction(session);;
-            session.delete(nagroda);
-            commitTransaction(transaction);
-            result = true;
-        }catch(Exception e){
-            transactionRollback(transaction);
-            logException(e);
-        }finally {
-            sessionClose(session);
-        }
-        return result;
+    public Boolean deactivateNagrody(Nagrody nagrody){
+        nagrody.setLiczbaPunktow(-1);
+        //sprawdzic czy istnieje w uzytkownicy_nagrody
+        return updateNagrody(nagrody);
     }
 }

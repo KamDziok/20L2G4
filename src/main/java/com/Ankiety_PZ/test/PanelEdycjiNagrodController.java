@@ -1,12 +1,14 @@
 package com.Ankiety_PZ.test;
 
+import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -18,18 +20,13 @@ import java.util.ResourceBundle;
  * Sample Skeleton for 'PanelEdycjiNagrod.fxml' Controller Class
  */
 
-public class PanelEdycjiNagrodController extends BulidStage implements Initializable {
+public class PanelEdycjiNagrodController extends BulidStage implements Initializable, SetStartValues {
+
+    private Uzytkownicy curentUser;
 
     File file = new File("C:\\Users\\Banan\\Pictures\\a.jpg");
     @FXML
-    private ImageView imageview;
-
-    @FXML
     private Button wyloguj;
-
-
-    @FXML
-    private AnchorPane anchorpane;
 
     @FXML
     private Button panelEdycjiNagrodButtonUsun;
@@ -38,13 +35,26 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
     private Button panelEdycjiNagrodButtonAnuluj;
 
     @FXML
+    private TextField nag;
+
+    @FXML
+    private TextField pkt;
+
+    @FXML
+    private ImageView imageview;
+
+    @FXML
     private Button PanelEdycjiNagrod;
+
+    @FXML
+    private Label imie_nazwisko_rola;
 
     @FXML
     void wyloguj(ActionEvent event) {
         loadingFXML(event, SceneFXML.PANEL_LOGIN);
         activeScene(event, false, false);
     }
+
 
     @FXML
     void panelEdycjiNagrodButtonDodajZdjecie(ActionEvent event) {
@@ -79,13 +89,22 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         activeScene(event, false, false);
     }
 
+    @Override
+    public void setStartValues(Uzytkownicy user) {
+        this.curentUser = user;
+       String imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - konto zarządzania nagrodami";
+        System.out.print(imie_nazwisko_rola_tmp);
+        imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
+    }
+
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert PanelEdycjiNagrod != null : "fx:id=\"panelEdycjiNagrodButtonDodajZdjecie\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
         assert panelEdycjiNagrodButtonUsun != null : "fx:id=\"panelEdycjiNagrodButtonUsun\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
         assert panelEdycjiNagrodButtonAnuluj != null : "fx:id=\"panelEdycjiNagrodButtonAnuluj\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
-
         assert wyloguj != null : "fx:id=\"wyloguj\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
+        assert imie_nazwisko_rola != null : "fx:id=\"imie_nazwisko_rola\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
+
     }
 
     @Override
@@ -97,4 +116,6 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
 
 
     }
+
+
 }

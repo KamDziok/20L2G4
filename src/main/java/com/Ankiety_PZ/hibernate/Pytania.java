@@ -22,6 +22,7 @@ public class Pytania  implements java.io.Serializable {
      private int rodzajPytania;
      private Set odpowiedzis = new HashSet(0);
 
+
     @OneToMany(mappedBy = "uzytkownicy",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
@@ -95,8 +96,9 @@ public class Pytania  implements java.io.Serializable {
         this.odpowiedzis = odpowiedzis;
     }
 
-
-
+    public void initHashSetOdpowiedzi(){
+        this.odpowiedzis = new HashSet<Odpowiedzi>();
+    }
 
 }
 

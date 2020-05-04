@@ -6,12 +6,19 @@ package com.Ankiety_PZ.test;
 
 
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
+import com.Ankiety_PZ.query.UzytkownicyQuery;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class PanelAdminaController extends BulidStage implements SetStartValues {
@@ -30,12 +37,40 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
     private URL location;
     @FXML
     private Button wyloguj;
+    @FXML
+    private TableView tableUzytkownicy;
+    @FXML
+    private TableColumn imie_i_nazwisko;
+    @FXML
+    private TableColumn mail;
+    @FXML
+    private TableColumn pkt;
+    @FXML
+    private TableColumn przycisk;
 
     @FXML
     void wyloguj(ActionEvent event) {
         loadingFXML(event, SceneFXML.PANEL_LOGIN);
         activeScene(event, false, false);
     }
+
+    void setUzytkownicy() {
+        UzytkownicyQuery query = new UzytkownicyQuery();
+        List<Uzytkownicy> uzytkownicy = query.selectBy(false);
+        ObservableList<UzytkownicyTabelka> dane = FXCollections.observableArrayList();
+        for (Uzytkownicy uzytkownik:uzytkownicy
+        ) {
+            dane.add(new UzytkownicyTabelka (uzytkownik));
+
+        }
+        System.out.println();
+        tableUzytkownicy.itemsProperty().setValue(dane);
+        imie_i_nazwisko.setCellValueFactory(new PropertyValueFactory("imie_i_nazwisko"));
+        mail.setCellValueFactory(new PropertyValueFactory("mail"));
+        pkt.setCellValueFactory(new PropertyValueFactory("liczbaPunktow"));
+        przycisk.setCellValueFactory(new PropertyValueFactory("button"));
+    }
+
 
     @Override
     public void setStartValues(Uzytkownicy user) {
@@ -45,6 +80,7 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
         System.out.print(imie_nazwisko_rola_tmp);
         imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
         imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
+        setUzytkownicy();
 
     }
 
