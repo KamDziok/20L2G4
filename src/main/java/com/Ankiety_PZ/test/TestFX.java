@@ -2,7 +2,6 @@ package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.query.ConnectToDataBase;
 import com.Ankiety_PZ.query.LoadDump;
-import com.Ankiety_PZ.query.UzytkownicyQuery;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -43,7 +42,7 @@ public class TestFX extends Application {
         ConnectToDataBase.connectToDataBase();
         LoadDump test = new LoadDump();
         try {
-            test.loadDump("baza_danych/bazadanychtest/ankiety2.sql");
+            test.loadDump("baza_danych/bazadanychtest/ankiety.sql");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(e.getMessage());

@@ -9,6 +9,7 @@ import com.Ankiety_PZ.hibernate.Nagrody;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.AnkietyQuery;
 import com.Ankiety_PZ.query.NagrodyQuery;
+import com.Ankiety_PZ.query.UzytkownicyQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -66,6 +67,20 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     void panelUzytkownikaButtonMakeAnkiet(ActionEvent event) {
         loadingFXML(event, SceneFXML.OKNO_ANKIETA_RADIO);
         activeScene(event, false, true);
+    }@FXML
+    void panelUzytkownikaButtonZmienUstawienia(ActionEvent event) {
+        curentUser.setMail(email.getText());
+        if(haslo.getText().equals(curentUser.getHaslo()) && nowehaslo.getText().equals(hasloznowu.getText()))
+            curentUser.setHaslo(nowehaslo.getText());
+        curentUser.setImie(imie.getText());
+        curentUser.setNazwisko(nazwisko.getText());
+        curentUser.setMiejscowosc(miejscowosc.getText());
+        curentUser.setUlica(ulica.getText());
+        curentUser.setNumerBudynku(budynek.getText());
+        curentUser.setNumerLokalu(lokal.getText());
+        curentUser.setKodPocztowy(kod1.getText() + "-" + kod2.getText());
+        UzytkownicyQuery query = new UzytkownicyQuery();
+        query.updateUzytkownik(curentUser);
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -105,6 +120,7 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
              ) {
             dane.add(new AnikietaTabelka(ankieta));
         }
+        System.out.println(dane.get(0).getTytul());
         tableAnkiety.itemsProperty().setValue(dane);
         tytul.setCellValueFactory(new PropertyValueFactory("tytul"));
         wygasa.setCellValueFactory(new PropertyValueFactory("dataZakonczenia"));
