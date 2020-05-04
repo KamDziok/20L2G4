@@ -98,7 +98,7 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
 
     void setNagrody() {
         NagrodyQuery query = new NagrodyQuery();
-        List<Nagrody> nagrodies = query.selectAll();
+        List<Nagrody> nagrodies = query.selectAllActive();
         ObservableList<NagrodyTabelka> dane = FXCollections.observableArrayList();
         for (Nagrody nagroda:nagrodies
         ) {
