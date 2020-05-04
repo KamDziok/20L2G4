@@ -24,22 +24,6 @@ public class PytaniaQuery extends OperationInSession {
         return pytania;
     }
 
-    public Pytania selectByID(int id){
-        Pytania pytania = new Pytania();
-        try{
-            session = openSession();
-            String hgl = "from Pytania where ID = " + id;
-            query = session.createQuery(hgl);
-            pytania = (Pytania) query.uniqueResult();
-        }catch(Exception e){
-            logException(e);
-        }finally {
-            sessionClose(session);
-        }
-        return pytania;
-    }
-
-
     public Boolean addPytania(Pytania pytanie){
         return modifyPytania(pytanie, true, false,false);
     }

@@ -23,22 +23,6 @@ public class OdpowiedziQuery extends OperationInSession {
         }
         return odpowiedzi;
     }
-
-    public Odpowiedzi selectByID(int id){
-        Odpowiedzi odpowiedzi = new Odpowiedzi();
-        try{
-            session = openSession();
-            String hgl = "from Odpowiedzi where id=" + id;
-            query = session.createQuery(hgl);
-            odpowiedzi = (Odpowiedzi) query.uniqueResult();
-        }catch(Exception e){
-            logException(e);
-        }finally {
-            sessionClose(session);
-        }
-        return odpowiedzi;
-    }
-
     public Boolean addOdpoweidz(Odpowiedzi odpowiedzi){
         return modifyOdpowiedzi(odpowiedzi, true, false, false);
     }

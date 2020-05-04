@@ -5,6 +5,8 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -16,64 +18,18 @@
             <content>
                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="1201.0" styleClass="hbox" stylesheets="@style.css">
                   <children>
+                     <TableView fx:id="tableAnkiety" layoutX="31.0" layoutY="49.0" prefHeight="514.0" prefWidth="1090.0">
+                        <columns>
+                           <TableColumn fx:id="tytul" prefWidth="418.0" text="Tytuł" />
+                           <TableColumn fx:id="wygasa" prefWidth="251.0" text="Wygasa" />
+                           <TableColumn fx:id="pkt" prefWidth="204.0" text="Punkty" />
+                           <TableColumn fx:id="przyciskUsun" prefWidth="101.0" text="Usun" />
+                           <TableColumn fx:id="przyciskEdycja" prefWidth="115.0" text="Edycja" />
+                        </columns>
+                     </TableView>
+
                      <Button fx:id="wyloguj2" layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#wyloguj2Action" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
-                     <AnchorPane layoutX="58.0" layoutY="101.0" prefHeight="80.0" prefWidth="1090.0" styleClass="text-field" stylesheets="@style.css">
-                        <children>
-                           <Label layoutX="14.0" layoutY="25.0" prefHeight="33.0" prefWidth="295.0" text="Ankieta - Żabka">
-                              <font>
-                                 <Font size="20.0" />
-                              </font>
-                           </Label>
-                           <Button layoutX="936.0" layoutY="16.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="Usuń" />
-                           <Label layoutX="487.0" layoutY="25.0" prefHeight="33.0" prefWidth="201.0" text="Wygasa:  11.04.2020">
-                              <font>
-                                 <Font size="18.0" />
-                              </font></Label>
-                           <Label layoutX="700.0" layoutY="25.0" prefHeight="33.0" prefWidth="83.0" text="50 pkt">
-                              <font>
-                                 <Font size="18.0" />
-                              </font></Label>
-                              <Button layoutX="802.0" layoutY="16.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="Edytuj" />
-                              <Label layoutX="262.0" layoutY="25.0" prefHeight="33.0" prefWidth="201.0" text="Trwa od:  01.04.2020">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                        </children>
-                     </AnchorPane>
-                     <Label layoutX="60.0" layoutY="34.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Menadżer ankiet">
-                        <font>
-                           <Font size="24.0" />
-                        </font>
-                     </Label>
-                        <AnchorPane layoutX="58.0" layoutY="195.0" prefHeight="80.0" prefWidth="1090.0" styleClass="text-field" stylesheets="@style.css">
-                           <children>
-                              <Label layoutX="14.0" layoutY="25.0" prefHeight="33.0" prefWidth="295.0" text="Ankieta - Biedronka">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <Button layoutX="936.0" layoutY="16.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="Usuń" />
-                              <Label layoutX="487.0" layoutY="25.0" prefHeight="33.0" prefWidth="201.0" text="Wygasa:  21.04.2020">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="706.0" layoutY="25.0" prefHeight="33.0" prefWidth="85.0" text="55 pkt">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Button layoutX="802.0" layoutY="16.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" text="Edytuj" />
-                              <Label layoutX="262.0" layoutY="25.0" prefHeight="33.0" prefWidth="201.0" text="Trwa od:  01.04.2020">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
                         <Button fx:id="panelAnkietButtonDodaj" layoutX="1016.0" layoutY="620.0" mnemonicParsing="false" onAction="#panelAnkietButtonDodajAction" prefHeight="47.0" prefWidth="158.0" text="Dodaj ankietę" />
-                        <Label layoutX="854.0" layoutY="22.0" prefHeight="57.0" prefWidth="347.0" stylesheets="@style.css" text="Anna Nowak - konto ankietera" />
                   </children></AnchorPane>
             </content>
          </Tab>
@@ -83,7 +39,7 @@
                      <children>
                         <Button fx:id="wyloguj1" layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#wyloguj1Action" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
                         <Button layoutX="997.0" layoutY="625.0" mnemonicParsing="false" onAction="#panelAnkieteraButtonZmienUstawienia" prefHeight="50.0" prefWidth="173.0" text="Zapisz zmiany" />
-                        <Label layoutX="60.0" layoutY="34.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Konto użytkownika">
+                        <Label fx:id="imie_nazwisko_rola2" layoutX="60.0" layoutY="34.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Konto użytkownika">
                            <font>
                               <Font size="24.0" />
                            </font>

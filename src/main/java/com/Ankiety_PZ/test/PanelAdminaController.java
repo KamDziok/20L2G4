@@ -5,6 +5,8 @@ package com.Ankiety_PZ.test;
  */
 
 
+import com.Ankiety_PZ.hibernate.Ankiety;
+import com.Ankiety_PZ.hibernate.Pytania;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.UzytkownicyQuery;
 import javafx.collections.FXCollections;
@@ -125,6 +127,16 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
         imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
         setUzytkownicy();
         setUstawienia();
+    }
+
+    @Override
+    public void setStartValuesAnkiety(Ankiety ankieta) {
+
+    }
+
+    @Override
+    public void setStartValuesPytanie(Pytania pytania) {
+
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete

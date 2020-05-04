@@ -4,7 +4,9 @@
 
 package com.Ankiety_PZ.test;
 
+import com.Ankiety_PZ.hibernate.Ankiety;
 import com.Ankiety_PZ.hibernate.Nagrody;
+import com.Ankiety_PZ.hibernate.Pytania;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.NagrodyQuery;
 import com.Ankiety_PZ.query.UzytkownicyQuery;
@@ -134,6 +136,16 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
         imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
         setNagrody();
         setUstawienia();
+    }
+
+    @Override
+    public void setStartValuesAnkiety(Ankiety ankieta) {
+
+    }
+
+    @Override
+    public void setStartValuesPytanie(Pytania pytania) {
+
     }
 
     @FXML

@@ -5,27 +5,47 @@
 
 package com.Ankiety_PZ.test;
         import java.net.URL;
+        import java.util.ArrayList;
+        import java.util.List;
         import java.util.ResourceBundle;
+
+        import com.Ankiety_PZ.hibernate.Ankiety;
+        import com.Ankiety_PZ.hibernate.Odpowiedzi;
+        import com.Ankiety_PZ.hibernate.Pytania;
+        import com.Ankiety_PZ.hibernate.Uzytkownicy;
+        import com.Ankiety_PZ.query.AnkietyQuery;
+        import com.Ankiety_PZ.query.OdpowiedziQuery;
+        import com.Ankiety_PZ.query.PytaniaQuery;
+        import javafx.collections.FXCollections;
+        import javafx.collections.ObservableList;
         import javafx.event.ActionEvent;
         import javafx.fxml.FXML;
         import javafx.scene.control.Button;
+        import javafx.scene.control.TextField;
+        import javafx.scene.control.cell.PropertyValueFactory;
         import javafx.scene.image.Image;
         import javafx.scene.image.ImageView;
         import javafx.stage.FileChooser;
         import javafx.stage.Stage;
         import java.io.File;
+        import java.util.Set;
+
         import javafx.scene.control.RadioButton;
         import javafx.scene.control.ToggleGroup;
 
+        import static javax.swing.text.StyleConstants.Size;
 
 
-public class DodawaniepytaniaController extends BulidStage{
+public class DodawaniepytaniaController extends BulidStage implements SetStartValues {
     File file = new File("C:\\Users\\wlasciciel\\Pictures\\a.jpg");
 
     private final ToggleGroup radioButtonGroup = new ToggleGroup();
 
     @FXML
     private ImageView imageview;
+
+    @FXML
+    private TextField odpowiedzi;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -56,6 +76,21 @@ public class DodawaniepytaniaController extends BulidStage{
 
     @FXML // fx:id="dodawaniePytaniaRBQuestionPoints"
     private RadioButton dodawaniePytaniaRBQuestionPoints; // Value injected by FXMLLoader
+    @FXML
+    private TextField punkty;
+    @FXML
+    private TextField trescPytania;
+
+    private String odp;
+    private Uzytkownicy curetUser;
+    private String tresc;
+    private int punktowe;
+    private int rodzajPytania;
+    private Ankiety ankiety;
+    private Pytania pytani;
+    private int id_ankiety;
+    private Set odpowiedzis;
+    private List<String> listaOdp = new ArrayList<String>();
 
     /**
      * Metoda obsługująca przyciśk anuluj.
@@ -63,6 +98,7 @@ public class DodawaniepytaniaController extends BulidStage{
      * @author HubertJakobsze
      * @param event zdarzenie, po którym funkcja ma się wywołać
      */
+
 
     @FXML
     void anulujAction(ActionEvent event) {
@@ -99,7 +135,9 @@ public class DodawaniepytaniaController extends BulidStage{
         }
     }
 
-
+    public ImageView getImageview() {
+        return imageview;
+    }
 
     /**
      * Metoda obsługująca przyciśk wyloguj.
@@ -118,12 +156,54 @@ public class DodawaniepytaniaController extends BulidStage{
     }
     @FXML
     void dodajpytanieAction(ActionEvent event) {
+
+
+        if(dodawaniePytaniaRBQuestionOpen.isSelected()) {
+            rodzajPytania=2;
+            punktowe= 0;
+        }
+        else{if(dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected()){
+            rodzajPytania=1;
+            punktowe= 0;
+        }
+        else{if(dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected()){
+            rodzajPytania=0;
+            punktowe= 0;
+        }
+        else{if(dodawaniePytaniaRBQuestionPercentages.isSelected()){
+            rodzajPytania=4;
+            punktowe = Integer.parseInt("100");
+
+        }
+        else{if(dodawaniePytaniaRBQuestionPoints.isSelected()){
+            rodzajPytania=3;
+            punktowe = Integer.parseInt(punkty.getText());
+        }}}}}
+        tresc = trescPytania.getText();
+
+        Pytania pytanie = new Pytania(ankiety, tresc, imageview, rodzajPytania, punktowe, odpowiedzis);
+        if (punktowe!=0) pytanie.setPunktowe(punktowe);
+        pytanie.setAnkiety(ankiety);
+        pytanie.initHashSetOdpowiedzi();
+        for (String odpo:listaOdp
+             ) {
+            Odpowiedzi odp = new Odpowiedzi(pytanie, odpo);
+            pytanie.getOdpowiedzis().add(odp);
+            System.out.println(odpo);
+        }
+        ankiety.getPytanias().add(pytanie);
+
         loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
         PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
+        panelTworzeniaankietyController.setStartValuesPytanie(pytanie);
+        panelTworzeniaankietyController.setStartValuesAnkiety(ankiety);
+        panelTworzeniaankietyController.setStartValues(curetUser);
         activeScene(event, false, false);
 
 
     }
+   
+
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert dodajzdjecie != null : "fx:id=\"dodajzdjecie\" was not injected: check your FXML file 'Dodawaniepytania.fxml'.";
@@ -142,4 +222,27 @@ public class DodawaniepytaniaController extends BulidStage{
         dodawaniePytaniaRBQuestionPercentages.setToggleGroup(radioButtonGroup);
         dodawaniePytaniaRBQuestionPoints.setToggleGroup(radioButtonGroup);
     }
+
+
+    public void dodajOdpAction(ActionEvent event){
+        odp = odpowiedzi.getText() ;
+        listaOdp.add(odp);
+    }
+
+    @Override
+    public void setStartValues(Uzytkownicy user) {
+        this.curetUser = user;
+
+    }
+
+    @Override
+    public void setStartValuesAnkiety(Ankiety ankieta) {
+        this.ankiety = ankieta;
+    }
+
+    @Override
+    public void setStartValuesPytanie(Pytania pytania) {
+        this.pytani = pytania;
+    }
+
 }

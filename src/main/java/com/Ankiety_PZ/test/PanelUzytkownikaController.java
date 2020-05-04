@@ -5,6 +5,7 @@
 package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.hibernate.Ankiety;
+import com.Ankiety_PZ.hibernate.Pytania;
 import com.Ankiety_PZ.hibernate.Nagrody;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.AnkietyQuery;
@@ -120,6 +121,7 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
              ) {
             dane.add(new AnikietaTabelka(ankieta));
         }
+        System.out.println();
         tableAnkiety.itemsProperty().setValue(dane);
         tytul.setCellValueFactory(new PropertyValueFactory("tytul"));
         wygasa.setCellValueFactory(new PropertyValueFactory("dataZakonczenia"));
@@ -148,5 +150,15 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
         setUstawienia();
         setAnkiety();
         setNagrody();
+    }
+
+    @Override
+    public void setStartValuesAnkiety(Ankiety ankieta) {
+
+    }
+
+    @Override
+    public void setStartValuesPytanie(Pytania pytania) {
+
     }
 }
