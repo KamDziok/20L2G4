@@ -48,6 +48,19 @@ public class NagrodyQuery extends OperationInSession{
         return nagroda;
     }
 
+    public List<Nagrody> selectAllActive() {
+        List<Nagrody> nagrody = new ArrayList<>();
+        try {
+            session = openSession();
+            nagrody = session.createQuery("from Nagrody as n where n.liczbaPunktow>=0").list();
+        } catch(Exception e){
+            logException(e);
+        }finally{
+            sessionClose(session);
+        }
+        return nagrody;
+    }
+
     public Boolean addNagrody(Nagrody nagroda){
         return modifyNagrody(nagroda, true, false, false);
     }
