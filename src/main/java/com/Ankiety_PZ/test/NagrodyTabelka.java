@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
-public class NagrodyTabelka extends BulidStage{
+public class NagrodyTabelka extends BulidStage {
 
     public String tytul;
     public int liczbaPunktow;
@@ -28,10 +28,13 @@ public class NagrodyTabelka extends BulidStage{
         edytuj.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                NagrodaPrzekazwanie przekaz = new NagrodaPrzekazwanie(nagroda);
+                loadingFXML(event, SceneFXML.PANEL_NAGROD);
+                activeScene(event, false, false);
             }
         });
     }
+
+
 
     public String getTytul() {
         return tytul;

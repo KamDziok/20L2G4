@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
-public class UzytkownicyTabelka extends BulidStage{
+public class UzytkownicyTabelka extends PanelAdminaController {
 
     public String imie_i_nazwisko;
     public String nazwisko;
@@ -24,6 +24,7 @@ public class UzytkownicyTabelka extends BulidStage{
             public void handle(ActionEvent event) {
                 UzytkownicyQuery ban = new UzytkownicyQuery();
                 ban.ban(uzytkownik);
+                setUzytkownicy();
             }
         });
     }
