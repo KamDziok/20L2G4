@@ -89,6 +89,31 @@ public class AnkietyQuery extends OperationInSession {
         return result;
     }
 
+    public Boolean addAnkietyWithPytaniaAndOdpowiedzi(Ankiety ankiety){
+        Boolean result = false;
+        try{
+            PytaniaQuery pytaniaQuery = new PytaniaQuery();
+            OdpowiedziQuery odpowiedziQuery = new OdpowiedziQuery();
+            session = openSession();
+            transaction = beginTransaction(session);;
+            addAnkiety(ankiety);
+            for(Object pytaniaObj : ankiety.getPytanias()){
+                Pytania pytania = (Pytania) pytaniaObj;
+                pytaniaQuery.addPytania(pytania);
+                for(Object odpowiedziObj : pytania.getOdpowiedzis()){
+                    Odpowiedzi odpowiedzi = (Odpowiedzi) odpowiedziObj;
+                    odpowiedziQuery.addOdpoweidz(odpowiedzi);
+                }
+            }
+        }catch(Exception e){
+            transactionRollback(transaction);
+            logException(e);
+        }finally {
+            sessionClose(session);
+        }
+        return result;
+    }
+
     /**
      * Metoda przesyła listę Ankiet aktywnych.
      *
