@@ -13,27 +13,27 @@ public abstract class OperationInSession {
     protected Criteria criteria = null;
     protected Transaction transaction = null;
 
-    protected static Transaction beginTransaction(Session session){
-        return session.beginTransaction();
-    }
-
     protected static Session openSession(){
         return HibernateUtil.getSessionFactory().openSession();
+    }
+
+    protected static void closeSession(Session session){
+        if(session.isOpen()){
+            session.close();
+        }
+    }
+
+    protected static Transaction beginTransaction(Session session){
+        return session.beginTransaction();
     }
 
     protected static void commitTransaction(Transaction transaction){
         transaction.commit();
     }
 
-    protected static void transactionRollback(Transaction transaction){
+    protected static void rollbackTransaction(Transaction transaction){
         if(transaction.isActive()) {
             transaction.rollback();
-        }
-    }
-
-    protected static void sessionClose(Session session){
-        if(session.isOpen()){
-            session.close();
         }
     }
 

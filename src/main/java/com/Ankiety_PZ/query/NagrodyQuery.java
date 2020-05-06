@@ -6,7 +6,6 @@
 package com.Ankiety_PZ.query;
 
 import com.Ankiety_PZ.hibernate.Nagrody;
-import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import org.hibernate.*;
 
 import java.util.ArrayList;
@@ -18,6 +17,12 @@ import java.util.List;
  * @author KamDziok
  */
 public class NagrodyQuery extends OperationInSession{
+
+    private OperationsOnDataInEntity<Nagrody> modifyNagrody;
+
+    public NagrodyQuery(){
+        this.modifyNagrody = new OperationsOnDataInEntity<>();
+    }
     
     public List<Nagrody> selectAll() throws HibernateException {
         List<Nagrody> nagrody = new ArrayList<>();
@@ -28,7 +33,7 @@ public class NagrodyQuery extends OperationInSession{
         } catch(Exception e){
             logException(e);
         }finally{
-            sessionClose(session);
+            closeSession(session);
         }
         return nagrody;
     }
@@ -43,7 +48,7 @@ public class NagrodyQuery extends OperationInSession{
         }catch(Exception e){
             logException(e);
         }finally {
-            sessionClose(session);
+            closeSession(session);
         }
         return nagroda;
     }
@@ -56,46 +61,33 @@ public class NagrodyQuery extends OperationInSession{
         } catch(Exception e){
             logException(e);
         }finally{
-            sessionClose(session);
+            closeSession(session);
         }
         return nagrody;
     }
 
     public Boolean addNagrody(Nagrody nagroda){
-        return modifyNagrody(nagroda, true, false, false);
+        return modifyNagrody.modifyDataInEntity(nagroda, true, false, false, true);
+    }
+
+    Boolean addNagrodyWithOutTransaction(Nagrody nagroda){
+        return modifyNagrody.modifyDataInEntity(nagroda, true, false, false, false);
     }
 
     public Boolean updateNagrody(Nagrody nagroda){
-        return modifyNagrody(nagroda, false, true, false);
+        return modifyNagrody.modifyDataInEntity(nagroda, false, true, false, true);
+    }
+
+    Boolean updateNagrodyWithOutTransaction(Nagrody nagroda){
+        return modifyNagrody.modifyDataInEntity(nagroda, false, true, false, false);
     }
 
     public Boolean delNagrody(Nagrody nagroda){
-        return modifyNagrody(nagroda, false, false, true);
+        return modifyNagrody.modifyDataInEntity(nagroda, false, false, true, true);
     }
 
-    private Boolean modifyNagrody(Nagrody nagrody, boolean add, boolean update, boolean delete){
-        Boolean result = false;
-        try{
-            session = openSession();
-            transaction = beginTransaction(session);;
-            if(add){
-                session.save(nagrody);
-            }
-            if(update){
-                session.update(nagrody);
-            }
-            if(delete) {
-                session.delete(nagrody);
-            }
-            commitTransaction(transaction);
-            result = true;
-        }catch(Exception e){
-            transactionRollback(transaction);
-            logException(e);
-        }finally {
-            sessionClose(session);
-        }
-        return result;
+    Boolean delNagrodyWithOutTransaction(Nagrody nagroda){
+        return modifyNagrody.modifyDataInEntity(nagroda, false, false, true, false);
     }
 
     public Boolean deactivateNagrody(Nagrody nagrody){

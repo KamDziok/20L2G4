@@ -7,7 +7,7 @@ public class ConnectToDataBase extends OperationInSession {
     public static final void connectToDataBase(){
         Session session;
         session = openSession();
-        sessionClose(session);
+        closeSession(session);
     }
 
 }

@@ -5,10 +5,10 @@ import com.Ankiety_PZ.hibernate.Odpowiedzi;
 import com.Ankiety_PZ.hibernate.Pytania;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.test.TypeOfQuestion;
+import com.Ankiety_PZ.query.OperationsOnDataInEntity;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -16,6 +16,12 @@ import java.util.List;
  */
 
 public class AnkietyQuery extends OperationInSession {
+
+    private OperationsOnDataInEntity<Ankiety> modifyAnkiety;
+
+    public AnkietyQuery(){
+        this.modifyAnkiety = new OperationsOnDataInEntity<>();
+    }
 
     /**
      * Metoda przesyła listę wszystkich Ankiet.
@@ -32,7 +38,7 @@ public class AnkietyQuery extends OperationInSession {
         } catch(Exception e){
             logException(e);
         }finally{
-            sessionClose(session);
+            closeSession(session);
         }
         return ankiety;
     }
@@ -47,46 +53,33 @@ public class AnkietyQuery extends OperationInSession {
         }catch(Exception e){
             logException(e);
         }finally {
-            sessionClose(session);
+            closeSession(session);
         }
         return ankiety;
     }
 
     public Boolean addAnkiety(Ankiety ankiety){
-        return modifyAnkiety(ankiety, true, false, false);
+        return modifyAnkiety.modifyDataInEntity(ankiety, true, false, false, true);
+    }
+
+    Boolean addAnkietyWithOutTransaction(Ankiety ankiety){
+        return modifyAnkiety.modifyDataInEntity(ankiety, true, false, false, false);
     }
 
     public Boolean updateSnkiety(Ankiety ankiety){
-        return modifyAnkiety(ankiety, false, true, false);
+        return modifyAnkiety.modifyDataInEntity(ankiety, false, true, false, true);
+    }
+
+    Boolean updateSnkietyWithOutTransaction(Ankiety ankiety){
+        return modifyAnkiety.modifyDataInEntity(ankiety, false, true, false, false);
     }
 
     public Boolean deleteAnkiety(Ankiety ankiety){
-        return modifyAnkiety(ankiety, false, false, true);
+        return modifyAnkiety.modifyDataInEntity(ankiety, false, false, true, true);
     }
 
-    private Boolean modifyAnkiety(Ankiety ankiety, boolean add, boolean update, boolean delete){
-        Boolean result = false;
-        try{
-            session = openSession();
-            transaction = beginTransaction(session);;
-            if(add){
-                session.save(ankiety);
-            }
-            if(update){
-                session.update(ankiety);
-            }
-            if(delete) {
-                session.delete(ankiety);
-            }
-            commitTransaction(transaction);
-            result = true;
-        }catch(Exception e){
-            transactionRollback(transaction);
-            logException(e);
-        }finally {
-            sessionClose(session);
-        }
-        return result;
+    Boolean deleteAnkietyWithOutTransaction(Ankiety ankiety){
+        return modifyAnkiety.modifyDataInEntity(ankiety, false, false, true, false);
     }
 
     public Boolean addAnkietyWithPytaniaAndOdpowiedzi(Ankiety ankiety){
@@ -96,20 +89,22 @@ public class AnkietyQuery extends OperationInSession {
             OdpowiedziQuery odpowiedziQuery = new OdpowiedziQuery();
             session = openSession();
             transaction = beginTransaction(session);;
-            addAnkiety(ankiety);
+            addAnkietyWithOutTransaction(ankiety);
             for(Object pytaniaObj : ankiety.getPytanias()){
                 Pytania pytania = (Pytania) pytaniaObj;
-                pytaniaQuery.addPytania(pytania);
+                pytaniaQuery.addPytaniaWithOutTransaction(pytania);
                 for(Object odpowiedziObj : pytania.getOdpowiedzis()){
                     Odpowiedzi odpowiedzi = (Odpowiedzi) odpowiedziObj;
-                    odpowiedziQuery.addOdpoweidz(odpowiedzi);
+                    odpowiedziQuery.addOdpoweidzWithOutTransaction(odpowiedzi);
                 }
             }
+            commitTransaction(transaction);
+            result = true;
         }catch(Exception e){
-            transactionRollback(transaction);
+            rollbackTransaction(transaction);
             logException(e);
         }finally {
-            sessionClose(session);
+            closeSession(session);
         }
         return result;
     }
@@ -132,7 +127,7 @@ public class AnkietyQuery extends OperationInSession {
         }catch(Exception e){
             logException(e);
         }finally {
-            sessionClose(session);
+            closeSession(session);
         }
         return ankiety;
     }
@@ -191,7 +186,7 @@ public class AnkietyQuery extends OperationInSession {
         }catch(Exception e){
             logException(e);
         }finally {
-            sessionClose(session);
+            closeSession(session);
         }
         return ankiety;
     }

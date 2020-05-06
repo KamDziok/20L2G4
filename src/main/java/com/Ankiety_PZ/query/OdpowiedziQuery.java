@@ -4,11 +4,15 @@ import com.Ankiety_PZ.hibernate.Odpowiedzi;
 import org.hibernate.HibernateException;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class OdpowiedziQuery extends OperationInSession {
+
+    private OperationsOnDataInEntity<Odpowiedzi> modifyOdpowiedzi;
+
+    public OdpowiedziQuery(){
+        modifyOdpowiedzi = new OperationsOnDataInEntity<>();
+    }
 
     public List<Odpowiedzi> selestAll() throws HibernateException {
         List<Odpowiedzi> odpowiedzi = new ArrayList<>();
@@ -19,7 +23,7 @@ public class OdpowiedziQuery extends OperationInSession {
         } catch(Exception e){
             logException(e);
         }finally{
-            sessionClose(session);
+            closeSession(session);
         }
         return odpowiedzi;
     }
@@ -34,46 +38,33 @@ public class OdpowiedziQuery extends OperationInSession {
         }catch(Exception e){
             logException(e);
         }finally {
-            sessionClose(session);
+            closeSession(session);
         }
         return odpowiedzi;
     }
 
     public Boolean addOdpoweidz(Odpowiedzi odpowiedzi){
-        return modifyOdpowiedzi(odpowiedzi, true, false, false);
+        return modifyOdpowiedzi.modifyDataInEntity(odpowiedzi, true, false, false, true);
+    }
+
+    Boolean addOdpoweidzWithOutTransaction(Odpowiedzi odpowiedzi){
+        return modifyOdpowiedzi.modifyDataInEntity(odpowiedzi, true, false, false, false);
     }
 
     public Boolean updateOdpowiedzi(Odpowiedzi odpowiedzi){
-        return modifyOdpowiedzi(odpowiedzi, false, true, false);
+        return modifyOdpowiedzi.modifyDataInEntity(odpowiedzi, false, true, false, true);
+    }
+
+    Boolean updateOdpowiedziWithOutTransaction(Odpowiedzi odpowiedzi){
+        return modifyOdpowiedzi.modifyDataInEntity(odpowiedzi, false, true, false, false);
     }
 
     public Boolean delOdpowiedzi(Odpowiedzi odpowiedzi){
-        return modifyOdpowiedzi(odpowiedzi, false, false, true);
+        return modifyOdpowiedzi.modifyDataInEntity(odpowiedzi, false, false, true, true);
     }
 
-    private Boolean modifyOdpowiedzi(Odpowiedzi odpowiedzi, boolean add, boolean update, boolean delete){
-        Boolean result = false;
-        try{
-            session = openSession();
-            transaction = beginTransaction(session);;
-            if(add){
-                session.save(odpowiedzi);
-            }
-            if(update){
-                session.update(odpowiedzi);
-            }
-            if(delete) {
-                session.delete(odpowiedzi);
-            }
-            commitTransaction(transaction);
-            result = true;
-        }catch(Exception e){
-            transactionRollback(transaction);
-            logException(e);
-        }finally {
-            sessionClose(session);
-        }
-        return result;
+    Boolean delOdpowiedziWithOutTransaction(Odpowiedzi odpowiedzi){
+        return modifyOdpowiedzi.modifyDataInEntity(odpowiedzi, false, false, true, false);
     }
 
     /**
@@ -96,7 +87,7 @@ public class OdpowiedziQuery extends OperationInSession {
         }catch(Exception e){
             logException(e);
         }finally {
-            sessionClose(session);
+            closeSession(session);
         }
         return odpowiedzi;
     }

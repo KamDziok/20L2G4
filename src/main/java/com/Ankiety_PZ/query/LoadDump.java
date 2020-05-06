@@ -27,7 +27,7 @@ public class LoadDump extends OperationInSession {
         } catch(Exception e){
             logException(e);
         }finally{
-            sessionClose(session);
+            closeSession(session);
         }
     }
 }

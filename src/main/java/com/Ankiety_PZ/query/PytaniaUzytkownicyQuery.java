@@ -18,7 +18,7 @@ public class PytaniaUzytkownicyQuery extends OperationInSession {
         } catch(Exception e){
             logException(e);
         }finally{
-            sessionClose(session);
+            closeSession(session);
         }
         return pytU;
     }
@@ -32,10 +32,10 @@ public class PytaniaUzytkownicyQuery extends OperationInSession {
             commitTransaction(transaction);
             result = true;
         }catch(Exception e){
-            transactionRollback(transaction);
+            rollbackTransaction(transaction);
             logException(e);
         }finally {
-            sessionClose(session);
+            closeSession(session);
         }
         return result;
     }

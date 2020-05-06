@@ -3,12 +3,16 @@ import com.Ankiety_PZ.hibernate.Pytania;
 import org.hibernate.*;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 public class PytaniaQuery extends OperationInSession {
+
+    private OperationsOnDataInEntity<Pytania> modifyPytania;
+
+    public PytaniaQuery(){
+        this.modifyPytania = new OperationsOnDataInEntity<>();
+    }
 
     public List<Pytania> selectAll() throws HibernateException {
         List<Pytania> pytania = new ArrayList<>();
@@ -19,7 +23,7 @@ public class PytaniaQuery extends OperationInSession {
         } catch(Exception e){
             logException(e);
         }finally{
-            sessionClose(session);
+            closeSession(session);
         }
         return pytania;
     }
@@ -34,47 +38,34 @@ public class PytaniaQuery extends OperationInSession {
         }catch(Exception e){
             logException(e);
         }finally {
-            sessionClose(session);
+            closeSession(session);
         }
         return pytania;
     }
 
 
     public Boolean addPytania(Pytania pytanie){
-        return modifyPytania(pytanie, true, false,false);
+        return modifyPytania.modifyDataInEntity(pytanie, true, false,false, true);
+    }
+
+    Boolean addPytaniaWithOutTransaction(Pytania pytanie){
+        return modifyPytania.modifyDataInEntity(pytanie, true, false,false, false);
     }
 
     public Boolean updatePytania(Pytania pytanie){
-        return modifyPytania(pytanie, false, true, false);
+        return modifyPytania.modifyDataInEntity(pytanie, false, true, false, true);
+    }
+
+    Boolean updatePytaniaWithOutTransaction(Pytania pytanie){
+        return modifyPytania.modifyDataInEntity(pytanie, false, true, false, false);
     }
 
     public Boolean delPytania(Pytania pytania){
-        return modifyPytania(pytania, false, false, true);
+        return modifyPytania.modifyDataInEntity(pytania, false, false, true, true);
     }
 
-    private Boolean modifyPytania(Pytania pytania, boolean add, boolean update, boolean delete){
-        Boolean result = false;
-        try{
-            session = openSession();
-            transaction = beginTransaction(session);;
-            if(add){
-                session.save(pytania);
-            }
-            if(update){
-                session.update(pytania);
-            }
-            if(delete) {
-                session.delete(pytania);
-            }
-            commitTransaction(transaction);
-            result = true;
-        }catch(Exception e){
-            transactionRollback(transaction);
-            logException(e);
-        }finally {
-            sessionClose(session);
-        }
-        return result;
+    Boolean delPytaniaWithOutTransaction(Pytania pytania){
+        return modifyPytania.modifyDataInEntity(pytania, false, false, true, false);
     }
 
     /**
@@ -97,7 +88,7 @@ public class PytaniaQuery extends OperationInSession {
         }catch(Exception e){
             logException(e);
         }finally {
-            sessionClose(session);
+            closeSession(session);
         }
         return pytania;
     }

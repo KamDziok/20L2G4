@@ -17,7 +17,7 @@ public class OdpowiedziUzytkownicyQuery extends OperationInSession {
         } catch(Exception e){
             logException(e);
         }finally{
-            sessionClose(session);
+            closeSession(session);
         }
         return odpU;
     }
@@ -31,10 +31,10 @@ public class OdpowiedziUzytkownicyQuery extends OperationInSession {
             commitTransaction(transaction);
             result = true;
         }catch(Exception e){
-            transactionRollback(transaction);
+            rollbackTransaction(transaction);
             logException(e);
         }finally {
-            sessionClose(session);
+            closeSession(session);
         }
         return result;
     }
