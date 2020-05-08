@@ -22,13 +22,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class PanelAnkieterController extends BulidStage implements SetStartValues {
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+public class PanelAnkieterController extends BulidStage implements SetStartValues{
     private Uzytkownicy curentUser;
     public int id_ankiety;
     private String imie_nazwisko_rola_tmp;
@@ -38,9 +38,6 @@ import java.util.ResourceBundle;
     private Label imie_nazwisko_rola;
     @FXML
     private Label imie_nazwisko_rola2;
-public class PanelAnkieterController extends BulidStage implements SetStartValues{
-
-    private Uzytkownicy curentUser;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -211,10 +208,10 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
 
     }
 
-    @Override
-    public void setStartValues(Uzytkownicy user) {
-        curentUser = user;
-        setUstawienia();
-    }
+//    @Override
+//    public void setStartValues(Uzytkownicy user) {
+//        this.curentUser = user;
+//        setUstawienia();
+//    }
 
 }
