@@ -34,17 +34,31 @@ class OperationsOnDataInEntity<Type> extends OperationInSession {
     }
 
     protected Type selectObject(String hql){
-        Type type = null;
+        Type result = null;
         try{
             session = openSession();
-            query = session.createQuery(hql);
-            type = (Type) query.uniqueResult();
+            result = (Type) session.createQuery(hql).uniqueResult();
         }catch(Exception e){
             logException(e);
         }finally {
             closeSession(session);
         }
-        return type;
+        return result;
     }
+
+    protected List<Type> selectList(List<Type> type){
+        List<Type> result = null;
+        try{
+            session = openSession();
+            result = type;
+        }catch(Exception e){
+            logException(e);
+        }finally {
+            closeSession(session);
+        }
+        return result;
+    }
+
+
 
 }

@@ -2,6 +2,7 @@ package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.hibernate.Ankiety;
 import com.Ankiety_PZ.hibernate.Odpowiedzi;
+import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.Date;
 
 public class TestFX extends Application {
 //    @Override
@@ -51,6 +53,23 @@ public class TestFX extends Application {
 //        System.out.println("Current dir using System:" + Paths.get("") .toAbsolutePath().toString());
 //        PytaniaQuery pq = new PytaniaQuery();
 //        System.out.println(pq.selectSetPytaniaByIdAnkiety(12).size());
+
+//        Ankiety a = new Ankiety();
+//        UzytkownicyQuery uq = new UzytkownicyQuery();
+//        Uzytkownicy u = uq.selectById(1);
+//        a.setUzytkownicy(u);
+//        a.setLiczbaPunktow(10);
+//        a.setLiczbaWypelnien(0);
+//        a.setDataZakonczenia(new Date());
+//        a.setDataRozpoczecia(new Date());
+//        a.setTytul("fajna");
+//        AnkietyQuery aq = new AnkietyQuery();
+//        aq.addAnkiety(a);
+
+//        AnkietyQuery aq = new AnkietyQuery();
+//        Ankiety a = aq.selectById(12);
+//        System.out.println(a);
+//        System.out.println(a.toString());
         launch();
     }
 }

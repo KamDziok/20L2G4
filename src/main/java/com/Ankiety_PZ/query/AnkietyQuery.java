@@ -44,18 +44,7 @@ public class AnkietyQuery extends OperationInSession {
     }
 
     public Ankiety selectById(Integer id){
-        Ankiety ankiety = null;
-        try{
-            session = openSession();
-            String hgl = "from Ankiety where ID = " + id;
-            query = session.createQuery(hgl);
-            ankiety = (Ankiety) query.uniqueResult();
-        }catch(Exception e){
-            logException(e);
-        }finally {
-            closeSession(session);
-        }
-        return ankiety;
+            return modifyAnkiety.selectObject(("from Ankiety where ID=" + id) );
     }
 
     public Boolean addAnkiety(Ankiety ankiety){
