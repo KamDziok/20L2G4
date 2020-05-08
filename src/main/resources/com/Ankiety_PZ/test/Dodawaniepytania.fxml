@@ -17,7 +17,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField alignment="TOP_LEFT" layoutX="174.0" layoutY="80.0" prefHeight="118.0" prefWidth="992.0" />
+      <TextField fx:id="trescPytania" alignment="TOP_LEFT" layoutX="174.0" layoutY="80.0" prefHeight="118.0" prefWidth="992.0" />
       <Button fx:id="wyloguj1" layoutX="16.0" layoutY="658.0" mnemonicParsing="false" onAction="#wyloguj1Action" prefHeight="47.0" prefWidth="158.0" text="Wyloguj" />
       <Button fx:id="dodajpytanie" layoutX="1029.0" layoutY="659.0" mnemonicParsing="false" onAction="#dodajpytanieAction" prefHeight="47.0" prefWidth="158.0" text="Dodaj pytanie" />
       <Button fx:id="anuluj" layoutX="884.0" layoutY="659.0" mnemonicParsing="false" onAction="#anulujAction" prefHeight="47.0" prefWidth="126.0" text="Anuluj" />
@@ -56,8 +56,8 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="208.0" prefWidth="1113.0">
                <children>
-                  <TextField alignment="TOP_LEFT" layoutX="8.0" layoutY="14.0" prefHeight="47.0" prefWidth="891.0" />
-                  <Button layoutX="912.0" layoutY="17.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="91.0" text="Dodaj " />
+                  <TextField fx:id="odpowiedzi" alignment="TOP_LEFT" layoutX="8.0" layoutY="14.0" prefHeight="47.0" prefWidth="891.0" />
+                  <Button fx:id="dodajOdp" layoutX="912.0" layoutY="17.0" mnemonicParsing="false" onAction="#dodajOdpAction" prefHeight="41.0" prefWidth="91.0" text="Dodaj " />
                   <Button layoutX="1008.0" layoutY="17.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="91.0" text="Usuń" />
                </children></AnchorPane>
         </content>
@@ -67,6 +67,6 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="403.0" layoutY="299.0" prefHeight="47.0" prefWidth="64.0" />
+      <TextField fx:id="punkty" layoutX="403.0" layoutY="299.0" prefHeight="47.0" prefWidth="64.0" />
    </children>
 </AnchorPane>

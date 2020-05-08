@@ -1,5 +1,7 @@
 package com.Ankiety_PZ.test;
 
+import com.Ankiety_PZ.hibernate.Ankiety;
+import com.Ankiety_PZ.hibernate.Pytania;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -95,6 +97,16 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
        String imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - konto zarządzania nagrodami";
         System.out.print(imie_nazwisko_rola_tmp);
         imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
+    }
+
+    @Override
+    public void setStartValuesAnkiety(Ankiety ankieta) {
+
+    }
+
+    @Override
+    public void setStartValuesPytanie(Pytania pytania) {
+
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete

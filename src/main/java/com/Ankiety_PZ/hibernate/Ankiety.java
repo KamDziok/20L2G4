@@ -5,6 +5,7 @@ package com.Ankiety_PZ.hibernate;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.xml.crypto.Data;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -46,6 +47,9 @@ public class Ankiety  implements java.io.Serializable {
        this.liczbaWypelnien = liczbaWypelnien;
        this.uzytkownicy = user;
        this.pytanias = pytanias;
+    }
+    public void initHashSetPytania(){
+        this.pytanias = new HashSet<Pytania>();
     }
    
     public Integer getIdAnkiety() {
@@ -108,9 +112,6 @@ public class Ankiety  implements java.io.Serializable {
     }
 
 
-    public void initHashSetPytania(){
-        this.pytanias = new HashSet<Pytania>();
-    }
 
 
 }

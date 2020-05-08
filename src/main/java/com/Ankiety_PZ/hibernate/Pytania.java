@@ -2,6 +2,8 @@ package com.Ankiety_PZ.hibernate;
 // Generated 2020-04-16 17:33:57 by Hibernate Tools 4.3.1
 
 
+import javafx.scene.image.ImageView;
+
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
 import java.util.HashSet;
@@ -17,7 +19,7 @@ public class Pytania  implements java.io.Serializable {
      private Integer idPytania;
      private Ankiety ankiety;
      private String tresc;
-     private byte[] zdjecie;
+     private ImageView zdjecie;
      private Integer punktowe;
      private int rodzajPytania;
      private Set odpowiedzis = new HashSet(0);
@@ -28,16 +30,26 @@ public class Pytania  implements java.io.Serializable {
             orphanRemoval = true)
     private List<PytaniaUzytkownicy> pytaniaUzytkownicy;
 
-    public Pytania() {
+
+
+    public void initHashSetOdpowiedzi(){
+        this.odpowiedzis = new HashSet<Odpowiedzi>();
     }
 
-	
-    public Pytania(Ankiety ankiety, String tresc, int rodzajPytania) {
-        this.ankiety = ankiety;
+    public Pytania(Ankiety ankiety, String tresc, ImageView imageview, int rodzajPytania, int punktowe, Set odpowiedzis) {
         this.tresc = tresc;
+        this.zdjecie = zdjecie;
+        this.punktowe = punktowe;
         this.rodzajPytania = rodzajPytania;
     }
-    public Pytania(Ankiety ankiety, String tresc, byte[] zdjecie, Integer punktowe, int rodzajPytania, Set odpowiedzis) {
+    public Pytania(Ankiety ankiety, String tresc, ImageView zdjecie, Integer punktowe, int rodzajPytania) {
+        this.ankiety = ankiety;
+        this.tresc = tresc;
+        this.zdjecie = zdjecie;
+        this.punktowe = punktowe;
+        this.rodzajPytania = rodzajPytania;
+    }
+    public Pytania(Ankiety ankiety, String tresc, ImageView zdjecie, Integer punktowe, int rodzajPytania, Set odpowiedzis) {
        this.ankiety = ankiety;
        this.tresc = tresc;
        this.zdjecie = zdjecie;
@@ -45,7 +57,7 @@ public class Pytania  implements java.io.Serializable {
        this.rodzajPytania = rodzajPytania;
        this.odpowiedzis = odpowiedzis;
     }
-   
+
     public Integer getIdPytania() {
         return this.idPytania;
     }
@@ -67,11 +79,11 @@ public class Pytania  implements java.io.Serializable {
     public void setTresc(String tresc) {
         this.tresc = tresc;
     }
-    public byte[] getZdjecie() {
+    public ImageView getZdjecie() {
         return this.zdjecie;
     }
     
-    public void setZdjecie(byte[] zdjecie) {
+    public void setZdjecie(ImageView zdjecie) {
         this.zdjecie = zdjecie;
     }
     public Integer getPunktowe() {
@@ -96,9 +108,6 @@ public class Pytania  implements java.io.Serializable {
         this.odpowiedzis = odpowiedzis;
     }
 
-    public void initHashSetOdpowiedzi(){
-        this.odpowiedzis = new HashSet<Odpowiedzi>();
-    }
 
 }
 

@@ -5,8 +5,12 @@
 package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.hibernate.Ankiety;
+import com.Ankiety_PZ.hibernate.Pytania;
+import com.Ankiety_PZ.hibernate.Nagrody;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.AnkietyQuery;
+import com.Ankiety_PZ.query.NagrodyQuery;
+import com.Ankiety_PZ.query.UzytkownicyQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -49,6 +53,11 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     @FXML private TableColumn wygasa;
     @FXML private TableColumn pkt;
     @FXML private TableColumn przycisk;
+    @FXML private TableView tableNagrody;
+    @FXML private TableColumn nazwa;
+    @FXML private TableColumn cena;
+    @FXML private TableColumn obrazek;
+    @FXML private TableColumn kup;
 
     @FXML
     void wyloguj(ActionEvent event) {
@@ -59,6 +68,20 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     void panelUzytkownikaButtonMakeAnkiet(ActionEvent event) {
         loadingFXML(event, SceneFXML.OKNO_ANKIETA_RADIO);
         activeScene(event, false, true);
+    }@FXML
+    void panelUzytkownikaButtonZmienUstawienia(ActionEvent event) {
+        curentUser.setMail(email.getText());
+        if(haslo.getText().equals(curentUser.getHaslo()) && nowehaslo.getText().equals(hasloznowu.getText()))
+            curentUser.setHaslo(nowehaslo.getText());
+        curentUser.setImie(imie.getText());
+        curentUser.setNazwisko(nazwisko.getText());
+        curentUser.setMiejscowosc(miejscowosc.getText());
+        curentUser.setUlica(ulica.getText());
+        curentUser.setNumerBudynku(budynek.getText());
+        curentUser.setNumerLokalu(lokal.getText());
+        curentUser.setKodPocztowy(kod1.getText() + "-" + kod2.getText());
+        UzytkownicyQuery query = new UzytkownicyQuery();
+        query.updateUzytkownik(curentUser);
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -107,7 +130,18 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     }
 
     private void setNagrody() {
-
+        NagrodyQuery query = new NagrodyQuery();
+        List<Nagrody> nagrody = query.selectAll();
+        ObservableList<NagrodaTabelka> dane = FXCollections.observableArrayList();
+        for (Nagrody nagroda:nagrody
+        ) {
+            dane.add(new NagrodaTabelka(nagroda));
+        }
+        tableNagrody.itemsProperty().setValue(dane);
+        nazwa.setCellValueFactory(new PropertyValueFactory("nazwa"));
+        cena.setCellValueFactory(new PropertyValueFactory("cena"));
+        obrazek.setCellValueFactory(new PropertyValueFactory("obrazek"));
+        kup.setCellValueFactory(new PropertyValueFactory("button"));
     }
 
     @Override
@@ -116,5 +150,15 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
         setUstawienia();
         setAnkiety();
         setNagrody();
+    }
+
+    @Override
+    public void setStartValuesAnkiety(Ankiety ankieta) {
+
+    }
+
+    @Override
+    public void setStartValuesPytanie(Pytania pytania) {
+
     }
 }

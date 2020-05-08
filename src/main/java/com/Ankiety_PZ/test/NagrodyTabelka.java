@@ -22,13 +22,13 @@ public class NagrodyTabelka extends BulidStage {
             @Override
             public void handle(ActionEvent event) {
                 NagrodyQuery usun = new NagrodyQuery();
-                usun.delNagrody(nagroda);
+                usun.deactivateNagrody(nagroda);
             }
         });
         edytuj.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                loadingFXML(event, SceneFXML.PANEL_NAGROD);
+                loadingFXML(event, SceneFXML.PANEL_EDIT_NAGROD);
                 activeScene(event, false, false);
             }
         });

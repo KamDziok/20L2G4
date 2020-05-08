@@ -75,7 +75,7 @@ public class PanelLoginController extends BulidStage {
                     case Permissions.ANKIETER:
                         loadingFXML(event, SceneFXML.PANEL_ANKIETERA);
                         PanelAnkieterController panelAnkieterController = load.getController();
-                        //panelAnkieterController.setStartValues(user);
+                        panelAnkieterController.setStartValues(user);
                         activeScene(event, false, false);
                         break;
                     case Permissions.OSOBA_OD_NAGROD:
