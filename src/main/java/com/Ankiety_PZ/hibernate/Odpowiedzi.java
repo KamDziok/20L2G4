@@ -21,7 +21,7 @@ public class Odpowiedzi  implements java.io.Serializable {
             orphanRemoval = true)
     private List<OdpowiedziUzytkownicy> odpowiedziUzytkownicy;
 
-    public Odpowiedzi(String s) {
+    public Odpowiedzi() {
     }
 
     public Odpowiedzi(Pytania pytania, String odpowiedz) {

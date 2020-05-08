@@ -36,6 +36,9 @@ public class Pytania  implements java.io.Serializable {
         this.odpowiedzis = new HashSet<Odpowiedzi>();
     }
 
+    public Pytania() {
+    }
+
     public Pytania(Ankiety ankiety, String tresc, ImageView imageview, int rodzajPytania, int punktowe, Set odpowiedzis) {
         this.tresc = tresc;
         this.zdjecie = zdjecie;
