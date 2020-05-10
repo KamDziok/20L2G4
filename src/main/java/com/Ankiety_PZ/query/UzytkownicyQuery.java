@@ -129,6 +129,18 @@ public class UzytkownicyQuery extends OperationInSession {
         return result;
     }
 
+    public boolean unban(Uzytkownicy user){
+        boolean result = false;
+        user.setUprawnienia(Permissions.KLIENT);
+        try {
+            updateUzytkownik(user);
+            result = true;
+        }catch (Exception e){
+            logException(e);
+        }
+        return result;
+    }
+
     /**
      * Wyszukanie użytkowników pod względem uprawnień.
      *
