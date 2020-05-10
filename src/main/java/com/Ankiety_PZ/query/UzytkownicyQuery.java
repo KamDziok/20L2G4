@@ -1,7 +1,9 @@
 package com.Ankiety_PZ.query;
 
+import com.Ankiety_PZ.hibernate.OdpowiedziUzytkownicy;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.test.Permissions;
+import com.Ankiety_PZ.test.TypeOfQuestion;
 import org.hibernate.HibernateException;
 
 import java.util.ArrayList;
@@ -153,5 +155,33 @@ public class UzytkownicyQuery extends OperationInSession {
             closeSession(session);
         }
         return users;
+    }
+
+    public Boolean addOdpowiedziUzytkownika(List<OdpowiedziUzytkownicy> usersAnswers){
+        boolean result = false;
+        try{
+            session = openSession();
+            transaction = beginTransaction(session);
+            usersAnswers.forEach(userAnswers ->
+            {
+                Integer points = null;
+                if(userAnswers.getPunktowe() != TypeOfQuestion.USER_ANSWER_NULL){
+                    points = userAnswers.getPunktowe();
+                }
+                session.createSQLQuery("INSERT INTO `odpowiedzi_uzytkownicy`(`ID_odpowiedzi`, `ID_uzytkownika`, `punktowe`) " +
+                    "VALUES (:idOdpowiedzi,:idUzytkownika,:punkty)")
+                    .setParameter("idOdpowiedzi", userAnswers.getOdpowiedz().getIdOdpowiedzi())
+                    .setParameter("idUzytkownika", userAnswers.getUzytkownik().getIdUzytkownika())
+                    .setParameter("punkty", points).executeUpdate();
+            });
+            commitTransaction(transaction);
+            result = true;
+        }catch(Exception e){
+            rollbackTransaction(transaction);
+            logException(e);
+        }finally {
+            closeSession(session);
+        }
+        return result;
     }
 }
