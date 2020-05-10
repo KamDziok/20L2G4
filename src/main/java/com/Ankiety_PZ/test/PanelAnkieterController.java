@@ -4,28 +4,22 @@ package com.Ankiety_PZ.test;
  */
 
 
-import java.net.URL;
-import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
-
 import com.Ankiety_PZ.hibernate.Ankiety;
+import com.Ankiety_PZ.hibernate.Nagrody;
 import com.Ankiety_PZ.hibernate.Pytania;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.AnkietyQuery;
+import com.Ankiety_PZ.query.UzytkownicyQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import com.Ankiety_PZ.hibernate.Uzytkownicy;
-import com.Ankiety_PZ.query.UzytkownicyQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-
 import java.net.URL;
+import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class PanelAnkieterController extends BulidStage implements SetStartValues{
@@ -194,6 +188,11 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
 
     @Override
     public void setStartValuesPytanie(Pytania pytania) {
+
+    }
+
+    @Override
+    public void setStartValuesNagroda(Nagrody nagroda) {
 
     }
 

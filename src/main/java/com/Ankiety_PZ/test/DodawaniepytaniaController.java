@@ -4,36 +4,24 @@
  */
 
 package com.Ankiety_PZ.test;
-        import java.net.URL;
-        import java.util.ArrayList;
-        import java.util.List;
-        import java.util.ResourceBundle;
+        import com.Ankiety_PZ.hibernate.*;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
-        import com.Ankiety_PZ.hibernate.Ankiety;
-        import com.Ankiety_PZ.hibernate.Odpowiedzi;
-        import com.Ankiety_PZ.hibernate.Pytania;
-        import com.Ankiety_PZ.hibernate.Uzytkownicy;
-        import com.Ankiety_PZ.query.AnkietyQuery;
-        import com.Ankiety_PZ.query.OdpowiedziQuery;
-        import com.Ankiety_PZ.query.PytaniaQuery;
-        import javafx.collections.FXCollections;
-        import javafx.collections.ObservableList;
-        import javafx.event.ActionEvent;
-        import javafx.fxml.FXML;
-        import javafx.scene.control.Button;
-        import javafx.scene.control.TextField;
-        import javafx.scene.control.cell.PropertyValueFactory;
-        import javafx.scene.image.Image;
-        import javafx.scene.image.ImageView;
-        import javafx.stage.FileChooser;
-        import javafx.stage.Stage;
-        import java.io.File;
-        import java.util.Set;
-
-        import javafx.scene.control.RadioButton;
-        import javafx.scene.control.ToggleGroup;
-
-        import static javax.swing.text.StyleConstants.Size;
+import java.io.File;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.Set;
 
 
 public class DodawaniepytaniaController extends BulidStage implements SetStartValues {
@@ -243,6 +231,11 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     @Override
     public void setStartValuesPytanie(Pytania pytania) {
         this.pytani = pytania;
+    }
+
+    @Override
+    public void setStartValuesNagroda(Nagrody nagroda) {
+
     }
 
 }

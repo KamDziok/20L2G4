@@ -1,6 +1,8 @@
 package com.Ankiety_PZ.hibernate;
 
 
+import com.Ankiety_PZ.test.TypeOfQuestion;
+
 import javax.persistence.*;
 
 @Entity(name = "OdpowiedziUzytkownicy")
@@ -27,6 +29,7 @@ public class OdpowiedziUzytkownicy {
     public OdpowiedziUzytkownicy(Odpowiedzi odpowiedz, Uzytkownicy uzytkownik) {
         this.odpowiedz = odpowiedz;
         this.uzytkownik = uzytkownik;
+        this.punktowe = TypeOfQuestion.USER_ANSWER_NULL;
         this.id = new OdpowiedziUzytkownicyId(odpowiedz.getIdOdpowiedzi(), uzytkownik.getIdUzytkownika());
     }
 

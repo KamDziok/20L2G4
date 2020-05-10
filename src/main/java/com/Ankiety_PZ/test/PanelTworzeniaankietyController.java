@@ -4,31 +4,20 @@
 package com.Ankiety_PZ.test;
 
 
-import java.awt.*;
+import com.Ankiety_PZ.hibernate.Ankiety;
+import com.Ankiety_PZ.hibernate.Nagrody;
+import com.Ankiety_PZ.hibernate.Pytania;
+import com.Ankiety_PZ.hibernate.Uzytkownicy;
+import com.Ankiety_PZ.query.AnkietyQuery;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Set;
-
-import com.Ankiety_PZ.hibernate.Ankiety;
-import com.Ankiety_PZ.hibernate.Odpowiedzi;
-import com.Ankiety_PZ.hibernate.Pytania;
-import com.Ankiety_PZ.hibernate.Uzytkownicy;
-import com.Ankiety_PZ.query.AnkietyQuery;
-import com.Ankiety_PZ.query.OdpowiedziQuery;
-import com.Ankiety_PZ.query.PytaniaQuery;
-import com.Ankiety_PZ.query.UzytkownicyQuery;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-
-
-import javax.xml.crypto.Data;
 
 public class PanelTworzeniaankietyController extends BulidStage implements SetStartValues{
     private Uzytkownicy curentUser;
@@ -120,6 +109,11 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     @Override
     public void setStartValuesPytanie(Pytania pytania) {
         this.pytanie = pytania;
+
+    }
+
+    @Override
+    public void setStartValuesNagroda(Nagrody nagroda) {
 
     }
 

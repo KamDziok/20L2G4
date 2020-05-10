@@ -8,4 +8,6 @@ public class TypeOfQuestion {
     public static final int POINTS = 3;
     public static final int PERCENT = 4;
 
+    public static final int USER_ANSWER_NULL = -1;
+
 }

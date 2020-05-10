@@ -161,4 +161,9 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     public void setStartValuesPytanie(Pytania pytania) {
 
     }
+
+    @Override
+    public void setStartValuesNagroda(Nagrody nagroda) {
+
+    }
 }

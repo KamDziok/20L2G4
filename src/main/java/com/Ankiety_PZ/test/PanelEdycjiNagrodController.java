@@ -1,8 +1,10 @@
 package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.hibernate.Ankiety;
+import com.Ankiety_PZ.hibernate.Nagrody;
 import com.Ankiety_PZ.hibernate.Pytania;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
+import com.Ankiety_PZ.query.NagrodyQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,14 +26,16 @@ import java.util.ResourceBundle;
 
 public class PanelEdycjiNagrodController extends BulidStage implements Initializable, SetStartValues {
 
+    private Nagrody nagrody;
     private Uzytkownicy curentUser;
+    Image image;
 
     File file = new File("C:\\Users\\Banan\\Pictures\\a.jpg");
     @FXML
     private Button wyloguj;
 
     @FXML
-    private Button panelEdycjiNagrodButtonUsun;
+    private Button panelEdycjiNagrodButtonEdytuj;
 
     @FXML
     private Button panelEdycjiNagrodButtonAnuluj;
@@ -69,7 +73,7 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         );
         file = fileChooser.showOpenDialog(stage);
         try {
-            Image image = new Image(file.toURI().toString());
+            image = new Image(file.toURI().toString());
 
             imageview.setImage(image);
         }catch(IllegalArgumentException argumentException){
@@ -86,7 +90,13 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
     }
 
     @FXML
-    void panelEdycjiNagrodButtonUsun(ActionEvent event) {
+    void panelEdycjiNagrodButtonEdytuj(ActionEvent event) {
+
+        NagrodyQuery zapisz = new NagrodyQuery();
+        nagrody.setLiczbaPunktow(Integer.parseInt(pkt.getText()));
+        nagrody.setNazwa(nag.getText());
+        
+        zapisz.updateNagrody(nagrody);
         loadingFXML(event, SceneFXML.PANEL_NAGROD);
         activeScene(event, false, false);
     }
@@ -102,6 +112,7 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
     @Override
     public void setStartValuesAnkiety(Ankiety ankieta) {
 
+
     }
 
     @Override
@@ -109,10 +120,20 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
 
     }
 
+    @Override
+    public void setStartValuesNagroda(Nagrody nagroda) {
+
+        this.nagrody = nagroda;
+        nag.setText(nagroda.getNazwa());
+        pkt.setText(nagroda.getLiczbaPunktow()+"");
+    }
+
+
+
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert PanelEdycjiNagrod != null : "fx:id=\"panelEdycjiNagrodButtonDodajZdjecie\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
-        assert panelEdycjiNagrodButtonUsun != null : "fx:id=\"panelEdycjiNagrodButtonUsun\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
+        assert panelEdycjiNagrodButtonEdytuj != null : "fx:id=\"panelEdycjiNagrodButtonUsun\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
         assert panelEdycjiNagrodButtonAnuluj != null : "fx:id=\"panelEdycjiNagrodButtonAnuluj\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
         assert wyloguj != null : "fx:id=\"wyloguj\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
         assert imie_nazwisko_rola != null : "fx:id=\"imie_nazwisko_rola\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
@@ -128,6 +149,7 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
 
 
     }
+
 
 
 }

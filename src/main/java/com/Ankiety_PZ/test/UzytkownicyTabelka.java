@@ -2,26 +2,28 @@ package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.UzytkownicyQuery;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
-public class UzytkownicyTabelka extends PanelAdminaController {
+public class UzytkownicyTabelka  extends BulidStage {
 
     private int id;
     private String imie_i_nazwisko;
     private String mail;
     private int liczbaPunktow;
-    private Button button;
-
+    private Button usun;
+    private Button edytuj;
 
     UzytkownicyTabelka(Uzytkownicy uzytkownik, PanelAdminaController panel) {
         imie_i_nazwisko = uzytkownik.getImie()+" "+uzytkownik.getNazwisko();
         liczbaPunktow = uzytkownik.getLiczbaPunktow();
         id = uzytkownik.getIdUzytkownika();
         mail = uzytkownik.getMail();
-        button = new Button("Usuń");
-        button.setOnAction(new EventHandler<ActionEvent>() {
+        usun = new Button("Usuń");
+        edytuj = new Button("Edytuj");
+        usun.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 UzytkownicyQuery ban = new UzytkownicyQuery();
@@ -39,6 +41,15 @@ public class UzytkownicyTabelka extends PanelAdminaController {
                 panel.tableUzytkownicy.setItems(panel.dane);
             }
         });
+        edytuj.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                loadingFXML(event, SceneFXML.PANEL_EDIT_USER);
+                PanelEdycjiUzytkownikaController panelEdycjiUzytkownikaController = load.getController();
+                panelEdycjiUzytkownikaController.setStartValues(uzytkownik);
+                activeScene(event, false, false);
+            }
+        });
     }
 
     public String getImie_i_nazwisko() {
@@ -53,7 +64,11 @@ public class UzytkownicyTabelka extends PanelAdminaController {
         return liczbaPunktow;
     }
 
-    public Button getButton() {
-        return button;
+    public Button getUsun() {
+        return usun;
+    }
+
+    public Button getEdytuj() {
+        return edytuj;
     }
 }

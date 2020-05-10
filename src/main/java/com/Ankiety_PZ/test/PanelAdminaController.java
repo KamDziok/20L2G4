@@ -6,6 +6,7 @@ package com.Ankiety_PZ.test;
 
 
 import com.Ankiety_PZ.hibernate.Ankiety;
+import com.Ankiety_PZ.hibernate.Nagrody;
 import com.Ankiety_PZ.hibernate.Pytania;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.UzytkownicyQuery;
@@ -46,6 +47,9 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
     private TableColumn pkt;
     @FXML
     private TableColumn przycisk;
+    @FXML
+    private TableColumn przycisk2;
+
     @FXML private TextField email;
     @FXML private TextField haslo;
     @FXML private TextField nowehaslo;
@@ -109,7 +113,8 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
         imie_i_nazwisko.setCellValueFactory(new PropertyValueFactory("imie_i_nazwisko"));
         mail.setCellValueFactory(new PropertyValueFactory("mail"));
         pkt.setCellValueFactory(new PropertyValueFactory("liczbaPunktow"));
-        przycisk.setCellValueFactory(new PropertyValueFactory("button"));
+        przycisk.setCellValueFactory(new PropertyValueFactory("usun"));
+        przycisk2.setCellValueFactory(new PropertyValueFactory("edytuj"));
         tableUzytkownicy.setItems(dane);
     }
 
@@ -151,6 +156,13 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
     public void setStartValuesPytanie(Pytania pytania) {
 
     }
+
+    @Override
+    public void setStartValuesNagroda(Nagrody nagroda) {
+
+    }
+
+
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
