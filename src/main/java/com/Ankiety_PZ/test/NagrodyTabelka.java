@@ -1,6 +1,7 @@
 package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.hibernate.Nagrody;
+import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.NagrodyQuery;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,7 +14,7 @@ public class NagrodyTabelka extends BulidStage {
     public Button usun;
     public Button edytuj;
 
-    NagrodyTabelka(Nagrody nagroda) {
+    NagrodyTabelka(Nagrody nagroda, Uzytkownicy uzytkownik) {
         tytul = nagroda.getNazwa();
         liczbaPunktow = nagroda.getLiczbaPunktow();
         usun = new Button("Usuń");
@@ -29,6 +30,8 @@ public class NagrodyTabelka extends BulidStage {
             @Override
             public void handle(ActionEvent event) {
                 loadingFXML(event, SceneFXML.PANEL_EDIT_NAGROD);
+                PanelEdycjiNagrodController panelEdycjiNagrodController = load.getController();
+                panelEdycjiNagrodController.setStartValues(uzytkownik);
                 activeScene(event, false, false);
             }
         });

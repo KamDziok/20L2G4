@@ -104,7 +104,7 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
         ObservableList<NagrodyTabelka> dane = FXCollections.observableArrayList();
         for (Nagrody nagroda:nagrodies
         ) {
-            dane.add(new NagrodyTabelka (nagroda));
+            dane.add(new NagrodyTabelka (nagroda, curentUser));
         }
         tableNagrody.itemsProperty().setValue(dane);
         nagrody.setCellValueFactory(new PropertyValueFactory("tytul"));
