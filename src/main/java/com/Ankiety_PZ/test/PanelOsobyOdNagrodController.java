@@ -148,6 +148,11 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
 
     }
 
+    @Override
+    public void setStartValuesNagroda(Nagrody nagroda) {
+
+    }
+
     @FXML
     void initialize() {
         assert imie_nazwisko_rola != null : "fx:id=\"imie_nazwisko_rola\" was not injected: check your FXML file 'PanelOsobyOdNagrod.fxml'.";

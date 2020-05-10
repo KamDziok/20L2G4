@@ -1,6 +1,7 @@
 package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.hibernate.Ankiety;
+import com.Ankiety_PZ.hibernate.Nagrody;
 import com.Ankiety_PZ.hibernate.Pytania;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import javafx.event.ActionEvent;
@@ -50,6 +51,11 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
 
     @Override
     public void setStartValuesPytanie(Pytania pytania) {
+
+    }
+
+    @Override
+    public void setStartValuesNagroda(Nagrody nagroda) {
 
     }
 

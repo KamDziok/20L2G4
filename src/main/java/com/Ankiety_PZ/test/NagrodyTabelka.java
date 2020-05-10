@@ -32,6 +32,7 @@ public class NagrodyTabelka extends BulidStage {
                 loadingFXML(event, SceneFXML.PANEL_EDIT_NAGROD);
                 PanelEdycjiNagrodController panelEdycjiNagrodController = load.getController();
                 panelEdycjiNagrodController.setStartValues(uzytkownik);
+                panelEdycjiNagrodController.setStartValuesNagroda(nagroda);
                 activeScene(event, false, false);
             }
         });
