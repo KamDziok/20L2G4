@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 public class PanelAdminaController extends BulidStage implements SetStartValues {
 
     private Uzytkownicy curentUser;
-
+    public ObservableList<UzytkownicyTabelka> dane;
     private String imie_nazwisko_rola_tmp;
 
     @FXML
@@ -37,7 +37,7 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
     @FXML
     private Button wyloguj;
     @FXML
-    private TableView tableUzytkownicy;
+    TableView tableUzytkownicy;
     @FXML
     private TableColumn imie_i_nazwisko;
     @FXML
@@ -51,6 +51,23 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
     @FXML private TextField nowehaslo;
     @FXML private TextField hasloznowu;
     @FXML private TextField imie;
+
+    public TableColumn getImie_i_nazwiskoPanel() {
+        return imie_i_nazwisko;
+    }
+
+    public TableColumn getMailPanel() {
+        return mail;
+    }
+
+    public TableColumn getPktPanel() {
+        return pkt;
+    }
+
+    public TableColumn getPrzyciskPanel() {
+        return przycisk;
+    }
+
     @FXML private TextField nazwisko;
     @FXML private TextField miejscowosc;
     @FXML private TextField ulica;
@@ -84,25 +101,21 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
     void setUzytkownicy() {
         UzytkownicyQuery query = new UzytkownicyQuery();
         List<Uzytkownicy> uzytkownicy = query.selectBy(false);
-        ObservableList<UzytkownicyTabelka> dane = FXCollections.observableArrayList();
+        dane = FXCollections.observableArrayList();
         for (Uzytkownicy uzytkownik:uzytkownicy
         ) {
-            dane.add(new UzytkownicyTabelka (uzytkownik));
-
+            dane.add(new UzytkownicyTabelka (uzytkownik, this));
         }
-        System.out.println();
-        tableUzytkownicy.itemsProperty().setValue(dane);
         imie_i_nazwisko.setCellValueFactory(new PropertyValueFactory("imie_i_nazwisko"));
         mail.setCellValueFactory(new PropertyValueFactory("mail"));
         pkt.setCellValueFactory(new PropertyValueFactory("liczbaPunktow"));
         przycisk.setCellValueFactory(new PropertyValueFactory("button"));
+        tableUzytkownicy.setItems(dane);
     }
 
     private void setUstawienia() {
         String imie = curentUser.getImie();
         String nazwisko = curentUser.getNazwisko();
-        String textPkt = imie + " " + nazwisko + " posiadasz ";
-        String pkt = curentUser.getLiczbaPunktow() + "pkt";
         String[] kod = curentUser.getKodPocztowy().split("-");
         System.out.println(kod[0]);
         email.setText(curentUser.getMail());

@@ -8,15 +8,17 @@ import javafx.scene.control.Button;
 
 public class UzytkownicyTabelka extends PanelAdminaController {
 
-    public String imie_i_nazwisko;
-    public String nazwisko;
-    public String mail;
-    public int liczbaPunktow;
-    public Button button;
+    private int id;
+    private String imie_i_nazwisko;
+    private String mail;
+    private int liczbaPunktow;
+    private Button button;
 
-    UzytkownicyTabelka(Uzytkownicy uzytkownik) {
+
+    UzytkownicyTabelka(Uzytkownicy uzytkownik, PanelAdminaController panel) {
         imie_i_nazwisko = uzytkownik.getImie()+" "+uzytkownik.getNazwisko();
         liczbaPunktow = uzytkownik.getLiczbaPunktow();
+        id = uzytkownik.getIdUzytkownika();
         mail = uzytkownik.getMail();
         button = new Button("Usuń");
         button.setOnAction(new EventHandler<ActionEvent>() {
@@ -24,7 +26,17 @@ public class UzytkownicyTabelka extends PanelAdminaController {
             public void handle(ActionEvent event) {
                 UzytkownicyQuery ban = new UzytkownicyQuery();
                 ban.ban(uzytkownik);
-                setUzytkownicy();
+                panel.dane.forEach(s -> {
+                    if(s.id == uzytkownik.getIdUzytkownika())
+                        panel.dane.remove(s);
+                });
+//                Iterator iterator = panel.dane.iterator();
+//                while (iterator.hasNext()){
+//                    if (iterator. == uzytkownik.getIdUzytkownika()){
+//                        panel.dane.iterator().remove();
+//                    }
+//                }
+                panel.tableUzytkownicy.setItems(panel.dane);
             }
         });
     }
