@@ -25,7 +25,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="nag" layoutX="16.0" layoutY="58.0" prefHeight="47.0" prefWidth="595.0" text="Smartfon Samsung Galaxy S20" />
+            <TextField fx:id="nag" layoutX="16.0" layoutY="58.0" prefHeight="47.0" prefWidth="595.0" />
             <Label layoutX="16.0" layoutY="20.0" prefHeight="32.0" prefWidth="258.0" text="Tytuł nagrody">
                <font>
                   <Font size="18.0" />
@@ -37,7 +37,7 @@
                </font>
             </Label>
       
-            <TextField fx:id="pkt" layoutX="16.0" layoutY="158.0" prefHeight="26.0" prefWidth="260.0" text="400000" />
+            <TextField fx:id="pkt" layoutX="16.0" layoutY="158.0" prefHeight="26.0" prefWidth="260.0" />
             <ImageView fx:id="imageview" fitHeight="263.0" fitWidth="432.0" layoutX="735.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../media/s20.jpg" />

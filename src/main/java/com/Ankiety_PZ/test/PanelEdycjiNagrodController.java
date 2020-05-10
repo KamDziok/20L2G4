@@ -61,6 +61,10 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         activeScene(event, false, false);
     }
 
+    void ustawZapisz(){
+        panelEdycjiNagrodButtonEdytuj.setText("Dodaj");
+    }
+
 
     @FXML
     void panelEdycjiNagrodButtonDodajZdjecie(ActionEvent event) {
@@ -86,19 +90,38 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
     @FXML
     void panelEdycjiNagrodButtonAnuluj(ActionEvent event) {
         loadingFXML(event, SceneFXML.PANEL_NAGROD);
+        PanelOsobyOdNagrodController panelOsobyOdNagrodController = load.getController();
+        panelOsobyOdNagrodController.setStartValues(curentUser);
         activeScene(event, false, false);
     }
 
     @FXML
     void panelEdycjiNagrodButtonEdytuj(ActionEvent event) {
 
-        NagrodyQuery zapisz = new NagrodyQuery();
-        nagrody.setLiczbaPunktow(Integer.parseInt(pkt.getText()));
-        nagrody.setNazwa(nag.getText());
-        
-        zapisz.updateNagrody(nagrody);
-        loadingFXML(event, SceneFXML.PANEL_NAGROD);
-        activeScene(event, false, false);
+        try {
+            NagrodyQuery zapisz = new NagrodyQuery();
+            nagrody.setLiczbaPunktow(Integer.parseInt(pkt.getText()));
+            nagrody.setNazwa(nag.getText());
+            // wczytywanie do bazy zdjęcia do naprawy!
+            //  int w = (int)image.getWidth();
+            //  int h = (int)image.getHeight();
+            // byte[] buf = new byte[w * h * 4];
+            //  image.getPixelReader().getPixels(0, 0, w, h, PixelFormat.getByteBgraInstance(), buf, 0, w * 4);
+            //  nagrody.setZdjecie(buf);
+            zapisz.updateNagrody(nagrody);
+        }
+        catch(RuntimeException wyjatek)
+        {
+            Nagrody nagroda = new Nagrody(Integer.parseInt(pkt.getText()),nag.getText());
+            NagrodyQuery dodaj = new NagrodyQuery();
+            dodaj.addNagrody(nagroda);
+        }
+        finally {
+            loadingFXML(event, SceneFXML.PANEL_NAGROD);
+            PanelOsobyOdNagrodController panelOsobyOdNagrodController = load.getController();
+            panelOsobyOdNagrodController.setStartValues(curentUser);
+            activeScene(event, false, false);
+        }
     }
 
     @Override

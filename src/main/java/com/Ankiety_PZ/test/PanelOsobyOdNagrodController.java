@@ -72,7 +72,11 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
 
     @FXML
     void panelnagroddodajnagrode(ActionEvent event) {
+
         loadingFXML(event, SceneFXML.PANEL_EDIT_NAGROD);
+        PanelEdycjiNagrodController panelEdycjiNagrodController = load.getController();
+        panelEdycjiNagrodController.ustawZapisz();
+        panelEdycjiNagrodController.setStartValues(curentUser);
         activeScene(event, false, false);
     }
 
