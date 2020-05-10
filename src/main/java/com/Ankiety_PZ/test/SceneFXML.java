@@ -51,4 +51,7 @@ public class SceneFXML {
     /** Odnośnik do pliku z panelem dodawania pytań do ankiety */
     public static  final String DODAJ_PYTANIE = "Dodawaniepytania";
 
+    /** Odnośnik do pliku z panelem edycji uzytkownika przez administratora */
+    public static  final String PANEL_EDIT_USER = "PanelEdycjiUzytkownika";
+
 }
