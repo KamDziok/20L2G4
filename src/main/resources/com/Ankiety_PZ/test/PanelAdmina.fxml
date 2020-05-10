@@ -27,10 +27,13 @@
                             </Label>
                             <TableView fx:id="tableUzytkownicy" layoutX="58.0" layoutY="101.0" prefHeight="487.0" prefWidth="1090.0">
                                 <columns>
-                                    <TableColumn fx:id="imie_i_nazwisko" maxWidth="338.0" minWidth="200.0" prefWidth="338.0" text="Imię i nazwisko" />
-                                    <TableColumn fx:id="mail" maxWidth="276.0" minWidth="200.0" prefWidth="276.0" text="E-mail" />
-                                    <TableColumn fx:id="pkt" maxWidth="256.0" minWidth="100.0" prefWidth="256.0" text="Punkty" />
-                                    <TableColumn fx:id="przycisk" maxWidth="182.0" minWidth="153.0" prefWidth="182.0" text="Akcja" />
+                                    <TableColumn fx:id="imie_i_nazwisko" maxWidth="370.0" minWidth="200.0" prefWidth="370.0" text="Imię i nazwisko" />
+                                    <TableColumn fx:id="mail" maxWidth="370.0" minWidth="200.0" prefWidth="370.0" text="E-mail" />
+                                    <TableColumn fx:id="pkt" maxWidth="120.0" minWidth="100.0" prefWidth="120.0" text="Punkty" />
+
+                                    <TableColumn fx:id="przycisk2" maxWidth="100.0" minWidth="70.0" prefWidth="100.0" />
+                                    <TableColumn fx:id="przycisk" maxWidth="100.0" minWidth="70.0" prefWidth="100.0" />
+
                                 </columns>
                             </TableView>
                         </children></AnchorPane>
