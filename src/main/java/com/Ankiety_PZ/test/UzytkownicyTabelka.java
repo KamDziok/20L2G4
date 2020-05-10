@@ -7,6 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
+import java.util.Iterator;
+
 public class UzytkownicyTabelka  extends BulidStage {
 
     private int id;
@@ -15,8 +17,10 @@ public class UzytkownicyTabelka  extends BulidStage {
     private int liczbaPunktow;
     private Button usun;
     private Button edytuj;
+    private Uzytkownicy user;
 
     UzytkownicyTabelka(Uzytkownicy uzytkownik, PanelAdminaController panel) {
+        this.user = uzytkownik;
         imie_i_nazwisko = uzytkownik.getImie()+" "+uzytkownik.getNazwisko();
         liczbaPunktow = uzytkownik.getLiczbaPunktow();
         id = uzytkownik.getIdUzytkownika();
@@ -27,18 +31,22 @@ public class UzytkownicyTabelka  extends BulidStage {
             @Override
             public void handle(ActionEvent event) {
                 UzytkownicyQuery ban = new UzytkownicyQuery();
-                ban.ban(uzytkownik);
-                panel.dane.forEach(s -> {
-                    if(s.id == uzytkownik.getIdUzytkownika())
-                        panel.dane.remove(s);
-                });
-//                Iterator iterator = panel.dane.iterator();
+
+//                panel.dane.forEach(s -> {
+//                    if(s.id == uzytkownik.getIdUzytkownika())
+//                        panel.dane.remove(s);
+//                });
+//                Iterator<UzytkownicyTabelka> iterator = panel.dane.iterator();
 //                while (iterator.hasNext()){
-//                    if (iterator. == uzytkownik.getIdUzytkownika()){
-//                        panel.dane.iterator().remove();
+//                    Uzytkownicy userIterator = iterator.next().user;
+//                    if (userIterator.getIdUzytkownika().equals(uzytkownik.getIdUzytkownika())){
+//                        panel.dane.remove(userIterator);
 //                    }
 //                }
-                panel.tableUzytkownicy.setItems(panel.dane);
+//                panel.tableUzytkownicy.refresh();
+//                panel.tableUzytkownicy.setItems(panel.dane);
+                ban.ban(uzytkownik);
+                panel.setUzytkownicy();
             }
         });
         edytuj.setOnAction(new EventHandler<ActionEvent>() {
