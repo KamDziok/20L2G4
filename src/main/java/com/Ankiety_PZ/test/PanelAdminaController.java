@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 
 public class PanelAdminaController extends BulidStage implements SetStartValues {
 
-    private Uzytkownicy curentUser;
+    Uzytkownicy curentUser;
 
     private String imie_nazwisko_rola_tmp;
 
@@ -37,7 +37,7 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
     @FXML
     private Button wyloguj;
     @FXML
-    private TableView tableUzytkownicy;
+    public TableView tableUzytkownicy;
     @FXML
     private TableColumn imie_i_nazwisko;
     @FXML
@@ -46,6 +46,9 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
     private TableColumn pkt;
     @FXML
     private TableColumn przycisk;
+    @FXML
+    private TableColumn przycisk2;
+
     @FXML private TextField email;
     @FXML private TextField haslo;
     @FXML private TextField nowehaslo;
@@ -59,11 +62,13 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
     @FXML private TextField kod1;
     @FXML private TextField kod2;
 
+
     @FXML
     void wyloguj(ActionEvent event) {
         loadingFXML(event, SceneFXML.PANEL_LOGIN);
         activeScene(event, false, false);
     }
+
 
     @FXML
     void panelAdminaButtonZmienUstawienia(ActionEvent event) {
@@ -83,8 +88,8 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
 
     void setUzytkownicy() {
         UzytkownicyQuery query = new UzytkownicyQuery();
-        List<Uzytkownicy> uzytkownicy = query.selectBy(false);
         ObservableList<UzytkownicyTabelka> dane = FXCollections.observableArrayList();
+        List<Uzytkownicy> uzytkownicy = query.selectBy(false);
         for (Uzytkownicy uzytkownik:uzytkownicy
         ) {
             dane.add(new UzytkownicyTabelka (uzytkownik));
@@ -95,7 +100,8 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
         imie_i_nazwisko.setCellValueFactory(new PropertyValueFactory("imie_i_nazwisko"));
         mail.setCellValueFactory(new PropertyValueFactory("mail"));
         pkt.setCellValueFactory(new PropertyValueFactory("liczbaPunktow"));
-        przycisk.setCellValueFactory(new PropertyValueFactory("button"));
+        przycisk.setCellValueFactory(new PropertyValueFactory("usun"));
+        przycisk2.setCellValueFactory(new PropertyValueFactory("edytuj"));
     }
 
     private void setUstawienia() {
