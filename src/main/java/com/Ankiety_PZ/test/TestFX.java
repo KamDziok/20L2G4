@@ -1,9 +1,6 @@
 package com.Ankiety_PZ.test;
 
-import com.Ankiety_PZ.hibernate.Ankiety;
-import com.Ankiety_PZ.hibernate.Odpowiedzi;
-import com.Ankiety_PZ.hibernate.OdpowiedziUzytkownicy;
-import com.Ankiety_PZ.hibernate.Uzytkownicy;
+import com.Ankiety_PZ.hibernate.*;
 import com.Ankiety_PZ.query.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -57,6 +54,7 @@ public class TestFX extends Application {
 //        PytaniaQuery pq = new PytaniaQuery();
 //        System.out.println(pq.selectSetPytaniaByIdAnkiety(12).size());
 
+        //dodawanie ankiety
 //        Ankiety a = new Ankiety();
 //        UzytkownicyQuery uq = new UzytkownicyQuery();
 //        Uzytkownicy u = uq.selectById(1);
@@ -69,11 +67,13 @@ public class TestFX extends Application {
 //        AnkietyQuery aq = new AnkietyQuery();
 //        aq.addAnkiety(a);
 
+        //wyszukiwanie ankiety po id
 //        AnkietyQuery aq = new AnkietyQuery();
 //        Ankiety a = aq.selectById(12);
 //        System.out.println(a);
 //        System.out.println(a.toString());
 
+        //dodawanie odpowiedzi użytkownika
 //        UzytkownicyQuery uq = new UzytkownicyQuery();
 //        Uzytkownicy u = uq.selectById(1);
 //        OdpowiedziQuery oq = new OdpowiedziQuery();
@@ -84,6 +84,46 @@ public class TestFX extends Application {
 //        ouList.add(ou);
 //        ouList.add(ou2);
 //        System.out.println(uq.addOdpowiedziUzytkownika(ouList));
+
+        //Wyświetlanie Ankiet dla użytkowników
+//        UzytkownicyQuery uq = new UzytkownicyQuery();
+//        Uzytkownicy u1 = uq.selectById(1);
+//        Uzytkownicy u2 = uq.selectById(2);
+//        Uzytkownicy u3 = uq.selectById(3);
+//        AnkietyQuery aq = new AnkietyQuery();
+//        System.out.println(aq.selectAllActiveAndNotDoAnkiety(u1).size());
+//        System.out.println(aq.selectAllActiveAndNotDoAnkiety(u2).size());
+//        System.out.println(aq.selectAllActiveAndNotDoAnkiety(u3).size());
+
+        //wyświetlanie ankiety raze z pytaniami
+//        AnkietyQuery aq = new AnkietyQuery();
+//        Ankiety a = aq.selectById(12);
+//        System.out.println(aq.selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(a).getPytanias().size());
+
+        //dodanie ankiety z pytaniami
+//        Ankiety a = new Ankiety();
+//        UzytkownicyQuery uq = new UzytkownicyQuery();
+//        Uzytkownicy u = uq.selectById(1);
+//        a.setUzytkownicy(u);
+//        a.setLiczbaPunktow(10);
+//        a.setLiczbaWypelnien(0);
+//        a.setDataZakonczenia(new Date());
+//        a.setDataRozpoczecia(new Date());
+//        a.setTytul("fajna");
+//
+//        Pytania p = new Pytania();
+//        p.setAnkiety(a);
+//        p.setTresc("fajne");
+//
+//        Odpowiedzi o = new Odpowiedzi();
+//        o.setPytania(p);
+//        o.setOdpowiedz("fajna");
+//
+//        p.getOdpowiedzis().add(o);
+//        a.getPytanias().add(p);
+//        AnkietyQuery aq = new AnkietyQuery();
+//        aq.addAnkietyWithPytaniaAndOdpowiedzi(a);
+
         launch();
     }
 }

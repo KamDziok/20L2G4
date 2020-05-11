@@ -210,7 +210,7 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
                             edycja.setNumerBudynku(numberHouseString);
                             edycja.setNumerLokalu(numberFlatString);
                             edycja.setKodPocztowy(postCode);
-                            update.updateUzytkownik(edycja);
+                            update.updateUzytkownicy(edycja);
                             loadingFXML(event, SceneFXML.PANEL_ADMINA);
                             PanelAdminaController panelAdminaController = load.getController();
                             panelAdminaController.setStartValues(curentUser);

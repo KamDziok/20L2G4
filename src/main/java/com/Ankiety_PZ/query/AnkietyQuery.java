@@ -6,6 +6,7 @@ import com.Ankiety_PZ.hibernate.Pytania;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.test.TypeOfQuestion;
 import com.Ankiety_PZ.query.OperationsOnDataInEntity;
+import org.hibernate.Session;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,45 +31,44 @@ public class AnkietyQuery extends OperationInSession {
      */
 
     public List<Ankiety> selectAll() {
-        List<Ankiety> ankiety = new ArrayList<>();
-        try {
-            session = openSession();
-            criteria = session.createCriteria(Ankiety.class);
-            ankiety = criteria.list();
-        } catch(Exception e){
-            logException(e);
-        }finally{
-            closeSession(session);
-        }
-        return ankiety;
+        return modifyAnkiety.selectListHQL("from Ankiety");
     }
 
     public Ankiety selectById(Integer id){
-            return modifyAnkiety.selectObject(("from Ankiety where ID=" + id) );
+        return modifyAnkiety.selectObjectHQL(("from Ankiety where ID=" + id) );
     }
 
     public Boolean addAnkiety(Ankiety ankiety){
-        return modifyAnkiety.modifyDataInEntity(ankiety, true, false, false, true);
+        return modifyAnkiety.add(ankiety);
     }
 
-    Boolean addAnkietyWithOutTransaction(Ankiety ankiety){
-        return modifyAnkiety.modifyDataInEntity(ankiety, true, false, false, false);
+    Boolean addAnkietyWithOutTransaction(Ankiety ankiety, Session session){
+        if(session == null){
+            session = openSession();
+        }
+        return modifyAnkiety.addWithOutTransaction(ankiety, session);
     }
 
-    public Boolean updateSnkiety(Ankiety ankiety){
-        return modifyAnkiety.modifyDataInEntity(ankiety, false, true, false, true);
+    public Boolean updateAnkiety(Ankiety ankiety){
+        return modifyAnkiety.update(ankiety);
     }
 
-    Boolean updateSnkietyWithOutTransaction(Ankiety ankiety){
-        return modifyAnkiety.modifyDataInEntity(ankiety, false, true, false, false);
+    Boolean updateAnkietyWithOutTransaction(Ankiety ankiety, Session session){
+        if(session == null){
+            session = openSession();
+        }
+        return modifyAnkiety.updateWithOutTransaction(ankiety, session);
     }
 
     public Boolean deleteAnkiety(Ankiety ankiety){
-        return modifyAnkiety.modifyDataInEntity(ankiety, false, false, true, true);
+        return modifyAnkiety.delete(ankiety);
     }
 
-    Boolean deleteAnkietyWithOutTransaction(Ankiety ankiety){
-        return modifyAnkiety.modifyDataInEntity(ankiety, false, false, true, false);
+    Boolean deleteAnkietyWithOutTransaction(Ankiety ankiety, Session session){
+        if(session == null){
+            session = openSession();
+        }
+        return modifyAnkiety.deleteWithOutTransaction(ankiety, session);
     }
 
     public Boolean addAnkietyWithPytaniaAndOdpowiedzi(Ankiety ankiety){
@@ -78,15 +78,15 @@ public class AnkietyQuery extends OperationInSession {
             OdpowiedziQuery odpowiedziQuery = new OdpowiedziQuery();
             session = openSession();
             transaction = beginTransaction(session);;
-            addAnkietyWithOutTransaction(ankiety);
-            for(Object pytaniaObj : ankiety.getPytanias()){
+            addAnkietyWithOutTransaction(ankiety, session);
+            ankiety.getPytanias().forEach(pytaniaObj -> {
                 Pytania pytania = (Pytania) pytaniaObj;
-                pytaniaQuery.addPytaniaWithOutTransaction(pytania);
-                for(Object odpowiedziObj : pytania.getOdpowiedzis()){
+                pytaniaQuery.addPytaniaWithOutTransaction(pytania, session);
+                pytania.getOdpowiedzis().forEach(odpowiedziObj -> {
                     Odpowiedzi odpowiedzi = (Odpowiedzi) odpowiedziObj;
-                    odpowiedziQuery.addOdpoweidzWithOutTransaction(odpowiedzi);
-                }
-            }
+                    odpowiedziQuery.addOdpowiedziWithOutTransaction(odpowiedzi, session);
+                });
+            });
             commitTransaction(transaction);
             result = true;
         }catch(Exception e){
@@ -133,27 +133,26 @@ public class AnkietyQuery extends OperationInSession {
     public Ankiety selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(Ankiety ankiety){
         try{
             PytaniaQuery pq = new PytaniaQuery();
-            List<Integer> idPytaniaList = pq.selectListIdPytaniaByIdAnkiety(ankiety.getIdAnkiety());
+            List<Pytania> pytaniaList = pq.selectListPytaniaByIdAnkiety(ankiety);
             OdpowiedziQuery oq = new OdpowiedziQuery();
             ankiety.initHashSetPytania();
-            for(int idPytania : idPytaniaList) {
-                Pytania pytanie = pq.selectByID(idPytania);
+            pytaniaList.forEach(pytanie -> {
                 if (pytanie.getRodzajPytania() != TypeOfQuestion.OPEN) {
-                    List<Integer> idOdpowiedziList = oq.selectSetOdpowiedziByIdPytania(idPytania);
+                    List<Odpowiedzi> odpowiedziList = oq.selectSetOdpowiedziByIdPytania(pytanie);
                     pytanie.initHashSetOdpowiedzi();
-                    for (int idOdpowiedzi : idOdpowiedziList) {
-                        Odpowiedzi odpowiedzi = oq.selectByID(idOdpowiedzi);
+                    odpowiedziList.forEach(odpowiedzi -> {
                         pytanie.getOdpowiedzis().add(odpowiedzi);
-                    }
+                    });
                 }
                 ankiety.getPytanias().add(pytanie);
-            }
+            });
         }catch(Exception e){
             logException(e);
         }
         return ankiety;
     }
 
+    //dobre
     public List<Ankiety> selectAllActiveAndNotDoAnkiety(Uzytkownicy user){
         List<Ankiety> ankiety = new ArrayList<>();
         List<Integer> idAnkietyList = new ArrayList<>();
@@ -169,9 +168,9 @@ public class AnkietyQuery extends OperationInSession {
                     .setParameter("date", date)
                     .setParameter("id", user.getIdUzytkownika())
                     .list();
-            for(int idAnkiety : idAnkietyList){
+            idAnkietyList.forEach(idAnkiety -> {
                 ankiety.add(selectById(idAnkiety));
-            }
+            });
         }catch(Exception e){
             logException(e);
         }finally {
