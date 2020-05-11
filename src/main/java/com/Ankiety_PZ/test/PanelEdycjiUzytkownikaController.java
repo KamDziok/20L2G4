@@ -8,6 +8,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
+import java.util.Iterator;
+
 public class PanelEdycjiUzytkownikaController extends BulidStage implements SetStartValues {
 
     Uzytkownicy curentUser;
@@ -56,6 +58,11 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
 
     @Override
     public void setStartValuesNagroda(Nagrody nagroda) {
+
+    }
+
+    @Override
+    public void setStartValuesIerator(Iterator iterator) {
 
     }
 

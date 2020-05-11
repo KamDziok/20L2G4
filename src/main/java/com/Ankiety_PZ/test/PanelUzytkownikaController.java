@@ -19,6 +19,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -62,13 +63,16 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     @FXML
     void wyloguj(ActionEvent event) {
         loadingFXML(event, SceneFXML.PANEL_LOGIN);
-        activeScene(event, false, false);}
+        activeScene(event, false, false);
+    }
 
     @FXML
     void panelUzytkownikaButtonMakeAnkiet(ActionEvent event) {
         loadingFXML(event, SceneFXML.OKNO_ANKIETA_RADIO);
         activeScene(event, false, true);
-    }@FXML
+    }
+
+    @FXML
     void panelUzytkownikaButtonZmienUstawienia(ActionEvent event) {
         curentUser.setMail(email.getText());
         if(haslo.getText().equals(curentUser.getHaslo()) && nowehaslo.getText().equals(hasloznowu.getText()))
@@ -164,6 +168,11 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
 
     @Override
     public void setStartValuesNagroda(Nagrody nagroda) {
+
+    }
+
+    @Override
+    public void setStartValuesIerator(Iterator iterator) {
 
     }
 }

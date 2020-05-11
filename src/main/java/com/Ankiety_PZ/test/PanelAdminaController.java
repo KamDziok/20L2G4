@@ -18,6 +18,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -162,6 +163,10 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
 
     }
 
+    @Override
+    public void setStartValuesIerator(Iterator iterator) {
+
+    }
 
 
     @FXML // This method is called by the FXMLLoader when initialization is complete

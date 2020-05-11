@@ -82,9 +82,7 @@ public class Pytania  implements java.io.Serializable {
     public void setTresc(String tresc) {
         this.tresc = tresc;
     }
-    public ImageView getZdjecie() {
-        return this.zdjecie;
-    }
+    public ImageView getZdjecie() { return this.zdjecie; }
     
     public void setZdjecie(ImageView zdjecie) {
         this.zdjecie = zdjecie;

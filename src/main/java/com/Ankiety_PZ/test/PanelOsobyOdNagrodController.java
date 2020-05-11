@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class PanelOsobyOdNagrodController extends BulidStage implements SetStartValues {
@@ -150,6 +151,11 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
 
     @Override
     public void setStartValuesNagroda(Nagrody nagroda) {
+
+    }
+
+    @Override
+    public void setStartValuesIerator(Iterator iterator) {
 
     }
 
