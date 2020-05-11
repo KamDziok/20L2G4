@@ -45,6 +45,6 @@
             </ImageView>
             <Button fx:id="PanelEdycjiNagrod" layoutX="439.0" layoutY="158.0" mnemonicParsing="false" onAction="#panelEdycjiNagrodButtonDodajZdjecie" prefHeight="47.0" prefWidth="172.0" text="Dodaj zdjęcie" />
          </children></AnchorPane>
-      <Label fx:id="imie_nazwisko_rola" layoutX="738.0" layoutY="32.0" prefHeight="57.0" prefWidth="450.0" stylesheets="@style.css" text="Anna Nowak - konto zarządzania nagrodami" />
+      <Label fx:id="imie_nazwisko_rola" layoutX="593.0" layoutY="32.0" prefHeight="57.0" prefWidth="595.0" stylesheets="@style.css" />
    </children>
 </AnchorPane>

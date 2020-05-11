@@ -137,7 +137,7 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
         dane = FXCollections.observableArrayList();
         for (Uzytkownicy uzytkownik:uzytkownicy
         ) {
-            dane.add(new UzytkownicyTabelka (uzytkownik, this));
+            dane.add(new UzytkownicyTabelka (uzytkownik, curentUser, this));
         }
         imie_i_nazwisko.setCellValueFactory(new PropertyValueFactory("imie_i_nazwisko"));
         mail.setCellValueFactory(new PropertyValueFactory("mail"));

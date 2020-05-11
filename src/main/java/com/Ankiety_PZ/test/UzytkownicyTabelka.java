@@ -16,7 +16,7 @@ public class UzytkownicyTabelka  extends BulidStage {
     private Button edytuj;
     private Uzytkownicy user;
 
-    UzytkownicyTabelka(Uzytkownicy uzytkownik, PanelAdminaController panel) {
+    UzytkownicyTabelka(Uzytkownicy uzytkownik, Uzytkownicy uzytkownik_zalogowany, PanelAdminaController panel) {
         this.user = uzytkownik;
         imie_i_nazwisko = uzytkownik.getImie()+" "+uzytkownik.getNazwisko();
         liczbaPunktow = uzytkownik.getLiczbaPunktow();
@@ -38,7 +38,8 @@ public class UzytkownicyTabelka  extends BulidStage {
             public void handle(ActionEvent event) {
                 loadingFXML(event, SceneFXML.PANEL_EDIT_USER);
                 PanelEdycjiUzytkownikaController panelEdycjiUzytkownikaController = load.getController();
-                panelEdycjiUzytkownikaController.setStartValues(uzytkownik);
+                panelEdycjiUzytkownikaController.setStartValues(uzytkownik_zalogowany);
+                panelEdycjiUzytkownikaController.SetStartValuesEdycjaUzytkownika(uzytkownik);
                 activeScene(event, false, false);
             }
         });

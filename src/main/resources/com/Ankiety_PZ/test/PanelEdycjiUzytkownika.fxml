@@ -9,14 +9,14 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1201.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.PanelEdycjiUzytkownikaController">
    <children>
       <Button fx:id="wyloguj" layoutX="14.0" layoutY="658.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
-      <Button fx:id="panelEdycjiNagrodButtonUsun" layoutX="1029.0" layoutY="659.0" mnemonicParsing="false" onAction="#panelEdycjiNagrodButtonUsun" prefHeight="47.0" prefWidth="158.0" text="Zapisz" />
-      <Button fx:id="panelEdycjiNagrodButtonAnuluj" layoutX="884.0" layoutY="659.0" mnemonicParsing="false" onAction="#panelEdycjiNagrodButtonAnuluj" prefHeight="47.0" prefWidth="126.0" text="Anuluj" />
+      <Button fx:id="panelEdycjiUzytkownikowButtonZapisz" layoutX="1029.0" layoutY="659.0" mnemonicParsing="false" onAction="#panelEdycjiUzytkownikowButtonZapisz" prefHeight="47.0" prefWidth="158.0" text="Zapisz" />
+      <Button fx:id="panelEdycjiUzytkownikowButtonAnuluj" layoutX="884.0" layoutY="659.0" mnemonicParsing="false" onAction="#panelEdycjiUzytkownikowButtonAnuluj" prefHeight="47.0" prefWidth="126.0" text="Anuluj" />
       <Label layoutX="70.0" layoutY="44.0" prefHeight="33.0" prefWidth="289.0" styleClass="labelbold" stylesheets="@style.css" text="Edycja danych użytkownika">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="imie_nazwisko_rola" alignment="CENTER_RIGHT" layoutX="775.0" layoutY="32.0" prefHeight="57.0" prefWidth="412.0" stylesheets="@style.css" text="Anna Nowak - panel administratora" />
+      <Label fx:id="imie_nazwisko_rola" alignment="CENTER_RIGHT" layoutX="584.0" layoutY="32.0" prefHeight="57.0" prefWidth="603.0" stylesheets="@style.css" />
       <AnchorPane layoutY="87.0" minHeight="0.0" minWidth="0.0" prefHeight="547.0" prefWidth="1201.0" styleClass="hbox" stylesheets="@style.css">
          <children>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="547.0" prefWidth="1201.0" styleClass="hbox">
@@ -38,39 +38,39 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="hasloznowu" layoutX="16.0" layoutY="258.0" prefHeight="26.0" prefWidth="260.0" />
+                  <TextField fx:id="uprawnienia" layoutX="16.0" layoutY="258.0" prefHeight="26.0" prefWidth="260.0" />
                   <Label layoutX="16.0" layoutY="320.0" text="Imie:">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="imie" layoutX="16.0" layoutY="358.0" prefHeight="26.0" prefWidth="260.0" text="Anna" />
+                  <TextField fx:id="imie" layoutX="16.0" layoutY="358.0" prefHeight="26.0" prefWidth="260.0" />
                   <Label layoutX="16.0" layoutY="420.0" text="Nazwisko:" />
-                  <TextField fx:id="nazwisko" layoutX="16.0" layoutY="458.0" prefHeight="26.0" prefWidth="260.0" text="Nowak" />
+                  <TextField fx:id="nazwisko" layoutX="16.0" layoutY="458.0" prefHeight="26.0" prefWidth="260.0" />
                   <Label layoutX="680.0" layoutY="20.0" text="Miejscowość:">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="miejscowosc" editable="false" layoutX="680.0" layoutY="58.0" prefHeight="26.0" prefWidth="260.0" text="Chrząszczyżewoszyce" />
+                  <TextField fx:id="miejscowosc" editable="false" layoutX="680.0" layoutY="58.0" prefHeight="26.0" prefWidth="260.0" />
                   <Label layoutX="680.0" layoutY="120.0" text="Ulica:">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="ulica" layoutX="678.0" layoutY="158.0" prefHeight="26.0" prefWidth="260.0" text="Łękołody" />
+                  <TextField fx:id="ulica" layoutX="678.0" layoutY="158.0" prefHeight="26.0" prefWidth="260.0" />
                   <Label layoutX="680.0" layoutY="220.0" text="Numer budynku:">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="budynek" layoutX="680.0" layoutY="258.0" prefHeight="26.0" prefWidth="260.0" text="22" />
+                  <TextField fx:id="budynek" layoutX="680.0" layoutY="258.0" prefHeight="26.0" prefWidth="260.0" />
                   <Label layoutX="680.0" layoutY="320.0" text="Numer lokalu:" />
                   <TextField fx:id="lokal" layoutX="680.0" layoutY="358.0" prefHeight="26.0" prefWidth="260.0" />
                   <Label layoutX="680.0" layoutY="420.0" text="Kod pocztowy:" />
                   <Label layoutX="747.0" layoutY="469.0" text="-" />
-                  <TextField fx:id="kod1" layoutX="680.0" layoutY="458.0" prefHeight="54.0" prefWidth="61.0" text="37" />
-                  <TextField fx:id="kod2" layoutX="762.0" layoutY="458.0" prefHeight="54.0" prefWidth="69.0" text="800" />
+                  <TextField fx:id="kod1" layoutX="680.0" layoutY="458.0" prefHeight="54.0" prefWidth="61.0" />
+                  <TextField fx:id="kod2" layoutX="762.0" layoutY="458.0" prefHeight="54.0" prefWidth="69.0" />
                </children>
             </AnchorPane>
          </children>
