@@ -16,6 +16,11 @@
             <Font size="24.0" />
          </font>
       </Label>
+      <Label fx:id="panelEdycjiUzytkownikaLabelError" alignment="CENTER" layoutX="323.0" layoutY="667.0" prefHeight="17.0" prefWidth="522.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
       <Label fx:id="imie_nazwisko_rola" alignment="CENTER_RIGHT" layoutX="584.0" layoutY="32.0" prefHeight="57.0" prefWidth="603.0" stylesheets="@style.css" />
       <AnchorPane layoutY="87.0" minHeight="0.0" minWidth="0.0" prefHeight="547.0" prefWidth="1201.0" styleClass="hbox" stylesheets="@style.css">
          <children>
@@ -52,7 +57,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="miejscowosc" editable="false" layoutX="680.0" layoutY="58.0" prefHeight="26.0" prefWidth="260.0" />
+                  <TextField fx:id="miejscowosc" layoutX="680.0" layoutY="58.0" prefHeight="26.0" prefWidth="260.0" />
                   <Label layoutX="680.0" layoutY="120.0" text="Ulica:">
                      <font>
                         <Font size="18.0" />
