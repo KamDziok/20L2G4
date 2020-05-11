@@ -2,12 +2,9 @@ package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.UzytkownicyQuery;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-
-import java.util.Iterator;
 
 public class UzytkownicyTabelka  extends BulidStage {
 
@@ -19,34 +16,21 @@ public class UzytkownicyTabelka  extends BulidStage {
     private Button edytuj;
     private Uzytkownicy user;
 
-    UzytkownicyTabelka(Uzytkownicy uzytkownik, PanelAdminaController panel) {
+    UzytkownicyTabelka(Uzytkownicy uzytkownik, Uzytkownicy uzytkownik_zalogowany, PanelAdminaController panel) {
         this.user = uzytkownik;
         imie_i_nazwisko = uzytkownik.getImie()+" "+uzytkownik.getNazwisko();
         liczbaPunktow = uzytkownik.getLiczbaPunktow();
         id = uzytkownik.getIdUzytkownika();
         mail = uzytkownik.getMail();
-        usun = new Button("Usuń");
+        usun = new Button("Zablokuj");
         edytuj = new Button("Edytuj");
         usun.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 UzytkownicyQuery ban = new UzytkownicyQuery();
-
-//                panel.dane.forEach(s -> {
-//                    if(s.id == uzytkownik.getIdUzytkownika())
-//                        panel.dane.remove(s);
-//                });
-//                Iterator<UzytkownicyTabelka> iterator = panel.dane.iterator();
-//                while (iterator.hasNext()){
-//                    Uzytkownicy userIterator = iterator.next().user;
-//                    if (userIterator.getIdUzytkownika().equals(uzytkownik.getIdUzytkownika())){
-//                        panel.dane.remove(userIterator);
-//                    }
-//                }
-//                panel.tableUzytkownicy.refresh();
-//                panel.tableUzytkownicy.setItems(panel.dane);
                 ban.ban(uzytkownik);
                 panel.setUzytkownicy();
+                panel.setUzytkownicyZablokowani();
             }
         });
         edytuj.setOnAction(new EventHandler<ActionEvent>() {
@@ -54,7 +38,8 @@ public class UzytkownicyTabelka  extends BulidStage {
             public void handle(ActionEvent event) {
                 loadingFXML(event, SceneFXML.PANEL_EDIT_USER);
                 PanelEdycjiUzytkownikaController panelEdycjiUzytkownikaController = load.getController();
-                panelEdycjiUzytkownikaController.setStartValues(uzytkownik);
+                panelEdycjiUzytkownikaController.setStartValues(uzytkownik_zalogowany);
+                panelEdycjiUzytkownikaController.SetStartValuesEdycjaUzytkownika(uzytkownik);
                 activeScene(event, false, false);
             }
         });

@@ -25,12 +25,15 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
 
     private Uzytkownicy curentUser;
     public ObservableList<UzytkownicyTabelka> dane;
+    public ObservableList<UzytkownicyZablokowaniTabelka> dane2;
     private String imie_nazwisko_rola_tmp;
 
     @FXML
     private Label imie_nazwisko_rola;
     @FXML
     private Label imie_nazwisko_rola2;
+    @FXML
+    private Label imie_nazwisko_rola3;
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
     @FXML // URL location of the FXML file that was given to the FXMLLoader
@@ -40,6 +43,8 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
     @FXML
     TableView tableUzytkownicy;
     @FXML
+    TableView  tableUzytkownicyZablokowani;;
+    @FXML
     private TableColumn imie_i_nazwisko;
     @FXML
     private TableColumn mail;
@@ -47,6 +52,14 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
     private TableColumn pkt;
     @FXML
     private TableColumn przycisk;
+    @FXML
+    private TableColumn imie_i_nazwisko_z;
+    @FXML
+    private TableColumn mail_z;
+    @FXML
+    private TableColumn pkt_z;
+    @FXML
+    private TableColumn przycisk3;
     @FXML
     private TableColumn przycisk2;
 
@@ -70,6 +83,22 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
 
     public TableColumn getPrzyciskPanel() {
         return przycisk;
+    }
+
+    public TableColumn getImie_i_nazwisko_zPanel() {
+        return imie_i_nazwisko_z;
+    }
+
+    public TableColumn getMail_zPanel() {
+        return mail_z;
+    }
+
+    public TableColumn getPkt_zPanel() {
+        return pkt_z;
+    }
+
+    public TableColumn getPrzycisk_zPanel() {
+        return przycisk3;
     }
 
     @FXML private TextField nazwisko;
@@ -108,7 +137,7 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
         dane = FXCollections.observableArrayList();
         for (Uzytkownicy uzytkownik:uzytkownicy
         ) {
-            dane.add(new UzytkownicyTabelka (uzytkownik, this));
+            dane.add(new UzytkownicyTabelka (uzytkownik, curentUser, this));
         }
         imie_i_nazwisko.setCellValueFactory(new PropertyValueFactory("imie_i_nazwisko"));
         mail.setCellValueFactory(new PropertyValueFactory("mail"));
@@ -116,6 +145,21 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
         przycisk.setCellValueFactory(new PropertyValueFactory("usun"));
         przycisk2.setCellValueFactory(new PropertyValueFactory("edytuj"));
         tableUzytkownicy.setItems(dane);
+    }
+
+    void setUzytkownicyZablokowani() {
+        UzytkownicyQuery query = new UzytkownicyQuery();
+        List<Uzytkownicy> uzytkownicy = query.selectBy(true);
+        dane2 = FXCollections.observableArrayList();
+        for (Uzytkownicy uzytkownik:uzytkownicy
+        ) {
+            dane2.add(new UzytkownicyZablokowaniTabelka(uzytkownik, this));
+        }
+        imie_i_nazwisko_z.setCellValueFactory(new PropertyValueFactory("imie_i_nazwisko_z"));
+        mail_z.setCellValueFactory(new PropertyValueFactory("mail_z"));
+        pkt_z.setCellValueFactory(new PropertyValueFactory("liczbaPunktow_z"));
+        przycisk3.setCellValueFactory(new PropertyValueFactory("odblokuj"));
+        tableUzytkownicyZablokowani.setItems(dane2);
     }
 
     private void setUstawienia() {
@@ -143,7 +187,9 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
         System.out.print(imie_nazwisko_rola_tmp);
         imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
         imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
+        imie_nazwisko_rola3.setText(imie_nazwisko_rola_tmp);
         setUzytkownicy();
+        setUzytkownicyZablokowani();
         setUstawienia();
     }
 
@@ -162,13 +208,12 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
 
     }
 
-
-
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert wyloguj != null : "fx:id=\"wyloguj\" was not injected: check your FXML file 'PanelAdmina.fxml'.";
         assert imie_nazwisko_rola != null : "fx:id=\"imie_nazwisko_rola\" was not injected: check your FXML file 'PanelAdmina.fxml'.";
         assert imie_nazwisko_rola2 != null : "fx:id=\"imie_nazwisko_rola2\" was not injected: check your FXML file 'PanelAdmina.fxml'.";
+        assert imie_nazwisko_rola3 != null : "fx:id=\"imie_nazwisko_rola3\" was not injected: check your FXML file 'PanelAdmina.fxml'.";
 
     }
 
