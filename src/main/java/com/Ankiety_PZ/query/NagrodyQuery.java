@@ -6,6 +6,7 @@
 package com.Ankiety_PZ.query;
 
 import com.Ankiety_PZ.hibernate.Nagrody;
+import com.Ankiety_PZ.hibernate.Pytania;
 import org.hibernate.*;
 
 import java.util.ArrayList;
@@ -66,28 +67,37 @@ public class NagrodyQuery extends OperationInSession{
         return nagrody;
     }
 
-    public Boolean addNagrody(Nagrody nagroda){
-        return modifyNagrody.modifyDataInEntity(nagroda, true, false, false, true);
+    public Boolean addNagrody(Nagrody nagrody){
+        return modifyNagrody.add(nagrody);
     }
 
-    Boolean addNagrodyWithOutTransaction(Nagrody nagroda){
-        return modifyNagrody.modifyDataInEntity(nagroda, true, false, false, false);
+    Boolean addNagrodyWithOutTransaction(Nagrody nagrody, Session session){
+        if(session == null){
+            session = openSession();
+        }
+        return modifyNagrody.addWithOutTransaction(nagrody, session);
     }
 
-    public Boolean updateNagrody(Nagrody nagroda){
-        return modifyNagrody.modifyDataInEntity(nagroda, false, true, false, true);
+    public Boolean updateNagrody(Nagrody nagrody){
+        return modifyNagrody.update(nagrody);
     }
 
-    Boolean updateNagrodyWithOutTransaction(Nagrody nagroda){
-        return modifyNagrody.modifyDataInEntity(nagroda, false, true, false, false);
+    Boolean updateNagrodyWithOutTransaction(Nagrody nagrody, Session session){
+        if(session == null){
+            session = openSession();
+        }
+        return modifyNagrody.updateWithOutTransaction(nagrody, session);
     }
 
-    public Boolean delNagrody(Nagrody nagroda){
-        return modifyNagrody.modifyDataInEntity(nagroda, false, false, true, true);
+    public Boolean deleteNagrody(Nagrody nagrody){
+        return modifyNagrody.delete(nagrody);
     }
 
-    Boolean delNagrodyWithOutTransaction(Nagrody nagroda){
-        return modifyNagrody.modifyDataInEntity(nagroda, false, false, true, false);
+    Boolean deleteNagrodyWithOutTransaction(Nagrody nagrody, Session session){
+        if(session == null){
+            session = openSession();
+        }
+        return modifyNagrody.deleteWithOutTransaction(nagrody, session);
     }
 
     public Boolean deactivateNagrody(Nagrody nagrody){

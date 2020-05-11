@@ -1,10 +1,12 @@
 package com.Ankiety_PZ.query;
 
 import com.Ankiety_PZ.hibernate.OdpowiedziUzytkownicy;
+import com.Ankiety_PZ.hibernate.Pytania;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.test.Permissions;
 import com.Ankiety_PZ.test.TypeOfQuestion;
 import org.hibernate.HibernateException;
+import org.hibernate.Session;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,28 +56,37 @@ public class UzytkownicyQuery extends OperationInSession {
         return user;
     }
 
-    public Boolean addUzytkownik(Uzytkownicy uzytkownik){
-        return modifyUzytkownik.modifyDataInEntity(uzytkownik, true, false, false, true);
+    public Boolean addUzytkownicy(Uzytkownicy uzytkownicy){
+        return modifyUzytkownik.add(uzytkownicy);
     }
 
-    Boolean addUzytkownikWithOutTransaction(Uzytkownicy uzytkownik){
-        return modifyUzytkownik.modifyDataInEntity(uzytkownik, true, false, false, false);
+    Boolean addUzytkownicyWithOutTransaction(Uzytkownicy uzytkownicy, Session session){
+        if(session == null){
+            session = openSession();
+        }
+        return modifyUzytkownik.addWithOutTransaction(uzytkownicy, session);
     }
 
-    public Boolean updateUzytkownik(Uzytkownicy uzytkownik){
-        return modifyUzytkownik.modifyDataInEntity(uzytkownik, false, true, false, true);
+    public Boolean updateUzytkownicy(Uzytkownicy uzytkownicy){
+        return modifyUzytkownik.update(uzytkownicy);
     }
 
-    Boolean updateUzytkownikWithOutTransaction(Uzytkownicy uzytkownik){
-        return modifyUzytkownik.modifyDataInEntity(uzytkownik, false, true, false, false);
+    Boolean updateUzytkownicyWithOutTransaction(Uzytkownicy uzytkownicy, Session session){
+        if(session == null){
+            session = openSession();
+        }
+        return modifyUzytkownik.updateWithOutTransaction(uzytkownicy, session);
     }
 
-    public Boolean delUzytkownik(Uzytkownicy uzytkownik){
-        return modifyUzytkownik.modifyDataInEntity(uzytkownik, false, false, true, true);
+    public Boolean deleteUzytkownicy(Uzytkownicy uzytkownicy){
+        return modifyUzytkownik.delete(uzytkownicy);
     }
 
-    Boolean delUzytkownikWithOutTransaction(Uzytkownicy uzytkownik){
-        return modifyUzytkownik.modifyDataInEntity(uzytkownik, false, false, true, false);
+    Boolean deleteUzytkownicyWithOutTransaction(Uzytkownicy uzytkownicy, Session session){
+        if(session == null){
+            session = openSession();
+        }
+        return modifyUzytkownik.deleteWithOutTransaction(uzytkownicy, session);
     }
 
     public Uzytkownicy selectByMail(String mail){
@@ -121,7 +132,7 @@ public class UzytkownicyQuery extends OperationInSession {
         boolean result = false;
         user.setUprawnienia(Permissions.BAN);
         try {
-            updateUzytkownik(user);
+            updateUzytkownicy(user);
             result = true;
         }catch (Exception e){
             logException(e);

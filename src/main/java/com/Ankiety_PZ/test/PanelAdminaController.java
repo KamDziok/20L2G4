@@ -99,7 +99,7 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
         curentUser.setNumerLokalu(lokal.getText());
         curentUser.setKodPocztowy(kod1.getText() + "-" + kod2.getText());
         UzytkownicyQuery query = new UzytkownicyQuery();
-        query.updateUzytkownik(curentUser);
+        query.updateUzytkownicy(curentUser);
     }
 
     void setUzytkownicy() {

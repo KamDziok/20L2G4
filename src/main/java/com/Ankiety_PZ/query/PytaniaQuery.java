@@ -1,4 +1,6 @@
 package com.Ankiety_PZ.query;
+import com.Ankiety_PZ.hibernate.Ankiety;
+import com.Ankiety_PZ.hibernate.Odpowiedzi;
 import com.Ankiety_PZ.hibernate.Pytania;
 import org.hibernate.*;
 
@@ -44,28 +46,37 @@ public class PytaniaQuery extends OperationInSession {
     }
 
 
-    public Boolean addPytania(Pytania pytanie){
-        return modifyPytania.modifyDataInEntity(pytanie, true, false,false, true);
+    public Boolean addPytania(Pytania pytania){
+        return modifyPytania.add(pytania);
     }
 
-    Boolean addPytaniaWithOutTransaction(Pytania pytanie){
-        return modifyPytania.modifyDataInEntity(pytanie, true, false,false, false);
+    Boolean addPytaniaWithOutTransaction(Pytania pytania, Session session){
+        if(session == null){
+            session = openSession();
+        }
+        return modifyPytania.addWithOutTransaction(pytania, session);
     }
 
-    public Boolean updatePytania(Pytania pytanie){
-        return modifyPytania.modifyDataInEntity(pytanie, false, true, false, true);
+    public Boolean updatePytania(Pytania pytania){
+        return modifyPytania.update(pytania);
     }
 
-    Boolean updatePytaniaWithOutTransaction(Pytania pytanie){
-        return modifyPytania.modifyDataInEntity(pytanie, false, true, false, false);
+    Boolean updatePytaniaWithOutTransaction(Pytania pytania, Session session){
+        if(session == null){
+            session = openSession();
+        }
+        return modifyPytania.updateWithOutTransaction(pytania, session);
     }
 
-    public Boolean delPytania(Pytania pytania){
-        return modifyPytania.modifyDataInEntity(pytania, false, false, true, true);
+    public Boolean deletePytania(Pytania pytania){
+        return modifyPytania.delete(pytania);
     }
 
-    Boolean delPytaniaWithOutTransaction(Pytania pytania){
-        return modifyPytania.modifyDataInEntity(pytania, false, false, true, false);
+    Boolean deletePytaniaWithOutTransaction(Pytania pytania, Session session){
+        if(session == null){
+            session = openSession();
+        }
+        return modifyPytania.deleteWithOutTransaction(pytania, session);
     }
 
     /**
@@ -75,6 +86,7 @@ public class PytaniaQuery extends OperationInSession {
      * @param idAnkiety Identyfikator ankiety, której pytań szukamy.
      * @return List idPytania dla konkretnej Ankiety, w przeciwnym wypadku null.
      */
+    //do usunięcia
     public List<Integer> selectListIdPytaniaByIdAnkiety(Integer idAnkiety){
         List<Integer> pytania = new ArrayList<>();
         try{
@@ -82,7 +94,7 @@ public class PytaniaQuery extends OperationInSession {
             pytania =  session
                     .createQuery("select p.idPytania from Pytania as p " +
                             "inner join p.ankiety as a " +
-                    "where a.idAnkiety=:id")
+                            "where a.idAnkiety=:id")
                     .setParameter("id", idAnkiety)
                     .list();
         }catch(Exception e){
@@ -93,4 +105,21 @@ public class PytaniaQuery extends OperationInSession {
         return pytania;
     }
 
+    public List<Pytania> selectListPytaniaByIdAnkiety(Ankiety ankiety){
+        List<Pytania> pytania = new ArrayList<>();
+        try{
+            session = openSession();
+            pytania =  session
+                    .createQuery("select p from Pytania as p " +
+                            "inner join p.ankiety as a " +
+                            "where a.idAnkiety=:id")
+                    .setParameter("id", ankiety.getIdAnkiety())
+                    .list();
+        }catch(Exception e){
+            logException(e);
+        }finally {
+            closeSession(session);
+        }
+        return pytania;
+    }
 }

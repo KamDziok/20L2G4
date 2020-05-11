@@ -95,7 +95,7 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
         curentUser.setNumerLokalu(lokal.getText());
         curentUser.setKodPocztowy(kod1.getText() + "-" + kod2.getText());
         UzytkownicyQuery query = new UzytkownicyQuery();
-        query.updateUzytkownik(curentUser);
+        query.updateUzytkownicy(curentUser);
     }
 
     void setNagrody() {
