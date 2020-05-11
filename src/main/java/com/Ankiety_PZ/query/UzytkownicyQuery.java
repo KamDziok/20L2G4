@@ -125,15 +125,17 @@ public class UzytkownicyQuery extends OperationInSession {
     }
 
     public boolean unban(Uzytkownicy user){
-        boolean result = false;
         user.setUprawnienia(Permissions.KLIENT);
-        try {
-            updateUzytkownik(user);
-            result = true;
-        }catch (Exception e){
-            logException(e);
-        }
-        return result;
+        return updateUzytkownicy(user);
+//        boolean result = false;
+//        user.setUprawnienia(Permissions.KLIENT);
+//        try {
+//            updateUzytkownik(user);
+//            result = true;
+//        }catch (Exception e){
+//            logException(e);
+//        }
+//        return result;
     }
 
     /**
