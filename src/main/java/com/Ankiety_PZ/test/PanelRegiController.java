@@ -229,7 +229,7 @@ public class PanelRegiController extends BulidStage {
                             String postCode = postCodeFirstInt + "-" + postCodeSecondInt;
 
                             Uzytkownicy user = new Uzytkownicy(name, surname, email, password, Permissions.KLIENT, city, street, numberHouseString, numberFlatString, postCode, 0);
-                            query.addUzytkownik(user);
+                            query.addUzytkownicy(user);
 
                             loadingFXML(event, SceneFXML.PANEL_LOGIN);
                             activeScene(event, false, false);

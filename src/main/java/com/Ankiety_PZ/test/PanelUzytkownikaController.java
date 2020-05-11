@@ -85,7 +85,7 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
         curentUser.setNumerLokalu(lokal.getText());
         curentUser.setKodPocztowy(kod1.getText() + "-" + kod2.getText());
         UzytkownicyQuery query = new UzytkownicyQuery();
-        query.updateUzytkownik(curentUser);
+        query.updateUzytkownicy(curentUser);
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete

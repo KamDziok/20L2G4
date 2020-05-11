@@ -13,8 +13,12 @@ public class NagrodyTabelka extends BulidStage {
     public int liczbaPunktow;
     public Button usun;
     public Button edytuj;
+    private Nagrody nagroda;
+    private Uzytkownicy user;
 
-    NagrodyTabelka(Nagrody nagroda, Uzytkownicy uzytkownik) {
+    NagrodyTabelka(Nagrody nagroda, Uzytkownicy uzytkownik, PanelOsobyOdNagrodController panel) {
+       this.nagroda = nagroda;
+       this.user = uzytkownik;
         tytul = nagroda.getNazwa();
         liczbaPunktow = nagroda.getLiczbaPunktow();
         usun = new Button("Usuń");
@@ -24,6 +28,7 @@ public class NagrodyTabelka extends BulidStage {
             public void handle(ActionEvent event) {
                 NagrodyQuery usun = new NagrodyQuery();
                 usun.deactivateNagrody(nagroda);
+                panel.setNagrody();
             }
         });
         edytuj.setOnAction(new EventHandler<ActionEvent>() {

@@ -24,7 +24,8 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
 
 
     private Uzytkownicy curentUser;
-
+    private Nagrody nagrod;
+    public ObservableList<NagrodyTabelka> dane;
     private String imie_nazwisko_rola_tmp;
 
     @FXML
@@ -54,6 +55,26 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
     @FXML
     private TableColumn edytuj;
 
+    public TableColumn getNagrody() {
+        return nagrody;
+    }
+
+    public TableColumn getZdjecie() {
+        return zdjecie;
+    }
+
+    public TableColumn getPkt() {
+        return pkt;
+    }
+
+    public TableColumn getUsun() {
+        return usun;
+    }
+
+    public TableColumn getEdytuj() {
+        return edytuj;
+    }
+
     @FXML
     private Label imie_nazwisko_rola2;
 
@@ -73,7 +94,11 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
 
     @FXML
     void panelnagroddodajnagrode(ActionEvent event) {
+
         loadingFXML(event, SceneFXML.PANEL_EDIT_NAGROD);
+        PanelEdycjiNagrodController panelEdycjiNagrodController = load.getController();
+        panelEdycjiNagrodController.ustawZapisz();
+        panelEdycjiNagrodController.setStartValues(curentUser);
         activeScene(event, false, false);
     }
 
@@ -96,22 +121,23 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
         curentUser.setNumerLokalu(lokal.getText());
         curentUser.setKodPocztowy(kod1.getText() + "-" + kod2.getText());
         UzytkownicyQuery query = new UzytkownicyQuery();
-        query.updateUzytkownik(curentUser);
+        query.updateUzytkownicy(curentUser);
     }
 
     void setNagrody() {
         NagrodyQuery query = new NagrodyQuery();
         List<Nagrody> nagrodies = query.selectAllActive();
-        ObservableList<NagrodyTabelka> dane = FXCollections.observableArrayList();
-        for (Nagrody nagroda:nagrodies
+        dane = FXCollections.observableArrayList();
+        for (Nagrody nagrod:nagrodies
         ) {
-            dane.add(new NagrodyTabelka (nagroda, curentUser));
+            dane.add(new NagrodyTabelka (nagrod, curentUser,this));
         }
         tableNagrody.itemsProperty().setValue(dane);
         nagrody.setCellValueFactory(new PropertyValueFactory("tytul"));
         pkt.setCellValueFactory(new PropertyValueFactory("liczbaPunktow"));
         usun.setCellValueFactory(new PropertyValueFactory("usun"));
         edytuj.setCellValueFactory(new PropertyValueFactory("edytuj"));
+        tableNagrody.setItems(dane);
     }
 
     private void setUstawienia() {

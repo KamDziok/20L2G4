@@ -8,35 +8,35 @@ import java.util.List;
 
 public class OdpowiedziUzytkownicyQuery extends OperationInSession {
 
-    public List<OdpowiedziUzytkownicy> selectAll() throws HibernateException {
-        List<OdpowiedziUzytkownicy> odpU = new ArrayList<>();
-        try {
-            session = openSession();
-            criteria = session.createCriteria(OdpowiedziUzytkownicy.class);
-            odpU = criteria.list();
-        } catch(Exception e){
-            logException(e);
-        }finally{
-            closeSession(session);
-        }
-        return odpU;
-    }
-
-    public Boolean addOdpowiedzUzytkownicy(OdpowiedziUzytkownicy odpU){
-        Boolean result = false;
-        try{
-            session = openSession();
-            transaction = beginTransaction(session);
-            session.save(odpU);
-            commitTransaction(transaction);
-            result = true;
-        }catch(Exception e){
-            rollbackTransaction(transaction);
-            logException(e);
-        }finally {
-            closeSession(session);
-        }
-        return result;
-    }
+//    public List<OdpowiedziUzytkownicy> selectAll() throws HibernateException {
+//        List<OdpowiedziUzytkownicy> odpU = new ArrayList<>();
+//        try {
+//            session = openSession();
+//            criteria = session.createCriteria(OdpowiedziUzytkownicy.class);
+//            odpU = criteria.list();
+//        } catch(Exception e){
+//            logException(e);
+//        }finally{
+//            closeSession(session);
+//        }
+//        return odpU;
+//    }
+//
+//    public Boolean addOdpowiedzUzytkownicy(OdpowiedziUzytkownicy odpU){
+//        Boolean result = false;
+//        try{
+//            session = openSession();
+//            transaction = beginTransaction(session);
+//            session.save(odpU);
+//            commitTransaction(transaction);
+//            result = true;
+//        }catch(Exception e){
+//            rollbackTransaction(transaction);
+//            logException(e);
+//        }finally {
+//            closeSession(session);
+//        }
+//        return result;
+//    }
 
 }
