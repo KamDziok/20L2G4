@@ -26,45 +26,48 @@ public class NagrodyQuery extends OperationInSession{
     }
     
     public List<Nagrody> selectAll() throws HibernateException {
-        List<Nagrody> nagrody = new ArrayList<>();
-        try {
-            session = openSession();
-            criteria = session.createCriteria(Nagrody.class);
-            nagrody = criteria.list();
-        } catch(Exception e){
-            logException(e);
-        }finally{
-            closeSession(session);
-        }
-        return nagrody;
+        return modifyNagrody.selectListHQL(("from Nagrody"));
+//        List<Nagrody> nagrody = new ArrayList<>();
+//        try {
+//            session = openSession();
+//            criteria = session.createCriteria(Nagrody.class);
+//            nagrody = criteria.list();
+//        } catch(Exception e){
+//            logException(e);
+//        }finally{
+//            closeSession(session);
+//        }
+//        return nagrody;
     }
 
     public Nagrody selectByID(int id){
-        Nagrody nagroda = new Nagrody();
-        try{
-            session = openSession();
-            String hgl = "from Nagrody where ID = " + id;
-            query = session.createQuery(hgl);
-            nagroda = (Nagrody) query.uniqueResult();
-        }catch(Exception e){
-            logException(e);
-        }finally {
-            closeSession(session);
-        }
-        return nagroda;
+        return modifyNagrody.selectObjectHQL(("from Nagrody where ID = " + id));
+//        Nagrody nagroda = new Nagrody();
+//        try{
+//            session = openSession();
+//            String hgl = "from Nagrody where ID = " + id;
+//            query = session.createQuery(hgl);
+//            nagroda = (Nagrody) query.uniqueResult();
+//        }catch(Exception e){
+//            logException(e);
+//        }finally {
+//            closeSession(session);
+//        }
+//        return nagroda;
     }
 
     public List<Nagrody> selectAllActive() {
-        List<Nagrody> nagrody = new ArrayList<>();
-        try {
-            session = openSession();
-            nagrody = session.createQuery("from Nagrody as n where n.liczbaPunktow>=0").list();
-        } catch(Exception e){
-            logException(e);
-        }finally{
-            closeSession(session);
-        }
-        return nagrody;
+        return modifyNagrody.selectListHQL(("from Nagrody as n where n.liczbaPunktow>=0"));
+//        List<Nagrody> nagrody = new ArrayList<>();
+//        try {
+//            session = openSession();
+//            nagrody = session.createQuery("from Nagrody as n where n.liczbaPunktow>=0").list();
+//        } catch(Exception e){
+//            logException(e);
+//        }finally{
+//            closeSession(session);
+//        }
+//        return nagrody;
     }
 
     public Boolean addNagrody(Nagrody nagrody){

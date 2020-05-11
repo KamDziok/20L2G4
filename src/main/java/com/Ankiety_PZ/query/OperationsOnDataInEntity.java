@@ -3,6 +3,7 @@ package com.Ankiety_PZ.query;
 import com.Ankiety_PZ.hibernate.Ankiety;
 import org.hibernate.Session;
 
+import java.util.ArrayList;
 import java.util.List;
 
 class OperationsOnDataInEntity<Type> extends OperationInSession {
@@ -67,11 +68,24 @@ class OperationsOnDataInEntity<Type> extends OperationInSession {
         return result;
     }
 
-    protected Type selectObject(String hql){
+    Type selectObjectSQL(String query){
+        return selectObject(query, false);
+    }
+
+    Type selectObjectHQL(String query){
+        return selectObject(query, true);
+    }
+
+
+    private Type selectObject(String query, boolean hql){
         Type result = null;
         try{
             session = openSession();
-            result = (Type) session.createQuery(hql).uniqueResult();
+            if(hql) {
+                result = (Type) session.createQuery(query).uniqueResult();
+            }else{
+                result = (Type) session.createSQLQuery(query).uniqueResult();
+            }
         }catch(Exception e){
             logException(e);
         }finally {
@@ -80,11 +94,23 @@ class OperationsOnDataInEntity<Type> extends OperationInSession {
         return result;
     }
 
-    protected List<Type> selectList(List<Type> type){
-        List<Type> result = null;
+    List<Type> selectListSQL(String query){
+        return selectList(query, false);
+    }
+
+    List<Type> selectListHQL(String query){
+        return selectList(query, true);
+    }
+
+    private List<Type> selectList(String query, boolean hql){
+        List<Type> result = new ArrayList<>();
         try{
             session = openSession();
-            result = type;
+            if(hql) {
+                result = (ArrayList<Type>) session.createQuery(query).list();
+            }else{
+                result = (ArrayList<Type>) session.createSQLQuery(query).list();
+            }
         }catch(Exception e){
             logException(e);
         }finally {

@@ -17,32 +17,11 @@ public class PytaniaQuery extends OperationInSession {
     }
 
     public List<Pytania> selectAll() throws HibernateException {
-        List<Pytania> pytania = new ArrayList<>();
-        try {
-            session = openSession();
-            criteria = session.createCriteria(Pytania.class);
-            pytania = criteria.list();
-        } catch(Exception e){
-            logException(e);
-        }finally{
-            closeSession(session);
-        }
-        return pytania;
+        return modifyPytania.selectListHQL("from Pytania");
     }
 
     public Pytania selectByID(int id){
-        Pytania pytania = new Pytania();
-        try{
-            session = openSession();
-            String hgl = "from Pytania where ID = " + id;
-            query = session.createQuery(hgl);
-            pytania = (Pytania) query.uniqueResult();
-        }catch(Exception e){
-            logException(e);
-        }finally {
-            closeSession(session);
-        }
-        return pytania;
+        return modifyPytania.selectObjectHQL(("from Pytania where ID = " + id));
     }
 
 
@@ -106,20 +85,8 @@ public class PytaniaQuery extends OperationInSession {
     }
 
     public List<Pytania> selectListPytaniaByIdAnkiety(Ankiety ankiety){
-        List<Pytania> pytania = new ArrayList<>();
-        try{
-            session = openSession();
-            pytania =  session
-                    .createQuery("select p from Pytania as p " +
-                            "inner join p.ankiety as a " +
-                            "where a.idAnkiety=:id")
-                    .setParameter("id", ankiety.getIdAnkiety())
-                    .list();
-        }catch(Exception e){
-            logException(e);
-        }finally {
-            closeSession(session);
-        }
-        return pytania;
+        return modifyPytania.selectListHQL(
+                            ("select p from Pytania as p inner join p.ankiety as a " +
+                            "where a.idAnkiety=" + ankiety.getIdAnkiety()));
     }
 }

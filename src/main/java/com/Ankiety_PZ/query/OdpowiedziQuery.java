@@ -18,32 +18,11 @@ public class OdpowiedziQuery extends OperationInSession {
     }
 
     public List<Odpowiedzi> selestAll() throws HibernateException {
-        List<Odpowiedzi> odpowiedzi = new ArrayList<>();
-        try {
-            session = openSession();
-            criteria = session.createCriteria(Odpowiedzi.class);
-            odpowiedzi = criteria.list();
-        } catch(Exception e){
-            logException(e);
-        }finally{
-            closeSession(session);
-        }
-        return odpowiedzi;
+        return modifyOdpowiedzi.selectListHQL(("from Odpowiedzi"));
     }
 
     public Odpowiedzi selectByID(int id){
-        Odpowiedzi odpowiedzi = new Odpowiedzi();
-        try{
-            session = openSession();
-            String hgl = "from Odpowiedzi where id=" + id;
-            query = session.createQuery(hgl);
-            odpowiedzi = (Odpowiedzi) query.uniqueResult();
-        }catch(Exception e){
-            logException(e);
-        }finally {
-            closeSession(session);
-        }
-        return odpowiedzi;
+        return modifyOdpowiedzi.selectObjectHQL(("from Odpowiedzi where id=" + id));
     }
 
     public Boolean addOdpowiedzi(Odpowiedzi odpowiedzi){
@@ -106,20 +85,9 @@ public class OdpowiedziQuery extends OperationInSession {
     }
 
     public List<Odpowiedzi> selectSetOdpowiedziByIdPytania(Pytania pytania){
-        List<Odpowiedzi> odpowiedzi = new ArrayList<>();
-        try{
-            session = openSession();
-            odpowiedzi = session
-                    .createQuery("select o from Odpowiedzi as o " +
+        return modifyOdpowiedzi.selectListHQL(
+                            ("select o from Odpowiedzi as o " +
                             "inner join o.pytania as p " +
-                            "where p.idPytania=:id")
-                    .setParameter("id", pytania.getIdPytania())
-                    .list();
-        }catch(Exception e){
-            logException(e);
-        }finally {
-            closeSession(session);
-        }
-        return odpowiedzi;
+                            "where p.idPytania=" + pytania.getIdPytania()));
     }
 }

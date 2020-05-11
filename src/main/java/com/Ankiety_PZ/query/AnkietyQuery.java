@@ -31,21 +31,11 @@ public class AnkietyQuery extends OperationInSession {
      */
 
     public List<Ankiety> selectAll() {
-        List<Ankiety> ankiety = new ArrayList<>();
-        try {
-            session = openSession();
-            criteria = session.createCriteria(Ankiety.class);
-            ankiety = criteria.list();
-        } catch(Exception e){
-            logException(e);
-        }finally{
-            closeSession(session);
-        }
-        return ankiety;
+        return modifyAnkiety.selectListHQL("from Ankiety");
     }
 
     public Ankiety selectById(Integer id){
-            return modifyAnkiety.selectObject(("from Ankiety where ID=" + id) );
+        return modifyAnkiety.selectObjectHQL(("from Ankiety where ID=" + id) );
     }
 
     public Boolean addAnkiety(Ankiety ankiety){
