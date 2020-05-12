@@ -1,7 +1,6 @@
 package com.Ankiety_PZ.test;
 
-import com.Ankiety_PZ.hibernate.*;
-import com.Ankiety_PZ.query.*;
+import com.Ankiety_PZ.query.ConnectToDataBase;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,10 +8,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class TestFX extends Application {
 //    @Override
@@ -83,7 +78,11 @@ public class TestFX extends Application {
 //        List<OdpowiedziUzytkownicy> ouList =  new ArrayList<>();
 //        ouList.add(ou);
 //        ouList.add(ou2);
-//        System.out.println(uq.addOdpowiedziUzytkownika(ouList));
+//        List<PytaniaUzytkownicy> puList = new ArrayList<>();
+//        Pytania p = new PytaniaQuery().selectByID(22);
+//        PytaniaUzytkownicy pu = new PytaniaUzytkownicy(p,u,"coś");
+//        puList.add(pu);
+//        System.out.println(uq.addOdpowiedziUzytkownika(ouList, puList));
 
         //Wyświetlanie Ankiet dla użytkowników
 //        UzytkownicyQuery uq = new UzytkownicyQuery();
@@ -124,6 +123,8 @@ public class TestFX extends Application {
 //        AnkietyQuery aq = new AnkietyQuery();
 //        aq.addAnkietyWithPytaniaAndOdpowiedzi(a);
 
+        //wyswietlenie wszytkich ankiet uzytkownika
+//        System.out.println(new AnkietyQuery().selectAllUzytkownik(new UzytkownicyQuery().selectById(1)).size());
         launch();
     }
 }

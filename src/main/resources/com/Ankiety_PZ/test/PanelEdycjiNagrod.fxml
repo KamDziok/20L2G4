@@ -46,5 +46,10 @@
             <Button fx:id="PanelEdycjiNagrod" layoutX="439.0" layoutY="158.0" mnemonicParsing="false" onAction="#panelEdycjiNagrodButtonDodajZdjecie" prefHeight="47.0" prefWidth="172.0" text="Dodaj zdjęcie" />
          </children></AnchorPane>
       <Label fx:id="imie_nazwisko_rola" layoutX="593.0" layoutY="32.0" prefHeight="57.0" prefWidth="595.0" stylesheets="@style.css" />
+      <Label fx:id="panelEdycjiNagrodLabelError" alignment="CENTER" layoutX="332.0" layoutY="667.0" prefHeight="17.0" prefWidth="522.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

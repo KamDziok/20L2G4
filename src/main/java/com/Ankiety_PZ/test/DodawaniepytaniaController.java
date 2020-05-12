@@ -20,10 +20,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.Set;
+        import java.util.*;
 
 
 public class DodawaniepytaniaController extends BulidStage implements SetStartValues {
@@ -278,6 +275,11 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
     @Override
     public void setStartValuesNagroda(Nagrody nagroda) {
+
+    }
+
+    @Override
+    public void setStartValuesIerator(Iterator iterator) {
 
     }
 

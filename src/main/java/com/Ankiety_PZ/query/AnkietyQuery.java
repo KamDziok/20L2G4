@@ -98,6 +98,10 @@ public class AnkietyQuery extends OperationInSession {
         return result;
     }
 
+    public List<Ankiety> selectAllUzytkownik(Uzytkownicy user){
+        return modifyAnkiety.selectListHQL(("from Ankiety AS a where a.uzytkownicy.idUzytkownika=" + user.getIdUzytkownika()));
+    }
+
     /**
      * Metoda przesyła listę Ankiet aktywnych.
      *

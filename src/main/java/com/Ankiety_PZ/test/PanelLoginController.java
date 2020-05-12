@@ -98,24 +98,6 @@ public class PanelLoginController extends BulidStage {
                 panelLoginLabelError.setText("Błędny e-mail lub hasło.");
             }
 
-            //tymczasowe
-           if(email.equals("uzy")){
-               loadingFXML(event, SceneFXML.PANEL_UZYTKOWNIKA);
-               activeScene(event, false, false);
-               //otwórz panel uzytkownika
-           }
-           if(email.equals("admin")){
-               loadingFXML(event, SceneFXML.PANEL_ADMINA);
-               activeScene(event, false, false);
-           }
-            if(email.equals("ank")){
-                loadingFXML(event, SceneFXML.PANEL_ANKIETERA);
-                activeScene(event, false, false);
-            }
-            if(email.equals("nag")){
-                loadingFXML(event, SceneFXML.PANEL_NAGROD);
-                activeScene(event, false, false);
-            }
         }else{
             panelLoginLabelError.setText("Nie podałeś wszystkich danych.");
         }
