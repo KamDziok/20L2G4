@@ -123,7 +123,7 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
         ObservableList<AnikietaTabelka> dane = FXCollections.observableArrayList();
         for (Ankiety ankieta:ankiety
              ) {
-            dane.add(new AnikietaTabelka(ankieta));
+            dane.add(new AnikietaTabelka(ankieta, curentUser));
         }
         System.out.println();
         tableAnkiety.itemsProperty().setValue(dane);

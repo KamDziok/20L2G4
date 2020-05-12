@@ -5,6 +5,7 @@
 package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.hibernate.*;
+import com.Ankiety_PZ.query.OdpowiedziUzytkownicyQuery;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -21,6 +22,8 @@ import java.util.Set;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 public class OknoAnkietyRadioController extends BulidStage implements SetStartValues{
+
+    private Uzytkownicy curentUser;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -52,7 +55,7 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
     private Button dalej;
 
 
-    private LinkedList<Pytania> odpowiedziDoWyslania = new LinkedList();
+    private LinkedList<OdpowiedziUzytkownicy> odpowiedziDoWyslania = new LinkedList();
     private int rodzajPytania;
     private Integer punkty;
 
@@ -194,20 +197,51 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
         } catch (Exception e) {
             return false;
         }
-
     }
 
-    private void setButton(Iterator iterator) {
+    private void addAnswer(Set<Odpowiedzi> odpowiedzi) {
+        switch (rodzajPytania) {
+            case 0:
+                for (RadioButton button:radioButtons
+                     ) {
+                    if (button.isSelected())
+                        odpowiedziDoWyslania.add(new OdpowiedziUzytkownicy(odpowiedzi.iterator().next(), curentUser));
+                }
+                break;
+            case 1:
+                for (CheckBox box:checkBox
+                ) {
+                    if (box.isSelected())
+                        odpowiedziDoWyslania.add(new OdpowiedziUzytkownicy(odpowiedzi.iterator().next(), curentUser));
+                }
+                break;
+            case 2:
+
+                break;
+            case 3:
+                for (TextField field:punktowePola
+                ) {
+                    odpowiedziDoWyslania.add(new OdpowiedziUzytkownicy(odpowiedzi.iterator().next(), curentUser, Integer.parseInt(field.getText())));
+                }
+                break;
+            case 4:
+                odpowiedziDoWyslania.add(new OdpowiedziUzytkownicy(odpowiedzi.iterator().next(), curentUser, Integer.parseInt(odpowiedzProcentowa.getText())));
+                break;
+        }
+    }
+
+    private void setButton(Iterator iterator, Set<Odpowiedzi> odpowiedzi) {
         if (iterator.hasNext()) {
             dalej = new Button("Dalej");
             dalej.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
                     if (isQuestionComplete()) {
-                        odpowiedziDoWyslania.add((Pytania) iterator);
+                        addAnswer(odpowiedzi);
                         loadingFXML(event, SceneFXML.OKNO_ANKIETA_RADIO);
                         OknoAnkietyRadioController radioController = load.getController();
                         radioController.setStartValuesIerator(iterator);
+                        radioController.setStartValues(curentUser);
                         activeScene(event, false, false);
                     } else {
                         showMessageDialog(null, "Proszę poprawnie wypełnić odpowiedź");
@@ -219,6 +253,11 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
             dalej.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
+                    showMessageDialog(null, "Gratuluję ukonczenia ankiety.");
+                    OdpowiedziUzytkownicyQuery query = new OdpowiedziUzytkownicyQuery();
+//                    wyslanie do bazy
+//                    zaznaczenie ankiety jako wypelnionej zeby sie wiecej nie pokazywala
+//                    wywalenie jej z tabelki
                     deleteStage(event);
                 }
             });
@@ -236,7 +275,7 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
 
     @Override
     public void setStartValues(Uzytkownicy user) {
-
+        curentUser = user;
     }
 
     @Override
@@ -259,7 +298,7 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
         Pytania pytanie = iterator.next();
         trescPytania.setText(pytanie.getTresc());
 //        obrazek.setImage(pytanie.getZdjecie());
-        ankietaTytul.setText(pytanie.getAnkiety().getTytul());
+//        ankietaTytul.setText(pytanie.getAnkiety().getTytul());
         punkty = pytanie.getPunktowe();
         rodzajPytania = pytanie.getRodzajPytania();
         switch (rodzajPytania) {
@@ -279,6 +318,6 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                 setProcentOdpowiedzi();
                 break;
         }
-        setButton(iterator);
+        setButton(iterator, pytanie.getOdpowiedzis());
     }
 }
