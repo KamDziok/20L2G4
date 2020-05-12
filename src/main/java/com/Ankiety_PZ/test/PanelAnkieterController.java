@@ -176,6 +176,7 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
     @Override
     public void setStartValuesAnkiety(Ankiety ankiety) {
 
+
     }
 
     @Override

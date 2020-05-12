@@ -31,8 +31,10 @@ public class PytanieTabelka extends BulidStage{
         buttonEdycja.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
-                PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
+                loadingFXML(event, SceneFXML.DODAJ_PYTANIE);
+                DodawaniepytaniaController dodawaniepytaniaController  = load.getController();
+                dodawaniepytaniaController.setStartValuesPytanie(pytanie);
+
                 activeScene(event, false, false);
             }
         });

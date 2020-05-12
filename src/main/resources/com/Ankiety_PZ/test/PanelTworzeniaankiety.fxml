@@ -17,10 +17,10 @@
                <content>
                   <TableView fx:id="pytanieTabele" prefHeight="307.0" prefWidth="1156.0">
                      <columns>
-                        <TableColumn fx:id="treść" prefWidth="565.0" text="Treść" />
-                        <TableColumn fx:id="Rpytanie" prefWidth="422.0" text="RodzajPytania" />
-                        <TableColumn fx:id="przyciskUsun" prefWidth="73.0" text="Usun" />
-                        <TableColumn fx:id="przyciskEdycja" prefWidth="95.0" text="Edycja" />
+                        <TableColumn fx:id="treść" prefWidth="886.0" text="Treść" />
+                        <TableColumn fx:id="Rpytanie" prefWidth="138.0" text="RodzajPytania" />
+                        <TableColumn fx:id="przyciskUsun" prefWidth="50.0" text="Usun" />
+                        <TableColumn fx:id="przyciskEdycja" prefWidth="81.0" text="Edycja" />
                      </columns>
                   </TableView>
                </content></ScrollPane>

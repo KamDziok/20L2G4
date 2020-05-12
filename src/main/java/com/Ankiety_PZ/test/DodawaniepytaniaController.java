@@ -6,6 +6,7 @@
 package com.Ankiety_PZ.test;
         import com.Ankiety_PZ.hibernate.*;
         import com.Ankiety_PZ.query.AnkietyQuery;
+        import com.Ankiety_PZ.query.PytaniaQuery;
         import javafx.collections.FXCollections;
         import javafx.collections.ObservableList;
         import javafx.event.ActionEvent;
@@ -77,13 +78,13 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     private String odp;
     private Uzytkownicy curetUser;
     private String tresc;
-    private int punktowe;
+    private Integer punktowe;
     private int rodzajPytania;
     private Ankiety ankiety;
-    private Pytania pytani;
-    private int id_ankiety;
-    private Set odpowiedzis;
     private List<String> listaOdp = new ArrayList<String>();
+    private Pytania pytania;
+    private  ObservableList<OdpowiedziTabelka> dane = FXCollections.observableArrayList();
+    private Boolean edycja=false;
 
     /**
      * Metoda obsługująca przyciśk anuluj.
@@ -171,15 +172,19 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         else{if(dodawaniePytaniaRBQuestionPoints.isSelected()){
             punktowe = Integer.parseInt(punkty.getText());
         }}}}}
-        tresc = trescPytania.getText();
+
+        if(edycja){
+            PytaniaQuery query = new PytaniaQuery();
+            query.addPytania(pytania);
+        }
+        else {
+            tresc = trescPytania.getText();
         Pytania pytanie = new Pytania();
         pytanie.setTresc(tresc);
         pytanie.setZdjecie(imageview);
         pytanie.setPunktowe(punktowe);
         pytanie.setRodzajPytania(rodzajPytania);
-        pytanie.setOdpowiedzis(odpowiedzis);
-        pytanie.setRodzajPytania(rodzajPytania);
-        if (punktowe!=0) pytanie.setPunktowe(punktowe);
+       /// if (punktowe!=0) pytanie.setPunktowe(punktowe);
         pytanie.setAnkiety(ankiety);
         pytanie.initHashSetOdpowiedzi();
         for (String odpo:listaOdp
@@ -187,12 +192,14 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
             Odpowiedzi odp = new Odpowiedzi(pytanie, odpo);
             pytanie.getOdpowiedzis().add(odp);
             System.out.println(odpo);
+
         }
-        ankiety.getPytanias().add(pytanie);
+            ankiety.getPytanias().add(pytanie);}
+
         loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
         PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
         panelTworzeniaankietyController.setStartValuesAnkiety(ankiety);
-        panelTworzeniaankietyController.setStartValues(curetUser);
+        panelTworzeniaankietyController.setStartValuesPytanie(pytania);
         activeScene(event, false, false);
 
 
@@ -219,7 +226,6 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     }
 
     public void setOdpowiedzi() {
-        ObservableList<OdpowiedziTabelka> dane = FXCollections.observableArrayList();
         for(String odp : listaOdp)
         {
             dane.add(new OdpowiedziTabelka(odp));
@@ -231,15 +237,14 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
 
     }
-    public void setOdpowiedziSS(){
+    public void setOdpowiedziSS(Pytania pytania){
         AnkietyQuery ank = new AnkietyQuery();
         ank.selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(ankiety);
-        ObservableList<OdpowiedziTabelka> dane = FXCollections.observableArrayList();
-        for (Object Odp : pytani.getOdpowiedzis()
-        ) {
-            Odpowiedzi JednaOdp = (Odpowiedzi) Odp;
-            dane.add(new OdpowiedziTabelka(JednaOdp));
-        }
+        trescPytania.setText(pytania.getTresc());
+        edycja=true;
+        pytania.getOdpowiedzis().forEach(odpowiedz ->{Odpowiedzi JednaOdp = (Odpowiedzi) odpowiedz;
+            dane.add(new OdpowiedziTabelka(JednaOdp));});
+
         odpowiedziTabelka.itemsProperty().setValue(dane);
         treść.setCellValueFactory(new PropertyValueFactory("treść"));
         przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
@@ -256,16 +261,19 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     @Override
     public void setStartValues(Uzytkownicy user) {
         this.curetUser = user;
+
     }
 
     @Override
     public void setStartValuesAnkiety(Ankiety ankieta) {
         this.ankiety = ankieta;
-      ///  setOdpowiedziSS();
+
     }
 
     @Override
-    public void setStartValuesPytanie(Pytania pytania) {
+    public void setStartValuesPytanie(Pytania pytanie) {
+        this.pytania = pytanie;
+        setOdpowiedziSS(pytanie);
     }
 
     @Override

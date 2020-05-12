@@ -105,6 +105,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     @Override
     public void setStartValues(Uzytkownicy user) {
         this.curentUser = user;
+        setPytanie();
     }
 
     @Override
@@ -116,13 +117,14 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         punkty.setText(String.valueOf(ankiety.getLiczbaPunktow()));
         dataOD.setText(String.valueOf((ankiety.getDataRozpoczecia())));
         dataDo.setText(String.valueOf((ankiety.getDataZakonczenia())));
-        setPytanie();
+
 
     }
 
     @Override
     public void setStartValuesPytanie(Pytania pytania) {
         this.pytanie = pytania;
+        setPytanieB();
 
     }
 
@@ -161,10 +163,24 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
 
     private void setPytanie() {
         AnkietyQuery query = new AnkietyQuery();
-       ObservableList<PytanieTabelka> dane = FXCollections.observableArrayList();
+        ObservableList<PytanieTabelka> dane = FXCollections.observableArrayList();
         ankiety = query.selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(ankiety);
-       ankiety.getPytanias().forEach(pytanie -> {Pytania pytania2 = (Pytania) pytanie;
-           dane.add(new PytanieTabelka(pytania2));});
+        ankiety.getPytanias().forEach(pytanie -> {
+            Pytania pytania2 = (Pytania) pytanie;
+            dane.add(new PytanieTabelka(pytania2)); });
+        treść.setCellValueFactory(new PropertyValueFactory("treść"));
+        Rpytanie.setCellValueFactory(new PropertyValueFactory("Rpytanie"));
+        przyciskEdycja.setCellValueFactory(new PropertyValueFactory("buttonEdycja"));
+        przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
+        pytanieTabele.itemsProperty().setValue(dane);
+    }
+    private void setPytanieB() {
+        AnkietyQuery query = new AnkietyQuery();
+        ObservableList<PytanieTabelka> dane = FXCollections.observableArrayList();
+        //ankiety = query.selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(ankiety);
+        ankiety.getPytanias().forEach(pytanie -> {
+            Pytania pytania2 = (Pytania) pytanie;
+            dane.add(new PytanieTabelka(pytania2)); });
         treść.setCellValueFactory(new PropertyValueFactory("treść"));
         Rpytanie.setCellValueFactory(new PropertyValueFactory("Rpytanie"));
         przyciskEdycja.setCellValueFactory(new PropertyValueFactory("buttonEdycja"));

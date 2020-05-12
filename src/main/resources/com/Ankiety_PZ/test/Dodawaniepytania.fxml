@@ -59,8 +59,8 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="208.0" prefWidth="1113.0">
              <TableView fx:id="odpowiedziTabelka" layoutX="14.0" layoutY="74.0" prefHeight="130.0" prefWidth="1085.0">
                 <columns>
-                   <TableColumn fx:id="treść" prefWidth="565.0" text="Treść" />
-                   <TableColumn fx:id="przyciskUsun" prefWidth="73.0" text="Usun" />
+                   <TableColumn fx:id="treść" prefWidth="985.0" text="Treść" />
+                   <TableColumn fx:id="przyciskUsun" minWidth="0.0" prefWidth="99.0" text="Usun" />
                 </columns>
              </TableView>
                <children>
