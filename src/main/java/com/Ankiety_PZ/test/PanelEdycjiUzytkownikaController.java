@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import java.util.Iterator;
 import javafx.scene.control.TextField;
 
 public class PanelEdycjiUzytkownikaController extends BulidStage implements SetStartValues,SetStartValuesEdycjaUzytkownika {
@@ -89,7 +90,6 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
     @FXML
     private TextField kod2;
 
-
     @FXML
     void panelEdycjiUzytkownikowButtonAnuluj(ActionEvent event) {
         loadingFXML(event, SceneFXML.PANEL_ADMINA);
@@ -97,7 +97,6 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
         panelAdminaController.setStartValues(curentUser);
         activeScene(event, false, false);
     }
-
 
     /**
      * Metoda sprawdzenie czy obowiązkowe pola nie są puste.
@@ -284,6 +283,11 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
 
     @Override
     public void setStartValuesNagroda(Nagrody nagroda) {
+
+    }
+
+    @Override
+    public void setStartValuesIerator(Iterator iterator) {
 
     }
 
