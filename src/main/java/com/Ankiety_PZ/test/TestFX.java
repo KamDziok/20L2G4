@@ -128,6 +128,8 @@ public class TestFX extends Application {
 //        AnkietyQuery aq = new AnkietyQuery();
 //        aq.addAnkietyWithPytaniaAndOdpowiedzi(a);
 
+        //wyswietlenie wszytkich ankiet uzytkownika
+//        System.out.println(new AnkietyQuery().selectAllUzytkownik(new UzytkownicyQuery().selectById(1)).size());
         launch();
     }
 }
