@@ -175,9 +175,11 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
     }
 
     /**
-     * Metoda sprawdza, czy hasło ma odpowiednia ilośc znaków i czy potwórz hasło jest takie samo jak hasło.
+     * Metoda sprawdza, czy hasło ma odpowiednia ilośc znaków i czy nowe hasło jest takie samo jak powtórz hasło.
+     * Sprawdza również czy dotychczasowe hasło zostało podane poprawnie, albo nie jest zmieniane i zostało puste.
      *
-     * @return true jeśli hasło ma odpowiednią długość i jest takie samo jak powtórz hasło, w przeciwnym wypadku false.
+     * @return true jeśli hasło ma odpowiednią długość i jest takie samo jak powtórz hasło i dotychczasowe hasło
+     * zostało podane poprawnie, w przeciwnym wypadku false.
      */
     private boolean checkPasswordN(){
         if(((passwordRepeatN.length() < minSizePasswordN) || (passwordNewN.length() < minSizePasswordN)) && (!passwordN.isEmpty())){
@@ -188,7 +190,6 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
                 sprawdzhaslo ="Hasła nie są takie same!";
             }else{
               if(passwordN.equals(curentUser.getHaslo())){
-
                   return true;
               }
               else if(passwordN.isEmpty() && passwordNewN.isEmpty() && passwordRepeatN.isEmpty()){
