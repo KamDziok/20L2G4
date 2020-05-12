@@ -18,6 +18,8 @@ import java.util.LinkedList;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 public class OknoAnkietyRadioController extends BulidStage implements SetStartValues{
 
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -43,49 +45,16 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
 
     private LinkedList<RadioButton> radioButtons;
     private LinkedList<CheckBox> checkBox;
-    private LinkedList<TextArea> punktowePola;
+    private LinkedList<TextField> punktowePola;
     private LinkedList<Label> punktoweOdpowiedzi;
     private TextArea odpowiedzOtwarta;
+    private TextField odpowiedzProcentowa;
     private Button dalej;
 
-    private Iterator<Pytania> iterator;
 
-    @FXML
-    void oknoAnkietyButtonNext(ActionEvent event) {
-//        Pytania pytanie = (Pytania) iterator.next();
-//        switch (pytanie.getRodzajPytania()) {
-//            case 0: //  jednokrotnego wyboru
-//                loadingFXML(event, SceneFXML.OKNO_ANKIETA_RADIO);
-//                OknoAnkietyRadioController radioController = load.getController();
-//                radioController.setStartValuesIerator(iterator, pytanie);
-//                activeScene(event, false, false);
-//                break;
-//            case 1: //  wielokrotnego wyboru
-//                loadingFXML(event, SceneFXML.OKNO_ANKIETA_CHECK);
-//                OknoAnkietyCheckController checkController = load.getController();
-//                checkController.setStartValuesIerator(iterator, pytanie);
-//                activeScene(event, false, false);
-//                break;
-//            case 2: //  otwarte
-//                loadingFXML(event, SceneFXML.OKNO_ANKIETA_OPEN);
-//                OknoAnkietyOpenController openController = load.getController();
-//                openController.setStartValuesIerator(iterator, pytanie);
-//                activeScene(event, false, false);
-//                break;
-//            case 3: //  punktowe
-//                loadingFXML(event, SceneFXML.PANEL_UZYTKOWNIKA);
-//                PanelUzytkownikaController panelUzytkownikaController = load.getController();
-//                radioController.setStartValuesPytanie(pytanie);
-//                activeScene(event, false, false);
-//                break;
-//            case 4: //  procentowe
-//                loadingFXML(event, SceneFXML.PANEL_UZYTKOWNIKA);
-//                PanelUzytkownikaController panelUzytkownikaController = load.getController();
-//                radioController.setStartValuesPytanie(pytanie);
-//                activeScene(event, false, false);
-//                break;
-//        }
-    }
+    private LinkedList<Pytania> odpowiedziDoWyslania = new LinkedList();
+    private int rodzajPytania;
+    private Integer punkty;
 
     private void setRadioOdpowiedzi(Set<Odpowiedzi> odpowiedzi) {
         radioButtons = new LinkedList();
@@ -134,25 +103,98 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
         punktowePola = new LinkedList();
         int y = 172;
         for (Odpowiedzi odpowiedz : odpowiedzi) {
-            punktowePola.add(new TextArea());
+            punktowePola.add(new TextField());
             punktoweOdpowiedzi.add(new Label(odpowiedz.getOdpowiedz()));
         }
-        for (TextArea area:punktowePola
+        for (TextField field:punktowePola
         ) {
-            area.setLayoutX(37);
-            area.setLayoutY(y);
-            panel.getChildren().add(area);
-            area.setVisible(true);
+            field.setLayoutX(37);
+            field.setLayoutY(y);
+            field.setMaxWidth(100);
+            panel.getChildren().add(field);
+            field.setVisible(true);
             y += 50;
         }
+        y = 172;
         for (Label label:punktoweOdpowiedzi
         ) {
-            label.setLayoutX(100);
+            label.setLayoutX(200);
             label.setLayoutY(y);
             panel.getChildren().add(label);
             label.setVisible(true);
             y += 50;
         }
+    }
+
+    private void setProcentOdpowiedzi() {
+        int y = 172;
+        odpowiedzProcentowa = new TextField();
+        odpowiedzProcentowa.setLayoutX(37);
+        odpowiedzProcentowa.setLayoutY(y);
+        panel.getChildren().add(odpowiedzProcentowa);
+        odpowiedzProcentowa.setVisible(true);
+    }
+
+    private boolean isQuestionComplete() {
+        switch (rodzajPytania) {
+            case 0:
+                return isRadioComplete();
+            case 1:
+                return isCheckComplete();
+            case 2:
+                return isOpenComplete();
+            case 3:
+                return isPktComplete();
+            case 4:
+                return isPercentComplete();
+            default:
+                return true;
+        }
+    }
+
+    private boolean isRadioComplete() {
+        for (RadioButton button:radioButtons
+        ) {
+            if (button.isSelected())
+                return true;
+        }
+        return false;
+    }
+
+    private boolean isCheckComplete() {
+        for (CheckBox box:checkBox
+             ) {
+            if (box.isSelected())
+                return true;
+        }
+        return false;
+    }
+
+    private boolean isOpenComplete() {
+        return !odpowiedzOtwarta.getText().equals("");
+    }
+
+    private boolean isPktComplete() {
+        int suma = 0;
+        try {
+            for (TextField field:punktowePola
+            ) {
+                suma += Integer.parseInt(field.getText());
+            }
+            return suma == punkty;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private boolean isPercentComplete() {
+        try {
+            return Integer.parseInt(odpowiedzProcentowa.getText()) >= 0 &&
+                    Integer.parseInt(odpowiedzProcentowa.getText()) <= 100;
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 
     private void setButton(Iterator iterator) {
@@ -161,10 +203,15 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
             dalej.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    loadingFXML(event, SceneFXML.OKNO_ANKIETA_RADIO);
-                    OknoAnkietyRadioController radioController = load.getController();
-                    radioController.setStartValuesIerator(iterator);
-                    activeScene(event, false, false);
+                    if (isQuestionComplete()) {
+                        odpowiedziDoWyslania.add((Pytania) iterator);
+                        loadingFXML(event, SceneFXML.OKNO_ANKIETA_RADIO);
+                        OknoAnkietyRadioController radioController = load.getController();
+                        radioController.setStartValuesIerator(iterator);
+                        activeScene(event, false, false);
+                    } else {
+                        showMessageDialog(null, "Proszę poprawnie wypełnić odpowiedź");
+                    }
                 }
             });
         } else {
@@ -212,8 +259,10 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
         Pytania pytanie = iterator.next();
         trescPytania.setText(pytanie.getTresc());
 //        obrazek.setImage(pytanie.getZdjecie());
-
-        switch (pytanie.getRodzajPytania()) {
+        ankietaTytul.setText(pytanie.getAnkiety().getTytul());
+        punkty = pytanie.getPunktowe();
+        rodzajPytania = pytanie.getRodzajPytania();
+        switch (rodzajPytania) {
             case 0:
                 setRadioOdpowiedzi(pytanie.getOdpowiedzis());
                 break;
@@ -224,11 +273,11 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                 setOpenOdpowiedzi();
                 break;
             case 3:
-                setPktOdpowiedzi(pytanie.getOdpowiedzis(), pytanie.getPunktowe());
+                setPktOdpowiedzi(pytanie.getOdpowiedzis(), punkty);
                 break;
-//            case 4:
-//
-//                break;
+            case 4:
+                setProcentOdpowiedzi();
+                break;
         }
         setButton(iterator);
     }

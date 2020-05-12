@@ -1,7 +1,6 @@
 package com.Ankiety_PZ.test;
 
-import com.Ankiety_PZ.hibernate.*;
-import com.Ankiety_PZ.query.*;
+import com.Ankiety_PZ.query.ConnectToDataBase;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,10 +8,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class TestFX extends Application {
 //    @Override

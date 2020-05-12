@@ -30,41 +30,12 @@ public class AnikietaTabelka extends BulidStage {
                 Ankiety ankietyWithPytania = query.selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(ankieta);
                 Set<Pytania> zbior = ankietyWithPytania.getPytanias();
                 Iterator<Pytania> iterator = zbior.iterator();
-//                Pytania pytanie = iterator.next();
-//                switch (pytanie.getRodzajPytania()) {
-//                    case 0: //  jednokrotnego wyboru
                 if (iterator.hasNext()) {
                     loadingFXML(event, SceneFXML.OKNO_ANKIETA_RADIO);
                     OknoAnkietyRadioController radioController = load.getController();
                     radioController.setStartValuesIerator(iterator);
                     activeScene(event, false, true);
                 }
-//                        break;
-//                    case 1: //  wielokrotnego wyboru
-//                        loadingFXML(event, SceneFXML.OKNO_ANKIETA_CHECK);
-//                        OknoAnkietyCheckController checkController = load.getController();
-//                        checkController.setStartValuesIerator(iterator);
-//                        activeScene(event, false, true);
-//                        break;
-//                    case 2: //  otwarte
-//                        loadingFXML(event, SceneFXML.OKNO_ANKIETA_OPEN);
-//                        OknoAnkietyOpenController openController = load.getController();
-//                        openController.setStartValuesIerator(iterator);
-//                        activeScene(event, false, true);
-//                        break;
-//                    case 3: //  punktowe
-//                        loadingFXML(event, SceneFXML.PANEL_UZYTKOWNIKA);
-//                        PanelUzytkownikaController panelUzytkownikaController = load.getController();
-//                        radioController.setStartValuesPytanie(pytanie);
-//                        activeScene(event, false, true);
-//                        break;
-//                    case 4: //  procentowe
-//                        loadingFXML(event, SceneFXML.PANEL_UZYTKOWNIKA);
-//                        PanelUzytkownikaController panelUzytkownikaController = load.getController();
-//                        radioController.setStartValuesPytanie(pytanie);
-//                        activeScene(event, false, true);
-//                        break;
-//                }
             }
         });
     }
