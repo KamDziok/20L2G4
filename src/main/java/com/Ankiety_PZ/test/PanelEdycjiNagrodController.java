@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 
 /**
@@ -198,6 +199,10 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         pkt.setText(nagroda.getLiczbaPunktow()+"");
     }
 
+    @Override
+    public void setStartValuesIerator(Iterator iterator) {
+
+    }
 
 
     @FXML // This method is called by the FXMLLoader when initialization is complete

@@ -2,6 +2,7 @@ package com.Ankiety_PZ.query;
 
 import com.Ankiety_PZ.hibernate.OdpowiedziUzytkownicy;
 import com.Ankiety_PZ.hibernate.Pytania;
+import com.Ankiety_PZ.hibernate.PytaniaUzytkownicy;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.test.Permissions;
 import com.Ankiety_PZ.test.TypeOfQuestion;
@@ -157,7 +158,7 @@ public class UzytkownicyQuery extends OperationInSession {
         }
     }
 
-    public Boolean addOdpowiedziUzytkownika(List<OdpowiedziUzytkownicy> usersAnswers){
+    public Boolean addOdpowiedziUzytkownika(List<OdpowiedziUzytkownicy> usersAnswers, List<PytaniaUzytkownicy> userOpenAnswers){
         boolean result = false;
         try{
             session = openSession();
@@ -169,10 +170,19 @@ public class UzytkownicyQuery extends OperationInSession {
                     points = userAnswers.getPunktowe();
                 }
                 session.createSQLQuery("INSERT INTO `odpowiedzi_uzytkownicy`(`ID_odpowiedzi`, `ID_uzytkownika`, `punktowe`) " +
-                    "VALUES (:idOdpowiedzi,:idUzytkownika,:punkty)")
-                    .setParameter("idOdpowiedzi", userAnswers.getOdpowiedz().getIdOdpowiedzi())
-                    .setParameter("idUzytkownika", userAnswers.getUzytkownik().getIdUzytkownika())
-                    .setParameter("punkty", points).executeUpdate();
+                        "VALUES (:idOdpowiedzi,:idUzytkownika,:punkty)")
+                        .setParameter("idOdpowiedzi", userAnswers.getOdpowiedz().getIdOdpowiedzi())
+                        .setParameter("idUzytkownika", userAnswers.getUzytkownik().getIdUzytkownika())
+                        .setParameter("punkty", points)
+                        .executeUpdate();
+            });
+            userOpenAnswers.forEach(userOpenAnswer -> {
+                session.createSQLQuery("INSERT INTO `pytania_uzytkownicy`(`ID_uzytkownika`, `ID_pytania`, `odpowiedz`) " +
+                        "VALUES (:idUzytkownika,:idPytania,:odpowiedz)")
+                        .setParameter("idUzytkownika", userOpenAnswer.getUzytkownik().getIdUzytkownika())
+                        .setParameter("idPytania", userOpenAnswer.getPytanie().getIdPytania())
+                        .setParameter("odpowiedz", userOpenAnswer.getOdpowiedz())
+                        .executeUpdate();
             });
             commitTransaction(transaction);
             result = true;

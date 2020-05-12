@@ -17,6 +17,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 
 public class PanelTworzeniaankietyController extends BulidStage implements SetStartValues{
@@ -114,6 +115,11 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
 
     @Override
     public void setStartValuesNagroda(Nagrody nagroda) {
+
+    }
+
+    @Override
+    public void setStartValuesIerator(Iterator iterator) {
 
     }
 
