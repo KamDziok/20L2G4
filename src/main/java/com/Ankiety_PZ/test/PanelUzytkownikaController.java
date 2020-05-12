@@ -48,8 +48,6 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     private String postCodeFirstStringUser;
     /** Druga część kodu pocztowego wczytany z pola tekstowego jako String. */
     private String postCodeSecondStringUser;
-    /** Numer lokalu przekształcony na int, jeśli wartość tej zmiennej jest -1 to pole jest puste. */
-    private int numberFlatIntUser = -1;
     /** Pierwsza część kodu pocztowego przekształconego na int. */
     private int postCodeFirstIntUser;
     /** Druga część kodu pocztowego przekształconego na int. */

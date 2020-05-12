@@ -43,8 +43,7 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
     private String postCodeFirstStringN;
     /** Druga część kodu pocztowego wczytany z pola tekstowego jako String. */
     private String postCodeSecondStringN;
-    /** Numer lokalu przekształcony na int, jeśli wartość tej zmiennej jest -1 to pole jest puste. */
-    private int numberFlatIntN = -1;
+
     /** Pierwsza część kodu pocztowego przekształconego na int. */
     private int postCodeFirstIntN;
     /** Druga część kodu pocztowego przekształconego na int. */

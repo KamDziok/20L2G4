@@ -41,15 +41,12 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
     private String postCodeFirstStringNAnkieter;
     /** Druga część kodu pocztowego wczytany z pola tekstowego jako String. */
     private String postCodeSecondStringAnkieter;
-    /** Numer lokalu przekształcony na int, jeśli wartość tej zmiennej jest -1 to pole jest puste. */
-    private int numberFlatIntAnkieter = -1;
     /** Pierwsza część kodu pocztowego przekształconego na int. */
     private int postCodeFirstIntAnkieter;
     /** Druga część kodu pocztowego przekształconego na int. */
     private int postCodeSecondIntAnkieter;
     /** Minimalna długośc hasłą. */
     private final int minSizePasswordAnkieter = 3;
-
     @FXML
     private Label imie_nazwisko_rola;
     @FXML
@@ -96,8 +93,6 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
     @FXML private TextField lokal;
     @FXML private TextField kod1;
     @FXML private TextField kod2;
-
-
 
     /**
      * Metoda obsługująca przyciśk Dodaj

@@ -7,7 +7,6 @@ import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.UzytkownicyQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -34,23 +33,12 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
     private String postCodeFirstString;
     /** Druga część kodu pocztowego wczytany z pola tekstowego jako String. */
     private String postCodeSecondString;
-    /** Numer lokalu przekształcony na int, jeśli wartość tej zmiennej jest -1 to pole jest puste. */
-    private int numberFlatInt = -1;
     /** Pierwsza część kodu pocztowego przekształconego na int. */
     private int postCodeFirstInt;
     /** Druga część kodu pocztowego przekształconego na int. */
     private int postCodeSecondInt;
     /** Minimalna długośc hasłą. */
     private final int minSizePassword = 3;
-
-    @FXML
-    private Button wyloguj;
-
-    @FXML
-    private Button panelEdycjiUzytkownikowButtonZapisz;
-
-    @FXML
-    private Button panelEdycjiUzytkownikowButtonAnuluj;
 
     @FXML
     private Label panelEdycjiUzytkownikaLabelError;
