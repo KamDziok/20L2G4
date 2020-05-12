@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -55,6 +57,12 @@
       <ScrollPane layoutX="21.0" layoutY="434.0" prefHeight="213.0" prefWidth="1121.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="208.0" prefWidth="1113.0">
+             <TableView fx:id="odpowiedziTabelka" layoutX="14.0" layoutY="74.0" prefHeight="130.0" prefWidth="1085.0">
+                <columns>
+                   <TableColumn fx:id="treść" prefWidth="565.0" text="Treść" />
+                   <TableColumn fx:id="przyciskUsun" prefWidth="73.0" text="Usun" />
+                </columns>
+             </TableView>
                <children>
                   <TextField fx:id="odpowiedzi" alignment="TOP_LEFT" layoutX="8.0" layoutY="14.0" prefHeight="47.0" prefWidth="891.0" />
                   <Button fx:id="dodajOdp" layoutX="912.0" layoutY="17.0" mnemonicParsing="false" onAction="#dodajOdpAction" prefHeight="41.0" prefWidth="91.0" text="Dodaj " />

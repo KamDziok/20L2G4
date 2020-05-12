@@ -23,13 +23,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class PanelAnkieterController extends BulidStage implements SetStartValues{
-    private Uzytkownicy curentUser;
+    private Uzytkownicy curentUser2;
     public int id_ankiety;
-    private String imie_nazwisko_rola_tmp;
-    private Ankiety ankieta;
-
-    @FXML
-    private Label imie_nazwisko_rola;
     @FXML
     private Label imie_nazwisko_rola2;
 
@@ -88,7 +83,7 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
         loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
         PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
         panelTworzeniaankietyController.setStartValuesAnkiety(ankieta);
-        panelTworzeniaankietyController.setStartValues(curentUser);
+        panelTworzeniaankietyController.setStartValues(curentUser2);
         activeScene(event, false, false);
 
 
@@ -97,31 +92,31 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
 
     @FXML
     void panelAnkieteraButtonZmienUstawienia(ActionEvent event) {
-        curentUser.setMail(email.getText());
-        if(haslo.getText().equals(curentUser.getHaslo()) && nowehaslo.getText().equals(hasloznowu.getText()))
-            curentUser.setHaslo(nowehaslo.getText());
-        curentUser.setImie(imie.getText());
-        curentUser.setNazwisko(nazwisko.getText());
-        curentUser.setMiejscowosc(miejscowosc.getText());
-        curentUser.setUlica(ulica.getText());
-        curentUser.setNumerBudynku(budynek.getText());
-        curentUser.setNumerLokalu(lokal.getText());
-        curentUser.setKodPocztowy(kod1.getText() + "-" + kod2.getText());
+        curentUser2.setMail(email.getText());
+        if(haslo.getText().equals(curentUser2.getHaslo()) && nowehaslo.getText().equals(hasloznowu.getText()))
+            curentUser2.setHaslo(nowehaslo.getText());
+        curentUser2.setImie(imie.getText());
+        curentUser2.setNazwisko(nazwisko.getText());
+        curentUser2.setMiejscowosc(miejscowosc.getText());
+        curentUser2.setUlica(ulica.getText());
+        curentUser2.setNumerBudynku(budynek.getText());
+        curentUser2.setNumerLokalu(lokal.getText());
+        curentUser2.setKodPocztowy(kod1.getText() + "-" + kod2.getText());
         UzytkownicyQuery query = new UzytkownicyQuery();
-        query.updateUzytkownicy(curentUser);
+        query.updateUzytkownicy(curentUser2);
     }
 
     private void setUstawienia() {
-        String imie = curentUser.getImie();
-        String nazwisko = curentUser.getNazwisko();
-        String[] kod = curentUser.getKodPocztowy().split("-");
-        email.setText(curentUser.getMail());
+        String imie = curentUser2.getImie();
+        String nazwisko = curentUser2.getNazwisko();
+        String[] kod = curentUser2.getKodPocztowy().split("-");
+        email.setText(curentUser2.getMail());
         this.imie.setText(imie);
         this.nazwisko.setText(nazwisko);
-        miejscowosc.setText(curentUser.getMiejscowosc());
-        ulica.setText(curentUser.getUlica());
-        budynek.setText(curentUser.getNumerBudynku());
-        lokal.setText(curentUser.getNumerLokalu());
+        miejscowosc.setText(curentUser2.getMiejscowosc());
+        ulica.setText(curentUser2.getUlica());
+        budynek.setText(curentUser2.getNumerBudynku());
+        lokal.setText(curentUser2.getNumerLokalu());
         kod1.setText(kod[0]);
         kod2.setText(kod[1]);
     }
@@ -158,12 +153,10 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
         AnkietyQuery query = new AnkietyQuery();
         List<Ankiety> ankiety = query.selectAll();
         ObservableList<AnikieterTabelka> dane = FXCollections.observableArrayList();
-        for (Ankiety ankieta:ankiety
+        for (Ankiety ankieta2:ankiety
         ) {
-            if(ankieta.getUzytkownicy().getIdUzytkownika() == this.curentUser.getIdUzytkownika())
-            dane.add(new AnikieterTabelka(ankieta));
+                dane.add(new AnikieterTabelka(ankieta2));
         }
-        System.out.println(dane.get(0).tytul);
         tableAnkiety.itemsProperty().setValue(dane);
         tytul.setCellValueFactory(new PropertyValueFactory("tytul"));
         wygasa.setCellValueFactory(new PropertyValueFactory("dataZakonczenia"));
@@ -175,14 +168,13 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
 
     @Override
     public void setStartValues(Uzytkownicy user) {
-        this.curentUser = user;
-        imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - Ankieter";
+        this.curentUser2 = user;
+///        imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - Ankieter";
         setAnkiety();
     }
 
     @Override
     public void setStartValuesAnkiety(Ankiety ankiety) {
-        this.ankieta = ankiety;
 
     }
 

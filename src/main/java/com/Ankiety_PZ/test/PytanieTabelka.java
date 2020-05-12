@@ -1,27 +1,23 @@
 package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.hibernate.Ankiety;
-import com.Ankiety_PZ.hibernate.Nagrody;
 import com.Ankiety_PZ.hibernate.Pytania;
-import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
 import java.util.Date;
 
-public class AnikieterTabelka extends BulidStage implements SetStartValues{
-    private Uzytkownicy curentUser;
-    public String tytul;
-    public int liczbaPunktow;
-    public Date dataZakonczenia;
+public class PytanieTabelka extends BulidStage{
+
+    public String treść;
+    public int Rpytanie;
     public Button buttonUsun;
     public Button buttonEdycja;
 
-    AnikieterTabelka(Ankiety ankieta) {
-        tytul = ankieta.getTytul();
-        liczbaPunktow = ankieta.getLiczbaPunktow();
-        dataZakonczenia = ankieta.getDataZakonczenia();
+    PytanieTabelka(Pytania pytanie) {
+        treść = pytanie.getTresc();
+        Rpytanie = pytanie.getRodzajPytania();
         buttonUsun = new Button("Usun");
         buttonUsun.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -37,53 +33,23 @@ public class AnikieterTabelka extends BulidStage implements SetStartValues{
             public void handle(ActionEvent event) {
                 loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
                 PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
-                panelTworzeniaankietyController.setStartValuesAnkiety(ankieta);
-                panelTworzeniaankietyController.setStartValues(curentUser);
                 activeScene(event, false, false);
             }
         });
     }
 
-    public String getTytul() {
-        return tytul;
+    public String getTreść() {
+        return treść;
     }
 
-    public int getLiczbaPunktow() {
-        return liczbaPunktow;
+    public int getrodzajPytania() {
+        return Rpytanie;
     }
-
-    public Date getDataZakonczenia() {
-        return dataZakonczenia;
-    }
-
     public Button getButtonEdycja() {
         return buttonEdycja;
     }
 
     public Button getButtonUsun() {
         return buttonUsun;
-    }
-
-    @Override
-    public void setStartValues(Uzytkownicy user) {
-        this.curentUser = user;
-
-
-    }
-
-    @Override
-    public void setStartValuesAnkiety(Ankiety ankieta2) {
-
-
-    }
-
-    @Override
-    public void setStartValuesPytanie(Pytania pytania) {
-
-    }
-
-    @Override
-    public void setStartValuesNagroda(Nagrody nagroda) {
-
     }
 }

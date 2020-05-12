@@ -5,13 +5,14 @@
 
 package com.Ankiety_PZ.test;
         import com.Ankiety_PZ.hibernate.*;
-import javafx.event.ActionEvent;
+        import com.Ankiety_PZ.query.AnkietyQuery;
+        import javafx.collections.FXCollections;
+        import javafx.collections.ObservableList;
+        import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.Image;
+        import javafx.scene.control.*;
+        import javafx.scene.control.cell.PropertyValueFactory;
+        import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -68,6 +69,10 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     private TextField punkty;
     @FXML
     private TextField trescPytania;
+
+    @FXML private TableView odpowiedziTabelka;
+    @FXML private TableColumn treść;
+    @FXML private TableColumn przyciskUsun;
 
     private String odp;
     private Uzytkownicy curetUser;
@@ -164,12 +169,16 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
         }
         else{if(dodawaniePytaniaRBQuestionPoints.isSelected()){
-            rodzajPytania=3;
             punktowe = Integer.parseInt(punkty.getText());
         }}}}}
         tresc = trescPytania.getText();
-
-        Pytania pytanie = new Pytania(ankiety, tresc, imageview, rodzajPytania, punktowe, odpowiedzis);
+        Pytania pytanie = new Pytania();
+        pytanie.setTresc(tresc);
+        pytanie.setZdjecie(imageview);
+        pytanie.setPunktowe(punktowe);
+        pytanie.setRodzajPytania(rodzajPytania);
+        pytanie.setOdpowiedzis(odpowiedzis);
+        pytanie.setRodzajPytania(rodzajPytania);
         if (punktowe!=0) pytanie.setPunktowe(punktowe);
         pytanie.setAnkiety(ankiety);
         pytanie.initHashSetOdpowiedzi();
@@ -180,10 +189,8 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
             System.out.println(odpo);
         }
         ankiety.getPytanias().add(pytanie);
-
         loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
         PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
-        panelTworzeniaankietyController.setStartValuesPytanie(pytanie);
         panelTworzeniaankietyController.setStartValuesAnkiety(ankiety);
         panelTworzeniaankietyController.setStartValues(curetUser);
         activeScene(event, false, false);
@@ -211,26 +218,54 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         dodawaniePytaniaRBQuestionPoints.setToggleGroup(radioButtonGroup);
     }
 
+    public void setOdpowiedzi() {
+        ObservableList<OdpowiedziTabelka> dane = FXCollections.observableArrayList();
+        for(String odp : listaOdp)
+        {
+            dane.add(new OdpowiedziTabelka(odp));
+        }
+
+        odpowiedziTabelka.itemsProperty().setValue(dane);
+        treść.setCellValueFactory(new PropertyValueFactory("treść"));
+        przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
+
+
+    }
+    public void setOdpowiedziSS(){
+        AnkietyQuery ank = new AnkietyQuery();
+        ank.selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(ankiety);
+        ObservableList<OdpowiedziTabelka> dane = FXCollections.observableArrayList();
+        for (Object Odp : pytani.getOdpowiedzis()
+        ) {
+            Odpowiedzi JednaOdp = (Odpowiedzi) Odp;
+            dane.add(new OdpowiedziTabelka(JednaOdp));
+        }
+        odpowiedziTabelka.itemsProperty().setValue(dane);
+        treść.setCellValueFactory(new PropertyValueFactory("treść"));
+        przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
+
+    }
+
 
     public void dodajOdpAction(ActionEvent event){
         odp = odpowiedzi.getText() ;
         listaOdp.add(odp);
+        setOdpowiedzi();
     }
 
     @Override
     public void setStartValues(Uzytkownicy user) {
         this.curetUser = user;
-
     }
 
     @Override
     public void setStartValuesAnkiety(Ankiety ankieta) {
         this.ankiety = ankieta;
+      ///  setOdpowiedziSS();
     }
 
     @Override
     public void setStartValuesPytanie(Pytania pytania) {
-        this.pytani = pytania;
     }
 
     @Override
