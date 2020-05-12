@@ -9,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
 import java.util.Date;
+import java.util.Iterator;
 
 public class AnikieterTabelka extends BulidStage implements SetStartValues{
     private Uzytkownicy curentUser;
@@ -84,6 +85,11 @@ public class AnikieterTabelka extends BulidStage implements SetStartValues{
 
     @Override
     public void setStartValuesNagroda(Nagrody nagroda) {
+
+    }
+
+    @Override
+    public void setStartValuesIerator(Iterator<Pytania> iterator) {
 
     }
 }
