@@ -119,15 +119,15 @@
                                                 <Label layoutX="747.0" layoutY="469.0" text="-" />
                                                 <TextField fx:id="kod1" layoutX="680.0" layoutY="458.0" prefHeight="54.0" prefWidth="61.0" />
                                                 <TextField fx:id="kod2" layoutX="762.0" layoutY="458.0" prefHeight="54.0" prefWidth="69.0" />
-                                    <Label fx:id="panelNagrodLabelError" alignment="CENTER" layoutX="278.0" layoutY="195.0" prefHeight="17.0" prefWidth="522.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
-                                       <font>
-                                          <Font size="24.0" />
-                                       </font>
-                                    </Label>
                                             </children>
                                         </AnchorPane>
                                     </content>
                                 </ScrollPane>
+                        <Label fx:id="panelNagrodLabelError" alignment="CENTER" layoutX="332.0" layoutY="630.0" prefHeight="17.0" prefWidth="522.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
                             </children></AnchorPane>
                     </content>
                 </Tab>

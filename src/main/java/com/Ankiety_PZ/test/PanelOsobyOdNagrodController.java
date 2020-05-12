@@ -244,6 +244,9 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
                           curentUser.setNumerLokalu(numberFlatStringN);
                           curentUser.setKodPocztowy(postCode);
                           update.updateUzytkownicy(curentUser);
+                          imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - konto zarządzania nagrodami";
+                          imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
+                          imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
                           panelNagrodLabelError.setText("Profil został pomyślnie zaktualizowany.");
                    }else{
                         panelNagrodLabelError.setText("Podany adres e-mailu jest nieprawidłowy!");
