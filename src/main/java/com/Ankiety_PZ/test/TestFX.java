@@ -78,7 +78,11 @@ public class TestFX extends Application {
 //        List<OdpowiedziUzytkownicy> ouList =  new ArrayList<>();
 //        ouList.add(ou);
 //        ouList.add(ou2);
-//        System.out.println(uq.addOdpowiedziUzytkownika(ouList));
+//        List<PytaniaUzytkownicy> puList = new ArrayList<>();
+//        Pytania p = new PytaniaQuery().selectByID(22);
+//        PytaniaUzytkownicy pu = new PytaniaUzytkownicy(p,u,"coś");
+//        puList.add(pu);
+//        System.out.println(uq.addOdpowiedziUzytkownika(ouList, puList));
 
         //Wyświetlanie Ankiet dla użytkowników
 //        UzytkownicyQuery uq = new UzytkownicyQuery();
