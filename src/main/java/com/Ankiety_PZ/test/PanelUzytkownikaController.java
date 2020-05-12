@@ -30,6 +30,8 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     private ResourceBundle resources;
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
+    @FXML
+    private Label panelUzytkownikaLabelError;
     @FXML private Button wyloguj;
     @FXML private Label punkty;
     @FXML private Label labelPunkty;
@@ -151,6 +153,7 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     @Override
     public void setStartValues(Uzytkownicy user) {
         curentUser = user;
+
         setUstawienia();
         setAnkiety();
         setNagrody();

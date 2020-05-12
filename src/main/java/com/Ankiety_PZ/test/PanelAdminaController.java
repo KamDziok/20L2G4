@@ -35,6 +35,8 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
     private Label imie_nazwisko_rola2;
     @FXML
     private Label imie_nazwisko_rola3;
+    @FXML
+    private Label panelAdminaLabelError;
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
     @FXML // URL location of the FXML file that was given to the FXMLLoader

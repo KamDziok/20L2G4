@@ -145,6 +145,11 @@
                                           <Font size="24.0" />
                                        </font>
                                     </Label>
+                                    <Label fx:id="panelAdminaLabelError" alignment="CENTER" layoutX="332.0" layoutY="553.0" prefHeight="17.0" prefWidth="522.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
                                             </children>
                                         </AnchorPane>
                                     </content>
