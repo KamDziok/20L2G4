@@ -230,7 +230,7 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
                         imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
                         panelAnkieteraLabelError.setText("Profil został pomyślnie zaktualizowany.");
                     }else{
-                        panelAnkieteraLabelError.setText("Podany adres e-mailu jest nieprawidłowy!");
+                        panelAnkieteraLabelError.setText("Podany adres e-mail jest nieprawidłowy!");
                     }
                 }else{
                     panelAnkieteraLabelError.setText(sprawdzhaslo);

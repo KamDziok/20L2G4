@@ -9,8 +9,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import java.util.Iterator;
 import javafx.scene.control.TextField;
+
+import java.util.Iterator;
 
 public class PanelEdycjiUzytkownikaController extends BulidStage implements SetStartValues,SetStartValuesEdycjaUzytkownika {
 
@@ -218,7 +219,7 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
                             panelEdycjiUzytkownikaLabelError.setText("Niepoprawny kod uprawnień!");
                         }
                     }else{
-                        panelEdycjiUzytkownikaLabelError.setText("Podany adres e-mailu jest nieprawidłowy!");
+                        panelEdycjiUzytkownikaLabelError.setText("Podany adres e-mail jest nieprawidłowy!");
                     }
                 }else{
                     panelEdycjiUzytkownikaLabelError.setText("Hasło jest za krótkie!");
