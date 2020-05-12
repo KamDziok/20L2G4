@@ -29,6 +29,9 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
     private Nagrody nagrody;
     private Uzytkownicy curentUser;
     Image image;
+    int liczba_punktow;
+    String liczba_punktowS;
+    String nazwa_nagrody;
 
     File file = new File("C:\\Users\\Banan\\Pictures\\a.jpg");
     @FXML
@@ -54,6 +57,9 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
 
     @FXML
     private Label imie_nazwisko_rola;
+
+    @FXML
+    private Label panelEdycjiNagrodLabelError;
 
     @FXML
     void wyloguj(ActionEvent event) {
@@ -94,14 +100,48 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         panelOsobyOdNagrodController.setStartValues(curentUser);
         activeScene(event, false, false);
     }
+    /**
+     * Metoda sprawdzenie czy obowiązkowe pola nie są puste.
+     *
+     * @return true jeśli wszystkie pola obowiązkowe są uzupełnione, w przeciwnym wypadku false
+     */
+    private boolean compulsoryFildNotNull(){
+        return (!liczba_punktowS.isEmpty() && !nazwa_nagrody.isEmpty());
+    }
+    /**
+     * Metoda sprawdza czy liczba punktów składa się z liczb i czy jest większa lub równa 0.
+     *
+     * @return true jeśli liczba punków jest poprawna, w przeciwnym razie false
+     */
+    private boolean pktIsNumber(){
+        try{
+                liczba_punktow = Integer.parseInt(liczba_punktowS);
+                if(liczba_punktow >= 0){
+                return true;
+            }else{
+                    return false;
+            }
+        }catch(IllegalArgumentException argumentException){
+            panelEdycjiNagrodLabelError.setText("Liczba punktów zawiera niepoprawne znaki!");
+            System.out.println(argumentException.getMessage());
+        }catch(Exception exception){
+            System.out.println(exception.getMessage());
+        }
+        return false;
+    }
 
     @FXML
     void panelEdycjiNagrodButtonEdytuj(ActionEvent event) {
 
+        liczba_punktowS = pkt.getText();
+        nazwa_nagrody = nag.getText();
+        if(compulsoryFildNotNull()){
+        if(pktIsNumber()){
         try {
+
             NagrodyQuery zapisz = new NagrodyQuery();
-            nagrody.setLiczbaPunktow(Integer.parseInt(pkt.getText()));
-            nagrody.setNazwa(nag.getText());
+            nagrody.setLiczbaPunktow(liczba_punktow);
+            nagrody.setNazwa(nazwa_nagrody);
             // wczytywanie do bazy zdjęcia do naprawy!
             //  int w = (int)image.getWidth();
             //  int h = (int)image.getHeight();
@@ -112,7 +152,7 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         }
         catch(RuntimeException wyjatek)
         {
-            Nagrody nagroda = new Nagrody(Integer.parseInt(pkt.getText()),nag.getText());
+            Nagrody nagroda = new Nagrody(liczba_punktow,nazwa_nagrody);
             NagrodyQuery dodaj = new NagrodyQuery();
             dodaj.addNagrody(nagroda);
         }
@@ -121,6 +161,13 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
             PanelOsobyOdNagrodController panelOsobyOdNagrodController = load.getController();
             panelOsobyOdNagrodController.setStartValues(curentUser);
             activeScene(event, false, false);
+        }}
+        else{
+
+            panelEdycjiNagrodLabelError.setText("Podaj poprawną liczbę punków!");
+        }}
+        else{
+            panelEdycjiNagrodLabelError.setText("Wymagane pola są puste!");
         }
     }
 
