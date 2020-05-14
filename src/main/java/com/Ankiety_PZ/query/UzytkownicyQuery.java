@@ -1,9 +1,6 @@
 package com.Ankiety_PZ.query;
 
-import com.Ankiety_PZ.hibernate.OdpowiedziUzytkownicy;
-import com.Ankiety_PZ.hibernate.Pytania;
-import com.Ankiety_PZ.hibernate.PytaniaUzytkownicy;
-import com.Ankiety_PZ.hibernate.Uzytkownicy;
+import com.Ankiety_PZ.hibernate.*;
 import com.Ankiety_PZ.test.Permissions;
 import com.Ankiety_PZ.test.TypeOfQuestion;
 import org.hibernate.HibernateException;
@@ -158,7 +155,7 @@ public class UzytkownicyQuery extends OperationInSession {
         }
     }
 
-    public Boolean addOdpowiedziUzytkownika(List<OdpowiedziUzytkownicy> usersAnswers, List<PytaniaUzytkownicy> userOpenAnswers){
+    public Boolean addOdpowiedziUzytkownika(List<OdpowiedziUzytkownicy> usersAnswers, List<PytaniaUzytkownicy> userOpenAnswers, Ankiety ankiety, Uzytkownicy user){
         boolean result = false;
         try{
             session = openSession();
@@ -184,6 +181,8 @@ public class UzytkownicyQuery extends OperationInSession {
                         .setParameter("odpowiedz", userOpenAnswer.getOdpowiedz())
                         .executeUpdate();
             });
+            ankiety.setLiczbaWypelnien( ankiety.getLiczbaWypelnien().intValue() + 1 );
+            new AnkietyQuery().updateAnkietyWithOutTransaction(ankiety, session);
             commitTransaction(transaction);
             result = true;
         }catch(Exception e){
