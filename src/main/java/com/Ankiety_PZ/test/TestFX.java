@@ -1,5 +1,7 @@
 package com.Ankiety_PZ.test;
 
+import com.Ankiety_PZ.hibernate.Ankiety;
+import com.Ankiety_PZ.query.AnkietyQuery;
 import com.Ankiety_PZ.query.ConnectToDataBase;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -125,6 +127,11 @@ public class TestFX extends Application {
 
         //wyswietlenie wszytkich ankiet uzytkownika
 //        System.out.println(new AnkietyQuery().selectAllUzytkownik(new UzytkownicyQuery().selectById(1)).size());
+
+        //wyświetlanie ankiet wraz z odpowiedziami
+        AnkietyQuery aq = new AnkietyQuery();
+        Ankiety a = aq.selectById(12);
+        System.out.println(aq.selectToAnalysis(a).getPytanias().size());
         launch();
     }
 }

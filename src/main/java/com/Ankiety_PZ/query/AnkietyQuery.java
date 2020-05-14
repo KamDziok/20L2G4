@@ -183,4 +183,34 @@ public class AnkietyQuery extends OperationInSession {
         return ankiety;
     }
 
+    public Ankiety selectToAnalysis(Ankiety ankiety){
+        try{
+            PytaniaQuery pytaniaQuery = new PytaniaQuery();
+            List<Pytania> pytaniaList = pytaniaQuery.selectListPytaniaByIdAnkiety(ankiety);
+            OdpowiedziQuery odpowiedziQuery = new OdpowiedziQuery();
+            ankiety.initHashSetPytania();
+            pytaniaList.forEach(pytanie -> {
+                if (pytanie.getRodzajPytania() != TypeOfQuestion.OPEN) {
+                    List<Odpowiedzi> odpowiedziList = odpowiedziQuery.selectSetOdpowiedziByIdPytania(pytanie);
+                    pytanie.initHashSetOdpowiedzi();
+                    odpowiedziList.forEach(odpowiedzi -> {
+                        if(pytanie.getRodzajPytania() == TypeOfQuestion.PERCENT || pytanie.getRodzajPytania() == TypeOfQuestion.POINTS) {
+                            odpowiedzi.initOdpowiedziUzytkownicy();
+                            odpowiedzi.setOdpowiedziUzytkownicy(odpowiedziQuery.selectOdpowiedziPointsAndPercent(odpowiedzi));
+                            pytanie.getOdpowiedzis().add(odpowiedzi);
+                        }else {
+                            odpowiedzi.setCount(odpowiedziQuery.selectCountOdpowiedzi(odpowiedzi).intValue());
+                        }
+                    });
+                }else{
+                    pytanie.setPytaniaUzytkownicy(pytaniaQuery.selectPytaniaUzytkownicy(pytanie));
+                }
+                ankiety.getPytanias().add(pytanie);
+            });
+        }catch(Exception e){
+            logException(e);
+        }
+        return ankiety;
+    }
+
 }

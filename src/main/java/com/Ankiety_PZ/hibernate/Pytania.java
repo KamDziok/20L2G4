@@ -109,7 +109,13 @@ public class Pytania  implements java.io.Serializable {
         this.odpowiedzis = odpowiedzis;
     }
 
+    public List<PytaniaUzytkownicy> getPytaniaUzytkownicy() {
+        return pytaniaUzytkownicy;
+    }
 
+    public void setPytaniaUzytkownicy(List<PytaniaUzytkownicy> pytaniaUzytkownicy) {
+        this.pytaniaUzytkownicy = pytaniaUzytkownicy;
+    }
 }
 
 
