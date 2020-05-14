@@ -1,9 +1,13 @@
 package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.hibernate.Nagrody;
+import com.Ankiety_PZ.hibernate.Uzytkownicy;
+import com.Ankiety_PZ.query.UzytkownicyQuery;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+
+import static javax.swing.JOptionPane.showMessageDialog;
 
 public class NagrodaTabelka {
     private String nazwa;
@@ -11,7 +15,7 @@ public class NagrodaTabelka {
     private byte[] obrazek;
     private Button button;
 
-    NagrodaTabelka(Nagrody nagroda) {
+    NagrodaTabelka(Nagrody nagroda, PanelUzytkownikaController controller) {
         nazwa = nagroda.getNazwa();
         cena = nagroda.getLiczbaPunktow();
         obrazek = nagroda.getZdjecie();
@@ -19,6 +23,15 @@ public class NagrodaTabelka {
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                Uzytkownicy curentUser = controller.getCurentUser();
+                if (curentUser.updatePunkty(cena, false)) {
+                    controller.updatePkt(String.valueOf(curentUser.getLiczbaPunktow()));
+                    UzytkownicyQuery query = new UzytkownicyQuery();
+                    query.updateUzytkownicy(curentUser);
+//                    wywołanie funkcji generującej PDF'a
+                } else {
+                    showMessageDialog(null, "Biedaku ... nawet złota nie masz.");
+                }
 
             }
         });

@@ -277,10 +277,4 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     public void setStartValuesNagroda(Nagrody nagroda) {
 
     }
-
-    @Override
-    public void setStartValuesIerator(Iterator iterator) {
-
-    }
-
 }

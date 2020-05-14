@@ -21,7 +21,7 @@ import java.net.URL;
 import java.util.*;
 
 public class PanelAnkieterController extends BulidStage implements SetStartValues{
-    private Uzytkownicy curentUser2;
+    private Uzytkownicy curentUser;
     public int id_ankiety;
     private String imie_nazwisko_rola_tmp;
     private String sprawdzhaslo;
@@ -107,7 +107,7 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
         loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
         PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
         panelTworzeniaankietyController.setStartValuesAnkiety(ankieta);
-        panelTworzeniaankietyController.setStartValues(curentUser2);
+        panelTworzeniaankietyController.setStartValues(curentUser);
         activeScene(event, false, false);
     }
 
@@ -163,7 +163,7 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
             if(!passwordNewAnkieter.equals(passwordRepeatAnkieter)){
                 sprawdzhaslo ="Hasła nie są takie same!";
             }else{
-                if(passwordAnkieter.equals(curentUser2.getHaslo())){
+                if(passwordAnkieter.equals(curentUser.getHaslo())){
                     return true;
                 }
                 else if(passwordAnkieter.isEmpty() && passwordNewAnkieter.isEmpty() && passwordRepeatAnkieter.isEmpty()){
@@ -208,19 +208,19 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
                     if(chechEmailAnkieter()) {
                         UzytkownicyQuery update = new UzytkownicyQuery();
                         String postCode = postCodeFirstIntAnkieter + "-" + postCodeSecondIntAnkieter;
-                        curentUser2.setMail(mailAnkieter);
-                        curentUser2.setImie(nameAnkieter);
+                        curentUser.setMail(mailAnkieter);
+                        curentUser.setImie(nameAnkieter);
                         if(!passwordAnkieter.isEmpty()){
-                            curentUser2.setHaslo(passwordRepeatAnkieter);
+                            curentUser.setHaslo(passwordRepeatAnkieter);
                         }
-                        curentUser2.setNazwisko(surnameAnkieter);
-                        curentUser2.setMiejscowosc(cityAnkieter);
-                        curentUser2.setUlica(streetAnkieter);
-                        curentUser2.setNumerBudynku(numberHouseStringAnkieter);
-                        curentUser2.setNumerLokalu(numberFlatStringAnkieter);
-                        curentUser2.setKodPocztowy(postCode);
-                        update.updateUzytkownicy(curentUser2);
-                        imie_nazwisko_rola_tmp = curentUser2.getImie() + " " + curentUser2.getNazwisko()+ " - konto ankietera";
+                        curentUser.setNazwisko(surnameAnkieter);
+                        curentUser.setMiejscowosc(cityAnkieter);
+                        curentUser.setUlica(streetAnkieter);
+                        curentUser.setNumerBudynku(numberHouseStringAnkieter);
+                        curentUser.setNumerLokalu(numberFlatStringAnkieter);
+                        curentUser.setKodPocztowy(postCode);
+                        update.updateUzytkownicy(curentUser);
+                        imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser2.getNazwisko()+ " - konto ankietera";
                         imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
                         imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
                         panelAnkieteraLabelError.setText("Profil został pomyślnie zaktualizowany.");
@@ -239,16 +239,16 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
     }
 
     private void setUstawienia() {
-        String imie = curentUser2.getImie();
-        String nazwisko = curentUser2.getNazwisko();
-        String[] kod = curentUser2.getKodPocztowy().split("-");
-        email.setText(curentUser2.getMail());
+        String imie = curentUser.getImie();
+        String nazwisko = curentUser.getNazwisko();
+        String[] kod = curentUser.getKodPocztowy().split("-");
+        email.setText(curentUser.getMail());
         this.imie.setText(imie);
         this.nazwisko.setText(nazwisko);
-        miejscowosc.setText(curentUser2.getMiejscowosc());
-        ulica.setText(curentUser2.getUlica());
-        budynek.setText(curentUser2.getNumerBudynku());
-        lokal.setText(curentUser2.getNumerLokalu());
+        miejscowosc.setText(curentUser.getMiejscowosc());
+        ulica.setText(curentUser.getUlica());
+        budynek.setText(curentUser.getNumerBudynku());
+        lokal.setText(curentUser.getNumerLokalu());
         kod1.setText(kod[0]);
         kod2.setText(kod[1]);
     }
@@ -285,9 +285,9 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
         AnkietyQuery query = new AnkietyQuery();
         List<Ankiety> ankiety = query.selectAll();
         ObservableList<AnikieterTabelka> dane = FXCollections.observableArrayList();
-        for (Ankiety ankieta2:ankiety
+        for (Ankiety ankieta:ankiety
         ) {
-                dane.add(new AnikieterTabelka(ankieta2));
+                dane.add(new AnikieterTabelka(ankieta));
         }
         tableAnkiety.itemsProperty().setValue(dane);
         tytul.setCellValueFactory(new PropertyValueFactory("tytul"));
@@ -300,8 +300,8 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
 
     @Override
     public void setStartValues(Uzytkownicy user) {
-        this.curentUser2 = user;
-        imie_nazwisko_rola_tmp = curentUser2.getImie() + " " + curentUser2.getNazwisko()+ " - konto ankietera";
+        this.curentUser = user;
+        imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - konto ankietera";
         imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
         imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
         setAnkiety();
@@ -310,7 +310,6 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
 
     @Override
     public void setStartValuesAnkiety(Ankiety ankiety) {
-
 
     }
 
@@ -323,12 +322,6 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
     public void setStartValuesNagroda(Nagrody nagroda) {
 
     }
-
-    @Override
-    public void setStartValuesIerator(Iterator iterator) {
-
-    }
-
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {

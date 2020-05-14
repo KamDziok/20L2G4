@@ -149,7 +149,7 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
             uprawnienia_i = edycja.getUprawnienia();
         }
     }
-    
+
     /**
      * Metoda sprawdza, czy hasło ma odpowiednia ilośc znaków i czy potwórz hasło jest takie samo jak hasło.
      *
@@ -246,7 +246,6 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
     public void SetStartValuesEdycjaUzytkownika(Uzytkownicy user){
         this.edycja = user;
         setUstawienia();
-
     }
 
     private void setUstawienia() {
@@ -303,11 +302,6 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
 
     @Override
     public void setStartValuesNagroda(Nagrody nagroda) {
-
-    }
-
-    @Override
-    public void setStartValuesIerator(Iterator iterator) {
 
     }
 

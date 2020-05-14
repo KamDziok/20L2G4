@@ -2,7 +2,6 @@ package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.hibernate.Ankiety;
 import com.Ankiety_PZ.hibernate.Pytania;
-import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.AnkietyQuery;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,7 +18,7 @@ public class AnikietaTabelka extends BulidStage {
     private Date dataZakonczenia;
     private Button button;
 
-    AnikietaTabelka(Ankiety ankieta, Uzytkownicy user) {
+    AnikietaTabelka(Ankiety ankieta, PanelUzytkownikaController controller) {
         tytul = ankieta.getTytul();
         liczbaPunktow = ankieta.getLiczbaPunktow();
         dataZakonczenia = ankieta.getDataZakonczenia();
@@ -35,7 +34,9 @@ public class AnikietaTabelka extends BulidStage {
                     loadingFXML(event, SceneFXML.OKNO_ANKIETA_RADIO);
                     OknoAnkietyRadioController radioController = load.getController();
                     radioController.setStartValuesIerator(iterator);
-                    radioController.setStartValues(user);
+                    radioController.setStartValues(controller.getCurentUser());
+                    radioController.setStartValuesPkt(liczbaPunktow);
+                    radioController.setStartValuesPanelUzytkownikaController(controller);
                     activeScene(event, false, true);
                 }
             }

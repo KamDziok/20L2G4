@@ -5,8 +5,8 @@
 package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.hibernate.Ankiety;
-import com.Ankiety_PZ.hibernate.Pytania;
 import com.Ankiety_PZ.hibernate.Nagrody;
+import com.Ankiety_PZ.hibernate.Pytania;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.AnkietyQuery;
 import com.Ankiety_PZ.query.NagrodyQuery;
@@ -19,7 +19,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -232,6 +231,12 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
             assert wyloguj != null : "fx:id=\"wyloguj\" was not injected: check your FXML file 'panelUzytkownika.fxml'.";
     }
 
+    public void updatePkt(String punkty) {
+        this.punkty.setText(punkty + "pkt");
+        punktyUstawienia.setText(punkty + "pkt");
+        punktyNagrody.setText(punkty + "pkt");
+    }
+
     private void setUstawienia() {
         String imie = curentUser.getImie();
         String nazwisko = curentUser.getNazwisko();
@@ -258,13 +263,13 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
 
     private void setAnkiety() {
         AnkietyQuery query = new AnkietyQuery();
-        List<Ankiety> ankiety = query.selectAllActiveAnkiety();
+        List<Ankiety> ankiety = query.selectAllActiveAndNotDoAnkiety(curentUser);
+        System.out.println(curentUser.getIdUzytkownika());
         ObservableList<AnikietaTabelka> dane = FXCollections.observableArrayList();
         for (Ankiety ankieta:ankiety
              ) {
-            dane.add(new AnikietaTabelka(ankieta, curentUser));
+            dane.add(new AnikietaTabelka(ankieta, this));
         }
-        System.out.println();
         tableAnkiety.itemsProperty().setValue(dane);
         tytul.setCellValueFactory(new PropertyValueFactory("tytul"));
         wygasa.setCellValueFactory(new PropertyValueFactory("dataZakonczenia"));
@@ -278,7 +283,7 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
         ObservableList<NagrodaTabelka> dane = FXCollections.observableArrayList();
         for (Nagrody nagroda:nagrody
         ) {
-            dane.add(new NagrodaTabelka(nagroda));
+            dane.add(new NagrodaTabelka(nagroda, this));
         }
         tableNagrody.itemsProperty().setValue(dane);
         nazwa.setCellValueFactory(new PropertyValueFactory("nazwa"));
@@ -311,8 +316,7 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
 
     }
 
-    @Override
-    public void setStartValuesIerator(Iterator iterator) {
-
+    public Uzytkownicy getCurentUser() {
+        return curentUser;
     }
 }
