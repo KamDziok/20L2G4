@@ -4,13 +4,15 @@
 package com.Ankiety_PZ.test;
 
 
-import com.Ankiety_PZ.hibernate.Ankiety;
-import com.Ankiety_PZ.hibernate.Nagrody;
-import com.Ankiety_PZ.hibernate.Pytania;
-import com.Ankiety_PZ.hibernate.Uzytkownicy;
+import com.Ankiety_PZ.hibernate.*;
 import com.Ankiety_PZ.query.AnkietyQuery;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.text.DateFormat;
@@ -18,6 +20,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class PanelTworzeniaankietyController extends BulidStage implements SetStartValues{
@@ -48,6 +51,11 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     private Date dataRozpoczecia;
     private Date dataZakonczenia;
     private Ankiety ankiety;
+    @FXML private TableView pytanieTabele;
+    @FXML private TableColumn treść;
+    @FXML private TableColumn Rpytanie;
+    @FXML private TableColumn przyciskEdycja;
+    @FXML private TableColumn przyciskUsun;
 
 
     /**
@@ -75,6 +83,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     void anulujAction(ActionEvent event) {
         loadingFXML(event, SceneFXML.PANEL_ANKIETERA);
         PanelAnkieterController panelAnkieterController = load.getController();
+        panelAnkieterController.setStartValues(curentUser);
         activeScene(event, false, false);
     }
 
@@ -97,19 +106,26 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     @Override
     public void setStartValues(Uzytkownicy user) {
         this.curentUser = user;
+        setPytanie();
     }
 
     @Override
     public void setStartValuesAnkiety(Ankiety ankieta)
     {
+
         this.ankiety = ankieta;
-        trescTytulu.setText(ankieta.getTytul());
+        trescTytulu.setText(ankiety.getTytul());
+        punkty.setText(String.valueOf(ankiety.getLiczbaPunktow()));
+        dataOD.setText(String.valueOf((ankiety.getDataRozpoczecia())));
+        dataDo.setText(String.valueOf((ankiety.getDataZakonczenia())));
+
 
     }
 
     @Override
     public void setStartValuesPytanie(Pytania pytania) {
         this.pytanie = pytania;
+        setPytanieB();
 
     }
 
@@ -117,6 +133,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     public void setStartValuesNagroda(Nagrody nagroda) {
 
     }
+
 
     @Override
     public void setStartValuesIerator(Iterator iterator) {
@@ -149,5 +166,32 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
 
 
 
+    }
+
+    private void setPytanie() {
+        AnkietyQuery query = new AnkietyQuery();
+        ObservableList<PytanieTabelka> dane = FXCollections.observableArrayList();
+        ankiety = query.selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(ankiety);
+        ankiety.getPytanias().forEach(pytanie -> {
+            Pytania pytania2 = (Pytania) pytanie;
+            dane.add(new PytanieTabelka(pytania2)); });
+        treść.setCellValueFactory(new PropertyValueFactory("treść"));
+        Rpytanie.setCellValueFactory(new PropertyValueFactory("Rpytanie"));
+        przyciskEdycja.setCellValueFactory(new PropertyValueFactory("buttonEdycja"));
+        przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
+        pytanieTabele.itemsProperty().setValue(dane);
+    }
+    private void setPytanieB() {
+        AnkietyQuery query = new AnkietyQuery();
+        ObservableList<PytanieTabelka> dane = FXCollections.observableArrayList();
+        //ankiety = query.selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(ankiety);
+        ankiety.getPytanias().forEach(pytanie -> {
+            Pytania pytania2 = (Pytania) pytanie;
+            dane.add(new PytanieTabelka(pytania2)); });
+        treść.setCellValueFactory(new PropertyValueFactory("treść"));
+        Rpytanie.setCellValueFactory(new PropertyValueFactory("Rpytanie"));
+        przyciskEdycja.setCellValueFactory(new PropertyValueFactory("buttonEdycja"));
+        przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
+        pytanieTabele.itemsProperty().setValue(dane);
     }
 }
