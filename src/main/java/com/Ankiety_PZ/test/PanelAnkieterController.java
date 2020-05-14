@@ -220,7 +220,7 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
                         curentUser.setNumerLokalu(numberFlatStringAnkieter);
                         curentUser.setKodPocztowy(postCode);
                         update.updateUzytkownicy(curentUser);
-                        imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser2.getNazwisko()+ " - konto ankietera";
+                        imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - konto ankietera";
                         imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
                         imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
                         panelAnkieteraLabelError.setText("Profil został pomyślnie zaktualizowany.");
