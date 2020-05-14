@@ -129,9 +129,9 @@ public class TestFX extends Application {
 //        System.out.println(new AnkietyQuery().selectAllUzytkownik(new UzytkownicyQuery().selectById(1)).size());
 
         //wyświetlanie ankiet wraz z odpowiedziami
-        AnkietyQuery aq = new AnkietyQuery();
-        Ankiety a = aq.selectById(12);
-        System.out.println(aq.selectToAnalysis(a).getPytanias().size());
+//        AnkietyQuery aq = new AnkietyQuery();
+//        Ankiety a = aq.selectById(12);
+//        System.out.println(aq.selectToAnalysis(a).getPytanias().size());
         launch();
     }
 }
