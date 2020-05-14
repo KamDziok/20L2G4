@@ -149,7 +149,7 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
             uprawnienia_i = edycja.getUprawnienia();
         }
     }
-
+    
     /**
      * Metoda sprawdza, czy hasło ma odpowiednia ilośc znaków i czy potwórz hasło jest takie samo jak hasło.
      *
@@ -192,7 +192,6 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
             if(postCodeIsNumber()){
                 if(checkPassword()){
                     if(chechEmail()) {
-
                             UzytkownicyQuery update = new UzytkownicyQuery();
                             String postCode = postCodeFirstInt + "-" + postCodeSecondInt;
                             edycja.setMail(mail);
@@ -252,14 +251,27 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
 
     private void setUstawienia() {
         String imie = edycja.getImie();
-        String uprawnienia = edycja.getUprawnienia()+"";
+        int upr = edycja.getUprawnienia();
         String nazwisko = edycja.getNazwisko();
         String[] kod = edycja.getKodPocztowy().split("-");
         System.out.println(kod[0]);
         email.setText(edycja.getMail());
         this.imie.setText(imie);
         this.nazwisko.setText(nazwisko);
-   //     this.uprawnienia.setText(uprawnienia);
+
+        if (upr == 0) {
+            uprawnienia.setValue("Użytkownik");
+        }
+        else if(upr == 1){
+            uprawnienia.setValue("Ankieter");
+        }
+        else if(upr == 2){
+            uprawnienia.setValue("Osoba odpowiedzialna za nagrody");
+        }
+        else if(upr == 3){
+            uprawnienia.setValue("Administrator");
+        }
+
         miejscowosc.setText(edycja.getMiejscowosc());
         ulica.setText(edycja.getUlica());
         budynek.setText(edycja.getNumerBudynku());
