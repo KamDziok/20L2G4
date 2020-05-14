@@ -77,6 +77,19 @@ public class Uzytkownicy  implements java.io.Serializable {
        this.kodPocztowy = kodPocztowy;
        this.liczbaPunktow = liczbaPunktow;
     }
+
+    public boolean updatePunkty(int punkty, boolean dodanie) {
+        if(dodanie) {
+            liczbaPunktow += punkty;
+            return true;
+        }
+        else
+            if (liczbaPunktow - punkty >= 0) {
+                liczbaPunktow -= punkty;
+                return true;
+            } else
+                return false;
+    }
    
     public Integer getIdUzytkownika() {
         return this.idUzytkownika;

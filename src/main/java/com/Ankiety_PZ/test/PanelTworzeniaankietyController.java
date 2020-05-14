@@ -118,11 +118,6 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
 
     }
 
-    @Override
-    public void setStartValuesIerator(Iterator iterator) {
-
-    }
-
     @FXML
     void ZapiszAction(ActionEvent event) {
         DateFormat dateFrm = new SimpleDateFormat("yyyy-MM-dd");

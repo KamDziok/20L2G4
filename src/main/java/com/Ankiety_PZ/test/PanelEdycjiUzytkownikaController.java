@@ -9,7 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import java.util.Iterator;
 import javafx.scene.control.TextField;
 
 public class PanelEdycjiUzytkownikaController extends BulidStage implements SetStartValues,SetStartValuesEdycjaUzytkownika {
@@ -285,10 +284,4 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
     public void setStartValuesNagroda(Nagrody nagroda) {
 
     }
-
-    @Override
-    public void setStartValuesIerator(Iterator iterator) {
-
-    }
-
 }

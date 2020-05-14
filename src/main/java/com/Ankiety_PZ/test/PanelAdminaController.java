@@ -209,12 +209,6 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
 
     }
 
-    @Override
-    public void setStartValuesIerator(Iterator iterator) {
-
-    }
-
-
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert wyloguj != null : "fx:id=\"wyloguj\" was not injected: check your FXML file 'PanelAdmina.fxml'.";

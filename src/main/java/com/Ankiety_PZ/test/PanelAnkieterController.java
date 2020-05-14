@@ -19,7 +19,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -194,11 +193,6 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
 
     @Override
     public void setStartValuesNagroda(Nagrody nagroda) {
-
-    }
-
-    @Override
-    public void setStartValuesIerator(Iterator iterator) {
 
     }
 
