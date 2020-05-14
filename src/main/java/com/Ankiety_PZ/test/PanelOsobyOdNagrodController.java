@@ -24,12 +24,38 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
 
 
     private Uzytkownicy curentUser;
-    private Nagrody nagrod;
     public ObservableList<NagrodyTabelka> dane;
     private String imie_nazwisko_rola_tmp;
+    private String sprawdzhaslo;
+    private String mailN;
+    private String passwordN;
+    private String passwordRepeatN;
+    private String passwordNewN;
+    private String nameN;
+    private String surnameN;
+    private String cityN;
+    private String streetN;
+    /** Numer domu wczytany z pola tekstowego jako String. */
+    private String numberHouseStringN;
+    /** Numer lokalu wczytany z pola tekstowego jako String. */
+    private String numberFlatStringN;
+    /** Pierwsza część kodu pocztowego wczytany z pola tekstowego jako String. */
+    private String postCodeFirstStringN;
+    /** Druga część kodu pocztowego wczytany z pola tekstowego jako String. */
+    private String postCodeSecondStringN;
+
+    /** Pierwsza część kodu pocztowego przekształconego na int. */
+    private int postCodeFirstIntN;
+    /** Druga część kodu pocztowego przekształconego na int. */
+    private int postCodeSecondIntN;
+    /** Minimalna długośc hasłą. */
+    private final int minSizePasswordN = 3;
 
     @FXML
     private Label imie_nazwisko_rola;
+
+    @FXML
+    private Label panelNagrodLabelError;
 
     @FXML
     private Button wyloguj;
@@ -54,6 +80,9 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
 
     @FXML
     private TableColumn edytuj;
+
+    @FXML
+    private Button panelOsobyOdNagrodButtonZmienUstawienia;
 
     public TableColumn getNagrody() {
         return nagrody;
@@ -108,20 +137,129 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
         activeScene(event, false, false);
     }
 
+    /**
+     * Metoda sprawdzenie czy obowiązkowe pola nie są puste.
+     *
+     * @return true jeśli wszystkie pola obowiązkowe są uzupełnione, w przeciwnym wypadku false
+     */
+    private boolean compulsoryFildNotNullN(){
+        return (!mailN.isEmpty() && !nameN.isEmpty() &&
+                !surnameN.isEmpty() && !cityN.isEmpty() && !streetN.isEmpty() && !numberHouseStringN.isEmpty() &&
+                !postCodeFirstStringN.isEmpty() && !postCodeSecondStringN.isEmpty());
+    }
+
+    /**
+     * Metoda sprawdza czy kod pocztowy składa się z liczb i czy ma odpowiedznią długość.
+     *
+     * @author KamDziok
+     * @return true jeśli kod pocztowy jest poprawny, w przeciwnym razie false
+     */
+    private boolean postCodeIsNumberN(){
+        try{
+            if(postCodeFirstStringN.length() == 2 && postCodeSecondStringN.length() == 3) {
+                postCodeFirstIntN = Integer.parseInt(postCodeFirstStringN);
+                postCodeSecondIntN = Integer.parseInt(postCodeSecondStringN);
+                return true;
+            }else{
+                panelNagrodLabelError.setText("Kod pocztowy ma niepoprawną długość!");
+            }
+        }catch(IllegalArgumentException argumentException){
+            panelNagrodLabelError.setText("Kod pocztowy jest niepoprawny!");
+            System.out.println(argumentException.getMessage());
+        }catch(Exception exception){
+            System.out.println(exception.getMessage());
+        }
+        return false;
+    }
+
+    /**
+     * Metoda sprawdza, czy hasło ma odpowiednia ilośc znaków i czy nowe hasło jest takie samo jak powtórz hasło.
+     * Sprawdza również czy dotychczasowe hasło zostało podane poprawnie, albo nie jest zmieniane i zostało puste.
+     *
+     * @return true jeśli hasło ma odpowiednią długość i jest takie samo jak powtórz hasło i dotychczasowe hasło
+     * zostało podane poprawnie, w przeciwnym wypadku false.
+     */
+    private boolean checkPasswordN(){
+        if(((passwordRepeatN.length() < minSizePasswordN) || (passwordNewN.length() < minSizePasswordN)) && (!passwordN.isEmpty())){
+
+            sprawdzhaslo ="Hasło jest za krótkie lub nie wypełniłeś wszystkich pól!";
+        }else {
+            if(!passwordNewN.equals(passwordRepeatN)){
+                sprawdzhaslo ="Hasła nie są takie same!";
+            }else{
+              if(passwordN.equals(curentUser.getHaslo())){
+                  return true;
+              }
+              else if(passwordN.isEmpty() && passwordNewN.isEmpty() && passwordRepeatN.isEmpty()){
+                  return true;
+                }
+                    else{
+                sprawdzhaslo ="Podałeś niepoprawne hasło do konta!";}
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Metoda sprawdza, czy w podanym adresie e-mail znajduje się @.
+     *
+     * @return true jeśli sdres e-mail posiada @, w przeciwnym wypadku false.
+     */
+    private boolean chechEmailN(){
+        if(mailN.indexOf('@') != -1){
+            return true;
+        }
+        return false;
+    }
+
     @FXML
-    void panelOsobyOdNagrodButtonZmienUstawienia(ActionEvent event) {
-        curentUser.setMail(email.getText());
-        if(haslo.getText().equals(curentUser.getHaslo()) && nowehaslo.getText().equals(hasloznowu.getText()))
-            curentUser.setHaslo(nowehaslo.getText());
-        curentUser.setImie(imie.getText());
-        curentUser.setNazwisko(nazwisko.getText());
-        curentUser.setMiejscowosc(miejscowosc.getText());
-        curentUser.setUlica(ulica.getText());
-        curentUser.setNumerBudynku(budynek.getText());
-        curentUser.setNumerLokalu(lokal.getText());
-        curentUser.setKodPocztowy(kod1.getText() + "-" + kod2.getText());
-        UzytkownicyQuery query = new UzytkownicyQuery();
-        query.updateUzytkownicy(curentUser);
+    void panelOsobyOdNagrodButtonZmienUstawienia(ActionEvent event){
+        mailN = email.getText();
+        passwordN = haslo.getText();
+        passwordNewN = nowehaslo.getText();
+        passwordRepeatN = hasloznowu.getText();
+        nameN = imie.getText();
+        surnameN = nazwisko.getText();
+        cityN = miejscowosc.getText();
+        streetN = ulica.getText();
+        numberHouseStringN = budynek.getText();
+        numberFlatStringN = lokal.getText();
+        postCodeFirstStringN = kod1.getText();
+        postCodeSecondStringN = kod2.getText();
+        if(compulsoryFildNotNullN()){
+            if(postCodeIsNumberN()){
+                if(checkPasswordN()){
+                    if(chechEmailN()) {
+                          UzytkownicyQuery update = new UzytkownicyQuery();
+                          String postCode = postCodeFirstIntN + "-" + postCodeSecondIntN;
+                          curentUser.setMail(mailN);
+                          curentUser.setImie(nameN);
+                          if(!passwordN.isEmpty()){
+                              curentUser.setHaslo(passwordRepeatN);
+                          }
+                          curentUser.setNazwisko(surnameN);
+                          curentUser.setMiejscowosc(cityN);
+                          curentUser.setUlica(streetN);
+                          curentUser.setNumerBudynku(numberHouseStringN);
+                          curentUser.setNumerLokalu(numberFlatStringN);
+                          curentUser.setKodPocztowy(postCode);
+                          update.updateUzytkownicy(curentUser);
+                          imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - konto zarządzania nagrodami";
+                          imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
+                          imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
+                          panelNagrodLabelError.setText("Profil został pomyślnie zaktualizowany.");
+                   }else{
+                        panelNagrodLabelError.setText("Podany adres e-mail jest nieprawidłowy!");
+                    }
+                }else{
+                    panelNagrodLabelError.setText(sprawdzhaslo);
+                }
+            }else{
+                panelNagrodLabelError.setText("Nieprawidłowy kod pocztowy!");
+            }
+        }else{
+            panelNagrodLabelError.setText("Wymagane pola są puste!");
+        }
     }
 
     void setNagrody() {

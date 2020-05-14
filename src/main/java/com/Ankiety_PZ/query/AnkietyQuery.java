@@ -98,6 +98,10 @@ public class AnkietyQuery extends OperationInSession {
         return result;
     }
 
+    public List<Ankiety> selectAllUzytkownik(Uzytkownicy user){
+        return modifyAnkiety.selectListHQL(("from Ankiety AS a where a.uzytkownicy.idUzytkownika=" + user.getIdUzytkownika()));
+    }
+
     /**
      * Metoda przesyła listę Ankiet aktywnych.
      *
@@ -159,12 +163,14 @@ public class AnkietyQuery extends OperationInSession {
         try{
             session = openSession();
             Date date = new Date();
-            idAnkietyList = session
-                    .createSQLQuery("select distinct a.ID from ankiety AS a " +
+            idAnkietyList = (ArrayList<Integer>) session
+                    .createSQLQuery("SELECT ao.ID FROM ankiety AS ao WHERE ao.id not in " +
+                            "( select distinct a.ID from ankiety AS a " +
                             "inner join pytania as p ON a.ID=p.ID_ankiety " +
                             "inner join odpowiedzi as o ON p.ID=o.ID_pytania " +
                             "inner join odpowiedzi_uzytkownicy as ou ON o.ID=ou.ID_odpowiedzi " +
-                            "WHERE ou.ID_uzytkownika!=:id and :date BETWEEN a.data_rozpoczecia and a.data_zakonczenia")
+                            "WHERE ou.ID_uzytkownika=:id) " +
+                            "AND :date between ao.data_rozpoczecia and ao.data_zakonczenia")
                     .setParameter("date", date)
                     .setParameter("id", user.getIdUzytkownika())
                     .list();
@@ -175,6 +181,36 @@ public class AnkietyQuery extends OperationInSession {
             logException(e);
         }finally {
             closeSession(session);
+        }
+        return ankiety;
+    }
+
+    public Ankiety selectToAnalysis(Ankiety ankiety){
+        try{
+            PytaniaQuery pytaniaQuery = new PytaniaQuery();
+            List<Pytania> pytaniaList = pytaniaQuery.selectListPytaniaByIdAnkiety(ankiety);
+            OdpowiedziQuery odpowiedziQuery = new OdpowiedziQuery();
+            ankiety.initHashSetPytania();
+            pytaniaList.forEach(pytanie -> {
+                if (pytanie.getRodzajPytania() != TypeOfQuestion.OPEN) {
+                    List<Odpowiedzi> odpowiedziList = odpowiedziQuery.selectSetOdpowiedziByIdPytania(pytanie);
+                    pytanie.initHashSetOdpowiedzi();
+                    odpowiedziList.forEach(odpowiedzi -> {
+                        if(pytanie.getRodzajPytania() == TypeOfQuestion.PERCENT || pytanie.getRodzajPytania() == TypeOfQuestion.POINTS) {
+                            odpowiedzi.initOdpowiedziUzytkownicy();
+                            odpowiedzi.setOdpowiedziUzytkownicy(odpowiedziQuery.selectOdpowiedziPointsAndPercent(odpowiedzi));
+                            pytanie.getOdpowiedzis().add(odpowiedzi);
+                        }else {
+                            odpowiedzi.setCount(odpowiedziQuery.selectCountOdpowiedzi(odpowiedzi).intValue());
+                        }
+                    });
+                }else{
+                    pytanie.setPytaniaUzytkownicy(pytaniaQuery.selectPytaniaUzytkownicy(pytanie));
+                }
+                ankiety.getPytanias().add(pytanie);
+            });
+        }catch(Exception e){
+            logException(e);
         }
         return ankiety;
     }

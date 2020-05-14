@@ -160,3 +160,19 @@
     -fx-border-width: 1;
     -fx-alignment:center;
 }
+
+
+   .choice-box .context-menu { -fx-background-color: white; }
+
+   .choice-box .menu-item:focused { -fx-background-color: #00ccff; }
+
+   .choice-box .menu-item > .label { -fx-text-fill: black; }
+
+   .choice-box .menu-item:focused > .label { -fx-text-fill: white; }
+
+.choice-box {
+    -fx-background-color: transparent;
+    -fx-border-color: #00ccff;
+    -fx-mark-color: #00ccff;
+    -fx-border-width: 3;
+}
