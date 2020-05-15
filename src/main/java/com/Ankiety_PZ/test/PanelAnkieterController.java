@@ -70,6 +70,7 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
     @FXML private TextField lokal;
     @FXML private TextField kod1;
     @FXML private TextField kod2;
+    private Ankiety ankiety;
 
     /**
      * Metoda obsługująca przyciśk Dodaj
@@ -81,6 +82,8 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
     @FXML
     void panelAnkietButtonDodajAction(ActionEvent event) {
         Ankiety ankieta = new Ankiety();
+        ankieta.setUzytkownicy(curentUser);
+        ankieta.setLiczbaWypelnien(0);
         loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
         PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
         panelTworzeniaankietyController.setStartValuesAnkiety(ankieta);
@@ -93,6 +96,7 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
 
     @FXML
     void panelAnkieteraButtonZmienUstawienia(ActionEvent event) {
+<<<<<<< Updated upstream
         curentUser2.setMail(email.getText());
         if(haslo.getText().equals(curentUser2.getHaslo()) && nowehaslo.getText().equals(hasloznowu.getText()))
             curentUser2.setHaslo(nowehaslo.getText());
@@ -105,6 +109,54 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
         curentUser2.setKodPocztowy(kod1.getText() + "-" + kod2.getText());
         UzytkownicyQuery query = new UzytkownicyQuery();
         query.updateUzytkownicy(curentUser2);
+=======
+        mailAnkieter = email.getText();
+        passwordAnkieter = haslo.getText();
+        passwordNewAnkieter = nowehaslo.getText();
+        passwordRepeatAnkieter = hasloznowu.getText();
+        nameAnkieter = imie.getText();
+        surnameAnkieter = nazwisko.getText();
+        cityAnkieter = miejscowosc.getText();
+        streetAnkieter = ulica.getText();
+        numberHouseStringAnkieter = budynek.getText();
+        numberFlatStringAnkieter = lokal.getText();
+        postCodeFirstStringNAnkieter = kod1.getText();
+        postCodeSecondStringAnkieter = kod2.getText();
+        if(compulsoryFildNotNullAnkieter()){
+            if(postCodeIsNumberAnkieter()){
+                if(checkPasswordAnkieter()){
+                    if(chechEmailAnkieter()) {
+                        UzytkownicyQuery update = new UzytkownicyQuery();
+                        String postCode = postCodeFirstIntAnkieter + "-" + postCodeSecondIntAnkieter;
+                        curentUser.setMail(mailAnkieter);
+                        curentUser.setImie(nameAnkieter);
+                        if(!passwordAnkieter.isEmpty()){
+                            curentUser.setHaslo(passwordRepeatAnkieter);
+                        }
+                        curentUser.setNazwisko(surnameAnkieter);
+                        curentUser.setMiejscowosc(cityAnkieter);
+                        curentUser.setUlica(streetAnkieter);
+                        curentUser.setNumerBudynku(numberHouseStringAnkieter);
+                        curentUser.setNumerLokalu(numberFlatStringAnkieter);
+                        curentUser.setKodPocztowy(postCode);
+                        update.updateUzytkownicy(curentUser);
+                        imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - konto ankietera";
+                        imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
+                        imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
+                        panelAnkieteraLabelError.setText("Profil został pomyślnie zaktualizowany.");
+                    }else{
+                        panelAnkieteraLabelError.setText("Podany adres e-mail jest nieprawidłowy!");
+                    }
+                }else{
+                    panelAnkieteraLabelError.setText(sprawdzhaslo);
+                }
+            }else{
+                panelAnkieteraLabelError.setText("Nieprawidłowy kod pocztowy!");
+            }
+        }else{
+            panelAnkieteraLabelError.setText("Wymagane pola są puste!");
+        }
+>>>>>>> Stashed changes
     }
 
     private void setUstawienia() {
@@ -132,7 +184,7 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
     @FXML
     void wyloguj1Action(ActionEvent event) {
         loadingFXML(event, SceneFXML.PANEL_LOGIN);
-       PanelLoginController panelLoginController = load.getController();
+        PanelLoginController panelLoginController = load.getController();
         activeScene(event, false, false);
     }
 
@@ -156,7 +208,11 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
         ObservableList<AnikieterTabelka> dane = FXCollections.observableArrayList();
         for (Ankiety ankieta2:ankiety
         ) {
+<<<<<<< Updated upstream
                 dane.add(new AnikieterTabelka(ankieta2));
+=======
+            dane.add(new AnikieterTabelka(ankieta));
+>>>>>>> Stashed changes
         }
         tableAnkiety.itemsProperty().setValue(dane);
         tytul.setCellValueFactory(new PropertyValueFactory("tytul"));
@@ -169,13 +225,23 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
 
     @Override
     public void setStartValues(Uzytkownicy user) {
+<<<<<<< Updated upstream
         this.curentUser2 = user;
 ///        imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - Ankieter";
+=======
+        this.curentUser = user;
+        /// imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - konto ankietera";
+        imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
+        imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
+>>>>>>> Stashed changes
         setAnkiety();
     }
 
     @Override
-    public void setStartValuesAnkiety(Ankiety ankiety) {
+    public void setStartValuesAnkiety(Ankiety ankieta) {
+        this.ankiety = ankieta;
+        System.out.println("ankiety setStartValuesAnkiety pac");
+        System.out.println(ankiety);
 
 
     }

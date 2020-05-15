@@ -30,15 +30,7 @@ public class Ankiety  implements java.io.Serializable {
     public Ankiety() {
     }
 
-	
-    public Ankiety(String tytul, int liczbaPunktow, Date dataRozpoczecia, Date dataZakonczenia, Integer liczbaWypelnien, Uzytkownicy user) {
-        this.tytul = tytul;
-        this.liczbaPunktow = liczbaPunktow;
-        this.dataRozpoczecia = dataRozpoczecia;
-        this.dataZakonczenia = dataZakonczenia;
-        this.liczbaWypelnien = liczbaWypelnien;
-        this.uzytkownicy = user;
-    }
+
     public Ankiety(String tytul, int liczbaPunktow, Date dataRozpoczecia, Date dataZakonczenia, Integer liczbaWypelnien, Uzytkownicy user, Set pytanias) {
        this.tytul = tytul;
        this.liczbaPunktow = liczbaPunktow;

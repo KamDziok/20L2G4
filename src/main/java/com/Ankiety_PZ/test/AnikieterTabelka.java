@@ -38,9 +38,10 @@ public class AnikieterTabelka extends BulidStage implements SetStartValues{
             public void handle(ActionEvent event) {
                 loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
                 PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
-                panelTworzeniaankietyController.setStartValuesAnkiety(ankieta);
-                panelTworzeniaankietyController.setStartValues(curentUser);
+                panelTworzeniaankietyController.setStartValuesEdytujAnkiety(ankieta);
                 activeScene(event, false, false);
+                System.out.println("przekazanie ankiety do edycji");
+                System.out.println(ankieta);
             }
         });
     }
