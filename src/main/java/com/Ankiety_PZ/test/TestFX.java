@@ -1,9 +1,11 @@
 package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.hibernate.Ankiety;
+import com.Ankiety_PZ.hibernate.Nagrody;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.AnkietyQuery;
 import com.Ankiety_PZ.query.ConnectToDataBase;
+import com.Ankiety_PZ.query.NagrodyQuery;
 import com.Ankiety_PZ.query.UzytkownicyQuery;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -134,6 +136,14 @@ public class TestFX extends Application {
 //        AnkietyQuery aq = new AnkietyQuery();
 //        Ankiety a = aq.selectById(12);
 //        System.out.println(aq.selectToAnalysis(a).getPytanias().size());
+
+        //dodawanie nagrody do uzytkownika
+//        NagrodyQuery nq = new NagrodyQuery();
+//        Uzytkownicy u = new UzytkownicyQuery().selectById(7);
+//        Nagrody n = nq.selectByID(1);
+//        System.out.println(u.getLiczbaPunktow());
+//        System.out.println(n.getLiczbaPunktow());
+//        System.out.println(nq.getNagrodyToUzytkownicy(n, u));
         launch();
     }
 }

@@ -7,6 +7,7 @@ package com.Ankiety_PZ.query;
 
 import com.Ankiety_PZ.hibernate.Nagrody;
 import com.Ankiety_PZ.hibernate.Pytania;
+import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import org.hibernate.*;
 
 import java.util.ArrayList;
@@ -107,5 +108,30 @@ public class NagrodyQuery extends OperationInSession{
         nagrody.setLiczbaPunktow(-1);
         //sprawdzic czy istnieje w uzytkownicy_nagrody
         return updateNagrody(nagrody);
+    }
+
+    public Boolean getNagrodyToUzytkownicy(Nagrody nagrody, Uzytkownicy uzytkownicy){
+        boolean result = false;
+        if(uzytkownicy.getLiczbaPunktow() >= nagrody.getLiczbaPunktow()) {
+            try {
+                session = openSession();
+                transaction = beginTransaction(session);
+                session.createSQLQuery("INSERT INTO `uzytkownicy_nagrody`(`ID_uzytkownika`, `ID_nagrody`) " +
+                        "VALUES (:idUzytkownicy,:idNagrody)")
+                        .setParameter("idUzytkownicy", uzytkownicy.getIdUzytkownika())
+                        .setParameter("idNagrody", nagrody.getIdNagrody())
+                        .executeUpdate();
+                uzytkownicy.setLiczbaPunktow(uzytkownicy.getLiczbaPunktow() - nagrody.getLiczbaPunktow());
+                new UzytkownicyQuery().updateUzytkownicyWithOutTransaction(uzytkownicy, session);
+                commitTransaction(transaction);
+                result = true;
+            } catch (Exception e) {
+                rollbackTransaction(transaction);
+                logException(e);
+            } finally {
+                closeSession(session);
+            }
+        }
+        return result;
     }
 }

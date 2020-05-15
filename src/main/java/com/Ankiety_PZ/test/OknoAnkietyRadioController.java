@@ -264,7 +264,8 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                 public void handle(ActionEvent event) {
                     try {
                         UzytkownicyQuery query = new UzytkownicyQuery();
-                        query.addOdpowiedziUzytkownika(odpowiedziDoWyslania, odpowiedziDoWyslaniaOtwarte);
+                        //dodac ankiete jako trzeci parametr
+//                        query.addOdpowiedziUzytkownika(odpowiedziDoWyslania, odpowiedziDoWyslaniaOtwarte);
                         curentUser.updatePunkty(punktyZaAnkiete, true);
                         query.updateUzytkownicy(curentUser);
                         controller.updatePkt(String.valueOf(curentUser.getLiczbaPunktow()));
