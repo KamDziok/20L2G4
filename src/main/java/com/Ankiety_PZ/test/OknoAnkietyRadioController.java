@@ -318,19 +318,19 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
         punkty = pytanie.getPunktowe();
         rodzajPytania = pytanie.getRodzajPytania();
         switch (rodzajPytania) {
-            case 0:
+            case TypeOfQuestion.ONE_CHOICE:
                 setRadioOdpowiedzi(pytanie.getOdpowiedzis());
                 break;
-            case 1:
+            case TypeOfQuestion.MANY_CHOICE:
                 setCheckOdpowiedzi(pytanie.getOdpowiedzis());
                 break;
-            case 2:
+            case TypeOfQuestion.OPEN:
                 setOpenOdpowiedzi();
                 break;
-            case 3:
+            case TypeOfQuestion.POINTS:
                 setPktOdpowiedzi(pytanie.getOdpowiedzis(), punkty);
                 break;
-            case 4:
+            case TypeOfQuestion.PERCENT:
                 setProcentOdpowiedzi();
                 break;
         }
@@ -349,7 +349,5 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
     }
 
     @Override
-    public void setStartValuesPanelUzytkownikaController(PanelUzytkownikaController controller) {
-        this.controller = controller;
-    }
+    public void setStartValuesPanelUzytkownikaController(PanelUzytkownikaController controller) { this.controller = controller; }
 }
