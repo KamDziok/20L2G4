@@ -1,6 +1,13 @@
 package com.Ankiety_PZ.test;
 
+import com.Ankiety_PZ.generowaniePDF.NagrodyGenerowaniePDF;
+import com.Ankiety_PZ.hibernate.Ankiety;
+import com.Ankiety_PZ.hibernate.Nagrody;
+import com.Ankiety_PZ.hibernate.Uzytkownicy;
+import com.Ankiety_PZ.query.AnkietyQuery;
 import com.Ankiety_PZ.query.ConnectToDataBase;
+import com.Ankiety_PZ.query.NagrodyQuery;
+import com.Ankiety_PZ.query.UzytkownicyQuery;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -125,6 +132,24 @@ public class TestFX extends Application {
 
         //wyswietlenie wszytkich ankiet uzytkownika
 //        System.out.println(new AnkietyQuery().selectAllUzytkownik(new UzytkownicyQuery().selectById(1)).size());
+
+        //wyświetlanie ankiet wraz z odpowiedziami
+//        AnkietyQuery aq = new AnkietyQuery();
+//        Ankiety a = aq.selectById(12);
+//        System.out.println(aq.selectToAnalysis(a).getPytanias().size());
+
+        //dodawanie nagrody do uzytkownika
+//        NagrodyQuery nq = new NagrodyQuery();
+//        Uzytkownicy u = new UzytkownicyQuery().selectById(7);
+//        Nagrody n = nq.selectByID(1);
+//        System.out.println(u.getLiczbaPunktow());
+//        System.out.println(n.getLiczbaPunktow());
+//        System.out.println(nq.getNagrodyToUzytkownicy(n, u));
+
+        //generowanie PDF z nagroda
+//        Uzytkownicy u = new UzytkownicyQuery().selectById(7);
+//        Nagrody n = new NagrodyQuery().selectByID(1);
+//        new NagrodyGenerowaniePDF(n, u);
         launch();
     }
 }

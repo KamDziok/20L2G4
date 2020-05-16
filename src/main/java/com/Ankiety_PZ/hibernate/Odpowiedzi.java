@@ -4,6 +4,7 @@ package com.Ankiety_PZ.hibernate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +21,8 @@ public class Odpowiedzi  implements java.io.Serializable {
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<OdpowiedziUzytkownicy> odpowiedziUzytkownicy;
+
+    private int count;
 
     public Odpowiedzi() {
     }
@@ -51,9 +54,37 @@ public class Odpowiedzi  implements java.io.Serializable {
         this.odpowiedz = odpowiedz;
     }
 
+    public List<OdpowiedziUzytkownicy> getOdpowiedziUzytkownicy() {
+        return odpowiedziUzytkownicy;
+    }
 
+    public void setOdpowiedziUzytkownicy(List<OdpowiedziUzytkownicy> odpowiedziUzytkownicy) {
+        this.odpowiedziUzytkownicy = odpowiedziUzytkownicy;
+    }
 
+    public int getCount() {
+        return count;
+    }
 
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public void initOdpowiedziUzytkownicy(){
+        odpowiedziUzytkownicy = new ArrayList<>();
+    }
+
+    public boolean isTheSame(Odpowiedzi odpowiedzi){
+        boolean result = false;
+        if(idOdpowiedzi.intValue() == odpowiedzi.getIdOdpowiedzi().intValue()){
+            if(pytania.equals(odpowiedzi.getPytania())){
+                if(odpowiedzi.equals(odpowiedzi.getOdpowiedz())){
+                    result = true;
+                }
+            }
+        }
+        return result;
+    }
 }
 
 

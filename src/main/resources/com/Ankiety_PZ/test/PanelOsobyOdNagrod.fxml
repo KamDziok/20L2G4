@@ -29,7 +29,7 @@
                         <Button fx:id="panelnagroddodajnagrode" layoutX="997.0" layoutY="618.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" prefHeight="50.0" prefWidth="173.0" text="Dodaj nagrodę" />
                                 <TableView fx:id="tableNagrody" layoutX="58.0" layoutY="101.0" prefHeight="487.0" prefWidth="1090.0">
                                     <columns>
-                                        <TableColumn fx:id="nagrody" maxWidth="400.0" minWidth="200.0" prefWidth="400.0" text="Nagrody" />
+                                        <TableColumn fx:id="nagrody" maxWidth="400.0" minWidth="200.0" prefWidth="450.0" text="Nagrody" />
                                         <TableColumn fx:id="zdjecie" maxWidth="340.0" minWidth="200.0" prefWidth="340.0" text="Zdjęcie" />
                                         <TableColumn fx:id="pkt" maxWidth="120.0" minWidth="100.0" prefWidth="120.0" text="Punkty" />
                                         <TableColumn fx:id="usun" maxWidth="100.0" minWidth="70.0" prefWidth="100.0" />

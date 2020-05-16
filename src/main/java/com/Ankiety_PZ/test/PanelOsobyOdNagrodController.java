@@ -27,7 +27,6 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
     public ObservableList<NagrodyTabelka> dane;
     private String imie_nazwisko_rola_tmp;
     private String sprawdzhaslo;
-
     private String mailN;
     private String passwordN;
     private String passwordRepeatN;
@@ -44,8 +43,7 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
     private String postCodeFirstStringN;
     /** Druga część kodu pocztowego wczytany z pola tekstowego jako String. */
     private String postCodeSecondStringN;
-    /** Numer lokalu przekształcony na int, jeśli wartość tej zmiennej jest -1 to pole jest puste. */
-    private int numberFlatIntN = -1;
+
     /** Pierwsza część kodu pocztowego przekształconego na int. */
     private int postCodeFirstIntN;
     /** Druga część kodu pocztowego przekształconego na int. */
@@ -251,7 +249,7 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
                           imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
                           panelNagrodLabelError.setText("Profil został pomyślnie zaktualizowany.");
                    }else{
-                        panelNagrodLabelError.setText("Podany adres e-mailu jest nieprawidłowy!");
+                        panelNagrodLabelError.setText("Podany adres e-mail jest nieprawidłowy!");
                     }
                 }else{
                     panelNagrodLabelError.setText(sprawdzhaslo);
@@ -317,11 +315,6 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
 
     @Override
     public void setStartValuesNagroda(Nagrody nagroda) {
-
-    }
-
-    @Override
-    public void setStartValuesIerator(Iterator iterator) {
 
     }
 

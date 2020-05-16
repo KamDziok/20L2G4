@@ -2,10 +2,12 @@ package com.Ankiety_PZ.query;
 
 import com.Ankiety_PZ.hibernate.Ankiety;
 import com.Ankiety_PZ.hibernate.Odpowiedzi;
+import com.Ankiety_PZ.hibernate.OdpowiedziUzytkownicy;
 import com.Ankiety_PZ.hibernate.Pytania;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,5 +91,23 @@ public class OdpowiedziQuery extends OperationInSession {
                             ("select o from Odpowiedzi as o " +
                             "inner join o.pytania as p " +
                             "where p.idPytania=" + pytania.getIdPytania()));
+    }
+
+    public List<OdpowiedziUzytkownicy> selectOdpowiedziPointsAndPercent(Odpowiedzi odpowiedzi){
+        List<OdpowiedziUzytkownicy> odpowiedziUzytkownicyList = new ArrayList<>();
+        List<Integer> points = (ArrayList<Integer>) new OperationsOnDataInEntity<Integer>().selectListSQL(
+                "SELECT `punktowe` FROM `odpowiedzi_uzytkownicy` WHERE `ID_odpowiedzi`=" + odpowiedzi.getIdOdpowiedzi());
+        points.forEach(point -> {
+            OdpowiedziUzytkownicy odpowiedziUzytkownicy = new OdpowiedziUzytkownicy();
+            odpowiedziUzytkownicy.setOdpowiedz(odpowiedzi);
+            odpowiedziUzytkownicy.setPunktowe(point);
+            odpowiedziUzytkownicyList.add(odpowiedziUzytkownicy);
+        });
+        return odpowiedziUzytkownicyList;
+    }
+
+    public BigInteger selectCountOdpowiedzi(Odpowiedzi odpowiedzi){
+        return (BigInteger) new OperationsOnDataInEntity<BigInteger>().selectObjectSQL(
+                "SELECT count(*) FROM `odpowiedzi_uzytkownicy` WHERE ID_odpowiedzi=" + odpowiedzi.getIdOdpowiedzi());
     }
 }

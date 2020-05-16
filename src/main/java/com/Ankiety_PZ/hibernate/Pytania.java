@@ -108,7 +108,31 @@ public class Pytania  implements java.io.Serializable {
         this.odpowiedzis = odpowiedzis;
     }
 
+    public List<PytaniaUzytkownicy> getPytaniaUzytkownicy() {
+        return pytaniaUzytkownicy;
+    }
 
+    public void setPytaniaUzytkownicy(List<PytaniaUzytkownicy> pytaniaUzytkownicy) {
+        this.pytaniaUzytkownicy = pytaniaUzytkownicy;
+    }
+
+    public boolean isTheSame(Pytania pytania){
+        boolean result = false;
+        if(idPytania.intValue() == pytania.getIdPytania().intValue()){
+            if(ankiety.equals(pytania.getAnkiety())){
+                if(tresc.equals(pytania.tresc)){
+                    if(zdjecie.equals(pytania.getZdjecie())){
+                        if(punktowe.intValue() == pytania.getPunktowe().intValue()){
+                            if(rodzajPytania == pytania.getRodzajPytania()){
+                                result = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return result;
+    }
 }
 
 

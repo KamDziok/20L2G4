@@ -19,19 +19,19 @@
                 <AnchorPane fx:id="panelAnkiety" minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="1201.0" styleClass="hbox" stylesheets="@style.css">
                     <children>
                         <Button fx:id="wyloguj" layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
-                        <Label fx:id="labelPunkty" layoutX="727.0" layoutY="21.0" prefHeight="57.0" prefWidth="313.0" stylesheets="@style.css" text="Anna Nowak posiadasz obecnie" />
-                        <Label fx:id="punkty" layoutX="1040.0" layoutY="21.0" prefHeight="57.0" prefWidth="147.0" styleClass="labelbold" stylesheets="@style.css" text="1000 pkt" />
-                        <Label layoutX="56.0" layoutY="34.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Dostępne ankiety">
+                        <Label fx:id="labelPunkty" alignment="CENTER_RIGHT" layoutX="583.0" layoutY="21.0" prefHeight="57.0" prefWidth="454.0" stylesheets="@style.css" />
+                        <Label fx:id="punkty" layoutX="1040.0" layoutY="21.0" prefHeight="57.0" prefWidth="147.0" styleClass="labelbold" stylesheets="@style.css" />
+                        <Label layoutX="60.0" layoutY="34.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Dostępne ankiety">
                             <font>
                                 <Font size="24.0" />
                             </font>
                         </Label>
-                        <TableView fx:id="tableAnkiety" layoutX="56.0" layoutY="86.0" prefHeight="500.0" prefWidth="1090.0">
+                        <TableView fx:id="tableAnkiety" layoutX="58.0" layoutY="101.0" prefHeight="487.0" prefWidth="1090.0">
                           <columns>
-                            <TableColumn fx:id="tytul" prefWidth="418.0" text="Tytuł" />
-                            <TableColumn fx:id="wygasa" prefWidth="251.0" text="Wygasa" />
-                              <TableColumn fx:id="pkt" prefWidth="204.0" text="Punkty" />
-                              <TableColumn fx:id="przycisk" prefWidth="216.0" text="Akcja" />
+                            <TableColumn fx:id="tytul" minWidth="300.0" prefWidth="600.0" text="Tytuł" />
+                            <TableColumn fx:id="wygasa" maxWidth="250.0" minWidth="200.0" prefWidth="250.0" text="Wygasa" />
+                              <TableColumn fx:id="pkt" maxWidth="110.0" minWidth="70.0" prefWidth="110.0" text="Punkty" />
+                              <TableColumn fx:id="przycisk" maxWidth="110.0" minWidth="70.0" prefWidth="110.0" />
                           </columns>
                         </TableView>
                     </children></AnchorPane>
@@ -42,20 +42,20 @@
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="1201.0" styleClass="hbox" stylesheets="@style.css">
                         <children>
                             <Button layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
-                            <Label fx:id="labelPunktyNagrody" layoutX="727.0" layoutY="21.0" prefHeight="57.0" prefWidth="313.0" stylesheets="@style.css" text="Anna Nowak posiadasz obecnie" />
-                            <Label fx:id="punktyNagrody" layoutX="1040.0" layoutY="21.0" prefHeight="57.0" prefWidth="147.0" styleClass="labelbold" stylesheets="@style.css" text="1000 pkt" />
+                            <Label fx:id="labelPunktyNagrody" alignment="CENTER_RIGHT" layoutX="583.0" layoutY="21.0" prefHeight="57.0" prefWidth="454.0" stylesheets="@style.css" />
+                            <Label fx:id="punktyNagrody" layoutX="1040.0" layoutY="21.0" prefHeight="57.0" prefWidth="147.0" styleClass="labelbold" stylesheets="@style.css" />
                             <Label layoutX="60.0" layoutY="34.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Dostępne nagrody">
                                 <font>
                                     <Font size="24.0" />
                                 </font>
                             </Label>
 
-                        <TableView fx:id="tableNagrody" layoutX="56.0" layoutY="86.0" prefHeight="500.0" prefWidth="1090.0">
+                        <TableView fx:id="tableNagrody" layoutX="58.0" layoutY="101.0" prefHeight="487.0" prefWidth="1090.0">
                             <columns>
-                                <TableColumn fx:id="nazwa" prefWidth="418.0" text="Nagroda" />
-                                <TableColumn fx:id="cena" prefWidth="251.0" text="Cena" />
-                                <TableColumn fx:id="obrazek" prefWidth="204.0" text="Obrazek" />
-                                <TableColumn fx:id="kup" prefWidth="216.0" text="Akcja" />
+                                <TableColumn fx:id="nazwa" maxWidth="450.0" minWidth="200.0" prefWidth="450.0" text="Nagroda" />
+                                <TableColumn fx:id="obrazek" maxWidth="400.0" minWidth="200.0" prefWidth="400.0" text="Zdjęcie" />
+                                <TableColumn fx:id="cena" maxWidth="120.0" minWidth="100.0" prefWidth="120.0" text="Cena" />
+                                <TableColumn fx:id="kup" maxWidth="100.0" minWidth="70.0" prefWidth="100.0" />
                             </columns>
                         </TableView>
                         </children></AnchorPane>
@@ -67,8 +67,8 @@
                      <children>
                          <Button layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
                          <Button layoutX="997.0" layoutY="625.0" mnemonicParsing="false" onAction="#panelUzytkownikaButtonZmienUstawienia" prefHeight="50.0" prefWidth="173.0" text="Zapisz zmiany" />
-                        <Label fx:id="labelPunktyUstawienia" layoutX="727.0" layoutY="21.0" prefHeight="57.0" prefWidth="313.0" stylesheets="@style.css" text="Anna Nowak posiadasz obecnie" />
-                        <Label fx:id="punktyUstawienia" layoutX="1040.0" layoutY="21.0" prefHeight="57.0" prefWidth="147.0" styleClass="labelbold" stylesheets="@style.css" text="1000 pkt" />
+                        <Label fx:id="labelPunktyUstawienia" alignment="CENTER_RIGHT" layoutX="583.0" layoutY="21.0" prefHeight="57.0" prefWidth="454.0" stylesheets="@style.css" />
+                        <Label fx:id="punktyUstawienia" layoutX="1040.0" layoutY="21.0" prefHeight="57.0" prefWidth="147.0" styleClass="labelbold" stylesheets="@style.css" />
                         <Label layoutX="60.0" layoutY="34.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Konto użytkownika">
                            <font>
                               <Font size="24.0" />
@@ -83,7 +83,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="email" layoutX="16.0" layoutY="58.0" prefHeight="26.0" prefWidth="260.0" text="annanowak@wp.pl" />
+                                    <TextField fx:id="email" layoutX="16.0" layoutY="58.0" prefHeight="26.0" prefWidth="260.0" />
                                     <Label layoutX="16.0" layoutY="120.0" prefHeight="32.0" prefWidth="262.0" text="Hasło:">
                                        <font>
                                           <Font size="18.0" />
@@ -108,11 +108,11 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="imie" layoutX="16.0" layoutY="458.0" prefHeight="26.0" prefWidth="260.0" text="Anna" />
+                                    <TextField fx:id="imie" layoutX="16.0" layoutY="458.0" prefHeight="26.0" prefWidth="260.0" />
                                       <Label layoutX="16.0" layoutY="520.0" text="Nazwisko:">
 
                                     </Label>
-                                     <TextField fx:id="nazwisko" layoutX="16.0" layoutY="558.0" prefHeight="26.0" prefWidth="260.0" text="Nowak" />
+                                     <TextField fx:id="nazwisko" layoutX="16.0" layoutY="558.0" prefHeight="26.0" prefWidth="260.0" />
 
 
 
@@ -122,29 +122,34 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="miejscowosc" editable="false" layoutX="680.0" layoutY="58.0" prefHeight="26.0" prefWidth="260.0" text="Chrząszczyżewoszyce" />
+                                    <TextField fx:id="miejscowosc" editable="false" layoutX="680.0" layoutY="58.0" prefHeight="26.0" prefWidth="260.0" />
                                     <Label layoutX="680.0" layoutY="120.0" text="Ulica:">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="ulica" layoutX="678.0" layoutY="158.0" prefHeight="26.0" prefWidth="260.0" text="Łękołody" />
+                                    <TextField fx:id="ulica" layoutX="678.0" layoutY="158.0" prefHeight="26.0" prefWidth="260.0" />
                                     <Label layoutX="680.0" layoutY="220.0" text="Numer budynku:">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="budynek" layoutX="680.0" layoutY="258.0" prefHeight="26.0" prefWidth="260.0" text="22" />
+                                    <TextField fx:id="budynek" layoutX="680.0" layoutY="258.0" prefHeight="26.0" prefWidth="260.0" />
                                     <Label layoutX="680.0" layoutY="320.0" text="Numer lokalu:">                                                                    </Label>
                                     <TextField fx:id="lokal" layoutX="680.0" layoutY="358.0" prefHeight="26.0" prefWidth="260.0" />
                                      <Label layoutX="680.0" layoutY="420.0" text="Kod pocztowy:">                                                                    </Label>
                                     <Label layoutX="747.0" layoutY="469.0" text="-" />
-                                    <TextField fx:id="kod1" layoutX="680.0" layoutY="458.0" prefHeight="54.0" prefWidth="61.0" text="37" />
-                                    <TextField fx:id="kod2" layoutX="762.0" layoutY="458.0" prefHeight="54.0" prefWidth="69.0" text="800" />
+                                    <TextField fx:id="kod1" layoutX="680.0" layoutY="458.0" prefHeight="54.0" prefWidth="61.0" />
+                                    <TextField fx:id="kod2" layoutX="762.0" layoutY="458.0" prefHeight="54.0" prefWidth="69.0" />
                                  </children>
                               </AnchorPane>
                            </content>
                         </ScrollPane>
+                        <Label fx:id="panelUzytkownikaLabelError" alignment="CENTER" layoutX="332.0" layoutY="630.0" prefHeight="17.0" prefWidth="522.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
                      </children></AnchorPane>
             </content>
           </Tab>

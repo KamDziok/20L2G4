@@ -2,6 +2,7 @@ package com.Ankiety_PZ.query;
 import com.Ankiety_PZ.hibernate.Ankiety;
 import com.Ankiety_PZ.hibernate.Odpowiedzi;
 import com.Ankiety_PZ.hibernate.Pytania;
+import com.Ankiety_PZ.hibernate.PytaniaUzytkownicy;
 import org.hibernate.*;
 
 import java.util.ArrayList;
@@ -88,5 +89,18 @@ public class PytaniaQuery extends OperationInSession {
         return modifyPytania.selectListHQL(
                             ("select p from Pytania as p inner join p.ankiety as a " +
                             "where a.idAnkiety=" + ankiety.getIdAnkiety()));
+    }
+
+    public List<PytaniaUzytkownicy> selectPytaniaUzytkownicy(Pytania pytania){
+        List<PytaniaUzytkownicy> pytaniaUzytkownicyList = new ArrayList<>();
+        List<String> odpowiedziList = (List<String>) new OperationsOnDataInEntity<String>().selectListSQL(
+                "SELECT `odpowiedz` FROM `pytania_uzytkownicy` WHERE ID_pytania=" + pytania.getIdPytania());
+        odpowiedziList.forEach(odpowiedz -> {
+            PytaniaUzytkownicy pytaniaUzytkownicy = new PytaniaUzytkownicy();
+            pytaniaUzytkownicy.setPytanie(pytania);
+            pytaniaUzytkownicy.setOdpowiedz(odpowiedz);
+            pytaniaUzytkownicyList.add(pytaniaUzytkownicy);
+        });
+        return pytaniaUzytkownicyList;
     }
 }

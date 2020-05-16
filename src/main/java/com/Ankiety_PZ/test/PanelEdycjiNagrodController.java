@@ -199,12 +199,6 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         pkt.setText(nagroda.getLiczbaPunktow()+"");
     }
 
-    @Override
-    public void setStartValuesIerator(Iterator iterator) {
-
-    }
-
-
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert PanelEdycjiNagrod != null : "fx:id=\"panelEdycjiNagrodButtonDodajZdjecie\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
