@@ -5,6 +5,7 @@
  */
 package com.Ankiety_PZ.query;
 
+import com.Ankiety_PZ.generowaniePDF.NagrodyGenerowaniePDF;
 import com.Ankiety_PZ.hibernate.Nagrody;
 import com.Ankiety_PZ.hibernate.Pytania;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
@@ -123,6 +124,7 @@ public class NagrodyQuery extends OperationInSession{
                         .executeUpdate();
                 uzytkownicy.setLiczbaPunktow(uzytkownicy.getLiczbaPunktow() - nagrody.getLiczbaPunktow());
                 new UzytkownicyQuery().updateUzytkownicyWithOutTransaction(uzytkownicy, session);
+                new NagrodyGenerowaniePDF(nagrody, uzytkownicy);
                 commitTransaction(transaction);
                 result = true;
             } catch (Exception e) {

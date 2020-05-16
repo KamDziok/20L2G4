@@ -38,19 +38,15 @@ public class Pytania  implements java.io.Serializable {
 
 
 
-    public Pytania(Ankiety ankiety, String tresc, ImageView imageview, int rodzajPytania, int punktowe, Set odpowiedzis) {
+    public Pytania(Ankiety ankiety, String tresc, ImageView imageview, int rodzajPytania, int punktowe) {
         this.tresc = tresc;
         this.zdjecie = zdjecie;
         this.punktowe = punktowe;
         this.rodzajPytania = rodzajPytania;
     }
     public Pytania() {
-        this.ankiety = ankiety;
-        this.tresc = tresc;
-        this.zdjecie = zdjecie;
-        this.punktowe = punktowe;
-        this.rodzajPytania = rodzajPytania;
     }
+
     public Pytania(Ankiety ankiety, String tresc, ImageView zdjecie, Integer punktowe, int rodzajPytania, Set odpowiedzis) {
        this.ankiety = ankiety;
        this.tresc = tresc;
@@ -114,6 +110,24 @@ public class Pytania  implements java.io.Serializable {
 
     public void setPytaniaUzytkownicy(List<PytaniaUzytkownicy> pytaniaUzytkownicy) {
         this.pytaniaUzytkownicy = pytaniaUzytkownicy;
+    }
+
+    public boolean isTheSame(Pytania pytania){
+        boolean result = false;
+        if(idPytania.intValue() == pytania.getIdPytania().intValue()){
+//            if(ankiety.equals(pytania.getAnkiety())){
+                if(tresc.equals(pytania.tresc)){
+//                    if(zdjecie.equals(pytania.getZdjecie())){
+                        if(punktowe.intValue() == pytania.getPunktowe().intValue()){
+                            if(rodzajPytania == pytania.getRodzajPytania()){
+                                result = true;
+                            }
+//                        }
+                    }
+                }
+//            }
+        }
+        return result;
     }
 }
 

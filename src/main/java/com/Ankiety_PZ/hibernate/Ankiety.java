@@ -23,7 +23,7 @@ public class Ankiety  implements java.io.Serializable {
      private Date dataRozpoczecia;
      private Date dataZakonczenia;
      private Integer liczbaWypelnien;
-    private Uzytkownicy uzytkownicy;
+     private Uzytkownicy uzytkownicy;
      private Set pytanias = new HashSet(0);
 
 
@@ -112,7 +112,25 @@ public class Ankiety  implements java.io.Serializable {
     }
 
 
-
+    public boolean isTheSame(Ankiety ankiety){
+        boolean result = false;
+        if(idAnkiety.intValue() == ankiety.getIdAnkiety().intValue()){
+            if(tytul.equals(ankiety.getTytul())){
+                if(liczbaPunktow == ankiety.getLiczbaPunktow()){
+                    if(dataRozpoczecia.equals(ankiety.getDataRozpoczecia())){
+                        if(dataZakonczenia.equals(ankiety.getDataZakonczenia())){
+                            if(liczbaWypelnien.intValue() == ankiety.getLiczbaWypelnien().intValue()){
+//                                if(uzytkownicy.equals(uzytkownicy)){
+                                    result = true;
+//                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return result;
+    }
 
 }
 
