@@ -112,7 +112,7 @@ public class AnkietyQuery extends OperationInSession {
                 }
                 ankiety.getPytanias().forEach(pytaniaObj -> {
                     Pytania pytania = (Pytania) pytaniaObj;
-                    if(!pytania.getIdPytania().equals(null)){
+                    if(pytania.getIdPytania() != null){
                         Pytania oldPytania = pytaniaQuery.selectByID(pytania.getIdPytania());
                         if(!pytania.isTheSame(oldPytania)) {
                             pytaniaQuery.updatePytaniaWithOutTransaction(pytania, session);
@@ -122,7 +122,7 @@ public class AnkietyQuery extends OperationInSession {
                     }
                     pytania.getOdpowiedzis().forEach(odpowiedziObj -> {
                         Odpowiedzi odpowiedzi = (Odpowiedzi) odpowiedziObj;
-                        if(!odpowiedzi.getIdOdpowiedzi().equals(null)){
+                        if(odpowiedzi.getIdOdpowiedzi() != null){
                             Odpowiedzi oldOdpowiedzi = odpowiedziQuery.selectByID(odpowiedzi.getIdOdpowiedzi());
                             if(odpowiedzi.isTheSame(oldOdpowiedzi)) {
                                 odpowiedziQuery.updateOdpowiedziWithOutTransaction(odpowiedzi, session);
