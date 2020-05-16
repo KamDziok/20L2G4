@@ -2,6 +2,7 @@ package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.hibernate.Nagrody;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
+import com.Ankiety_PZ.query.NagrodyQuery;
 import com.Ankiety_PZ.query.UzytkownicyQuery;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -27,7 +28,9 @@ public class NagrodaTabelka {
                 if (curentUser.updatePunkty(cena, false)) {
                     controller.updatePkt(String.valueOf(curentUser.getLiczbaPunktow()));
                     UzytkownicyQuery query = new UzytkownicyQuery();
+                    NagrodyQuery queryNagrody = new NagrodyQuery();
                     query.updateUzytkownicy(curentUser);
+                    queryNagrody.getNagrodyToUzytkownicy(nagroda, curentUser);
 //                    wywołanie funkcji generującej PDF'a
                 } else {
                     showMessageDialog(null, "Biedaku ... nawet złota nie masz.");
