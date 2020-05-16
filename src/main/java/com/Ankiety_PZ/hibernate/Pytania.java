@@ -38,19 +38,15 @@ public class Pytania  implements java.io.Serializable {
 
 
 
-    public Pytania(Ankiety ankiety, String tresc, ImageView imageview, int rodzajPytania, int punktowe, Set odpowiedzis) {
+    public Pytania(Ankiety ankiety, String tresc, ImageView imageview, int rodzajPytania, int punktowe) {
         this.tresc = tresc;
         this.zdjecie = zdjecie;
         this.punktowe = punktowe;
         this.rodzajPytania = rodzajPytania;
     }
     public Pytania() {
-        this.ankiety = ankiety;
-        this.tresc = tresc;
-        this.zdjecie = zdjecie;
-        this.punktowe = punktowe;
-        this.rodzajPytania = rodzajPytania;
     }
+
     public Pytania(Ankiety ankiety, String tresc, ImageView zdjecie, Integer punktowe, int rodzajPytania, Set odpowiedzis) {
        this.ankiety = ankiety;
        this.tresc = tresc;
