@@ -73,6 +73,18 @@ public class Odpowiedzi  implements java.io.Serializable {
     public void initOdpowiedziUzytkownicy(){
         odpowiedziUzytkownicy = new ArrayList<>();
     }
+
+    public boolean isTheSame(Odpowiedzi odpowiedzi){
+        boolean result = false;
+        if(idOdpowiedzi.intValue() == odpowiedzi.getIdOdpowiedzi().intValue()){
+            if(pytania.equals(odpowiedzi.getPytania())){
+                if(odpowiedzi.equals(odpowiedzi.getOdpowiedz())){
+                    result = true;
+                }
+            }
+        }
+        return result;
+    }
 }
 
 

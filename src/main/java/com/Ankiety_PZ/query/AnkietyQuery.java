@@ -98,6 +98,58 @@ public class AnkietyQuery extends OperationInSession {
         return result;
     }
 
+    public Boolean updateAnkietyWithPytaniaAndOdpowiedzi(Ankiety ankiety){
+        Boolean result = false;
+        if(ankiety.getIdAnkiety() != null) {
+            try {
+                PytaniaQuery pytaniaQuery = new PytaniaQuery();
+                OdpowiedziQuery odpowiedziQuery = new OdpowiedziQuery();
+                session = openSession();
+                transaction = beginTransaction(session);
+                Ankiety oldAnkieta = selectById(ankiety.getIdAnkiety());
+                if (!ankiety.isTheSame(oldAnkieta)) {
+                    updateAnkietyWithOutTransaction(ankiety, session);
+                }
+                ankiety.getPytanias().forEach(pytaniaObj -> {
+                    Pytania pytania = (Pytania) pytaniaObj;
+                    if(pytania.getIdPytania() != null){
+                        Pytania oldPytania = pytaniaQuery.selectByID(pytania.getIdPytania());
+                        if(!pytania.isTheSame(oldPytania)) {
+                            pytaniaQuery.updatePytaniaWithOutTransaction(pytania, session);
+                        }
+                    }else {
+                        pytaniaQuery.addPytaniaWithOutTransaction(pytania, session);
+                    }
+                    pytania.getOdpowiedzis().forEach(odpowiedziObj -> {
+                        Odpowiedzi odpowiedzi = (Odpowiedzi) odpowiedziObj;
+                        if(odpowiedzi.getIdOdpowiedzi() != null){
+                            Odpowiedzi oldOdpowiedzi = odpowiedziQuery.selectByID(odpowiedzi.getIdOdpowiedzi());
+                            if(odpowiedzi.isTheSame(oldOdpowiedzi)) {
+                                odpowiedziQuery.updateOdpowiedziWithOutTransaction(odpowiedzi, session);
+                            }
+                        }else {
+                            odpowiedziQuery.addOdpowiedziWithOutTransaction(odpowiedzi, session);
+                        }
+                    });
+                });
+                commitTransaction(transaction);
+                result = true;
+            } catch (Exception e) {
+                rollbackTransaction(transaction);
+                logException(e);
+            } finally {
+                closeSession(session);
+            }
+        }else{
+            //do usuniecia
+            System.out.println("updateAnkietyWithPytaniaAndOdpowiedzi---Etap1------");
+            System.out.println("Ankieta, którą próbujesz edytować nie posiada ID.");
+            System.out.println("Robisz coś żle.");
+            System.out.println("---------------------------------------------------");
+        }
+        return result;
+    }
+
     public List<Ankiety> selectAllUzytkownik(Uzytkownicy user){
         return modifyAnkiety.selectListHQL(("from Ankiety AS a where a.uzytkownicy.idUzytkownika=" + user.getIdUzytkownika()));
     }
