@@ -117,6 +117,13 @@
         <artifactId>hibernate-commons-annotations</artifactId>
         <version>5.1.0.Final</version>
     </dependency>
+    <dependency>
+        <groupId>pl.generowaniePDF</groupId>
+        <artifactId>GenerowaniePDF</artifactId>
+        <version>1.0</version>
+        <scope>system</scope>
+        <systemPath>${project.basedir}/lib/unknown/binary/generowaniePDF/GenerowaniePDF-1.0.jar</systemPath>
+    </dependency>
 </dependencies>
 
 
