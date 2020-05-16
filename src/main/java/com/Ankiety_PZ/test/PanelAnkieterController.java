@@ -22,7 +22,6 @@ import java.util.*;
 
 public class PanelAnkieterController extends BulidStage implements SetStartValues{
     private Uzytkownicy curentUser;
-    public int id_ankiety;
     private String imie_nazwisko_rola_tmp;
     private String sprawdzhaslo;
     private String mailAnkieter;
