@@ -78,7 +78,7 @@ public class Odpowiedzi  implements java.io.Serializable {
         boolean result = false;
         if(idOdpowiedzi.intValue() == odpowiedzi.getIdOdpowiedzi().intValue()){
 //            if(pytania.equals(odpowiedzi.getPytania())){
-                if(odpowiedzi.equals(odpowiedzi.getOdpowiedz())){
+                if(odpowiedz.equals(odpowiedzi.getOdpowiedz())){
                     result = true;
                 }
 //            }

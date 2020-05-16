@@ -1,9 +1,7 @@
 package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.generowaniePDF.NagrodyGenerowaniePDF;
-import com.Ankiety_PZ.hibernate.Ankiety;
-import com.Ankiety_PZ.hibernate.Nagrody;
-import com.Ankiety_PZ.hibernate.Uzytkownicy;
+import com.Ankiety_PZ.hibernate.*;
 import com.Ankiety_PZ.query.AnkietyQuery;
 import com.Ankiety_PZ.query.ConnectToDataBase;
 import com.Ankiety_PZ.query.NagrodyQuery;
@@ -150,6 +148,26 @@ public class TestFX extends Application {
 //        Uzytkownicy u = new UzytkownicyQuery().selectById(7);
 //        Nagrody n = new NagrodyQuery().selectByID(1);
 //        new NagrodyGenerowaniePDF(n, u);
+
+        //aktualizacja ankiety
+//        AnkietyQuery aq = new AnkietyQuery();
+//        Ankiety a = aq.selectById(13);
+//        Pytania p = new Pytania(a, "fajna",null, TypeOfQuestion.POINTS, 23);
+//        a = aq.selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(a);
+//        p.setIdPytania(-1);
+//
+//        Odpowiedzi o = new Odpowiedzi();
+//        o.setIdOdpowiedzi(-1);
+//        o.setPytania(p);
+//        o.setOdpowiedz("fajna");
+//
+//        p.initHashSetOdpowiedzi();
+//        p.getOdpowiedzis().add(o);
+//
+//        a.getPytanias().add(p);
+//        System.out.println("----------------------------------");
+//        aq.updateAnkietyWithPytaniaAndOdpowiedzi(a);
+
         launch();
     }
 }

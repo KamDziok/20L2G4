@@ -22,7 +22,7 @@ public class Pytania  implements java.io.Serializable {
      private ImageView zdjecie;
      private Integer punktowe;
      private int rodzajPytania;
-     private Set odpowiedzis = new HashSet(0);
+     private Set odpowiedzis;
 
 
     @OneToMany(mappedBy = "uzytkownicy",
@@ -39,6 +39,7 @@ public class Pytania  implements java.io.Serializable {
 
 
     public Pytania(Ankiety ankiety, String tresc, ImageView imageview, int rodzajPytania, int punktowe) {
+        this.ankiety = ankiety;
         this.tresc = tresc;
         this.zdjecie = zdjecie;
         this.punktowe = punktowe;
@@ -118,12 +119,12 @@ public class Pytania  implements java.io.Serializable {
 //            if(ankiety.equals(pytania.getAnkiety())){
                 if(tresc.equals(pytania.tresc)){
 //                    if(zdjecie.equals(pytania.getZdjecie())){
-                        if(punktowe.intValue() == pytania.getPunktowe().intValue()){
+//                        if(punktowe.intValue() == pytania.getPunktowe().intValue()){
                             if(rodzajPytania == pytania.getRodzajPytania()){
                                 result = true;
                             }
 //                        }
-                    }
+//                    }
                 }
 //            }
         }
