@@ -66,6 +66,7 @@
     <orderEntry type="library" name="Maven: unknown.binary:derbyclient:SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: unknown.binary:derby:SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate.common:hibernate-commons-annotations:5.1.0.Final" level="project" />
+    <orderEntry type="library" name="Maven: com.itextpdf:itextpdf:5.5.13.1" level="project" />
     <orderEntry type="module-library">
       <library name="Maven: pl.generowaniePDF:GenerowaniePDF:1.0">
         <CLASSES>

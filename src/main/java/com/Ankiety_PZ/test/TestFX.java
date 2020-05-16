@@ -1,5 +1,6 @@
 package com.Ankiety_PZ.test;
 
+import com.Ankiety_PZ.generowaniePDF.NagrodyGenerowaniePDF;
 import com.Ankiety_PZ.hibernate.Ankiety;
 import com.Ankiety_PZ.hibernate.Nagrody;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
@@ -144,6 +145,11 @@ public class TestFX extends Application {
 //        System.out.println(u.getLiczbaPunktow());
 //        System.out.println(n.getLiczbaPunktow());
 //        System.out.println(nq.getNagrodyToUzytkownicy(n, u));
+
+        //generowanie PDF z nagroda
+//        Uzytkownicy u = new UzytkownicyQuery().selectById(7);
+//        Nagrody n = new NagrodyQuery().selectByID(1);
+//        new NagrodyGenerowaniePDF(n, u);
         launch();
     }
 }
