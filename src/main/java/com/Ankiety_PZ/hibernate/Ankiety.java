@@ -120,9 +120,9 @@ public class Ankiety  implements java.io.Serializable {
                     if(dataRozpoczecia.equals(ankiety.getDataRozpoczecia())){
                         if(dataZakonczenia.equals(ankiety.getDataZakonczenia())){
                             if(liczbaWypelnien.intValue() == ankiety.getLiczbaWypelnien().intValue()){
-                                if(uzytkownicy.equals(uzytkownicy)){
+//                                if(uzytkownicy.equals(uzytkownicy)){
                                     result = true;
-                                }
+//                                }
                             }
                         }
                     }
