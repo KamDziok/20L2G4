@@ -112,27 +112,35 @@ public class AnkietyQuery extends OperationInSession {
                 }
                 ankiety.getPytanias().forEach(pytaniaObj -> {
                     Pytania pytania = (Pytania) pytaniaObj;
-                    if(pytania.getIdPytania() != -1){
+                    if(pytania.getIdPytania().intValue() != -1){
                         Pytania oldPytania = pytaniaQuery.selectByID(pytania.getIdPytania());
                         if(!pytania.isTheSame(oldPytania)) {
                             pytaniaQuery.updatePytaniaWithOutTransaction(pytania, session);
                         }
+                        if(pytania.getRodzajPytania() != TypeOfQuestion.OPEN) {
+                            pytania.getOdpowiedzis().forEach(odpowiedziObj -> {
+                                Odpowiedzi odpowiedzi = (Odpowiedzi) odpowiedziObj;
+                                if (odpowiedzi.getIdOdpowiedzi().intValue() != -1) {
+                                    Odpowiedzi oldOdpowiedzi = odpowiedziQuery.selectByID(odpowiedzi.getIdOdpowiedzi());
+                                    if (!odpowiedzi.isTheSame(oldOdpowiedzi)) {
+                                        odpowiedziQuery.updateOdpowiedziWithOutTransaction(odpowiedzi, session);
+                                    }
+                                } else {
+                                    odpowiedziQuery.addOdpowiedziWithOutTransaction(odpowiedzi, session);
+                                }
+                            });
+                        }
                     }else {
                         Pytania newPytanie = new Pytania(ankiety, pytania.getTresc(), pytania.getZdjecie(), pytania.getRodzajPytania(), pytania.getPunktowe());
                         pytaniaQuery.addPytaniaWithOutTransaction(newPytanie, session);
-                    }
-                    pytania.getOdpowiedzis().forEach(odpowiedziObj -> {
-                        Odpowiedzi odpowiedzi = (Odpowiedzi) odpowiedziObj;
-                        if(odpowiedzi.getIdOdpowiedzi() != -1){
-                            Odpowiedzi oldOdpowiedzi = odpowiedziQuery.selectByID(odpowiedzi.getIdOdpowiedzi());
-                            if(odpowiedzi.isTheSame(oldOdpowiedzi)) {
-                                odpowiedziQuery.updateOdpowiedziWithOutTransaction(odpowiedzi, session);
-                            }
-                        }else {
-                            Odpowiedzi newOdpowiedzi = new Odpowiedzi(odpowiedzi.getPytania(), odpowiedzi.getOdpowiedz());
-                            odpowiedziQuery.addOdpowiedziWithOutTransaction(newOdpowiedzi, session);
+                        if(pytania.getRodzajPytania() != TypeOfQuestion.OPEN) {
+                            pytania.getOdpowiedzis().forEach(odpowiedziObj -> {
+                                Odpowiedzi odpowiedzi = (Odpowiedzi) odpowiedziObj;
+                                odpowiedzi.setPytania(newPytanie);
+                                odpowiedziQuery.addOdpowiedziWithOutTransaction(odpowiedzi, session);
+                            });
                         }
-                    });
+                    }
                 });
                 commitTransaction(transaction);
                 result = true;
