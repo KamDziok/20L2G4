@@ -71,7 +71,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     @FXML private TableView odpowiedziTabelka;
     @FXML private TableColumn treść;
     @FXML private TableColumn przyciskUsun;
-
+    private Boolean edycja2;
     private String odp;
     private String tresc;
     private Integer punktowe;
@@ -80,7 +80,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     private List<String> listaOdp = new ArrayList<String>();
     private Pytania pytania;
     private  ObservableList<OdpowiedziTabelka> dane = FXCollections.observableArrayList();
-    private Boolean edycja=false;
+    private Boolean edycja = false;
 
     /**
      * Metoda obsługująca przyciśk anuluj.
@@ -95,6 +95,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
         PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
         panelTworzeniaankietyController.setStartValuesAnkiety(ankiety2);
+        panelTworzeniaankietyController.SetEdycja(edycja2);
        /// panelTworzeniaankietyController.setStartValues(curetUser);
         activeScene(event, false, false);
 
@@ -174,8 +175,20 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
 
         tresc = trescPytania.getText();
+        if(edycja) {
+            for(String odpo : listaOdp)
+            {
+
+                Odpowiedzi odp = new Odpowiedzi(pytania, odpo);
+                odp.setIdOdpowiedzi(-1);
+                pytania.getOdpowiedzis().add(odp);
+                System.out.println(odpo);
+            }
+
+        }else {
 
         Pytania pytanie = new Pytania();
+        if(edycja2)pytanie.setIdPytania(-1);
         pytanie.setTresc(tresc);
         //pytanie.setZdjecie(imageview);
         pytanie.setPunktowe(punktowe);
@@ -186,16 +199,13 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
         for(String odpo : listaOdp)
         {
+
             Odpowiedzi odp = new Odpowiedzi(pytanie, odpo);
+            if(edycja){odp.setIdOdpowiedzi(-1);}
             pytanie.getOdpowiedzis().add(odp);
             System.out.println(odpo);
         }
-        if(edycja) {
 
-pytanie.getOdpowiedzis().addAll(pytania.getOdpowiedzis());
-pytania.setOdpowiedzis(pytanie.getOdpowiedzis());
-
-        }else {
 
             ankiety2.getPytanias().add(pytanie);
         }
@@ -203,6 +213,7 @@ pytania.setOdpowiedzis(pytanie.getOdpowiedzis());
         loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
         PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
         panelTworzeniaankietyController.setStartValuesAnkiety(ankiety2);
+        panelTworzeniaankietyController.SetEdycja(edycja2);
         activeScene(event, false, false);
 
 
@@ -291,6 +302,10 @@ pytania.setOdpowiedzis(pytanie.getOdpowiedzis());
     @Override
     public void setStartValuesIerator(Iterator iterator) {
 
+    }
+    public void SetEdycja(Boolean wyb)
+    {
+        edycja2 = wyb;
     }
 
 }

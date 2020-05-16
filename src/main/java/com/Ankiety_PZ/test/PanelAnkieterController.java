@@ -18,6 +18,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -77,11 +78,17 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
 
     @FXML
     void panelAnkietButtonDodajAction(ActionEvent event) {
+        //String dat = "MM-dd-yyyy";
+        //SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dat);
+        //String data = simpleDateFormat.format(new Date());
+        Date data = new Date();
         Ankiety ankieta = new Ankiety();
         ankieta.setUzytkownicy(curentUser2);
         ankieta.setLiczbaWypelnien(0);
+        ankieta.setDataRozpoczecia(data);
         loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
         PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
+        panelTworzeniaankietyController.SetEdycja(false);
         panelTworzeniaankietyController.setStartValuesAnkiety(ankieta);
         panelTworzeniaankietyController.setStartValues(curentUser2);
         activeScene(event, false, false);

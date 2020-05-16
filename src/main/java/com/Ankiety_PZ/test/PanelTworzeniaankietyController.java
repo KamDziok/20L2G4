@@ -45,6 +45,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     private Date dataRozpoczecia;
     private Date dataZakonczenia;
     private Ankiety ankiety;
+    public Boolean edycja;
     @FXML private TableView pytanieTabele;
     @FXML private TableColumn treść;
     @FXML private TableColumn Rpytanie;
@@ -93,6 +94,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         loadingFXML(event, SceneFXML.DODAJ_PYTANIE);
         DodawaniepytaniaController dodawaniepytaniaController  = load.getController();
         dodawaniepytaniaController.setStartValuesAnkiety(ankiety);
+        dodawaniepytaniaController.SetEdycja(edycja);
         activeScene(event, false, false);
     }
 
@@ -101,12 +103,16 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     public void setStartValuesAnkiety(Ankiety ankieta)
     {
 
+
         this.ankiety = ankieta;
         System.out.println("ankiety setStartValuesAnkiety");
         System.out.println(ankiety);
         trescTytulu.setText(ankiety.getTytul());
         punkty.setText(String.valueOf(ankiety.getLiczbaPunktow()));
-        dataOD.setText(String.valueOf((ankiety.getDataRozpoczecia())));
+        String dat = "MM-dd-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dat);
+        String data = simpleDateFormat.format((ankiety.getDataRozpoczecia()));
+        dataOD.setText(data);
         dataDo.setText(String.valueOf((ankiety.getDataZakonczenia())));
         System.out.println("co sie tu dzieje");
         setPytanieB();
@@ -115,6 +121,11 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     public void setStartValuesEdytujAnkiety (Ankiety ankieta){
         AnkietyQuery query1 = new AnkietyQuery();
         this.ankiety = query1.selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(ankieta);
+        trescTytulu.setText(ankiety.getTytul());
+        punkty.setText(String.valueOf(ankiety.getLiczbaPunktow()));
+        dataOD.setText(String.valueOf((ankiety.getDataRozpoczecia())));
+        dataDo.setText(String.valueOf((ankiety.getDataZakonczenia())));
+        setPytanieB();
 
     }
     @Override
@@ -132,6 +143,13 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
 
     @Override
     public void setStartValuesIerator(Iterator iterator) { }
+
+    public void SetEdycja(Boolean wyb)
+    {
+        edycja = wyb;
+        System.out.println("edycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycja");
+        System.out.println(edycja);
+    }
 
     @FXML
     void ZapiszAction(ActionEvent event) {
@@ -157,7 +175,10 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         //ankiety.setLiczbaWypelnien(liczbawypełnein);
        System.out.println(ankiety.getPytanias());
         AnkietyQuery query = new AnkietyQuery();
-        query.addAnkietyWithPytaniaAndOdpowiedzi(ankiety);
+        if(edycja){query.updateAnkietyWithPytaniaAndOdpowiedzi(ankiety);}
+        else{query.addAnkietyWithPytaniaAndOdpowiedzi(ankiety);}
+
+
 
 
 
@@ -191,4 +212,6 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
         pytanieTabele.itemsProperty().setValue(dane);
     }
+
+
 }

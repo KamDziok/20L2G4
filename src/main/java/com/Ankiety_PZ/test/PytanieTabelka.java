@@ -4,6 +4,7 @@ import com.Ankiety_PZ.hibernate.Ankiety;
 import com.Ankiety_PZ.hibernate.Nagrody;
 import com.Ankiety_PZ.hibernate.Pytania;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
+import com.Ankiety_PZ.query.PytaniaQuery;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -25,9 +26,8 @@ public class PytanieTabelka extends BulidStage implements SetStartValues{
         buttonUsun.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
-                PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
-                activeScene(event, false, false);
+                PytaniaQuery query = new PytaniaQuery();
+                query.deletePytania(pytanie);
             }
         });
         buttonEdycja = new Button("Edycja");
@@ -36,6 +36,7 @@ public class PytanieTabelka extends BulidStage implements SetStartValues{
             public void handle(ActionEvent event) {
                 loadingFXML(event, SceneFXML.DODAJ_PYTANIE);
                 DodawaniepytaniaController dodawaniepytaniaController  = load.getController();
+                dodawaniepytaniaController.SetEdycja(true);
                 dodawaniepytaniaController.setStartValuesPytanie(pytanie);
                 dodawaniepytaniaController.setStartValuesAnkiety(ankieta);
                 activeScene(event, false, false);
