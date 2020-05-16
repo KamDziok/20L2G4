@@ -174,6 +174,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
 
         tresc = trescPytania.getText();
+
         Pytania pytanie = new Pytania();
         pytanie.setTresc(tresc);
         //pytanie.setZdjecie(imageview);
@@ -189,17 +190,13 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
             pytanie.getOdpowiedzis().add(odp);
             System.out.println(odpo);
         }
-        System.out.println(pytanie.getOdpowiedzis());
-System.out.println("----------------------------------------------------------------------------------------------------------");
         if(edycja) {
 
-
-            pytanie.setOdpowiedzis(pytania.getOdpowiedzis());
-
-
-
+pytanie.getOdpowiedzis().addAll(pytania.getOdpowiedzis());
+pytania.setOdpowiedzis(pytanie.getOdpowiedzis());
 
         }else {
+
             ankiety2.getPytanias().add(pytanie);
         }
         System.out.println(ankiety2.getPytanias());

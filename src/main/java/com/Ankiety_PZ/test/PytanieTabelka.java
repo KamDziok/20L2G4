@@ -9,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
 import java.util.Date;
+import java.util.Iterator;
 
 public class PytanieTabelka extends BulidStage implements SetStartValues{
 
@@ -69,4 +70,9 @@ public class PytanieTabelka extends BulidStage implements SetStartValues{
     public void setStartValuesPytanie(Pytania pytania) {}
     @Override
     public void setStartValuesNagroda(Nagrody nagroda) {}
+
+    @Override
+    public void setStartValuesIerator(Iterator<Pytania> iterator) {
+
+    }
 }

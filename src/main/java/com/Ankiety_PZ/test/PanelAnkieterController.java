@@ -53,10 +53,6 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
     @FXML private TableColumn przyciskUsun;
 
 
-    public PanelAnkieterController() {
-    }
-
-
 
     @FXML private TextField email;
     @FXML private TextField haslo;
@@ -82,7 +78,7 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
     @FXML
     void panelAnkietButtonDodajAction(ActionEvent event) {
         Ankiety ankieta = new Ankiety();
-        ankieta.setUzytkownicy(curentUser);
+        ankieta.setUzytkownicy(curentUser2);
         ankieta.setLiczbaWypelnien(0);
         loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
         PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
@@ -93,12 +89,12 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
 
 
     }
-
+/*
     @FXML
     void panelAnkieteraButtonZmienUstawienia(ActionEvent event) {
-<<<<<<< Updated upstream
+
         curentUser2.setMail(email.getText());
-        if(haslo.getText().equals(curentUser2.getHaslo()) && nowehaslo.getText().equals(hasloznowu.getText()))
+        if (haslo.getText().equals(curentUser2.getHaslo()) && nowehaslo.getText().equals(hasloznowu.getText()))
             curentUser2.setHaslo(nowehaslo.getText());
         curentUser2.setImie(imie.getText());
         curentUser2.setNazwisko(nazwisko.getText());
@@ -109,7 +105,7 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
         curentUser2.setKodPocztowy(kod1.getText() + "-" + kod2.getText());
         UzytkownicyQuery query = new UzytkownicyQuery();
         query.updateUzytkownicy(curentUser2);
-=======
+
         mailAnkieter = email.getText();
         passwordAnkieter = haslo.getText();
         passwordNewAnkieter = nowehaslo.getText();
@@ -122,15 +118,15 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
         numberFlatStringAnkieter = lokal.getText();
         postCodeFirstStringNAnkieter = kod1.getText();
         postCodeSecondStringAnkieter = kod2.getText();
-        if(compulsoryFildNotNullAnkieter()){
-            if(postCodeIsNumberAnkieter()){
-                if(checkPasswordAnkieter()){
-                    if(chechEmailAnkieter()) {
+        if (compulsoryFildNotNullAnkieter()) {
+            if (postCodeIsNumberAnkieter()) {
+                if (checkPasswordAnkieter()) {
+                    if (chechEmailAnkieter()) {
                         UzytkownicyQuery update = new UzytkownicyQuery();
                         String postCode = postCodeFirstIntAnkieter + "-" + postCodeSecondIntAnkieter;
                         curentUser.setMail(mailAnkieter);
                         curentUser.setImie(nameAnkieter);
-                        if(!passwordAnkieter.isEmpty()){
+                        if (!passwordAnkieter.isEmpty()) {
                             curentUser.setHaslo(passwordRepeatAnkieter);
                         }
                         curentUser.setNazwisko(surnameAnkieter);
@@ -140,25 +136,25 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
                         curentUser.setNumerLokalu(numberFlatStringAnkieter);
                         curentUser.setKodPocztowy(postCode);
                         update.updateUzytkownicy(curentUser);
-                        imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - konto ankietera";
+                        imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko() + " - konto ankietera";
                         imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
                         imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
                         panelAnkieteraLabelError.setText("Profil został pomyślnie zaktualizowany.");
-                    }else{
+                    } else {
                         panelAnkieteraLabelError.setText("Podany adres e-mail jest nieprawidłowy!");
                     }
-                }else{
+                } else {
                     panelAnkieteraLabelError.setText(sprawdzhaslo);
                 }
-            }else{
+            } else {
                 panelAnkieteraLabelError.setText("Nieprawidłowy kod pocztowy!");
             }
-        }else{
+        } else {
             panelAnkieteraLabelError.setText("Wymagane pola są puste!");
-        }
->>>>>>> Stashed changes
-    }
 
+        }
+    }
+*/
     private void setUstawienia() {
         String imie = curentUser2.getImie();
         String nazwisko = curentUser2.getNazwisko();
@@ -208,11 +204,10 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
         ObservableList<AnikieterTabelka> dane = FXCollections.observableArrayList();
         for (Ankiety ankieta2:ankiety
         ) {
-<<<<<<< Updated upstream
+
                 dane.add(new AnikieterTabelka(ankieta2));
-=======
-            dane.add(new AnikieterTabelka(ankieta));
->>>>>>> Stashed changes
+
+
         }
         tableAnkiety.itemsProperty().setValue(dane);
         tytul.setCellValueFactory(new PropertyValueFactory("tytul"));
@@ -225,15 +220,13 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
 
     @Override
     public void setStartValues(Uzytkownicy user) {
-<<<<<<< Updated upstream
+
         this.curentUser2 = user;
 ///        imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - Ankieter";
-=======
-        this.curentUser = user;
         /// imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - konto ankietera";
-        imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
-        imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
->>>>>>> Stashed changes
+       // imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
+       // imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
+
         setAnkiety();
     }
 
@@ -270,6 +263,9 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
         assert imie_nazwisko_rola2 != null : "fx:id=\"imie_nazwisko_rola2\" was not injected: check your FXML file 'PanelAnkieter.fxml'.";
 
 
+    }
+
+    public void panelAnkieteraButtonZmienUstawienia(ActionEvent event) {
     }
 
 //    @Override
