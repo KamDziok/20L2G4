@@ -6,13 +6,14 @@ package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.hibernate.*;
 import com.Ankiety_PZ.query.AnkietyQuery;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.StackedBarChart;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
@@ -35,8 +36,8 @@ public class AnalizaAnkietController implements SetStartValues{
 
 //    pola klasy
 
+    private Uzytkownicy curentUser;
     private Ankiety ankieta;
-
 
 //    metody klasy
 
@@ -44,7 +45,7 @@ public class AnalizaAnkietController implements SetStartValues{
 
     }
 
-    void analizaPytania(Pytania pytanie, int y) {
+    void analizaPytaniaRadioCheck(Pytania pytanie, int y) {
         Set<Odpowiedzi> odpowiedzi = pytanie.getOdpowiedzis();
         XYChart.Series series1 = new XYChart.Series();
         series1.setName("odpowiedzi w okresie tym");
@@ -54,19 +55,68 @@ public class AnalizaAnkietController implements SetStartValues{
         }
         CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();
-        StackedBarChart<String, Number> wykres = new StackedBarChart(xAxis, yAxis);
+        BarChart<String, Number> wykres = new BarChart(xAxis, yAxis);
         xAxis.setLabel("odpowiedzi");
         yAxis.setLabel("ilosc odpowiedzi");
 
         BorderPane border = new BorderPane();
         border.prefWidth(1200);
         border.setTop(new Label(pytanie.getTresc()));
-        border.setLeft(new TableView<>());
-        border.getLeft().minWidth(400);
+//        border.setLeft(new TableView<>());
+//        border.getLeft().minWidth(400);
         border.setCenter(wykres);
         border.getCenter().minWidth(800);
         border.setLayoutY(y);
         wykres.getData().add(series1);
+        panel.getChildren().add(border);
+    }
+
+    void analizaPytaniaOtwarte(Pytania pytanie, int y) {
+        TableView<PytaniaUzytkownicy> tabelka = new TableView();
+        TableColumn odpowiedzi = new TableColumn();
+        ObservableList<PytaniaUzytkownicy> dane = FXCollections.observableArrayList();
+        for (PytaniaUzytkownicy odpowiedz:pytanie.getPytaniaUzytkownicy()
+        ) {
+            dane.add(new PytaniaUzytkownicy(pytanie, curentUser, odpowiedz.getOdpowiedz()));
+        }
+        tabelka.itemsProperty().setValue(dane);
+        odpowiedzi.setCellValueFactory(new PropertyValueFactory("odpowiedz"));
+
+        BorderPane border = new BorderPane();
+        border.prefWidth(1200);
+        border.setTop(new Label(pytanie.getTresc()));
+        border.setLeft(tabelka);
+        border.getLeft().minWidth(400);
+        border.setLayoutY(y);
+        panel.getChildren().add(border);
+    }
+
+    void analizaPytaniaProcentowePkt(Pytania pytanie, int y) {
+        Set<Odpowiedzi> odpowiedzi = pytanie.getOdpowiedzis();
+        NumberAxis xAxis = new NumberAxis();
+        NumberAxis yAxis = new NumberAxis();
+        LineChart<Number, Number> wykres = new LineChart(xAxis, yAxis);
+        xAxis.setLabel("odpowiedzi");
+        yAxis.setLabel("ilosc odpowiedzi");
+        for (Odpowiedzi odpowiedz:odpowiedzi
+        ) {
+            XYChart.Series series = new XYChart.Series();
+            series.setName(odpowiedz.getOdpowiedz());
+            for (OdpowiedziUzytkownicy odpowiedzUzytkownika:odpowiedz.getOdpowiedziUzytkownicy()
+                 ) {
+                series.getData().add(new XYChart.Data(odpowiedzUzytkownika.getPunktowe(), odpowiedz.getCount()));
+                wykres.getData().add(series);
+            }
+        }
+
+        BorderPane border = new BorderPane();
+        border.prefWidth(1200);
+        border.setTop(new Label(pytanie.getTresc()));
+//        border.setLeft(new TableView<>());
+//        border.getLeft().minWidth(400);
+        border.setCenter(wykres);
+        border.getCenter().minWidth(800);
+        border.setLayoutY(y);
         panel.getChildren().add(border);
     }
 
@@ -79,7 +129,7 @@ public class AnalizaAnkietController implements SetStartValues{
 
     @Override
     public void setStartValues(Uzytkownicy user) {
-
+        curentUser = user;
     }
 
     @Override
@@ -90,7 +140,23 @@ public class AnalizaAnkietController implements SetStartValues{
         int y = 0;
         for (Pytania pytanie:pytania
              ) {
-            analizaPytania(pytanie, y);
+            switch (pytanie.getRodzajPytania()) {
+                case TypeOfQuestion.ONE_CHOICE:
+                    analizaPytaniaRadioCheck(pytanie, y);
+                    break;
+                case TypeOfQuestion.MANY_CHOICE:
+                    analizaPytaniaRadioCheck(pytanie, y);
+                    break;
+                case TypeOfQuestion.OPEN:
+                    analizaPytaniaOtwarte(pytanie, y);
+                    break;
+                case TypeOfQuestion.POINTS:
+                    analizaPytaniaProcentowePkt(pytanie, y);
+                    break;
+                case TypeOfQuestion.PERCENT:
+                    analizaPytaniaProcentowePkt(pytanie, y);
+                    break;
+            }
             y += 500;
         }
     }
@@ -104,6 +170,4 @@ public class AnalizaAnkietController implements SetStartValues{
     public void setStartValuesNagroda(Nagrody nagroda) {
 
     }
-
-
 }
