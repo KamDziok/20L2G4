@@ -75,7 +75,7 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
     @FXML private TableColumn pkt;
     @FXML private TableColumn przyciskEdycja;
     @FXML private TableColumn przyciskUsun;
-
+    @FXML private TableColumn przyciskAnaliza;
 
     public PanelAnkieterController() {
     }
@@ -294,6 +294,7 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
         pkt.setCellValueFactory(new PropertyValueFactory("liczbaPunktow"));
         przyciskEdycja.setCellValueFactory(new PropertyValueFactory("buttonEdycja"));
         przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
+        przyciskAnaliza.setCellValueFactory(new PropertyValueFactory("buttonAnaliza"));
 
     }
 
