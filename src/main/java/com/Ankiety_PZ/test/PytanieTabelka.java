@@ -37,8 +37,8 @@ public class PytanieTabelka extends BulidStage implements SetStartValues{
                 loadingFXML(event, SceneFXML.DODAJ_PYTANIE);
                 DodawaniepytaniaController dodawaniepytaniaController  = load.getController();
                 dodawaniepytaniaController.SetEdycja(true);
-                dodawaniepytaniaController.setStartValuesPytanie(pytanie);
                 dodawaniepytaniaController.setStartValuesAnkiety(ankieta);
+                dodawaniepytaniaController.setStartValuesPytanie(pytanie);
                 activeScene(event, false, false);
                 System.out.println("PRZEKAZYWANIE PYTANIE I ANKIETY DO EDYTOWANIA");
                 System.out.println(ankieta);

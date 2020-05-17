@@ -1,38 +1,57 @@
 package com.Ankiety_PZ.test;
 
-import com.Ankiety_PZ.hibernate.Odpowiedzi;
+import com.Ankiety_PZ.hibernate.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
+import java.util.List;
 
-public class OdpowiedziTabelka extends BulidStage {
+
+public class OdpowiedziTabelka extends BulidStage{
     public String treść;
     public Button buttonUsun;
 
-    OdpowiedziTabelka(String odpowiedzi) {
+    OdpowiedziTabelka(String odpowiedzi, Ankiety ankieta, Pytania pytania, List<String> list) {
         treść = odpowiedzi;
         buttonUsun = new Button("Usun");
         buttonUsun.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
-                PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
+                loadingFXML(event, SceneFXML.DODAJ_PYTANIE);
+                DodawaniepytaniaController dodawaniepytaniaController  = load.getController();
+                dodawaniepytaniaController.SetEdycja(true);
+                dodawaniepytaniaController.setStartValuesAnkiety(ankieta);
+                dodawaniepytaniaController.setStartValuesPytanie(pytania);
+                dodawaniepytaniaController.usun(odpowiedzi , list);
                 activeScene(event, false, false);
+                System.out.println("PRZEKAZYWANIE PYTANIE I ANKIETY DO EDYTOWANIA");
+                System.out.println(ankieta);
+              ///  System.out.println(pytanie);
+
+
+
             }
         });
 
     }
 
-    OdpowiedziTabelka(Odpowiedzi odpowiedzi) {
+    OdpowiedziTabelka(Odpowiedzi odpowiedzi, Ankiety ankieta, Pytania pytania, List<String> list) {
         treść = odpowiedzi.getOdpowiedz();
         buttonUsun = new Button("Usun");
         buttonUsun.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
-                PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
+                loadingFXML(event, SceneFXML.DODAJ_PYTANIE);
+                DodawaniepytaniaController dodawaniepytaniaController  = load.getController();
+                dodawaniepytaniaController.SetEdycja(true);
+                dodawaniepytaniaController.setStartValuesAnkiety(ankieta);
+                dodawaniepytaniaController.setStartValuesPytanie(pytania);
+                dodawaniepytaniaController.usunBAZA(odpowiedzi , list, pytania);
                 activeScene(event, false, false);
+                System.out.println("PRZEKAZYWANIE PYTANIE I ANKIETY DO EDYTOWANIA");
+                System.out.println(ankieta);
+
             }
         });
 
@@ -45,5 +64,6 @@ public class OdpowiedziTabelka extends BulidStage {
     public Button getButtonUsun() {
         return buttonUsun;
     }
+
 }
 

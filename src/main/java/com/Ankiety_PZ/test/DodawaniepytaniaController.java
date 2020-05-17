@@ -6,6 +6,7 @@
 package com.Ankiety_PZ.test;
 import com.Ankiety_PZ.hibernate.*;
 import com.Ankiety_PZ.query.AnkietyQuery;
+import com.Ankiety_PZ.query.OdpowiedziQuery;
 import com.Ankiety_PZ.query.PytaniaQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -90,6 +91,44 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
      */
 
 
+    @Override
+    public void setStartValues(Uzytkownicy user) {
+
+    }
+
+    @Override
+    public void setStartValuesAnkiety(Ankiety ankieta) {
+        this.ankiety2 = ankieta;
+        System.out.println("ankiety setStartValuesAnkiety dpc");
+        System.out.println(ankiety2);
+
+}
+
+    @Override
+    public void setStartValuesPytanie(Pytania pytanie) {
+        this.pytania = pytanie;
+        System.out.println("ankiety setStartValuesAnkiety dpc");
+        System.out.println("ankiety setStartValuesAnkiety dpc");
+        System.out.println("ankiety setStartValuesAnkiety dpc");
+        System.out.println("ankiety setStartValuesAnkiety dpc");
+        System.out.println(ankiety2);
+        setOdpowiedziSS(pytanie);
+    }
+
+    @Override
+    public void setStartValuesNagroda(Nagrody nagroda) {
+
+    }
+
+
+    @Override
+    public void setStartValuesIerator(Iterator iterator) {
+
+    }
+    public void SetEdycja(Boolean wyb)
+    {
+        edycja2 = wyb;
+    }
     @FXML
     void anulujAction(ActionEvent event) {
         loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
@@ -245,7 +284,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         dane2.addAll(dane);
         for(String odp : listaOdp)
         {
-            dane2.add(new OdpowiedziTabelka(odp));
+            dane2.add(new OdpowiedziTabelka(odp, ankiety2, pytania, listaOdp));
         }
         odpowiedziTabelka.itemsProperty().setValue(dane2);
         treść.setCellValueFactory(new PropertyValueFactory("treść"));
@@ -254,13 +293,10 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
     }
     public void setOdpowiedziSS(Pytania pytania){
-        AnkietyQuery ank = new AnkietyQuery();
-        ank.selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(ankiety2);
-        trescPytania.setText(pytania.getTresc());
+
         edycja=true;
         pytania.getOdpowiedzis().forEach(odpowiedz ->{Odpowiedzi JednaOdp = (Odpowiedzi) odpowiedz;
-            dane.add(new OdpowiedziTabelka(JednaOdp));});
-
+            dane.add(new OdpowiedziTabelka(JednaOdp, ankiety2, pytania, listaOdp));});
         odpowiedziTabelka.itemsProperty().setValue(dane);
         treść.setCellValueFactory(new PropertyValueFactory("treść"));
         przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
@@ -274,38 +310,26 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         setOdpowiedzi();
     }
 
-    @Override
-    public void setStartValues(Uzytkownicy user) {
-
-    }
-
-    @Override
-    public void setStartValuesAnkiety(Ankiety ankieta) {
-        this.ankiety2 = ankieta;
-        System.out.println("ankiety setStartValuesAnkiety dpc");
-        System.out.println(ankiety2);
-
-    }
-
-    @Override
-    public void setStartValuesPytanie(Pytania pytanie) {
-        this.pytania = pytanie;
-        setOdpowiedziSS(pytanie);
-    }
-
-    @Override
-    public void setStartValuesNagroda(Nagrody nagroda) {
-
-    }
 
 
-    @Override
-    public void setStartValuesIerator(Iterator iterator) {
-
-    }
-    public void SetEdycja(Boolean wyb)
+    public void usun(String odp, List<String> list)
     {
-        edycja2 = wyb;
+        System.out.println(list);
+        listaOdp = list;
+        listaOdp.remove(odp);
+        setOdpowiedzi();
     }
+
+    public void usunBAZA(Odpowiedzi odp, List<String> list, Pytania pytanie)
+    {
+        System.out.println(list);
+        listaOdp = list;
+        pytanie.getOdpowiedzis().remove(odp);
+        setOdpowiedziSS(pytanie);
+        setOdpowiedzi();
+    }
+
+
+
 
 }

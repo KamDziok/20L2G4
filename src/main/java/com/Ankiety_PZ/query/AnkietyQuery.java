@@ -261,10 +261,10 @@ public class AnkietyQuery extends OperationInSession {
                         if(pytanie.getRodzajPytania() == TypeOfQuestion.PERCENT || pytanie.getRodzajPytania() == TypeOfQuestion.POINTS) {
                             odpowiedzi.initOdpowiedziUzytkownicy();
                             odpowiedzi.setOdpowiedziUzytkownicy(odpowiedziQuery.selectOdpowiedziPointsAndPercent(odpowiedzi));
-                            pytanie.getOdpowiedzis().add(odpowiedzi);
                         }else {
                             odpowiedzi.setCount(odpowiedziQuery.selectCountOdpowiedzi(odpowiedzi).intValue());
                         }
+                        pytanie.getOdpowiedzis().add(odpowiedzi);
                     });
                 }else{
                     pytanie.setPytaniaUzytkownicy(pytaniaQuery.selectPytaniaUzytkownicy(pytanie));
