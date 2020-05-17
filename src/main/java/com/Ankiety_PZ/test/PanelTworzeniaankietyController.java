@@ -18,13 +18,9 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class PanelTworzeniaankietyController extends BulidStage implements SetStartValues{
-    private Uzytkownicy curentUser;
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
@@ -44,13 +40,12 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
-    private Pytania pytanie;
-
     private String tytul;
     private int liczbaPunktow;
     private Date dataRozpoczecia;
     private Date dataZakonczenia;
     private Ankiety ankiety;
+    public Boolean edycja;
     @FXML private TableView pytanieTabele;
     @FXML private TableColumn treść;
     @FXML private TableColumn Rpytanie;
@@ -83,7 +78,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     void anulujAction(ActionEvent event) {
         loadingFXML(event, SceneFXML.PANEL_ANKIETERA);
         PanelAnkieterController panelAnkieterController = load.getController();
-        panelAnkieterController.setStartValues(curentUser);
+        panelAnkieterController.setStartValues(ankiety.getUzytkownicy());
         activeScene(event, false, false);
     }
 
@@ -99,45 +94,61 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         loadingFXML(event, SceneFXML.DODAJ_PYTANIE);
         DodawaniepytaniaController dodawaniepytaniaController  = load.getController();
         dodawaniepytaniaController.setStartValuesAnkiety(ankiety);
-        dodawaniepytaniaController.setStartValues(curentUser);
+        dodawaniepytaniaController.SetEdycja(edycja);
         activeScene(event, false, false);
     }
 
-    @Override
-    public void setStartValues(Uzytkownicy user) {
-        this.curentUser = user;
-        setPytanie();
-    }
 
     @Override
     public void setStartValuesAnkiety(Ankiety ankieta)
     {
 
+
         this.ankiety = ankieta;
+        System.out.println("ankiety setStartValuesAnkiety");
+        System.out.println(ankiety);
+        trescTytulu.setText(ankiety.getTytul());
+        punkty.setText(String.valueOf(ankiety.getLiczbaPunktow()));
+        String dat = "MM-dd-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dat);
+        String data = simpleDateFormat.format((ankiety.getDataRozpoczecia()));
+        dataOD.setText(data);
+        dataDo.setText(String.valueOf((ankiety.getDataZakonczenia())));
+        System.out.println("co sie tu dzieje");
+        setPytanieB();
+
+    }
+    public void setStartValuesEdytujAnkiety (Ankiety ankieta){
+        AnkietyQuery query1 = new AnkietyQuery();
+        this.ankiety = query1.selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(ankieta);
         trescTytulu.setText(ankiety.getTytul());
         punkty.setText(String.valueOf(ankiety.getLiczbaPunktow()));
         dataOD.setText(String.valueOf((ankiety.getDataRozpoczecia())));
         dataDo.setText(String.valueOf((ankiety.getDataZakonczenia())));
-
-
-    }
-
-    @Override
-    public void setStartValuesPytanie(Pytania pytania) {
-        this.pytanie = pytania;
         setPytanieB();
 
     }
-
     @Override
-    public void setStartValuesNagroda(Nagrody nagroda) {
-
+    public void setStartValues(Uzytkownicy user) {
+        setPytanie();
     }
 
 
     @Override
-    public void setStartValuesIerator(Iterator iterator) {
+    public void setStartValuesPytanie(Pytania pytania) { }
 
+    @Override
+    public void setStartValuesNagroda(Nagrody nagroda) { }
+
+
+    @Override
+    public void setStartValuesIerator(Iterator iterator) { }
+
+    public void SetEdycja(Boolean wyb)
+    {
+        edycja = wyb;
+        System.out.println("edycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycja");
+        System.out.println(edycja);
     }
 
     @FXML
@@ -155,14 +166,19 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        System.out.println(ankiety);
+        //System.out.println(ankiety.getUzytkownicy());
         ankiety.setTytul(tytul);
         ankiety.setLiczbaPunktow(liczbaPunktow);
         ankiety.setDataRozpoczecia(dataRozpoczecia);
         ankiety.setDataZakonczenia(dataZakonczenia);
-        ankiety.setLiczbaWypelnien(0);
-        ankiety.setUzytkownicy(curentUser);
+        //ankiety.setLiczbaWypelnien(liczbawypełnein);
+       System.out.println(ankiety.getPytanias());
         AnkietyQuery query = new AnkietyQuery();
-        query.addAnkietyWithPytaniaAndOdpowiedzi(ankiety);
+        if(edycja){query.updateAnkietyWithPytaniaAndOdpowiedzi(ankiety);}
+        else{query.addAnkietyWithPytaniaAndOdpowiedzi(ankiety);}
+
+
 
 
 
@@ -174,7 +190,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         ankiety = query.selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(ankiety);
         ankiety.getPytanias().forEach(pytanie -> {
             Pytania pytania2 = (Pytania) pytanie;
-            dane.add(new PytanieTabelka(pytania2)); });
+            dane.add(new PytanieTabelka(ankiety, pytania2)); });
         treść.setCellValueFactory(new PropertyValueFactory("treść"));
         Rpytanie.setCellValueFactory(new PropertyValueFactory("Rpytanie"));
         przyciskEdycja.setCellValueFactory(new PropertyValueFactory("buttonEdycja"));
@@ -182,16 +198,20 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         pytanieTabele.itemsProperty().setValue(dane);
     }
     private void setPytanieB() {
-        AnkietyQuery query = new AnkietyQuery();
+        //AnkietyQuery query = new AnkietyQuery();
         ObservableList<PytanieTabelka> dane = FXCollections.observableArrayList();
         //ankiety = query.selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(ankiety);
+        System.out.println("ANKIETY USTWIANIE PYTAN");
+        System.out.println(ankiety);
         ankiety.getPytanias().forEach(pytanie -> {
             Pytania pytania2 = (Pytania) pytanie;
-            dane.add(new PytanieTabelka(pytania2)); });
+            dane.add(new PytanieTabelka(ankiety, pytania2)); });
         treść.setCellValueFactory(new PropertyValueFactory("treść"));
         Rpytanie.setCellValueFactory(new PropertyValueFactory("Rpytanie"));
         przyciskEdycja.setCellValueFactory(new PropertyValueFactory("buttonEdycja"));
         przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
         pytanieTabele.itemsProperty().setValue(dane);
     }
+
+
 }
