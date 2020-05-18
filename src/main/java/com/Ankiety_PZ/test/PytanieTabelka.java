@@ -1,9 +1,7 @@
 package com.Ankiety_PZ.test;
 
-import com.Ankiety_PZ.hibernate.Ankiety;
-import com.Ankiety_PZ.hibernate.Nagrody;
-import com.Ankiety_PZ.hibernate.Pytania;
-import com.Ankiety_PZ.hibernate.Uzytkownicy;
+import com.Ankiety_PZ.hibernate.*;
+import com.Ankiety_PZ.query.OdpowiedziQuery;
 import com.Ankiety_PZ.query.PytaniaQuery;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -26,8 +24,28 @@ public class PytanieTabelka extends BulidStage implements SetStartValues{
         buttonUsun.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                PytaniaQuery query = new PytaniaQuery();
-                query.deletePytania(pytanie);
+                loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
+                PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
+                PytaniaQuery query1 =new PytaniaQuery();
+                System.out.println(pytanie);
+
+                pytanie.getOdpowiedzis().removeAll(pytanie.getOdpowiedzis());
+                pytanie.getOdpowiedzis().forEach(odpowiedz ->{Odpowiedzi JednaOdp = (Odpowiedzi) odpowiedz;
+                    OdpowiedziQuery JednaOdpq = new OdpowiedziQuery();
+                    JednaOdpq.deleteOdpowiedzi(JednaOdp);});
+                System.out.println("pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()");
+                System.out.println(pytanie.getOdpowiedzis());
+                ankieta.getPytanias().remove(pytanie);
+                query1.deletePytania(pytanie);
+              ///  ankieta.getPytanias().remove(pytanie);
+                System.out.println(pytanie);
+
+                panelTworzeniaankietyController.setStartValuesAnkiety(ankieta);
+                panelTworzeniaankietyController.SetEdycja(true);
+                   // pytanie.getOdpowiedzis().removeAll(pytanie.getOdpowiedzis());
+                   // ankieta.getPytanias().remove(pytanie);
+
+                activeScene(event, false, false);
             }
         });
         buttonEdycja = new Button("Edycja");
@@ -37,8 +55,8 @@ public class PytanieTabelka extends BulidStage implements SetStartValues{
                 loadingFXML(event, SceneFXML.DODAJ_PYTANIE);
                 DodawaniepytaniaController dodawaniepytaniaController  = load.getController();
                 dodawaniepytaniaController.SetEdycja(true);
-                dodawaniepytaniaController.setStartValuesPytanie(pytanie);
                 dodawaniepytaniaController.setStartValuesAnkiety(ankieta);
+                dodawaniepytaniaController.setStartValuesPytanie(pytanie);
                 activeScene(event, false, false);
                 System.out.println("PRZEKAZYWANIE PYTANIE I ANKIETY DO EDYTOWANIA");
                 System.out.println(ankieta);

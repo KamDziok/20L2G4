@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 02 Maj 2020, 21:21
+-- Czas generowania: 18 Maj 2020, 14:46
 -- Wersja serwera: 10.4.11-MariaDB
 -- Wersja PHP: 7.3.16
 
@@ -235,40 +235,40 @@ ALTER TABLE `uzytkownicy`
 -- Ograniczenia dla tabeli `ankiety`
 --
 ALTER TABLE `ankiety`
-  ADD CONSTRAINT `ankiety_ibfk_1` FOREIGN KEY (`ID_uzytkownika`) REFERENCES `uzytkownicy` (`ID`);
+  ADD CONSTRAINT `ankiety_ibfk_1` FOREIGN KEY (`ID_uzytkownika`) REFERENCES `uzytkownicy` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `odpowiedzi`
 --
 ALTER TABLE `odpowiedzi`
-  ADD CONSTRAINT `odpowiedzi_ibfk_1` FOREIGN KEY (`ID_pytania`) REFERENCES `pytania` (`ID`);
+  ADD CONSTRAINT `odpowiedzi_ibfk_1` FOREIGN KEY (`ID_pytania`) REFERENCES `pytania` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `odpowiedzi_uzytkownicy`
 --
 ALTER TABLE `odpowiedzi_uzytkownicy`
-  ADD CONSTRAINT `odpowiedzi_uzytkownicy_ibfk_1` FOREIGN KEY (`ID_uzytkownika`) REFERENCES `uzytkownicy` (`ID`),
-  ADD CONSTRAINT `odpowiedzi_uzytkownicy_ibfk_2` FOREIGN KEY (`ID_odpowiedzi`) REFERENCES `odpowiedzi` (`ID`);
+  ADD CONSTRAINT `odpowiedzi_uzytkownicy_ibfk_1` FOREIGN KEY (`ID_uzytkownika`) REFERENCES `uzytkownicy` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `odpowiedzi_uzytkownicy_ibfk_2` FOREIGN KEY (`ID_odpowiedzi`) REFERENCES `odpowiedzi` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `pytania`
 --
 ALTER TABLE `pytania`
-  ADD CONSTRAINT `pytania_ibfk_1` FOREIGN KEY (`ID_ankiety`) REFERENCES `ankiety` (`ID`);
+  ADD CONSTRAINT `pytania_ibfk_1` FOREIGN KEY (`ID_ankiety`) REFERENCES `ankiety` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `pytania_uzytkownicy`
 --
 ALTER TABLE `pytania_uzytkownicy`
-  ADD CONSTRAINT `pytania_uzytkownicy_ibfk_1` FOREIGN KEY (`ID_uzytkownika`) REFERENCES `uzytkownicy` (`ID`),
-  ADD CONSTRAINT `pytania_uzytkownicy_ibfk_2` FOREIGN KEY (`ID_pytania`) REFERENCES `pytania` (`ID`);
+  ADD CONSTRAINT `pytania_uzytkownicy_ibfk_1` FOREIGN KEY (`ID_uzytkownika`) REFERENCES `uzytkownicy` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pytania_uzytkownicy_ibfk_2` FOREIGN KEY (`ID_pytania`) REFERENCES `pytania` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `uzytkownicy_nagrody`
 --
 ALTER TABLE `uzytkownicy_nagrody`
-  ADD CONSTRAINT `uzytkownicy_nagrody_ibfk_1` FOREIGN KEY (`ID_uzytkownika`) REFERENCES `uzytkownicy` (`ID`),
-  ADD CONSTRAINT `uzytkownicy_nagrody_ibfk_2` FOREIGN KEY (`ID_nagrody`) REFERENCES `nagrody` (`ID`);
+  ADD CONSTRAINT `uzytkownicy_nagrody_ibfk_1` FOREIGN KEY (`ID_uzytkownika`) REFERENCES `uzytkownicy` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `uzytkownicy_nagrody_ibfk_2` FOREIGN KEY (`ID_nagrody`) REFERENCES `nagrody` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

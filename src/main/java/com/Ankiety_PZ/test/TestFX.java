@@ -45,7 +45,7 @@ public class TestFX extends Application {
         ConnectToDataBase.connectToDataBase();
 //        LoadDump test = new LoadDump();
 //        try {
-//            test.loadDump("baza_danych/bazadanychtest/ankiety2.sql");
+//            test.loadDump("baza_danych/bazadanychtest/ankiety.sql");
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //            System.out.println(e.getMessage());
