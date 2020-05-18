@@ -7,7 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
-import java.util.Date;
 import java.util.Iterator;
 
 public class PytanieTabelka extends BulidStage implements SetStartValues{
@@ -20,7 +19,7 @@ public class PytanieTabelka extends BulidStage implements SetStartValues{
     PytanieTabelka(Ankiety ankieta, Pytania pytanie) {
         treść = pytanie.getTresc();
         Rpytanie = pytanie.getRodzajPytania();
-        buttonUsun = new Button("Usun");
+        buttonUsun = new Button("Usuń");
         buttonUsun.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -48,7 +47,7 @@ public class PytanieTabelka extends BulidStage implements SetStartValues{
                 activeScene(event, false, false);
             }
         });
-        buttonEdycja = new Button("Edycja");
+        buttonEdycja = new Button("Edytuj");
         buttonEdycja.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
