@@ -4,13 +4,17 @@
 package com.Ankiety_PZ.test;
 
 
-import com.Ankiety_PZ.hibernate.*;
+import com.Ankiety_PZ.hibernate.Ankiety;
+import com.Ankiety_PZ.hibernate.Nagrody;
+import com.Ankiety_PZ.hibernate.Pytania;
+import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.AnkietyQuery;
-import com.Ankiety_PZ.query.PytaniaQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -19,9 +23,16 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.ResourceBundle;
 
-public class PanelTworzeniaankietyController extends BulidStage implements SetStartValues{
+public class PanelTworzeniaankietyController extends BulidStage implements SetStartValues, Initializable {
+
+    ObservableList listDD = FXCollections.observableArrayList();
+    ObservableList listMM = FXCollections.observableArrayList();
+    ObservableList listRRRR = FXCollections.observableArrayList();
+
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
@@ -52,6 +63,23 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     @FXML private TableColumn Rpytanie;
     @FXML private TableColumn przyciskEdycja;
     @FXML private TableColumn przyciskUsun;
+    @FXML
+    private ChoiceBox<String> dataODDD;
+
+    @FXML
+    private ChoiceBox<String> dataODMM;
+
+    @FXML
+    private ChoiceBox<String> dataODRRRR;
+
+    @FXML
+    private ChoiceBox<String> dataDODD;
+
+    @FXML
+    private ChoiceBox<String> dataDOMM;
+
+    @FXML
+    private ChoiceBox<String> dataDORRRR;
 
 
     /**
@@ -110,12 +138,21 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         System.out.println(ankiety);
         trescTytulu.setText(ankiety.getTytul());
         punkty.setText(String.valueOf(ankiety.getLiczbaPunktow()));
-        String dat = "MM-dd-yyyy";
+        String dat = "dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dat);
-        String data = simpleDateFormat.format((ankiety.getDataRozpoczecia()));
-        dataOD.setText(data);
-        dataDo.setText(String.valueOf((ankiety.getDataZakonczenia())));
-        System.out.println("co sie tu dzieje");
+        String dataDD = simpleDateFormat.format((ankiety.getDataRozpoczecia()));
+        String datMM = "MM";
+        SimpleDateFormat simpleDateFormatMM = new SimpleDateFormat(datMM);
+        String dataMM = simpleDateFormatMM.format((ankiety.getDataRozpoczecia()));
+        String datRRRR = "yyyy";
+        SimpleDateFormat simpleDateFormatRRRR = new SimpleDateFormat(datRRRR);
+        String dataRRRR = simpleDateFormatRRRR.format((ankiety.getDataRozpoczecia()));
+//        dataOD.setText(data);
+        dataODDD.setValue(dataDD);
+        dataODMM.setValue(dataMM);
+        dataODRRRR.setValue(dataRRRR);
+      //  dataDo.setText(String.valueOf((ankiety.getDataZakonczenia())));
+
         setPytanieB();
 
     }
@@ -125,8 +162,31 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
 
         trescTytulu.setText(ankiety.getTytul());
         punkty.setText(String.valueOf(ankiety.getLiczbaPunktow()));
-        dataOD.setText(String.valueOf((ankiety.getDataRozpoczecia())));
-        dataDo.setText(String.valueOf((ankiety.getDataZakonczenia())));
+        String dat = "dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dat);
+        String dataDD = simpleDateFormat.format((ankiety.getDataRozpoczecia()));
+        dataODDD.setValue(dataDD);
+        String datMM = "MM";
+        SimpleDateFormat simpleDateFormatMM = new SimpleDateFormat(datMM);
+        String dataMM = simpleDateFormatMM.format((ankiety.getDataRozpoczecia()));
+        String datRRRR = "yyyy";
+        SimpleDateFormat simpleDateFormatRRRR = new SimpleDateFormat(datRRRR);
+        String dataRRRR = simpleDateFormatRRRR.format((ankiety.getDataRozpoczecia()));
+        dataODMM.setValue(dataMM);
+        dataODRRRR.setValue(dataRRRR);
+
+        String datazakDD = "dd";
+        SimpleDateFormat simpleDateFormatdatazakDD = new SimpleDateFormat(datazakDD);
+        String datazDD = simpleDateFormatdatazakDD.format((ankiety.getDataZakonczenia()));
+        dataDODD.setValue(datazDD);
+        String datazakMM = "MM";
+        SimpleDateFormat simpleDateFormatdatazakMM = new SimpleDateFormat(datazakMM);
+        String datazMM = simpleDateFormatdatazakMM.format((ankiety.getDataZakonczenia()));
+        String datzRRRR = "yyyy";
+        SimpleDateFormat simpleDateFormatdatazakRRRR= new SimpleDateFormat(datzRRRR);
+        String datazakRRRR = simpleDateFormatdatazakRRRR.format((ankiety.getDataZakonczenia()));
+        dataDOMM.setValue(datazMM);
+        dataDORRRR.setValue(datazakRRRR);
         setPytanieB();
 
     }
@@ -156,15 +216,23 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     @FXML
     void ZapiszAction(ActionEvent event) {
         DateFormat dateFrm = new SimpleDateFormat("yyyy-MM-dd");
+        String dataoddd = dataODDD.getValue();
+        String dataodmm = dataODMM.getValue();
+        String dataodrrrr = dataODRRRR.getValue();
+        String datadodd = dataDODD.getValue();
+        String datadomm = dataDOMM.getValue();
+        String datadorrrr = dataDORRRR.getValue();
+        String dataod = dataodrrrr+"-"+dataodmm+"-"+dataoddd;
+        String datado = datadorrrr+"-"+datadomm+"-"+datadodd;
         tytul = trescTytulu.getText();
         liczbaPunktow = Integer.parseInt(punkty.getText());
         try {
-            dataRozpoczecia = dateFrm.parse(dataOD.getText());
+            dataRozpoczecia = dateFrm.parse(dataod);
         } catch (ParseException e) {
             e.printStackTrace();
         }
         try {
-            dataZakonczenia = dateFrm.parse(dataDo.getText());
+            dataZakonczenia = dateFrm.parse(datado);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -179,9 +247,6 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         AnkietyQuery query = new AnkietyQuery();
         if(edycja){query.updateAnkietyWithPytaniaAndOdpowiedzi(ankiety);}
         else{query.addAnkietyWithPytaniaAndOdpowiedzi(ankiety);}
-
-
-
 
 
     }
@@ -209,6 +274,27 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         przyciskEdycja.setCellValueFactory(new PropertyValueFactory("buttonEdycja"));
         przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
         pytanieTabele.itemsProperty().setValue(dane);
+    }
+
+    private void loadData(){
+
+        listDD.removeAll(listDD);
+        listDD.addAll("01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31");
+        listMM.removeAll(listMM);
+        listMM.addAll("01","02","03","04","05","06","07","08","09","10","11","12");
+        listRRRR.removeAll(listRRRR);
+        listRRRR.addAll("2020","2021","2022","2023","2024","2025","2026","2027","2028","2029","2030");
+        dataODDD.getItems().addAll(listDD);
+        dataODMM.getItems().addAll(listMM);
+        dataODRRRR.getItems().addAll(listRRRR);
+        dataDODD.getItems().addAll(listDD);
+        dataDOMM.getItems().addAll(listMM);
+        dataDORRRR.getItems().addAll(listRRRR);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        loadData();
     }
 public void Usun(Pytania pytanie)
 {

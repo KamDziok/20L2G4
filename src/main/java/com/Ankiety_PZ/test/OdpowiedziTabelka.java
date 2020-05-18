@@ -14,7 +14,7 @@ public class OdpowiedziTabelka extends BulidStage{
 
     OdpowiedziTabelka(String odpowiedzi, Ankiety ankieta, Pytania pytania, List<String> list) {
         treść = odpowiedzi;
-        buttonUsun = new Button("Usun");
+        buttonUsun = new Button("Usuń");
         buttonUsun.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

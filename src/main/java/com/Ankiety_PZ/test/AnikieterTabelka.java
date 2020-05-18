@@ -24,7 +24,7 @@ public class AnikieterTabelka extends BulidStage implements SetStartValues{
         tytul = ankieta.getTytul();
         liczbaPunktow = ankieta.getLiczbaPunktow();
         dataZakonczenia = ankieta.getDataZakonczenia();
-        buttonUsun = new Button("Usun");
+        buttonUsun = new Button("Usuń");
         buttonUsun.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -36,7 +36,7 @@ public class AnikieterTabelka extends BulidStage implements SetStartValues{
                 activeScene(event, false, false);
             }
         });
-        buttonEdycja = new Button("Edycja");
+        buttonEdycja = new Button("Edytuj");
         buttonEdycja.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
