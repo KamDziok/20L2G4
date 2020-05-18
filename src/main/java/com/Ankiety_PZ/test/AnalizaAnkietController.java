@@ -74,12 +74,13 @@ public class AnalizaAnkietController implements SetStartValues{
     }
 
     void analizaPytaniaOtwarte(Pytania pytanie, int y) {
-        TableView<PytaniaUzytkownicy> tabelka = new TableView();
+        TableView<DoAnalizy> tabelka = new TableView();
         TableColumn odpowiedzi = new TableColumn();
-        ObservableList<PytaniaUzytkownicy> dane = FXCollections.observableArrayList();
+        tabelka.getColumns().add(odpowiedzi);
+        ObservableList<DoAnalizy> dane = FXCollections.observableArrayList();
         for (PytaniaUzytkownicy odpowiedz:pytanie.getPytaniaUzytkownicy()
         ) {
-            dane.add(new PytaniaUzytkownicy(pytanie, curentUser, odpowiedz.getOdpowiedz()));
+            dane.add(new DoAnalizy(odpowiedz.getOdpowiedz()));
         }
         tabelka.itemsProperty().setValue(dane);
         odpowiedzi.setCellValueFactory(new PropertyValueFactory("odpowiedz"));
@@ -97,15 +98,15 @@ public class AnalizaAnkietController implements SetStartValues{
         KlasaPomicnicza klasa = new KlasaPomicnicza(odpowiedzi.getPunktowe());
         for (OdpowiedziUzytkownicy odpowiedz:lista
              ) {
-            if (odpowiedzi.getPunktowe() == odpowiedz.getPunktowe())
-            klasa.update();
+            if (klasa.getPunktowe() == odpowiedz.getPunktowe())
+                klasa.update();
         }
         return klasa;
     }
 
     void analizaPytaniaProcentowePkt(Pytania pytanie, int y) {
         Set<Odpowiedzi> odpowiedzi = pytanie.getOdpowiedzis();
-        LinkedList<KlasaPomicnicza> lista  = new LinkedList();
+        LinkedList<XYChart.Series> lista  = new LinkedList();
         NumberAxis xAxis = new NumberAxis();
         NumberAxis yAxis = new NumberAxis();
         LineChart<Number, Number> wykres = new LineChart(xAxis, yAxis);
@@ -113,13 +114,14 @@ public class AnalizaAnkietController implements SetStartValues{
         yAxis.setLabel("ilosc odpowiedzi");
         for (Odpowiedzi odpowiedz:odpowiedzi
         ) {
-            XYChart.Series series = new XYChart.Series();
+            lista.add(new XYChart.Series());
+            XYChart.Series series = lista.getLast();
             series.setName(odpowiedz.getOdpowiedz());
             for (OdpowiedziUzytkownicy odpowiedzUzytkownika:odpowiedz.getOdpowiedziUzytkownicy()
                  ) {
                 series.getData().add(new XYChart.Data(odpowiedzUzytkownika.getPunktowe(), funkcjaPomocnicza(odpowiedzUzytkownika, odpowiedz.getOdpowiedziUzytkownicy()).getCount()));
-                wykres.getData().add(series);
             }
+            wykres.getData().add(series);
         }
 
         BorderPane border = new BorderPane();

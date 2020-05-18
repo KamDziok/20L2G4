@@ -210,11 +210,11 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                 }
                 break;
             case 1:
-                Iterator iterator = odpowiedzi.iterator();
+                Iterator iteratorek = odpowiedzi.iterator();
                 for (CheckBox box:checkBox
                 ) {
                     if (box.isSelected()) {
-                        Odpowiedzi odp = (Odpowiedzi) iterator.next();
+                        Odpowiedzi odp = (Odpowiedzi) iteratorek.next();
                         odpowiedziDoWyslania.add(new OdpowiedziUzytkownicy(odp, curentUser));
                     }
                 }
@@ -223,13 +223,15 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                 odpowiedziDoWyslaniaOtwarte.add(new PytaniaUzytkownicy(pytanie, curentUser, odpowiedzOtwarta.getText()));
                 break;
             case 3:
+                Iterator iteratorki = odpowiedzi.iterator();
                 for (TextField field:punktowePola
                 ) {
-                    odpowiedziDoWyslania.add(new OdpowiedziUzytkownicy(odpowiedzi.iterator().next(), curentUser, Integer.parseInt(field.getText())));
+                    Odpowiedzi odp = (Odpowiedzi) iteratorki.next();
+                    odpowiedziDoWyslania.add(new OdpowiedziUzytkownicy(odp, curentUser, Integer.parseInt(field.getText())));
                 }
                 break;
             case 4:
-                odpowiedziDoWyslania.add(new OdpowiedziUzytkownicy(odpowiedzi.iterator().next(), curentUser, Integer.parseInt(odpowiedzProcentowa.getText())));
+                odpowiedziDoWyslania.add(new OdpowiedziUzytkownicy(odpowiedzi.iterator().next(), curentUser, Integer.valueOf(odpowiedzProcentowa.getText())));
                 break;
         }
     }
@@ -252,7 +254,7 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                             radioController.setStartValuesPanelUzytkownikaController(controller);
                             activeScene(event, false, false);
                         } catch (Exception e) {
-                            showMessageDialog(null, "Nie martw się, jedziemy dalej");
+                            showMessageDialog(null, "Nie martw się, jedziemy dalej - " + e.getMessage());
                         } finally {
                         }
                     } else {
