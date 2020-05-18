@@ -21,9 +21,11 @@ public class OdpowiedziTabelka extends BulidStage{
                 loadingFXML(event, SceneFXML.DODAJ_PYTANIE);
                 DodawaniepytaniaController dodawaniepytaniaController  = load.getController();
                 dodawaniepytaniaController.SetEdycja(true);
+
                 dodawaniepytaniaController.setStartValuesAnkiety(ankieta);
                 dodawaniepytaniaController.setStartValuesPytanie(pytania);
                 dodawaniepytaniaController.usun(odpowiedzi , list);
+
                 activeScene(event, false, false);
                 System.out.println("PRZEKAZYWANIE PYTANIE I ANKIETY DO EDYTOWANIA");
                 System.out.println(ankieta);
@@ -45,9 +47,10 @@ public class OdpowiedziTabelka extends BulidStage{
                 loadingFXML(event, SceneFXML.DODAJ_PYTANIE);
                 DodawaniepytaniaController dodawaniepytaniaController  = load.getController();
                 dodawaniepytaniaController.SetEdycja(true);
+
                 dodawaniepytaniaController.setStartValuesAnkiety(ankieta);
-                dodawaniepytaniaController.setStartValuesPytanie(pytania);
                 dodawaniepytaniaController.usunBAZA(odpowiedzi , list, pytania);
+                dodawaniepytaniaController.setStartValuesPytanie(pytania);
                 activeScene(event, false, false);
                 System.out.println("PRZEKAZYWANIE PYTANIE I ANKIETY DO EDYTOWANIA");
                 System.out.println(ankieta);

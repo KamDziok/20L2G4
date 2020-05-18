@@ -78,6 +78,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     private Integer punktowe;
     private int rodzajPytania;
     private Ankiety ankiety2;
+    private Ankiety AnkietaStanPoczatkowy;
     private List<String> listaOdp = new ArrayList<String>();
     private Pytania pytania;
     private  ObservableList<OdpowiedziTabelka> dane = FXCollections.observableArrayList();
@@ -99,6 +100,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     @Override
     public void setStartValuesAnkiety(Ankiety ankieta) {
         this.ankiety2 = ankieta;
+        this.AnkietaStanPoczatkowy = ankieta;
         System.out.println("ankiety setStartValuesAnkiety dpc");
         System.out.println(ankiety2);
 
@@ -133,7 +135,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     void anulujAction(ActionEvent event) {
         loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
         PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
-        panelTworzeniaankietyController.setStartValuesAnkiety(ankiety2);
+        panelTworzeniaankietyController.setStartValuesEdytujAnkiety(ankiety2);
         panelTworzeniaankietyController.SetEdycja(edycja2);
        /// panelTworzeniaankietyController.setStartValues(curetUser);
         activeScene(event, false, false);
@@ -317,7 +319,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         System.out.println(list);
         listaOdp = list;
         listaOdp.remove(odp);
-        setOdpowiedzi();
+       // setOdpowiedzi();
     }
 
     public void usunBAZA(Odpowiedzi odp, List<String> list, Pytania pytanie)
@@ -325,8 +327,8 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         System.out.println(list);
         listaOdp = list;
         pytanie.getOdpowiedzis().remove(odp);
-        setOdpowiedziSS(pytanie);
-        setOdpowiedzi();
+        //setOdpowiedziSS(pytanie);
+       // setOdpowiedzi();
     }
 
 

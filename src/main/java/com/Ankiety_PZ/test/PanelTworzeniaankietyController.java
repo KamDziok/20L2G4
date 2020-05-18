@@ -6,6 +6,7 @@ package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.hibernate.*;
 import com.Ankiety_PZ.query.AnkietyQuery;
+import com.Ankiety_PZ.query.PytaniaQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -121,6 +122,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     public void setStartValuesEdytujAnkiety (Ankiety ankieta){
         AnkietyQuery query1 = new AnkietyQuery();
         this.ankiety = query1.selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(ankieta);
+
         trescTytulu.setText(ankiety.getTytul());
         punkty.setText(String.valueOf(ankiety.getLiczbaPunktow()));
         dataOD.setText(String.valueOf((ankiety.getDataRozpoczecia())));
@@ -194,15 +196,11 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         treść.setCellValueFactory(new PropertyValueFactory("treść"));
         Rpytanie.setCellValueFactory(new PropertyValueFactory("Rpytanie"));
         przyciskEdycja.setCellValueFactory(new PropertyValueFactory("buttonEdycja"));
-        przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
+        przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun" ));
         pytanieTabele.itemsProperty().setValue(dane);
     }
     private void setPytanieB() {
-        //AnkietyQuery query = new AnkietyQuery();
         ObservableList<PytanieTabelka> dane = FXCollections.observableArrayList();
-        //ankiety = query.selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(ankiety);
-        System.out.println("ANKIETY USTWIANIE PYTAN");
-        System.out.println(ankiety);
         ankiety.getPytanias().forEach(pytanie -> {
             Pytania pytania2 = (Pytania) pytanie;
             dane.add(new PytanieTabelka(ankiety, pytania2)); });
@@ -212,6 +210,11 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
         pytanieTabele.itemsProperty().setValue(dane);
     }
+public void Usun(Pytania pytanie)
+{
+
+
+}
 
 
 }
