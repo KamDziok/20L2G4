@@ -9,7 +9,6 @@ import com.Ankiety_PZ.hibernate.Nagrody;
 import com.Ankiety_PZ.hibernate.Pytania;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.AnkietyQuery;
-import com.Ankiety_PZ.query.UzytkownicyQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,11 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class PanelAnkieterController extends BulidStage implements SetStartValues{
     private Uzytkownicy curentUser2;
@@ -78,14 +73,17 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
 
     @FXML
     void panelAnkietButtonDodajAction(ActionEvent event) {
-        //String dat = "MM-dd-yyyy";
-        //SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dat);
-        //String data = simpleDateFormat.format(new Date());
         Date data = new Date();
         Ankiety ankieta = new Ankiety();
         ankieta.setUzytkownicy(curentUser2);
         ankieta.setLiczbaWypelnien(0);
         ankieta.setDataRozpoczecia(data);
+        Date dt = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(dt);
+        c.add(Calendar.DATE, 31);
+        dt = c.getTime();
+        ankieta.setDataZakonczenia(dt);
         loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
         PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
         panelTworzeniaankietyController.SetEdycja(false);
