@@ -18,6 +18,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -91,8 +93,19 @@ public class AnalizaAnkietController implements SetStartValues{
         panel.getChildren().add(border);
     }
 
+    private KlasaPomicnicza funkcjaPomocnicza(OdpowiedziUzytkownicy odpowiedzi, List<OdpowiedziUzytkownicy> lista) {
+        KlasaPomicnicza klasa = new KlasaPomicnicza(odpowiedzi.getPunktowe());
+        for (OdpowiedziUzytkownicy odpowiedz:lista
+             ) {
+            if (odpowiedzi.getPunktowe() == odpowiedz.getPunktowe())
+            klasa.update();
+        }
+        return klasa;
+    }
+
     void analizaPytaniaProcentowePkt(Pytania pytanie, int y) {
         Set<Odpowiedzi> odpowiedzi = pytanie.getOdpowiedzis();
+        LinkedList<KlasaPomicnicza> lista  = new LinkedList();
         NumberAxis xAxis = new NumberAxis();
         NumberAxis yAxis = new NumberAxis();
         LineChart<Number, Number> wykres = new LineChart(xAxis, yAxis);
@@ -104,7 +117,7 @@ public class AnalizaAnkietController implements SetStartValues{
             series.setName(odpowiedz.getOdpowiedz());
             for (OdpowiedziUzytkownicy odpowiedzUzytkownika:odpowiedz.getOdpowiedziUzytkownicy()
                  ) {
-                series.getData().add(new XYChart.Data(odpowiedzUzytkownika.getPunktowe(), odpowiedz.getCount()));
+                series.getData().add(new XYChart.Data(odpowiedzUzytkownika.getPunktowe(), funkcjaPomocnicza(odpowiedzUzytkownika, odpowiedz.getOdpowiedziUzytkownicy()).getCount()));
                 wykres.getData().add(series);
             }
         }

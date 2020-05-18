@@ -210,10 +210,13 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                 }
                 break;
             case 1:
+                Iterator iterator = odpowiedzi.iterator();
                 for (CheckBox box:checkBox
                 ) {
-                    if (box.isSelected())
-                        odpowiedziDoWyslania.add(new OdpowiedziUzytkownicy(odpowiedzi.iterator().next(), curentUser));
+                    if (box.isSelected()) {
+                        Odpowiedzi odp = (Odpowiedzi) iterator.next();
+                        odpowiedziDoWyslania.add(new OdpowiedziUzytkownicy(odp, curentUser));
+                    }
                 }
                 break;
             case 2:
@@ -263,6 +266,7 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                 @Override
                 public void handle(ActionEvent event) {
                     try {
+                        addAnswer(pytanie.getOdpowiedzis(), pytanie);
                         UzytkownicyQuery query = new UzytkownicyQuery();
                         query.addOdpowiedziUzytkownika(odpowiedziDoWyslania, odpowiedziDoWyslaniaOtwarte, pytanie.getAnkiety(), curentUser);
                         curentUser.updatePunkty(punktyZaAnkiete, true);
