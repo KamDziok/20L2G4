@@ -4,6 +4,7 @@ import com.Ankiety_PZ.hibernate.Ankiety;
 import com.Ankiety_PZ.hibernate.Nagrody;
 import com.Ankiety_PZ.hibernate.Pytania;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
+import com.Ankiety_PZ.query.AnkietyQuery;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -27,8 +28,11 @@ public class AnikieterTabelka extends BulidStage implements SetStartValues{
         buttonUsun.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
-                PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
+                loadingFXML(event, SceneFXML.PANEL_ANKIETERA);
+                PanelAnkieterController panelAnkieterController = load.getController();
+                AnkietyQuery query = new AnkietyQuery();
+                query.deleteAnkiety(ankieta);
+                panelAnkieterController.setStartValues(ankieta.getUzytkownicy());
                 activeScene(event, false, false);
             }
         });
