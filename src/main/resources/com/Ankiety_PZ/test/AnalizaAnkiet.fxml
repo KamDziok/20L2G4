@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1201.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.PanelOsobyOdNagrodController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1201.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.AnalizaAnkietController">
    <children>
-      <Label layoutX="532.0" layoutY="14.0" text="Nazwa ankiety" textAlignment="CENTER" />
+      <Label fx:id="tytulAnkiety" layoutX="532.0" layoutY="14.0" text="Nazwa ankiety" textAlignment="CENTER" />
       <ScrollPane layoutY="60.0" prefHeight="660.0" prefWidth="1201.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="659.0" prefWidth="1186.0">
-               <children>
-                  <PieChart layoutX="343.0" layoutY="130.0" />
-                  <Label layoutX="536.0" layoutY="58.0" text="Jakis wykres" textAlignment="CENTER" />
-               </children></AnchorPane>
+          <AnchorPane fx:id="panel" minHeight="0.0" minWidth="0.0" />
         </content>
       </ScrollPane>
    </children>

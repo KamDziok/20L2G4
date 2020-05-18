@@ -36,12 +36,6 @@ public class SceneFXML {
     /** Odnośnik do pliku z panelem uzytkownika */
     public static  final String PANEL_UZYTKOWNIKA = "panelUzytkownika";
 
-    /** Odnośnik do pliku z oknem ankiety z testem wielokrotnego wyboru */
-    public static  final String OKNO_ANKIETA_CHECK = "oknoAnkietyCheck";
-
-    /** Odnośnik do pliku z oknem ankiety z pytaniem otwartym */
-    public static  final String OKNO_ANKIETA_OPEN = "oknoAnkietyOpen";
-
     /** Odnośnik do pliku z oknem ankiety z testem jednokrotnego wyboru */
     public static  final String OKNO_ANKIETA_RADIO = "oknoAnkietyRadio";
 
@@ -54,4 +48,6 @@ public class SceneFXML {
     /** Odnośnik do pliku z panelem edycji uzytkownika przez administratora */
     public static  final String PANEL_EDIT_USER = "PanelEdycjiUzytkownika";
 
+    /** Odnośnik do pliku z oknem ankiety z pytaniem otwartym */
+    public static  final String OKNO_ANKIETA_ANALIZA = "AnalizaAnkiet";
 }

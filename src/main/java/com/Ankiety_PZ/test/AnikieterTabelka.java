@@ -19,6 +19,7 @@ public class AnikieterTabelka extends BulidStage implements SetStartValues{
     public Date dataZakonczenia;
     public Button buttonUsun;
     public Button buttonEdycja;
+    public Button buttonAnaliza;
 
     AnikieterTabelka(Ankiety ankieta) {
         tytul = ankieta.getTytul();
@@ -49,6 +50,17 @@ public class AnikieterTabelka extends BulidStage implements SetStartValues{
                 System.out.println(ankieta);
             }
         });
+        buttonAnaliza = new Button("Analiza");
+        buttonAnaliza.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                loadingFXML(event, SceneFXML.OKNO_ANKIETA_ANALIZA);
+                AnalizaAnkietController analizaAnkietController = load.getController();
+                analizaAnkietController.setStartValuesAnkiety(ankieta);
+//                analizaAnkietController.setStartValues(curentUser);
+                activeScene(event, false, true);
+            }
+        });
     }
 
     public String getTytul() {
@@ -70,6 +82,8 @@ public class AnikieterTabelka extends BulidStage implements SetStartValues{
     public Button getButtonUsun() {
         return buttonUsun;
     }
+
+    public Button getButtonAnaliza() { return buttonAnaliza; }
 
     @Override
     public void setStartValues(Uzytkownicy user) {

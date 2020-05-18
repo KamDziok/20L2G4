@@ -22,9 +22,10 @@
                         <columns>
                            <TableColumn fx:id="tytul" prefWidth="418.0" text="Tytuł" />
                            <TableColumn fx:id="wygasa" prefWidth="251.0" text="Wygasa" />
-                           <TableColumn fx:id="pkt" prefWidth="204.0" text="Punkty" />
-                           <TableColumn fx:id="przyciskUsun" maxWidth="100.0" minWidth="70.0" prefWidth="100.0" />
-                           <TableColumn fx:id="przyciskEdycja" maxWidth="100.0" minWidth="70.0" prefWidth="100.0" />
+                           <TableColumn fx:id="pkt" prefWidth="162.0" text="Punkty" />
+                           <TableColumn fx:id="przyciskUsun" maxWidth="142.0" minWidth="70.0" prefWidth="82.0" />
+                           <TableColumn fx:id="przyciskEdycja" maxWidth="160.0" minWidth="70.0" prefWidth="95.0" />
+                              <TableColumn fx:id="przyciskAnaliza" prefWidth="81.0" />
                         </columns>
                      </TableView>
 

@@ -264,7 +264,6 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     private void setAnkiety() {
         AnkietyQuery query = new AnkietyQuery();
         List<Ankiety> ankiety = query.selectAllActiveAndNotDoAnkiety(curentUser);
-        System.out.println(curentUser.getIdUzytkownika());
         ObservableList<AnikietaTabelka> dane = FXCollections.observableArrayList();
         for (Ankiety ankieta:ankiety
              ) {
