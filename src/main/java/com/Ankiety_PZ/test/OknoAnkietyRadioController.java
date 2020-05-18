@@ -274,6 +274,7 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                         curentUser.updatePunkty(punktyZaAnkiete, true);
                         query.updateUzytkownicy(curentUser);
                         controller.updatePkt(String.valueOf(curentUser.getLiczbaPunktow()));
+                        controller.setAnkiety();
                         showMessageDialog(null, "Gratuluję ukonczenia ankiety.");
                     } catch (Exception e) {
                         showMessageDialog(null, "Coś poszło nie tak.");
