@@ -82,10 +82,12 @@ public class AnkietyQuery extends OperationInSession {
             ankiety.getPytanias().forEach(pytaniaObj -> {
                 Pytania pytania = (Pytania) pytaniaObj;
                 pytaniaQuery.addPytaniaWithOutTransaction(pytania, session);
-                pytania.getOdpowiedzis().forEach(odpowiedziObj -> {
-                    Odpowiedzi odpowiedzi = (Odpowiedzi) odpowiedziObj;
-                    odpowiedziQuery.addOdpowiedziWithOutTransaction(odpowiedzi, session);
-                });
+                if(pytania.getRodzajPytania() != TypeOfQuestion.OPEN) {
+                    pytania.getOdpowiedzis().forEach(odpowiedziObj -> {
+                        Odpowiedzi odpowiedzi = (Odpowiedzi) odpowiedziObj;
+                        odpowiedziQuery.addOdpowiedziWithOutTransaction(odpowiedzi, session);
+                    });
+                }
             });
             commitTransaction(transaction);
             result = true;
