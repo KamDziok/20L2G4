@@ -8,20 +8,38 @@ import com.Ankiety_PZ.hibernate.*;
 import com.Ankiety_PZ.query.AnkietyQuery;
 import com.Ankiety_PZ.query.OdpowiedziQuery;
 import com.Ankiety_PZ.query.PytaniaQuery;
+import com.sun.istack.NotNull;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReadParam;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.net.URL;
 import java.util.*;
+import java.util.List;
+import java.util.logging.Logger;
 
 
 public class DodawaniepytaniaController extends BulidStage implements SetStartValues {
@@ -72,6 +90,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     @FXML private TableView odpowiedziTabelka;
     @FXML private TableColumn treść;
     @FXML private TableColumn przyciskUsun;
+    private byte[] zdjecie;
     private Boolean edycja2;
     private String odp;
     private String tresc;
@@ -114,8 +133,18 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         System.out.println("ankiety setStartValuesAnkiety dpc");
         System.out.println("ankiety setStartValuesAnkiety dpc");
         System.out.println(ankiety2);
-        setOdpowiedziSS(pytanie);
+        System.out.println(pytanie);
+        System.out.println(pytania);
+        System.out.println(pytania.getZdjecie());
+        if(null != pytania.getZdjecie()){
+        try {
+            conversjaNaZ(pytania.getZdjecie());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
+        setOdpowiedziSS(pytanie);}
 
     @Override
     public void setStartValuesNagroda(Nagrody nagroda) {
@@ -150,17 +179,21 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
     @FXML
     void dodajzdjecieAction(ActionEvent event) {
-        javafx.stage.FileChooser fileChooser = new javafx.stage.FileChooser();
+        FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Wybierz zdjęcie");
         Stage stage = new Stage();
         fileChooser.getExtensionFilters().addAll(
-                new javafx.stage.FileChooser.ExtensionFilter("Obrazy", "*.jpg","*.png","*.jpeg")
+                new FileChooser.ExtensionFilter("Obrazy", "*.jpg","*.png","*.jpeg")
                 ,new FileChooser.ExtensionFilter("Inne", "*")
         );
         file = fileChooser.showOpenDialog(stage);
         try {
             Image image = new Image(file.toURI().toString());
+            System.out.println(file.toURI().toString());
+            System.out.println("==================================================================================");
 
+            System.out.println(file.toURI().toString());
+            conversja(file);
             imageview.setImage(image);
         }catch(IllegalArgumentException argumentException){
             System.out.println("Nie wybrałeś zdjęcia lub rozszerzenie nie jest obsługiwane. " + argumentException.getMessage());
@@ -168,10 +201,64 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
             System.out.println(e.getMessage());
         }
     }
+    public void conversja(File file) throws FileNotFoundException, IOException {
+        FileInputStream fis = new FileInputStream(file);
+        //create FileInputStream which obtains input bytes from a file in a file system
+        //FileInputStream is meant for reading streams of raw bytes such as image data. For reading streams of characters, consider using FileReader.
 
-    public ImageView getImageview() {
-        return imageview;
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        byte[] buf = new byte[1024];
+        try {
+            for (int readNum; (readNum = fis.read(buf)) != -1;) {
+                //Writes to this byte array output stream
+                bos.write(buf, 0, readNum);
+                System.out.println("read " + readNum + " bytes,");
+            }
+        } catch (IOException ex) {
+           /// Logger.getLogger(ConvertImage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        byte[] bytes = bos.toByteArray();
+        pytania.setZdjecie(bytes);
+        System.out.println("alalllllllllllllllllllllllllllllllllllllllllllll");
+        System.out.println(bytes);
+        pytania.setZdjecie(bytes);
+        PytaniaQuery query3 = new PytaniaQuery();
+        query3.updatePytania(pytania);
+
     }
+    public void conversjaNaZ(byte[] bytes) throws IOException {
+        ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+        Iterator<?> readers = ImageIO.getImageReadersByFormatName("jpg");
+
+        ImageReader reader = (ImageReader) readers.next();
+        Object source = bis;
+        ImageInputStream iis = ImageIO.createImageInputStream(source);
+        reader.setInput(iis, true);
+        ImageReadParam param = reader.getDefaultReadParam();
+
+        BufferedImage image = reader.read(0, param);
+
+        BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
+        String directory = System.getProperty("user.home") + "\\Documents\\Zdjęcia";
+        String directory2 = directory + "\\pdf";
+        if(!(new File(directory).exists())){
+            new File(directory).mkdir();
+        }
+        Graphics2D g2 = bufferedImage.createGraphics();
+        g2.drawImage(image, null, null);
+        File imageFile = new File(directory + "\\" + pytania.getIdPytania());
+        ImageIO.write(bufferedImage, "jpg", imageFile);
+        Image image2 = new Image(imageFile.toURI().toString());
+        imageview.setImage(image2);
+        System.out.println(imageFile);
+
+
+
+
+    }
+
+
 
     /**
      * Metoda obsługująca przyciśk wyloguj.
@@ -189,7 +276,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
     }
     @FXML
-    void dodajpytanieAction(ActionEvent event) {
+    void dodajpytanieAction(ActionEvent event) throws IOException {
 
 
         if(dodawaniePytaniaRBQuestionOpen.isSelected()) {
@@ -224,14 +311,23 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
                 odp.setIdOdpowiedzi(-1);
                 pytania.getOdpowiedzis().add(odp);
                 System.out.println(odpo);
+
             }
+            conversjaNaZ(pytania.getZdjecie());
 
         }else {
 
         Pytania pytanie = new Pytania();
-        if(edycja2)pytanie.setIdPytania(-1);
+        if(edycja2)
+        {
+            pytanie.setIdPytania(-1);
+
+
+
+
+        }
         pytanie.setTresc(tresc);
-        //pytanie.setZdjecie(imageview);
+        pytanie.setZdjecie(zdjecie);
         pytanie.setPunktowe(punktowe);
         pytanie.setRodzajPytania(rodzajPytania);
 // if (punktowe!=0) pytanie.setPunktowe(punktowe);

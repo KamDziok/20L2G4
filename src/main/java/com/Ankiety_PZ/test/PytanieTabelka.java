@@ -61,6 +61,7 @@ public class PytanieTabelka extends BulidStage implements SetStartValues{
                 System.out.println("PRZEKAZYWANIE PYTANIE I ANKIETY DO EDYTOWANIA");
                 System.out.println(ankieta);
                 System.out.println(pytanie);
+                System.out.println(pytanie.getZdjecie());
             }
         });
     }

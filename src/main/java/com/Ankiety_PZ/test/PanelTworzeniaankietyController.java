@@ -94,6 +94,8 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     void dodajpytanieAction(ActionEvent event) {
         loadingFXML(event, SceneFXML.DODAJ_PYTANIE);
         DodawaniepytaniaController dodawaniepytaniaController  = load.getController();
+
+
         dodawaniepytaniaController.setStartValuesAnkiety(ankiety);
         dodawaniepytaniaController.SetEdycja(edycja);
         activeScene(event, false, false);
