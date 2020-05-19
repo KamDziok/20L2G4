@@ -25,16 +25,15 @@ public class NagrodaTabelka {
             @Override
             public void handle(ActionEvent event) {
                 Uzytkownicy curentUser = controller.getCurentUser();
-                if (curentUser.updatePunkty(cena, false)) {
-                    controller.updatePkt(String.valueOf(curentUser.getLiczbaPunktow()));
-                    UzytkownicyQuery query = new UzytkownicyQuery();
-                    NagrodyQuery queryNagrody = new NagrodyQuery();
-                    query.updateUzytkownicy(curentUser);
-                    queryNagrody.getNagrodyToUzytkownicy(nagroda, curentUser);
+                NagrodyQuery queryNagrody = new NagrodyQuery();
+                if (queryNagrody.getNagrodyToUzytkownicy(nagroda, curentUser) && curentUser.updatePunkty(cena, false)) {
+                        UzytkownicyQuery query = new UzytkownicyQuery();
+                        query.updateUzytkownicy(curentUser);
+                        controller.updatePkt(String.valueOf(curentUser.getLiczbaPunktow()));
+                        showMessageDialog(null, "Pomyślnie dodano nagrodę. Znajdziesz ją w pobranych ;)");
                 } else {
                     showMessageDialog(null, "Biedaku ... nawet złota nie masz.");
                 }
-
             }
         });
     }
