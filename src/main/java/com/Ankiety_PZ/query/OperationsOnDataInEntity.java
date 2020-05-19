@@ -9,51 +9,52 @@ import java.util.List;
 class OperationsOnDataInEntity<Type> extends OperationInSession {
 
     Boolean add(Type type){
-        return modifyDataInEntity(type, true, false, false, true, null);
+        return modifyDataInEntity(type, true, false, false, true, false, null);
     }
 
     Boolean addWithOutTransaction(Type type, Session session){
-        return modifyDataInEntity(type, true, false, false, false, session);
+        return modifyDataInEntity(type, true, false, false, false, true, session);
     }
 
     Boolean update(Type type){
-        return modifyDataInEntity(type, false, true, false, true, null);
+        return modifyDataInEntity(type, false, true, false, true,false, null);
     }
 
     Boolean updateWithOutTransaction(Type type, Session session){
-        return modifyDataInEntity(type, false, true, false, false, session);
+        return modifyDataInEntity(type, false, true, false, false, true, session);
     }
 
     Boolean delete(Type type){
-        return modifyDataInEntity(type, false, false, true, true, null);
+        return modifyDataInEntity(type, false, false, true, true, false, null);
     }
 
     Boolean deleteWithOutTransaction(Type type, Session session){
-        return modifyDataInEntity(type, false, false, true, false, session);
+        return modifyDataInEntity(type, false, false, true, false, true, session);
     }
 
-    private Boolean modifyDataInEntity(Type object, boolean add, boolean update, boolean delete, boolean transaction, Session session){
+    private Boolean modifyDataInEntity(Type object, boolean add, boolean update, boolean delete, boolean transaction, boolean sessionBoolean, Session session){
         Boolean result = false;
-        Session sessionLocal = null;
         try{
-            if(session == null) {
-                sessionLocal = openSession();
+            if(sessionBoolean) {
+                super.session = session;
             }else{
-                sessionLocal = session;
+                super.session = openSession();
             }
             if(transaction) {
-                super.transaction = beginTransaction(sessionLocal);
+                super.transaction = beginTransaction(super.session);
             }
             if(add){
-                sessionLocal.save(object);
+                super.session.save(object);
             }
             if(update){
-                sessionLocal.update(object);
+                super.session.update(object);
             }
             if(delete) {
-                sessionLocal.delete(object);
+                super.session.delete(object);
             }
-            commitTransaction(super.transaction);
+            if(transaction) {
+                commitTransaction(super.transaction);
+            }
             result = true;
         }catch(Exception e){
             if(transaction) {
@@ -61,8 +62,8 @@ class OperationsOnDataInEntity<Type> extends OperationInSession {
             }
             logException(e);
         }finally {
-            if(session == null) {
-                closeSession(sessionLocal);
+            if(!sessionBoolean) {
+                closeSession(super.session);
             }
         }
         return result;
