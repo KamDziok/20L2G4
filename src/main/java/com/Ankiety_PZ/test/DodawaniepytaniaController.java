@@ -5,29 +5,21 @@
 
 package com.Ankiety_PZ.test;
 import com.Ankiety_PZ.hibernate.*;
-import com.Ankiety_PZ.query.AnkietyQuery;
-import com.Ankiety_PZ.query.OdpowiedziQuery;
 import com.Ankiety_PZ.query.PytaniaQuery;
-import com.sun.istack.NotNull;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
+
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReadParam;
 import javax.imageio.ImageReader;
@@ -40,9 +32,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.*;
-import java.util.List;
-import java.util.logging.Logger;
 
 
 public class DodawaniepytaniaController extends BulidStage implements SetStartValues {
@@ -186,10 +175,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Wybierz zdjęcie");
         Stage stage = new Stage();
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Obrazy", "*.jpg","*.png","*.jpeg")
-                ,new FileChooser.ExtensionFilter("Inne", "*")
-        );
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Obraz", "*.jpg"));
         file = fileChooser.showOpenDialog(stage);
         try {
             Image image = new Image(file.toURI().toString());
