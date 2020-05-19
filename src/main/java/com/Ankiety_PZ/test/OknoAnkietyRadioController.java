@@ -210,23 +210,28 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                 }
                 break;
             case 1:
+                Iterator iteratorek = odpowiedzi.iterator();
                 for (CheckBox box:checkBox
                 ) {
-                    if (box.isSelected())
-                        odpowiedziDoWyslania.add(new OdpowiedziUzytkownicy(odpowiedzi.iterator().next(), curentUser));
+                    if (box.isSelected()) {
+                        Odpowiedzi odp = (Odpowiedzi) iteratorek.next();
+                        odpowiedziDoWyslania.add(new OdpowiedziUzytkownicy(odp, curentUser));
+                    }
                 }
                 break;
             case 2:
                 odpowiedziDoWyslaniaOtwarte.add(new PytaniaUzytkownicy(pytanie, curentUser, odpowiedzOtwarta.getText()));
                 break;
             case 3:
+                Iterator iteratorki = odpowiedzi.iterator();
                 for (TextField field:punktowePola
                 ) {
-                    odpowiedziDoWyslania.add(new OdpowiedziUzytkownicy(odpowiedzi.iterator().next(), curentUser, Integer.parseInt(field.getText())));
+                    Odpowiedzi odp = (Odpowiedzi) iteratorki.next();
+                    odpowiedziDoWyslania.add(new OdpowiedziUzytkownicy(odp, curentUser, Integer.parseInt(field.getText())));
                 }
                 break;
             case 4:
-                odpowiedziDoWyslania.add(new OdpowiedziUzytkownicy(odpowiedzi.iterator().next(), curentUser, Integer.parseInt(odpowiedzProcentowa.getText())));
+                odpowiedziDoWyslania.add(new OdpowiedziUzytkownicy(odpowiedzi.iterator().next(), curentUser, Integer.valueOf(odpowiedzProcentowa.getText())));
                 break;
         }
     }
@@ -249,7 +254,7 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                             radioController.setStartValuesPanelUzytkownikaController(controller);
                             activeScene(event, false, false);
                         } catch (Exception e) {
-                            showMessageDialog(null, "Nie martw się, jedziemy dalej");
+                            showMessageDialog(null, "Nie martw się, jedziemy dalej - " + e.getMessage());
                         } finally {
                         }
                     } else {
@@ -263,13 +268,14 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                 @Override
                 public void handle(ActionEvent event) {
                     try {
+                        addAnswer(pytanie.getOdpowiedzis(), pytanie);
                         UzytkownicyQuery query = new UzytkownicyQuery();
                         query.addOdpowiedziUzytkownika(odpowiedziDoWyslania, odpowiedziDoWyslaniaOtwarte, pytanie.getAnkiety(), curentUser);
                         curentUser.updatePunkty(punktyZaAnkiete, true);
                         query.updateUzytkownicy(curentUser);
                         controller.updatePkt(String.valueOf(curentUser.getLiczbaPunktow()));
+                        controller.setAnkiety();
                         showMessageDialog(null, "Gratuluję ukonczenia ankiety.");
-                        System.out.println(punktyZaAnkiete);
                     } catch (Exception e) {
                         showMessageDialog(null, "Coś poszło nie tak.");
                     } finally {
@@ -312,7 +318,6 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
     @Override
     public void setStartValuesIerator(Iterator<Pytania> iterator) {
         Pytania pytanie = iterator.next();
-        trescPytania.setText(pytanie.getTresc());
 //        obrazek.setImage(pytanie.getZdjecie());
 //        ankietaTytul.setText(pytanie.getAnkiety().getTytul());
         punkty = pytanie.getPunktowe();
@@ -320,18 +325,23 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
         switch (rodzajPytania) {
             case TypeOfQuestion.ONE_CHOICE:
                 setRadioOdpowiedzi(pytanie.getOdpowiedzis());
+                trescPytania.setText(pytanie.getTresc());
                 break;
             case TypeOfQuestion.MANY_CHOICE:
                 setCheckOdpowiedzi(pytanie.getOdpowiedzis());
+                trescPytania.setText(pytanie.getTresc());
                 break;
             case TypeOfQuestion.OPEN:
                 setOpenOdpowiedzi();
+                trescPytania.setText(pytanie.getTresc());
                 break;
             case TypeOfQuestion.POINTS:
                 setPktOdpowiedzi(pytanie.getOdpowiedzis(), punkty);
+                trescPytania.setText(pytanie.getTresc() + " Rozdziel " + pytanie.getPunktowe() + " punktów.");
                 break;
             case TypeOfQuestion.PERCENT:
                 setProcentOdpowiedzi();
+                trescPytania.setText(pytanie.getTresc() + " Podaj liczbe z przedziału od 0 do 100.");
                 break;
         }
         setButton(iterator, pytanie);

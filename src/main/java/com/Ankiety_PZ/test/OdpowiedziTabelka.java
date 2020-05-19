@@ -14,7 +14,7 @@ public class OdpowiedziTabelka extends BulidStage{
 
     OdpowiedziTabelka(String odpowiedzi, Ankiety ankieta, Pytania pytania, List<String> list) {
         treść = odpowiedzi;
-        buttonUsun = new Button("Usun");
+        buttonUsun = new Button("Usuń");
         buttonUsun.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -29,10 +29,6 @@ public class OdpowiedziTabelka extends BulidStage{
                 activeScene(event, false, false);
                 System.out.println("PRZEKAZYWANIE PYTANIE I ANKIETY DO EDYTOWANIA");
                 System.out.println(ankieta);
-              ///  System.out.println(pytanie);
-
-
-
             }
         });
 
@@ -40,7 +36,7 @@ public class OdpowiedziTabelka extends BulidStage{
 
     OdpowiedziTabelka(Odpowiedzi odpowiedzi, Ankiety ankieta, Pytania pytania, List<String> list) {
         treść = odpowiedzi.getOdpowiedz();
-        buttonUsun = new Button("Usun");
+        buttonUsun = new Button("Usuń");
         buttonUsun.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

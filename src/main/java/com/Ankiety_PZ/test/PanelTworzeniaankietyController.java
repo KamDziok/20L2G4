@@ -4,54 +4,84 @@
 package com.Ankiety_PZ.test;
 
 
-import com.Ankiety_PZ.hibernate.*;
+import com.Ankiety_PZ.hibernate.Ankiety;
+import com.Ankiety_PZ.hibernate.Nagrody;
+import com.Ankiety_PZ.hibernate.Pytania;
+import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.AnkietyQuery;
-import com.Ankiety_PZ.query.PytaniaQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.ResourceBundle;
 
-public class PanelTworzeniaankietyController extends BulidStage implements SetStartValues{
+public class PanelTworzeniaankietyController extends BulidStage implements SetStartValues, Initializable {
+
+    ObservableList listDD = FXCollections.observableArrayList();
+    ObservableList listMM = FXCollections.observableArrayList();
+    ObservableList listRRRR = FXCollections.observableArrayList();
+    private String dataoddd;
+    private String dataodmm ;
+    private String dataodrrrr ;
+    private String datadodd ;
+    private String datadomm ;
+    private String datadorrrr ;
+    private int liczpytania = 0;
+    private int liczpytaniaB = 0;
+    private int liczbapytan = 0;
+
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
-
-
-
-    @FXML
-    private javafx.scene.control.TextField punkty;
-
-    @FXML
-    private javafx.scene.control.TextField dataOD;
-
-    @FXML
-    private javafx.scene.control.TextField trescTytulu; // Value injected by FXMLLoader
-
-    @FXML
-    private javafx.scene.control.TextField dataDo;
-
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
     private String tytul;
     private int liczbaPunktow;
+    private String liczbaPunktowS;
     private Date dataRozpoczecia;
     private Date dataZakonczenia;
     private Ankiety ankiety;
     public Boolean edycja;
+    private String dataod;
+    private String datado;
     @FXML private TableView pytanieTabele;
     @FXML private TableColumn treść;
     @FXML private TableColumn Rpytanie;
     @FXML private TableColumn przyciskEdycja;
     @FXML private TableColumn przyciskUsun;
+    @FXML
+    private Label panelTworzeniaAnkietyLabelError;
+
+    @FXML
+    private TextField trescTytulu;
+
+    @FXML
+    private TextField punkty;
+    @FXML
+    private ChoiceBox<String> dataODDD;
+
+    @FXML
+    private ChoiceBox<String> dataODMM;
+
+    @FXML
+    private ChoiceBox<String> dataODRRRR;
+
+    @FXML
+    private ChoiceBox<String> dataDODD;
+
+    @FXML
+    private ChoiceBox<String> dataDOMM;
+
+    @FXML
+    private ChoiceBox<String> dataDORRRR;
 
 
     /**
@@ -94,31 +124,82 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     void dodajpytanieAction(ActionEvent event) {
         loadingFXML(event, SceneFXML.DODAJ_PYTANIE);
         DodawaniepytaniaController dodawaniepytaniaController  = load.getController();
+        ankiety.setTytul(trescTytulu.getText());
+        DateFormat dateFrm = new SimpleDateFormat("yyyy-MM-dd");
+        dataoddd = dataODDD.getValue();
+        dataodmm = dataODMM.getValue();
+        dataodrrrr = dataODRRRR.getValue();
+        datadodd = dataDODD.getValue();
+        datadomm = dataDOMM.getValue();
+        datadorrrr = dataDORRRR.getValue();
+        dataod = dataodrrrr+"-"+dataodmm+"-"+dataoddd;
+        datado = datadorrrr+"-"+datadomm+"-"+datadodd;
+        tytul = trescTytulu.getText();
+        liczbaPunktowS = punkty.getText();
 
 
-        dodawaniepytaniaController.setStartValuesAnkiety(ankiety);
-        dodawaniepytaniaController.SetEdycja(edycja);
-        activeScene(event, false, false);
+        try {
+            dataRozpoczecia = dateFrm.parse(dataod);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        ankiety.setDataRozpoczecia(dataRozpoczecia);
+        try {
+            dataZakonczenia = dateFrm.parse(datado);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        ankiety.setDataZakonczenia(dataZakonczenia);
+        try{
+        ankiety.setLiczbaPunktow(Integer.parseInt(punkty.getText()));
+        }
+        catch(Exception e){
+            ankiety.setLiczbaPunktow(0);
+        }
+        finally {
+            dodawaniepytaniaController.setStartValuesAnkiety(ankiety);
+            dodawaniepytaniaController.SetEdycja(edycja);
+            activeScene(event, false, false);
+        }
+
     }
 
 
     @Override
     public void setStartValuesAnkiety(Ankiety ankieta)
     {
-
-
         this.ankiety = ankieta;
         System.out.println("ankiety setStartValuesAnkiety");
         System.out.println(ankiety);
         trescTytulu.setText(ankiety.getTytul());
         punkty.setText(String.valueOf(ankiety.getLiczbaPunktow()));
-        String dat = "MM-dd-yyyy";
+        String dat = "dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dat);
-        String data = simpleDateFormat.format((ankiety.getDataRozpoczecia()));
-        dataOD.setText(data);
-        dataDo.setText(String.valueOf((ankiety.getDataZakonczenia())));
-        System.out.println("co sie tu dzieje");
+        String dataDD = simpleDateFormat.format((ankiety.getDataRozpoczecia()));
+        String datMM = "MM";
+        SimpleDateFormat simpleDateFormatMM = new SimpleDateFormat(datMM);
+        String dataMM = simpleDateFormatMM.format((ankiety.getDataRozpoczecia()));
+        String datRRRR = "yyyy";
+        SimpleDateFormat simpleDateFormatRRRR = new SimpleDateFormat(datRRRR);
+        String dataRRRR = simpleDateFormatRRRR.format((ankiety.getDataRozpoczecia()));
+        dataODDD.setValue(dataDD);
+        dataODMM.setValue(dataMM);
+        dataODRRRR.setValue(dataRRRR);
+        String datazakDD = "dd";
+        SimpleDateFormat simpleDateFormatdatazakDD = new SimpleDateFormat(datazakDD);
+        String datazDD = simpleDateFormatdatazakDD.format((ankiety.getDataZakonczenia()));
+        dataDODD.setValue(datazDD);
+        String datazakMM = "MM";
+        SimpleDateFormat simpleDateFormatdatazakMM = new SimpleDateFormat(datazakMM);
+        String datazMM = simpleDateFormatdatazakMM.format((ankiety.getDataZakonczenia()));
+        String datzRRRR = "yyyy";
+        SimpleDateFormat simpleDateFormatdatazakRRRR= new SimpleDateFormat(datzRRRR);
+        String datazakRRRR = simpleDateFormatdatazakRRRR.format((ankiety.getDataZakonczenia()));
+        dataDOMM.setValue(datazMM);
+        dataDORRRR.setValue(datazakRRRR);
+
         setPytanieB();
+        liczbapytan =liczpytania+liczpytaniaB;
 
     }
     public void setStartValuesEdytujAnkiety (Ankiety ankieta){
@@ -127,14 +208,39 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
 
         trescTytulu.setText(ankiety.getTytul());
         punkty.setText(String.valueOf(ankiety.getLiczbaPunktow()));
-        dataOD.setText(String.valueOf((ankiety.getDataRozpoczecia())));
-        dataDo.setText(String.valueOf((ankiety.getDataZakonczenia())));
+        String dat = "dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dat);
+        String dataDD = simpleDateFormat.format((ankiety.getDataRozpoczecia()));
+        dataODDD.setValue(dataDD);
+        String datMM = "MM";
+        SimpleDateFormat simpleDateFormatMM = new SimpleDateFormat(datMM);
+        String dataMM = simpleDateFormatMM.format((ankiety.getDataRozpoczecia()));
+        String datRRRR = "yyyy";
+        SimpleDateFormat simpleDateFormatRRRR = new SimpleDateFormat(datRRRR);
+        String dataRRRR = simpleDateFormatRRRR.format((ankiety.getDataRozpoczecia()));
+        dataODMM.setValue(dataMM);
+        dataODRRRR.setValue(dataRRRR);
+
+        String datazakDD = "dd";
+        SimpleDateFormat simpleDateFormatdatazakDD = new SimpleDateFormat(datazakDD);
+        String datazDD = simpleDateFormatdatazakDD.format((ankiety.getDataZakonczenia()));
+        dataDODD.setValue(datazDD);
+        String datazakMM = "MM";
+        SimpleDateFormat simpleDateFormatdatazakMM = new SimpleDateFormat(datazakMM);
+        String datazMM = simpleDateFormatdatazakMM.format((ankiety.getDataZakonczenia()));
+        String datzRRRR = "yyyy";
+        SimpleDateFormat simpleDateFormatdatazakRRRR= new SimpleDateFormat(datzRRRR);
+        String datazakRRRR = simpleDateFormatdatazakRRRR.format((ankiety.getDataZakonczenia()));
+        dataDOMM.setValue(datazMM);
+        dataDORRRR.setValue(datazakRRRR);
         setPytanieB();
+        liczbapytan =liczpytania+liczpytaniaB;
 
     }
     @Override
     public void setStartValues(Uzytkownicy user) {
         setPytanie();
+
     }
 
 
@@ -151,40 +257,177 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     public void SetEdycja(Boolean wyb)
     {
         edycja = wyb;
-        System.out.println("edycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycja");
         System.out.println(edycja);
     }
+
+    /**
+     * Metoda sprawdzenie czy obowiązkowe pola nie są puste.
+     *
+     * @return true jeśli wszystkie pola obowiązkowe są uzupełnione, w przeciwnym wypadku false
+     */
+    private boolean compulsoryFildNotEmpty(){
+        return (!tytul.isEmpty() && !liczbaPunktowS.isEmpty());
+    }
+
+    /**
+     * Metoda sprawdzenie czy obowiązkowe pola nie są null.
+     *
+     * @return true jeśli wszystkie pola obowiązkowe są uzupełnione, w przeciwnym wypadku false
+     */
+    private boolean compulsoryFildNotNull(){
+        return (tytul != null && liczbaPunktowS != null );
+    }
+
+
+    /**
+     * Metoda sprawdzenie czy data rozpoczęcia nie jest starsza od daty zakończenia.
+     *
+     * @return 1 jeśli wszystkie pola obowiązkowe są uzupełnione, w przeciwnym wypadku -1
+     */
+    private int czyNieStarszaData(){
+  return dataZakonczenia.compareTo(dataRozpoczecia);
+
+    }
+
+    /**
+     * Metoda sprawdzenie czy wprowadzone daty nie są nieprawidłowe jak np. 31 luty.
+     *
+     * @return true jeśli wszystkie daty są poprawne, w przeciwnym wypadku false
+     */
+
+    private boolean czyNieistniejacaData(){
+        if((dataoddd.equals("31") && dataodmm.equals("02")) ||
+           (dataoddd.equals("30") && dataodmm.equals("02")) ||
+           (dataoddd.equals("29") && dataodmm.equals("02") && dataodrrrr.equals("2021")) ||
+                (dataoddd.equals("29") && dataodmm.equals("02") && dataodrrrr.equals("2022")) ||
+                (dataoddd.equals("29") && dataodmm.equals("02") && dataodrrrr.equals("2023")) ||
+                (dataoddd.equals("29") && dataodmm.equals("02") && dataodrrrr.equals("2025")) ||
+                (dataoddd.equals("29") && dataodmm.equals("02") && dataodrrrr.equals("2026")) ||
+                (dataoddd.equals("29") && dataodmm.equals("02") && dataodrrrr.equals("2027")) ||
+                (dataoddd.equals("29") && dataodmm.equals("02") && dataodrrrr.equals("2029")) ||
+                (dataoddd.equals("29") && dataodmm.equals("02") && dataodrrrr.equals("2030")) ||
+                (dataoddd.equals("31") && dataodmm.equals("04")) ||
+                (dataoddd.equals("31") && dataodmm.equals("06")) ||
+                (dataoddd.equals("31") && dataodmm.equals("09")) ||
+                (dataoddd.equals("31") && dataodmm.equals("11")) ||
+
+                (datadodd.equals("31") && datadomm.equals("02")) ||
+                (datadodd.equals("30") && datadomm.equals("02")) ||
+                (datadodd.equals("29") && datadomm.equals("02") && datadorrrr.equals("2021")) ||
+                (datadodd.equals("29") && datadomm.equals("02") && datadorrrr.equals("2022")) ||
+                (datadodd.equals("29") && datadomm.equals("02") && datadorrrr.equals("2023")) ||
+                (datadodd.equals("29") && datadomm.equals("02") && datadorrrr.equals("2025")) ||
+                (datadodd.equals("29") && datadomm.equals("02") && datadorrrr.equals("2026")) ||
+                (datadodd.equals("29") && datadomm.equals("02") && datadorrrr.equals("2027")) ||
+                (datadodd.equals("29") && datadomm.equals("02") && datadorrrr.equals("2029")) ||
+                (datadodd.equals("29") && datadomm.equals("02") && datadorrrr.equals("2030")) ||
+                (datadodd.equals("31") && datadomm.equals("04")) ||
+                (datadodd.equals("31") && datadomm.equals("06")) ||
+                (datadodd.equals("31") && datadomm.equals("09")) ||
+                (datadodd.equals("31") && datadomm.equals("11"))
+
+        ){
+            return false;
+        }
+        else return true;
+    }
+
+    /**
+     * Metoda sprawdza czy punkty są liczbą oraz czy nie sią ujemne.
+     *
+     * @return true jeśli punkty są podane poprawnie, w przeciwnym razie false
+     */
+    private boolean punktyIsNumber(){
+        try{
+
+                liczbaPunktow = Integer.parseInt(liczbaPunktowS);
+                if(liczbaPunktow >= 0 ){
+                return true;}
+
+        }catch(IllegalArgumentException argumentException){
+            System.out.println(argumentException.getMessage());
+        }catch(Exception exception){
+            System.out.println(exception.getMessage());
+        }
+        return false;
+    }
+
+    /**
+     * Metoda sprawdza czy zostały wprowadzone przynajmniej 2 pytania.
+     *
+     * @return true jeśli są przynajmniej 2 pytania, w przeciwnym razie false
+     */
+    private boolean min2pytania(){
+        return liczbapytan >= 2;
+    }
+
 
     @FXML
     void ZapiszAction(ActionEvent event) {
         DateFormat dateFrm = new SimpleDateFormat("yyyy-MM-dd");
+        dataoddd = dataODDD.getValue();
+        dataodmm = dataODMM.getValue();
+        dataodrrrr = dataODRRRR.getValue();
+        datadodd = dataDODD.getValue();
+        datadomm = dataDOMM.getValue();
+        datadorrrr = dataDORRRR.getValue();
+         dataod = dataodrrrr+"-"+dataodmm+"-"+dataoddd;
+         datado = datadorrrr+"-"+datadomm+"-"+datadodd;
         tytul = trescTytulu.getText();
-        liczbaPunktow = Integer.parseInt(punkty.getText());
+        liczbaPunktowS = punkty.getText();
+
+
         try {
-            dataRozpoczecia = dateFrm.parse(dataOD.getText());
+            dataRozpoczecia = dateFrm.parse(dataod);
         } catch (ParseException e) {
             e.printStackTrace();
         }
         try {
-            dataZakonczenia = dateFrm.parse(dataDo.getText());
+            dataZakonczenia = dateFrm.parse(datado);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        System.out.println(ankiety);
-        //System.out.println(ankiety.getUzytkownicy());
-        ankiety.setTytul(tytul);
-        ankiety.setLiczbaPunktow(liczbaPunktow);
-        ankiety.setDataRozpoczecia(dataRozpoczecia);
-        ankiety.setDataZakonczenia(dataZakonczenia);
-        //ankiety.setLiczbaWypelnien(liczbawypełnein);
-       System.out.println(ankiety.getPytanias());
-        AnkietyQuery query = new AnkietyQuery();
-        if(edycja){query.updateAnkietyWithPytaniaAndOdpowiedzi(ankiety);}
-        else{query.addAnkietyWithPytaniaAndOdpowiedzi(ankiety);}
+        if(compulsoryFildNotNull()) {
+            if (compulsoryFildNotEmpty()) {
+                if (czyNieStarszaData() == 1) {
+                    if(czyNieistniejacaData()){
+                        if(punktyIsNumber()) {
+                            if (min2pytania()) {
+                                ankiety.setTytul(tytul);
+                                ankiety.setLiczbaPunktow(liczbaPunktow);
+                                ankiety.setDataRozpoczecia(dataRozpoczecia);
+                                ankiety.setDataZakonczenia(dataZakonczenia);
+                                //ankiety.setLiczbaWypelnien(liczbawypełnein);
+                                System.out.println(ankiety.getPytanias());
+                                AnkietyQuery query = new AnkietyQuery();
+                                if (edycja) {
+                                    query.updateAnkietyWithPytaniaAndOdpowiedzi(ankiety);
+                                } else {
+                                    query.addAnkietyWithPytaniaAndOdpowiedzi(ankiety);
+                                }
+                                panelTworzeniaAnkietyLabelError.setText("Dane zostały pomyślnie zapisane.");
+                            }
+                            else {
+                                panelTworzeniaAnkietyLabelError.setText("Ankieta musi zawierać przynajmniej 2 pytania!");
+                            }
+                        }
+                        else {
+                            panelTworzeniaAnkietyLabelError.setText("Punktacja za ankietę jest nieprawidłowa!");
+                        }
+                    }
 
-
-
-
+                    else {
+                        panelTworzeniaAnkietyLabelError.setText("Podana data nie istnieje!");
+                    }
+                } else {
+                    panelTworzeniaAnkietyLabelError.setText("Data rozpoczęcia jest późniejsza niż data zakończenia!");
+                }
+            } else {
+                panelTworzeniaAnkietyLabelError.setText("Wymagane pola są puste!");
+            }
+        }else{
+            panelTworzeniaAnkietyLabelError.setText("Wymagane pola są puste!");
+        }
 
     }
 
@@ -194,7 +437,9 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         ankiety = query.selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(ankiety);
         ankiety.getPytanias().forEach(pytanie -> {
             Pytania pytania2 = (Pytania) pytanie;
-            dane.add(new PytanieTabelka(ankiety, pytania2)); });
+            dane.add(new PytanieTabelka(ankiety, pytania2));
+        liczpytania++;
+        });
         treść.setCellValueFactory(new PropertyValueFactory("treść"));
         Rpytanie.setCellValueFactory(new PropertyValueFactory("Rpytanie"));
         przyciskEdycja.setCellValueFactory(new PropertyValueFactory("buttonEdycja"));
@@ -205,12 +450,35 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         ObservableList<PytanieTabelka> dane = FXCollections.observableArrayList();
         ankiety.getPytanias().forEach(pytanie -> {
             Pytania pytania2 = (Pytania) pytanie;
-            dane.add(new PytanieTabelka(ankiety, pytania2)); });
+            dane.add(new PytanieTabelka(ankiety, pytania2));
+            liczpytaniaB++;
+        });
         treść.setCellValueFactory(new PropertyValueFactory("treść"));
         Rpytanie.setCellValueFactory(new PropertyValueFactory("Rpytanie"));
         przyciskEdycja.setCellValueFactory(new PropertyValueFactory("buttonEdycja"));
         przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
         pytanieTabele.itemsProperty().setValue(dane);
+    }
+
+    private void loadData(){
+
+        listDD.removeAll(listDD);
+        listDD.addAll("01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31");
+        listMM.removeAll(listMM);
+        listMM.addAll("01","02","03","04","05","06","07","08","09","10","11","12");
+        listRRRR.removeAll(listRRRR);
+        listRRRR.addAll("2020","2021","2022","2023","2024","2025","2026","2027","2028","2029","2030");
+        dataODDD.getItems().addAll(listDD);
+        dataODMM.getItems().addAll(listMM);
+        dataODRRRR.getItems().addAll(listRRRR);
+        dataDODD.getItems().addAll(listDD);
+        dataDOMM.getItems().addAll(listMM);
+        dataDORRRR.getItems().addAll(listRRRR);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        loadData();
     }
 public void Usun(Pytania pytanie)
 {

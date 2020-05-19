@@ -29,6 +29,7 @@ public class AnikietaTabelka extends BulidStage {
                 AnkietyQuery query = new AnkietyQuery();
                 Ankiety ankietyWithPytania = query.selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(ankieta);
                 Set<Pytania> zbior = ankietyWithPytania.getPytanias();
+                zbior.forEach(pytanie -> { pytanie.setAnkiety(ankieta); });
                 Iterator<Pytania> iterator = zbior.iterator();
                 if (iterator.hasNext()) {
                     loadingFXML(event, SceneFXML.OKNO_ANKIETA_RADIO);

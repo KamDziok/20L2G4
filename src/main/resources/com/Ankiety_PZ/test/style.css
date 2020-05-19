@@ -171,7 +171,7 @@
    .choice-box .menu-item:focused > .label { -fx-text-fill: white; }
 
 .choice-box {
-    -fx-background-color: transparent;
+    -fx-background-color: white;
     -fx-border-color: #00ccff;
     -fx-mark-color: #00ccff;
     -fx-border-width: 3;
