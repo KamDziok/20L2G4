@@ -268,7 +268,7 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
 
     void setUzytkownicy() {
         UzytkownicyQuery query = new UzytkownicyQuery();
-        List<Uzytkownicy> uzytkownicy = query.selectBy(false);
+        List<Uzytkownicy> uzytkownicy = query.selectBy(false, curentUser);
         dane = FXCollections.observableArrayList();
         for (Uzytkownicy uzytkownik:uzytkownicy
         ) {
@@ -284,7 +284,7 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
 
     void setUzytkownicyZablokowani() {
         UzytkownicyQuery query = new UzytkownicyQuery();
-        List<Uzytkownicy> uzytkownicy = query.selectBy(true);
+        List<Uzytkownicy> uzytkownicy = query.selectBy(true, curentUser);
         dane2 = FXCollections.observableArrayList();
         for (Uzytkownicy uzytkownik:uzytkownicy
         ) {

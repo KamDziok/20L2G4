@@ -147,13 +147,13 @@ public class UzytkownicyQuery extends OperationInSession {
      * @return listę użytkowników spełniajaćych kryterium, jeśli lista jest pusta nie znaleziono określonych użytkowników
      */
 
-    public List<Uzytkownicy> selectBy(boolean ban){
+    public List<Uzytkownicy> selectBy(boolean ban, Uzytkownicy user){
         if(ban){
             return new OperationsOnDataInEntity<Uzytkownicy>().selectListHQL(
-                    ("from Uzytkownicy as u where u.uprawnienia<=" + Permissions.BAN));
+                    ("from Uzytkownicy as u where u.uprawnienia<=" + Permissions.BAN + " and u.idUzytkownika<>" + user.getIdUzytkownika()));
         }else{
             return new OperationsOnDataInEntity<Uzytkownicy>().selectListHQL(
-                    ("from Uzytkownicy as u where u.uprawnienia>" + Permissions.BAN));
+                    ("from Uzytkownicy as u where u.uprawnienia>" + Permissions.BAN + " and u.idUzytkownika<>" + user.getIdUzytkownika()));
         }
     }
 

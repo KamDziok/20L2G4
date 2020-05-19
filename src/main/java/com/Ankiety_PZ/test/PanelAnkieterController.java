@@ -205,7 +205,8 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
 
     private void setAnkiety() {
         AnkietyQuery query = new AnkietyQuery();
-        List<Ankiety> ankiety = query.selectAll();
+//        List<Ankiety> ankiety = query.selectAll();
+        List<Ankiety> ankiety = query.selectAllUzytkownik(curentUser2);
         ObservableList<AnikieterTabelka> dane = FXCollections.observableArrayList();
         for (Ankiety ankieta2:ankiety
         ) {
