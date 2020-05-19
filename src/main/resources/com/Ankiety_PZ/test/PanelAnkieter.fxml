@@ -99,7 +99,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="miejscowosc" editable="false" layoutX="680.0" layoutY="58.0" prefHeight="26.0" prefWidth="260.0" />
+                                    <TextField fx:id="miejscowosc" layoutX="680.0" layoutY="58.0" prefHeight="26.0" prefWidth="260.0" />
                                     <Label layoutX="680.0" layoutY="120.0" text="Ulica:">
                                        <font>
                                           <Font size="18.0" />

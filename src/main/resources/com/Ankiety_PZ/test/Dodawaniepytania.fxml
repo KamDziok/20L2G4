@@ -13,68 +13,73 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1201.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.DodawaniepytaniaController">
    <children>
-      <Button fx:id="dodajzdjecie" layoutX="14.0" layoutY="60.0" mnemonicParsing="false" onAction="#dodajzdjecieAction" text="Dodaj zdjęcie" />
-      <Label layoutX="174.0" layoutY="21.0" prefHeight="40.0" prefWidth="136.0" text="Treść pytania">
+      <Button fx:id="dodajzdjecie" layoutX="22.0" layoutY="151.0" mnemonicParsing="false" onAction="#dodajzdjecieAction" text="Dodaj zdjęcie" />
+      <Label layoutX="22.0" layoutY="80.0" prefHeight="40.0" prefWidth="136.0" text="Treść pytania">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="trescPytania" alignment="TOP_LEFT" layoutX="174.0" layoutY="80.0" prefHeight="118.0" prefWidth="992.0" />
+      <TextField fx:id="trescPytania" alignment="TOP_LEFT" layoutX="211.0" layoutY="80.0" prefHeight="118.0" prefWidth="601.0" />
       <Button fx:id="wyloguj1" layoutX="16.0" layoutY="658.0" mnemonicParsing="false" onAction="#wyloguj1Action" prefHeight="47.0" prefWidth="158.0" text="Wyloguj" />
       <Button fx:id="dodajpytanie" layoutX="1029.0" layoutY="659.0" mnemonicParsing="false" onAction="#dodajpytanieAction" prefHeight="47.0" prefWidth="158.0" text="Dodaj pytanie" />
       <Button fx:id="anuluj" layoutX="884.0" layoutY="659.0" mnemonicParsing="false" onAction="#anulujAction" prefHeight="47.0" prefWidth="126.0" text="Anuluj" />
-      <Label layoutX="21.0" layoutY="24.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Kreator pytań">
+      <Label layoutX="21.0" layoutY="24.0" prefHeight="32.0" prefWidth="170.0" styleClass="labelbold" stylesheets="@style.css" text="Kreator pytań">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <ImageView fx:id="imageview" fitHeight="118.0" fitWidth="145.0" layoutX="16.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true" />
-      <RadioButton fx:id="dodawaniePytaniaRBQuestionOpen" layoutX="13.0" layoutY="221.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="296.0" text="Pytanie otwarte">
+      <ImageView fx:id="imageview" fitHeight="190.0" fitWidth="338.0" layoutX="840.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
+      <RadioButton fx:id="dodawaniePytaniaRBQuestionOpen" layoutX="22.0" layoutY="221.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="296.0" text="Pytanie otwarte">
          <font>
             <Font size="18.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="dodawaniePytaniaRBQuestionCloseMoreThenOne" layoutX="11.0" layoutY="261.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="399.0" text="Pytanie zamnięte wielokrotengo wyboru">
+      <RadioButton fx:id="dodawaniePytaniaRBQuestionCloseMoreThenOne" layoutX="22.0" layoutY="261.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="399.0" text="Pytanie zamnięte wielokrotengo wyboru">
          <font>
             <Font size="18.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="dodawaniePytaniaRBQuestionCloseOnlyOne" layoutX="474.0" layoutY="221.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="377.0" text="Pytanie zamnięte jednokrotnego wyboru">
+      <RadioButton fx:id="dodawaniePytaniaRBQuestionCloseOnlyOne" layoutX="650.0" layoutY="221.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="377.0" text="Pytanie zamnięte jednokrotnego wyboru">
          <font>
             <Font size="18.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="dodawaniePytaniaRBQuestionPercentages" layoutX="474.0" layoutY="261.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="509.0" text="Pytanie z możliwością rozdzielenia wartości procentowych">
+      <RadioButton fx:id="dodawaniePytaniaRBQuestionPercentages" layoutX="650.0" layoutY="261.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="509.0" text="Pytanie z możliwością rozdzielenia wartości procentowych">
          <font>
             <Font size="18.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="dodawaniePytaniaRBQuestionPoints" layoutX="11.0" layoutY="302.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="392.0" text="Pytanie z możliwością rozdzielenia punktacji">
+      <RadioButton fx:id="dodawaniePytaniaRBQuestionPoints" layoutX="22.0" layoutY="302.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="392.0" text="Pytanie z możliwością rozdzielenia punktacji">
          <font>
             <Font size="18.0" />
          </font>
       </RadioButton>
-      <ScrollPane layoutX="21.0" layoutY="434.0" prefHeight="213.0" prefWidth="1121.0">
+      <ScrollPane layoutX="21.0" layoutY="415.0" prefHeight="232.0" prefWidth="1153.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="208.0" prefWidth="1113.0">
-             <TableView fx:id="odpowiedziTabelka" layoutX="14.0" layoutY="74.0" prefHeight="130.0" prefWidth="1085.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="230.0" prefWidth="1142.0">
+             <TableView fx:id="odpowiedziTabelka" layoutX="9.0" layoutY="74.0" prefHeight="130.0" prefWidth="1122.0">
                 <columns>
-                   <TableColumn fx:id="treść" prefWidth="985.0" text="Treść" />
-                   <TableColumn fx:id="przyciskUsun" minWidth="0.0" prefWidth="99.0" text="Usun" />
+                   <TableColumn fx:id="treść" maxWidth="1000.0" minWidth="1000.0" prefWidth="1000.0" text="Treść" />
+                   <TableColumn fx:id="przyciskUsun" maxWidth="110.0" minWidth="70.0" prefWidth="110.0" />
                 </columns>
              </TableView>
                <children>
-                  <TextField fx:id="odpowiedzi" alignment="TOP_LEFT" layoutX="8.0" layoutY="14.0" prefHeight="47.0" prefWidth="891.0" />
-                  <Button fx:id="dodajOdp" layoutX="912.0" layoutY="17.0" mnemonicParsing="false" onAction="#dodajOdpAction" prefHeight="41.0" prefWidth="91.0" text="Dodaj " />
-                  <Button layoutX="1008.0" layoutY="17.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="91.0" text="Usuń" />
+                  <TextField fx:id="odpowiedzi" alignment="TOP_LEFT" layoutX="8.0" layoutY="14.0" prefHeight="47.0" prefWidth="1000.0" />
+                  <Button fx:id="dodajOdp" layoutX="1033.0" layoutY="17.0" mnemonicParsing="false" onAction="#dodajOdpAction" prefHeight="41.0" prefWidth="91.0" text="Dodaj " />
+
                </children></AnchorPane>
         </content>
       </ScrollPane>
-      <Label layoutX="21.0" layoutY="372.0" prefHeight="40.0" prefWidth="136.0" text="Odpowiedzi">
+      <Label layoutX="21.0" layoutY="360.0" prefHeight="40.0" prefWidth="136.0" text="Odpowiedzi">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="punkty" layoutX="403.0" layoutY="299.0" prefHeight="47.0" prefWidth="64.0" />
+      <TextField fx:id="punkty" layoutX="432.0" layoutY="299.0" prefHeight="47.0" prefWidth="126.0" />
+      <Label fx:id="panelTworzeniaPytanLabelError" alignment="CENTER" layoutX="251.0" layoutY="666.0" prefHeight="17.0" prefWidth="522.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

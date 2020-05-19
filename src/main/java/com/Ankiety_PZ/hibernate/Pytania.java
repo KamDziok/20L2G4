@@ -19,7 +19,7 @@ public class Pytania  implements java.io.Serializable {
      private Integer idPytania;
      private Ankiety ankiety;
      private String tresc;
-     private ImageView zdjecie;
+     private byte[] zdjecie;
      private Integer punktowe;
      private int rodzajPytania;
      private Set odpowiedzis;
@@ -38,7 +38,7 @@ public class Pytania  implements java.io.Serializable {
 
 
 
-    public Pytania(Ankiety ankiety, String tresc, ImageView imageview, int rodzajPytania, int punktowe) {
+    public Pytania(Ankiety ankiety, String tresc, byte[] zdjecie, int rodzajPytania, Integer punktowe) {
         this.ankiety = ankiety;
         this.tresc = tresc;
         this.zdjecie = zdjecie;
@@ -48,7 +48,7 @@ public class Pytania  implements java.io.Serializable {
     public Pytania() {
     }
 
-    public Pytania(Ankiety ankiety, String tresc, ImageView zdjecie, Integer punktowe, int rodzajPytania, Set odpowiedzis) {
+    public Pytania(Ankiety ankiety, String tresc, byte[] zdjecie, Integer punktowe, int rodzajPytania) {
        this.ankiety = ankiety;
        this.tresc = tresc;
        this.zdjecie = zdjecie;
@@ -78,9 +78,9 @@ public class Pytania  implements java.io.Serializable {
     public void setTresc(String tresc) {
         this.tresc = tresc;
     }
-    public ImageView getZdjecie() { return this.zdjecie; }
+    public byte[] getZdjecie() { return this.zdjecie; }
     
-    public void setZdjecie(ImageView zdjecie) {
+    public void setZdjecie(byte[] zdjecie) {
         this.zdjecie = zdjecie;
     }
     public Integer getPunktowe() {
