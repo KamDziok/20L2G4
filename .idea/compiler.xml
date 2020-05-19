@@ -15,5 +15,8 @@
   </component>
   <component name="JavacSettings">
     <option name="GENERATE_NO_WARNINGS" value="true" />
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Ankiety_PZ" options="" />
+    </option>
   </component>
 </project>

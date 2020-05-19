@@ -272,6 +272,7 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
         }
         tableNagrody.itemsProperty().setValue(dane);
         nagrody.setCellValueFactory(new PropertyValueFactory("tytul"));
+        zdjecie.setCellValueFactory(new PropertyValueFactory("zdjecie"));
         pkt.setCellValueFactory(new PropertyValueFactory("liczbaPunktow"));
         usun.setCellValueFactory(new PropertyValueFactory("usun"));
         edytuj.setCellValueFactory(new PropertyValueFactory("edytuj"));

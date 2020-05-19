@@ -5,13 +5,14 @@
 
 package com.Ankiety_PZ.test;
 import com.Ankiety_PZ.hibernate.*;
-import com.Ankiety_PZ.query.AnkietyQuery;
-import com.Ankiety_PZ.query.OdpowiedziQuery;
 import com.Ankiety_PZ.query.PytaniaQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -19,9 +20,18 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReadParam;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ResourceBundle;
 
 
 public class DodawaniepytaniaController extends BulidStage implements SetStartValues {
@@ -68,10 +78,12 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     private TextField punkty;
     @FXML
     private TextField trescPytania;
-
+    @FXML
+    private Label panelTworzeniaPytanLabelError;
     @FXML private TableView odpowiedziTabelka;
     @FXML private TableColumn treść;
     @FXML private TableColumn przyciskUsun;
+    private byte[] zdjecie;
     private Boolean edycja2;
     private String odp;
     private String tresc;
@@ -114,8 +126,18 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         System.out.println("ankiety setStartValuesAnkiety dpc");
         System.out.println("ankiety setStartValuesAnkiety dpc");
         System.out.println(ankiety2);
-        setOdpowiedziSS(pytanie);
+        System.out.println(pytanie);
+        System.out.println(pytania);
+        System.out.println(pytania.getZdjecie());
+        if(null != pytania.getZdjecie()){
+        try {
+            conversjaNaZ(pytania.getZdjecie());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
+        setOdpowiedziSS(pytanie);}
 
     @Override
     public void setStartValuesNagroda(Nagrody nagroda) {
@@ -150,17 +172,18 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
     @FXML
     void dodajzdjecieAction(ActionEvent event) {
-        javafx.stage.FileChooser fileChooser = new javafx.stage.FileChooser();
+        FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Wybierz zdjęcie");
         Stage stage = new Stage();
-        fileChooser.getExtensionFilters().addAll(
-                new javafx.stage.FileChooser.ExtensionFilter("Obrazy", "*.jpg","*.png","*.jpeg")
-                ,new FileChooser.ExtensionFilter("Inne", "*")
-        );
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Obraz", "*.jpg"));
         file = fileChooser.showOpenDialog(stage);
         try {
             Image image = new Image(file.toURI().toString());
+            System.out.println(file.toURI().toString());
+            System.out.println("==================================================================================");
 
+            System.out.println(file.toURI().toString());
+            conversja(file);
             imageview.setImage(image);
         }catch(IllegalArgumentException argumentException){
             System.out.println("Nie wybrałeś zdjęcia lub rozszerzenie nie jest obsługiwane. " + argumentException.getMessage());
@@ -168,10 +191,64 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
             System.out.println(e.getMessage());
         }
     }
+    public void conversja(File file) throws FileNotFoundException, IOException {
+        FileInputStream fis = new FileInputStream(file);
+        //create FileInputStream which obtains input bytes from a file in a file system
+        //FileInputStream is meant for reading streams of raw bytes such as image data. For reading streams of characters, consider using FileReader.
 
-    public ImageView getImageview() {
-        return imageview;
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        byte[] buf = new byte[1024];
+        try {
+            for (int readNum; (readNum = fis.read(buf)) != -1;) {
+                //Writes to this byte array output stream
+                bos.write(buf, 0, readNum);
+                System.out.println("read " + readNum + " bytes,");
+            }
+        } catch (IOException ex) {
+           /// Logger.getLogger(ConvertImage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        byte[] bytes = bos.toByteArray();
+        pytania.setZdjecie(bytes);
+        System.out.println("alalllllllllllllllllllllllllllllllllllllllllllll");
+        System.out.println(bytes);
+        pytania.setZdjecie(bytes);
+        PytaniaQuery query3 = new PytaniaQuery();
+        query3.updatePytania(pytania);
+
     }
+    public void conversjaNaZ(byte[] bytes) throws IOException {
+        ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+        Iterator<?> readers = ImageIO.getImageReadersByFormatName("jpg");
+
+        ImageReader reader = (ImageReader) readers.next();
+        Object source = bis;
+        ImageInputStream iis = ImageIO.createImageInputStream(source);
+        reader.setInput(iis, true);
+        ImageReadParam param = reader.getDefaultReadParam();
+
+        BufferedImage image = reader.read(0, param);
+
+        BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
+        String directory = System.getProperty("user.home") + "\\Documents\\Zdjęcia";
+        String directory2 = directory + "\\pdf";
+        if(!(new File(directory).exists())){
+            new File(directory).mkdir();
+        }
+        Graphics2D g2 = bufferedImage.createGraphics();
+        g2.drawImage(image, null, null);
+        File imageFile = new File(directory + "\\" + pytania.getIdPytania());
+        ImageIO.write(bufferedImage, "jpg", imageFile);
+        Image image2 = new Image(imageFile.toURI().toString());
+        imageview.setImage(image2);
+        System.out.println(imageFile);
+
+
+
+
+    }
+
+
 
     /**
      * Metoda obsługująca przyciśk wyloguj.
@@ -189,30 +266,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
     }
     @FXML
-    void dodajpytanieAction(ActionEvent event) {
-
-
-        if(dodawaniePytaniaRBQuestionOpen.isSelected()) {
-            rodzajPytania=2;
-            punktowe= 0;
-        }
-        else{if(dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected()){
-            rodzajPytania=1;
-            punktowe= 0;
-        }
-        else{if(dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected()){
-            rodzajPytania=0;
-            punktowe= 0;
-        }
-        else{if(dodawaniePytaniaRBQuestionPercentages.isSelected()){
-            rodzajPytania=4;
-            punktowe = Integer.parseInt("100");
-
-        }
-        else{if(dodawaniePytaniaRBQuestionPoints.isSelected()){
-            punktowe = Integer.parseInt(punkty.getText());
-        }}}}}
-
+    void dodajPytanie(ActionEvent event){
 
 
         tresc = trescPytania.getText();
@@ -224,28 +278,46 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
                 odp.setIdOdpowiedzi(-1);
                 pytania.getOdpowiedzis().add(odp);
                 System.out.println(odpo);
+
+            }
+            try {
+                conversjaNaZ(pytania.getZdjecie());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
         }else {
 
         Pytania pytanie = new Pytania();
-        if(edycja2)pytanie.setIdPytania(-1);
+        if(edycja2)
+        {
+            pytanie.setIdPytania(-1);
+
+
+
+
+        }
         pytanie.setTresc(tresc);
-        //pytanie.setZdjecie(imageview);
+        pytanie.setZdjecie(zdjecie);
         pytanie.setPunktowe(punktowe);
         pytanie.setRodzajPytania(rodzajPytania);
+            if(edycja2)pytanie.setIdPytania(-1);
+            pytanie.setTresc(tresc);
+            //pytanie.setZdjecie(imageview);
+            pytanie.setPunktowe(punktowe);
+            pytanie.setRodzajPytania(rodzajPytania);
 // if (punktowe!=0) pytanie.setPunktowe(punktowe);
-        pytanie.setAnkiety(ankiety2);
-        pytanie.initHashSetOdpowiedzi();
+            pytanie.setAnkiety(ankiety2);
+            pytanie.initHashSetOdpowiedzi();
 
-        for(String odpo : listaOdp)
-        {
+            for(String odpo : listaOdp)
+            {
 
-            Odpowiedzi odp = new Odpowiedzi(pytanie, odpo);
-            if(edycja){odp.setIdOdpowiedzi(-1);}
-            pytanie.getOdpowiedzis().add(odp);
-            System.out.println(odpo);
-        }
+                Odpowiedzi odp = new Odpowiedzi(pytanie, odpo);
+                if(edycja){odp.setIdOdpowiedzi(-1);}
+                pytanie.getOdpowiedzis().add(odp);
+                System.out.println(odpo);
+            }
 
 
             ankiety2.getPytanias().add(pytanie);
@@ -256,6 +328,52 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         panelTworzeniaankietyController.setStartValuesAnkiety(ankiety2);
         panelTworzeniaankietyController.SetEdycja(edycja2);
         activeScene(event, false, false);
+
+
+    }
+    @FXML
+    void dodajpytanieAction(ActionEvent event) {
+
+
+        if(dodawaniePytaniaRBQuestionOpen.isSelected()) {
+            rodzajPytania=2;
+            punktowe= 0;
+            dodajPytanie(event);
+        }
+        else{if(dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected()){
+            rodzajPytania=1;
+            punktowe= 0;
+            dodajPytanie(event);
+        }
+        else{if(dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected()){
+            rodzajPytania=0;
+            punktowe= 0;
+            dodajPytanie(event);
+        }
+        else{if(dodawaniePytaniaRBQuestionPercentages.isSelected()){
+            rodzajPytania=4;
+            punktowe = Integer.parseInt("100");
+            dodajPytanie(event);
+        }
+        else{if(dodawaniePytaniaRBQuestionPoints.isSelected()){
+            if(!punkty.getText().isEmpty()){
+                try{
+            rodzajPytania=4;
+            punktowe = Integer.parseInt(punkty.getText());
+                if(punktowe>=0){
+                    dodajPytanie(event);
+                }
+                else     panelTworzeniaPytanLabelError.setText("Punkty muszą być większe od 0!");
+                }
+                catch (Exception e){
+                    panelTworzeniaPytanLabelError.setText("Punkty muszą być liczbą!");
+                }
+
+            }
+            else{  panelTworzeniaPytanLabelError.setText("Podaj liczbę punków!");
+            }
+
+        }}}}}
 
 
     }
@@ -278,6 +396,8 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         dodawaniePytaniaRBQuestionCloseOnlyOne.setToggleGroup(radioButtonGroup);
         dodawaniePytaniaRBQuestionPercentages.setToggleGroup(radioButtonGroup);
         dodawaniePytaniaRBQuestionPoints.setToggleGroup(radioButtonGroup);
+        dodawaniePytaniaRBQuestionOpen.setSelected(true);
+
 
     }
 
@@ -290,7 +410,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         }
         odpowiedziTabelka.itemsProperty().setValue(dane2);
         treść.setCellValueFactory(new PropertyValueFactory("treść"));
-        przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
+       przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
 
 
     }
@@ -307,9 +427,13 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
 
     public void dodajOdpAction(ActionEvent event){
-        odp = odpowiedzi.getText() ;
+        if(!dodawaniePytaniaRBQuestionOpen.isSelected()){
+        odp = odpowiedzi.getText();
         listaOdp.add(odp);
-        setOdpowiedzi();
+        setOdpowiedzi();}
+        else{
+            panelTworzeniaPytanLabelError.setText("Nie można dodać odpowiedzi do pytania otwartego!");
+        }
     }
 
 

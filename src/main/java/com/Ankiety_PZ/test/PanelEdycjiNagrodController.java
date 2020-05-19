@@ -16,7 +16,13 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReadParam;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.ResourceBundle;
@@ -72,20 +78,20 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         panelEdycjiNagrodButtonEdytuj.setText("Dodaj");
     }
 
-
     @FXML
     void panelEdycjiNagrodButtonDodajZdjecie(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Wybierz zdjęcie");
         Stage stage = new Stage();
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Obrazy", "*.jpg","*.png","*.jpeg")
-                ,new FileChooser.ExtensionFilter("Inne", "*")
-        );
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Obraz", "*jpg"));
         file = fileChooser.showOpenDialog(stage);
         try {
-            image = new Image(file.toURI().toString());
+            Image image = new Image(file.toURI().toString());
+            System.out.println(file.toURI().toString());
+            System.out.println("==================================================================================");
 
+            System.out.println(file.toURI().toString());
+            conversja(file);
             imageview.setImage(image);
         }catch(IllegalArgumentException argumentException){
             System.out.println("Nie wybrałeś zdjęcia lub rozszerzenie nie jest obsługiwane. " + argumentException.getMessage());
@@ -93,6 +99,58 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
             System.out.println(e.getMessage());
         }
     }
+    public void conversja(File file) throws FileNotFoundException, IOException {
+        FileInputStream fis = new FileInputStream(file);
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        byte[] buf = new byte[1024];
+        try {
+            for (int readNum; (readNum = fis.read(buf)) != -1;) {
+                bos.write(buf, 0, readNum);
+                System.out.println("read " + readNum + " bytes,");
+            }
+        } catch (IOException ex) {
+        }
+
+        byte[] bytes = bos.toByteArray();
+        nagrody.setZdjecie(bytes);
+        System.out.println("alalllllllllllllllllllllllllllllllllllllllllllll");
+        System.out.println(bytes);
+        nagrody.setZdjecie(bytes);
+        NagrodyQuery query3 = new NagrodyQuery();
+        query3.updateNagrody(nagrody);
+
+    }
+    public void conversjaNaZ(byte[] bytes) throws IOException {
+        ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+        Iterator<?> readers = ImageIO.getImageReadersByFormatName("jpg");
+
+        ImageReader reader = (ImageReader) readers.next();
+        Object source = bis;
+        ImageInputStream iis = ImageIO.createImageInputStream(source);
+        reader.setInput(iis, true);
+        ImageReadParam param = reader.getDefaultReadParam();
+
+        BufferedImage image = reader.read(0, param);
+
+        BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
+        String directory = System.getProperty("user.home") + "\\Documents\\Zdjęcia";
+        String directory2 = directory + "\\pdf";
+        if(!(new File(directory).exists())){
+            new File(directory).mkdir();
+        }
+        Graphics2D g2 = bufferedImage.createGraphics();
+        g2.drawImage(image, null, null);
+        File imageFile = new File(directory + "\\" + nagrody.getIdNagrody());
+        ImageIO.write(bufferedImage, "jpg", imageFile);
+        Image image2 = new Image(imageFile.toURI().toString());
+        imageview.setImage(image2);
+        System.out.println(imageFile);
+
+
+
+
+    }
+
 
     @FXML
     void panelEdycjiNagrodButtonAnuluj(ActionEvent event) {
@@ -197,6 +255,15 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         this.nagrody = nagroda;
         nag.setText(nagroda.getNazwa());
         pkt.setText(nagroda.getLiczbaPunktow()+"");
+        if(nagroda.getZdjecie() != null)
+        {
+            try {
+                conversjaNaZ(nagroda.getZdjecie());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
