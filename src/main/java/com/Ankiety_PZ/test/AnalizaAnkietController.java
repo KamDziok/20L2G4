@@ -9,13 +9,13 @@ import com.Ankiety_PZ.query.AnkietyQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.chart.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
 import java.util.LinkedList;
@@ -50,7 +50,6 @@ public class AnalizaAnkietController implements SetStartValues{
     void analizaPytaniaRadioCheck(Pytania pytanie, int y) {
         Set<Odpowiedzi> odpowiedzi = pytanie.getOdpowiedzis();
         XYChart.Series series1 = new XYChart.Series();
-        series1.setName("odpowiedzi w okresie tym");
         for (Odpowiedzi odpowiedz:odpowiedzi
              ) {
             series1.getData().add(new XYChart.Data(odpowiedz.getOdpowiedz(), odpowiedz.getCount()));
@@ -61,13 +60,17 @@ public class AnalizaAnkietController implements SetStartValues{
         xAxis.setLabel("odpowiedzi");
         yAxis.setLabel("ilosc odpowiedzi");
 
-        BorderPane border = new BorderPane();
+        AnchorPane border = new AnchorPane();
         border.prefWidth(1200);
-        border.setTop(new Label(pytanie.getTresc()));
-//        border.setLeft(new TableView<>());
-//        border.getLeft().minWidth(400);
-        border.setCenter(wykres);
-        border.getCenter().minWidth(800);
+        Label label = new Label(pytanie.getTresc());
+        label.setPrefWidth(1180);
+        label.setAlignment(Pos.CENTER);
+        label.setLayoutY(30);
+        wykres.setLayoutY(140);
+        wykres.setLayoutX(300);
+        wykres.setScaleX(1.3);
+        wykres.setScaleY(1.3);
+        border.getChildren().addAll(label, wykres);
         border.setLayoutY(y);
         wykres.getData().add(series1);
         panel.getChildren().add(border);
@@ -85,11 +88,17 @@ public class AnalizaAnkietController implements SetStartValues{
         tabelka.itemsProperty().setValue(dane);
         odpowiedzi.setCellValueFactory(new PropertyValueFactory("odpowiedz"));
 
-        BorderPane border = new BorderPane();
+        AnchorPane border = new AnchorPane();
         border.prefWidth(1200);
-        border.setTop(new Label(pytanie.getTresc()));
-        border.setLeft(tabelka);
-        border.getLeft().minWidth(400);
+        Label label = new Label(pytanie.getTresc());
+        label.setPrefWidth(1180);
+        label.setAlignment(Pos.CENTER);
+        label.setLayoutY(30);
+        tabelka.setLayoutY(140);
+        tabelka.setLayoutX(450);
+        tabelka.setScaleX(1.3);
+        tabelka.setScaleY(1.3);
+        border.getChildren().addAll(label, tabelka);
         border.setLayoutY(y);
         panel.getChildren().add(border);
     }
@@ -124,13 +133,17 @@ public class AnalizaAnkietController implements SetStartValues{
             wykres.getData().add(series);
         }
 
-        BorderPane border = new BorderPane();
+        AnchorPane border = new AnchorPane();
         border.prefWidth(1200);
-        border.setTop(new Label(pytanie.getTresc()));
-//        border.setLeft(new TableView<>());
-//        border.getLeft().minWidth(400);
-        border.setCenter(wykres);
-        border.getCenter().minWidth(800);
+        Label label = new Label(pytanie.getTresc());
+        label.setPrefWidth(1180);
+        label.setAlignment(Pos.CENTER);
+        label.setLayoutY(30);
+        wykres.setLayoutY(140);
+        wykres.setLayoutX(300);
+        wykres.setScaleX(1.3);
+        wykres.setScaleY(1.3);
+        border.getChildren().addAll(label, wykres);
         border.setLayoutY(y);
         panel.getChildren().add(border);
     }
@@ -152,6 +165,7 @@ public class AnalizaAnkietController implements SetStartValues{
         AnkietyQuery query = new AnkietyQuery();
         this.ankieta = query.selectToAnalysis(ankieta);
         Set<Pytania> pytania = this.ankieta.getPytanias();
+        tytulAnkiety.setText(this.ankieta.getTytul());
         int y = 0;
         for (Pytania pytanie:pytania
              ) {
@@ -172,7 +186,7 @@ public class AnalizaAnkietController implements SetStartValues{
                     analizaPytaniaProcentowePkt(pytanie, y);
                     break;
             }
-            y += 500;
+            y += 750;
         }
     }
 
