@@ -5,9 +5,6 @@
 
 package com.Ankiety_PZ.test;
 import com.Ankiety_PZ.hibernate.*;
-import com.Ankiety_PZ.query.AnkietyQuery;
-import com.Ankiety_PZ.query.OdpowiedziQuery;
-import com.Ankiety_PZ.query.PytaniaQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,7 +18,10 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ResourceBundle;
 
 
 public class DodawaniepytaniaController extends BulidStage implements SetStartValues {
@@ -68,7 +68,8 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     private TextField punkty;
     @FXML
     private TextField trescPytania;
-
+    @FXML
+    private Label panelTworzeniaPytanLabelError;
     @FXML private TableView odpowiedziTabelka;
     @FXML private TableColumn treść;
     @FXML private TableColumn przyciskUsun;
@@ -189,30 +190,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
     }
     @FXML
-    void dodajpytanieAction(ActionEvent event) {
-
-
-        if(dodawaniePytaniaRBQuestionOpen.isSelected()) {
-            rodzajPytania=2;
-            punktowe= 0;
-        }
-        else{if(dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected()){
-            rodzajPytania=1;
-            punktowe= 0;
-        }
-        else{if(dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected()){
-            rodzajPytania=0;
-            punktowe= 0;
-        }
-        else{if(dodawaniePytaniaRBQuestionPercentages.isSelected()){
-            rodzajPytania=4;
-            punktowe = Integer.parseInt("100");
-
-        }
-        else{if(dodawaniePytaniaRBQuestionPoints.isSelected()){
-            punktowe = Integer.parseInt(punkty.getText());
-        }}}}}
-
+    void dodajPytanie(ActionEvent event){
 
 
         tresc = trescPytania.getText();
@@ -228,24 +206,24 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
         }else {
 
-        Pytania pytanie = new Pytania();
-        if(edycja2)pytanie.setIdPytania(-1);
-        pytanie.setTresc(tresc);
-        //pytanie.setZdjecie(imageview);
-        pytanie.setPunktowe(punktowe);
-        pytanie.setRodzajPytania(rodzajPytania);
+            Pytania pytanie = new Pytania();
+            if(edycja2)pytanie.setIdPytania(-1);
+            pytanie.setTresc(tresc);
+            //pytanie.setZdjecie(imageview);
+            pytanie.setPunktowe(punktowe);
+            pytanie.setRodzajPytania(rodzajPytania);
 // if (punktowe!=0) pytanie.setPunktowe(punktowe);
-        pytanie.setAnkiety(ankiety2);
-        pytanie.initHashSetOdpowiedzi();
+            pytanie.setAnkiety(ankiety2);
+            pytanie.initHashSetOdpowiedzi();
 
-        for(String odpo : listaOdp)
-        {
+            for(String odpo : listaOdp)
+            {
 
-            Odpowiedzi odp = new Odpowiedzi(pytanie, odpo);
-            if(edycja){odp.setIdOdpowiedzi(-1);}
-            pytanie.getOdpowiedzis().add(odp);
-            System.out.println(odpo);
-        }
+                Odpowiedzi odp = new Odpowiedzi(pytanie, odpo);
+                if(edycja){odp.setIdOdpowiedzi(-1);}
+                pytanie.getOdpowiedzis().add(odp);
+                System.out.println(odpo);
+            }
 
 
             ankiety2.getPytanias().add(pytanie);
@@ -256,6 +234,52 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         panelTworzeniaankietyController.setStartValuesAnkiety(ankiety2);
         panelTworzeniaankietyController.SetEdycja(edycja2);
         activeScene(event, false, false);
+
+
+    }
+    @FXML
+    void dodajpytanieAction(ActionEvent event) {
+
+
+        if(dodawaniePytaniaRBQuestionOpen.isSelected()) {
+            rodzajPytania=2;
+            punktowe= 0;
+            dodajPytanie(event);
+        }
+        else{if(dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected()){
+            rodzajPytania=1;
+            punktowe= 0;
+            dodajPytanie(event);
+        }
+        else{if(dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected()){
+            rodzajPytania=0;
+            punktowe= 0;
+            dodajPytanie(event);
+        }
+        else{if(dodawaniePytaniaRBQuestionPercentages.isSelected()){
+            rodzajPytania=4;
+            punktowe = Integer.parseInt("100");
+            dodajPytanie(event);
+        }
+        else{if(dodawaniePytaniaRBQuestionPoints.isSelected()){
+            if(!punkty.getText().isEmpty()){
+                try{
+            rodzajPytania=4;
+            punktowe = Integer.parseInt(punkty.getText());
+                if(punktowe>=0){
+                    dodajPytanie(event);
+                }
+                else     panelTworzeniaPytanLabelError.setText("Punkty muszą być większe od 0!");
+                }
+                catch (Exception e){
+                    panelTworzeniaPytanLabelError.setText("Punkty muszą być liczbą!");
+                }
+
+            }
+            else{  panelTworzeniaPytanLabelError.setText("Podaj liczbę punków!");
+            }
+
+        }}}}}
 
 
     }
@@ -278,6 +302,8 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         dodawaniePytaniaRBQuestionCloseOnlyOne.setToggleGroup(radioButtonGroup);
         dodawaniePytaniaRBQuestionPercentages.setToggleGroup(radioButtonGroup);
         dodawaniePytaniaRBQuestionPoints.setToggleGroup(radioButtonGroup);
+        dodawaniePytaniaRBQuestionOpen.setSelected(true);
+
 
     }
 
@@ -290,7 +316,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         }
         odpowiedziTabelka.itemsProperty().setValue(dane2);
         treść.setCellValueFactory(new PropertyValueFactory("treść"));
-        przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
+       przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
 
 
     }
@@ -307,9 +333,13 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
 
     public void dodajOdpAction(ActionEvent event){
-        odp = odpowiedzi.getText() ;
+        if(!dodawaniePytaniaRBQuestionOpen.isSelected()){
+        odp = odpowiedzi.getText();
         listaOdp.add(odp);
-        setOdpowiedzi();
+        setOdpowiedzi();}
+        else{
+            panelTworzeniaPytanLabelError.setText("Nie można dodać odpowiedzi do pytania otwartego!");
+        }
     }
 
 
