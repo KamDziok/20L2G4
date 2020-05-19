@@ -97,21 +97,21 @@
         <artifactId>hibernate-entitymanager</artifactId>
       <version>5.4.14.Final</version>
     </dependency>
-<!--  <dependency>-->
-<!--    <groupId>unknown.binary</groupId>-->
-<!--    <artifactId>mysql-connector-java-8.0.19</artifactId>-->
-<!--    <version>SNAPSHOT</version>-->
-<!--  </dependency>-->
-<!--    <dependency>-->
-<!--        <groupId>unknown.binary</groupId>-->
-<!--        <artifactId>derbyclient</artifactId>-->
-<!--      <version>SNAPSHOT</version>-->
-<!--    </dependency>-->
-<!--  <dependency>-->
-<!--    <groupId>unknown.binary</groupId>-->
-<!--    <artifactId>derby</artifactId>-->
-<!--    <version>SNAPSHOT</version>-->
-<!--  </dependency>-->
+    <!--  <dependency>-->
+    <!--    <groupId>unknown.binary</groupId>-->
+    <!--    <artifactId>mysql-connector-java-8.0.19</artifactId>-->
+    <!--    <version>SNAPSHOT</version>-->
+    <!--  </dependency>-->
+    <!--    <dependency>-->
+    <!--        <groupId>unknown.binary</groupId>-->
+    <!--        <artifactId>derbyclient</artifactId>-->
+    <!--      <version>SNAPSHOT</version>-->
+    <!--    </dependency>-->
+    <!--  <dependency>-->
+    <!--    <groupId>unknown.binary</groupId>-->
+    <!--    <artifactId>derby</artifactId>-->
+    <!--    <version>SNAPSHOT</version>-->
+    <!--  </dependency>-->
     <dependency>
         <groupId>org.hibernate.common</groupId>
         <artifactId>hibernate-commons-annotations</artifactId>

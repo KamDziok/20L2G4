@@ -124,9 +124,44 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     void dodajpytanieAction(ActionEvent event) {
         loadingFXML(event, SceneFXML.DODAJ_PYTANIE);
         DodawaniepytaniaController dodawaniepytaniaController  = load.getController();
-        dodawaniepytaniaController.setStartValuesAnkiety(ankiety);
-        dodawaniepytaniaController.SetEdycja(edycja);
-        activeScene(event, false, false);
+        ankiety.setTytul(trescTytulu.getText());
+        DateFormat dateFrm = new SimpleDateFormat("yyyy-MM-dd");
+        dataoddd = dataODDD.getValue();
+        dataodmm = dataODMM.getValue();
+        dataodrrrr = dataODRRRR.getValue();
+        datadodd = dataDODD.getValue();
+        datadomm = dataDOMM.getValue();
+        datadorrrr = dataDORRRR.getValue();
+        dataod = dataodrrrr+"-"+dataodmm+"-"+dataoddd;
+        datado = datadorrrr+"-"+datadomm+"-"+datadodd;
+        tytul = trescTytulu.getText();
+        liczbaPunktowS = punkty.getText();
+
+
+        try {
+            dataRozpoczecia = dateFrm.parse(dataod);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        ankiety.setDataRozpoczecia(dataRozpoczecia);
+        try {
+            dataZakonczenia = dateFrm.parse(datado);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        ankiety.setDataZakonczenia(dataZakonczenia);
+        try{
+        ankiety.setLiczbaPunktow(Integer.parseInt(punkty.getText()));
+        }
+        catch(Exception e){
+            ankiety.setLiczbaPunktow(0);
+        }
+        finally {
+            dodawaniepytaniaController.setStartValuesAnkiety(ankiety);
+            dodawaniepytaniaController.SetEdycja(edycja);
+            activeScene(event, false, false);
+        }
+
     }
 
 
@@ -222,7 +257,6 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     public void SetEdycja(Boolean wyb)
     {
         edycja = wyb;
-        System.out.println("edycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycjaedycja");
         System.out.println(edycja);
     }
 

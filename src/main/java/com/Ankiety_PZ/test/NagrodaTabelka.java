@@ -31,7 +31,6 @@ public class NagrodaTabelka {
                     NagrodyQuery queryNagrody = new NagrodyQuery();
                     query.updateUzytkownicy(curentUser);
                     queryNagrody.getNagrodyToUzytkownicy(nagroda, curentUser);
-//                    wywołanie funkcji generującej PDF'a
                 } else {
                     showMessageDialog(null, "Biedaku ... nawet złota nie masz.");
                 }

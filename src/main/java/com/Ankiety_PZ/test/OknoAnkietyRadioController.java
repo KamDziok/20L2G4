@@ -318,7 +318,6 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
     @Override
     public void setStartValuesIerator(Iterator<Pytania> iterator) {
         Pytania pytanie = iterator.next();
-        trescPytania.setText(pytanie.getTresc());
 //        obrazek.setImage(pytanie.getZdjecie());
 //        ankietaTytul.setText(pytanie.getAnkiety().getTytul());
         punkty = pytanie.getPunktowe();
@@ -326,18 +325,23 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
         switch (rodzajPytania) {
             case TypeOfQuestion.ONE_CHOICE:
                 setRadioOdpowiedzi(pytanie.getOdpowiedzis());
+                trescPytania.setText(pytanie.getTresc());
                 break;
             case TypeOfQuestion.MANY_CHOICE:
                 setCheckOdpowiedzi(pytanie.getOdpowiedzis());
+                trescPytania.setText(pytanie.getTresc());
                 break;
             case TypeOfQuestion.OPEN:
                 setOpenOdpowiedzi();
+                trescPytania.setText(pytanie.getTresc());
                 break;
             case TypeOfQuestion.POINTS:
                 setPktOdpowiedzi(pytanie.getOdpowiedzis(), punkty);
+                trescPytania.setText(pytanie.getTresc() + " Rozdziel " + pytanie.getPunktowe() + " punktów.");
                 break;
             case TypeOfQuestion.PERCENT:
                 setProcentOdpowiedzi();
+                trescPytania.setText(pytanie.getTresc() + " Podaj liczbe z przedziału od 0 do 100.");
                 break;
         }
         setButton(iterator, pytanie);
