@@ -16,7 +16,7 @@
   <component name="JavacSettings">
     <option name="GENERATE_NO_WARNINGS" value="true" />
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Ankiety_PZ" options="--add-exports java.xml/com.sun.org.apache.xerces.internal.impl.dv.util=ALL-UNNAMED" />
+      <module name="Ankiety_PZ" options="" />
     </option>
   </component>
 </project>

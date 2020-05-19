@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -27,8 +28,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
-
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReadParam;
 import javax.imageio.ImageReader;
@@ -295,7 +294,11 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
                 System.out.println(odpo);
 
             }
-            conversjaNaZ(pytania.getZdjecie());
+            try {
+                conversjaNaZ(pytania.getZdjecie());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         }else {
 
@@ -312,7 +315,6 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         pytanie.setZdjecie(zdjecie);
         pytanie.setPunktowe(punktowe);
         pytanie.setRodzajPytania(rodzajPytania);
-            Pytania pytanie = new Pytania();
             if(edycja2)pytanie.setIdPytania(-1);
             pytanie.setTresc(tresc);
             //pytanie.setZdjecie(imageview);
