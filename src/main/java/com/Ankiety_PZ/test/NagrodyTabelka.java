@@ -30,8 +30,8 @@ public class NagrodyTabelka extends BulidStage {
     private Uzytkownicy user;
 
     NagrodyTabelka(Nagrody nagroda, Uzytkownicy uzytkownik, PanelOsobyOdNagrodController panel) {
-       this.nagroda = nagroda;
-       this.user = uzytkownik;
+        this.nagroda = nagroda;
+        this.user = uzytkownik;
         tytul = nagroda.getNazwa();
         liczbaPunktow = nagroda.getLiczbaPunktow();
         //zdjecie = nagroda.getZdjecie();

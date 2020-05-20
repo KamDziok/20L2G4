@@ -83,6 +83,8 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     @FXML private TableView odpowiedziTabelka;
     @FXML private TableColumn treść;
     @FXML private TableColumn przyciskUsun;
+    private Ankiety ankietyRESET;
+    private Pytania pytanieRESET;
     private byte[] zdjecie;
     private Boolean edycja2;
     private String odp;
@@ -93,8 +95,9 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     private Ankiety AnkietaStanPoczatkowy;
     private List<String> listaOdp = new ArrayList<String>();
     private Pytania pytania;
-    private  ObservableList<OdpowiedziTabelka> dane = FXCollections.observableArrayList();
-    private Boolean edycja = false;
+    private  Boolean zdjecieTAK = false;
+
+    private Boolean edycja = true;
 
     /**
      * Metoda obsługująca przyciśk anuluj.
@@ -108,11 +111,16 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     public void setStartValues(Uzytkownicy user) {
 
     }
+    public void StanRESTARTU(Ankiety ankieta)
+    {
+        this.AnkietaStanPoczatkowy = ankieta;
+
+    }
 
     @Override
     public void setStartValuesAnkiety(Ankiety ankieta) {
         this.ankiety2 = ankieta;
-        this.AnkietaStanPoczatkowy = ankieta;
+
         System.out.println("ankiety setStartValuesAnkiety dpc");
         System.out.println(ankiety2);
 
@@ -121,14 +129,33 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     @Override
     public void setStartValuesPytanie(Pytania pytanie) {
         this.pytania = pytanie;
-        System.out.println("ankiety setStartValuesAnkiety dpc");
-        System.out.println("ankiety setStartValuesAnkiety dpc");
-        System.out.println("ankiety setStartValuesAnkiety dpc");
-        System.out.println("ankiety setStartValuesAnkiety dpc");
+
+        ///setOdpowiedzi();
+
+
+        if(pytania != null){
         System.out.println(ankiety2);
         System.out.println(pytanie);
         System.out.println(pytania);
         System.out.println(pytania.getZdjecie());
+        trescPytania.setText(pytania.getTresc());
+        if(pytania.getRodzajPytania() == TypeOfQuestion.OPEN) {
+            dodawaniePytaniaRBQuestionOpen.setSelected(true);
+        }else{if(pytania.getRodzajPytania() == TypeOfQuestion.MANY_CHOICE)
+        {dodawaniePytaniaRBQuestionCloseMoreThenOne.setSelected(true);}
+        else{if(pytania.getRodzajPytania() == TypeOfQuestion.ONE_CHOICE){
+            dodawaniePytaniaRBQuestionCloseOnlyOne.setSelected(true);}
+        else{if(pytania.getRodzajPytania() == TypeOfQuestion.PERCENT){
+            dodawaniePytaniaRBQuestionPercentages.setSelected(true);}
+        else {
+            if (pytania.getRodzajPytania() == TypeOfQuestion.POINTS) {
+                dodawaniePytaniaRBQuestionPoints.setSelected(true);
+                punkty.setText(String.valueOf(pytania.getPunktowe()));
+            }
+
+        }}}}
+
+
         if(null != pytania.getZdjecie()){
         try {
             conversjaNaZ(pytania.getZdjecie());
@@ -137,7 +164,17 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         }
 
     }
-        setOdpowiedziSS(pytanie);}
+            if(pytanie.getRodzajPytania()!= TypeOfQuestion.OPEN) {
+                setOdpowiedziSS(pytania);
+            }
+
+        }
+
+          // setOdpowiedzi();
+
+
+    }
+
 
     @Override
     public void setStartValuesNagroda(Nagrody nagroda) {
@@ -157,9 +194,8 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     void anulujAction(ActionEvent event) {
         loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
         PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
-        panelTworzeniaankietyController.setStartValuesEdytujAnkiety(ankiety2);
+        panelTworzeniaankietyController.setStartValuesAnkiety(ankietyRESET);
         panelTworzeniaankietyController.SetEdycja(edycja2);
-       /// panelTworzeniaankietyController.setStartValues(curetUser);
         activeScene(event, false, false);
 
     }
@@ -190,6 +226,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
+
     }
     public void conversja(File file) throws FileNotFoundException, IOException {
         FileInputStream fis = new FileInputStream(file);
@@ -209,42 +246,43 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         }
 
         byte[] bytes = bos.toByteArray();
-        pytania.setZdjecie(bytes);
         System.out.println("alalllllllllllllllllllllllllllllllllllllllllllll");
         System.out.println(bytes);
-        pytania.setZdjecie(bytes);
-        PytaniaQuery query3 = new PytaniaQuery();
-        query3.updatePytania(pytania);
+        zdjecie = bytes;
+        zdjecieTAK = false;
 
-    }
-    public void conversjaNaZ(byte[] bytes) throws IOException {
-        ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
-        Iterator<?> readers = ImageIO.getImageReadersByFormatName("jpg");
-
-        ImageReader reader = (ImageReader) readers.next();
-        Object source = bis;
-        ImageInputStream iis = ImageIO.createImageInputStream(source);
-        reader.setInput(iis, true);
-        ImageReadParam param = reader.getDefaultReadParam();
-
-        BufferedImage image = reader.read(0, param);
-
-        BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
-        String directory = System.getProperty("user.home") + "\\Documents\\Zdjęcia";
-        String directory2 = directory + "\\pdf";
-        if(!(new File(directory).exists())){
-            new File(directory).mkdir();
         }
-        Graphics2D g2 = bufferedImage.createGraphics();
-        g2.drawImage(image, null, null);
-        File imageFile = new File(directory + "\\" + pytania.getIdPytania());
-        ImageIO.write(bufferedImage, "jpg", imageFile);
-        Image image2 = new Image(imageFile.toURI().toString());
-        imageview.setImage(image2);
-        System.out.println(imageFile);
 
 
+    public void conversjaNaZ(byte[] bytes) throws IOException {
+        if(bytes != null){
+            ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+            Iterator<?> readers = ImageIO.getImageReadersByFormatName("jpg");
 
+            ImageReader reader = (ImageReader) readers.next();
+            Object source = bis;
+            ImageInputStream iis = ImageIO.createImageInputStream(source);
+            reader.setInput(iis, true);
+            ImageReadParam param = reader.getDefaultReadParam();
+
+            BufferedImage image = reader.read(0, param);
+
+            BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
+            String directory = System.getProperty("user.home") + "\\Documents\\Zdjęcia";
+            String directory2 = directory + "\\pdf";
+            if (!(new File(directory).exists())) {
+                new File(directory).mkdir();
+            }
+            Graphics2D g2 = bufferedImage.createGraphics();
+            g2.drawImage(image, null, null);
+            File imageFile = new File(directory + "\\" + pytania.getTresc());
+            ImageIO.write(bufferedImage, "jpg", imageFile);
+            Image image2 = new Image(imageFile.toURI().toString());
+            imageview.setImage(image2);
+            System.out.println(imageFile);
+
+
+        }
 
     }
 
@@ -267,65 +305,45 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     }
     @FXML
     void dodajPytanie(ActionEvent event){
-
-
-        tresc = trescPytania.getText();
-        if(edycja) {
-            for(String odpo : listaOdp)
-            {
-
-                Odpowiedzi odp = new Odpowiedzi(pytania, odpo);
-                odp.setIdOdpowiedzi(-1);
-                pytania.getOdpowiedzis().add(odp);
-                System.out.println(odpo);
-
-            }
-            try {
-                conversjaNaZ(pytania.getZdjecie());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }else {
-
-        Pytania pytanie = new Pytania();
-        if(edycja2)
-        {
+        if (rodzajPytania == TypeOfQuestion.OPEN) {
+            Pytania pytanie = new Pytania();
             pytanie.setIdPytania(-1);
+            if (pytania != null) edycja = true;
+            else{pytania = pytanie;}
+
+
+        }
+        if(!edycja) {
+            pytania.setTresc(trescPytania.getText());
+            pytania.setZdjecie(zdjecie);
+            pytania.setRodzajPytania(rodzajPytania);
+            pytania.setPunktowe(punktowe);
+            pytania.setAnkiety(ankiety2);
+            PytaniaQuery query = new PytaniaQuery();
+            query.updatePytania(pytania);
+
+
+
+        }
+
+        else{
+            pytania.setIdPytania(-1);
+            pytania.setTresc(trescPytania.getText());
+            pytania.setZdjecie(zdjecie);
+            pytania.setRodzajPytania(rodzajPytania);
+            pytania.setPunktowe(punktowe);
+            pytania.setAnkiety(ankiety2);
+            System.out.println(pytania.getOdpowiedzis());
+            ankiety2.getPytanias().add(pytania);
 
 
 
 
         }
-        pytanie.setTresc(tresc);
-        pytanie.setZdjecie(zdjecie);
-        pytanie.setPunktowe(punktowe);
-        pytanie.setRodzajPytania(rodzajPytania);
-            if(edycja2)pytanie.setIdPytania(-1);
-            pytanie.setTresc(tresc);
-            //pytanie.setZdjecie(imageview);
-            pytanie.setPunktowe(punktowe);
-            pytanie.setRodzajPytania(rodzajPytania);
-// if (punktowe!=0) pytanie.setPunktowe(punktowe);
-            pytanie.setAnkiety(ankiety2);
-            pytanie.initHashSetOdpowiedzi();
-
-            for(String odpo : listaOdp)
-            {
-
-                Odpowiedzi odp = new Odpowiedzi(pytanie, odpo);
-                if(edycja){odp.setIdOdpowiedzi(-1);}
-                pytanie.getOdpowiedzis().add(odp);
-                System.out.println(odpo);
-            }
-
-
-            ankiety2.getPytanias().add(pytanie);
-        }
-        System.out.println(ankiety2.getPytanias());
         loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
         PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
         panelTworzeniaankietyController.setStartValuesAnkiety(ankiety2);
+        //panelTworzeniaankietyController.setStartValuesPytanie(pytania);
         panelTworzeniaankietyController.SetEdycja(edycja2);
         activeScene(event, false, false);
 
@@ -336,29 +354,31 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
 
         if(dodawaniePytaniaRBQuestionOpen.isSelected()) {
-            rodzajPytania=2;
+            rodzajPytania = TypeOfQuestion.OPEN;
+
             punktowe= 0;
             dodajPytanie(event);
         }
         else{if(dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected()){
-            rodzajPytania=1;
+            rodzajPytania= TypeOfQuestion.MANY_CHOICE;
             punktowe= 0;
             dodajPytanie(event);
         }
         else{if(dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected()){
-            rodzajPytania=0;
+            rodzajPytania= TypeOfQuestion.ONE_CHOICE;
             punktowe= 0;
             dodajPytanie(event);
         }
         else{if(dodawaniePytaniaRBQuestionPercentages.isSelected()){
-            rodzajPytania=4;
+            rodzajPytania= TypeOfQuestion.PERCENT;
             punktowe = Integer.parseInt("100");
             dodajPytanie(event);
         }
         else{if(dodawaniePytaniaRBQuestionPoints.isSelected()){
+            rodzajPytania=TypeOfQuestion.POINTS;
             if(!punkty.getText().isEmpty()){
                 try{
-            rodzajPytania=4;
+
             punktowe = Integer.parseInt(punkty.getText());
                 if(punktowe>=0){
                     dodajPytanie(event);
@@ -401,61 +421,50 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
     }
 
-    public void setOdpowiedzi() {
-        ObservableList<OdpowiedziTabelka> dane2 = FXCollections.observableArrayList();
-        dane2.addAll(dane);
-        for(String odp : listaOdp)
-        {
-            dane2.add(new OdpowiedziTabelka(odp, ankiety2, pytania, listaOdp));
-        }
-        odpowiedziTabelka.itemsProperty().setValue(dane2);
-        treść.setCellValueFactory(new PropertyValueFactory("treść"));
-       przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
+    public void dodajOdpAction(ActionEvent event){
+        if(!dodawaniePytaniaRBQuestionOpen.isSelected()) {
+            odp = odpowiedzi.getText();
+            if (pytania == null) {
 
+                Pytania pytanie = new Pytania();
+                pytanie.initHashSetOdpowiedzi();
+                Odpowiedzi odpo = new Odpowiedzi(pytania, odp);
+                odpo.setIdOdpowiedzi(-1);
+              //  pytanie.setIdPytania(-1);
+                pytania = pytanie;
+                pytania.getOdpowiedzis().add(odpo);
+
+                edycja=false;
+        }else {
+                Odpowiedzi odpo = new Odpowiedzi(pytania, odp);
+                odpo.setIdOdpowiedzi(-1);
+                //pytania.setIdPytania(-1);
+                pytania.getIdPytania();
+                edycja=true;
+                pytania.getOdpowiedzis().add(odpo);
+            }
+
+            setOdpowiedziSS(pytania);
+        }
+        else{
+            panelTworzeniaPytanLabelError.setText("Nie można dodać odpowiedzi do pytania otwartego!");
+        }
 
     }
-    public void setOdpowiedziSS(Pytania pytania){
+    public void Edycja(Boolean e)
+    {
+        this.edycja = e;
+    }
 
-        edycja=true;
+    public void setOdpowiedziSS(Pytania pytania){
+        ObservableList<OdpowiedziTabelka> dane = FXCollections.observableArrayList();
         pytania.getOdpowiedzis().forEach(odpowiedz ->{Odpowiedzi JednaOdp = (Odpowiedzi) odpowiedz;
-            dane.add(new OdpowiedziTabelka(JednaOdp, ankiety2, pytania, listaOdp));});
+        dane.add(new OdpowiedziTabelka(JednaOdp, ankiety2, pytania));});
         odpowiedziTabelka.itemsProperty().setValue(dane);
         treść.setCellValueFactory(new PropertyValueFactory("treść"));
         przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
 
     }
-
-
-    public void dodajOdpAction(ActionEvent event){
-        if(!dodawaniePytaniaRBQuestionOpen.isSelected()){
-        odp = odpowiedzi.getText();
-        listaOdp.add(odp);
-        setOdpowiedzi();}
-        else{
-            panelTworzeniaPytanLabelError.setText("Nie można dodać odpowiedzi do pytania otwartego!");
-        }
-    }
-
-
-
-    public void usun(String odp, List<String> list)
-    {
-        System.out.println(list);
-        listaOdp = list;
-        listaOdp.remove(odp);
-       // setOdpowiedzi();
-    }
-
-    public void usunBAZA(Odpowiedzi odp, List<String> list, Pytania pytanie)
-    {
-        System.out.println(list);
-        listaOdp = list;
-        pytanie.getOdpowiedzis().remove(odp);
-        //setOdpowiedziSS(pytanie);
-       // setOdpowiedzi();
-    }
-
-
 
 
 }

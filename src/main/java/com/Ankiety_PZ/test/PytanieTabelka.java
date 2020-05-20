@@ -28,12 +28,12 @@ public class PytanieTabelka extends BulidStage implements SetStartValues{
                 PytaniaQuery query1 =new PytaniaQuery();
                 System.out.println(pytanie);
 
-                pytanie.getOdpowiedzis().removeAll(pytanie.getOdpowiedzis());
-                pytanie.getOdpowiedzis().forEach(odpowiedz ->{Odpowiedzi JednaOdp = (Odpowiedzi) odpowiedz;
-                    OdpowiedziQuery JednaOdpq = new OdpowiedziQuery();
-                    JednaOdpq.deleteOdpowiedzi(JednaOdp);});
-                System.out.println("pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()");
-                System.out.println(pytanie.getOdpowiedzis());
+               /// pytanie.getOdpowiedzis().removeAll(pytanie.getOdpowiedzis());
+             //  pytanie.getOdpowiedzis().forEach(odpowiedz ->{Odpowiedzi JednaOdp = (Odpowiedzi) odpowiedz;
+              // OdpowiedziQuery JednaOdpq = new OdpowiedziQuery();
+               //   JednaOdpq.deleteOdpowiedzi(JednaOdp);});
+                //System.out.println("pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()");
+                //System.out.println(pytanie.getOdpowiedzis());
                 ankieta.getPytanias().remove(pytanie);
                 query1.deletePytania(pytanie);
               ///  ankieta.getPytanias().remove(pytanie);
@@ -53,9 +53,13 @@ public class PytanieTabelka extends BulidStage implements SetStartValues{
             public void handle(ActionEvent event) {
                 loadingFXML(event, SceneFXML.DODAJ_PYTANIE);
                 DodawaniepytaniaController dodawaniepytaniaController  = load.getController();
+                dodawaniepytaniaController.Edycja(false);
                 dodawaniepytaniaController.SetEdycja(true);
                 dodawaniepytaniaController.setStartValuesAnkiety(ankieta);
                 dodawaniepytaniaController.setStartValuesPytanie(pytanie);
+                if(pytanie.getRodzajPytania()!= TypeOfQuestion.OPEN) {
+                    dodawaniepytaniaController.setOdpowiedziSS(pytanie);
+                }
                 activeScene(event, false, false);
                 System.out.println("PRZEKAZYWANIE PYTANIE I ANKIETY DO EDYTOWANIA");
                 System.out.println(ankieta);
