@@ -1,6 +1,7 @@
 package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.hibernate.*;
+import com.Ankiety_PZ.query.OdpowiedziQuery;
 import com.Ankiety_PZ.query.PytaniaQuery;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,8 +24,10 @@ public class OdpowiedziTabelka extends BulidStage{
             public void handle(ActionEvent event) {
                 loadingFXML(event, SceneFXML.DODAJ_PYTANIE);
                 DodawaniepytaniaController dodawaniepytaniaController  = load.getController();
-                PytaniaQuery query = new PytaniaQuery();
-                query.deletePytania(pytania);
+                pytania.getOdpowiedzis().remove(odpowiedzi);
+                OdpowiedziQuery query = new OdpowiedziQuery();
+                query.deleteOdpowiedzi(odpowiedzi);
+                dodawaniepytaniaController.Edycja(true);
                 dodawaniepytaniaController.setStartValuesAnkiety(ankieta);
                 dodawaniepytaniaController.setStartValuesPytanie(pytania);
 

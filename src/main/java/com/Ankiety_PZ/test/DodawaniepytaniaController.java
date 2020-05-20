@@ -89,6 +89,8 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     private Boolean edycja2 = false;
     private String odp;
     private String tresc;
+    private Uzytkownicy  curetUser;
+
     private Integer punktowe;
     private int rodzajPytania;
     private Ankiety ankiety2;
@@ -109,6 +111,8 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
     @Override
     public void setStartValues(Uzytkownicy user) {
+        this.curetUser = user;
+
 
     }
     public void StanRESTARTU(Ankiety ankieta)
@@ -299,7 +303,15 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         if (rodzajPytania == TypeOfQuestion.OPEN) {
             Pytania pytanie = new Pytania();
             pytanie.setIdPytania(-1);
-            if (pytania != null) edycja =false;
+            if (pytania != null) {
+
+
+
+
+
+
+            }
+
             else{pytania = pytanie;}
 
 
@@ -336,7 +348,8 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
         panelTworzeniaankietyController.setStartValuesAnkiety(ankiety2);
        // panelTworzeniaankietyController.setStartValuesPytanie(pytania);
-        panelTworzeniaankietyController.SetEdycja(false);
+        panelTworzeniaankietyController.setStartValues(curetUser);
+        panelTworzeniaankietyController.SetEdycja(edycja2);
         activeScene(event, false, false);
 
 
@@ -424,7 +437,9 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
                 odpo.setIdOdpowiedzi(-1);
                 pytanie.setIdPytania(-1);
                 pytania = pytanie;
+                odpo.setPytania(pytania);
                 pytania.getOdpowiedzis().add(odpo);
+                edycja=false;
 
 
         }else {
