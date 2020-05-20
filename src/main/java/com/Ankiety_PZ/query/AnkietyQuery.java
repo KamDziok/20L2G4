@@ -153,6 +153,24 @@ public class AnkietyQuery extends OperationInSession {
         return result;
     }
 
+    public Boolean deletePytaniaAndOdpowiedziInAnkiety(List<Pytania> pytaniaList, List<Odpowiedzi> odpowiedziList){
+        Boolean result = false;
+        try{
+            session = openSession();
+            transaction = beginTransaction(session);
+            new OdpowiedziQuery().deleteListOdpowiedzi(odpowiedziList, session);
+            new PytaniaQuery().deleteListPytania(pytaniaList, session);
+            commitTransaction(transaction);
+            result = true;
+        }catch (Exception e){
+            rollbackTransaction(transaction);
+            logException(e);
+        }finally {
+            closeSession(session);
+        }
+        return result;
+    }
+
     public List<Ankiety> selectAllUzytkownik(Uzytkownicy user){
         return modifyAnkiety.selectListHQL(("from Ankiety AS a where a.uzytkownicy.idUzytkownika=" + user.getIdUzytkownika()));
     }
