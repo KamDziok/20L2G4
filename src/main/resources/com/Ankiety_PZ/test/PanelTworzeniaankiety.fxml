@@ -60,15 +60,15 @@
             <ChoiceBox fx:id="dataDORRRR" layoutX="596.0" layoutY="124.0" prefHeight="47.0" prefWidth="95.0" />
          </children>
       </AnchorPane>
-      <Button fx:id="dodajpytanie" layoutX="1028.0" layoutY="656.0" mnemonicParsing="false" onAction="#dodajpytanieAction" prefHeight="50.0" prefWidth="159.0" text="Dodaj pytanie" />
-      <Button fx:id="zapisz" layoutX="891.0" layoutY="656.0" mnemonicParsing="false" onAction="#ZapiszAction" prefHeight="50.0" prefWidth="125.0" text="Zapisz" />
-      <Button fx:id="anuluj" layoutX="752.0" layoutY="656.0" mnemonicParsing="false" onAction="#anulujAction" prefHeight="50.0" prefWidth="125.0" text="Anuluj" />
+      <Button fx:id="dodajpytanie" layoutX="1028.0" layoutY="660.0" mnemonicParsing="false" onAction="#dodajpytanieAction" prefHeight="50.0" prefWidth="159.0" text="Dodaj pytanie" />
+      <Button fx:id="zapisz" layoutX="891.0" layoutY="660.0" mnemonicParsing="false" onAction="#ZapiszAction" prefHeight="50.0" prefWidth="125.0" text="Zapisz" />
+      <Button fx:id="anuluj" layoutX="752.0" layoutY="660.0" mnemonicParsing="false" onAction="#anulujAction" prefHeight="50.0" prefWidth="125.0" text="Anuluj" />
       <Label layoutX="80.0" layoutY="54.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Kreator ankiet">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="wyloguj" layoutX="14.0" layoutY="656.0" mnemonicParsing="false" onAction="#wylogujAction" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
+      <Button fx:id="wyloguj" layoutX="14.0" layoutY="660.0" mnemonicParsing="false" onAction="#wylogujAction" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
       <Label fx:id="panelTworzeniaAnkietyLabelError" alignment="CENTER" layoutX="183.0" layoutY="665.0" prefHeight="17.0" prefWidth="522.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
          <font>
             <Font size="24.0" />
