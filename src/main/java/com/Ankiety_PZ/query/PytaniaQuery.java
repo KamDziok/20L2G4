@@ -54,9 +54,11 @@ public class PytaniaQuery extends OperationInSession {
         Boolean result = false;
         OdpowiedziQuery odpowiedziQuery = new OdpowiedziQuery();
         pytaniaList.forEach(pytania -> {
-            List<Odpowiedzi> odpowiedziList = odpowiedziQuery.selectSetOdpowiedziByIdPytania(pytania);
-            odpowiedziQuery.deleteListOdpowiedzi(odpowiedziList, session);
-            deletePytaniaWithOutTransaction(pytania, session);
+            if(pytania.getIdPytania().intValue() != -1) {
+                List<Odpowiedzi> odpowiedziList = odpowiedziQuery.selectSetOdpowiedziByIdPytania(pytania);
+                odpowiedziQuery.deleteListOdpowiedzi(odpowiedziList, session);
+                deletePytaniaWithOutTransaction(pytania, session);
+            }
         });
         result = true;
         return result;

@@ -54,7 +54,9 @@ public class OdpowiedziQuery extends OperationInSession {
     public Boolean deleteListOdpowiedzi(List<Odpowiedzi> odpowiedziList, Session session){
         Boolean result = false;
         odpowiedziList.forEach(odpowiedzi -> {
-            deleteOdpowiedziWithOutTransaction(odpowiedzi, session);
+            if(odpowiedzi.getIdOdpowiedzi().intValue() != -1) {
+                deleteOdpowiedziWithOutTransaction(odpowiedzi, session);
+            }
         });
         result = true;
         return result;
