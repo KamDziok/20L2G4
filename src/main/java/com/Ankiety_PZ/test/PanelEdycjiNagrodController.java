@@ -5,7 +5,6 @@ import com.Ankiety_PZ.hibernate.Nagrody;
 import com.Ankiety_PZ.hibernate.Pytania;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.NagrodyQuery;
-import com.Ankiety_PZ.query.PytaniaQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -84,10 +83,7 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Wybierz zdjęcie");
         Stage stage = new Stage();
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Obrazy", "*.jpg","*.png","*.jpeg")
-                ,new FileChooser.ExtensionFilter("Inne", "*")
-        );
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Obraz", "*jpg"));
         file = fileChooser.showOpenDialog(stage);
         try {
             Image image = new Image(file.toURI().toString());

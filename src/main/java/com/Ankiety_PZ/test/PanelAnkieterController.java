@@ -9,6 +9,7 @@ import com.Ankiety_PZ.hibernate.Nagrody;
 import com.Ankiety_PZ.hibernate.Pytania;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.AnkietyQuery;
+import com.Ankiety_PZ.query.UzytkownicyQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,9 +22,40 @@ import java.util.*;
 
 public class PanelAnkieterController extends BulidStage implements SetStartValues{
     private Uzytkownicy curentUser2;
+    private Uzytkownicy curentUser;
     public int id_ankiety;
+    private String imie_nazwisko_rola_tmp;
+    private String sprawdzhaslo;
+    private String mailAnkieter;
+    private String passwordAnkieter;
+    private String passwordRepeatAnkieter;
+    private String passwordNewAnkieter;
+    private String nameAnkieter;
+    private String surnameAnkieter;
+    private String cityAnkieter;
+    private String streetAnkieter;
+    /** Numer domu wczytany z pola tekstowego jako String. */
+    private String numberHouseStringAnkieter;
+    /** Numer lokalu wczytany z pola tekstowego jako String. */
+    private String numberFlatStringAnkieter;
+    /** Pierwsza część kodu pocztowego wczytany z pola tekstowego jako String. */
+    private String postCodeFirstStringAnkieter;
+    /** Druga część kodu pocztowego wczytany z pola tekstowego jako String. */
+    private String postCodeSecondStringAnkieter;
+
+    /** Pierwsza część kodu pocztowego przekształconego na int. */
+    private int postCodeFirstIntAnkieter;
+    /** Druga część kodu pocztowego przekształconego na int. */
+    private int postCodeSecondIntAnkieter;
+    /** Minimalna długośc hasłą. */
+    private final int minSizePasswordAnkieter = 3;
+
+    @FXML
+    private Label imie_nazwisko_rola;
     @FXML
     private Label imie_nazwisko_rola2;
+    @FXML
+    private Label panelAnkieteraLabelError;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -91,10 +123,84 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
         panelTworzeniaankietyController.setStartValues(curentUser2);
         activeScene(event, false, false);
 
-
-
     }
-/*
+
+    /**
+     * Metoda sprawdzenie czy obowiązkowe pola nie są puste.
+     *
+     * @return true jeśli wszystkie pola obowiązkowe są uzupełnione, w przeciwnym wypadku false
+     */
+    private boolean compulsoryFildNotNullAnkieter(){
+        return (!mailAnkieter.isEmpty() && !nameAnkieter.isEmpty() &&
+                !surnameAnkieter.isEmpty() && !cityAnkieter.isEmpty() && !streetAnkieter.isEmpty() && !numberHouseStringAnkieter.isEmpty() &&
+                !postCodeFirstStringAnkieter.isEmpty() && !postCodeSecondStringAnkieter.isEmpty());
+    }
+
+    /**
+     * Metoda sprawdza czy kod pocztowy składa się z liczb i czy ma odpowiedznią długość.
+     *
+     * @author KamDziok
+     * @return true jeśli kod pocztowy jest poprawny, w przeciwnym razie false
+     */
+    private boolean postCodeIsNumberAnkieter(){
+        try{
+            if(postCodeFirstStringAnkieter.length() == 2 && postCodeSecondStringAnkieter.length() == 3) {
+                postCodeFirstIntAnkieter = Integer.parseInt(postCodeFirstStringAnkieter);
+                postCodeSecondIntAnkieter = Integer.parseInt(postCodeSecondStringAnkieter);
+                return true;
+            }else{
+                panelAnkieteraLabelError.setText("Kod pocztowy ma niepoprawną długość!");
+            }
+        }catch(IllegalArgumentException argumentException){
+            panelAnkieteraLabelError.setText("Kod pocztowy jest niepoprawny!");
+            System.out.println(argumentException.getMessage());
+        }catch(Exception exception){
+            System.out.println(exception.getMessage());
+        }
+        return false;
+    }
+
+    /**
+     * Metoda sprawdza, czy hasło ma odpowiednia ilośc znaków i czy nowe hasło jest takie samo jak powtórz hasło.
+     * Sprawdza również czy dotychczasowe hasło zostało podane poprawnie, albo nie jest zmieniane i zostało puste.
+     *
+     * @return true jeśli hasło ma odpowiednią długość i jest takie samo jak powtórz hasło i dotychczasowe hasło
+     * zostało podane poprawnie, w przeciwnym wypadku false.
+     */
+    private boolean checkPasswordAnkieter(){
+        if(((passwordRepeatAnkieter.length() < minSizePasswordAnkieter) ||
+                (passwordNewAnkieter.length() < minSizePasswordAnkieter)) && (!passwordAnkieter.isEmpty())){
+
+            sprawdzhaslo ="Hasło jest za krótkie lub nie wypełniłeś wszystkich pól!";
+        }else {
+            if(!passwordNewAnkieter.equals(passwordRepeatAnkieter)){
+                sprawdzhaslo ="Hasła nie są takie same!";
+            }else{
+                if(passwordAnkieter.equals(curentUser.getHaslo())){
+                    return true;
+                }
+                else if(passwordAnkieter.isEmpty() && passwordNewAnkieter.isEmpty() && passwordRepeatAnkieter.isEmpty()){
+                    return true;
+                }
+                else{
+                    sprawdzhaslo ="Podałeś niepoprawne hasło do konta!";}
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Metoda sprawdza, czy w podanym adresie e-mail znajduje się @.
+     *
+     * @return true jeśli sdres e-mail posiada @, w przeciwnym wypadku false.
+     */
+    private boolean chechEmailAnkieter(){
+        if(mailAnkieter.indexOf('@') != -1){
+            return true;
+        }
+        return false;
+    }
+
     @FXML
     void panelAnkieteraButtonZmienUstawienia(ActionEvent event) {
 
@@ -121,7 +227,7 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
         streetAnkieter = ulica.getText();
         numberHouseStringAnkieter = budynek.getText();
         numberFlatStringAnkieter = lokal.getText();
-        postCodeFirstStringNAnkieter = kod1.getText();
+        postCodeFirstStringAnkieter = kod1.getText();
         postCodeSecondStringAnkieter = kod2.getText();
         if (compulsoryFildNotNullAnkieter()) {
             if (postCodeIsNumberAnkieter()) {
@@ -159,7 +265,7 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
 
         }
     }
-*/
+
     private void setUstawienia() {
         String imie = curentUser2.getImie();
         String nazwisko = curentUser2.getNazwisko();
@@ -205,7 +311,6 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
 
     private void setAnkiety() {
         AnkietyQuery query = new AnkietyQuery();
-//        List<Ankiety> ankiety = query.selectAll();
         List<Ankiety> ankiety = query.selectAllUzytkownik(curentUser2);
         ObservableList<AnikieterTabelka> dane = FXCollections.observableArrayList();
         for (Ankiety ankieta2:ankiety
@@ -229,11 +334,12 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
     public void setStartValues(Uzytkownicy user) {
 
         this.curentUser2 = user;
-///        imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - Ankieter";
-        /// imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - konto ankietera";
-       // imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
-       // imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
+        this.curentUser = user;
+         imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - konto ankietera";
+       imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
+        imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
 
+        setUstawienia();
         setAnkiety();
     }
 
@@ -272,13 +378,7 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
 
     }
 
-    public void panelAnkieteraButtonZmienUstawienia(ActionEvent event) {
-    }
 
-//    @Override
-//    public void setStartValues(Uzytkownicy user) {
-//        this.curentUser = user;
-//        setUstawienia();
-//    }
+
 
 }
