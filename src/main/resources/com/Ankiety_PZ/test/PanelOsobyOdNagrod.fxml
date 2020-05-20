@@ -25,9 +25,12 @@
                                         <Font size="24.0" />
                                     </font>
                                 </Label>
-                                <Button fx:id="wyloguj" layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
-                        <Button fx:id="panelnagroddodajnagrode" layoutX="997.0" layoutY="618.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" prefHeight="50.0" prefWidth="173.0" text="Dodaj nagrodę" />
+                                <Button fx:id="wyloguj" layoutX="14.0" layoutY="631.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
+                        <Button fx:id="panelnagroddodajnagrode" layoutX="1028.0" layoutY="631.0" mnemonicParsing="false" onAction="#panelnagroddodajnagrode" prefHeight="50.0" prefWidth="159.0" text="Dodaj nagrodę" />
                                 <TableView fx:id="tableNagrody" layoutX="58.0" layoutY="101.0" prefHeight="487.0" prefWidth="1090.0">
+                                    <placeholder>
+                                        <Label text="Brak nagród" />
+                                    </placeholder>
                                     <columns>
                                         <TableColumn fx:id="nagrody" maxWidth="400.0" minWidth="200.0" prefWidth="450.0" text="Nagrody" />
                                         <TableColumn fx:id="zdjecie" maxWidth="340.0" minWidth="200.0" prefWidth="340.0" text="Zdjęcie" />
@@ -44,8 +47,8 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="1201.0" styleClass="hbox" stylesheets="@style.css">
                             <children>
-                                <Button fx:id="wyloguj" layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
-                                <Button fx:id="panelOsobyOdNagrodButtonZmienUstawienia" layoutX="997.0" layoutY="625.0" mnemonicParsing="false" onAction="#panelOsobyOdNagrodButtonZmienUstawienia" prefHeight="50.0" prefWidth="173.0" text="Zapisz zmiany" />
+                                <Button fx:id="wyloguj" layoutX="14.0" layoutY="631.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
+                                <Button fx:id="panelOsobyOdNagrodButtonZmienUstawienia" layoutX="1029.0" layoutY="631.0" mnemonicParsing="false" onAction="#panelOsobyOdNagrodButtonZmienUstawienia" prefHeight="50.0" prefWidth="158.0" text="Zapisz zmiany" />
                                 <Label fx:id="imie_nazwisko_rola2" alignment="CENTER_RIGHT" layoutX="546.0" layoutY="22.0" prefHeight="57.0" prefWidth="632.0" stylesheets="@style.css" />
                                 <Label layoutX="60.0" layoutY="34.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Konto użytkownika">
                                     <font>

@@ -14,12 +14,12 @@
    <bottom>
       <Pane prefHeight="74.0" prefWidth="578.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="panelRegiButtonRegi" layoutX="450.0" layoutY="15.0" mnemonicParsing="false" onAction="#panelRegiButtonRegiAction" text="Zarejestruj">
+            <Button fx:id="panelRegiButtonRegi" layoutX="465.0" layoutY="15.0" mnemonicParsing="false" onAction="#panelRegiButtonRegiAction" prefHeight="50.0" prefWidth="125.0" text="Zarejestruj">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Label fx:id="panelRegiLabelError" layoutX="5.0" layoutY="15.0" prefHeight="17.0" prefWidth="435.0" styleClass="error" textFill="#dd1010" />
+            <Label fx:id="panelRegiLabelError" layoutX="5.0" layoutY="23.0" prefHeight="17.0" prefWidth="435.0" styleClass="error" textFill="#dd1010" />
          </children>
       </Pane>
    </bottom>

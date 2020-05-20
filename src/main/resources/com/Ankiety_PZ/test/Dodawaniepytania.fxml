@@ -58,6 +58,9 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="277.0" prefWidth="1137.0">
              <TableView fx:id="odpowiedziTabelka" layoutX="9.0" layoutY="74.0" prefHeight="204.0" prefWidth="1122.0">
+                <placeholder>
+                   <Label text="Brak odpowiedzi do pytania"/>
+                </placeholder>
                 <columns>
                    <TableColumn fx:id="treść" maxWidth="995.0" minWidth="995.0" prefWidth="995.0" text="Treść" />
                    <TableColumn fx:id="przyciskUsun" maxWidth="110.0" minWidth="70.0" prefWidth="110.0" />
