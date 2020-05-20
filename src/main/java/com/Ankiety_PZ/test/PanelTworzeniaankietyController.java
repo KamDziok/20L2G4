@@ -163,12 +163,17 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         }
         finally {
             dodawaniepytaniaController.setStartValuesAnkiety(ankiety);
+            dodawaniepytaniaController.setStartValues(curetUser);
             dodawaniepytaniaController.SetEdycja(edycja2);
             activeScene(event, false, false);
         }
 
     }
+    @Override
+    public void setStartValues(Uzytkownicy user) {
+        this.curetUser = user;
 
+    }
 
     @Override
     public void setStartValuesAnkiety(Ankiety ankieta)
@@ -210,7 +215,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     public void setStartValuesEdytujAnkiety (Ankiety ankieta){
         AnkietyQuery query1 = new AnkietyQuery();
         this.ankiety = query1.selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(ankieta);
-
+        this.ankiety.setUzytkownicy(curetUser);
         trescTytulu.setText(ankiety.getTytul());
         punkty.setText(String.valueOf(ankiety.getLiczbaPunktow()));
         String dat = "dd";
@@ -242,11 +247,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         liczbapytan =liczpytania+liczpytaniaB;
 
     }
-    @Override
-    public void setStartValues(Uzytkownicy user) {
-        this.curetUser = user;
 
-    }
 
 
     @Override
@@ -398,12 +399,8 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
                                 ankiety.setLiczbaPunktow(liczbaPunktow);
                                 ankiety.setDataRozpoczecia(dataRozpoczecia);
                                 ankiety.setDataZakonczenia(dataZakonczenia);
-                                //ankiety.setLiczbaWypelnien(liczbawypełnein);
-
-                                System.out.println(ankiety);
-                                //System.out.println(ankiety.getUzytkownicy());
+                                System.out.println(ankiety);;
                                System.out.println(ankiety.getPytanias());
-                               // System.out.println(ankiety.getTytul());
                                 System.out.println(ankiety);
                                 AnkietyQuery query = new AnkietyQuery();
                                 if (edycja2) {
@@ -434,34 +431,19 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         }else{
             panelTworzeniaAnkietyLabelError.setText("Wymagane pola są puste!");
         }
-      //  loadingFXML(event, SceneFXML.PANEL_ANKIETERA);
-      //  PanelAnkieterController panelAnkieterController = load.getController();
-      //  panelAnkieterController.setStartValues(curetUser);
-      //  activeScene(event, false, false);
+        loadingFXML(event, SceneFXML.PANEL_ANKIETERA);
+        PanelAnkieterController panelAnkieterController = load.getController();
+        panelAnkieterController.setStartValues(curetUser);
+        activeScene(event, false, false);
 
 
     }
 
-    private void setPytanie() {
-        AnkietyQuery query = new AnkietyQuery();
-        ObservableList<PytanieTabelka> dane = FXCollections.observableArrayList();
-        ankiety = query.selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(ankiety);
-        ankiety.getPytanias().forEach(pytanie -> {
-            Pytania pytania2 = (Pytania) pytanie;
-            dane.add(new PytanieTabelka(ankiety, pytania2));
-        liczpytania++;
-        });
-        treść.setCellValueFactory(new PropertyValueFactory("treść"));
-        Rpytanie.setCellValueFactory(new PropertyValueFactory("Rpytanie"));
-        przyciskEdycja.setCellValueFactory(new PropertyValueFactory("buttonEdycja"));
-        przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun" ));
-        pytanieTabele.itemsProperty().setValue(dane);
-    }
     private void setPytanieB() {
         ObservableList<PytanieTabelka> dane = FXCollections.observableArrayList();
         ankiety.getPytanias().forEach(pytanie -> {
             Pytania pytania2 = (Pytania) pytanie;
-            dane.add(new PytanieTabelka(ankiety, pytania2));
+            dane.add(new PytanieTabelka(ankiety, pytania2, curetUser));
             liczpytaniaB++;
         });
         treść.setCellValueFactory(new PropertyValueFactory("treść"));
@@ -491,11 +473,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     public void initialize(URL location, ResourceBundle resources) {
         loadData();
     }
-public void Usun(Pytania pytanie)
-{
 
-
-}
 
 
 }

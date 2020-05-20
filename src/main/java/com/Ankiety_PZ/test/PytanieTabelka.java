@@ -12,13 +12,13 @@ import java.util.Iterator;
 public class PytanieTabelka extends BulidStage implements SetStartValues{
 
     public String treść;
-    public int Rpytanie;
+    public String Rpytanie;
     public Button buttonUsun;
     public Button buttonEdycja;
 
-    PytanieTabelka(Ankiety ankieta, Pytania pytanie) {
+    PytanieTabelka(Ankiety ankieta, Pytania pytanie, Uzytkownicy user) {
         treść = pytanie.getTresc();
-        Rpytanie = pytanie.getRodzajPytania();
+        Rpytanie = String.valueOf(pytanie.getRodzajPytania());
         buttonUsun = new Button("Usuń");
         buttonUsun.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -27,22 +27,13 @@ public class PytanieTabelka extends BulidStage implements SetStartValues{
                 PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
                 PytaniaQuery query1 =new PytaniaQuery();
                 System.out.println(pytanie);
-
-               /// pytanie.getOdpowiedzis().removeAll(pytanie.getOdpowiedzis());
-             //  pytanie.getOdpowiedzis().forEach(odpowiedz ->{Odpowiedzi JednaOdp = (Odpowiedzi) odpowiedz;
-              // OdpowiedziQuery JednaOdpq = new OdpowiedziQuery();
-               //   JednaOdpq.deleteOdpowiedzi(JednaOdp);});
-                //System.out.println("pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()pytanie.getOdpowiedzis()");
-                //System.out.println(pytanie.getOdpowiedzis());
                 ankieta.getPytanias().remove(pytanie);
                 query1.deletePytania(pytanie);
-              ///  ankieta.getPytanias().remove(pytanie);
-                System.out.println(pytanie);
-
+                System.out.println(user);
                 panelTworzeniaankietyController.setStartValuesAnkiety(ankieta);
+                panelTworzeniaankietyController.setStartValues(user);
+
                 panelTworzeniaankietyController.SetEdycja(true);
-                   // pytanie.getOdpowiedzis().removeAll(pytanie.getOdpowiedzis());
-                   // ankieta.getPytanias().remove(pytanie);
 
                 activeScene(event, false, false);
             }
@@ -55,17 +46,13 @@ public class PytanieTabelka extends BulidStage implements SetStartValues{
                 DodawaniepytaniaController dodawaniepytaniaController  = load.getController();
                 dodawaniepytaniaController.Edycja(false);
                 dodawaniepytaniaController.SetEdycja(true);
+                dodawaniepytaniaController.setStartValues(user);
                 dodawaniepytaniaController.setStartValuesAnkiety(ankieta);
                 dodawaniepytaniaController.setStartValuesPytanie(pytanie);
                 if(pytanie.getRodzajPytania()== TypeOfQuestion.OPEN) pytanie.initHashSetOdpowiedzi();
-
                     dodawaniepytaniaController.setOdpowiedziSS(pytanie);
-
                 activeScene(event, false, false);
-                System.out.println("PRZEKAZYWANIE PYTANIE I ANKIETY DO EDYTOWANIA");
-                System.out.println(ankieta);
-                System.out.println(pytanie);
-                System.out.println(pytanie.getZdjecie());
+
             }
         });
     }
@@ -74,7 +61,7 @@ public class PytanieTabelka extends BulidStage implements SetStartValues{
         return treść;
     }
 
-    public int getrodzajPytania() {
+    public String getrodzajPytania() {
         return Rpytanie;
     }
     public Button getButtonEdycja() {
