@@ -245,12 +245,12 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         System.out.println(bytes);
         zdjecie = bytes;
         zdjecieTAK = false;
-
+        pytania.setZdjecie(zdjecie);
         }
 
 
     public void conversjaNaZ(byte[] bytes) throws IOException {
-        if(bytes != null){
+
             ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
             Iterator<?> readers = ImageIO.getImageReadersByFormatName("jpg");
 
@@ -277,7 +277,8 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
             System.out.println(imageFile);
 
 
-        }
+
+
 
     }
 
@@ -319,7 +320,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         if(!edycja) {
 
             pytania.setTresc(trescPytania.getText());
-            pytania.setZdjecie(zdjecie);
+
             pytania.setRodzajPytania(rodzajPytania);
             pytania.setPunktowe(punktowe);
             pytania.setAnkiety(ankiety2);
