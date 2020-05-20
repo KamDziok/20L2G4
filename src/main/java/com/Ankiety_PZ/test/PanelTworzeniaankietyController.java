@@ -9,6 +9,7 @@ import com.Ankiety_PZ.hibernate.Nagrody;
 import com.Ankiety_PZ.hibernate.Pytania;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.AnkietyQuery;
+import com.Ankiety_PZ.query.PytaniaQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -49,7 +50,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     private Date dataRozpoczecia;
     private Date dataZakonczenia;
     private Ankiety ankiety;
-    public Boolean edycja;
+    public Boolean edycja2 = false;
     private String dataod;
     private String datado;
     @FXML private TableView pytanieTabele;
@@ -158,7 +159,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         }
         finally {
             dodawaniepytaniaController.setStartValuesAnkiety(ankiety);
-            dodawaniepytaniaController.SetEdycja(edycja);
+            dodawaniepytaniaController.SetEdycja(edycja2);
             activeScene(event, false, false);
         }
 
@@ -239,7 +240,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     }
     @Override
     public void setStartValues(Uzytkownicy user) {
-        setPytanie();
+
 
     }
 
@@ -256,8 +257,8 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
 
     public void SetEdycja(Boolean wyb)
     {
-        edycja = wyb;
-        System.out.println(edycja);
+        edycja2 = wyb;
+        System.out.println(edycja2);
     }
 
     /**
@@ -398,9 +399,14 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
                                 ankiety.setDataRozpoczecia(dataRozpoczecia);
                                 ankiety.setDataZakonczenia(dataZakonczenia);
                                 //ankiety.setLiczbaWypelnien(liczbawypełnein);
-                                System.out.println(ankiety.getPytanias());
+
+                                System.out.println(ankiety);
+                                //System.out.println(ankiety.getUzytkownicy());
+                               System.out.println(ankiety.getPytanias());
+                               // System.out.println(ankiety.getTytul());
+                                System.out.println(ankiety);
                                 AnkietyQuery query = new AnkietyQuery();
-                                if (edycja) {
+                                if (edycja2) {
                                     query.updateAnkietyWithPytaniaAndOdpowiedzi(ankiety);
                                 } else {
                                     query.addAnkietyWithPytaniaAndOdpowiedzi(ankiety);
@@ -428,6 +434,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         }else{
             panelTworzeniaAnkietyLabelError.setText("Wymagane pola są puste!");
         }
+
 
     }
 

@@ -56,6 +56,7 @@ public class PytanieTabelka extends BulidStage implements SetStartValues{
                 dodawaniepytaniaController.SetEdycja(true);
                 dodawaniepytaniaController.setStartValuesAnkiety(ankieta);
                 dodawaniepytaniaController.setStartValuesPytanie(pytanie);
+                dodawaniepytaniaController.setOdpowiedziSS(pytanie);
                 activeScene(event, false, false);
                 System.out.println("PRZEKAZYWANIE PYTANIE I ANKIETY DO EDYTOWANIA");
                 System.out.println(ankieta);
