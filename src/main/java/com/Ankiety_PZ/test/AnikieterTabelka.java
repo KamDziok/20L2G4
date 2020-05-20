@@ -13,7 +13,6 @@ import java.util.Date;
 import java.util.Iterator;
 
 public class AnikieterTabelka extends BulidStage implements SetStartValues{
-    private Uzytkownicy curentUser;
     public String tytul;
     public int liczbaPunktow;
     public Date dataZakonczenia;
@@ -21,7 +20,7 @@ public class AnikieterTabelka extends BulidStage implements SetStartValues{
     public Button buttonEdycja;
     public Button buttonAnaliza;
 
-    AnikieterTabelka(Ankiety ankieta) {
+    AnikieterTabelka(Ankiety ankieta, Uzytkownicy curentUser) {
         tytul = ankieta.getTytul();
         liczbaPunktow = ankieta.getLiczbaPunktow();
         dataZakonczenia = ankieta.getDataZakonczenia();
@@ -33,6 +32,7 @@ public class AnikieterTabelka extends BulidStage implements SetStartValues{
                 PanelAnkieterController panelAnkieterController = load.getController();
                 AnkietyQuery query = new AnkietyQuery();
                 query.deleteAnkiety(ankieta);
+
                 panelAnkieterController.setStartValues(ankieta.getUzytkownicy());
                 activeScene(event, false, false);
             }
@@ -45,6 +45,7 @@ public class AnikieterTabelka extends BulidStage implements SetStartValues{
                 PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
                 panelTworzeniaankietyController.SetEdycja(true);
                 panelTworzeniaankietyController.setStartValuesEdytujAnkiety(ankieta);
+                panelTworzeniaankietyController.setStartValues(curentUser);
                 activeScene(event, false, false);
                 System.out.println("przekazanie ankiety do edycji");
                 System.out.println(ankieta);
@@ -87,7 +88,7 @@ public class AnikieterTabelka extends BulidStage implements SetStartValues{
 
     @Override
     public void setStartValues(Uzytkownicy user) {
-        this.curentUser = user;
+
 
 
     }

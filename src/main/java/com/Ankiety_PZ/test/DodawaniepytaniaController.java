@@ -86,9 +86,11 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     private Ankiety ankietyRESET;
     private Pytania pytanieRESET;
     private byte[] zdjecie;
-    private Boolean edycja2;
+    private Boolean edycja2 = false;
     private String odp;
     private String tresc;
+    private Uzytkownicy  curetUser;
+
     private Integer punktowe;
     private int rodzajPytania;
     private Ankiety ankiety2;
@@ -109,6 +111,8 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
     @Override
     public void setStartValues(Uzytkownicy user) {
+        this.curetUser = user;
+
 
     }
     public void StanRESTARTU(Ankiety ankieta)
@@ -129,10 +133,6 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     @Override
     public void setStartValuesPytanie(Pytania pytanie) {
         this.pytania = pytanie;
-
-        ///setOdpowiedzi();
-
-
         if(pytania != null){
         System.out.println(ankiety2);
         System.out.println(pytanie);
@@ -155,7 +155,6 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
         }}}}
 
-
         if(null != pytania.getZdjecie()){
         try {
             conversjaNaZ(pytania.getZdjecie());
@@ -169,10 +168,6 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
             }
 
         }
-
-          // setOdpowiedzi();
-
-
     }
 
 
@@ -250,12 +245,12 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         System.out.println(bytes);
         zdjecie = bytes;
         zdjecieTAK = false;
-
+        pytania.setZdjecie(zdjecie);
         }
 
 
     public void conversjaNaZ(byte[] bytes) throws IOException {
-        if(bytes != null){
+
             ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
             Iterator<?> readers = ImageIO.getImageReadersByFormatName("jpg");
 
@@ -282,7 +277,8 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
             System.out.println(imageFile);
 
 
-        }
+
+
 
     }
 
@@ -308,14 +304,23 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         if (rodzajPytania == TypeOfQuestion.OPEN) {
             Pytania pytanie = new Pytania();
             pytanie.setIdPytania(-1);
-            if (pytania != null) edycja = true;
+            if (pytania != null) {
+
+
+
+
+
+
+            }
+
             else{pytania = pytanie;}
 
 
         }
         if(!edycja) {
+
             pytania.setTresc(trescPytania.getText());
-            pytania.setZdjecie(zdjecie);
+
             pytania.setRodzajPytania(rodzajPytania);
             pytania.setPunktowe(punktowe);
             pytania.setAnkiety(ankiety2);
@@ -343,7 +348,8 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
         PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
         panelTworzeniaankietyController.setStartValuesAnkiety(ankiety2);
-        //panelTworzeniaankietyController.setStartValuesPytanie(pytania);
+       // panelTworzeniaankietyController.setStartValuesPytanie(pytania);
+        panelTworzeniaankietyController.setStartValues(curetUser);
         panelTworzeniaankietyController.SetEdycja(edycja2);
         activeScene(event, false, false);
 
@@ -430,16 +436,18 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
                 pytanie.initHashSetOdpowiedzi();
                 Odpowiedzi odpo = new Odpowiedzi(pytania, odp);
                 odpo.setIdOdpowiedzi(-1);
-              //  pytanie.setIdPytania(-1);
+                pytanie.setIdPytania(-1);
                 pytania = pytanie;
+                odpo.setPytania(pytania);
                 pytania.getOdpowiedzis().add(odpo);
-
                 edycja=false;
+
+
         }else {
                 Odpowiedzi odpo = new Odpowiedzi(pytania, odp);
                 odpo.setIdOdpowiedzi(-1);
-                //pytania.setIdPytania(-1);
-                pytania.getIdPytania();
+                pytania.setIdPytania(-1);
+                //pytania.getIdPytania();
                 edycja=true;
                 pytania.getOdpowiedzis().add(odpo);
             }
@@ -448,8 +456,9 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         }
         else{
             panelTworzeniaPytanLabelError.setText("Nie można dodać odpowiedzi do pytania otwartego!");
-        }
 
+
+        }
     }
     public void Edycja(Boolean e)
     {

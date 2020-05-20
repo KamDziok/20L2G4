@@ -316,7 +316,7 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
         for (Ankiety ankieta2:ankiety
         ) {
 
-                dane.add(new AnikieterTabelka(ankieta2));
+                dane.add(new AnikieterTabelka(ankieta2, curentUser));
 
 
         }
@@ -335,8 +335,8 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
 
         this.curentUser2 = user;
         this.curentUser = user;
-         imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - konto ankietera";
-       imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
+        imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - konto ankietera";
+        imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
         imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
 
         setUstawienia();

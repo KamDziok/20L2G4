@@ -47,10 +47,11 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     private String tytul;
     private int liczbaPunktow;
     private String liczbaPunktowS;
+    private Uzytkownicy  curetUser;
     private Date dataRozpoczecia;
     private Date dataZakonczenia;
     private Ankiety ankiety;
-    public Boolean edycja2 = false;
+    public Boolean edycja2 = true;
     private String dataod;
     private String datado;
     @FXML private TableView pytanieTabele;
@@ -84,7 +85,10 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     @FXML
     private ChoiceBox<String> dataDORRRR;
 
-
+    public void SetEdycja(Boolean wyb)
+    {
+        edycja2 = wyb;
+    }
     /**
      * Metoda obsługująca przyciśk wyloguj.
      *
@@ -240,7 +244,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     }
     @Override
     public void setStartValues(Uzytkownicy user) {
-
+        this.curetUser = user;
 
     }
 
@@ -255,11 +259,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     @Override
     public void setStartValuesIerator(Iterator iterator) { }
 
-    public void SetEdycja(Boolean wyb)
-    {
-        edycja2 = wyb;
-        System.out.println(edycja2);
-    }
+
 
     /**
      * Metoda sprawdzenie czy obowiązkowe pola nie są puste.
@@ -434,6 +434,10 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         }else{
             panelTworzeniaAnkietyLabelError.setText("Wymagane pola są puste!");
         }
+      //  loadingFXML(event, SceneFXML.PANEL_ANKIETERA);
+      //  PanelAnkieterController panelAnkieterController = load.getController();
+      //  panelAnkieterController.setStartValues(curetUser);
+      //  activeScene(event, false, false);
 
 
     }

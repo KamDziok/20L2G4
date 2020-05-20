@@ -9,9 +9,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1201.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.PanelEdycjiUzytkownikaController">
    <children>
-      <Button fx:id="wyloguj" layoutX="14.0" layoutY="658.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
-      <Button fx:id="panelEdycjiUzytkownikowButtonZapisz" layoutX="1029.0" layoutY="659.0" mnemonicParsing="false" onAction="#panelEdycjiUzytkownikowButtonZapisz" prefHeight="47.0" prefWidth="158.0" text="Zapisz" />
-      <Button fx:id="panelEdycjiUzytkownikowButtonAnuluj" layoutX="884.0" layoutY="659.0" mnemonicParsing="false" onAction="#panelEdycjiUzytkownikowButtonAnuluj" prefHeight="47.0" prefWidth="126.0" text="Anuluj" />
+      <Button fx:id="wyloguj" layoutX="14.0" layoutY="660.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
+      <Button fx:id="panelEdycjiUzytkownikowButtonZapisz" layoutX="1062.0" layoutY="660.0" mnemonicParsing="false" onAction="#panelEdycjiUzytkownikowButtonZapisz" prefHeight="50.0" prefWidth="125.0" text="Zapisz" />
+      <Button fx:id="panelEdycjiUzytkownikowButtonAnuluj" layoutX="923.0" layoutY="660.0" mnemonicParsing="false" onAction="#panelEdycjiUzytkownikowButtonAnuluj" prefHeight="50.0" prefWidth="125.0" text="Anuluj" />
       <Label layoutX="70.0" layoutY="44.0" prefHeight="33.0" prefWidth="289.0" styleClass="labelbold" stylesheets="@style.css" text="Edycja danych użytkownika">
          <font>
             <Font size="24.0" />

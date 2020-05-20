@@ -19,6 +19,9 @@
                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="1201.0" styleClass="hbox" stylesheets="@style.css">
                   <children>
                      <TableView fx:id="tableAnkiety" layoutX="58.0" layoutY="101.0" prefHeight="487.0" prefWidth="1090.0">
+                        <placeholder>
+                           <Label text="Brak ankiet" />
+                        </placeholder>
                         <columns>
                            <TableColumn fx:id="tytul" maxWidth="405.0" minWidth="375.0" prefWidth="405.0" text="Tytuł" />
                            <TableColumn fx:id="wygasa" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Wygasa" />
@@ -29,8 +32,8 @@
                         </columns>
                      </TableView>
 
-                     <Button fx:id="wyloguj2" layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#wyloguj2Action" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
-                        <Button fx:id="panelAnkietButtonDodaj" layoutX="1016.0" layoutY="620.0" mnemonicParsing="false" onAction="#panelAnkietButtonDodajAction" prefHeight="47.0" prefWidth="158.0" text="Dodaj ankietę" />
+                     <Button fx:id="wyloguj2" layoutX="14.0" layoutY="631.0" mnemonicParsing="false" onAction="#wyloguj2Action" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
+                        <Button fx:id="panelAnkietButtonDodaj" layoutX="1029.0" layoutY="631.0" mnemonicParsing="false" onAction="#panelAnkietButtonDodajAction" prefHeight="50.0" prefWidth="158.0" text="Dodaj ankietę" />
                         <Label layoutX="60.0" layoutY="34.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Menadżer ankiet">
                            <font>
                               <Font size="24.0" />
@@ -44,8 +47,8 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="553.0" prefWidth="1201.0" styleClass="hbox" stylesheets="@style.css">
                      <children>
-                        <Button fx:id="wyloguj1" layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#wyloguj1Action" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
-                        <Button layoutX="997.0" layoutY="625.0" mnemonicParsing="false" onAction="#panelAnkieteraButtonZmienUstawienia" prefHeight="50.0" prefWidth="173.0" text="Zapisz zmiany" />
+                        <Button fx:id="wyloguj1" layoutX="14.0" layoutY="631.0" mnemonicParsing="false" onAction="#wyloguj1Action" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
+                        <Button layoutX="1029.0" layoutY="631.0" mnemonicParsing="false" onAction="#panelAnkieteraButtonZmienUstawienia" prefHeight="50.0" prefWidth="158.0" text="Zapisz zmiany" />
                         <Label layoutX="60.0" layoutY="34.0" prefHeight="32.0" prefWidth="238.0" styleClass="labelbold" stylesheets="@style.css" text="Konto użytkownika">
                            <font>
                               <Font size="24.0" />
