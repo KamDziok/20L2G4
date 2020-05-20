@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
 import java.util.Iterator;
+import java.util.List;
 
 public class PytanieTabelka extends BulidStage implements SetStartValues{
 
@@ -16,26 +17,31 @@ public class PytanieTabelka extends BulidStage implements SetStartValues{
     public Button buttonUsun;
     public Button buttonEdycja;
 
-    PytanieTabelka(Ankiety ankieta, Pytania pytanie, Uzytkownicy user) {
+    PytanieTabelka(Ankiety ankieta, Pytania pytanie, Uzytkownicy user, List<Odpowiedzi> odp , List<Pytania> pyt) {
         treść = pytanie.getTresc();
-        Rpytanie = String.valueOf(pytanie.getRodzajPytania());
+        Rpytanie = pytanie.getRodzajPytania()+" ";
         buttonUsun = new Button("Usuń");
         buttonUsun.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
                 PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
-                PytaniaQuery query1 =new PytaniaQuery();
+                //PytaniaQuery query1 =new PytaniaQuery();
                 System.out.println(pytanie);
                 ankieta.getPytanias().remove(pytanie);
-                query1.deletePytania(pytanie);
+                //query1.deletePytania(pytanie);
                 System.out.println(user);
-                panelTworzeniaankietyController.setStartValuesAnkiety(ankieta);
-                panelTworzeniaankietyController.setStartValues(user);
 
+                pyt.add(pytanie);
+                System.out.println(pyt);
+                panelTworzeniaankietyController.DaneUsniecia(pyt, odp);
                 panelTworzeniaankietyController.SetEdycja(true);
+                panelTworzeniaankietyController.setStartValues(user);
+                panelTworzeniaankietyController.setStartValuesAnkiety(ankieta);
 
                 activeScene(event, false, false);
+
+
             }
         });
         buttonEdycja = new Button("Edytuj");
@@ -44,11 +50,14 @@ public class PytanieTabelka extends BulidStage implements SetStartValues{
             public void handle(ActionEvent event) {
                 loadingFXML(event, SceneFXML.DODAJ_PYTANIE);
                 DodawaniepytaniaController dodawaniepytaniaController  = load.getController();
+                dodawaniepytaniaController.DaneUsniecia(pyt, odp);
                 dodawaniepytaniaController.Edycja(false);
                 dodawaniepytaniaController.SetEdycja(true);
+                dodawaniepytaniaController.SetAnuluj(odp);
                 dodawaniepytaniaController.setStartValues(user);
                 dodawaniepytaniaController.setStartValuesAnkiety(ankieta);
                 dodawaniepytaniaController.setStartValuesPytanie(pytanie);
+                dodawaniepytaniaController.Inicjajca();
                 if(pytanie.getRodzajPytania()== TypeOfQuestion.OPEN) pytanie.initHashSetOdpowiedzi();
                     dodawaniepytaniaController.setOdpowiedziSS(pytanie);
                 activeScene(event, false, false);
@@ -61,7 +70,7 @@ public class PytanieTabelka extends BulidStage implements SetStartValues{
         return treść;
     }
 
-    public String getrodzajPytania() {
+    public String getRpytanie() {
         return Rpytanie;
     }
     public Button getButtonEdycja() {

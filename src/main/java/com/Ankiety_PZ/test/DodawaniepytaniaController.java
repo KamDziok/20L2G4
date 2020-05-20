@@ -83,8 +83,6 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     @FXML private TableView odpowiedziTabelka;
     @FXML private TableColumn treść;
     @FXML private TableColumn przyciskUsun;
-    private Ankiety ankietyRESET;
-    private Pytania pytanieRESET;
     private byte[] zdjecie;
     private Boolean edycja2 = false;
     private String odp;
@@ -94,12 +92,13 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     private Integer punktowe;
     private int rodzajPytania;
     private Ankiety ankiety2;
-    private Ankiety AnkietaStanPoczatkowy;
     private List<String> listaOdp = new ArrayList<String>();
     private Pytania pytania;
-    private  Boolean zdjecieTAK = false;
-
+    private List<Pytania> listaPytaU;
+    private List<Odpowiedzi> listaOdpU;
+    private List<Odpowiedzi> listaOdpTego;
     private Boolean edycja = true;
+    private List<Odpowiedzi> listaOdpUAnuluj= new ArrayList<>();
 
     /**
      * Metoda obsługująca przyciśk anuluj.
@@ -115,11 +114,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
 
     }
-    public void StanRESTARTU(Ankiety ankieta)
-    {
-        this.AnkietaStanPoczatkowy = ankieta;
 
-    }
 
     @Override
     public void setStartValuesAnkiety(Ankiety ankieta) {
@@ -181,15 +176,30 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     public void setStartValuesIerator(Iterator iterator) {
 
     }
+    public  void  Inicjajca()
+    {
+        List<Odpowiedzi> listaOdpTego = new ArrayList<>();
+
+    }
     public void SetEdycja(Boolean wyb)
     {
         edycja2 = wyb;
     }
+    public void SetAnuluj(List<Odpowiedzi> odp){
+        this.listaOdpTego= odp;
+    }
+
     @FXML
     void anulujAction(ActionEvent event) {
         loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
         PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
-        panelTworzeniaankietyController.setStartValuesAnkiety(ankietyRESET);
+        //panelTworzeniaankietyController.DaneUsniecia(listaPytaU, listaOdpUAnuluj);
+
+        pytania.getOdpowiedzis().addAll(listaOdpTego);
+
+        panelTworzeniaankietyController.setStartValuesPytanie(pytania);
+        panelTworzeniaankietyController.setStartValues(curetUser);
+        panelTworzeniaankietyController.setStartValuesAnkiety(ankiety2);
         panelTworzeniaankietyController.SetEdycja(edycja2);
         activeScene(event, false, false);
 
@@ -244,7 +254,6 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         System.out.println("alalllllllllllllllllllllllllllllllllllllllllllll");
         System.out.println(bytes);
         zdjecie = bytes;
-        zdjecieTAK = false;
         pytania.setZdjecie(zdjecie);
         }
 
@@ -347,6 +356,8 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         }
         loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
         PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
+        listaOdpU.addAll(listaOdpTego);
+        panelTworzeniaankietyController.DaneUsniecia(listaPytaU, listaOdpU);
         panelTworzeniaankietyController.setStartValuesAnkiety(ankiety2);
        // panelTworzeniaankietyController.setStartValuesPytanie(pytania);
         panelTworzeniaankietyController.setStartValues(curetUser);
@@ -468,11 +479,15 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     public void setOdpowiedziSS(Pytania pytania){
         ObservableList<OdpowiedziTabelka> dane = FXCollections.observableArrayList();
         pytania.getOdpowiedzis().forEach(odpowiedz ->{Odpowiedzi JednaOdp = (Odpowiedzi) odpowiedz;
-        dane.add(new OdpowiedziTabelka(JednaOdp, ankiety2, pytania));});
+        dane.add(new OdpowiedziTabelka(JednaOdp, ankiety2, curetUser,pytania,  listaOdpU, listaPytaU, listaOdpTego));});
         odpowiedziTabelka.itemsProperty().setValue(dane);
         treść.setCellValueFactory(new PropertyValueFactory("treść"));
         przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
 
+    }
+    public void DaneUsniecia(List<Pytania> pyt, List<Odpowiedzi> odp){
+        this.listaPytaU= pyt;
+        this.listaOdpU= odp;
     }
 
 

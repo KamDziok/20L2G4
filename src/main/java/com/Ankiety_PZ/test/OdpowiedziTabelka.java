@@ -16,7 +16,7 @@ public class OdpowiedziTabelka extends BulidStage{
     public Button buttonUsun;
 
 
-    OdpowiedziTabelka(Odpowiedzi odpowiedzi, Ankiety ankieta, Pytania pytania) {
+    OdpowiedziTabelka(Odpowiedzi odpowiedzi, Ankiety ankieta,Uzytkownicy user, Pytania pytania, List<Odpowiedzi> odp , List<Pytania> pyt, List<Odpowiedzi> usu) {
         treść = odpowiedzi.getOdpowiedz();
         buttonUsun = new Button("Usuń");
         buttonUsun.setOnAction(new EventHandler<ActionEvent>() {
@@ -25,9 +25,14 @@ public class OdpowiedziTabelka extends BulidStage{
                 loadingFXML(event, SceneFXML.DODAJ_PYTANIE);
                 DodawaniepytaniaController dodawaniepytaniaController  = load.getController();
                 pytania.getOdpowiedzis().remove(odpowiedzi);
-                OdpowiedziQuery query = new OdpowiedziQuery();
-                query.deleteOdpowiedzi(odpowiedzi);
+               // OdpowiedziQuery query = new OdpowiedziQuery();
+                //query.deleteOdpowiedzi(odpowiedzi);
+                usu.add(odpowiedzi);
+                dodawaniepytaniaController.SetAnuluj(usu);
+                dodawaniepytaniaController.DaneUsniecia(pyt, odp);
                 dodawaniepytaniaController.Edycja(true);
+                //dodawaniepytaniaController.DaneUsniecia(pyt);
+                dodawaniepytaniaController.setStartValues(user);
                 dodawaniepytaniaController.setStartValuesAnkiety(ankieta);
                 dodawaniepytaniaController.setStartValuesPytanie(pytania);
 

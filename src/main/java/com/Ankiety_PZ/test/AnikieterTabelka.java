@@ -47,6 +47,7 @@ public class AnikieterTabelka extends BulidStage implements SetStartValues{
                 panelTworzeniaankietyController.setStartValues(curentUser);
                 panelTworzeniaankietyController.setStartValuesEdytujAnkiety(ankieta);
 
+
                 activeScene(event, false, false);
                 System.out.println("przekazanie ankiety do edycji");
                 System.out.println(ankieta);
