@@ -51,6 +51,17 @@ public class OdpowiedziQuery extends OperationInSession {
         return modifyOdpowiedzi.deleteWithOutTransaction(odpowiedzi, session);
     }
 
+    public Boolean deleteListOdpowiedzi(List<Odpowiedzi> odpowiedziList, Session session){
+        Boolean result = false;
+        odpowiedziList.forEach(odpowiedzi -> {
+            if(odpowiedzi.getIdOdpowiedzi().intValue() != -1) {
+                deleteOdpowiedziWithOutTransaction(odpowiedzi, session);
+            }
+        });
+        result = true;
+        return result;
+    }
+
     /**
      * Metoda zwraca liste mozliwych idOdpowiedzi dla konkretnej pytania.
      *

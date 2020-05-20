@@ -20,6 +20,8 @@ public class AnikieterTabelka extends BulidStage implements SetStartValues{
     public Button buttonEdycja;
     public Button buttonAnaliza;
 
+
+
     AnikieterTabelka(Ankiety ankieta, Uzytkownicy curentUser) {
         tytul = ankieta.getTytul();
         liczbaPunktow = ankieta.getLiczbaPunktow();
@@ -41,6 +43,8 @@ public class AnikieterTabelka extends BulidStage implements SetStartValues{
         buttonEdycja.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                Date data = new Date();
+                if(data.compareTo(ankieta.getDataRozpoczecia())==-1){
                 loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
                 PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
                 panelTworzeniaankietyController.SetEdycja(true);
@@ -50,7 +54,15 @@ public class AnikieterTabelka extends BulidStage implements SetStartValues{
 
                 activeScene(event, false, false);
                 System.out.println("przekazanie ankiety do edycji");
-                System.out.println(ankieta);
+                System.out.println(ankieta);}
+                else{
+                    loadingFXML(event, SceneFXML.PANEL_ANKIETERA);
+                    PanelAnkieterController panelAnkieterController = load.getController();
+                    panelAnkieterController.ankietawtoku();
+                    panelAnkieterController.setStartValuesAnkiety(ankieta);
+                    panelAnkieterController.setStartValues(curentUser);
+                   activeScene(event, false, false);
+                }
             }
         });
         buttonAnaliza = new Button("Analiza");

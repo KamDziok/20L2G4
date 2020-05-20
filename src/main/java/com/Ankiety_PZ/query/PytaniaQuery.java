@@ -50,6 +50,20 @@ public class PytaniaQuery extends OperationInSession {
         return modifyPytania.deleteWithOutTransaction(pytania, session);
     }
 
+    public Boolean deleteListPytania(List<Pytania> pytaniaList, Session session){
+        Boolean result = false;
+        OdpowiedziQuery odpowiedziQuery = new OdpowiedziQuery();
+        pytaniaList.forEach(pytania -> {
+            if(pytania.getIdPytania().intValue() != -1) {
+                List<Odpowiedzi> odpowiedziList = odpowiedziQuery.selectSetOdpowiedziByIdPytania(pytania);
+                odpowiedziQuery.deleteListOdpowiedzi(odpowiedziList, session);
+                deletePytaniaWithOutTransaction(pytania, session);
+            }
+        });
+        result = true;
+        return result;
+    }
+
     /**
      * Metoda zwraca liste idPytan dla konkretnej ankiety.
      *
