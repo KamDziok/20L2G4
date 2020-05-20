@@ -9,6 +9,17 @@
     -fx-border-width: 3;
     -fx-font-size: 1.8em;
 }
+
+.text-area {
+    -fx-border-color: #00ccff;
+    -fx-border-width: 3;
+    -fx-font-size: 1.8em;
+}
+
+.text-area .scroll-bar:vertical:disabled {
+    -fx-opacity: 0;
+}
+
 .label {
      -fx-text-fill: black;
      -fx-font-size: 1.8em;
