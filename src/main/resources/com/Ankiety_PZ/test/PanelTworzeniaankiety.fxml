@@ -69,7 +69,7 @@
          </font>
       </Label>
       <Button fx:id="wyloguj" layoutX="14.0" layoutY="660.0" mnemonicParsing="false" onAction="#wylogujAction" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
-      <Label fx:id="panelTworzeniaAnkietyLabelError" alignment="CENTER" layoutX="183.0" layoutY="665.0" prefHeight="17.0" prefWidth="522.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
+      <Label fx:id="panelTworzeniaAnkietyLabelError" alignment="CENTER" layoutX="187.0" layoutY="669.0" prefHeight="17.0" prefWidth="522.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
          <font>
             <Font size="24.0" />
          </font>
