@@ -40,6 +40,11 @@
                            </font>
                         </Label>
                         <Label fx:id="imie_nazwisko_rola2" alignment="CENTER_RIGHT" layoutX="546.0" layoutY="22.0" prefHeight="57.0" prefWidth="632.0" stylesheets="@style.css" />
+                        <Label fx:id="panelAnkieterLabelError" alignment="CENTER" layoutX="342.0" layoutY="640.0" prefHeight="17.0" prefWidth="522.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
                   </children></AnchorPane>
             </content>
          </Tab>

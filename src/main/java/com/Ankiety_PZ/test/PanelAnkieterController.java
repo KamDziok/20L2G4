@@ -34,6 +34,8 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
     private String surnameAnkieter;
     private String cityAnkieter;
     private String streetAnkieter;
+    @FXML
+    private Label panelAnkieterLabelError;
     /** Numer domu wczytany z pola tekstowego jako String. */
     private String numberHouseStringAnkieter;
     /** Numer lokalu wczytany z pola tekstowego jako String. */
@@ -109,6 +111,10 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
         Ankiety ankieta = new Ankiety();
         ankieta.setUzytkownicy(curentUser2);
         ankieta.setLiczbaWypelnien(0);
+        Calendar ca = Calendar.getInstance();
+        ca.setTime(data);
+        ca.add(Calendar.DATE, 1);
+        data = ca.getTime();
         ankieta.setDataRozpoczecia(data);
         Date dt = new Date();
         Calendar c = Calendar.getInstance();
@@ -308,7 +314,10 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
         activeScene(event, false, false);
     }
 
+     void ankietawtoku(){
 
+         panelAnkieterLabelError.setText("Nie można edytować ankiety, która się rozpoczęła.");
+    }
     private void setAnkiety() {
         AnkietyQuery query = new AnkietyQuery();
         List<Ankiety> ankiety = query.selectAllUzytkownik(curentUser2);

@@ -41,7 +41,7 @@
                   <Font size="24.0" />
                </font>
             </Button>
-            <Label fx:id="panelLoginLabelError" layoutX="10.0" layoutY="330.0" prefHeight="17.0" prefWidth="522.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
+            <Label fx:id="panelLoginLabelError" alignment="CENTER" layoutX="10.0" layoutY="330.0" prefHeight="17.0" prefWidth="522.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
                <font>
                   <Font size="24.0" />
                </font>
