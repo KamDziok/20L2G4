@@ -32,9 +32,6 @@ public class OdpowiedziQuery extends OperationInSession {
     }
 
     Boolean addOdpowiedziWithOutTransaction(Odpowiedzi odpowiedzi, Session session){
-        if(session == null){
-            session = openSession();
-        }
         return modifyOdpowiedzi.addWithOutTransaction(odpowiedzi, session);
     }
 
@@ -43,9 +40,6 @@ public class OdpowiedziQuery extends OperationInSession {
     }
 
     Boolean updateOdpowiedziWithOutTransaction(Odpowiedzi odpowiedzi, Session session){
-        if(session == null){
-            session = openSession();
-        }
         return modifyOdpowiedzi.updateWithOutTransaction(odpowiedzi, session);
     }
 
@@ -54,9 +48,6 @@ public class OdpowiedziQuery extends OperationInSession {
     }
 
     Boolean deleteOdpowiedziWithOutTransaction(Odpowiedzi odpowiedzi, Session session){
-        if(session == null){
-            session = openSession();
-        }
         return modifyOdpowiedzi.deleteWithOutTransaction(odpowiedzi, session);
     }
 

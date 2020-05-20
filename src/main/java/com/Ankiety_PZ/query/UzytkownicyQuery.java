@@ -21,17 +21,6 @@ public class UzytkownicyQuery extends OperationInSession {
 
     public List<Uzytkownicy> selectAll() throws HibernateException {
         return modifyUzytkownik.selectListHQL(("from Uzytkownicy"));
-//        List<Uzytkownicy> uzytkowink = new ArrayList<>();
-//        try {
-//            session = openSession();
-//            criteria = session.createCriteria(Uzytkownicy.class);
-//            uzytkowink = criteria.list();
-//        } catch(Exception e){
-//            logException(e);
-//        }finally{
-//            closeSession(session);
-//        }
-//        return uzytkowink;
     }
 
     /**
@@ -50,9 +39,6 @@ public class UzytkownicyQuery extends OperationInSession {
     }
 
     Boolean addUzytkownicyWithOutTransaction(Uzytkownicy uzytkownicy, Session session){
-        if(session == null){
-            session = openSession();
-        }
         return modifyUzytkownik.addWithOutTransaction(uzytkownicy, session);
     }
 
@@ -61,9 +47,6 @@ public class UzytkownicyQuery extends OperationInSession {
     }
 
     Boolean updateUzytkownicyWithOutTransaction(Uzytkownicy uzytkownicy, Session session){
-        if(session == null){
-            session = openSession();
-        }
         return modifyUzytkownik.updateWithOutTransaction(uzytkownicy, session);
     }
 
@@ -72,43 +55,15 @@ public class UzytkownicyQuery extends OperationInSession {
     }
 
     Boolean deleteUzytkownicyWithOutTransaction(Uzytkownicy uzytkownicy, Session session){
-        if(session == null){
-            session = openSession();
-        }
         return modifyUzytkownik.deleteWithOutTransaction(uzytkownicy, session);
     }
 
     public Uzytkownicy selectByMail(String mail){
         return modifyUzytkownik.selectObjectHQL(("from Uzytkownicy where mail=\"" + mail + "\""));
-//        Uzytkownicy user = null;
-//        try{
-//            session = openSession();
-//            String hgl = "from Uzytkownicy where mail=\"" + mail + "\"";
-//            System.out.println(hgl);
-//            query = session.createQuery(hgl);
-//            user = (Uzytkownicy) query.uniqueResult();
-//        }catch(Exception e){
-//            logException(e);
-//        }finally {
-//            closeSession(session);
-//        }
-//        return user;
     }
 
     public Uzytkownicy selectByMailAndPassword(String mail, String password){
         return modifyUzytkownik.selectObjectHQL(("from Uzytkownicy where mail = '" + mail + "' and haslo ='" + password +"'"));
-//        Uzytkownicy user = null;
-//        try{
-//            session = openSession();
-//            String hgl = "from Uzytkownicy where mail = '" + mail + "' and haslo ='" + password +"'";
-//            query = session.createQuery(hgl);
-//            user = (Uzytkownicy) query.uniqueResult();
-//        }catch(Exception e){
-//            logException(e);
-//        }finally {
-//            closeSession(session);
-//        }
-//        return user;
     }
 
     /**
@@ -127,15 +82,6 @@ public class UzytkownicyQuery extends OperationInSession {
     public boolean unban(Uzytkownicy user){
         user.setUprawnienia(Permissions.KLIENT);
         return updateUzytkownicy(user);
-//        boolean result = false;
-//        user.setUprawnienia(Permissions.KLIENT);
-//        try {
-//            updateUzytkownik(user);
-//            result = true;
-//        }catch (Exception e){
-//            logException(e);
-//        }
-//        return result;
     }
 
     /**

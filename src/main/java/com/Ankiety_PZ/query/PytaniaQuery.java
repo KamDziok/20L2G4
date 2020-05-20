@@ -31,9 +31,6 @@ public class PytaniaQuery extends OperationInSession {
     }
 
     Boolean addPytaniaWithOutTransaction(Pytania pytania, Session session){
-        if(session == null){
-            session = openSession();
-        }
         return modifyPytania.addWithOutTransaction(pytania, session);
     }
 
@@ -42,9 +39,6 @@ public class PytaniaQuery extends OperationInSession {
     }
 
     Boolean updatePytaniaWithOutTransaction(Pytania pytania, Session session){
-        if(session == null){
-            session = openSession();
-        }
         return modifyPytania.updateWithOutTransaction(pytania, session);
     }
 
@@ -53,9 +47,6 @@ public class PytaniaQuery extends OperationInSession {
     }
 
     Boolean deletePytaniaWithOutTransaction(Pytania pytania, Session session){
-        if(session == null){
-            session = openSession();
-        }
         return modifyPytania.deleteWithOutTransaction(pytania, session);
     }
 

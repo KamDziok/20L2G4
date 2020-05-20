@@ -43,9 +43,6 @@ public class AnkietyQuery extends OperationInSession {
     }
 
     Boolean addAnkietyWithOutTransaction(Ankiety ankiety, Session session){
-        if(session == null){
-            session = openSession();
-        }
         return modifyAnkiety.addWithOutTransaction(ankiety, session);
     }
 
@@ -54,9 +51,6 @@ public class AnkietyQuery extends OperationInSession {
     }
 
     Boolean updateAnkietyWithOutTransaction(Ankiety ankiety, Session session){
-        if(session == null){
-            session = openSession();
-        }
         return modifyAnkiety.updateWithOutTransaction(ankiety, session);
     }
 
@@ -65,9 +59,6 @@ public class AnkietyQuery extends OperationInSession {
     }
 
     Boolean deleteAnkietyWithOutTransaction(Ankiety ankiety, Session session){
-        if(session == null){
-            session = openSession();
-        }
         return modifyAnkiety.deleteWithOutTransaction(ankiety, session);
     }
 
