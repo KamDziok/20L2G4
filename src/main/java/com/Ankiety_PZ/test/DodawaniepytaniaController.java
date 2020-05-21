@@ -107,8 +107,8 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     /**
      * Metoda obsługująca przyciśk anuluj.
      *
-     * @param event zdarzenie, po którym funkcja ma się wywołać
      * @author HubertJakobsze
+     * @param event zdarzenie, po którym funkcja ma się wywołać
      */
 
 
@@ -445,6 +445,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     public void dodajOdpAction(ActionEvent event) {
         if (!dodawaniePytaniaRBQuestionOpen.isSelected()) {
             odp = odpowiedzi.getText();
+            if (!odp.isEmpty()) {
             if (pytania == null) {
 
                 Pytania pytanie = new Pytania();
@@ -454,24 +455,29 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
                 pytanie.setIdPytania(-1);
                 pytania = pytanie;
                 odpo.setPytania(pytania);
-               // pytania.getOdpowiedzis().add(odpo);
                 listaOdpTego.add(odpo);
                 edycja = false;
 
 
-            } else {
+        }
+            else {
                 Odpowiedzi odpo = new Odpowiedzi(pytania, odp);
                 odpo.setIdOdpowiedzi(-1);
                 pytania.setIdPytania(-1);
                 edycja = true;
-                //pytania.getOdpowiedzis().add(odpo);
                 listaOdpTego.add(odpo);
             }
 
             setOdpowiedziSS(listaOdpTego);
-        }
+        }      else{
+                panelTworzeniaPytanLabelError.setText("Podaj treść odpowiedzi!");
 
-}
+
+            }
+
+        }
+    }
+
     public void Edycja(Boolean e)
     {
         this.edycja = e;

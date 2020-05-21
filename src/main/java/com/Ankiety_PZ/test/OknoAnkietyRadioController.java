@@ -46,6 +46,9 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
     @FXML
     private ImageView obrazek;
 
+    @FXML
+    private Label oknoAnkietyLabelError;
+
     private LinkedList<RadioButton> radioButtons;
     private LinkedList<CheckBox> checkBox;
     private LinkedList<TextField> punktowePola;
@@ -98,6 +101,8 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
         odpowiedzOtwarta = new TextArea();
         odpowiedzOtwarta.setLayoutX(37);
         odpowiedzOtwarta.setLayoutY(y);
+        odpowiedzOtwarta.setMaxWidth(500);
+        odpowiedzOtwarta.setWrapText(true);
         panel.getChildren().add(odpowiedzOtwarta);
         odpowiedzOtwarta.setVisible(true);
     }
@@ -180,10 +185,13 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
 
     private boolean isPktComplete() {
         int suma = 0;
+        int pole = 0;
         try {
             for (TextField field:punktowePola
             ) {
-                suma += Integer.parseInt(field.getText());
+                pole = Integer.parseInt(field.getText());
+                if (pole < 0) return false;
+                suma += pole;
             }
             return suma == punkty;
         } catch (Exception e) {
@@ -254,11 +262,10 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                             radioController.setStartValuesPanelUzytkownikaController(controller);
                             activeScene(event, false, false);
                         } catch (Exception e) {
-                            showMessageDialog(null, "Nie martw się, jedziemy dalej - " + e.getMessage());
-                        } finally {
+                            oknoAnkietyLabelError.setText("coś poszło nie tak, sprubój ponownie puzniej");
                         }
                     } else {
-                        showMessageDialog(null, "Proszę poprawnie wypełnić odpowiedź");
+                        oknoAnkietyLabelError.setText("coś poszło nie tak, upewnij się - że podałeś poprawne odpowiedzi");
                     }
                 }
             });
@@ -275,7 +282,6 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                         query.updateUzytkownicy(curentUser);
                         controller.updatePkt(String.valueOf(curentUser.getLiczbaPunktow()));
                         controller.setAnkiety();
-                        showMessageDialog(null, "Gratuluję ukonczenia ankiety.");
                     } catch (Exception e) {
                         showMessageDialog(null, "Coś poszło nie tak.");
                     } finally {

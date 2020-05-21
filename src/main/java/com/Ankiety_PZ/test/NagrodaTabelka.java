@@ -21,8 +21,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 
-import static javax.swing.JOptionPane.showMessageDialog;
-
 public class NagrodaTabelka {
     private String nazwa;
     private int cena;
@@ -49,9 +47,9 @@ public class NagrodaTabelka {
                         UzytkownicyQuery query = new UzytkownicyQuery();
                         query.updateUzytkownicy(curentUser);
                         controller.updatePkt(String.valueOf(curentUser.getLiczbaPunktow()));
-                        showMessageDialog(null, "Pomyślnie dodano nagrodę. Znajdziesz ją w pobranych ;)");
+                        controller.getPanelUzytkownikaLabelErrorNagrody().setText("nagroda dodana pomyslnie");
                 } else {
-                    showMessageDialog(null, "Biedaku ... nawet złota nie masz.");
+                    controller.getPanelUzytkownikaLabelErrorNagrody().setText("Dodanie nagrody nie powiodło się");
                 }
             }
         });
