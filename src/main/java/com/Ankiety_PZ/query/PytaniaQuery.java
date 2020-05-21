@@ -92,8 +92,8 @@ public class PytaniaQuery extends OperationInSession {
 
     public List<Pytania> selectListPytaniaByIdAnkiety(Ankiety ankiety){
         return modifyPytania.selectListHQL(
-                            ("select p from Pytania as p inner join p.ankiety as a " +
-                            "where a.idAnkiety=" + ankiety.getIdAnkiety()));
+                ("select p from Pytania as p inner join p.ankiety as a " +
+                        "where a.idAnkiety=" + ankiety.getIdAnkiety()));
     }
 
     public List<PytaniaUzytkownicy> selectPytaniaUzytkownicy(Pytania pytania){

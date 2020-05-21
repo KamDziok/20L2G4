@@ -90,9 +90,9 @@ public class OdpowiedziQuery extends OperationInSession {
 
     public List<Odpowiedzi> selectSetOdpowiedziByIdPytania(Pytania pytania){
         return modifyOdpowiedzi.selectListHQL(
-                            ("select o from Odpowiedzi as o " +
-                            "inner join o.pytania as p " +
-                            "where p.idPytania=" + pytania.getIdPytania()));
+                ("select o from Odpowiedzi as o " +
+                        "inner join o.pytania as p " +
+                        "where p.idPytania=" + pytania.getIdPytania()));
     }
 
     public List<OdpowiedziUzytkownicy> selectOdpowiedziPointsAndPercent(Odpowiedzi odpowiedzi){

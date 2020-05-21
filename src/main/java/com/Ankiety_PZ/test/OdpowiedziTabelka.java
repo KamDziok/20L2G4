@@ -34,7 +34,7 @@ public class OdpowiedziTabelka extends BulidStage{
                 dod.DaneUsniecia(pyt, odp);
                 dod.Edycja(true);
                 dod.SetEdycja(edycja2);
-                dod.setOdpowiedziSS(dod.getListaOdpTego());
+                dod.setOdpowiedziSS((dod.getListaOdpTego()));
                // dod.setStartValuesPytanie(pytania);
 
             }

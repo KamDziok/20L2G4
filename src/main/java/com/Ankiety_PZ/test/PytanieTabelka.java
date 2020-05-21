@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 public class PytanieTabelka extends BulidStage implements SetStartValues{
 
@@ -17,26 +18,21 @@ public class PytanieTabelka extends BulidStage implements SetStartValues{
     public Button buttonUsun;
     public Button buttonEdycja;
 
-    PytanieTabelka(Ankiety ankieta, Pytania pytanie, Uzytkownicy user, List<Odpowiedzi> odp , List<Pytania> pyt) {
+    PytanieTabelka(Ankiety ankieta, Pytania pytanie, Uzytkownicy user, List<Odpowiedzi> odp, Set<Pytania> pyt,  List<Pytania> listaPytaU, PanelTworzeniaankietyController two) {
         treść = pytanie.getTresc();
         Rpytanie = pytanie.getRodzajPytania()+" ";
         buttonUsun = new Button("Usuń");
         buttonUsun.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
-                PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
-                System.out.println(pytanie);
-                ankieta.getPytanias().remove(pytanie);
-                System.out.println(user);
+                //System.out.println(pytanie);
                 pyt.add(pytanie);
-                System.out.println(pyt);
-                panelTworzeniaankietyController.DaneUsniecia(pyt, odp);
-                panelTworzeniaankietyController.SetEdycja(true);
-                panelTworzeniaankietyController.setStartValues(user);
-                panelTworzeniaankietyController.setStartValuesAnkiety(ankieta);
+               // two.setListaPytan(pyt);
+                two.getListaPytan().remove(pytanie);
+                two.DaneUsniecia(listaPytaU, odp);
+                two.setPytdoUsunieciaUs(pyt);
+                two.setPytanieB(two.getListaPytan());
 
-                activeScene(event, false, false);
 
 
             }
@@ -50,11 +46,11 @@ public class PytanieTabelka extends BulidStage implements SetStartValues{
                 if (pytanie.getRodzajPytania() == TypeOfQuestion.OPEN)
                 {dodawaniepytaniaController.Inicjajca();}else
                 {dodawaniepytaniaController.InicjajcaZ(pytanie);}
-
-                dodawaniepytaniaController.DaneUsniecia(pyt, odp);
+                dodawaniepytaniaController.DaneUsniecia(listaPytaU, odp);
                 dodawaniepytaniaController.Edycja(false);
                 dodawaniepytaniaController.SetEdycja(true);
                 dodawaniepytaniaController.setStartValues(user);
+                dodawaniepytaniaController.setLisaPytanPrzekazana(two.getListaPytan());
                 dodawaniepytaniaController.setStartValuesAnkiety(ankieta);
                 dodawaniepytaniaController.setStartValuesPytanie(pytanie);
                 if(pytanie.getRodzajPytania()== TypeOfQuestion.OPEN) pytanie.initHashSetOdpowiedzi();
