@@ -39,6 +39,8 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
     private final ToggleGroup radioButtonGroup = new ToggleGroup();
 
+    private int aktualnaliczbaodpowiedzi =0;
+
     @FXML
     private ImageView imageview;
 
@@ -420,14 +422,16 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         dodawaniePytaniaRBQuestionCloseOnlyOne.setToggleGroup(radioButtonGroup);
         dodawaniePytaniaRBQuestionPercentages.setToggleGroup(radioButtonGroup);
         dodawaniePytaniaRBQuestionPoints.setToggleGroup(radioButtonGroup);
-        dodawaniePytaniaRBQuestionOpen.setSelected(true);
+        dodawaniePytaniaRBQuestionCloseOnlyOne.setSelected(true);
 
 
     }
 
     public void dodajOdpAction(ActionEvent event){
         if(!dodawaniePytaniaRBQuestionOpen.isSelected()) {
+
             odp = odpowiedzi.getText();
+            if(!odp.isEmpty()){
             if (pytania == null) {
 
                 Pytania pytanie = new Pytania();
@@ -441,7 +445,8 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
                 edycja=false;
 
 
-        }else {
+        }
+            else {
                 Odpowiedzi odpo = new Odpowiedzi(pytania, odp);
                 odpo.setIdOdpowiedzi(-1);
                 pytania.setIdPytania(-1);;
@@ -450,7 +455,15 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
             }
 
             setOdpowiedziSS(pytania);
+        }      else{
+                panelTworzeniaPytanLabelError.setText("Podaj treść odpowiedzi!");
+
+
+            }
+
         }
+
+
         else{
             panelTworzeniaPytanLabelError.setText("Nie można dodać odpowiedzi do pytania otwartego!");
 
@@ -465,10 +478,13 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     public void setOdpowiedziSS(Pytania pytania){
         ObservableList<OdpowiedziTabelka> dane = FXCollections.observableArrayList();
         pytania.getOdpowiedzis().forEach(odpowiedz ->{Odpowiedzi JednaOdp = (Odpowiedzi) odpowiedz;
-        dane.add(new OdpowiedziTabelka(JednaOdp, ankiety2, curetUser,pytania,  listaOdpU, listaPytaU, listaOdpTego));});
+        dane.add(new OdpowiedziTabelka(JednaOdp, ankiety2, curetUser,pytania,  listaOdpU, listaPytaU, listaOdpTego));
+
+        });
         odpowiedziTabelka.itemsProperty().setValue(dane);
         treść.setCellValueFactory(new PropertyValueFactory("treść"));
         przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
+      System.out.println(dane.size());
 
     }
     public void DaneUsniecia(List<Pytania> pyt, List<Odpowiedzi> odp){
