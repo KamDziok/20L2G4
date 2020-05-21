@@ -88,7 +88,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     @FXML
     private TableColumn przyciskUsun;
     private byte[] zdjecie;
-    private Boolean edycja2 = false;
+    private Boolean edycja2 ;
     private String odp;
     private String tresc;
     private Uzytkownicy curetUser;

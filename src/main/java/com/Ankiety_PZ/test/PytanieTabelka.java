@@ -48,7 +48,7 @@ public class PytanieTabelka extends BulidStage implements SetStartValues{
                 {dodawaniepytaniaController.InicjajcaZ(pytanie);}
                 dodawaniepytaniaController.DaneUsniecia(listaPytaU, odp);
                 dodawaniepytaniaController.Edycja(false);
-                dodawaniepytaniaController.SetEdycja(true);
+                dodawaniepytaniaController.SetEdycja(two.edycja2);
                 dodawaniepytaniaController.setStartValues(user);
                 dodawaniepytaniaController.setLisaPytanPrzekazana(two.getListaPytan());
                 dodawaniepytaniaController.setStartValuesAnkiety(ankieta);
