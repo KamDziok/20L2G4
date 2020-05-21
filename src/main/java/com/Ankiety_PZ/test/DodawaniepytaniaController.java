@@ -430,6 +430,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     public void dodajOdpAction(ActionEvent event){
         if(!dodawaniePytaniaRBQuestionOpen.isSelected()) {
             odp = odpowiedzi.getText();
+            if(!odp.isEmpty()){
             if (pytania == null) {
 
                 Pytania pytanie = new Pytania();
