@@ -427,41 +427,36 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
     }
 
-    public void dodajOdpAction(ActionEvent event){
-        if(!dodawaniePytaniaRBQuestionOpen.isSelected()) {
+    public void dodajOdpAction(ActionEvent event) {
+        if (!dodawaniePytaniaRBQuestionOpen.isSelected()) {
             odp = odpowiedzi.getText();
-            if(!odp.isEmpty()){
-            if (pytania == null) {
-
-                Pytania pytanie = new Pytania();
-                pytanie.initHashSetOdpowiedzi();
-                Odpowiedzi odpo = new Odpowiedzi(pytania, odp);
-                odpo.setIdOdpowiedzi(-1);
-                pytanie.setIdPytania(-1);
-                pytania = pytanie;
-                odpo.setPytania(pytania);
-                pytania.getOdpowiedzis().add(odpo);
-                edycja=false;
-
-
-        }
-            else {
-                Odpowiedzi odpo = new Odpowiedzi(pytania, odp);
-                odpo.setIdOdpowiedzi(-1);
-                pytania.setIdPytania(-1);;
-                edycja=true;
-                pytania.getOdpowiedzis().add(odpo);
-            }
-
-            setOdpowiedziSS(pytania);
-        }      else{
+            if (!odp.isEmpty()) {
+                if (pytania == null) {
+                    Pytania pytanie = new Pytania();
+                    pytanie.initHashSetOdpowiedzi();
+                    Odpowiedzi odpo = new Odpowiedzi(pytania, odp);
+                    odpo.setIdOdpowiedzi(-1);
+                    pytanie.setIdPytania(-1);
+                    pytania = pytanie;
+                    odpo.setPytania(pytania);
+                    pytania.getOdpowiedzis().add(odpo);
+                    edycja = false;
+                } else {
+                    Odpowiedzi odpo = new Odpowiedzi(pytania, odp);
+                    odpo.setIdOdpowiedzi(-1);
+                    pytania.setIdPytania(-1);
+                    ;
+                    edycja = true;
+                    pytania.getOdpowiedzis().add(odpo);
+                }
+                setOdpowiedziSS(pytania);
+            } else {
                 panelTworzeniaPytanLabelError.setText("Podaj treść odpowiedzi!");
-
-
             }
+        }
     }
-    public void Edycja(Boolean e)
-    {
+
+    public void Edycja(Boolean e){
         this.edycja = e;
     }
 
