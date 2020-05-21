@@ -84,6 +84,7 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     @FXML private TableColumn cena;
     @FXML private TableColumn obrazek;
     @FXML private TableColumn kup;
+    @FXML private Label panelUzytkownikaLabelErrorAnkiety;
 
     @FXML
     void wyloguj(ActionEvent event) {
@@ -321,5 +322,9 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
 
     Label getPanelUzytkownikaLabelErrorNagrody() {
         return panelUzytkownikaLabelErrorNagrody;
+    }
+
+    public Label getPanelUzytkownikaLabelErrorAnkiety() {
+        return panelUzytkownikaLabelErrorAnkiety;
     }
 }

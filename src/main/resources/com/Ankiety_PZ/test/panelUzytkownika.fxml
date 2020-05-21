@@ -37,6 +37,11 @@
                               <TableColumn fx:id="przycisk" maxWidth="110.0" minWidth="70.0" prefWidth="110.0" />
                           </columns>
                         </TableView>
+                        <Label fx:id="panelUzytkownikaLabelErrorAnkiety" alignment="CENTER" layoutX="219.0" layoutY="642.0" prefHeight="29.0" prefWidth="763.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
                     </children></AnchorPane>
             </content>
         </Tab>

@@ -9,11 +9,11 @@ import com.Ankiety_PZ.query.UzytkownicyQuery;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -32,8 +32,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 import java.util.Set;
-
-import static javax.swing.JOptionPane.showMessageDialog;
 
 public class OknoAnkietyRadioController extends BulidStage implements SetStartValues{
 
@@ -181,6 +179,7 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
             if (button.isSelected())
                 return true;
         }
+        oknoAnkietyLabelError.setText("Wybierz odpowiedz");
         return false;
     }
 
@@ -190,11 +189,15 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
             if (box.isSelected())
                 return true;
         }
+        oknoAnkietyLabelError.setText("Wybierz co najmniej jedną odpowiedz");
         return false;
     }
 
     private boolean isOpenComplete() {
-        return !odpowiedzOtwarta.getText().equals("");
+        if (odpowiedzOtwarta.getText().equals("")) {
+            oknoAnkietyLabelError.setText("Wpisz odpowiedz");
+            return false;
+        } else return true;
     }
 
     private boolean isPktComplete() {
@@ -204,20 +207,33 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
             for (TextField field:punktowePola
             ) {
                 pole = Integer.parseInt(field.getText());
-                if (pole < 0) return false;
+                if (pole < 0) {
+                    oknoAnkietyLabelError.setText("Wpisana wartość musi być większa lub równa 0");
+                    return false;
+                }
                 suma += pole;
             }
-            return suma == punkty;
+            if (suma == punkty) return true;
+            else {
+                oknoAnkietyLabelError.setText("Musisz rozdzielić dokładnie " + punkty + " punktów");
+                return false;
+            }
         } catch (Exception e) {
+            oknoAnkietyLabelError.setText("Coś poszło nie tak");
             return false;
         }
     }
 
     private boolean isPercentComplete() {
         try {
-            return Integer.parseInt(odpowiedzProcentowa.getText()) >= 0 &&
-                    Integer.parseInt(odpowiedzProcentowa.getText()) <= 100;
+            if (Integer.parseInt(odpowiedzProcentowa.getText()) >= 0 &&
+                    Integer.parseInt(odpowiedzProcentowa.getText()) <= 100) return true;
+            else {
+                oknoAnkietyLabelError.setText("Podana wartość musi być z przedziału od 0 do 100");
+                return false;
+            }
         } catch (Exception e) {
+            oknoAnkietyLabelError.setText("Coś poszło nie tak - upewnij się, że podałeś liczbę bez znaku %");
             return false;
         }
     }
@@ -279,7 +295,7 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                             oknoAnkietyLabelError.setText("Coś poszło nie tak, sprubój ponownie puźniej");
                         }
                     } else {
-                        oknoAnkietyLabelError.setText("Coś poszło nie tak - upewnij się, że podałeś poprawne odpowiedzi");
+//                        oknoAnkietyLabelError.setText("Coś poszło nie tak - upewnij się, że podałeś poprawne odpowiedzi");
                     }
                 }
             });
@@ -298,12 +314,12 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                             controller.updatePkt(String.valueOf(curentUser.getLiczbaPunktow()));
                             controller.setAnkiety();
                         } catch (Exception e) {
-                            showMessageDialog(null, "Coś poszło nie tak.");
+                            controller.getPanelUzytkownikaLabelErrorAnkiety().setText("Wypełnianie ostatniej ankiety nie powiodło się");
                         } finally {
                             deleteStage(event);
                         }
                     } else {
-                        oknoAnkietyLabelError.setText("Coś poszło nie tak - upewnij się, że podałeś poprawne odpowiedzi");
+//                        oknoAnkietyLabelError.setText("Coś poszło nie tak - upewnij się, że podałeś poprawne odpowiedzi");
                     }
                 }
             });
