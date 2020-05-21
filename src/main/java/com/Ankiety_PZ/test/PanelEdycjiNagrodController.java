@@ -67,6 +67,7 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
 
     @FXML
     private Label panelEdycjiNagrodLabelError;
+    private byte[] zdjecie;
 
     @FXML
     void wyloguj(ActionEvent event) {
@@ -91,8 +92,8 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
             System.out.println("==================================================================================");
 
             System.out.println(file.toURI().toString());
-            conversja(file);
             imageview.setImage(image);
+            conversja(file);
         }catch(IllegalArgumentException argumentException){
             System.out.println("Nie wybrałeś zdjęcia lub rozszerzenie nie jest obsługiwane. " + argumentException.getMessage());
         }catch(Exception e){
@@ -112,9 +113,8 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         }
 
         byte[] bytes = bos.toByteArray();
+        zdjecie = bytes;
         nagrody.setZdjecie(bytes);
-        System.out.println("alalllllllllllllllllllllllllllllllllllllllllllll");
-        System.out.println(bytes);
         nagrody.setZdjecie(bytes);
         NagrodyQuery query3 = new NagrodyQuery();
         query3.updateNagrody(nagrody);
@@ -211,7 +211,8 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         }
         catch(RuntimeException wyjatek)
         {
-            Nagrody nagroda = new Nagrody(liczba_punktow,nazwa_nagrody);
+
+            Nagrody nagroda = new Nagrody(liczba_punktow,nazwa_nagrody,zdjecie);
             NagrodyQuery dodaj = new NagrodyQuery();
             dodaj.addNagrody(nagroda);
         }
