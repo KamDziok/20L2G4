@@ -10,9 +10,23 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReadParam;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -324,8 +338,13 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
     @Override
     public void setStartValuesIerator(Iterator<Pytania> iterator) {
         Pytania pytanie = iterator.next();
-//        obrazek.setImage(pytanie.getZdjecie());
-//        ankietaTytul.setText(pytanie.getAnkiety().getTytul());
+        if(pytanie.getZdjecie()!= null){
+        try {
+            conversjaNaZ(pytanie.getZdjecie());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }}
+      ankietaTytul.setText(pytanie.getAnkiety().getTytul());
         punkty = pytanie.getPunktowe();
         rodzajPytania = pytanie.getRodzajPytania();
         switch (rodzajPytania) {
@@ -351,6 +370,35 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                 break;
         }
         setButton(iterator, pytanie);
+    }
+    public void conversjaNaZ(byte[] bytes) throws IOException {
+
+
+        ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+        Iterator<?> readers = ImageIO.getImageReadersByFormatName("jpg");
+
+        ImageReader reader = (ImageReader) readers.next();
+        Object source = bis;
+        ImageInputStream iis = ImageIO.createImageInputStream(source);
+        reader.setInput(iis, true);
+        ImageReadParam param = reader.getDefaultReadParam();
+
+        BufferedImage image = reader.read(0, param);
+
+        BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
+        String directory = System.getProperty("user.home") + "\\Documents\\Zdjęcia";
+        String directory2 = directory + "\\pdf";
+        if (!(new File(directory).exists())) {
+            new File(directory).mkdir();
+        }
+        Graphics2D g2 = bufferedImage.createGraphics();
+        g2.drawImage(image, null, null);
+        File imageFile = new File(directory + "\\" + bytes );
+        ImageIO.write(bufferedImage, "jpg", imageFile);
+        javafx.scene.image.Image image2 = new Image(imageFile.toURI().toString());
+        obrazek.setImage(image2);
+
+
     }
 
     @Override
