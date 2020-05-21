@@ -288,18 +288,22 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
             dalej.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    try {
-                        addAnswer(pytanie.getOdpowiedzis(), pytanie);
-                        UzytkownicyQuery query = new UzytkownicyQuery();
-                        query.addOdpowiedziUzytkownika(odpowiedziDoWyslania, odpowiedziDoWyslaniaOtwarte, pytanie.getAnkiety(), curentUser);
-                        curentUser.updatePunkty(punktyZaAnkiete, true);
-                        query.updateUzytkownicy(curentUser);
-                        controller.updatePkt(String.valueOf(curentUser.getLiczbaPunktow()));
-                        controller.setAnkiety();
-                    } catch (Exception e) {
-                        showMessageDialog(null, "Coś poszło nie tak.");
-                    } finally {
-                        deleteStage(event);
+                    if (isQuestionComplete()) {
+                        try {
+                            addAnswer(pytanie.getOdpowiedzis(), pytanie);
+                            UzytkownicyQuery query = new UzytkownicyQuery();
+                            query.addOdpowiedziUzytkownika(odpowiedziDoWyslania, odpowiedziDoWyslaniaOtwarte, pytanie.getAnkiety(), curentUser);
+                            curentUser.updatePunkty(punktyZaAnkiete, true);
+                            query.updateUzytkownicy(curentUser);
+                            controller.updatePkt(String.valueOf(curentUser.getLiczbaPunktow()));
+                            controller.setAnkiety();
+                        } catch (Exception e) {
+                            showMessageDialog(null, "Coś poszło nie tak.");
+                        } finally {
+                            deleteStage(event);
+                        }
+                    } else {
+                        oknoAnkietyLabelError.setText("Coś poszło nie tak - upewnij się, że podałeś poprawne odpowiedzi");
                     }
                 }
             });

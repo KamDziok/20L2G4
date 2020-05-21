@@ -47,7 +47,7 @@ public class NagrodaTabelka {
                         UzytkownicyQuery query = new UzytkownicyQuery();
                         query.updateUzytkownicy(curentUser);
                         controller.updatePkt(String.valueOf(curentUser.getLiczbaPunktow()));
-                        controller.getPanelUzytkownikaLabelErrorNagrody().setText("Nagroda dodana pomyslnie");
+                        controller.getPanelUzytkownikaLabelErrorNagrody().setText("Nagroda dodana pomyślnie");
                 } else {
                     controller.getPanelUzytkownikaLabelErrorNagrody().setText("Dodanie nagrody nie powiodło się");
                 }
