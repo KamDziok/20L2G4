@@ -294,8 +294,6 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                         } catch (Exception e) {
                             oknoAnkietyLabelError.setText("Coś poszło nie tak, sprubój ponownie puźniej");
                         }
-                    } else {
-//                        oknoAnkietyLabelError.setText("Coś poszło nie tak - upewnij się, że podałeś poprawne odpowiedzi");
                     }
                 }
             });
@@ -318,8 +316,6 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                         } finally {
                             deleteStage(event);
                         }
-                    } else {
-//                        oknoAnkietyLabelError.setText("Coś poszło nie tak - upewnij się, że podałeś poprawne odpowiedzi");
                     }
                 }
             });
