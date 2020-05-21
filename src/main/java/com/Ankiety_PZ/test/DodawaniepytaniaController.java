@@ -497,7 +497,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
         ObservableList<OdpowiedziTabelka> dane = FXCollections.observableArrayList();
         pytania.getOdpowiedzis().forEach(odpowiedz ->{Odpowiedzi JednaOdp = (Odpowiedzi) odpowiedz;
-        dane.add(new OdpowiedziTabelka(JednaOdp, ankiety2, curetUser,pytania,  listaOdpU, listaPytaU, listaOdpTego));});
+        dane.add(new OdpowiedziTabelka(JednaOdp, ankiety2, curetUser,pytania,  listaOdpU, listaPytaU, listaOdpTego, edycja2));});
         odpowiedziTabelka.itemsProperty().setValue(dane);
         treść.setCellValueFactory(new PropertyValueFactory("treść"));
         przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
