@@ -50,14 +50,14 @@ public class PytanieTabelka extends BulidStage implements SetStartValues{
             public void handle(ActionEvent event) {
                 loadingFXML(event, SceneFXML.DODAJ_PYTANIE);
                 DodawaniepytaniaController dodawaniepytaniaController  = load.getController();
+                dodawaniepytaniaController.Inicjajca();
                 dodawaniepytaniaController.DaneUsniecia(pyt, odp);
                 dodawaniepytaniaController.Edycja(false);
                 dodawaniepytaniaController.SetEdycja(true);
-                dodawaniepytaniaController.SetAnuluj(odp);
                 dodawaniepytaniaController.setStartValues(user);
                 dodawaniepytaniaController.setStartValuesAnkiety(ankieta);
                 dodawaniepytaniaController.setStartValuesPytanie(pytanie);
-                dodawaniepytaniaController.Inicjajca();
+
                 if(pytanie.getRodzajPytania()== TypeOfQuestion.OPEN) pytanie.initHashSetOdpowiedzi();
                     dodawaniepytaniaController.setOdpowiedziSS(pytanie);
                 activeScene(event, false, false);

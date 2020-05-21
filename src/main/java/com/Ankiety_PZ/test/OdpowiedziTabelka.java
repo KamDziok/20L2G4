@@ -27,6 +27,7 @@ public class OdpowiedziTabelka extends BulidStage{
                 pytania.getOdpowiedzis().remove(odpowiedzi);
                // OdpowiedziQuery query = new OdpowiedziQuery();
                 //query.deleteOdpowiedzi(odpowiedzi);
+                dodawaniepytaniaController.Inicjajca();
                 usu.add(odpowiedzi);
                 dodawaniepytaniaController.SetAnuluj(usu);
                 dodawaniepytaniaController.DaneUsniecia(pyt, odp);

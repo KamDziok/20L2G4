@@ -161,8 +161,10 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         finally {
             dodawaniepytaniaController.setStartValuesAnkiety(ankiety);
             dodawaniepytaniaController.setStartValues(curetUser);
+            dodawaniepytaniaController.Inicjajca();
             dodawaniepytaniaController.DaneUsniecia(listaPytaU, listaOdpU);
             dodawaniepytaniaController.SetEdycja(edycja2);
+
             activeScene(event, false, false);
         }
 
@@ -405,6 +407,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
                                 System.out.println(ankiety);
                                 AnkietyQuery query = new AnkietyQuery();
                                 if (edycja2) {
+                                    query.deletePytaniaAndOdpowiedziInAnkiety(listaPytaU, listaOdpU);
                                     query.updateAnkietyWithPytaniaAndOdpowiedzi(ankiety);
                                 } else {
                                     query.addAnkietyWithPytaniaAndOdpowiedzi(ankiety);

@@ -97,7 +97,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     private List<Pytania> listaPytaU;
     private List<Odpowiedzi> listaOdpU;
     private List<Odpowiedzi> listaOdpTego;
-    private Boolean edycja = true;
+    private Boolean edycja = false;
     private List<Odpowiedzi> listaOdpUAnuluj= new ArrayList<>();
 
     /**
@@ -129,10 +129,6 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     public void setStartValuesPytanie(Pytania pytanie) {
         this.pytania = pytanie;
         if(pytania != null){
-        System.out.println(ankiety2);
-        System.out.println(pytanie);
-        System.out.println(pytania);
-        System.out.println(pytania.getZdjecie());
         trescPytania.setText(pytania.getTresc());
         if(pytania.getRodzajPytania() == TypeOfQuestion.OPEN) {
             dodawaniePytaniaRBQuestionOpen.setSelected(true);
@@ -156,8 +152,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-    }
+        }
             if(pytanie.getRodzajPytania()!= TypeOfQuestion.OPEN) {
                 setOdpowiedziSS(pytania);
             }
@@ -176,27 +171,28 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     public void setStartValuesIerator(Iterator iterator) {
 
     }
-    public  void  Inicjajca()
-    {
-        List<Odpowiedzi> listaOdpTego = new ArrayList<>();
 
-    }
     public void SetEdycja(Boolean wyb)
     {
         edycja2 = wyb;
     }
     public void SetAnuluj(List<Odpowiedzi> odp){
-        this.listaOdpTego= odp;
+        this.listaOdpTego = odp;
     }
+    public  void  Inicjajca()
+    {
+        listaOdpTego = new ArrayList<>();
 
+    }
     @FXML
     void anulujAction(ActionEvent event) {
         loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
         PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
-        //panelTworzeniaankietyController.DaneUsniecia(listaPytaU, listaOdpUAnuluj);
-
-        pytania.getOdpowiedzis().addAll(listaOdpTego);
-
+        panelTworzeniaankietyController.DaneUsniecia(listaPytaU, listaOdpTego);
+        if(rodzajPytania != TypeOfQuestion.OPEN && pytania != null ) {
+            pytania.getOdpowiedzis().addAll(listaOdpTego);
+            listaOdpTego = new ArrayList<>();
+        }
         panelTworzeniaankietyController.setStartValuesPytanie(pytania);
         panelTworzeniaankietyController.setStartValues(curetUser);
         panelTworzeniaankietyController.setStartValuesAnkiety(ankiety2);
@@ -235,26 +231,19 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     }
     public void conversja(File file) throws FileNotFoundException, IOException {
         FileInputStream fis = new FileInputStream(file);
-        //create FileInputStream which obtains input bytes from a file in a file system
-        //FileInputStream is meant for reading streams of raw bytes such as image data. For reading streams of characters, consider using FileReader.
-
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         byte[] buf = new byte[1024];
         try {
             for (int readNum; (readNum = fis.read(buf)) != -1;) {
-                //Writes to this byte array output stream
                 bos.write(buf, 0, readNum);
                 System.out.println("read " + readNum + " bytes,");
             }
         } catch (IOException ex) {
-           /// Logger.getLogger(ConvertImage.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         byte[] bytes = bos.toByteArray();
-        System.out.println("alalllllllllllllllllllllllllllllllllllllllllllll");
-        System.out.println(bytes);
         zdjecie = bytes;
-        pytania.setZdjecie(zdjecie);
+        if(edycja2)pytania.setZdjecie(zdjecie);
         }
 
 
@@ -279,10 +268,11 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
             }
             Graphics2D g2 = bufferedImage.createGraphics();
             g2.drawImage(image, null, null);
-            File imageFile = new File(directory + "\\" + pytania.getTresc());
+            File imageFile = new File(directory + "\\" + pytania.getIdPytania());
             ImageIO.write(bufferedImage, "jpg", imageFile);
             Image image2 = new Image(imageFile.toURI().toString());
             imageview.setImage(image2);
+            System.out.println(imageFile);
             System.out.println(imageFile);
 
 
@@ -311,18 +301,12 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     @FXML
     void dodajPytanie(ActionEvent event){
         if (rodzajPytania == TypeOfQuestion.OPEN) {
-            Pytania pytanie = new Pytania();
-            pytanie.setIdPytania(-1);
-            if (pytania != null) {
+            if(pytania== null) {
+                Pytania pytanie = new Pytania();
+                pytania = pytanie;
+                edycja = true;
+            }else edycja = false;
 
-
-
-
-
-
-            }
-
-            else{pytania = pytanie;}
 
 
         }
@@ -347,20 +331,23 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
             pytania.setRodzajPytania(rodzajPytania);
             pytania.setPunktowe(punktowe);
             pytania.setAnkiety(ankiety2);
-            System.out.println(pytania.getOdpowiedzis());
             ankiety2.getPytanias().add(pytania);
 
 
 
 
         }
+        if(!edycja) {
+           listaOdpU.addAll(listaOdpTego);
+           listaOdpTego = new ArrayList<>();
+        }
+
         loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
         PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
-        listaOdpU.addAll(listaOdpTego);
+
         panelTworzeniaankietyController.DaneUsniecia(listaPytaU, listaOdpU);
-        panelTworzeniaankietyController.setStartValuesAnkiety(ankiety2);
-       // panelTworzeniaankietyController.setStartValuesPytanie(pytania);
         panelTworzeniaankietyController.setStartValues(curetUser);
+        panelTworzeniaankietyController.setStartValuesAnkiety(ankiety2);
         panelTworzeniaankietyController.SetEdycja(edycja2);
         activeScene(event, false, false);
 
@@ -416,7 +403,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     }
 
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    @FXML
     void initialize() {
         assert dodajzdjecie != null : "fx:id=\"dodajzdjecie\" was not injected: check your FXML file 'Dodawaniepytania.fxml'.";
         assert wyloguj1 != null : "fx:id=\"wyloguj1\" was not injected: check your FXML file 'Dodawaniepytania.fxml'.";
@@ -457,8 +444,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         }else {
                 Odpowiedzi odpo = new Odpowiedzi(pytania, odp);
                 odpo.setIdOdpowiedzi(-1);
-                pytania.setIdPytania(-1);
-                //pytania.getIdPytania();
+                pytania.setIdPytania(-1);;
                 edycja=true;
                 pytania.getOdpowiedzis().add(odpo);
             }
