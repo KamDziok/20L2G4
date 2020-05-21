@@ -454,7 +454,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
                 {
 
 
-                    pytania.setIdPytania(-1);
+                   if(edycja2) pytania.setIdPytania(-1);
                     pytania.setTresc(trescPytania.getText());
                     pytania.setZdjecie(zdjecie);
                     pytania.setRodzajPytania(rodzajPytania);
