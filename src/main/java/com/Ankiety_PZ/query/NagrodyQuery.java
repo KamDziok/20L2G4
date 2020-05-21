@@ -7,11 +7,10 @@ package com.Ankiety_PZ.query;
 
 import com.Ankiety_PZ.generowaniePDF.NagrodyGenerowaniePDF;
 import com.Ankiety_PZ.hibernate.Nagrody;
-import com.Ankiety_PZ.hibernate.Pytania;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
-import org.hibernate.*;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -75,6 +74,7 @@ public class NagrodyQuery extends OperationInSession{
             try {
                 session = openSession();
                 transaction = beginTransaction(session);
+                new NagrodyGenerowaniePDF(nagrody, uzytkownicy);
                 session.createSQLQuery("INSERT INTO `uzytkownicy_nagrody`(`ID_uzytkownika`, `ID_nagrody`) " +
                         "VALUES (:idUzytkownicy,:idNagrody)")
                         .setParameter("idUzytkownicy", uzytkownicy.getIdUzytkownika())
@@ -82,7 +82,6 @@ public class NagrodyQuery extends OperationInSession{
                         .executeUpdate();
                 uzytkownicy.setLiczbaPunktow(uzytkownicy.getLiczbaPunktow() - nagrody.getLiczbaPunktow());
                 new UzytkownicyQuery().updateUzytkownicyWithOutTransaction(uzytkownicy, session);
-                new NagrodyGenerowaniePDF(nagrody, uzytkownicy);
                 commitTransaction(transaction);
                 result = true;
             } catch (Exception e) {

@@ -109,7 +109,6 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
      * @param event zdarzenie, po którym funkcja ma się wywołać
      */
 
-
     @Override
     public void setStartValues(Uzytkownicy user) {
         this.curetUser = user;
@@ -445,7 +444,6 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
                     Odpowiedzi odpo = new Odpowiedzi(pytania, odp);
                     odpo.setIdOdpowiedzi(-1);
                     pytania.setIdPytania(-1);
-                    ;
                     edycja = true;
                     pytania.getOdpowiedzis().add(odpo);
                 }
