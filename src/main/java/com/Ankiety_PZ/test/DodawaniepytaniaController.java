@@ -458,15 +458,6 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
 
             }
-
-        }
-
-
-        else{
-            panelTworzeniaPytanLabelError.setText("Nie można dodać odpowiedzi do pytania otwartego!");
-
-
-        }
     }
     public void Edycja(Boolean e)
     {

@@ -64,6 +64,11 @@
                                 <TableColumn fx:id="kup" maxWidth="100.0" minWidth="70.0" prefWidth="100.0" />
                             </columns>
                         </TableView>
+                        <Label fx:id="panelUzytkownikaLabelErrorNagrody" alignment="CENTER" layoutX="322.0" layoutY="642.0" prefHeight="17.0" prefWidth="522.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
                         </children></AnchorPane>
                 </content>
             </Tab>

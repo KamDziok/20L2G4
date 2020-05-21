@@ -53,8 +53,8 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     private int postCodeSecondIntUser;
     /** Minimalna długośc hasłą. */
     private final int minSizePasswordUser = 3;
-    @FXML
-    private Label panelUzytkownikaLabelError;
+    @FXML private Label panelUzytkownikaLabelError;
+    @FXML private Label panelUzytkownikaLabelErrorNagrody;
     @FXML private Button wyloguj;
     @FXML private Label punkty;
     @FXML private Label labelPunkty;
@@ -317,5 +317,9 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
 
     public Uzytkownicy getCurentUser() {
         return curentUser;
+    }
+
+    Label getPanelUzytkownikaLabelErrorNagrody() {
+        return panelUzytkownikaLabelErrorNagrody;
     }
 }
