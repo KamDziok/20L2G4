@@ -5,7 +5,6 @@
 
 package com.Ankiety_PZ.test;
 import com.Ankiety_PZ.hibernate.*;
-import com.Ankiety_PZ.query.PytaniaQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,10 +27,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 
 public class DodawaniepytaniaController extends BulidStage implements SetStartValues {
@@ -39,7 +36,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
     private final ToggleGroup radioButtonGroup = new ToggleGroup();
 
-    private int aktualnaliczbaodpowiedzi =0;
+    private int aktualnaliczbaodpowiedzi = 0;
 
     @FXML
     private ImageView imageview;
@@ -78,18 +75,23 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     private RadioButton dodawaniePytaniaRBQuestionPoints; // Value injected by FXMLLoader
     @FXML
     private TextField punkty;
+    private String punktyS;
+    private int punktyi;
     @FXML
     private TextField trescPytania;
     @FXML
     private Label panelTworzeniaPytanLabelError;
-    @FXML private TableView odpowiedziTabelka;
-    @FXML private TableColumn treść;
-    @FXML private TableColumn przyciskUsun;
+    @FXML
+    private TableView odpowiedziTabelka;
+    @FXML
+    private TableColumn treść;
+    @FXML
+    private TableColumn przyciskUsun;
     private byte[] zdjecie;
     private Boolean edycja2 = false;
     private String odp;
     private String tresc;
-    private Uzytkownicy  curetUser;
+    private Uzytkownicy curetUser;
 
     private Integer punktowe;
     private int rodzajPytania;
@@ -98,9 +100,10 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     private Pytania pytania;
     private List<Pytania> listaPytaU;
     private List<Odpowiedzi> listaOdpU;
-    private List<Odpowiedzi> listaOdpTego;
+    private Set listaOdpTego;
     private Boolean edycja = false;
-    private List<Odpowiedzi> listaOdpUAnuluj= new ArrayList<>();
+    private List<Odpowiedzi> listaOdpUAnuluj = new ArrayList<>();
+    private ArrayList<Object> dod;
 
     /**
      * Metoda obsługująca przyciśk anuluj.
@@ -108,6 +111,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
      * @author HubertJakobsze
      * @param event zdarzenie, po którym funkcja ma się wywołać
      */
+
 
     @Override
     public void setStartValues(Uzytkownicy user) {
@@ -124,39 +128,47 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         System.out.println("ankiety setStartValuesAnkiety dpc");
         System.out.println(ankiety2);
 
-}
+    }
 
     @Override
     public void setStartValuesPytanie(Pytania pytanie) {
         this.pytania = pytanie;
-        if(pytania != null){
-        trescPytania.setText(pytania.getTresc());
-        if(pytania.getRodzajPytania() == TypeOfQuestion.OPEN) {
-            dodawaniePytaniaRBQuestionOpen.setSelected(true);
-        }else{if(pytania.getRodzajPytania() == TypeOfQuestion.MANY_CHOICE)
-        {dodawaniePytaniaRBQuestionCloseMoreThenOne.setSelected(true);}
-        else{if(pytania.getRodzajPytania() == TypeOfQuestion.ONE_CHOICE){
-            dodawaniePytaniaRBQuestionCloseOnlyOne.setSelected(true);}
-        else{if(pytania.getRodzajPytania() == TypeOfQuestion.PERCENT){
-            dodawaniePytaniaRBQuestionPercentages.setSelected(true);}
-        else {
-            if (pytania.getRodzajPytania() == TypeOfQuestion.POINTS) {
-                dodawaniePytaniaRBQuestionPoints.setSelected(true);
-                punkty.setText(String.valueOf(pytania.getPunktowe()));
+        if (pytania != null) {
+            trescPytania.setText(pytania.getTresc());
+            if (pytania.getRodzajPytania() == TypeOfQuestion.OPEN) {
+                dodawaniePytaniaRBQuestionOpen.setSelected(true);
+            } else {
+                if (pytania.getRodzajPytania() == TypeOfQuestion.MANY_CHOICE) {
+                    dodawaniePytaniaRBQuestionCloseMoreThenOne.setSelected(true);
+                } else {
+                    if (pytania.getRodzajPytania() == TypeOfQuestion.ONE_CHOICE) {
+                        dodawaniePytaniaRBQuestionCloseOnlyOne.setSelected(true);
+                    } else {
+                        if (pytania.getRodzajPytania() == TypeOfQuestion.PERCENT) {
+                            dodawaniePytaniaRBQuestionPercentages.setSelected(true);
+                        } else {
+                            if (pytania.getRodzajPytania() == TypeOfQuestion.POINTS) {
+                                dodawaniePytaniaRBQuestionPoints.setSelected(true);
+                                punkty.setText(String.valueOf(pytania.getPunktowe()));
+                            }
+
+                        }
+                    }
+                }
             }
 
-        }}}}
-
-        if(null != pytania.getZdjecie()){
-        try {
-            conversjaNaZ(pytania.getZdjecie());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        }
-            if(pytanie.getRodzajPytania()!= TypeOfQuestion.OPEN) {
-                setOdpowiedziSS(pytania);
+            if (null != pytania.getZdjecie()) {
+                try {
+                    conversjaNaZ(pytania.getZdjecie());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+            if (pytanie.getRodzajPytania() != TypeOfQuestion.OPEN) {
+
+                setOdpowiedziSS(listaOdpTego);
+            }
+
 
         }
     }
@@ -173,26 +185,39 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
     }
 
-    public void SetEdycja(Boolean wyb)
-    {
+    public void SetEdycja(Boolean wyb) {
         edycja2 = wyb;
     }
-    public void SetAnuluj(List<Odpowiedzi> odp){
+
+    public void SetAnuluj(Set odp) {
         this.listaOdpTego = odp;
     }
-    public  void  Inicjajca()
-    {
-        listaOdpTego = new ArrayList<>();
+
+    public void Inicjajca() {
+        listaOdpTego = new HashSet();
 
     }
+
+    public Set getListaOdpTego() {
+        return listaOdpTego;
+    }
+
+    public void InicjajcaZ(Pytania pytania) {
+
+        listaOdpTego = new HashSet<Odpowiedzi>(pytania.getOdpowiedzis()) ;
+
+    }
+
+
     @FXML
     void anulujAction(ActionEvent event) {
         loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
         PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
-        panelTworzeniaankietyController.DaneUsniecia(listaPytaU, listaOdpTego);
-        if(rodzajPytania != TypeOfQuestion.OPEN && pytania != null ) {
-            pytania.getOdpowiedzis().addAll(listaOdpTego);
-            listaOdpTego = new ArrayList<>();
+        listaOdpTego = new HashSet();
+        panelTworzeniaankietyController.DaneUsniecia(listaPytaU, listaOdpU);
+        if (rodzajPytania != TypeOfQuestion.OPEN && pytania != null) {
+           /// pytania.getOdpowiedzis().addAll(listaOdpTego);
+            listaOdpTego = new HashSet();
         }
         panelTworzeniaankietyController.setStartValuesPytanie(pytania);
         panelTworzeniaankietyController.setStartValues(curetUser);
@@ -201,11 +226,12 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         activeScene(event, false, false);
 
     }
+
     /**
      * Metoda obsługująca przyciśk dodaj zdjecie.
      *
-     * @author HubertJakobsze
      * @param event zdarzenie, po którym funkcja ma się wywołać
+     * @author HubertJakobsze
      */
 
     @FXML
@@ -218,187 +244,280 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         try {
             Image image = new Image(file.toURI().toString());
             System.out.println(file.toURI().toString());
-            System.out.println("==================================================================================");
-
             System.out.println(file.toURI().toString());
             conversja(file);
             imageview.setImage(image);
-        }catch(IllegalArgumentException argumentException){
+        } catch (IllegalArgumentException argumentException) {
             System.out.println("Nie wybrałeś zdjęcia lub rozszerzenie nie jest obsługiwane. " + argumentException.getMessage());
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
     }
+
     public void conversja(File file) throws FileNotFoundException, IOException {
         FileInputStream fis = new FileInputStream(file);
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         byte[] buf = new byte[1024];
         try {
-            for (int readNum; (readNum = fis.read(buf)) != -1;) {
+            for (int readNum; (readNum = fis.read(buf)) != -1; ) {
                 bos.write(buf, 0, readNum);
-                System.out.println("read " + readNum + " bytes,");
             }
         } catch (IOException ex) {
         }
 
         byte[] bytes = bos.toByteArray();
         zdjecie = bytes;
-        //pytania.setZdjecie(zdjecie);
-        setStartValuesPytanie(pytania);
-        }
+        pytania.setZdjecie(zdjecie);
+        //setStartValuesPytanie(pytania);
+    }
 
 
     public void conversjaNaZ(byte[] bytes) throws IOException {
 
 
-            ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
-            Iterator<?> readers = ImageIO.getImageReadersByFormatName("jpg");
+        ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+        Iterator<?> readers = ImageIO.getImageReadersByFormatName("jpg");
 
-            ImageReader reader = (ImageReader) readers.next();
-            Object source = bis;
-            ImageInputStream iis = ImageIO.createImageInputStream(source);
-            reader.setInput(iis, true);
-            ImageReadParam param = reader.getDefaultReadParam();
+        ImageReader reader = (ImageReader) readers.next();
+        Object source = bis;
+        ImageInputStream iis = ImageIO.createImageInputStream(source);
+        reader.setInput(iis, true);
+        ImageReadParam param = reader.getDefaultReadParam();
 
-            BufferedImage image = reader.read(0, param);
+        BufferedImage image = reader.read(0, param);
 
-            BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
-            String directory = System.getProperty("user.home") + "\\Documents\\Zdjęcia";
-            String directory2 = directory + "\\pdf";
-            if (!(new File(directory).exists())) {
-                new File(directory).mkdir();
-            }
-            Graphics2D g2 = bufferedImage.createGraphics();
-            g2.drawImage(image, null, null);
-            File imageFile = new File(directory + "\\" + pytania.getIdPytania());
-            ImageIO.write(bufferedImage, "jpg", imageFile);
-            Image image2 = new Image(imageFile.toURI().toString());
-            imageview.setImage(image2);
-
-
-
+        BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
+        String directory = System.getProperty("user.home") + "\\Documents\\Zdjęcia";
+        String directory2 = directory + "\\pdf";
+        if (!(new File(directory).exists())) {
+            new File(directory).mkdir();
+        }
+        Graphics2D g2 = bufferedImage.createGraphics();
+        g2.drawImage(image, null, null);
+        File imageFile = new File(directory + "\\" + pytania.getIdPytania());
+        ImageIO.write(bufferedImage, "jpg", imageFile);
+        Image image2 = new Image(imageFile.toURI().toString());
+        imageview.setImage(image2);
 
 
     }
 
 
-
     /**
      * Metoda obsługująca przyciśk wyloguj.
      *
-     * @author HubertJakobsze
      * @param event zdarzenie, po którym funkcja ma się wywołać
+     * @author HubertJakobsze
      */
 
     @FXML
     void wyloguj1Action(ActionEvent event) {
         loadingFXML(event, SceneFXML.PANEL_LOGIN);
         PanelLoginController panelLoginController = load.getController();
-        activeScene(event, false, false);
+        activeScene(event, false, false);}
+
+        /**
+         * Metoda sprawdza czy punkty składają się z liczb i czy nie są ujemne.
+         *
+         * @return true jeśli punkty są poprawne, w przeciwnym razie false
+         */
+        private boolean punktyisnumber(){
+            try{
+            punktyS = punkty.getText();
+            punktyi = Integer.parseInt(punktyS);
+
+            if(punktyi>0){
+                return true;
+            }
+            else{
+                panelTworzeniaPytanLabelError.setText("Liczba punktów nie może być mniejsza od 0.");
+                return false;
+            }
+           }
+            catch(IllegalArgumentException argumentException){
+                panelTworzeniaPytanLabelError.setText("Punkty muszą być liczbą!");
+            }
+
+            return false;
+        }
 
 
-    }
+
+
     @FXML
-    void dodajPytanie(ActionEvent event){
-        if (rodzajPytania == TypeOfQuestion.OPEN) {
-            if(pytania== null) {
-                Pytania pytanie = new Pytania();
-                pytania = pytanie;
-                edycja = true;
-            }else edycja = false;
+    void dodajPytanie(ActionEvent event) {
+
+        if (!trescPytania.getText().isEmpty()) {
+            if (rodzajPytania == TypeOfQuestion.OPEN) {
+                if (pytania == null) {
+                    Pytania pytanie = new Pytania();
+                    pytania = pytanie;
+                    edycja = true;
+                    if (aktualnaliczbaodpowiedzi == 0) {
+                        loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
+                        PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
+
+                        panelTworzeniaankietyController.DaneUsniecia(listaPytaU, listaOdpU);
+                        panelTworzeniaankietyController.setStartValues(curetUser);
+                        panelTworzeniaankietyController.setStartValuesAnkiety(ankiety2);
+                        panelTworzeniaankietyController.SetEdycja(edycja2);
+                        activeScene(event, false, false);
+
+                    } else {
+
+                        panelTworzeniaPytanLabelError.setText("Pytanie otwarte nie może zawierać odpowiedzi!");
+                    }
+                } else edycja = false;
+
+            }
+            if (!edycja) {
+
+                if ((aktualnaliczbaodpowiedzi == 0 && dodawaniePytaniaRBQuestionOpen.isSelected()) ||
+
+                        (aktualnaliczbaodpowiedzi > 1 &&
+                                (dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected()   || dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected() ||
+                                        (  dodawaniePytaniaRBQuestionPoints.isSelected() && punktyisnumber())
+                                ))
+                        ||
+                        (aktualnaliczbaodpowiedzi == 1 &&
+                                (dodawaniePytaniaRBQuestionPercentages.isSelected()))
+                )
+                 {
+
+                    pytania.setTresc(trescPytania.getText());
+                    pytania.setRodzajPytania(rodzajPytania);
+                    pytania.setPunktowe(punktowe);
+                    pytania.setAnkiety(ankiety2);
+                    pytania.setOdpowiedzis(listaOdpTego);
+                    loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
+                    PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
+
+                    panelTworzeniaankietyController.DaneUsniecia(listaPytaU, listaOdpU);
+                    panelTworzeniaankietyController.setStartValues(curetUser);
+                    panelTworzeniaankietyController.setStartValuesAnkiety(ankiety2);
+                    panelTworzeniaankietyController.SetEdycja(edycja2);
+                    activeScene(event, false, false);
+                    //PytaniaQuery query = new PytaniaQuery();
+                    // query.updatePytania(pytania);
+                    try {
+                        listaOdpU.addAll(listaOdpTego);
+                        listaOdpTego = new HashSet();
+                    } catch (NullPointerException e) {
+
+                        panelTworzeniaPytanLabelError.setText("Pytanie otwarte nie może zawierać odpowiedzi!");
+                    }
+                } else {
+                    if (dodawaniePytaniaRBQuestionPercentages.isSelected()) {
+                        panelTworzeniaPytanLabelError.setText("To pytanie musi może mieć 1 odpowiedź!");
+                    } else if (dodawaniePytaniaRBQuestionOpen.isSelected()) {
+                        panelTworzeniaPytanLabelError.setText("To pytanie nie może mieć odpowiedzi!");
+                    } else {
+                        panelTworzeniaPytanLabelError.setText("To pytanie musi mieć przynajmniej 2 odpowiedzi!");
+                    }
+
+                }
 
 
+            } else {
+                if ((aktualnaliczbaodpowiedzi == 0 && dodawaniePytaniaRBQuestionOpen.isSelected()) ||
 
+                        (aktualnaliczbaodpowiedzi > 1 &&
+                                (dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected()   || dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected() ||
+                                        (  dodawaniePytaniaRBQuestionPoints.isSelected() && punktyisnumber())
+                                ))
+                        ||
+                        (aktualnaliczbaodpowiedzi == 1 &&
+                                (dodawaniePytaniaRBQuestionPercentages.isSelected()))
+                )
+                {
+
+
+                    pytania.setIdPytania(-1);
+                    pytania.setTresc(trescPytania.getText());
+                    pytania.setZdjecie(zdjecie);
+                    pytania.setRodzajPytania(rodzajPytania);
+                    pytania.setPunktowe(punktowe);
+                    pytania.setAnkiety(ankiety2);
+                    pytania.setOdpowiedzis(listaOdpTego);
+                    ankiety2.getPytanias().add(pytania);
+
+                    loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
+                    PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
+
+                    panelTworzeniaankietyController.DaneUsniecia(listaPytaU, listaOdpU);
+                    panelTworzeniaankietyController.setStartValues(curetUser);
+                    panelTworzeniaankietyController.setStartValuesAnkiety(ankiety2);
+                    panelTworzeniaankietyController.SetEdycja(edycja2);
+                    activeScene(event, false, false);
+                } else {
+                    if (dodawaniePytaniaRBQuestionPercentages.isSelected()) {
+                        panelTworzeniaPytanLabelError.setText("To pytanie musi może mieć 1 odpowiedź!");
+                    } else if (dodawaniePytaniaRBQuestionOpen.isSelected()) {
+                        panelTworzeniaPytanLabelError.setText("To pytanie nie może mieć odpowiedzi!");
+                    } else {
+                        panelTworzeniaPytanLabelError.setText("To pytanie musi mieć przynajmniej 2 odpowiedzi!");
+                    }
+
+                }
+
+
+            }
+
+        } else{
+            panelTworzeniaPytanLabelError.setText("Tytuł pytania nie może być pusty!");
         }
-        if(!edycja) {
-
-            pytania.setTresc(trescPytania.getText());
-
-            pytania.setRodzajPytania(rodzajPytania);
-            pytania.setPunktowe(punktowe);
-            pytania.setAnkiety(ankiety2);
-            PytaniaQuery query = new PytaniaQuery();
-            query.updatePytania(pytania);
-
-
-
-        }
-
-        else{
-            pytania.setIdPytania(-1);
-            pytania.setTresc(trescPytania.getText());
-            pytania.setZdjecie(zdjecie);
-            pytania.setRodzajPytania(rodzajPytania);
-            pytania.setPunktowe(punktowe);
-            pytania.setAnkiety(ankiety2);
-            ankiety2.getPytanias().add(pytania);
-
-
-
-
-        }
-        if(!edycja) {
-           listaOdpU.addAll(listaOdpTego);
-           listaOdpTego = new ArrayList<>();
-        }
-
-        loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
-        PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
-
-        panelTworzeniaankietyController.DaneUsniecia(listaPytaU, listaOdpU);
-        panelTworzeniaankietyController.setStartValues(curetUser);
-        panelTworzeniaankietyController.setStartValuesAnkiety(ankiety2);
-        panelTworzeniaankietyController.SetEdycja(edycja2);
-        activeScene(event, false, false);
-
-
     }
+
     @FXML
     void dodajpytanieAction(ActionEvent event) {
 
 
-        if(dodawaniePytaniaRBQuestionOpen.isSelected()) {
-            rodzajPytania = TypeOfQuestion.OPEN;
+        if (dodawaniePytaniaRBQuestionOpen.isSelected()) {
+            if(aktualnaliczbaodpowiedzi<=0) {
+                rodzajPytania = TypeOfQuestion.OPEN;
 
-            punktowe= 0;
-            dodajPytanie(event);
-        }
-        else{if(dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected()){
-            rodzajPytania= TypeOfQuestion.MANY_CHOICE;
-            punktowe= 0;
-            dodajPytanie(event);
-        }
-        else{if(dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected()){
-            rodzajPytania= TypeOfQuestion.ONE_CHOICE;
-            punktowe= 0;
-            dodajPytanie(event);
-        }
-        else{if(dodawaniePytaniaRBQuestionPercentages.isSelected()){
-            rodzajPytania= TypeOfQuestion.PERCENT;
-            punktowe = Integer.parseInt("100");
-            dodajPytanie(event);
-        }
-        else{if(dodawaniePytaniaRBQuestionPoints.isSelected()){
-            rodzajPytania=TypeOfQuestion.POINTS;
-            if(!punkty.getText().isEmpty()){
-                try{
-
-            punktowe = Integer.parseInt(punkty.getText());
-                if(punktowe>=0){
+            punktowe = 0;
+            dodajPytanie(event);}
+            else{                 panelTworzeniaPytanLabelError.setText("Pytanie otwarte nie może zawierać odpowiedzi!");}
+        } else {
+            if (dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected()) {
+                rodzajPytania = TypeOfQuestion.MANY_CHOICE;
+                punktowe = 0;
+                dodajPytanie(event);
+            } else {
+                if (dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected()) {
+                    rodzajPytania = TypeOfQuestion.ONE_CHOICE;
+                    punktowe = 0;
                     dodajPytanie(event);
-                }
-                else     panelTworzeniaPytanLabelError.setText("Punkty muszą być większe od 0!");
-                }
-                catch (Exception e){
-                    panelTworzeniaPytanLabelError.setText("Punkty muszą być liczbą!");
-                }
+                } else {
+                    if (dodawaniePytaniaRBQuestionPercentages.isSelected()) {
+                        rodzajPytania = TypeOfQuestion.PERCENT;
+                        punktowe = Integer.parseInt("100");
+                        dodajPytanie(event);
+                    } else {
+                        if (dodawaniePytaniaRBQuestionPoints.isSelected()) {
+                            rodzajPytania = TypeOfQuestion.POINTS;
+                            if (!punkty.getText().isEmpty()) {
+                                try {
 
-            }
-            else{  panelTworzeniaPytanLabelError.setText("Podaj liczbę punków!");
-            }
+                                    punktowe = Integer.parseInt(punkty.getText());
+                                    if (punktowe >= 0) {
+                                        dodajPytanie(event);
+                                    } else panelTworzeniaPytanLabelError.setText("Punkty muszą być większe od 0!");
+                                } catch (Exception e) {
+                                    panelTworzeniaPytanLabelError.setText("Punkty muszą być liczbą!");
+                                }
 
-        }}}}}
+                            } else {
+                                panelTworzeniaPytanLabelError.setText("Podaj liczbę punków!");
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
 
 
     }
@@ -421,7 +540,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         dodawaniePytaniaRBQuestionCloseOnlyOne.setToggleGroup(radioButtonGroup);
         dodawaniePytaniaRBQuestionPercentages.setToggleGroup(radioButtonGroup);
         dodawaniePytaniaRBQuestionPoints.setToggleGroup(radioButtonGroup);
-        dodawaniePytaniaRBQuestionOpen.setSelected(true);
+        dodawaniePytaniaRBQuestionCloseOnlyOne.setSelected(true);
 
 
     }
@@ -430,63 +549,56 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         if (!dodawaniePytaniaRBQuestionOpen.isSelected()) {
             odp = odpowiedzi.getText();
             if (!odp.isEmpty()) {
-                if (pytania == null) {
-                    Pytania pytanie = new Pytania();
-                    pytanie.initHashSetOdpowiedzi();
-                    Odpowiedzi odpo = new Odpowiedzi(pytania, odp);
-                    odpo.setIdOdpowiedzi(-1);
-                    pytanie.setIdPytania(-1);
-                    pytania = pytanie;
-                    odpo.setPytania(pytania);
-                    pytania.getOdpowiedzis().add(odpo);
-                    edycja = false;
-                } else {
-                    Odpowiedzi odpo = new Odpowiedzi(pytania, odp);
-                    odpo.setIdOdpowiedzi(-1);
-                    pytania.setIdPytania(-1);
-                    edycja = true;
-                    pytania.getOdpowiedzis().add(odpo);
-                }
-                setOdpowiedziSS(pytania);
-            } else {
-                panelTworzeniaPytanLabelError.setText("Podaj treść odpowiedzi!");
-            }
+            if (pytania == null) {
+
+                Pytania pytanie = new Pytania();
+                pytanie.initHashSetOdpowiedzi();
+                Odpowiedzi odpo = new Odpowiedzi(pytania, odp);
+                odpo.setIdOdpowiedzi(-1);
+                pytanie.setIdPytania(-1);
+                pytania = pytanie;
+                odpo.setPytania(pytania);
+                listaOdpTego.add(odpo);
+                edycja = true;
+
+
         }
+            else {
+                Odpowiedzi odpo = new Odpowiedzi(pytania, odp);
+                odpo.setIdOdpowiedzi(-1);
+                pytania.setIdPytania(-1);
+                edycja = true;
+                listaOdpTego.add(odpo);
+            }
+
+            setOdpowiedziSS(listaOdpTego);
+        }      else{
+                panelTworzeniaPytanLabelError.setText("Podaj treść odpowiedzi!");
+
+
+            }
+
+        }else{
+            panelTworzeniaPytanLabelError.setText("Pytanie otwarte nie może zawierać odpowiedzi!");
+
+
+        }
+
     }
 
-    public void Edycja(Boolean e){
+    public void Edycja(Boolean e)
+    {
         this.edycja = e;
     }
 
-    public void setOdpowiedziSS(Pytania pytania){
-        if(dodawaniePytaniaRBQuestionOpen.isSelected()) {
-            rodzajPytania = TypeOfQuestion.OPEN;
-
-            punktowe= 0;
-        }
-        else{if(dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected()){
-            rodzajPytania= TypeOfQuestion.MANY_CHOICE;
-            punktowe= 0;
-        }
-        else{if(dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected()){
-            rodzajPytania= TypeOfQuestion.ONE_CHOICE;
-            punktowe= 0;
-        }
-        else{if(dodawaniePytaniaRBQuestionPercentages.isSelected()){
-            rodzajPytania= TypeOfQuestion.PERCENT;
-            punktowe = Integer.parseInt("100");
-        }
-        else{if(dodawaniePytaniaRBQuestionPoints.isSelected()){
-            rodzajPytania=TypeOfQuestion.POINTS;}} }}}
-        pytania.setRodzajPytania(rodzajPytania);
-
+    public void setOdpowiedziSS(Set<Odpowiedzi> listaOdpTego){
         ObservableList<OdpowiedziTabelka> dane = FXCollections.observableArrayList();
-        pytania.getOdpowiedzis().forEach(odpowiedz ->{Odpowiedzi JednaOdp = (Odpowiedzi) odpowiedz;
-        dane.add(new OdpowiedziTabelka(JednaOdp, ankiety2, curetUser,pytania,  listaOdpU, listaPytaU, listaOdpTego, edycja2));});
+        listaOdpTego.forEach(odpowiedz ->{Odpowiedzi JednaOdp = (Odpowiedzi) odpowiedz;
+        dane.add(new OdpowiedziTabelka(JednaOdp, ankiety2, curetUser,  listaOdpU, listaPytaU, listaOdpTego, edycja2 ,this));});
         odpowiedziTabelka.itemsProperty().setValue(dane);
         treść.setCellValueFactory(new PropertyValueFactory("treść"));
         przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
-      System.out.println(dane.size());
+    aktualnaliczbaodpowiedzi =dane.size();
 
     }
     public void DaneUsniecia(List<Pytania> pyt, List<Odpowiedzi> odp){
@@ -494,5 +606,5 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         this.listaOdpU= odp;
     }
 
-
 }
+
