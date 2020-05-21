@@ -39,6 +39,8 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
     private final ToggleGroup radioButtonGroup = new ToggleGroup();
 
+    private int aktualnaliczbaodpowiedzi =0;
+
     @FXML
     private ImageView imageview;
 
@@ -153,7 +155,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
             e.printStackTrace();
         }
         }
-            if(pytania.getRodzajPytania()!= TypeOfQuestion.OPEN) {
+            if(pytanie.getRodzajPytania()!= TypeOfQuestion.OPEN) {
                 setOdpowiedziSS(pytania);
             }
 
@@ -270,7 +272,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
             }
             Graphics2D g2 = bufferedImage.createGraphics();
             g2.drawImage(image, null, null);
-            File imageFile = new File(directory + "\\" + pytania.getIdPytania()+ bytes);
+            File imageFile = new File(directory + "\\" + pytania.getIdPytania());
             ImageIO.write(bufferedImage, "jpg", imageFile);
             Image image2 = new Image(imageFile.toURI().toString());
             imageview.setImage(image2);
@@ -438,11 +440,11 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
                 pytania = pytanie;
                 odpo.setPytania(pytania);
                 pytania.getOdpowiedzis().add(odpo);
-
                 edycja=false;
 
 
-        }else {
+        }
+            else {
                 Odpowiedzi odpo = new Odpowiedzi(pytania, odp);
                 odpo.setIdOdpowiedzi(-1);
                 pytania.setIdPytania(-1);;
@@ -451,7 +453,15 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
             }
 
             setOdpowiedziSS(pytania);
+        }      else{
+                panelTworzeniaPytanLabelError.setText("Podaj treść odpowiedzi!");
+
+
+            }
+
         }
+
+
         else{
             panelTworzeniaPytanLabelError.setText("Nie można dodać odpowiedzi do pytania otwartego!");
 
@@ -487,10 +497,11 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
         ObservableList<OdpowiedziTabelka> dane = FXCollections.observableArrayList();
         pytania.getOdpowiedzis().forEach(odpowiedz ->{Odpowiedzi JednaOdp = (Odpowiedzi) odpowiedz;
-        dane.add(new OdpowiedziTabelka(JednaOdp, ankiety2, curetUser,pytania,  listaOdpU, listaPytaU, listaOdpTego, edycja2));});
+        dane.add(new OdpowiedziTabelka(JednaOdp, ankiety2, curetUser,pytania,  listaOdpU, listaPytaU, listaOdpTego));});
         odpowiedziTabelka.itemsProperty().setValue(dane);
         treść.setCellValueFactory(new PropertyValueFactory("treść"));
         przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
+      System.out.println(dane.size());
 
     }
     public void DaneUsniecia(List<Pytania> pyt, List<Odpowiedzi> odp){
