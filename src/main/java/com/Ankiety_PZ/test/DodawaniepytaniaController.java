@@ -153,7 +153,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
             e.printStackTrace();
         }
         }
-            if(pytanie.getRodzajPytania()!= TypeOfQuestion.OPEN) {
+            if(pytania.getRodzajPytania()!= TypeOfQuestion.OPEN) {
                 setOdpowiedziSS(pytania);
             }
 
@@ -243,11 +243,13 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
         byte[] bytes = bos.toByteArray();
         zdjecie = bytes;
-        if(edycja2)pytania.setZdjecie(zdjecie);
+        //pytania.setZdjecie(zdjecie);
+        setStartValuesPytanie(pytania);
         }
 
 
     public void conversjaNaZ(byte[] bytes) throws IOException {
+
 
             ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
             Iterator<?> readers = ImageIO.getImageReadersByFormatName("jpg");
@@ -268,12 +270,10 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
             }
             Graphics2D g2 = bufferedImage.createGraphics();
             g2.drawImage(image, null, null);
-            File imageFile = new File(directory + "\\" + pytania.getIdPytania());
+            File imageFile = new File(directory + "\\" + pytania.getIdPytania()+ bytes);
             ImageIO.write(bufferedImage, "jpg", imageFile);
             Image image2 = new Image(imageFile.toURI().toString());
             imageview.setImage(image2);
-            System.out.println(imageFile);
-            System.out.println(imageFile);
 
 
 
@@ -438,6 +438,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
                 pytania = pytanie;
                 odpo.setPytania(pytania);
                 pytania.getOdpowiedzis().add(odpo);
+
                 edycja=false;
 
 
@@ -463,9 +464,30 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     }
 
     public void setOdpowiedziSS(Pytania pytania){
+        if(dodawaniePytaniaRBQuestionOpen.isSelected()) {
+            rodzajPytania = TypeOfQuestion.OPEN;
+
+            punktowe= 0;
+        }
+        else{if(dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected()){
+            rodzajPytania= TypeOfQuestion.MANY_CHOICE;
+            punktowe= 0;
+        }
+        else{if(dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected()){
+            rodzajPytania= TypeOfQuestion.ONE_CHOICE;
+            punktowe= 0;
+        }
+        else{if(dodawaniePytaniaRBQuestionPercentages.isSelected()){
+            rodzajPytania= TypeOfQuestion.PERCENT;
+            punktowe = Integer.parseInt("100");
+        }
+        else{if(dodawaniePytaniaRBQuestionPoints.isSelected()){
+            rodzajPytania=TypeOfQuestion.POINTS;}} }}}
+        pytania.setRodzajPytania(rodzajPytania);
+
         ObservableList<OdpowiedziTabelka> dane = FXCollections.observableArrayList();
         pytania.getOdpowiedzis().forEach(odpowiedz ->{Odpowiedzi JednaOdp = (Odpowiedzi) odpowiedz;
-        dane.add(new OdpowiedziTabelka(JednaOdp, ankiety2, curetUser,pytania,  listaOdpU, listaPytaU, listaOdpTego));});
+        dane.add(new OdpowiedziTabelka(JednaOdp, ankiety2, curetUser,pytania,  listaOdpU, listaPytaU, listaOdpTego, edycja2));});
         odpowiedziTabelka.itemsProperty().setValue(dane);
         treść.setCellValueFactory(new PropertyValueFactory("treść"));
         przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));

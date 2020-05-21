@@ -16,7 +16,7 @@ public class OdpowiedziTabelka extends BulidStage{
     public Button buttonUsun;
 
 
-    OdpowiedziTabelka(Odpowiedzi odpowiedzi, Ankiety ankieta,Uzytkownicy user, Pytania pytania, List<Odpowiedzi> odp , List<Pytania> pyt, List<Odpowiedzi> usu) {
+    OdpowiedziTabelka(Odpowiedzi odpowiedzi, Ankiety ankieta,Uzytkownicy user, Pytania pytania, List<Odpowiedzi> odp , List<Pytania> pyt, List<Odpowiedzi> usu,Boolean edycja2) {
         treść = odpowiedzi.getOdpowiedz();
         buttonUsun = new Button("Usuń");
         buttonUsun.setOnAction(new EventHandler<ActionEvent>() {
@@ -32,6 +32,7 @@ public class OdpowiedziTabelka extends BulidStage{
                 dodawaniepytaniaController.SetAnuluj(usu);
                 dodawaniepytaniaController.DaneUsniecia(pyt, odp);
                 dodawaniepytaniaController.Edycja(true);
+                dodawaniepytaniaController.SetEdycja(edycja2);
                 //dodawaniepytaniaController.DaneUsniecia(pyt);
                 dodawaniepytaniaController.setStartValues(user);
                 dodawaniepytaniaController.setStartValuesAnkiety(ankieta);
