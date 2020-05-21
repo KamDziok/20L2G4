@@ -125,6 +125,7 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
         loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
         PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
         panelTworzeniaankietyController.SetEdycja(false);
+        panelTworzeniaankietyController.SetStart();
         panelTworzeniaankietyController.setStartValuesAnkiety(ankieta);
         panelTworzeniaankietyController.setStartValues(curentUser2);
         activeScene(event, false, false);

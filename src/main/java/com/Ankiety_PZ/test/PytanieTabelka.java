@@ -26,12 +26,9 @@ public class PytanieTabelka extends BulidStage implements SetStartValues{
             public void handle(ActionEvent event) {
                 loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
                 PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
-                //PytaniaQuery query1 =new PytaniaQuery();
                 System.out.println(pytanie);
                 ankieta.getPytanias().remove(pytanie);
-                //query1.deletePytania(pytanie);
                 System.out.println(user);
-
                 pyt.add(pytanie);
                 System.out.println(pyt);
                 panelTworzeniaankietyController.DaneUsniecia(pyt, odp);
@@ -60,7 +57,6 @@ public class PytanieTabelka extends BulidStage implements SetStartValues{
                 dodawaniepytaniaController.setStartValues(user);
                 dodawaniepytaniaController.setStartValuesAnkiety(ankieta);
                 dodawaniepytaniaController.setStartValuesPytanie(pytanie);
-
                 if(pytanie.getRodzajPytania()== TypeOfQuestion.OPEN) pytanie.initHashSetOdpowiedzi();
                 dodawaniepytaniaController.setOdpowiedziSS(dodawaniepytaniaController.getListaOdpTego());
                 activeScene(event, false, false);

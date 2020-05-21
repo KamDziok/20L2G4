@@ -159,10 +159,10 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
             ankiety.setLiczbaPunktow(0);
         }
         finally {
-            dodawaniepytaniaController.setStartValuesAnkiety(ankiety);
-            dodawaniepytaniaController.setStartValues(curetUser);
             dodawaniepytaniaController.Inicjajca();
             dodawaniepytaniaController.DaneUsniecia(listaPytaU, listaOdpU);
+            dodawaniepytaniaController.setStartValuesAnkiety(ankiety);
+            dodawaniepytaniaController.setStartValues(curetUser);
             dodawaniepytaniaController.SetEdycja(edycja2);
 
             activeScene(event, false, false);
@@ -250,7 +250,12 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     }
 
 
+public void SetStart()
+{
 
+    listaPytaU = new ArrayList<>();
+    listaOdpU = new ArrayList<>();
+}
     @Override
     public void setStartValuesPytanie(Pytania pytania) {
 

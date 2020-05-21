@@ -335,9 +335,6 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
             pytania.setPunktowe(punktowe);
             pytania.setAnkiety(ankiety2);
             pytania.setOdpowiedzis(listaOdpTego);
-            //PytaniaQuery query = new PytaniaQuery();
-           // query.updatePytania(pytania);
-
 
         } else {
             pytania.setIdPytania(-1);
@@ -456,7 +453,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
                 pytania = pytanie;
                 odpo.setPytania(pytania);
                 listaOdpTego.add(odpo);
-                edycja = false;
+                edycja = true;
 
 
         }
