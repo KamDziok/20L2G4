@@ -43,7 +43,7 @@ public class NagrodaTabelka {
             public void handle(ActionEvent event) {
                 Uzytkownicy curentUser = controller.getCurentUser();
                 NagrodyQuery queryNagrody = new NagrodyQuery();
-                if (queryNagrody.getNagrodyToUzytkownicy(nagroda, curentUser) && curentUser.updatePunkty(cena, false)) {
+                if (queryNagrody.getNagrodyToUzytkownicy(nagroda, curentUser)) {
                         UzytkownicyQuery query = new UzytkownicyQuery();
                         query.updateUzytkownicy(curentUser);
                         controller.updatePkt(String.valueOf(curentUser.getLiczbaPunktow()));
