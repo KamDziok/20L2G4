@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -32,7 +31,7 @@ public class OdpowiedziTabelka extends BulidStage{
                 dod.SetAnuluj(usu);
                 dod.getListaOdpTego().remove(odpowiedzi);
                 //dod.SetAnuluj(odpowiedzi);
-               // dod.DaneUsniecia(pyt, odp);
+                dod.DaneUsniecia(pyt, odp);
                 dod.Edycja(true);
                 dod.SetEdycja(edycja2);
                 dod.setOdpowiedziSS(dod.getListaOdpTego());

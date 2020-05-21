@@ -28,7 +28,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <ImageView fx:id="imageview" fitHeight="190.0" fitWidth="338.0" layoutX="824.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageview" fitHeight="190.0" fitWidth="338.0" layoutX="836.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
       <RadioButton fx:id="dodawaniePytaniaRBQuestionOpen" layoutX="943.0" layoutY="285.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="170.0" text="Pytanie otwarte">
          <font>
             <Font size="18.0" />
@@ -79,7 +79,7 @@
          </font>
       </Label>
       <TextField fx:id="punkty" layoutX="824.0" layoutY="226.0" prefHeight="47.0" prefWidth="88.0" />
-      <Label fx:id="panelTworzeniaPytanLabelError" alignment="CENTER" layoutX="183.0" layoutY="669.0" prefHeight="17.0" prefWidth="522.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
+      <Label fx:id="panelTworzeniaPytanLabelError" alignment="CENTER" layoutX="149.0" layoutY="669.0" prefHeight="33.0" prefWidth="594.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
          <font>
             <Font size="24.0" />
          </font>

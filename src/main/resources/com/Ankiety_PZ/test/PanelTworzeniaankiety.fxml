@@ -17,6 +17,9 @@
             <ScrollPane layoutY="230.0" prefHeight="294.0" prefWidth="1183.0">
                <content>
                   <TableView fx:id="pytanieTabele" prefHeight="307.0" prefWidth="1156.0">
+                     <placeholder>
+                        <Label text="Brak pytań do ankiety" />
+                     </placeholder>
                      <columns>
                         <TableColumn fx:id="treść" maxWidth="720.0" minWidth="600.0" prefWidth="720.0" text="Treść" />
                         <TableColumn fx:id="Rpytanie" maxWidth="160.0" minWidth="160.0" prefWidth="160.0" text="Rodzaj pytania" />
@@ -69,7 +72,7 @@
          </font>
       </Label>
       <Button fx:id="wyloguj" layoutX="14.0" layoutY="660.0" mnemonicParsing="false" onAction="#wylogujAction" prefHeight="50.0" prefWidth="125.0" text="Wyloguj" />
-      <Label fx:id="panelTworzeniaAnkietyLabelError" alignment="CENTER" layoutX="187.0" layoutY="669.0" prefHeight="17.0" prefWidth="522.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
+      <Label fx:id="panelTworzeniaAnkietyLabelError" alignment="CENTER" layoutX="148.0" layoutY="669.0" prefHeight="33.0" prefWidth="596.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
          <font>
             <Font size="24.0" />
          </font>
