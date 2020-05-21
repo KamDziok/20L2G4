@@ -50,6 +50,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     private String dataod;
     private String datado;
     public List<Pytania> listaPytaU;
+    private Set<Pytania> pytaniaDoUsuniecia;
     public List<Odpowiedzi> listaOdpU;
     @FXML private TableView pytanieTabele;
     @FXML private TableColumn treść;
@@ -81,6 +82,8 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
 
     @FXML
     private ChoiceBox<String> dataDORRRR;
+    private Set<Pytania> ListaPytan;
+    private Set<Pytania> pytdoUsuniecia;
 
     public void SetEdycja(Boolean wyb)
     {
@@ -159,21 +162,29 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
             ankiety.setLiczbaPunktow(0);
         }
         finally {
+            dodawaniepytaniaController.Inicjajca();
+            dodawaniepytaniaController.setLisaPytanPrzekazana(ListaPytan);
+            dodawaniepytaniaController.DaneUsniecia(listaPytaU, listaOdpU);
             dodawaniepytaniaController.setStartValuesAnkiety(ankiety);
             dodawaniepytaniaController.setStartValues(curetUser);
-            dodawaniepytaniaController.Inicjajca();
-            dodawaniepytaniaController.DaneUsniecia(listaPytaU, listaOdpU);
             dodawaniepytaniaController.SetEdycja(edycja2);
 
             activeScene(event, false, false);
         }
 
+
     }
+
+    public void setListaPytan(Set<Pytania> listaPytan) {
+        this.ListaPytan = listaPytan;
+    }
+
     @Override
     public void setStartValues(Uzytkownicy user) {
         this.curetUser = user;
 
     }
+
 
     @Override
     public void setStartValuesAnkiety(Ankiety ankieta)
@@ -208,7 +219,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         dataDOMM.setValue(datazMM);
         dataDORRRR.setValue(datazakRRRR);
 
-        setPytanieB();
+        setPytanieB(ListaPytan);
         liczbapytan =liczpytania+liczpytaniaB;
 
     }
@@ -216,6 +227,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         AnkietyQuery query1 = new AnkietyQuery();
         this.ankiety = query1.selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(ankieta);
         this.ankiety.setUzytkownicy(curetUser);
+        ListaPytan = new HashSet<Pytania>(ankieta.getPytanias());
         trescTytulu.setText(ankiety.getTytul());
         punkty.setText(String.valueOf(ankiety.getLiczbaPunktow()));
         String dat = "dd";
@@ -244,13 +256,18 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         dataDOMM.setValue(datazMM);
         dataDORRRR.setValue(datazakRRRR);
         listaPytaU = new ArrayList<>();
-        listaOdpU = new ArrayList<>();
-        setPytanieB();
+        listaOdpU = new  ArrayList<>();
+        setPytanieB(ListaPytan);
         liczbapytan =liczpytania+liczpytaniaB;
     }
 
 
+public void SetStart()
+{
 
+    listaPytaU = new ArrayList<>();
+    listaOdpU = new ArrayList<>();
+}
     @Override
     public void setStartValuesPytanie(Pytania pytania) {
 
@@ -365,7 +382,16 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     private boolean min2pytania(){
         return liczbapytan >= 2;
     }
+public void StartListaPytan()
+{
+    ListaPytan = new HashSet<>();
 
+
+}
+
+    public Set<Pytania> getListaPytan() {
+        return ListaPytan;
+    }
 
     @FXML
     void ZapiszAction(ActionEvent event) {
@@ -402,14 +428,15 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
                                 ankiety.setLiczbaPunktow(liczbaPunktow);
                                 ankiety.setDataRozpoczecia(dataRozpoczecia);
                                 ankiety.setDataZakonczenia(dataZakonczenia);
-                                System.out.println(ankiety);;
-                               System.out.println(ankiety.getPytanias());
-                                System.out.println(ankiety);
                                 AnkietyQuery query = new AnkietyQuery();
+
+                                ankiety.setPytanias(ListaPytan);
                                 if (edycja2) {
+                                    listaPytaU.addAll(pytdoUsuniecia);
                                     query.deletePytaniaAndOdpowiedziInAnkiety(listaPytaU, listaOdpU);
                                     query.updateAnkietyWithPytaniaAndOdpowiedzi(ankiety);
                                 } else {
+
                                     query.addAnkietyWithPytaniaAndOdpowiedzi(ankiety);
                                 }
                                 loadingFXML(event, SceneFXML.PANEL_ANKIETERA);
@@ -442,12 +469,24 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
 
 
     }
+    public void setPytdoUsuniecia()
+    {
+        pytdoUsuniecia= new HashSet<Pytania>();
 
-    private void setPytanieB() {
+    }
+    public void setPytdoUsunieciaUs(Set<Pytania> pyt)
+    {
+        pytdoUsuniecia = pyt;
+
+    }
+
+
+    public void setPytanieB(Set lista) {
+        ListaPytan = lista;
         ObservableList<PytanieTabelka> dane = FXCollections.observableArrayList();
-        ankiety.getPytanias().forEach(pytanie -> {
-            Pytania pytania2 = (Pytania) pytanie;
-            dane.add(new PytanieTabelka(ankiety, pytania2, curetUser, listaOdpU, listaPytaU));
+        ListaPytan.forEach(pytanie -> {
+           Pytania pytania2 = (Pytania) pytanie;
+            dane.add(new PytanieTabelka(ankiety, pytanie, curetUser, listaOdpU, pytdoUsuniecia, listaPytaU, this));
             liczpytaniaB++;
         });
         treść.setCellValueFactory(new PropertyValueFactory("treść"));
@@ -476,7 +515,6 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
 
     public void DaneUsniecia(List<Pytania> pyt, List<Odpowiedzi> odp){
         this.listaPytaU = pyt;
-        //this.listaPytaU = pyt;
         this.listaOdpU= odp;
 
 

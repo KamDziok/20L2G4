@@ -1,3 +1,4 @@
+
 package com.Ankiety_PZ.query;
 
 import com.Ankiety_PZ.hibernate.Ankiety;
