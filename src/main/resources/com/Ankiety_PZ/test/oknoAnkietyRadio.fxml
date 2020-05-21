@@ -7,7 +7,7 @@
 
 <AnchorPane fx:id="panel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1201.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.OknoAnkietyRadioController">
    <children>
-      <Label fx:id="trescPytania" layoutX="26.0" layoutY="115.0" prefHeight="33.0" prefWidth="737.0" text="Pytanie" wrapText="true">
+      <Label fx:id="trescPytania" alignment="TOP_LEFT" layoutX="26.0" layoutY="79.0" prefHeight="69.0" prefWidth="737.0" text="Pytanie" wrapText="true">
          <font>
             <Font size="18.0" />
          </font>
@@ -18,7 +18,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="oknoAnkietyLabelError" alignment="CENTER" layoutX="342.0" layoutY="640.0" prefHeight="17.0" prefWidth="522.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
+      <Label fx:id="oknoAnkietyLabelError" alignment="CENTER" layoutX="197.0" layoutY="673.0" prefHeight="33.0" prefWidth="808.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
          <font>
             <Font size="24.0" />
          </font>

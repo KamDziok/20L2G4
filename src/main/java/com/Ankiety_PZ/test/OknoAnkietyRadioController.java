@@ -262,10 +262,10 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                             radioController.setStartValuesPanelUzytkownikaController(controller);
                             activeScene(event, false, false);
                         } catch (Exception e) {
-                            oknoAnkietyLabelError.setText("coś poszło nie tak, sprubój ponownie puzniej");
+                            oknoAnkietyLabelError.setText("Coś poszło nie tak, sprubój ponownie puźniej");
                         }
                     } else {
-                        oknoAnkietyLabelError.setText("coś poszło nie tak, upewnij się - że podałeś poprawne odpowiedzi");
+                        oknoAnkietyLabelError.setText("Coś poszło nie tak - upewnij się, że podałeś poprawne odpowiedzi");
                     }
                 }
             });
