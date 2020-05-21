@@ -366,6 +366,10 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
                     if (aktualnaliczbaodpowiedzi == 0) {
                         loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
                         PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
+                        pytania.setTresc(trescPytania.getText());
+                        pytania.setRodzajPytania(rodzajPytania);
+                        pytania.setPunktowe(punktowe);
+                        pytania.setAnkiety(ankiety2);
                         lisaPytanPrzekazana.add(pytania);
                         panelTworzeniaankietyController.setListaPytan(lisaPytanPrzekazana);
                         panelTworzeniaankietyController.SetStart();
