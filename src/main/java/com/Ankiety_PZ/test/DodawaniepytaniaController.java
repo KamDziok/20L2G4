@@ -459,7 +459,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
 
             }
-    }
+    }}
     public void Edycja(Boolean e)
     {
         this.edycja = e;

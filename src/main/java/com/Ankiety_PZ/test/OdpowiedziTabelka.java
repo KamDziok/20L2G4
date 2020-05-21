@@ -1,9 +1,9 @@
 package com.Ankiety_PZ.test;
 
-import com.Ankiety_PZ.hibernate.*;
-import com.Ankiety_PZ.query.OdpowiedziQuery;
-import com.Ankiety_PZ.query.PytaniaQuery;
-import javafx.collections.ObservableList;
+import com.Ankiety_PZ.hibernate.Ankiety;
+import com.Ankiety_PZ.hibernate.Odpowiedzi;
+import com.Ankiety_PZ.hibernate.Pytania;
+import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
