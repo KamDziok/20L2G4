@@ -412,7 +412,11 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
                                 } else {
                                     query.addAnkietyWithPytaniaAndOdpowiedzi(ankiety);
                                 }
-                                panelTworzeniaAnkietyLabelError.setText("Dane zostały pomyślnie zapisane.");
+                                loadingFXML(event, SceneFXML.PANEL_ANKIETERA);
+                                PanelAnkieterController panelAnkieterController = load.getController();
+                                panelAnkieterController.setStartValues(curetUser);
+                                activeScene(event, false, false);
+
                             }
                             else {
                                 panelTworzeniaAnkietyLabelError.setText("Ankieta musi zawierać przynajmniej 2 pytania!");
@@ -435,10 +439,6 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         }else{
             panelTworzeniaAnkietyLabelError.setText("Wymagane pola są puste!");
         }
-        loadingFXML(event, SceneFXML.PANEL_ANKIETERA);
-        PanelAnkieterController panelAnkieterController = load.getController();
-        panelAnkieterController.setStartValues(curetUser);
-        activeScene(event, false, false);
 
 
     }
