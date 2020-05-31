@@ -80,7 +80,7 @@
                             <Label text="Brak odpowiedzi do pytania"/>
                         </placeholder>
                         <columns>
-                            <TableColumn fx:id="treść" maxWidth="995.0" minWidth="995.0" prefWidth="995.0"
+                            <TableColumn fx:id="tresc" maxWidth="995.0" minWidth="995.0" prefWidth="995.0"
                                          text="Treść"/>
                             <TableColumn fx:id="przyciskUsun" maxWidth="110.0" minWidth="70.0" prefWidth="110.0"/>
                         </columns>

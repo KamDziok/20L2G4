@@ -191,13 +191,6 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
         activeScene(event, false, false);
     }
 
-    /**
-     * Metoda obsługująca przyciśk wyloguj2.
-     *
-     * @param event zdarzenie, po którym funkcja ma się wywołać
-     * @author HubertJakobsze
-     */
-
     void ankietawtoku() {
         panelAnkieterLabelError.setText("Nie można edytować ankiety, która się rozpoczęła.");
     }

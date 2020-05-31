@@ -23,7 +23,7 @@
                                 <Label text="Brak pytań do ankiety"/>
                             </placeholder>
                             <columns>
-                                <TableColumn fx:id="treść" maxWidth="720.0" minWidth="600.0" prefWidth="720.0"
+                                <TableColumn fx:id="tresc" maxWidth="720.0" minWidth="600.0" prefWidth="720.0"
                                              text="Treść"/>
                                 <TableColumn fx:id="Rpytanie" maxWidth="160.0" minWidth="160.0" prefWidth="160.0"
                                              text="Rodzaj pytania"/>

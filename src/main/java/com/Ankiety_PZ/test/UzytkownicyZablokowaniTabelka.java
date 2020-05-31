@@ -6,14 +6,54 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
+/**
+ * Klasa obsługuje tabelę zablokowanych użytkowników w panelu administratora.
+ */
+
 public class UzytkownicyZablokowaniTabelka extends BulidStage {
 
+    /**
+     * id użytownika zablokowanego
+     */
+
     private int id;
+
+    /**
+     * Imie i nazwisko użytkownika zablokowanego
+     */
+
     private String imie_i_nazwisko_z;
+
+    /**
+     * Mail użytkownika zablokowanego
+     */
+
     private String mail_z;
+
+    /**
+     * Liczba punków użytkownika zablokowanego
+     */
+
     private int liczbaPunktow_z;
+
+    /**
+     * Przycisk do odblokowowania użytkownika
+     */
+
     private Button odblokuj;
+
+    /**
+     * Obiekt użytkownika
+     */
+
     private Uzytkownicy user;
+
+    /**
+     * Metoda ustawia pojedynczego użytkownika w tabeli zablokowanych użytkowników.
+     * Metoda obsługuje również akcje odblokowania użytkownika przyciskiem <code>odblokuj</code>.
+     * @param uzytkownik obiekt użytkownika do wypisania w tabeli.
+     * @param panel PanelAdminaController.
+     */
 
     UzytkownicyZablokowaniTabelka(Uzytkownicy uzytkownik, PanelAdminaController panel) {
         this.user = uzytkownik;

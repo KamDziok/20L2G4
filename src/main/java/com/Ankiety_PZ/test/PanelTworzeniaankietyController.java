@@ -55,7 +55,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     @FXML
     private TableView pytanieTabele;
     @FXML
-    private TableColumn treść;
+    private TableColumn tresc;
     @FXML
     private TableColumn Rpytanie;
     @FXML
@@ -489,7 +489,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
             dane.add(new PytanieTabelka(ankiety, pytanie, curetUser, listaOdpU, pytdoUsuniecia, listaPytaU, this));
             liczpytaniaB++;
         });
-        treść.setCellValueFactory(new PropertyValueFactory("treść"));
+        tresc.setCellValueFactory(new PropertyValueFactory("tresc"));
         Rpytanie.setCellValueFactory(new PropertyValueFactory("Rpytanie"));
         przyciskEdycja.setCellValueFactory(new PropertyValueFactory("buttonEdycja"));
         przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));

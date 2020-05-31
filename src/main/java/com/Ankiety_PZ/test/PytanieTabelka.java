@@ -11,13 +11,13 @@ import java.util.Set;
 
 public class PytanieTabelka extends BulidStage implements SetStartValues {
 
-    public String treść;
+    public String tresc;
     public String Rpytanie;
     public Button buttonUsun;
     public Button buttonEdycja;
 
     PytanieTabelka(Ankiety ankieta, Pytania pytanie, Uzytkownicy user, List<Odpowiedzi> odp, Set<Pytania> pyt, List<Pytania> listaPytaU, PanelTworzeniaankietyController two) {
-        treść = pytanie.getTresc();
+        tresc = pytanie.getTresc();
         Rpytanie = pytanie.getRodzajPytania() + " ";
         buttonUsun = new Button("Usuń");
         buttonUsun.setOnAction(new EventHandler<ActionEvent>() {
@@ -56,8 +56,8 @@ public class PytanieTabelka extends BulidStage implements SetStartValues {
         });
     }
 
-    public String getTreść() {
-        return treść;
+    public String getTresc() {
+        return tresc;
     }
 
     public String getRpytanie() {

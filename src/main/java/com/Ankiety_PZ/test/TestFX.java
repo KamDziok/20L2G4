@@ -19,7 +19,6 @@ public class TestFX extends Application {
         scene = new Scene(loadFXML(SceneFXML.PANEL_LOGIN));
         stage.setScene(scene);
         stage.show();
-
     }
 
     static void setRoot(String fxml) throws IOException {

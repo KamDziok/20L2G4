@@ -32,30 +32,43 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
     /**
      * Numer domu wczytany z pola tekstowego jako String.
      */
+
     private String numberHouseString;
+
     /**
      * Numer lokalu wczytany z pola tekstowego jako String.
      */
+
     private String numberFlatString;
+
     /**
      * Pierwsza część kodu pocztowego wczytany z pola tekstowego jako String.
      */
+
     private String postCodeFirstString;
+
     /**
      * Druga część kodu pocztowego wczytany z pola tekstowego jako String.
      */
+
     private String postCodeSecondString;
+
     /**
      * Pierwsza część kodu pocztowego przekształconego na int.
      */
+
     private int postCodeFirstInt;
+
     /**
      * Druga część kodu pocztowego przekształconego na int.
      */
+
     private int postCodeSecondInt;
+
     /**
      * Minimalna długośc hasłą.
      */
+
     private final int minSizePassword = 3;
 
     @FXML

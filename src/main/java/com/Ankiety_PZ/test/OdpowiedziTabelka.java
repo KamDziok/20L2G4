@@ -13,12 +13,12 @@ import java.util.Set;
 
 
 public class OdpowiedziTabelka extends BulidStage {
-    public String treść;
+    public String tresc;
     public Button buttonUsun;
 
 
     OdpowiedziTabelka(Odpowiedzi odpowiedzi, Ankiety ankieta, Uzytkownicy user, List<Odpowiedzi> odp, List<Pytania> pyt, Set usu, Boolean edycja2, DodawaniepytaniaController dod) {
-        treść = odpowiedzi.getOdpowiedz();
+        tresc = odpowiedzi.getOdpowiedz();
         buttonUsun = new Button("Usuń");
         buttonUsun.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -34,8 +34,8 @@ public class OdpowiedziTabelka extends BulidStage {
 
     }
 
-    public String getTreść() {
-        return treść;
+    public String getTresc() {
+        return tresc;
     }
 
     public Button getButtonUsun() {

@@ -89,8 +89,8 @@ public class UzytkownicyQuery extends OperationInSession {
      *
      * @param ban true jeśli chcemy, żeby wyszukało nam użytkowników zablokowanych,
      *            false jeśli chcemu listę użytkowników niezblokowanych.
+     * @param user obiekt użytkownika.
      * @return listę użytkowników spełniajaćych kryterium, jeśli lista jest pusta nie znaleziono określonych użytkowników
-     * @author KamDziok
      */
 
     public List<Uzytkownicy> selectBy(boolean ban, Uzytkownicy user) {

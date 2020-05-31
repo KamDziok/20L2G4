@@ -85,15 +85,13 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     @FXML
     private TableView odpowiedziTabelka;
     @FXML
-    private TableColumn treść;
+    private TableColumn tresc;
     @FXML
     private TableColumn przyciskUsun;
     private byte[] zdjecie;
     private Boolean edycja2;
     private String odp;
-    private String tresc;
     private Uzytkownicy curetUser;
-
     private Integer punktowe;
     private int rodzajPytania;
     private Ankiety ankiety2;
@@ -107,19 +105,9 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     private ArrayList<Object> dod;
     private Set<Pytania> lisaPytanPrzekazana;
 
-    /**
-     * Metoda obsługująca przyciśk anuluj.
-     *
-     * @param event zdarzenie, po którym funkcja ma się wywołać
-     * @author HubertJakobsze
-     */
-
-
     @Override
     public void setStartValues(Uzytkownicy user) {
         this.curetUser = user;
-
-
     }
 
     public void setLisaPytanPrzekazana(Set<Pytania> lisaPytanPrzekazana) {
@@ -616,7 +604,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
             dane.add(new OdpowiedziTabelka(JednaOdp, ankiety2, curetUser, listaOdpU, listaPytaU, listaOdpTego, edycja2, this));
         });
         odpowiedziTabelka.itemsProperty().setValue(dane);
-        treść.setCellValueFactory(new PropertyValueFactory("treść"));
+        tresc.setCellValueFactory(new PropertyValueFactory("tresc"));
         przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
         aktualnaliczbaodpowiedzi = dane.size();
 
