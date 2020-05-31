@@ -1,0 +1,197 @@
+.button {
+    -fx-background-color: #00ccff;
+    -fx-text-fill: white;
+    -fx-font-size: 1.8em;
+}
+
+.text-field {
+    -fx-border-color: #00ccff;
+    -fx-border-width: 3;
+    -fx-font-size: 1.8em;
+}
+
+.text-area {
+    -fx-border-color: #00ccff;
+    -fx-border-width: 3;
+    -fx-font-size: 1.8em;
+}
+
+.text-area .scroll-bar:vertical:disabled {
+    -fx-opacity: 0;
+}
+
+.label {
+    -fx-text-fill: black;
+    -fx-font-size: 1.8em;
+
+}
+
+.labelbold {
+    -fx-text-fill: black;
+    -fx-font-size: 1.8em;
+    -fx-font-weight: bold;
+}
+
+.error {
+    -fx-text-fill: red;
+    -fx-font-size: 1.8em;
+}
+
+.scroll-pane {
+    -fx-background-color: white;
+}
+
+.hbox {
+    -fx-background-color: white;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane {
+    -fx-tab-min-width: 90px;
+
+}
+
+.tab {
+    -fx-background-insets: 0 1 0 1, 0, 0;
+    -fx-font-size: 1.8em;
+}
+
+.tab-pane .tab {
+    -fx-background-color: #e6e6e6;
+
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #00ccff;
+}
+
+.tab .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: black;
+    -fx-font-size: 0.7em;
+    -fx-font-weight: bold;
+}
+
+.tab:selected .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
+}
+
+.check-box .box {
+    -fx-font-size: 1.8em;
+    -fx-background-color: white;
+    -fx-border-color: #00ccff;
+    -fx-border-width: 3;
+
+}
+
+.check-box:selected .mark {
+    -fx-font-size: 1.8em;
+    -fx-background-color: white;
+
+}
+
+.check-box:selected .box {
+    -fx-font-size: 1.8em;
+    -fx-background-color: #00ccff;
+}
+
+.radio-button .radio {
+    -fx-border-width: 3;
+    -fx-border-color: #00ccff;
+    -fx-background-color: white;
+    -fx-background-image: null;
+    -fx-border-radius: 15px;
+    -fx-padding: 4px;
+}
+
+.radio-button .radio:selected {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+
+.radio-button -radio:armed {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+
+.radio-button -radio:determinate {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+
+.radio-button -radio:indeterminate {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+
+.radio-button .dot {
+    -fx-background-radius: 15px;
+    -fx-padding: 8px;
+}
+
+.table-view, .tree-table-view {
+
+
+    -fx-table-header-border-color: transparent;
+    -fx-table-cell-border-color: #00ccff;
+    -fx-background-color: transparent;
+    -fx-font-size: 1.8em;
+    -fx-alignment: center;
+}
+
+.table-view .filler, .tree-table-view .filler, .table-view .column-header,
+.tree-table-view .column-header {
+    -fx-font-size: 1.8em;
+
+    -fx-border-style: null;
+    -fx-border-color: #00ccff;
+    -fx-border-width: 0 0 2 0;
+    -fx-background-color: transparent;
+    -fx-alignment: center;
+}
+
+.table-view .show-hide-columns-button, .tree-table-view .show-hide-columns-button {
+    -fx-font-size: 1.8em;
+    -fx-background-color: transparent;
+    -fx-alignment: center;
+}
+
+.table-view .column-header-background, .tree-table-view .column-header-background {
+    -fx-font-size: 1.8em;
+    -fx-background-color: transparent;
+    -fx-alignment: center;
+}
+
+.table-cell {
+    -fx-font-size: 1.8em;
+    -fx-border-color: transparent;
+    -fx-border-width: 1;
+    -fx-alignment: center;
+}
+
+.choice-box .context-menu {
+    -fx-background-color: white;
+}
+
+.choice-box .menu-item:focused {
+    -fx-background-color: #00ccff;
+}
+
+.choice-box .menu-item > .label {
+    -fx-text-fill: black;
+}
+
+.choice-box .menu-item:focused > .label {
+    -fx-text-fill: white;
+}
+
+.choice-box {
+    -fx-background-color: white;
+    -fx-border-color: #00ccff;
+    -fx-mark-color: #00ccff;
+    -fx-border-width: 3;
+}

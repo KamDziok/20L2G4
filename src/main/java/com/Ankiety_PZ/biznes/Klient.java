@@ -3,7 +3,7 @@ package com.Ankiety_PZ.biznes;
 import java.util.LinkedList;
 import java.time.LocalDate;
 
-public class Klient extends Uzytkownik{
+public class Klient extends Uzytkownik {
 
     private LinkedList listaAnkiet;
     private LinkedList listaNagrod;
@@ -16,8 +16,8 @@ public class Klient extends Uzytkownik{
 
 
     public Klient(int id, String imie, String nazwisko, String mail, String haslo,
-           int liczbaPunktow, String miejscowosc, String ulica, String numerBloku,
-           String numerLokalu, String kodPocztowy, String plec, LocalDate wiek) {
+                  int liczbaPunktow, String miejscowosc, String ulica, String numerBloku,
+                  String numerLokalu, String kodPocztowy, String plec, LocalDate wiek) {
         super(id, imie, nazwisko, mail, haslo);
         this.listaAnkiet = new LinkedList();    //zastapic jakas funkcja szukajaca aktualnych ankiet
         this.listaNagrod = new LinkedList();    //zastapic lista z Hibernate
@@ -69,6 +69,7 @@ public class Klient extends Uzytkownik{
         }
         return false;
     }
+
     public boolean zmienLokal(String nowyLokal) {
         if (!numerLokalu.equals(nowyLokal)) {
             numerLokalu = nowyLokal;
@@ -86,15 +87,6 @@ public class Klient extends Uzytkownik{
         }
         return false;
     }
-
-//    public boolean aktualizacjaWieku(String nowaUlica) {
-//        if (!ulica.equals(nowaUlica)) {
-//            ulica = nowaUlica;
-//            // update na baze
-//            return true;
-//        }
-//        return false;
-//    }
 
     public LinkedList getListaAnkiet() {
         return listaAnkiet;

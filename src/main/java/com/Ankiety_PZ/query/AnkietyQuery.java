@@ -5,8 +5,7 @@ import com.Ankiety_PZ.hibernate.Ankiety;
 import com.Ankiety_PZ.hibernate.Odpowiedzi;
 import com.Ankiety_PZ.hibernate.Pytania;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
-import com.Ankiety_PZ.test.TypeOfQuestion;
-import com.Ankiety_PZ.query.OperationsOnDataInEntity;
+import com.Ankiety_PZ.panele.TypeOfQuestion;
 import org.hibernate.Session;
 
 import java.util.ArrayList;
@@ -21,7 +20,7 @@ public class AnkietyQuery extends OperationInSession {
 
     private OperationsOnDataInEntity<Ankiety> modifyAnkiety;
 
-    public AnkietyQuery(){
+    public AnkietyQuery() {
         this.modifyAnkiety = new OperationsOnDataInEntity<>();
     }
 
@@ -35,46 +34,47 @@ public class AnkietyQuery extends OperationInSession {
         return modifyAnkiety.selectListHQL("from Ankiety");
     }
 
-    public Ankiety selectById(Integer id){
-        return modifyAnkiety.selectObjectHQL(("from Ankiety where ID=" + id) );
+    public Ankiety selectById(Integer id) {
+        return modifyAnkiety.selectObjectHQL(("from Ankiety where ID=" + id));
     }
 
-    public Boolean addAnkiety(Ankiety ankiety){
+    public Boolean addAnkiety(Ankiety ankiety) {
         return modifyAnkiety.add(ankiety);
     }
 
-    Boolean addAnkietyWithOutTransaction(Ankiety ankiety, Session session){
+    Boolean addAnkietyWithOutTransaction(Ankiety ankiety, Session session) {
         return modifyAnkiety.addWithOutTransaction(ankiety, session);
     }
 
-    public Boolean updateAnkiety(Ankiety ankiety){
+    public Boolean updateAnkiety(Ankiety ankiety) {
         return modifyAnkiety.update(ankiety);
     }
 
-    Boolean updateAnkietyWithOutTransaction(Ankiety ankiety, Session session){
+    Boolean updateAnkietyWithOutTransaction(Ankiety ankiety, Session session) {
         return modifyAnkiety.updateWithOutTransaction(ankiety, session);
     }
 
-    public Boolean deleteAnkiety(Ankiety ankiety){
+    public Boolean deleteAnkiety(Ankiety ankiety) {
         return modifyAnkiety.delete(ankiety);
     }
 
-    Boolean deleteAnkietyWithOutTransaction(Ankiety ankiety, Session session){
+    Boolean deleteAnkietyWithOutTransaction(Ankiety ankiety, Session session) {
         return modifyAnkiety.deleteWithOutTransaction(ankiety, session);
     }
 
-    public Boolean addAnkietyWithPytaniaAndOdpowiedzi(Ankiety ankiety){
+    public Boolean addAnkietyWithPytaniaAndOdpowiedzi(Ankiety ankiety) {
         Boolean result = false;
-        try{
+        try {
             PytaniaQuery pytaniaQuery = new PytaniaQuery();
             OdpowiedziQuery odpowiedziQuery = new OdpowiedziQuery();
             session = openSession();
-            transaction = beginTransaction(session);;
+            transaction = beginTransaction(session);
+            ;
             addAnkietyWithOutTransaction(ankiety, session);
             ankiety.getPytanias().forEach(pytaniaObj -> {
                 Pytania pytania = (Pytania) pytaniaObj;
                 pytaniaQuery.addPytaniaWithOutTransaction(pytania, session);
-                if(pytania.getRodzajPytania() != TypeOfQuestion.OPEN) {
+                if (pytania.getRodzajPytania() != TypeOfQuestion.OPEN) {
                     pytania.getOdpowiedzis().forEach(odpowiedziObj -> {
                         Odpowiedzi odpowiedzi = (Odpowiedzi) odpowiedziObj;
                         odpowiedziQuery.addOdpowiedziWithOutTransaction(odpowiedzi, session);
@@ -83,18 +83,18 @@ public class AnkietyQuery extends OperationInSession {
             });
             commitTransaction(transaction);
             result = true;
-        }catch(Exception e){
+        } catch (Exception e) {
             rollbackTransaction(transaction);
             logException(e);
-        }finally {
+        } finally {
             closeSession(session);
         }
         return result;
     }
 
-    public Boolean updateAnkietyWithPytaniaAndOdpowiedzi(Ankiety ankiety){
+    public Boolean updateAnkietyWithPytaniaAndOdpowiedzi(Ankiety ankiety) {
         Boolean result = false;
-        if(ankiety.getIdAnkiety() != null) {
+        if (ankiety.getIdAnkiety() != null) {
             try {
                 PytaniaQuery pytaniaQuery = new PytaniaQuery();
                 OdpowiedziQuery odpowiedziQuery = new OdpowiedziQuery();
@@ -106,12 +106,12 @@ public class AnkietyQuery extends OperationInSession {
                 }
                 ankiety.getPytanias().forEach(pytaniaObj -> {
                     Pytania pytania = (Pytania) pytaniaObj;
-                    if(pytania.getIdPytania().intValue() != -1){
+                    if (pytania.getIdPytania().intValue() != -1) {
                         Pytania oldPytania = pytaniaQuery.selectByID(pytania.getIdPytania());
-                        if(!pytania.isTheSame(oldPytania)) {
+                        if (!pytania.isTheSame(oldPytania)) {
                             pytaniaQuery.updatePytaniaWithOutTransaction(pytania, session);
                         }
-                        if(pytania.getRodzajPytania() != TypeOfQuestion.OPEN) {
+                        if (pytania.getRodzajPytania() != TypeOfQuestion.OPEN) {
                             pytania.getOdpowiedzis().forEach(odpowiedziObj -> {
                                 Odpowiedzi odpowiedzi = (Odpowiedzi) odpowiedziObj;
                                 if (odpowiedzi.getIdOdpowiedzi().intValue() != -1) {
@@ -124,10 +124,10 @@ public class AnkietyQuery extends OperationInSession {
                                 }
                             });
                         }
-                    }else {
+                    } else {
                         Pytania newPytanie = new Pytania(ankiety, pytania.getTresc(), pytania.getZdjecie(), pytania.getRodzajPytania(), pytania.getPunktowe());
                         pytaniaQuery.addPytaniaWithOutTransaction(newPytanie, session);
-                        if(pytania.getRodzajPytania() != TypeOfQuestion.OPEN) {
+                        if (pytania.getRodzajPytania() != TypeOfQuestion.OPEN) {
                             pytania.getOdpowiedzis().forEach(odpowiedziObj -> {
                                 Odpowiedzi odpowiedzi = (Odpowiedzi) odpowiedziObj;
                                 odpowiedzi.setPytania(newPytanie);
@@ -148,46 +148,46 @@ public class AnkietyQuery extends OperationInSession {
         return result;
     }
 
-    public Boolean deletePytaniaAndOdpowiedziInAnkiety(List<Pytania> pytaniaList, List<Odpowiedzi> odpowiedziList){
+    public Boolean deletePytaniaAndOdpowiedziInAnkiety(List<Pytania> pytaniaList, List<Odpowiedzi> odpowiedziList) {
         Boolean result = false;
-        try{
+        try {
             session = openSession();
             transaction = beginTransaction(session);
             new OdpowiedziQuery().deleteListOdpowiedzi(odpowiedziList, session);
             new PytaniaQuery().deleteListPytania(pytaniaList, session);
             commitTransaction(transaction);
             result = true;
-        }catch (Exception e){
+        } catch (Exception e) {
             rollbackTransaction(transaction);
             logException(e);
-        }finally {
+        } finally {
             closeSession(session);
         }
         return result;
     }
 
-    public List<Ankiety> selectAllUzytkownik(Uzytkownicy user){
+    public List<Ankiety> selectAllUzytkownik(Uzytkownicy user) {
         return modifyAnkiety.selectListHQL(("from Ankiety AS a where a.uzytkownicy.idUzytkownika=" + user.getIdUzytkownika()));
     }
 
     /**
      * Metoda przesyła listę Ankiet aktywnych.
      *
-     * @author KamDziok
      * @return lista aktywnych Ankiet, jeśli rozmiar listy wynosi 0 znaczy, że nie ma dostępnych ankiet.
+     * @author KamDziok
      */
-    public List<Ankiety> selectAllActiveAnkiety(){
+    public List<Ankiety> selectAllActiveAnkiety() {
         List<Ankiety> ankiety = new ArrayList<>();
-        try{
+        try {
             session = openSession();
             Date date = new Date();
             ankiety = session
                     .createQuery("from Ankiety AS a where :date between a.dataRozpoczecia and a.dataZakonczenia")
                     .setParameter("date", date)
                     .list();
-        }catch(Exception e){
+        } catch (Exception e) {
             logException(e);
-        }finally {
+        } finally {
             closeSession(session);
         }
         return ankiety;
@@ -198,12 +198,12 @@ public class AnkietyQuery extends OperationInSession {
      * {@link Pytania Pytania} i {@link Odpowiedzi odpowiedzi} sa przechowywane jako {@link Object}, aby je odczytac,
      * nalezy je zrzutowac na konkretny typ.
      *
-     * @author KamDziok
      * @param ankiety Podajemy ankiete, do której chcemy otrzymac pytania i mozliwe odpowiedzi.
      * @return Obiekt {@link Ankiety ankiet} wraz ze zbiorami {@link Pytania pytan} i {@link Odpowiedzi odpowiedziami}, w przeciwnym wypadku obiekt Ankiety z pustym zbiorem Pytanias.
+     * @author KamDziok
      */
-    public Ankiety selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(Ankiety ankiety){
-        try{
+    public Ankiety selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(Ankiety ankiety) {
+        try {
             PytaniaQuery pq = new PytaniaQuery();
             List<Pytania> pytaniaList = pq.selectListPytaniaByIdAnkiety(ankiety);
             OdpowiedziQuery oq = new OdpowiedziQuery();
@@ -218,17 +218,16 @@ public class AnkietyQuery extends OperationInSession {
                 }
                 ankiety.getPytanias().add(pytanie);
             });
-        }catch(Exception e){
+        } catch (Exception e) {
             logException(e);
         }
         return ankiety;
     }
 
-    //dobre
-    public List<Ankiety> selectAllActiveAndNotDoAnkiety(Uzytkownicy user){
+    public List<Ankiety> selectAllActiveAndNotDoAnkiety(Uzytkownicy user) {
         List<Ankiety> ankiety = new ArrayList<>();
         List<Integer> idAnkietyList = new ArrayList<>();
-        try{
+        try {
             session = openSession();
             Date date = new Date();
             idAnkietyList = (ArrayList<Integer>) session
@@ -245,16 +244,16 @@ public class AnkietyQuery extends OperationInSession {
             idAnkietyList.forEach(idAnkiety -> {
                 ankiety.add(selectById(idAnkiety));
             });
-        }catch(Exception e){
+        } catch (Exception e) {
             logException(e);
-        }finally {
+        } finally {
             closeSession(session);
         }
         return ankiety;
     }
 
-    public Ankiety selectToAnalysis(Ankiety ankiety){
-        try{
+    public Ankiety selectToAnalysis(Ankiety ankiety) {
+        try {
             PytaniaQuery pytaniaQuery = new PytaniaQuery();
             List<Pytania> pytaniaList = pytaniaQuery.selectListPytaniaByIdAnkiety(ankiety);
             OdpowiedziQuery odpowiedziQuery = new OdpowiedziQuery();
@@ -264,20 +263,20 @@ public class AnkietyQuery extends OperationInSession {
                     List<Odpowiedzi> odpowiedziList = odpowiedziQuery.selectSetOdpowiedziByIdPytania(pytanie);
                     pytanie.initHashSetOdpowiedzi();
                     odpowiedziList.forEach(odpowiedzi -> {
-                        if(pytanie.getRodzajPytania() == TypeOfQuestion.PERCENT || pytanie.getRodzajPytania() == TypeOfQuestion.POINTS) {
+                        if (pytanie.getRodzajPytania() == TypeOfQuestion.PERCENT || pytanie.getRodzajPytania() == TypeOfQuestion.POINTS) {
                             odpowiedzi.initOdpowiedziUzytkownicy();
                             odpowiedzi.setOdpowiedziUzytkownicy(odpowiedziQuery.selectOdpowiedziPointsAndPercent(odpowiedzi));
-                        }else {
+                        } else {
                             odpowiedzi.setCount(odpowiedziQuery.selectCountOdpowiedzi(odpowiedzi).intValue());
                         }
                         pytanie.getOdpowiedzis().add(odpowiedzi);
                     });
-                }else{
+                } else {
                     pytanie.setPytaniaUzytkownicy(pytaniaQuery.selectPytaniaUzytkownicy(pytanie));
                 }
                 ankiety.getPytanias().add(pytanie);
             });
-        }catch(Exception e){
+        } catch (Exception e) {
             logException(e);
         }
         return ankiety;

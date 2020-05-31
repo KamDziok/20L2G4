@@ -7,7 +7,7 @@ import pl.generowaniePDF.Generowanie;
 public class NagrodyGenerowaniePDF {
 
     public NagrodyGenerowaniePDF(Nagrody nagrody, Uzytkownicy user) {
-        new Generowanie(nagrody.getIdNagrody(), nagrody.getLiczbaPunktow(), nagrody.getNazwa()
-                , user.getIdUzytkownika(), user.getImie(), user.getNazwisko());
+        new Generowanie(nagrody.getIdNagrody(), nagrody.getLiczbaPunktow(), nagrody.getNazwa(),
+                        user.getIdUzytkownika(), user.getImie(), user.getNazwisko());
     }
 }

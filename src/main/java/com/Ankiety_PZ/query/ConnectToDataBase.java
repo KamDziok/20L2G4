@@ -4,7 +4,7 @@ import org.hibernate.Session;
 
 public class ConnectToDataBase extends OperationInSession {
 
-    public static final void connectToDataBase(){
+    public static final void connectToDataBase() {
         Session session;
         session = openSession();
         closeSession(session);

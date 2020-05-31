@@ -1,36 +1,36 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2020-04-16 17:34:00 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.Ankiety_PZ.hibernate.Ankiety" table="ankiety" catalog="ankiety" optimistic-lock="version">
         <id name="idAnkiety" type="java.lang.Integer">
-            <column name="ID" />
-            <generator class="identity" />
+            <column name="ID"/>
+            <generator class="identity"/>
         </id>
         <property name="tytul" type="string">
-            <column name="tytul" length="150" not-null="true" />
+            <column name="tytul" length="150" not-null="true"/>
         </property>
         <property name="liczbaPunktow" type="int">
-            <column name="liczba_punktow" not-null="true" />
+            <column name="liczba_punktow" not-null="true"/>
         </property>
         <property name="dataRozpoczecia" type="date">
-            <column name="data_rozpoczecia" length="10" not-null="true" />
+            <column name="data_rozpoczecia" length="10" not-null="true"/>
         </property>
         <property name="dataZakonczenia" type="date">
-            <column name="data_zakonczenia" length="10" not-null="true" />
+            <column name="data_zakonczenia" length="10" not-null="true"/>
         </property>
         <set name="pytanias" table="pytania" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="ID_ankiety" not-null="true" unique="true" />
+                <column name="ID_ankiety" not-null="true" unique="true"/>
             </key>
-            <one-to-many class="com.Ankiety_PZ.hibernate.Pytania" />
+            <one-to-many class="com.Ankiety_PZ.hibernate.Pytania"/>
         </set>
         <property name="liczbaWypelnien" type="int">
-            <column name="liczba_wypelnien" not-null="true" />
+            <column name="liczba_wypelnien" not-null="true"/>
         </property>
         <many-to-one name="uzytkownicy" class="com.Ankiety_PZ.hibernate.Uzytkownicy" fetch="select">
-            <column name="ID_uzytkownika" not-null="true" unique="true" />
+            <column name="ID_uzytkownika" not-null="true" unique="true"/>
         </many-to-one>
     </class>
 </hibernate-mapping>

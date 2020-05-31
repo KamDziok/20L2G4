@@ -2,10 +2,9 @@ package com.Ankiety_PZ.biznes;
 
 import java.util.LinkedList;
 
-public class Admin extends Uzytkownik{
+public class Admin extends Uzytkownik {
 
     private LinkedList<Uzytkownik> listaKont;
-
 
     public Admin(int id, String imie, String nazwisko, String mail, String haslo) {
         super(id, imie, nazwisko, mail, haslo);
@@ -23,14 +22,6 @@ public class Admin extends Uzytkownik{
         }
         return pofiltrowanaListaKont;
     }
-
-//    public boolean zablokuj(int id) {
-//        return true;
-//    }
-//
-//    public boolean odblokuj(int id) {
-//        return true;
-//    }
 
     public LinkedList getListaKont() {
         return listaKont;

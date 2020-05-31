@@ -16,17 +16,17 @@ public class LoadDump extends OperationInSession {
             transaction = beginTransaction(session);
             while (plik.hasNextLine()) {
                 odczyt = plik.nextLine();
-                if(!odczyt.startsWith("--") && !odczyt.startsWith("/*")) komendy += odczyt;
-                if(odczyt.endsWith(";") && !odczyt.endsWith("*/;")) {
+                if (!odczyt.startsWith("--") && !odczyt.startsWith("/*")) komendy += odczyt;
+                if (odczyt.endsWith(";") && !odczyt.endsWith("*/;")) {
                     System.out.println(komendy);
                     query = session.createNativeQuery(komendy);
                     query.executeUpdate();
                     komendy = "";
                 }
             }
-        } catch(Exception e){
+        } catch (Exception e) {
             logException(e);
-        }finally{
+        } finally {
             closeSession(session);
         }
     }
