@@ -196,13 +196,6 @@
                                                         <Font size="24.0"/>
                                                     </font>
                                                 </Label>
-                                                <Label fx:id="panelAdminaLabelError" alignment="CENTER" layoutX="156.0"
-                                                       layoutY="565.0" prefHeight="33.0" prefWidth="853.0"
-                                                       styleClass="error" stylesheets="@style.css" textFill="#dd1010">
-                                                    <font>
-                                                        <Font size="24.0"/>
-                                                    </font>
-                                                </Label>
                                             </children>
                                         </AnchorPane>
                                     </content>
@@ -215,5 +208,11 @@
                 </Tab>
             </tabs>
         </TabPane>
+        <Label fx:id="panelAdminaLabelError" alignment="CENTER" layoutX="170.0" layoutY="670.0" prefHeight="33.0"
+               prefWidth="853.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Label>
     </children>
 </AnchorPane>

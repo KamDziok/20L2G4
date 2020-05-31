@@ -163,14 +163,6 @@
                                                            prefHeight="54.0" prefWidth="61.0"/>
                                                 <TextField fx:id="kod2" layoutX="762.0" layoutY="458.0"
                                                            prefHeight="54.0" prefWidth="69.0"/>
-                                                <Label fx:id="panelAnkieteraLabelError" alignment="CENTER"
-                                                       layoutX="147.0" layoutY="565.0" prefHeight="33.0"
-                                                       prefWidth="869.0" styleClass="error" stylesheets="@style.css"
-                                                       textFill="#dd1010">
-                                                    <font>
-                                                        <Font size="24.0"/>
-                                                    </font>
-                                                </Label>
                                             </children>
                                         </AnchorPane>
                                     </content>
@@ -183,5 +175,11 @@
                 </Tab>
             </tabs>
         </TabPane>
+        <Label fx:id="panelAnkieteraLabelError" alignment="CENTER" layoutX="150.0" layoutY="670.0" prefHeight="33.0"
+               prefWidth="869.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Label>
     </children>
 </AnchorPane>

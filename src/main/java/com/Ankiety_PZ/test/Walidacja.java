@@ -55,7 +55,7 @@ public class Walidacja {
             if (kod_pocztowy_cz1.length() == 2 && kod_pocztowy_cz2.length() == 3) {
                 return true;
             } else {
-                blad_kod_pocztowy = ("Kod pocztowy ma niepoprawną długość lub jest niepoprawny!");
+                blad_kod_pocztowy = ("Kod pocztowy ma nieodpowiednią długość lub jest niepoprawny!");
             }
         } catch (IllegalArgumentException argumentException) {
             blad_kod_pocztowy = ("Kod pocztowy jest niepoprawny!");
