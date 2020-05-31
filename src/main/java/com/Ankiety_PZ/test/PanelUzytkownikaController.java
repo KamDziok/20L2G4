@@ -13,7 +13,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -103,18 +102,18 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
 
     @FXML
     void panelUzytkownikaButtonZmienUstawienia(ActionEvent event) {
-        String   mailUser = email.getText();
-        String    passwordUser = haslo.getText();
-        String    passwordNewUser = nowehaslo.getText();
-        String  passwordRepeatUser = hasloznowu.getText();
-        String     nameUser = imie.getText();
-        String    surnameUser = nazwisko.getText();
-        String    cityUser = miejscowosc.getText();
-        String       streetUser = ulica.getText();
-        String   numberHouseStringUser = budynek.getText();
-        String     numberFlatStringUser = lokal.getText();
-        String    postCodeFirstStringUser = kod1.getText();
-        String    postCodeSecondStringUser = kod2.getText();
+        String mailUser = email.getText();
+        String passwordUser = haslo.getText();
+        String passwordNewUser = nowehaslo.getText();
+        String passwordRepeatUser = hasloznowu.getText();
+        String nameUser = imie.getText();
+        String surnameUser = nazwisko.getText();
+        String cityUser = miejscowosc.getText();
+        String streetUser = ulica.getText();
+        String numberHouseStringUser = budynek.getText();
+        String numberFlatStringUser = lokal.getText();
+        String postCodeFirstStringUser = kod1.getText();
+        String postCodeSecondStringUser = kod2.getText();
         Walidacja walidacja = new Walidacja();
         if (walidacja.czyUzupelnionePola(mailUser, surnameUser, nameUser, cityUser, streetUser, numberFlatStringUser, postCodeFirstStringUser, postCodeSecondStringUser)) {
             if (walidacja.czyPoprawnyKodPocztowy(postCodeFirstStringUser, postCodeSecondStringUser)) {

@@ -22,7 +22,6 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
     Uzytkownicy curentUser;
     Uzytkownicy edycja;
     ObservableList list = FXCollections.observableArrayList();
-
     private String imie_nazwisko_rola_tmp;
     private String mail;
     private int uprawnienia_i;
@@ -117,28 +116,6 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
                 && !numberHouseString.isEmpty() && !postCodeFirstString.isEmpty() && !postCodeSecondString.isEmpty());
     }
 
-    /**
-     * Metoda sprawdza czy kod pocztowy składa się z liczb i czy ma odpowiedznią długość.
-     *
-     * @return true jeśli kod pocztowy jest poprawny, w przeciwnym razie false
-     */
-    private boolean postCodeIsNumber() {
-        try {
-            if (postCodeFirstString.length() == 2 && postCodeSecondString.length() == 3) {
-                postCodeFirstInt = Integer.parseInt(postCodeFirstString);
-                postCodeSecondInt = Integer.parseInt(postCodeSecondString);
-                return true;
-            } else {
-                panelEdycjiUzytkownikaLabelError.setText("Kod pocztowy ma niepoprawną długość!");
-            }
-        } catch (IllegalArgumentException argumentException) {
-            panelEdycjiUzytkownikaLabelError.setText("Kod pocztowy jest niepoprawny!");
-            System.out.println(argumentException.getMessage());
-        } catch (Exception exception) {
-            System.out.println(exception.getMessage());
-        }
-        return false;
-    }
 
     /**
      * Metoda pobiera uprawnienia z ChoiceBoxa, jeśli nie zostały zmienione ustawia uprawnienia_i na dotychczasową wartość.
@@ -175,17 +152,6 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
         }
     }
 
-    /**
-     * Metoda sprawdza, czy w podanym adresie e-mail znajduje się @.
-     *
-     * @return true jeśli sdres e-mail posiada @, w przeciwnym wypadku false.
-     */
-    private boolean chechEmail() {
-        if (mail.indexOf('@') != -1) {
-            return true;
-        }
-        return false;
-    }
 
     @FXML
     void panelEdycjiUzytkownikowButtonZapisz(ActionEvent event) {
@@ -199,12 +165,14 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
         numberFlatString = lokal.getText();
         postCodeFirstString = kod1.getText();
         postCodeSecondString = kod2.getText();
-
+        Walidacja walidacja = new Walidacja();
         if (compulsoryFildNotNull()) {
-            if (postCodeIsNumber()) {
+            if (walidacja.czyPoprawnyKodPocztowy(postCodeFirstString, postCodeSecondString)) {
                 if (checkPassword()) {
-                    if (chechEmail()) {
+                    if (walidacja.czyPoprawnyMail(mail)) {
                         UzytkownicyQuery update = new UzytkownicyQuery();
+                        postCodeFirstInt = Integer.parseInt(postCodeFirstString);
+                        postCodeSecondInt = Integer.parseInt(postCodeSecondString);
                         String postCode = postCodeFirstInt + "-" + postCodeSecondInt;
                         edycja.setMail(mail);
                         if (!password.isEmpty()) {
@@ -224,7 +192,6 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
                         PanelAdminaController panelAdminaController = load.getController();
                         panelAdminaController.setStartValues(curentUser);
                         activeScene(event, false, false);
-
                     } else {
                         panelEdycjiUzytkownikaLabelError.setText("Podany adres e-mail jest nieprawidłowy!");
                     }
@@ -232,7 +199,7 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
                     panelEdycjiUzytkownikaLabelError.setText("Hasło jest za krótkie!");
                 }
             } else {
-                panelEdycjiUzytkownikaLabelError.setText("Nieprawidłowy kod pocztowy!");
+                panelEdycjiUzytkownikaLabelError.setText(walidacja.getBlad_kod_pocztowy());
             }
         } else {
             panelEdycjiUzytkownikaLabelError.setText("Wymagane pola są puste!");
