@@ -20,15 +20,63 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 
+/**
+ * Klasa obsługuje tabelę nagród w panelu osoby odpowiedzialnej za nagrody.
+ */
+
 public class NagrodyTabelka extends BulidStage {
 
+    /**
+     * Nazwa nagrody
+     */
+
     public String tytul;
+
+    /**
+     * Liczba punktów dla nagrody
+     */
+
     public int liczbaPunktow;
+
+    /**
+     * Ilustracja dla nagrody
+     */
+
     private ImageView zdjecie;
+
+    /**
+     * Przycisk do usunięcia nagrody
+     */
+
     public Button usun;
+
+    /**
+     * Przycisk do edycji nagrody
+     */
+
     public Button edytuj;
+
+    /**
+     * Obiekt nagrody
+     */
+
     private Nagrody nagroda;
+
+    /**
+     * Obiekt uzytkownika
+     */
+
     private Uzytkownicy user;
+
+    /**
+     * Metoda ustawia pojedynczą nagrodę w tabeli nagród.
+     * Metoda obsługuje również akcje usuwania nagród przyciskiem <code>usuń</code>
+     * oraz edycji nagród przyciskiem <code>edytuj</code>.
+     *
+     * @param nagroda    obiekt nagroda do wypisania w tabeli.
+     * @param uzytkownik obiekt użytkownika.
+     * @param panel      PanelOsobyOdNagrodController.
+     */
 
     NagrodyTabelka(Nagrody nagroda, Uzytkownicy uzytkownik, PanelOsobyOdNagrodController panel) {
         this.nagroda = nagroda;
@@ -86,6 +134,12 @@ public class NagrodyTabelka extends BulidStage {
         return edytuj;
     }
 
+    /**
+     * Metoda konwertuje tablicę byte na Image
+     *
+     * @param bytes   tablica byte ze zdjęciem w formacie jpg.
+     * @param nagrody obiekt nagrody.
+     */
 
     public void conversjaNaZ(byte[] bytes, Nagrody nagrody) throws IOException {
         ByteArrayInputStream bis = new ByteArrayInputStream(bytes);

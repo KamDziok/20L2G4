@@ -21,11 +21,43 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 
+/**
+ * Klasa obsługuje tabelę nagród w panelu użytkownika.
+ */
+
 public class NagrodaTabelka {
+
+    /**
+     * Nazwa nagrody
+     */
+
     private String nazwa;
+
+    /**
+     * Liczba punktów potrzebnych do odebrania nagrody
+     */
+
     private int cena;
+
+    /**
+     * Ilustracja dla nagrody
+     */
+
     private ImageView obrazek;
+
+    /**
+     * Przycisk do wymiany punków na nagrody
+     */
+
     private Button button;
+
+    /**
+     * Metoda ustawia pojedynczą nagrodę w tabeli nagród.
+     * Metoda obsługuje również akcje wymiany punktów na nagrodę przyciskiem <code>wymień</code>.
+     *
+     * @param nagroda    obiekt nagroda do wypisania w tabeli.
+     * @param controller PanelUzytkownikaController.
+     */
 
     NagrodaTabelka(Nagrody nagroda, PanelUzytkownikaController controller) {
         nazwa = nagroda.getNazwa();
@@ -47,9 +79,9 @@ public class NagrodaTabelka {
                     UzytkownicyQuery query = new UzytkownicyQuery();
                     query.updateUzytkownicy(curentUser);
                     controller.updatePkt(String.valueOf(curentUser.getLiczbaPunktow()));
-                    controller.getPanelUzytkownikaLabelErrorNagrody().setText("Nagroda dodana pomyślnie");
+                    controller.getPanelUzytkownikaLabelErrorNagrody().setText("Nagroda dodana pomyślnie!");
                 } else {
-                    controller.getPanelUzytkownikaLabelErrorNagrody().setText("Dodanie nagrody nie powiodło się");
+                    controller.getPanelUzytkownikaLabelErrorNagrody().setText("Dodanie nagrody nie powiodło się!");
                 }
             }
         });
@@ -70,6 +102,13 @@ public class NagrodaTabelka {
     public Button getButton() {
         return button;
     }
+
+    /**
+     * Metoda konwertuje tablicę byte na Image
+     *
+     * @param bytes   tablica byte ze zdjęciem w formacie jpg.
+     * @param nagrody obiekt nagrody.
+     */
 
     public void conversjaNaZ(byte[] bytes, Nagrody nagrody) throws IOException {
         ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
@@ -101,7 +140,5 @@ public class NagrodaTabelka {
         obrazek.setFitHeight(180);
         System.out.println(bytes);
         System.out.println(obrazek);
-
-
     }
 }

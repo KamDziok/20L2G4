@@ -11,11 +11,28 @@ import javafx.scene.control.Button;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Klasa obsługuje tabelę odpowiedzi w panelu tworzenia ankiety.
+ */
 
 public class OdpowiedziTabelka extends BulidStage {
+
+    /**
+     * Treść odpowiedzi
+     */
+
     public String tresc;
+
+    /**
+     * Przycisk do usunięcia odpowiedzi
+     */
+
     public Button buttonUsun;
 
+    /**
+     * Metoda ustawia pojedynczą odpowiedź w tabeli odpowiedzi.
+     * Metoda obsługuje również akcje usunięcia odpowiedzi przyciskiem <code>usuń</code>.
+     */
 
     OdpowiedziTabelka(Odpowiedzi odpowiedzi, Ankiety ankieta, Uzytkownicy user, List<Odpowiedzi> odp, List<Pytania> pyt, Set usu, Boolean edycja2, DodawaniePytaniaController dod) {
         tresc = odpowiedzi.getOdpowiedz();
