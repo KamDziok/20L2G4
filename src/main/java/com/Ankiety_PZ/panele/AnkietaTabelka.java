@@ -42,9 +42,9 @@ public class AnkietaTabelka extends BulidStage {
     private Button button;
 
     /**
-     * Metoda ustawia pojenyńczą ankietę w tabeli ankiet.
+     * Metoda ustawia pojedynczą ankietę w tabeli ankiet.
      * Metoda obsługuje również akcje wypełniania ankiet przyciskiem <code>wypełnij</code>.
-     * @param ankieta obiekt użytkownika do wypisania w tabeli.
+     * @param ankieta obiekt ankiety do wypisania w tabeli.
      * @param controller PanelUzytkownikaController.
      */
 

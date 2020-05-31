@@ -33,6 +33,10 @@ public class AnalizaAnkietController implements SetStartValues {
     @FXML
     private AnchorPane panel;
 
+    /**
+     * Etykieta tytułu ankiety.
+     */
+
     @FXML
     private Label tytulAnkiety;
 

@@ -12,13 +12,57 @@ import javafx.scene.control.Button;
 import java.util.Date;
 import java.util.Iterator;
 
+
+/**
+ * Klasa obsługuje tabelę ankiet w panelu ankietera.
+ */
+
 public class AnkieterTabelka extends BulidStage implements SetStartValues {
+
+    /**
+     * Tytuł ankiety
+     */
+
     public String tytul;
+
+    /**
+     * Liczba punków za wypełnienie ankiety
+     */
+
     public int liczbaPunktow;
+
+    /**
+     * Data zakończenia ankiety
+     */
+
     public Date dataZakonczenia;
+
+    /**
+     * Przycisk do usuwania ankiety
+     */
+
     public Button buttonUsun;
+
+    /**
+     * Przycisk do edycji ankiety
+     */
+
     public Button buttonEdycja;
+
+    /**
+     * Przycisk do analizy ankiety
+     */
+
     public Button buttonAnaliza;
+
+    /**
+     * Metoda ustawia pojedynczą ankietę w tabeli ankiet.
+     * Metoda obsługuje również akcje usuwania ankiet przyciskiem <code>usuń</code>,
+     * edycji ankiet przyciskiem <code>edytuj</code> oraz analizy przyciskiem <code>analiza</code>.
+     *
+     * @param ankieta    obiekt ankiety do wypisania w tabeli.
+     * @param curentUser obiekt zalogowanego użytkownika.
+     */
 
     AnkieterTabelka(Ankiety ankieta, Uzytkownicy curentUser) {
         tytul = ankieta.getTytul();
@@ -50,7 +94,6 @@ public class AnkieterTabelka extends BulidStage implements SetStartValues {
                     panelTworzeniaankietyController.setStartValues(curentUser);
                     panelTworzeniaankietyController.setStartValuesEdytujAnkiety(ankieta);
                     activeScene(event, false, false);
-                    System.out.println("przekazanie ankiety do edycji");
                     System.out.println(ankieta);
                 } else {
                     loadingFXML(event, SceneFXML.PANEL_ANKIETERA);
@@ -100,7 +143,6 @@ public class AnkieterTabelka extends BulidStage implements SetStartValues {
 
     @Override
     public void setStartValues(Uzytkownicy user) {
-
 
     }
 
