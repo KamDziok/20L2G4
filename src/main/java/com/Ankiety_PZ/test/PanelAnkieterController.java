@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import java.net.URL;
 import java.util.*;
 
@@ -29,8 +30,6 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
     private ResourceBundle resources;
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
-    @FXML
-    private Button wyloguj2;
     @FXML
     private Button wyloguj1;
     @FXML // fx:id="panelAnkietButtonDodaj"
@@ -199,13 +198,6 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
      * @author HubertJakobsze
      */
 
-    @FXML
-    void wyloguj2Action(ActionEvent event) {
-        loadingFXML(event, SceneFXML.PANEL_LOGIN);
-        PanelLoginController panelLoginController = load.getController();
-        activeScene(event, false, false);
-    }
-
     void ankietawtoku() {
         panelAnkieterLabelError.setText("Nie można edytować ankiety, która się rozpoczęła.");
     }
@@ -259,7 +251,6 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        assert wyloguj2 != null : "fx:id=\"wyloguj2\" was not injected: check your FXML file 'PanelAnkieter.fxml'.";
         assert panelAnkietButtonDodaj != null : "fx:id=\"panelAnkietButtonDodaj\" was not injected: check your FXML file 'PanelAnkieter.fxml'.";
         assert wyloguj1 != null : "fx:id=\"wyloguj1\" was not injected: check your FXML file 'PanelAnkieter.fxml'.";
         assert imie_nazwisko_rola2 != null : "fx:id=\"imie_nazwisko_rola2\" was not injected: check your FXML file 'PanelAnkieter.fxml'.";

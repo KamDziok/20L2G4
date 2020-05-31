@@ -43,8 +43,8 @@
                                     </columns>
                                 </TableView>
 
-                                <Button fx:id="wyloguj2" layoutX="14.0" layoutY="631.0" mnemonicParsing="false"
-                                        onAction="#wyloguj2Action" prefHeight="50.0" prefWidth="125.0" text="Wyloguj"/>
+                                <Button fx:id="wyloguj1" layoutX="14.0" layoutY="631.0" mnemonicParsing="false"
+                                        onAction="#wyloguj1Action" prefHeight="50.0" prefWidth="125.0" text="Wyloguj"/>
                                 <Button fx:id="panelAnkietButtonDodaj" layoutX="1029.0" layoutY="631.0"
                                         mnemonicParsing="false" onAction="#panelAnkietButtonDodajAction"
                                         prefHeight="50.0" prefWidth="158.0" text="Dodaj ankietę"/>
