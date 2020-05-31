@@ -1,10 +1,5 @@
 package com.Ankiety_PZ.test;
 
-/**
- * Sample Skeleton for 'PanelAdmina.fxml' Controller Class
- */
-
-
 import com.Ankiety_PZ.hibernate.Ankiety;
 import com.Ankiety_PZ.hibernate.Nagrody;
 import com.Ankiety_PZ.hibernate.Pytania;
@@ -23,47 +18,10 @@ import java.util.ResourceBundle;
 
 public class PanelAdminaController extends BulidStage implements SetStartValues {
 
-    private Uzytkownicy curentUser;
     public ObservableList<UzytkownicyTabelka> dane;
     public ObservableList<UzytkownicyZablokowaniTabelka> dane2;
     private String imie_nazwisko_rola_tmp;
-    private String sprawdzhaslo;
-    private String mailAdmin;
-    private String passwordAdmin;
-    private String passwordRepeatAdmin;
-    private String passwordNewAdmin;
-    private String nameAdmin;
-    private String surnameAdmin;
-    private String cityAdmin;
-    private String streetAdmin;
-    /**
-     * Numer domu wczytany z pola tekstowego jako String.
-     */
-    private String numberHouseStringAdmin;
-    /**
-     * Numer lokalu wczytany z pola tekstowego jako String.
-     */
-    private String numberFlatStringAdmin;
-    /**
-     * Pierwsza część kodu pocztowego wczytany z pola tekstowego jako String.
-     */
-    private String postCodeFirstStringAdmin;
-    /**
-     * Druga część kodu pocztowego wczytany z pola tekstowego jako String.
-     */
-    private String postCodeSecondStringAdmin;
-    /**
-     * Pierwsza część kodu pocztowego przekształconego na int.
-     */
-    private int postCodeFirstIntAdmin;
-    /**
-     * Druga część kodu pocztowego przekształconego na int.
-     */
-    private int postCodeSecondIntAdmin;
-    /**
-     * Minimalna długośc hasłą.
-     */
-    private final int minSizePasswordAdmin = 3;
+    private Uzytkownicy curentUser;
     @FXML
     private Label imie_nazwisko_rola;
     @FXML
@@ -82,7 +40,6 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
     TableView tableUzytkownicy;
     @FXML
     TableView tableUzytkownicyZablokowani;
-    ;
     @FXML
     private TableColumn imie_i_nazwisko;
     @FXML
@@ -101,7 +58,6 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
     private TableColumn przycisk3;
     @FXML
     private TableColumn przycisk2;
-
     @FXML
     private TextField email;
     @FXML
@@ -112,39 +68,6 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
     private TextField hasloznowu;
     @FXML
     private TextField imie;
-
-    public TableColumn getImie_i_nazwiskoPanel() {
-        return imie_i_nazwisko;
-    }
-
-    public TableColumn getMailPanel() {
-        return mail;
-    }
-
-    public TableColumn getPktPanel() {
-        return pkt;
-    }
-
-    public TableColumn getPrzyciskPanel() {
-        return przycisk;
-    }
-
-    public TableColumn getImie_i_nazwisko_zPanel() {
-        return imie_i_nazwisko_z;
-    }
-
-    public TableColumn getMail_zPanel() {
-        return mail_z;
-    }
-
-    public TableColumn getPkt_zPanel() {
-        return pkt_z;
-    }
-
-    public TableColumn getPrzycisk_zPanel() {
-        return przycisk3;
-    }
-
     @FXML
     private TextField nazwisko;
     @FXML
@@ -166,99 +89,28 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
         activeScene(event, false, false);
     }
 
-    /**
-     * Metoda sprawdzenie czy obowiązkowe pola nie są puste.
-     *
-     * @return true jeśli wszystkie pola obowiązkowe są uzupełnione, w przeciwnym wypadku false
-     */
-    private boolean compulsoryFildNotNullAdmin() {
-        return (!mailAdmin.isEmpty() && !nameAdmin.isEmpty() &&
-                !surnameAdmin.isEmpty() && !cityAdmin.isEmpty() && !streetAdmin.isEmpty() && !numberHouseStringAdmin.isEmpty() &&
-                !postCodeFirstStringAdmin.isEmpty() && !postCodeSecondStringAdmin.isEmpty());
-    }
-
-    /**
-     * Metoda sprawdza czy kod pocztowy składa się z liczb i czy ma odpowiedznią długość.
-     *
-     * @return true jeśli kod pocztowy jest poprawny, w przeciwnym razie false
-     * @author KamDziok
-     */
-    private boolean postCodeIsNumberAdmin() {
-        try {
-            if (postCodeFirstStringAdmin.length() == 2 && postCodeSecondStringAdmin.length() == 3) {
-                postCodeFirstIntAdmin = Integer.parseInt(postCodeFirstStringAdmin);
-                postCodeSecondIntAdmin = Integer.parseInt(postCodeSecondStringAdmin);
-                return true;
-            } else {
-                panelAdminaLabelError.setText("Kod pocztowy ma niepoprawną długość!");
-            }
-        } catch (IllegalArgumentException argumentException) {
-            panelAdminaLabelError.setText("Kod pocztowy jest niepoprawny!");
-            System.out.println(argumentException.getMessage());
-        } catch (Exception exception) {
-            System.out.println(exception.getMessage());
-        }
-        return false;
-    }
-
-    /**
-     * Metoda sprawdza, czy hasło ma odpowiednia ilośc znaków i czy nowe hasło jest takie samo jak powtórz hasło.
-     * Sprawdza również czy dotychczasowe hasło zostało podane poprawnie, albo nie jest zmieniane i zostało puste.
-     *
-     * @return true jeśli hasło ma odpowiednią długość i jest takie samo jak powtórz hasło i dotychczasowe hasło
-     * zostało podane poprawnie, w przeciwnym wypadku false.
-     */
-    private boolean checkPasswordAdmin() {
-        if (((passwordRepeatAdmin.length() < minSizePasswordAdmin) || (passwordNewAdmin.length() < minSizePasswordAdmin)) && (!passwordAdmin.isEmpty())) {
-
-            sprawdzhaslo = "Hasło jest za krótkie lub nie wypełniłeś wszystkich pól!";
-        } else {
-            if (!passwordNewAdmin.equals(passwordRepeatAdmin)) {
-                sprawdzhaslo = "Hasła nie są takie same!";
-            } else {
-                if (passwordAdmin.equals(curentUser.getHaslo())) {
-                    return true;
-                } else if (passwordAdmin.isEmpty() && passwordNewAdmin.isEmpty() && passwordRepeatAdmin.isEmpty()) {
-                    return true;
-                } else {
-                    sprawdzhaslo = "Podałeś niepoprawne hasło do konta!";
-                }
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Metoda sprawdza, czy w podanym adresie e-mail znajduje się @.
-     *
-     * @return true jeśli sdres e-mail posiada @, w przeciwnym wypadku false.
-     */
-    private boolean chechEmailAdmin() {
-        if (mailAdmin.indexOf('@') != -1) {
-            return true;
-        }
-        return false;
-    }
-
     @FXML
     void panelAdminaButtonZmienUstawienia(ActionEvent event) {
-        mailAdmin = email.getText();
-        passwordAdmin = haslo.getText();
-        passwordNewAdmin = nowehaslo.getText();
-        passwordRepeatAdmin = hasloznowu.getText();
-        nameAdmin = imie.getText();
-        surnameAdmin = nazwisko.getText();
-        cityAdmin = miejscowosc.getText();
-        streetAdmin = ulica.getText();
-        numberHouseStringAdmin = budynek.getText();
-        numberFlatStringAdmin = lokal.getText();
-        postCodeFirstStringAdmin = kod1.getText();
-        postCodeSecondStringAdmin = kod2.getText();
-        if (compulsoryFildNotNullAdmin()) {
-            if (postCodeIsNumberAdmin()) {
-                if (checkPasswordAdmin()) {
-                    if (chechEmailAdmin()) {
+        String mailAdmin = email.getText();
+        String passwordAdmin = haslo.getText();
+        String passwordNewAdmin = nowehaslo.getText();
+        String passwordRepeatAdmin = hasloznowu.getText();
+        String nameAdmin = imie.getText();
+        String surnameAdmin = nazwisko.getText();
+        String cityAdmin = miejscowosc.getText();
+        String streetAdmin = ulica.getText();
+        String numberHouseStringAdmin = budynek.getText();
+        String numberFlatStringAdmin = lokal.getText();
+        String postCodeFirstStringAdmin = kod1.getText();
+        String postCodeSecondStringAdmin = kod2.getText();
+        Walidacja walidacja = new Walidacja();
+        if (walidacja.czyUzupelnionePola(mailAdmin, surnameAdmin, nameAdmin, cityAdmin, streetAdmin, numberFlatStringAdmin, postCodeFirstStringAdmin, postCodeSecondStringAdmin)) {
+            if (walidacja.czyPoprawnyKodPocztowy(postCodeFirstStringAdmin, postCodeSecondStringAdmin)) {
+                if (walidacja.sprawdzHaslo(passwordAdmin, passwordRepeatAdmin, passwordNewAdmin, curentUser)) {
+                    if (walidacja.czyPoprawnyMail(mailAdmin)) {
                         UzytkownicyQuery update = new UzytkownicyQuery();
+                        int postCodeFirstIntAdmin = Integer.parseInt(postCodeFirstStringAdmin);
+                        int postCodeSecondIntAdmin = Integer.parseInt(postCodeSecondStringAdmin);
                         String postCode = postCodeFirstIntAdmin + "-" + postCodeSecondIntAdmin;
                         curentUser.setMail(mailAdmin);
                         curentUser.setImie(nameAdmin);
@@ -281,10 +133,10 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
                         panelAdminaLabelError.setText("Podany adres e-mail jest nieprawidłowy!");
                     }
                 } else {
-                    panelAdminaLabelError.setText(sprawdzhaslo);
+                    panelAdminaLabelError.setText(walidacja.getBlad_haslo());
                 }
             } else {
-                panelAdminaLabelError.setText("Nieprawidłowy kod pocztowy!");
+                panelAdminaLabelError.setText(walidacja.getBlad_kod_pocztowy());
             }
         } else {
             panelAdminaLabelError.setText("Wymagane pola są puste!");

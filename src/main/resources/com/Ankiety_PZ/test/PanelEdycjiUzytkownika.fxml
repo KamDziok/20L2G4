@@ -23,8 +23,8 @@
                 <Font size="24.0"/>
             </font>
         </Label>
-        <Label fx:id="panelEdycjiUzytkownikaLabelError" alignment="CENTER" layoutX="323.0" layoutY="667.0"
-               prefHeight="17.0" prefWidth="522.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
+        <Label fx:id="panelEdycjiUzytkownikaLabelError" alignment="CENTER" layoutX="154.0" layoutY="669.0"
+               prefHeight="33.0" prefWidth="751.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
             <font>
                 <Font size="24.0"/>
             </font>
