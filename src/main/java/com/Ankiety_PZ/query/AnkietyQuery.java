@@ -144,12 +144,6 @@ public class AnkietyQuery extends OperationInSession {
             } finally {
                 closeSession(session);
             }
-        }else{
-            //do usuniecia
-            System.out.println("updateAnkietyWithPytaniaAndOdpowiedzi---Etap1------");
-            System.out.println("Ankieta, którą próbujesz edytować nie posiada ID.");
-            System.out.println("Robisz coś żle.");
-            System.out.println("---------------------------------------------------");
         }
         return result;
     }
