@@ -1,7 +1,3 @@
-/**
- * Sample Skeleton for 'panelUzytkownika.fxml' Controller Class
- */
-
 package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.hibernate.Ankiety;
@@ -18,7 +14,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -29,44 +24,6 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     private ResourceBundle resources;
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private String textPkt;
-    private URL location;
-    private String sprawdzhaslo;
-    private String mailUser;
-    private String passwordUser;
-    private String passwordRepeatUser;
-    private String passwordNewUser;
-    private String nameUser;
-    private String surnameUser;
-    private String cityUser;
-    private String streetUser;
-    /**
-     * Numer domu wczytany z pola tekstowego jako String.
-     */
-    private String numberHouseStringUser;
-    /**
-     * Numer lokalu wczytany z pola tekstowego jako String.
-     */
-    private String numberFlatStringUser;
-    /**
-     * Pierwsza część kodu pocztowego wczytany z pola tekstowego jako String.
-     */
-    private String postCodeFirstStringUser;
-    /**
-     * Druga część kodu pocztowego wczytany z pola tekstowego jako String.
-     */
-    private String postCodeSecondStringUser;
-    /**
-     * Pierwsza część kodu pocztowego przekształconego na int.
-     */
-    private int postCodeFirstIntUser;
-    /**
-     * Druga część kodu pocztowego przekształconego na int.
-     */
-    private int postCodeSecondIntUser;
-    /**
-     * Minimalna długośc hasłą.
-     */
-    private final int minSizePasswordUser = 3;
     @FXML
     private Label panelUzytkownikaLabelError;
     @FXML
@@ -144,102 +101,28 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
         activeScene(event, false, true);
     }
 
-    /**
-     * Metoda sprawdzenie czy obowiązkowe pola nie są puste.
-     *
-     * @return true jeśli wszystkie pola obowiązkowe są uzupełnione, w przeciwnym wypadku false
-     */
-    private boolean compulsoryFildNotNullUser() {
-        return (!mailUser.isEmpty() && !nameUser.isEmpty() &&
-                !surnameUser.isEmpty() && !cityUser.isEmpty() &&
-                !streetUser.isEmpty() && !numberHouseStringUser.isEmpty() &&
-                !postCodeFirstStringUser.isEmpty() && !postCodeSecondStringUser.isEmpty());
-    }
-
-    /**
-     * Metoda sprawdza czy kod pocztowy składa się z liczb i czy ma odpowiedznią długość.
-     *
-     * @return true jeśli kod pocztowy jest poprawny, w przeciwnym razie false
-     * @author KamDziok
-     */
-    private boolean postCodeIsNumberUser() {
-        try {
-            if (postCodeFirstStringUser.length() == 2 && postCodeSecondStringUser.length() == 3) {
-                postCodeFirstIntUser = Integer.parseInt(postCodeFirstStringUser);
-                postCodeSecondIntUser = Integer.parseInt(postCodeSecondStringUser);
-                return true;
-            } else {
-                panelUzytkownikaLabelError.setText("Kod pocztowy ma niepoprawną długość!");
-            }
-        } catch (IllegalArgumentException argumentException) {
-            panelUzytkownikaLabelError.setText("Kod pocztowy jest niepoprawny!");
-            System.out.println(argumentException.getMessage());
-        } catch (Exception exception) {
-            System.out.println(exception.getMessage());
-        }
-        return false;
-    }
-
-    /**
-     * Metoda sprawdza, czy hasło ma odpowiednia ilośc znaków i czy nowe hasło jest takie samo jak powtórz hasło.
-     * Sprawdza również czy dotychczasowe hasło zostało podane poprawnie, albo nie jest zmieniane i zostało puste.
-     *
-     * @return true jeśli hasło ma odpowiednią długość i jest takie samo jak powtórz hasło i dotychczasowe hasło
-     * zostało podane poprawnie, w przeciwnym wypadku false.
-     */
-    private boolean checkPasswordUser() {
-        if (((passwordRepeatUser.length() < minSizePasswordUser) ||
-                (passwordNewUser.length() < minSizePasswordUser)) &&
-                (!passwordUser.isEmpty())) {
-
-            sprawdzhaslo = "Hasło jest za krótkie lub nie wypełniłeś wszystkich pól!";
-        } else {
-            if (!passwordNewUser.equals(passwordRepeatUser)) {
-                sprawdzhaslo = "Hasła nie są takie same!";
-            } else {
-                if (passwordUser.equals(curentUser.getHaslo())) {
-                    return true;
-                } else if (passwordUser.isEmpty() && passwordNewUser.isEmpty() && passwordRepeatUser.isEmpty()) {
-                    return true;
-                } else {
-                    sprawdzhaslo = "Podałeś niepoprawne hasło do konta!";
-                }
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Metoda sprawdza, czy w podanym adresie e-mail znajduje się @.
-     *
-     * @return true jeśli sdres e-mail posiada @, w przeciwnym wypadku false.
-     */
-    private boolean chechEmailUser() {
-        if (mailUser.indexOf('@') != -1) {
-            return true;
-        }
-        return false;
-    }
-
     @FXML
     void panelUzytkownikaButtonZmienUstawienia(ActionEvent event) {
-        mailUser = email.getText();
-        passwordUser = haslo.getText();
-        passwordNewUser = nowehaslo.getText();
-        passwordRepeatUser = hasloznowu.getText();
-        nameUser = imie.getText();
-        surnameUser = nazwisko.getText();
-        cityUser = miejscowosc.getText();
-        streetUser = ulica.getText();
-        numberHouseStringUser = budynek.getText();
-        numberFlatStringUser = lokal.getText();
-        postCodeFirstStringUser = kod1.getText();
-        postCodeSecondStringUser = kod2.getText();
-        if (compulsoryFildNotNullUser()) {
-            if (postCodeIsNumberUser()) {
-                if (checkPasswordUser()) {
-                    if (chechEmailUser()) {
+        String   mailUser = email.getText();
+        String    passwordUser = haslo.getText();
+        String    passwordNewUser = nowehaslo.getText();
+        String  passwordRepeatUser = hasloznowu.getText();
+        String     nameUser = imie.getText();
+        String    surnameUser = nazwisko.getText();
+        String    cityUser = miejscowosc.getText();
+        String       streetUser = ulica.getText();
+        String   numberHouseStringUser = budynek.getText();
+        String     numberFlatStringUser = lokal.getText();
+        String    postCodeFirstStringUser = kod1.getText();
+        String    postCodeSecondStringUser = kod2.getText();
+        Walidacja walidacja = new Walidacja();
+        if (walidacja.czyUzupelnionePola(mailUser, surnameUser, nameUser, cityUser, streetUser, numberFlatStringUser, postCodeFirstStringUser, postCodeSecondStringUser)) {
+            if (walidacja.czyPoprawnyKodPocztowy(postCodeFirstStringUser, postCodeSecondStringUser)) {
+                if (walidacja.sprawdzHaslo(passwordUser, passwordRepeatUser, passwordNewUser, curentUser)) {
+                    if (walidacja.czyPoprawnyMail(mailUser)) {
                         UzytkownicyQuery update = new UzytkownicyQuery();
+                        int postCodeFirstIntUser = Integer.parseInt(postCodeFirstStringUser);
+                        int postCodeSecondIntUser = Integer.parseInt(postCodeSecondStringUser);
                         String postCode = postCodeFirstIntUser + "-" + postCodeSecondIntUser;
                         curentUser.setMail(mailUser);
                         curentUser.setImie(nameUser);
@@ -262,10 +145,10 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
                         panelUzytkownikaLabelError.setText("Podany adres e-mail jest nieprawidłowy!");
                     }
                 } else {
-                    panelUzytkownikaLabelError.setText(sprawdzhaslo);
+                    panelUzytkownikaLabelError.setText(walidacja.getBlad_haslo());
                 }
             } else {
-                panelUzytkownikaLabelError.setText("Nieprawidłowy kod pocztowy!");
+                panelUzytkownikaLabelError.setText(walidacja.getBlad_kod_pocztowy());
             }
         } else {
             panelUzytkownikaLabelError.setText("Wymagane pola są puste!");

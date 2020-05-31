@@ -12,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.net.URL;
 import java.util.*;
 
@@ -145,7 +144,7 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
                         curentUser.setNumerLokalu(numberFlatStringAnkieter);
                         curentUser.setKodPocztowy(postCode);
                         update.updateUzytkownicy(curentUser);
-                        imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko() + " - konto zarządzania nagrodami";
+                        imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko() + " - konto ankietera";
                         imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
                         imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
                         panelAnkieterLabelError.setText("Profil został pomyślnie zaktualizowany.");
@@ -242,7 +241,6 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
     @Override
     public void setStartValuesAnkiety(Ankiety ankieta) {
         this.ankiety = ankieta;
-        System.out.println("ankiety setStartValuesAnkiety pac");
         System.out.println(ankiety);
     }
 
