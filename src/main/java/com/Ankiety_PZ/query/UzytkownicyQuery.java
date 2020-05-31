@@ -4,8 +4,8 @@ import com.Ankiety_PZ.hibernate.Ankiety;
 import com.Ankiety_PZ.hibernate.OdpowiedziUzytkownicy;
 import com.Ankiety_PZ.hibernate.PytaniaUzytkownicy;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
-import com.Ankiety_PZ.test.Permissions;
-import com.Ankiety_PZ.test.TypeOfQuestion;
+import com.Ankiety_PZ.panele.Permissions;
+import com.Ankiety_PZ.panele.TypeOfQuestion;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 

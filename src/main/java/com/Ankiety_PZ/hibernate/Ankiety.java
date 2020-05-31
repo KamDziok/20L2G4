@@ -11,7 +11,6 @@ import java.util.Set;
  */
 public class Ankiety implements java.io.Serializable {
 
-
     private Integer idAnkiety;
     private String tytul;
     private int liczbaPunktow;

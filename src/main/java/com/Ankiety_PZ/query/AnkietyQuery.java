@@ -5,7 +5,7 @@ import com.Ankiety_PZ.hibernate.Ankiety;
 import com.Ankiety_PZ.hibernate.Odpowiedzi;
 import com.Ankiety_PZ.hibernate.Pytania;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
-import com.Ankiety_PZ.test.TypeOfQuestion;
+import com.Ankiety_PZ.panele.TypeOfQuestion;
 import org.hibernate.Session;
 
 import java.util.ArrayList;

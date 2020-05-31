@@ -157,7 +157,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>com.Ankiety_PZ.test.Main</mainClass>
+                    <mainClass>com.Ankiety_PZ.panele.Main</mainClass>
                 </configuration>
             </plugin>
 
@@ -175,7 +175,7 @@
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.Ankiety_PZ.test.Main</mainClass>
+                                    <mainClass>com.Ankiety_PZ.panele.Main</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>

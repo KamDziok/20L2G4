@@ -1,7 +1,7 @@
 package com.Ankiety_PZ.hibernate;
 
 
-import com.Ankiety_PZ.test.TypeOfQuestion;
+import com.Ankiety_PZ.panele.TypeOfQuestion;
 
 import javax.persistence.*;
 

@@ -6,7 +6,6 @@ public class Admin extends Uzytkownik {
 
     private LinkedList<Uzytkownik> listaKont;
 
-
     public Admin(int id, String imie, String nazwisko, String mail, String haslo) {
         super(id, imie, nazwisko, mail, haslo);
         listaKont = new LinkedList();   //zastapic lista uzytkownikow z Hibernate
