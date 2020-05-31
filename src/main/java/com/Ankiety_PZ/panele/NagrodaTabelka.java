@@ -21,7 +21,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 
-
 /**
  * Klasa obsługuje tabelę nagród w panelu użytkownika.
  */
