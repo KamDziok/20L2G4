@@ -64,13 +64,20 @@ public class NagrodyQuery extends OperationInSession {
 
     public Boolean deactivateNagrody(Nagrody nagrody) {
         nagrody.setLiczbaPunktow(-1);
-        //sprawdzic czy istnieje w uzytkownicy_nagrody
         return updateNagrody(nagrody);
+    }
+
+    Boolean checkUzytkownikCanGetNagrody(Nagrody nagrody, Uzytkownicy uzytkownicy){
+        boolean result = false;
+        if (uzytkownicy.getLiczbaPunktow() >= nagrody.getLiczbaPunktow()){
+            result = true;
+        }
+        return result;
     }
 
     public Boolean getNagrodyToUzytkownicy(Nagrody nagrody, Uzytkownicy uzytkownicy) {
         boolean result = false;
-        if (uzytkownicy.getLiczbaPunktow() >= nagrody.getLiczbaPunktow()) {
+        if (checkUzytkownikCanGetNagrody(nagrody, uzytkownicy)) {
             try {
                 session = openSession();
                 transaction = beginTransaction(session);
@@ -80,7 +87,7 @@ public class NagrodyQuery extends OperationInSession {
                         .setParameter("idUzytkownicy", uzytkownicy.getIdUzytkownika())
                         .setParameter("idNagrody", nagrody.getIdNagrody())
                         .executeUpdate();
-                uzytkownicy.setLiczbaPunktow(uzytkownicy.getLiczbaPunktow() - nagrody.getLiczbaPunktow());
+                uzytkownicy.updatePunkty(nagrody.getLiczbaPunktow(), false);
                 new UzytkownicyQuery().updateUzytkownicyWithOutTransaction(uzytkownicy, session);
                 commitTransaction(transaction);
                 result = true;
