@@ -51,8 +51,8 @@ public class PanelLoginController extends BulidStage {
     /**
      * Metoda obsługi przycisku zaloguj.
      *
-     * @author KamDziok
      * @param event zdarzenie, po którym funkcja ma się wywołać
+     * @author KamDziok
      */
 
     @FXML
@@ -60,11 +60,11 @@ public class PanelLoginController extends BulidStage {
         email = panelLoginTFEmail.getText();
         password = panelLoginPFPassword.getText();
 
-        if(!email.isEmpty() && !password.isEmpty()){
+        if (!email.isEmpty() && !password.isEmpty()) {
             UzytkownicyQuery query = new UzytkownicyQuery();
             Uzytkownicy user = query.selectByMailAndPassword(email, password);
             System.out.println(user);
-            if(user != null){
+            if (user != null) {
                 switch (user.getUprawnienia()) {
                     case Permissions.ADMIN:
                         loadingFXML(event, SceneFXML.PANEL_ADMINA);
@@ -85,20 +85,20 @@ public class PanelLoginController extends BulidStage {
                         activeScene(event, false, false);
                         break;
                     case Permissions.KLIENT:
-                         loadingFXML(event, SceneFXML.PANEL_UZYTKOWNIKA);
-                         PanelUzytkownikaController panelUzytkownikaController = load.getController();
-                         panelUzytkownikaController.setStartValues(user);
-                         activeScene(event, false, false);
-                         break;
+                        loadingFXML(event, SceneFXML.PANEL_UZYTKOWNIKA);
+                        PanelUzytkownikaController panelUzytkownikaController = load.getController();
+                        panelUzytkownikaController.setStartValues(user);
+                        activeScene(event, false, false);
+                        break;
                     default:
-                         panelLoginLabelError.setText("Twoje konto zaostało zawieszone.");
+                        panelLoginLabelError.setText("Twoje konto zaostało zawieszone.");
 
                 }
-            }else{
+            } else {
                 panelLoginLabelError.setText("Błędny e-mail lub hasło.");
             }
 
-        }else{
+        } else {
             panelLoginLabelError.setText("Nie podałeś wszystkich danych.");
         }
     }
@@ -106,19 +106,19 @@ public class PanelLoginController extends BulidStage {
     /**
      * Metoda obsługi przycisku zarejestruj.
      *
-     * @author KamDziok
      * @param event zdarzenie, po którym funkcja ma się wywołać
+     * @author KamDziok
      */
 
     @FXML
     void panelLoginButtonRegiAcept(ActionEvent event) {
         loadingFXML(event, SceneFXML.PANEL_REGI);
         PanelRegiController panelRegiController = load.getController();
-        //panelRegiController.setValues();
         activeScene(event, false, false);
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    @FXML
+        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert panelLoginTFEmail != null : "fx:id=\"panelLoginTFEmail\" was not injected: check your FXML file 'PanelLogin.fxml'.";
         assert panelLoginPFPassword != null : "fx:id=\"panelLoginPFPassword\" was not injected: check your FXML file 'PanelLogin.fxml'.";

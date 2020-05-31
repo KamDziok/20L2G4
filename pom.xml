@@ -2,193 +2,195 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-<groupId>groupId</groupId>
-<artifactId>Ankiety_PZ</artifactId>
-<version>1.0-SNAPSHOT</version>
-<packaging>jar</packaging>
+    <groupId>groupId</groupId>
+    <artifactId>Ankiety_PZ</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-<properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-</properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
-<dependencies>
-    <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-controls</artifactId>
-        <version>11</version>
-    </dependency>
+    <dependencies>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>11</version>
+        </dependency>
 
-    <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-media</artifactId>
-        <version>11</version>
-        <classifier>win</classifier>
-    </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>11</version>
+            <classifier>win</classifier>
+        </dependency>
 
-    <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-media</artifactId>
-        <version>11</version>
-        <classifier>mac</classifier>
-    </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>11</version>
+            <classifier>mac</classifier>
+        </dependency>
 
-    <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-media</artifactId>
-        <version>11</version>
-        <classifier>linux</classifier>
-    </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>11</version>
+            <classifier>linux</classifier>
+        </dependency>
 
-    <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-graphics</artifactId>
-        <version>11</version>
-        <classifier>win</classifier>
-    </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>11</version>
+            <classifier>win</classifier>
+        </dependency>
 
-    <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-graphics</artifactId>
-        <version>11</version>
-        <classifier>mac</classifier>
-    </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>11</version>
+            <classifier>mac</classifier>
+        </dependency>
 
-    <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-graphics</artifactId>
-        <version>11</version>
-        <classifier>linux</classifier>
-    </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>11</version>
+            <classifier>linux</classifier>
+        </dependency>
 
-    <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-fxml</artifactId>
-        <version>11</version>
-    </dependency>
-    <dependency>
-        <groupId>com.guigarage</groupId>
-        <artifactId>flatter</artifactId>
-        <version>0.7</version>
-    </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>11</version>
+        </dependency>
+        <dependency>
+            <groupId>com.guigarage</groupId>
+            <artifactId>flatter</artifactId>
+            <version>0.7</version>
+        </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.clojure/java.jdbc -->
-    <dependency>
-        <groupId>org.clojure</groupId>
-        <artifactId>java.jdbc</artifactId>
-        <version>0.7.11</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-    <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <version>8.0.19</version>
-    </dependency>
+        <!-- https://mvnrepository.com/artifact/org.clojure/java.jdbc -->
+        <dependency>
+            <groupId>org.clojure</groupId>
+            <artifactId>java.jdbc</artifactId>
+            <version>0.7.11</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.19</version>
+        </dependency>
 
-    <dependency>
-        <groupId>org.hibernate</groupId>
-        <artifactId>hibernate-core</artifactId>
-        <version>5.4.14.Final</version>
-        <type>pom</type>
-    </dependency>
-    <dependency>
-        <groupId>org.hibernate</groupId>
-        <artifactId>hibernate-entitymanager</artifactId>
-      <version>5.4.14.Final</version>
-    </dependency>
-    <!--  <dependency>-->
-    <!--    <groupId>unknown.binary</groupId>-->
-    <!--    <artifactId>mysql-connector-java-8.0.19</artifactId>-->
-    <!--    <version>SNAPSHOT</version>-->
-    <!--  </dependency>-->
-    <!--    <dependency>-->
-    <!--        <groupId>unknown.binary</groupId>-->
-    <!--        <artifactId>derbyclient</artifactId>-->
-    <!--      <version>SNAPSHOT</version>-->
-    <!--    </dependency>-->
-    <!--  <dependency>-->
-    <!--    <groupId>unknown.binary</groupId>-->
-    <!--    <artifactId>derby</artifactId>-->
-    <!--    <version>SNAPSHOT</version>-->
-    <!--  </dependency>-->
-    <dependency>
-        <groupId>org.hibernate.common</groupId>
-        <artifactId>hibernate-commons-annotations</artifactId>
-        <version>5.1.0.Final</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
-    <dependency>
-        <groupId>com.itextpdf</groupId>
-        <artifactId>itextpdf</artifactId>
-        <version>5.5.13.1</version>
-    </dependency>
-    <dependency>
-        <groupId>pl.generowaniePDF</groupId>
-        <artifactId>GenerowaniePDF</artifactId>
-        <version>1.0</version>
-        <scope>system</scope>
-        <systemPath>${project.basedir}/lib/unknown/binary/generowaniePDF/GenerowaniePDF-1.0.jar</systemPath>
-    </dependency>
-</dependencies>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.14.Final</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.4.14.Final</version>
+        </dependency>
+        <!--  <dependency>-->
+        <!--    <groupId>unknown.binary</groupId>-->
+        <!--    <artifactId>mysql-connector-java-8.0.19</artifactId>-->
+        <!--    <version>SNAPSHOT</version>-->
+        <!--  </dependency>-->
+        <!--    <dependency>-->
+        <!--        <groupId>unknown.binary</groupId>-->
+        <!--        <artifactId>derbyclient</artifactId>-->
+        <!--      <version>SNAPSHOT</version>-->
+        <!--    </dependency>-->
+        <!--  <dependency>-->
+        <!--    <groupId>unknown.binary</groupId>-->
+        <!--    <artifactId>derby</artifactId>-->
+        <!--    <version>SNAPSHOT</version>-->
+        <!--  </dependency>-->
+        <dependency>
+            <groupId>org.hibernate.common</groupId>
+            <artifactId>hibernate-commons-annotations</artifactId>
+            <version>5.1.0.Final</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.5.13.1</version>
+        </dependency>
+        <dependency>
+            <groupId>pl.generowaniePDF</groupId>
+            <artifactId>GenerowaniePDF</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/unknown/binary/generowaniePDF/GenerowaniePDF-1.0.jar</systemPath>
+        </dependency>
+    </dependencies>
 
 
-<build>
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.8.0</version>
-            <configuration>
-                <source>11</source>
-                <target>11</target>
-            </configuration>
-        </plugin>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
 
-        <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>exec-maven-plugin</artifactId>
-            <version>1.2.1</version>
-            <executions>
-                <execution>
-                    <goals>
-                        <goal>java</goal>
-                    </goals>
-                </execution>
-            </executions>
-            <configuration>
-                <mainClass>com.Ankiety_PZ.test.Main</mainClass>
-            </configuration>
-        </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>com.Ankiety_PZ.test.Main</mainClass>
+                </configuration>
+            </plugin>
 
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-shade-plugin</artifactId>
-            <version>3.0.0</version>
-            <executions>
-                <execution>
-                    <phase>package</phase>
-                    <goals>
-                        <goal>shade</goal>
-                    </goals>
-                    <configuration>
-                        <transformers>
-                            <transformer
-                                    implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                <mainClass>com.Ankiety_PZ.test.Main</mainClass>
-                            </transformer>
-                        </transformers>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
-    </plugins>
-</build>
-  <repositories>
-    <repository>
-      <id>unknown-jars-temp-repo</id>
-      <name>A temporary repository created by NetBeans for libraries and jars it could not identify. Please replace the dependencies in this repository with correct ones and delete this repository.</name>
-      <url>file:${project.basedir}/lib</url>
-    </repository>
-  </repositories>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>com.Ankiety_PZ.test.Main</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <repositories>
+        <repository>
+            <id>unknown-jars-temp-repo</id>
+            <name>A temporary repository created by NetBeans for libraries and jars it could not identify. Please
+                replace the dependencies in this repository with correct ones and delete this repository.
+            </name>
+            <url>file:${project.basedir}/lib</url>
+        </repository>
+    </repositories>
 </project>

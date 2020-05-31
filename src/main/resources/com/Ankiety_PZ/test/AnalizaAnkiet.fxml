@@ -4,13 +4,16 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1201.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.AnalizaAnkietController">
-   <children>
-      <Label fx:id="tytulAnkiety" layoutX="80.0" layoutY="54.0" prefHeight="33.0" prefWidth="1104.0" styleClass="labelbold" stylesheets="@style.css" text="Nazwa ankiety" textAlignment="CENTER" />
-      <ScrollPane layoutY="101.0" prefHeight="618.0" prefWidth="1201.0">
-        <content>
-          <AnchorPane fx:id="panel" minHeight="0.0" minWidth="0.0" />
-        </content>
-      </ScrollPane>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
+            prefWidth="1201.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.AnalizaAnkietController">
+    <children>
+        <Label fx:id="tytulAnkiety" layoutX="80.0" layoutY="54.0" prefHeight="33.0" prefWidth="1104.0"
+               styleClass="labelbold" stylesheets="@style.css" text="Nazwa ankiety" textAlignment="CENTER"/>
+        <ScrollPane layoutY="101.0" prefHeight="618.0" prefWidth="1201.0">
+            <content>
+                <AnchorPane fx:id="panel" minHeight="0.0" minWidth="0.0"/>
+            </content>
+        </ScrollPane>
+    </children>
 </AnchorPane>

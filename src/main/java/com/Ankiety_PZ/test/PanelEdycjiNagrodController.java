@@ -75,7 +75,7 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         activeScene(event, false, false);
     }
 
-    void ustawZapisz(){
+    void ustawZapisz() {
         panelEdycjiNagrodButtonEdytuj.setText("Dodaj");
     }
 
@@ -89,23 +89,22 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         try {
             Image image = new Image(file.toURI().toString());
             System.out.println(file.toURI().toString());
-            System.out.println("==================================================================================");
-
             System.out.println(file.toURI().toString());
             imageview.setImage(image);
             conversja(file);
-        }catch(IllegalArgumentException argumentException){
+        } catch (IllegalArgumentException argumentException) {
             System.out.println("Nie wybrałeś zdjęcia lub rozszerzenie nie jest obsługiwane. " + argumentException.getMessage());
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
+
     public void conversja(File file) throws FileNotFoundException, IOException {
         FileInputStream fis = new FileInputStream(file);
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         byte[] buf = new byte[1024];
         try {
-            for (int readNum; (readNum = fis.read(buf)) != -1;) {
+            for (int readNum; (readNum = fis.read(buf)) != -1; ) {
                 bos.write(buf, 0, readNum);
                 System.out.println("read " + readNum + " bytes,");
             }
@@ -120,6 +119,7 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         query3.updateNagrody(nagrody);
 
     }
+
     public void conversjaNaZ(byte[] bytes) throws IOException {
         ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
         Iterator<?> readers = ImageIO.getImageReadersByFormatName("jpg");
@@ -135,7 +135,7 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
         String directory = System.getProperty("user.home") + "\\Documents\\Zdjęcia";
         String directory2 = directory + "\\pdf";
-        if(!(new File(directory).exists())){
+        if (!(new File(directory).exists())) {
             new File(directory).mkdir();
         }
         Graphics2D g2 = bufferedImage.createGraphics();
@@ -145,10 +145,6 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         Image image2 = new Image(imageFile.toURI().toString());
         imageview.setImage(image2);
         System.out.println(imageFile);
-
-
-
-
     }
 
 
@@ -159,31 +155,33 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         panelOsobyOdNagrodController.setStartValues(curentUser);
         activeScene(event, false, false);
     }
+
     /**
      * Metoda sprawdzenie czy obowiązkowe pola nie są puste.
      *
      * @return true jeśli wszystkie pola obowiązkowe są uzupełnione, w przeciwnym wypadku false
      */
-    private boolean compulsoryFildNotNull(){
+    private boolean compulsoryFildNotNull() {
         return (!liczba_punktowS.isEmpty() && !nazwa_nagrody.isEmpty());
     }
+
     /**
      * Metoda sprawdza czy liczba punktów składa się z liczb i czy jest większa lub równa 0.
      *
      * @return true jeśli liczba punków jest poprawna, w przeciwnym razie false
      */
-    private boolean pktIsNumber(){
-        try{
-                liczba_punktow = Integer.parseInt(liczba_punktowS);
-                if(liczba_punktow >= 0){
+    private boolean pktIsNumber() {
+        try {
+            liczba_punktow = Integer.parseInt(liczba_punktowS);
+            if (liczba_punktow >= 0) {
                 return true;
-            }else{
-                    return false;
+            } else {
+                return false;
             }
-        }catch(IllegalArgumentException argumentException){
+        } catch (IllegalArgumentException argumentException) {
             panelEdycjiNagrodLabelError.setText("Liczba punktów zawiera niepoprawne znaki!");
             System.out.println(argumentException.getMessage());
-        }catch(Exception exception){
+        } catch (Exception exception) {
             System.out.println(exception.getMessage());
         }
         return false;
@@ -194,39 +192,30 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
 
         liczba_punktowS = pkt.getText();
         nazwa_nagrody = nag.getText();
-        if(compulsoryFildNotNull()){
-        if(pktIsNumber()){
-        try {
+        if (compulsoryFildNotNull()) {
+            if (pktIsNumber()) {
+                try {
 
-            NagrodyQuery zapisz = new NagrodyQuery();
-            nagrody.setLiczbaPunktow(liczba_punktow);
-            nagrody.setNazwa(nazwa_nagrody);
-            // wczytywanie do bazy zdjęcia do naprawy!
-            //  int w = (int)image.getWidth();
-            //  int h = (int)image.getHeight();
-            // byte[] buf = new byte[w * h * 4];
-            //  image.getPixelReader().getPixels(0, 0, w, h, PixelFormat.getByteBgraInstance(), buf, 0, w * 4);
-            //  nagrody.setZdjecie(buf);
-            zapisz.updateNagrody(nagrody);
-        }
-        catch(RuntimeException wyjatek)
-        {
+                    NagrodyQuery zapisz = new NagrodyQuery();
+                    nagrody.setLiczbaPunktow(liczba_punktow);
+                    nagrody.setNazwa(nazwa_nagrody);
+                    zapisz.updateNagrody(nagrody);
+                } catch (RuntimeException wyjatek) {
 
-            Nagrody nagroda = new Nagrody(liczba_punktow,nazwa_nagrody,zdjecie);
-            NagrodyQuery dodaj = new NagrodyQuery();
-            dodaj.addNagrody(nagroda);
-        }
-        finally {
-            loadingFXML(event, SceneFXML.PANEL_NAGROD);
-            PanelOsobyOdNagrodController panelOsobyOdNagrodController = load.getController();
-            panelOsobyOdNagrodController.setStartValues(curentUser);
-            activeScene(event, false, false);
-        }}
-        else{
+                    Nagrody nagroda = new Nagrody(liczba_punktow, nazwa_nagrody, zdjecie);
+                    NagrodyQuery dodaj = new NagrodyQuery();
+                    dodaj.addNagrody(nagroda);
+                } finally {
+                    loadingFXML(event, SceneFXML.PANEL_NAGROD);
+                    PanelOsobyOdNagrodController panelOsobyOdNagrodController = load.getController();
+                    panelOsobyOdNagrodController.setStartValues(curentUser);
+                    activeScene(event, false, false);
+                }
+            } else {
 
-            panelEdycjiNagrodLabelError.setText("Podaj poprawną liczbę punków!");
-        }}
-        else{
+                panelEdycjiNagrodLabelError.setText("Podaj poprawną liczbę punków!");
+            }
+        } else {
             panelEdycjiNagrodLabelError.setText("Wymagane pola są puste!");
         }
     }
@@ -234,7 +223,7 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
     @Override
     public void setStartValues(Uzytkownicy user) {
         this.curentUser = user;
-       String imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - konto zarządzania nagrodami";
+        String imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko() + " - konto zarządzania nagrodami";
         System.out.print(imie_nazwisko_rola_tmp);
         imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
     }
@@ -255,9 +244,8 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
 
         this.nagrody = nagroda;
         nag.setText(nagroda.getNazwa());
-        pkt.setText(nagroda.getLiczbaPunktow()+"");
-        if(nagroda.getZdjecie() != null)
-        {
+        pkt.setText(nagroda.getLiczbaPunktow() + "");
+        if (nagroda.getZdjecie() != null) {
             try {
                 conversjaNaZ(nagroda.getZdjecie());
             } catch (IOException e) {
@@ -267,7 +255,8 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         }
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    @FXML
+        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert PanelEdycjiNagrod != null : "fx:id=\"panelEdycjiNagrodButtonDodajZdjecie\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
         assert panelEdycjiNagrodButtonEdytuj != null : "fx:id=\"panelEdycjiNagrodButtonUsun\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
@@ -286,7 +275,4 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
 
 
     }
-
-
-
 }

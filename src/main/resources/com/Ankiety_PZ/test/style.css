@@ -1,9 +1,9 @@
-.button
-{
-    -fx-background-color : #00ccff;
+.button {
+    -fx-background-color: #00ccff;
     -fx-text-fill: white;
     -fx-font-size: 1.8em;
 }
+
 .text-field {
     -fx-border-color: #00ccff;
     -fx-border-width: 3;
@@ -21,12 +21,10 @@
 }
 
 .label {
-     -fx-text-fill: black;
-     -fx-font-size: 1.8em;
+    -fx-text-fill: black;
+    -fx-font-size: 1.8em;
 
- }
-
-
+}
 
 .labelbold {
     -fx-text-fill: black;
@@ -39,35 +37,34 @@
     -fx-font-size: 1.8em;
 }
 
-.scroll-pane{
-    -fx-background-color : white;
+.scroll-pane {
+    -fx-background-color: white;
 }
 
-.hbox{
-    -fx-background-color : white;
+.hbox {
+    -fx-background-color: white;
 }
+
 .tab-pane .tab-header-area .tab-header-background {
     -fx-opacity: 0;
 }
 
-.tab-pane
-{
-    -fx-tab-min-width:90px;
+.tab-pane {
+    -fx-tab-min-width: 90px;
 
 }
 
-.tab{
-    -fx-background-insets: 0 1 0 1,0,0;
+.tab {
+    -fx-background-insets: 0 1 0 1, 0, 0;
     -fx-font-size: 1.8em;
 }
-.tab-pane .tab
-{
+
+.tab-pane .tab {
     -fx-background-color: #e6e6e6;
 
 }
 
-.tab-pane .tab:selected
-{
+.tab-pane .tab:selected {
     -fx-background-color: #00ccff;
 }
 
@@ -110,22 +107,27 @@
     -fx-border-radius: 15px;
     -fx-padding: 4px;
 }
+
 .radio-button .radio:selected {
     -fx-background-color: white;
     -fx-background-image: null;
 }
+
 .radio-button -radio:armed {
     -fx-background-color: white;
     -fx-background-image: null;
 }
+
 .radio-button -radio:determinate {
     -fx-background-color: white;
     -fx-background-image: null;
 }
+
 .radio-button -radio:indeterminate {
     -fx-background-color: white;
     -fx-background-image: null;
 }
+
 .radio-button .dot {
     -fx-background-radius: 15px;
     -fx-padding: 8px;
@@ -138,7 +140,7 @@
     -fx-table-cell-border-color: #00ccff;
     -fx-background-color: transparent;
     -fx-font-size: 1.8em;
-    -fx-alignment:center;
+    -fx-alignment: center;
 }
 
 .table-view .filler, .tree-table-view .filler, .table-view .column-header,
@@ -149,39 +151,43 @@
     -fx-border-color: #00ccff;
     -fx-border-width: 0 0 2 0;
     -fx-background-color: transparent;
-    -fx-alignment:center;
+    -fx-alignment: center;
 }
 
-.table-view .show-hide-columns-button, .tree-table-view .show-hide-columns-button
-{
+.table-view .show-hide-columns-button, .tree-table-view .show-hide-columns-button {
     -fx-font-size: 1.8em;
     -fx-background-color: transparent;
-    -fx-alignment:center;
+    -fx-alignment: center;
 }
 
-.table-view .column-header-background, .tree-table-view .column-header-background
-{
+.table-view .column-header-background, .tree-table-view .column-header-background {
     -fx-font-size: 1.8em;
     -fx-background-color: transparent;
-    -fx-alignment:center;
+    -fx-alignment: center;
 }
-
 
 .table-cell {
     -fx-font-size: 1.8em;
     -fx-border-color: transparent;
     -fx-border-width: 1;
-    -fx-alignment:center;
+    -fx-alignment: center;
 }
 
+.choice-box .context-menu {
+    -fx-background-color: white;
+}
 
-   .choice-box .context-menu { -fx-background-color: white; }
+.choice-box .menu-item:focused {
+    -fx-background-color: #00ccff;
+}
 
-   .choice-box .menu-item:focused { -fx-background-color: #00ccff; }
+.choice-box .menu-item > .label {
+    -fx-text-fill: black;
+}
 
-   .choice-box .menu-item > .label { -fx-text-fill: black; }
-
-   .choice-box .menu-item:focused > .label { -fx-text-fill: white; }
+.choice-box .menu-item:focused > .label {
+    -fx-text-fill: white;
+}
 
 .choice-box {
     -fx-background-color: white;

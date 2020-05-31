@@ -4,6 +4,7 @@
  */
 
 package com.Ankiety_PZ.test;
+
 import com.Ankiety_PZ.hibernate.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -88,7 +89,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     @FXML
     private TableColumn przyciskUsun;
     private byte[] zdjecie;
-    private Boolean edycja2 ;
+    private Boolean edycja2;
     private String odp;
     private String tresc;
     private Uzytkownicy curetUser;
@@ -105,11 +106,12 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     private List<Odpowiedzi> listaOdpUAnuluj = new ArrayList<>();
     private ArrayList<Object> dod;
     private Set<Pytania> lisaPytanPrzekazana;
+
     /**
      * Metoda obsługująca przyciśk anuluj.
      *
-     * @author HubertJakobsze
      * @param event zdarzenie, po którym funkcja ma się wywołać
+     * @author HubertJakobsze
      */
 
 
@@ -207,7 +209,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
     public void InicjajcaZ(Pytania pytania) {
 
-        listaOdpTego = new HashSet<Odpowiedzi>(pytania.getOdpowiedzis()) ;
+        listaOdpTego = new HashSet<Odpowiedzi>(pytania.getOdpowiedzis());
 
     }
 
@@ -222,7 +224,6 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         panelTworzeniaankietyController.setPytdoUsuniecia();
         panelTworzeniaankietyController.DaneUsniecia(listaPytaU, listaOdpU);
         if (rodzajPytania != TypeOfQuestion.OPEN && pytania != null) {
-           /// pytania.getOdpowiedzis().addAll(listaOdpTego);
             listaOdpTego = new HashSet();
         }
         panelTworzeniaankietyController.setStartValuesPytanie(pytania);
@@ -273,12 +274,8 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         }
 
         byte[] bytes = bos.toByteArray();
-        //setOdpowiedziSS(listaOdpTego);
         zdjecie = bytes;
         pytania.setZdjecie(zdjecie);
-        //conversjaNaZ(bytes);
-
-        //setStartValuesPytanie(pytania);
     }
 
 
@@ -324,34 +321,31 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
     void wyloguj1Action(ActionEvent event) {
         loadingFXML(event, SceneFXML.PANEL_LOGIN);
         PanelLoginController panelLoginController = load.getController();
-        activeScene(event, false, false);}
+        activeScene(event, false, false);
+    }
 
-        /**
-         * Metoda sprawdza czy punkty składają się z liczb i czy nie są ujemne.
-         *
-         * @return true jeśli punkty są poprawne, w przeciwnym razie false
-         */
-        private boolean punktyisnumber(){
-            try{
+    /**
+     * Metoda sprawdza czy punkty składają się z liczb i czy nie są ujemne.
+     *
+     * @return true jeśli punkty są poprawne, w przeciwnym razie false
+     */
+    private boolean punktyisnumber() {
+        try {
             punktyS = punkty.getText();
             punktyi = Integer.parseInt(punktyS);
 
-            if(punktyi>0){
+            if (punktyi > 0) {
                 return true;
-            }
-            else{
+            } else {
                 panelTworzeniaPytanLabelError.setText("Liczba punktów nie może być mniejsza od 0.");
                 return false;
             }
-           }
-            catch(IllegalArgumentException argumentException){
-                panelTworzeniaPytanLabelError.setText("Punkty muszą być liczbą!");
-            }
-
-            return false;
+        } catch (IllegalArgumentException argumentException) {
+            panelTworzeniaPytanLabelError.setText("Punkty muszą być liczbą!");
         }
 
-
+        return false;
+    }
 
 
     @FXML
@@ -393,14 +387,13 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
                 if ((aktualnaliczbaodpowiedzi == 0 && dodawaniePytaniaRBQuestionOpen.isSelected()) ||
 
                         (aktualnaliczbaodpowiedzi > 1 &&
-                                (dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected()   || dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected() ||
-                                        (  dodawaniePytaniaRBQuestionPoints.isSelected() && punktyisnumber())
+                                (dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected() || dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected() ||
+                                        (dodawaniePytaniaRBQuestionPoints.isSelected() && punktyisnumber())
                                 ))
                         ||
                         (aktualnaliczbaodpowiedzi == 1 &&
                                 (dodawaniePytaniaRBQuestionPercentages.isSelected()))
-                )
-                 {
+                ) {
 
                     pytania.setTresc(trescPytania.getText());
                     pytania.setRodzajPytania(rodzajPytania);
@@ -409,10 +402,10 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
                     pytania.setOdpowiedzis(listaOdpTego);
                     loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
                     PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
-                     lisaPytanPrzekazana.add(pytania);
-                     panelTworzeniaankietyController.setListaPytan(lisaPytanPrzekazana);
-                     panelTworzeniaankietyController.SetStart();
-                     panelTworzeniaankietyController.setPytdoUsuniecia();
+                    lisaPytanPrzekazana.add(pytania);
+                    panelTworzeniaankietyController.setListaPytan(lisaPytanPrzekazana);
+                    panelTworzeniaankietyController.SetStart();
+                    panelTworzeniaankietyController.setPytdoUsuniecia();
                     panelTworzeniaankietyController.DaneUsniecia(listaPytaU, listaOdpU);
                     panelTworzeniaankietyController.setStartValues(curetUser);
                     panelTworzeniaankietyController.setStartValuesAnkiety(ankiety2);
@@ -444,17 +437,16 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
                 if ((aktualnaliczbaodpowiedzi == 0 && dodawaniePytaniaRBQuestionOpen.isSelected()) ||
 
                         (aktualnaliczbaodpowiedzi > 1 &&
-                                (dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected()   || dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected() ||
-                                        (  dodawaniePytaniaRBQuestionPoints.isSelected() && punktyisnumber())
+                                (dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected() || dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected() ||
+                                        (dodawaniePytaniaRBQuestionPoints.isSelected() && punktyisnumber())
                                 ))
                         ||
                         (aktualnaliczbaodpowiedzi == 1 &&
                                 (dodawaniePytaniaRBQuestionPercentages.isSelected()))
-                )
-                {
+                ) {
 
 
-                   if(edycja2) pytania.setIdPytania(-1);
+                    if (edycja2) pytania.setIdPytania(-1);
                     pytania.setTresc(trescPytania.getText());
                     pytania.setZdjecie(zdjecie);
                     pytania.setRodzajPytania(rodzajPytania);
@@ -462,11 +454,11 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
                     pytania.setAnkiety(ankiety2);
                     pytania.setOdpowiedzis(listaOdpTego);
                     //lisaPytanPrzekazana.add(pytania);
-                   // ankiety2.getPytanias().add(pytania);
+                    // ankiety2.getPytanias().add(pytania);
 
                     loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
                     PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
-                   // panelTworzeniaankietyController.setPytania();
+                    // panelTworzeniaankietyController.setPytania();
                     lisaPytanPrzekazana.add(pytania);
                     panelTworzeniaankietyController.setListaPytan(lisaPytanPrzekazana);
                     panelTworzeniaankietyController.SetStart();
@@ -490,7 +482,7 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
             }
 
-        } else{
+        } else {
             panelTworzeniaPytanLabelError.setText("Tytuł pytania nie może być pusty!");
         }
     }
@@ -500,12 +492,14 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
 
         if (dodawaniePytaniaRBQuestionOpen.isSelected()) {
-            if(aktualnaliczbaodpowiedzi<=0) {
+            if (aktualnaliczbaodpowiedzi <= 0) {
                 rodzajPytania = TypeOfQuestion.OPEN;
 
-            punktowe = 0;
-            dodajPytanie(event);}
-            else{                 panelTworzeniaPytanLabelError.setText("Pytanie otwarte nie może zawierać odpowiedzi!");}
+                punktowe = 0;
+                dodajPytanie(event);
+            } else {
+                panelTworzeniaPytanLabelError.setText("Pytanie otwarte nie może zawierać odpowiedzi!");
+            }
         } else {
             if (dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected()) {
                 rodzajPytania = TypeOfQuestion.MANY_CHOICE;
@@ -575,36 +569,35 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
         if (!dodawaniePytaniaRBQuestionOpen.isSelected()) {
             odp = odpowiedzi.getText();
             if (!odp.isEmpty()) {
-            if (pytania == null) {
+                if (pytania == null) {
 
-                Pytania pytanie = new Pytania();
-                pytanie.initHashSetOdpowiedzi();
-                Odpowiedzi odpo = new Odpowiedzi(pytania, odp);
-                odpo.setIdOdpowiedzi(-1);
-                pytanie.setIdPytania(-1);
-                pytania = pytanie;
-                odpo.setPytania(pytania);
-                listaOdpTego.add(odpo);
-                edycja = true;
+                    Pytania pytanie = new Pytania();
+                    pytanie.initHashSetOdpowiedzi();
+                    Odpowiedzi odpo = new Odpowiedzi(pytania, odp);
+                    odpo.setIdOdpowiedzi(-1);
+                    pytanie.setIdPytania(-1);
+                    pytania = pytanie;
+                    odpo.setPytania(pytania);
+                    listaOdpTego.add(odpo);
+                    edycja = true;
 
 
-        }
-            else {
-                Odpowiedzi odpo = new Odpowiedzi(pytania, odp);
-                odpo.setIdOdpowiedzi(-1);
-                pytania.setIdPytania(-1);
-                edycja = true;
-                listaOdpTego.add(odpo);
-            }
+                } else {
+                    Odpowiedzi odpo = new Odpowiedzi(pytania, odp);
+                    odpo.setIdOdpowiedzi(-1);
+                    pytania.setIdPytania(-1);
+                    edycja = true;
+                    listaOdpTego.add(odpo);
+                }
 
-            setOdpowiedziSS(listaOdpTego);
-        }      else{
+                setOdpowiedziSS(listaOdpTego);
+            } else {
                 panelTworzeniaPytanLabelError.setText("Podaj treść odpowiedzi!");
 
 
             }
 
-        }else{
+        } else {
             panelTworzeniaPytanLabelError.setText("Pytanie otwarte nie może zawierać odpowiedzi!");
 
 
@@ -612,24 +605,26 @@ public class DodawaniepytaniaController extends BulidStage implements SetStartVa
 
     }
 
-    public void Edycja(Boolean e)
-    {
+    public void Edycja(Boolean e) {
         this.edycja = e;
     }
 
-    public void setOdpowiedziSS(Set<Odpowiedzi> listaOdpTego){
+    public void setOdpowiedziSS(Set<Odpowiedzi> listaOdpTego) {
         ObservableList<OdpowiedziTabelka> dane = FXCollections.observableArrayList();
-        listaOdpTego.forEach(odpowiedz ->{Odpowiedzi JednaOdp = (Odpowiedzi) odpowiedz;
-        dane.add(new OdpowiedziTabelka(JednaOdp, ankiety2, curetUser,  listaOdpU, listaPytaU, listaOdpTego, edycja2 ,this));});
+        listaOdpTego.forEach(odpowiedz -> {
+            Odpowiedzi JednaOdp = (Odpowiedzi) odpowiedz;
+            dane.add(new OdpowiedziTabelka(JednaOdp, ankiety2, curetUser, listaOdpU, listaPytaU, listaOdpTego, edycja2, this));
+        });
         odpowiedziTabelka.itemsProperty().setValue(dane);
         treść.setCellValueFactory(new PropertyValueFactory("treść"));
         przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
-    aktualnaliczbaodpowiedzi =dane.size();
+        aktualnaliczbaodpowiedzi = dane.size();
 
     }
-    public void DaneUsniecia(List<Pytania> pyt, List<Odpowiedzi> odp){
-        this.listaPytaU= pyt;
-        this.listaOdpU= odp;
+
+    public void DaneUsniecia(List<Pytania> pyt, List<Odpowiedzi> odp) {
+        this.listaPytaU = pyt;
+        this.listaOdpU = odp;
     }
 
 }

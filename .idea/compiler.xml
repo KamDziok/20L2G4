@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="CompilerConfiguration">
-    <annotationProcessing>
-      <profile name="Maven default annotation processors profile" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="Ankiety_PZ" />
-      </profile>
-    </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Ankiety_PZ" target="11" />
-    </bytecodeTargetLevel>
-  </component>
-  <component name="JavacSettings">
-    <option name="GENERATE_NO_WARNINGS" value="true" />
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Ankiety_PZ" options="" />
-    </option>
-  </component>
+    <component name="CompilerConfiguration">
+        <annotationProcessing>
+            <profile name="Maven default annotation processors profile" enabled="true">
+                <sourceOutputDir name="target/generated-sources/annotations"/>
+                <sourceTestOutputDir name="target/generated-test-sources/test-annotations"/>
+                <outputRelativeToContentRoot value="true"/>
+                <module name="Ankiety_PZ"/>
+            </profile>
+        </annotationProcessing>
+        <bytecodeTargetLevel>
+            <module name="Ankiety_PZ" target="11"/>
+        </bytecodeTargetLevel>
+    </component>
+    <component name="JavacSettings">
+        <option name="GENERATE_NO_WARNINGS" value="true"/>
+        <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+            <module name="Ankiety_PZ" options=""/>
+        </option>
+    </component>
 </project>

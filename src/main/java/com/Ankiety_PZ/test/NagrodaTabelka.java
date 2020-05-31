@@ -30,7 +30,7 @@ public class NagrodaTabelka {
     NagrodaTabelka(Nagrody nagroda, PanelUzytkownikaController controller) {
         nazwa = nagroda.getNazwa();
         cena = nagroda.getLiczbaPunktow();
-        if(null != nagroda.getZdjecie()) {
+        if (null != nagroda.getZdjecie()) {
             try {
                 conversjaNaZ(nagroda.getZdjecie(), nagroda);
             } catch (IOException e) {
@@ -44,10 +44,10 @@ public class NagrodaTabelka {
                 Uzytkownicy curentUser = controller.getCurentUser();
                 NagrodyQuery queryNagrody = new NagrodyQuery();
                 if (queryNagrody.getNagrodyToUzytkownicy(nagroda, curentUser)) {
-                        UzytkownicyQuery query = new UzytkownicyQuery();
-                        query.updateUzytkownicy(curentUser);
-                        controller.updatePkt(String.valueOf(curentUser.getLiczbaPunktow()));
-                        controller.getPanelUzytkownikaLabelErrorNagrody().setText("Nagroda dodana pomyślnie");
+                    UzytkownicyQuery query = new UzytkownicyQuery();
+                    query.updateUzytkownicy(curentUser);
+                    controller.updatePkt(String.valueOf(curentUser.getLiczbaPunktow()));
+                    controller.getPanelUzytkownikaLabelErrorNagrody().setText("Nagroda dodana pomyślnie");
                 } else {
                     controller.getPanelUzytkownikaLabelErrorNagrody().setText("Dodanie nagrody nie powiodło się");
                 }
@@ -70,6 +70,7 @@ public class NagrodaTabelka {
     public Button getButton() {
         return button;
     }
+
     public void conversjaNaZ(byte[] bytes, Nagrody nagrody) throws IOException {
         ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
         Iterator<?> readers = ImageIO.getImageReadersByFormatName("jpg");
@@ -85,7 +86,7 @@ public class NagrodaTabelka {
         BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
         String directory = System.getProperty("user.home") + "\\Documents\\Zdjęcia";
         String directory2 = directory + "\\pdf";
-        if(!(new File(directory).exists())){
+        if (!(new File(directory).exists())) {
             new File(directory).mkdir();
         }
         Graphics2D g2 = bufferedImage.createGraphics();

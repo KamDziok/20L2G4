@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
-public class UzytkownicyTabelka  extends BulidStage {
+public class UzytkownicyTabelka extends BulidStage {
 
     private int id;
     private String imie_i_nazwisko;
@@ -18,7 +18,7 @@ public class UzytkownicyTabelka  extends BulidStage {
 
     UzytkownicyTabelka(Uzytkownicy uzytkownik, Uzytkownicy uzytkownik_zalogowany, PanelAdminaController panel) {
         this.user = uzytkownik;
-        imie_i_nazwisko = uzytkownik.getImie()+" "+uzytkownik.getNazwisko();
+        imie_i_nazwisko = uzytkownik.getImie() + " " + uzytkownik.getNazwisko();
         liczbaPunktow = uzytkownik.getLiczbaPunktow();
         id = uzytkownik.getIdUzytkownika();
         mail = uzytkownik.getMail();

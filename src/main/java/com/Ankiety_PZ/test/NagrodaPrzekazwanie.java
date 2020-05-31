@@ -2,7 +2,7 @@ package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.hibernate.Nagrody;
 
-public class NagrodaPrzekazwanie extends BulidStage{
+public class NagrodaPrzekazwanie extends BulidStage {
 
     public String tytul;
     public int liczbaPunktow;

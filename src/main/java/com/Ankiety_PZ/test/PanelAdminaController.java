@@ -18,7 +18,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -37,19 +36,33 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
     private String surnameAdmin;
     private String cityAdmin;
     private String streetAdmin;
-    /** Numer domu wczytany z pola tekstowego jako String. */
+    /**
+     * Numer domu wczytany z pola tekstowego jako String.
+     */
     private String numberHouseStringAdmin;
-    /** Numer lokalu wczytany z pola tekstowego jako String. */
+    /**
+     * Numer lokalu wczytany z pola tekstowego jako String.
+     */
     private String numberFlatStringAdmin;
-    /** Pierwsza część kodu pocztowego wczytany z pola tekstowego jako String. */
+    /**
+     * Pierwsza część kodu pocztowego wczytany z pola tekstowego jako String.
+     */
     private String postCodeFirstStringAdmin;
-    /** Druga część kodu pocztowego wczytany z pola tekstowego jako String. */
+    /**
+     * Druga część kodu pocztowego wczytany z pola tekstowego jako String.
+     */
     private String postCodeSecondStringAdmin;
-    /** Pierwsza część kodu pocztowego przekształconego na int. */
+    /**
+     * Pierwsza część kodu pocztowego przekształconego na int.
+     */
     private int postCodeFirstIntAdmin;
-    /** Druga część kodu pocztowego przekształconego na int. */
+    /**
+     * Druga część kodu pocztowego przekształconego na int.
+     */
     private int postCodeSecondIntAdmin;
-    /** Minimalna długośc hasłą. */
+    /**
+     * Minimalna długośc hasłą.
+     */
     private final int minSizePasswordAdmin = 3;
     @FXML
     private Label imie_nazwisko_rola;
@@ -68,7 +81,8 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
     @FXML
     TableView tableUzytkownicy;
     @FXML
-    TableView  tableUzytkownicyZablokowani;;
+    TableView tableUzytkownicyZablokowani;
+    ;
     @FXML
     private TableColumn imie_i_nazwisko;
     @FXML
@@ -88,11 +102,16 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
     @FXML
     private TableColumn przycisk2;
 
-    @FXML private TextField email;
-    @FXML private TextField haslo;
-    @FXML private TextField nowehaslo;
-    @FXML private TextField hasloznowu;
-    @FXML private TextField imie;
+    @FXML
+    private TextField email;
+    @FXML
+    private TextField haslo;
+    @FXML
+    private TextField nowehaslo;
+    @FXML
+    private TextField hasloznowu;
+    @FXML
+    private TextField imie;
 
     public TableColumn getImie_i_nazwiskoPanel() {
         return imie_i_nazwisko;
@@ -126,13 +145,20 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
         return przycisk3;
     }
 
-    @FXML private TextField nazwisko;
-    @FXML private TextField miejscowosc;
-    @FXML private TextField ulica;
-    @FXML private TextField budynek;
-    @FXML private TextField lokal;
-    @FXML private TextField kod1;
-    @FXML private TextField kod2;
+    @FXML
+    private TextField nazwisko;
+    @FXML
+    private TextField miejscowosc;
+    @FXML
+    private TextField ulica;
+    @FXML
+    private TextField budynek;
+    @FXML
+    private TextField lokal;
+    @FXML
+    private TextField kod1;
+    @FXML
+    private TextField kod2;
 
     @FXML
     void wyloguj(ActionEvent event) {
@@ -145,7 +171,7 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
      *
      * @return true jeśli wszystkie pola obowiązkowe są uzupełnione, w przeciwnym wypadku false
      */
-    private boolean compulsoryFildNotNullAdmin(){
+    private boolean compulsoryFildNotNullAdmin() {
         return (!mailAdmin.isEmpty() && !nameAdmin.isEmpty() &&
                 !surnameAdmin.isEmpty() && !cityAdmin.isEmpty() && !streetAdmin.isEmpty() && !numberHouseStringAdmin.isEmpty() &&
                 !postCodeFirstStringAdmin.isEmpty() && !postCodeSecondStringAdmin.isEmpty());
@@ -154,22 +180,22 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
     /**
      * Metoda sprawdza czy kod pocztowy składa się z liczb i czy ma odpowiedznią długość.
      *
-     * @author KamDziok
      * @return true jeśli kod pocztowy jest poprawny, w przeciwnym razie false
+     * @author KamDziok
      */
-    private boolean postCodeIsNumberAdmin(){
-        try{
-            if(postCodeFirstStringAdmin.length() == 2 && postCodeSecondStringAdmin.length() == 3) {
+    private boolean postCodeIsNumberAdmin() {
+        try {
+            if (postCodeFirstStringAdmin.length() == 2 && postCodeSecondStringAdmin.length() == 3) {
                 postCodeFirstIntAdmin = Integer.parseInt(postCodeFirstStringAdmin);
                 postCodeSecondIntAdmin = Integer.parseInt(postCodeSecondStringAdmin);
                 return true;
-            }else{
+            } else {
                 panelAdminaLabelError.setText("Kod pocztowy ma niepoprawną długość!");
             }
-        }catch(IllegalArgumentException argumentException){
+        } catch (IllegalArgumentException argumentException) {
             panelAdminaLabelError.setText("Kod pocztowy jest niepoprawny!");
             System.out.println(argumentException.getMessage());
-        }catch(Exception exception){
+        } catch (Exception exception) {
             System.out.println(exception.getMessage());
         }
         return false;
@@ -182,22 +208,21 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
      * @return true jeśli hasło ma odpowiednią długość i jest takie samo jak powtórz hasło i dotychczasowe hasło
      * zostało podane poprawnie, w przeciwnym wypadku false.
      */
-    private boolean checkPasswordAdmin(){
-        if(((passwordRepeatAdmin.length() < minSizePasswordAdmin) || (passwordNewAdmin.length() < minSizePasswordAdmin)) && (!passwordAdmin.isEmpty())){
+    private boolean checkPasswordAdmin() {
+        if (((passwordRepeatAdmin.length() < minSizePasswordAdmin) || (passwordNewAdmin.length() < minSizePasswordAdmin)) && (!passwordAdmin.isEmpty())) {
 
-            sprawdzhaslo ="Hasło jest za krótkie lub nie wypełniłeś wszystkich pól!";
-        }else {
-            if(!passwordNewAdmin.equals(passwordRepeatAdmin)){
-                sprawdzhaslo ="Hasła nie są takie same!";
-            }else{
-                if(passwordAdmin.equals(curentUser.getHaslo())){
+            sprawdzhaslo = "Hasło jest za krótkie lub nie wypełniłeś wszystkich pól!";
+        } else {
+            if (!passwordNewAdmin.equals(passwordRepeatAdmin)) {
+                sprawdzhaslo = "Hasła nie są takie same!";
+            } else {
+                if (passwordAdmin.equals(curentUser.getHaslo())) {
                     return true;
-                }
-                else if(passwordAdmin.isEmpty() && passwordNewAdmin.isEmpty() && passwordRepeatAdmin.isEmpty()){
+                } else if (passwordAdmin.isEmpty() && passwordNewAdmin.isEmpty() && passwordRepeatAdmin.isEmpty()) {
                     return true;
+                } else {
+                    sprawdzhaslo = "Podałeś niepoprawne hasło do konta!";
                 }
-                else{
-                    sprawdzhaslo ="Podałeś niepoprawne hasło do konta!";}
             }
         }
         return false;
@@ -208,8 +233,8 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
      *
      * @return true jeśli sdres e-mail posiada @, w przeciwnym wypadku false.
      */
-    private boolean chechEmailAdmin(){
-        if(mailAdmin.indexOf('@') != -1){
+    private boolean chechEmailAdmin() {
+        if (mailAdmin.indexOf('@') != -1) {
             return true;
         }
         return false;
@@ -229,15 +254,15 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
         numberFlatStringAdmin = lokal.getText();
         postCodeFirstStringAdmin = kod1.getText();
         postCodeSecondStringAdmin = kod2.getText();
-        if(compulsoryFildNotNullAdmin()){
-            if(postCodeIsNumberAdmin()){
-                if(checkPasswordAdmin()){
-                    if(chechEmailAdmin()) {
+        if (compulsoryFildNotNullAdmin()) {
+            if (postCodeIsNumberAdmin()) {
+                if (checkPasswordAdmin()) {
+                    if (chechEmailAdmin()) {
                         UzytkownicyQuery update = new UzytkownicyQuery();
                         String postCode = postCodeFirstIntAdmin + "-" + postCodeSecondIntAdmin;
                         curentUser.setMail(mailAdmin);
                         curentUser.setImie(nameAdmin);
-                        if(!passwordAdmin.isEmpty()){
+                        if (!passwordAdmin.isEmpty()) {
                             curentUser.setHaslo(passwordRepeatAdmin);
                         }
                         curentUser.setNazwisko(surnameAdmin);
@@ -247,21 +272,21 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
                         curentUser.setNumerLokalu(numberFlatStringAdmin);
                         curentUser.setKodPocztowy(postCode);
                         update.updateUzytkownicy(curentUser);
-                        imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - konto administratora";
+                        imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko() + " - konto administratora";
                         imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
                         imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
                         imie_nazwisko_rola3.setText(imie_nazwisko_rola_tmp);
                         panelAdminaLabelError.setText("Profil został pomyślnie zaktualizowany.");
-                    }else{
+                    } else {
                         panelAdminaLabelError.setText("Podany adres e-mail jest nieprawidłowy!");
                     }
-                }else{
+                } else {
                     panelAdminaLabelError.setText(sprawdzhaslo);
                 }
-            }else{
+            } else {
                 panelAdminaLabelError.setText("Nieprawidłowy kod pocztowy!");
             }
-        }else{
+        } else {
             panelAdminaLabelError.setText("Wymagane pola są puste!");
         }
     }
@@ -270,9 +295,9 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
         UzytkownicyQuery query = new UzytkownicyQuery();
         List<Uzytkownicy> uzytkownicy = query.selectBy(false, curentUser);
         dane = FXCollections.observableArrayList();
-        for (Uzytkownicy uzytkownik:uzytkownicy
+        for (Uzytkownicy uzytkownik : uzytkownicy
         ) {
-            dane.add(new UzytkownicyTabelka (uzytkownik, curentUser, this));
+            dane.add(new UzytkownicyTabelka(uzytkownik, curentUser, this));
         }
         imie_i_nazwisko.setCellValueFactory(new PropertyValueFactory("imie_i_nazwisko"));
         mail.setCellValueFactory(new PropertyValueFactory("mail"));
@@ -286,7 +311,7 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
         UzytkownicyQuery query = new UzytkownicyQuery();
         List<Uzytkownicy> uzytkownicy = query.selectBy(true, curentUser);
         dane2 = FXCollections.observableArrayList();
-        for (Uzytkownicy uzytkownik:uzytkownicy
+        for (Uzytkownicy uzytkownik : uzytkownicy
         ) {
             dane2.add(new UzytkownicyZablokowaniTabelka(uzytkownik, this));
         }
@@ -318,7 +343,7 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
     public void setStartValues(Uzytkownicy user) {
         this.curentUser = user;
 
-        imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - konto administratora";
+        imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko() + " - konto administratora";
         System.out.print(imie_nazwisko_rola_tmp);
         imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
         imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
@@ -343,7 +368,8 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
 
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    @FXML
+        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert wyloguj != null : "fx:id=\"wyloguj\" was not injected: check your FXML file 'PanelAdmina.fxml'.";
         assert imie_nazwisko_rola != null : "fx:id=\"imie_nazwisko_rola\" was not injected: check your FXML file 'PanelAdmina.fxml'.";

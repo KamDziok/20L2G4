@@ -8,45 +8,58 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="scroll-pane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.PanelLoginController">
-   <children>
-      <Pane layoutX="30.0" layoutY="32.0" prefHeight="377.0" prefWidth="570.0" styleClass="scroll-pane" stylesheets="@style.css" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="31.0">
-         <children>
-            <Label layoutX="10.0" layoutY="15.0" prefHeight="35.0" prefWidth="88.0" stylesheets="@style.css" text="E-mail:">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <TextField fx:id="panelLoginTFEmail" layoutX="10.0" layoutY="55.0" prefHeight="35.0" prefWidth="522.0" stylesheets="@style.css">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </TextField>
-            <Label layoutX="10.0" layoutY="120.0" prefHeight="35.0" prefWidth="88.0" stylesheets="@style.css" text="Hasło:">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <PasswordField fx:id="panelLoginPFPassword" layoutX="10.0" layoutY="160.0" prefHeight="51.0" prefWidth="522.0" stylesheets="@style.css">
-               <font>
-                  <Font size="24.0" />
-               </font></PasswordField>
-            <Button fx:id="panelLoginButtonLogin" layoutX="407.0" layoutY="256.0" mnemonicParsing="false" onAction="#panelLoginButtonLoginAcept" prefHeight="50.0" prefWidth="125.0" stylesheets="@style.css" text="Zaloguj">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Button>
-            <Button fx:id="panelLoginButtonRegi" layoutX="271.0" layoutY="256.0" mnemonicParsing="false" onAction="#panelLoginButtonRegiAcept" prefHeight="50.0" prefWidth="125.0" stylesheets="@style.css" text="Zarejestruj">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Button>
-            <Label fx:id="panelLoginLabelError" alignment="CENTER" layoutX="10.0" layoutY="330.0" prefHeight="17.0" prefWidth="522.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-   </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="scroll-pane" stylesheets="@style.css"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.Ankiety_PZ.test.PanelLoginController">
+    <children>
+        <Pane layoutX="30.0" layoutY="32.0" prefHeight="377.0" prefWidth="570.0" styleClass="scroll-pane"
+              stylesheets="@style.css" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="31.0">
+            <children>
+                <Label layoutX="10.0" layoutY="15.0" prefHeight="35.0" prefWidth="88.0" stylesheets="@style.css"
+                       text="E-mail:">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="panelLoginTFEmail" layoutX="10.0" layoutY="55.0" prefHeight="35.0" prefWidth="522.0"
+                           stylesheets="@style.css">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </TextField>
+                <Label layoutX="10.0" layoutY="120.0" prefHeight="35.0" prefWidth="88.0" stylesheets="@style.css"
+                       text="Hasło:">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </Label>
+                <PasswordField fx:id="panelLoginPFPassword" layoutX="10.0" layoutY="160.0" prefHeight="51.0"
+                               prefWidth="522.0" stylesheets="@style.css">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </PasswordField>
+                <Button fx:id="panelLoginButtonLogin" layoutX="407.0" layoutY="256.0" mnemonicParsing="false"
+                        onAction="#panelLoginButtonLoginAcept" prefHeight="50.0" prefWidth="125.0"
+                        stylesheets="@style.css" text="Zaloguj">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="panelLoginButtonRegi" layoutX="271.0" layoutY="256.0" mnemonicParsing="false"
+                        onAction="#panelLoginButtonRegiAcept" prefHeight="50.0" prefWidth="125.0"
+                        stylesheets="@style.css" text="Zarejestruj">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </Button>
+                <Label fx:id="panelLoginLabelError" alignment="CENTER" layoutX="10.0" layoutY="330.0" prefHeight="17.0"
+                       prefWidth="522.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+    </children>
 </AnchorPane>

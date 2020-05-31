@@ -15,10 +15,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
-import java.util.Iterator;
 import java.util.ResourceBundle;
 
-public class PanelEdycjiUzytkownikaController extends BulidStage implements SetStartValues,SetStartValuesEdycjaUzytkownika, Initializable {
+public class PanelEdycjiUzytkownikaController extends BulidStage implements SetStartValues, SetStartValuesEdycjaUzytkownika, Initializable {
 
     Uzytkownicy curentUser;
     Uzytkownicy edycja;
@@ -32,19 +31,33 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
     private String surname;
     private String city;
     private String street;
-    /** Numer domu wczytany z pola tekstowego jako String. */
+    /**
+     * Numer domu wczytany z pola tekstowego jako String.
+     */
     private String numberHouseString;
-    /** Numer lokalu wczytany z pola tekstowego jako String. */
+    /**
+     * Numer lokalu wczytany z pola tekstowego jako String.
+     */
     private String numberFlatString;
-    /** Pierwsza część kodu pocztowego wczytany z pola tekstowego jako String. */
+    /**
+     * Pierwsza część kodu pocztowego wczytany z pola tekstowego jako String.
+     */
     private String postCodeFirstString;
-    /** Druga część kodu pocztowego wczytany z pola tekstowego jako String. */
+    /**
+     * Druga część kodu pocztowego wczytany z pola tekstowego jako String.
+     */
     private String postCodeSecondString;
-    /** Pierwsza część kodu pocztowego przekształconego na int. */
+    /**
+     * Pierwsza część kodu pocztowego przekształconego na int.
+     */
     private int postCodeFirstInt;
-    /** Druga część kodu pocztowego przekształconego na int. */
+    /**
+     * Druga część kodu pocztowego przekształconego na int.
+     */
     private int postCodeSecondInt;
-    /** Minimalna długośc hasłą. */
+    /**
+     * Minimalna długośc hasłą.
+     */
     private final int minSizePassword = 3;
 
     @FXML
@@ -99,7 +112,7 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
      *
      * @return true jeśli wszystkie pola obowiązkowe są uzupełnione, w przeciwnym wypadku false
      */
-    private boolean compulsoryFildNotNull(){
+    private boolean compulsoryFildNotNull() {
         return (!mail.isEmpty() && !name.isEmpty() && !surname.isEmpty() && !city.isEmpty() && !street.isEmpty()
                 && !numberHouseString.isEmpty() && !postCodeFirstString.isEmpty() && !postCodeSecondString.isEmpty());
     }
@@ -109,19 +122,19 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
      *
      * @return true jeśli kod pocztowy jest poprawny, w przeciwnym razie false
      */
-    private boolean postCodeIsNumber(){
-        try{
-            if(postCodeFirstString.length() == 2 && postCodeSecondString.length() == 3) {
+    private boolean postCodeIsNumber() {
+        try {
+            if (postCodeFirstString.length() == 2 && postCodeSecondString.length() == 3) {
                 postCodeFirstInt = Integer.parseInt(postCodeFirstString);
                 postCodeSecondInt = Integer.parseInt(postCodeSecondString);
                 return true;
-            }else{
+            } else {
                 panelEdycjiUzytkownikaLabelError.setText("Kod pocztowy ma niepoprawną długość!");
             }
-        }catch(IllegalArgumentException argumentException){
+        } catch (IllegalArgumentException argumentException) {
             panelEdycjiUzytkownikaLabelError.setText("Kod pocztowy jest niepoprawny!");
             System.out.println(argumentException.getMessage());
-        }catch(Exception exception){
+        } catch (Exception exception) {
             System.out.println(exception.getMessage());
         }
         return false;
@@ -132,7 +145,7 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
      *
      * @author Krzysztof Banaś
      */
-    private void checkUprawnienia(){
+    private void checkUprawnienia() {
         String ustaw = uprawnienia.getValue();
         try {
             if (ustaw.equals("Użytkownik")) {
@@ -144,8 +157,7 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
             } else if (ustaw.equals("Administrator")) {
                 uprawnienia_i = 3;
             }
-        }
-        catch (RuntimeException pusteuprawnienia){
+        } catch (RuntimeException pusteuprawnienia) {
             uprawnienia_i = edycja.getUprawnienia();
         }
     }
@@ -155,10 +167,10 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
      *
      * @return true jeśli hasło ma odpowiednią długość i jest takie samo jak powtórz hasło, w przeciwnym wypadku false.
      */
-    private boolean checkPassword(){
-        if((password.length() < minSizePassword) && (password.length() != 0)){
+    private boolean checkPassword() {
+        if ((password.length() < minSizePassword) && (password.length() != 0)) {
             return false;
-        }else {
+        } else {
             return true;
         }
     }
@@ -168,8 +180,8 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
      *
      * @return true jeśli sdres e-mail posiada @, w przeciwnym wypadku false.
      */
-    private boolean chechEmail(){
-        if(mail.indexOf('@') != -1){
+    private boolean chechEmail() {
+        if (mail.indexOf('@') != -1) {
             return true;
         }
         return false;
@@ -188,40 +200,41 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
         postCodeFirstString = kod1.getText();
         postCodeSecondString = kod2.getText();
 
-        if(compulsoryFildNotNull()){
-            if(postCodeIsNumber()){
-                if(checkPassword()){
-                    if(chechEmail()) {
-                            UzytkownicyQuery update = new UzytkownicyQuery();
-                            String postCode = postCodeFirstInt + "-" + postCodeSecondInt;
-                            edycja.setMail(mail);
-                            if(!password.isEmpty()){
-                            edycja.setHaslo(password);}
-                            checkUprawnienia();
-                            edycja.setUprawnienia(uprawnienia_i);
-                            edycja.setImie(name);
-                            edycja.setNazwisko(surname);
-                            edycja.setMiejscowosc(city);
-                            edycja.setUlica(street);
-                            edycja.setNumerBudynku(numberHouseString);
-                            edycja.setNumerLokalu(numberFlatString);
-                            edycja.setKodPocztowy(postCode);
-                            update.updateUzytkownicy(edycja);
-                            loadingFXML(event, SceneFXML.PANEL_ADMINA);
-                            PanelAdminaController panelAdminaController = load.getController();
-                            panelAdminaController.setStartValues(curentUser);
-                            activeScene(event, false, false);
+        if (compulsoryFildNotNull()) {
+            if (postCodeIsNumber()) {
+                if (checkPassword()) {
+                    if (chechEmail()) {
+                        UzytkownicyQuery update = new UzytkownicyQuery();
+                        String postCode = postCodeFirstInt + "-" + postCodeSecondInt;
+                        edycja.setMail(mail);
+                        if (!password.isEmpty()) {
+                            edycja.setHaslo(password);
+                        }
+                        checkUprawnienia();
+                        edycja.setUprawnienia(uprawnienia_i);
+                        edycja.setImie(name);
+                        edycja.setNazwisko(surname);
+                        edycja.setMiejscowosc(city);
+                        edycja.setUlica(street);
+                        edycja.setNumerBudynku(numberHouseString);
+                        edycja.setNumerLokalu(numberFlatString);
+                        edycja.setKodPocztowy(postCode);
+                        update.updateUzytkownicy(edycja);
+                        loadingFXML(event, SceneFXML.PANEL_ADMINA);
+                        PanelAdminaController panelAdminaController = load.getController();
+                        panelAdminaController.setStartValues(curentUser);
+                        activeScene(event, false, false);
 
-                    }else{
+                    } else {
                         panelEdycjiUzytkownikaLabelError.setText("Podany adres e-mail jest nieprawidłowy!");
                     }
-                }else{
+                } else {
                     panelEdycjiUzytkownikaLabelError.setText("Hasło jest za krótkie!");
                 }
-            }else{
+            } else {
                 panelEdycjiUzytkownikaLabelError.setText("Nieprawidłowy kod pocztowy!");
             }
-        }else{
+        } else {
             panelEdycjiUzytkownikaLabelError.setText("Wymagane pola są puste!");
         }
     }
@@ -236,14 +249,14 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
     public void setStartValues(Uzytkownicy user) {
         this.curentUser = user;
 
-        imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - konto administratora";
+        imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko() + " - konto administratora";
         System.out.print(imie_nazwisko_rola_tmp);
         imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
 
     }
 
     @Override
-    public void SetStartValuesEdycjaUzytkownika(Uzytkownicy user){
+    public void SetStartValuesEdycjaUzytkownika(Uzytkownicy user) {
         this.edycja = user;
         setUstawienia();
     }
@@ -260,14 +273,11 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
 
         if (upr == 0) {
             uprawnienia.setValue("Użytkownik");
-        }
-        else if(upr == 1){
+        } else if (upr == 1) {
             uprawnienia.setValue("Ankieter");
-        }
-        else if(upr == 2){
+        } else if (upr == 2) {
             uprawnienia.setValue("Osoba odpowiedzialna za nagrody");
-        }
-        else if(upr == 3){
+        } else if (upr == 3) {
             uprawnienia.setValue("Administrator");
         }
 
@@ -279,14 +289,14 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
         kod2.setText(kod[1]);
     }
 
-    private void loadUprawnienia(){
+    private void loadUprawnienia() {
 
         list.removeAll(list);
         String klient = "Użytkownik";
         String ankieter = "Ankieter";
         String osoba_od_nagrod = "Osoba odpowiedzialna za nagrody";
         String admin = "Administrator";
-        list.addAll(klient,ankieter,osoba_od_nagrod,admin);
+        list.addAll(klient, ankieter, osoba_od_nagrod, admin);
         uprawnienia.getItems().addAll(list);
     }
 

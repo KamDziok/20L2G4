@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReadParam;
 import javax.imageio.ImageReader;
@@ -34,9 +35,8 @@ public class NagrodyTabelka extends BulidStage {
         this.user = uzytkownik;
         tytul = nagroda.getNazwa();
         liczbaPunktow = nagroda.getLiczbaPunktow();
-        //zdjecie = nagroda.getZdjecie();
 
-        if(null != nagroda.getZdjecie()) {
+        if (null != nagroda.getZdjecie()) {
             try {
                 conversjaNaZ(nagroda.getZdjecie(), nagroda);
             } catch (IOException e) {
@@ -44,7 +44,7 @@ public class NagrodyTabelka extends BulidStage {
             }
         }
         usun = new Button("Usuń");
-        edytuj = new Button ("Edytuj");
+        edytuj = new Button("Edytuj");
         usun.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -66,7 +66,6 @@ public class NagrodyTabelka extends BulidStage {
     }
 
 
-
     public String getTytul() {
         return tytul;
     }
@@ -74,6 +73,7 @@ public class NagrodyTabelka extends BulidStage {
     public int getLiczbaPunktow() {
         return liczbaPunktow;
     }
+
     public ImageView getZdjecie() {
         return zdjecie;
     }
@@ -82,7 +82,9 @@ public class NagrodyTabelka extends BulidStage {
         return usun;
     }
 
-    public Button getEdytuj() {return edytuj;}
+    public Button getEdytuj() {
+        return edytuj;
+    }
 
 
     public void conversjaNaZ(byte[] bytes, Nagrody nagrody) throws IOException {
@@ -100,7 +102,7 @@ public class NagrodyTabelka extends BulidStage {
         BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
         String directory = System.getProperty("user.home") + "\\Documents\\Zdjęcia";
         String directory2 = directory + "\\pdf";
-        if(!(new File(directory).exists())){
+        if (!(new File(directory).exists())) {
             new File(directory).mkdir();
         }
         Graphics2D g2 = bufferedImage.createGraphics();
@@ -109,18 +111,14 @@ public class NagrodyTabelka extends BulidStage {
         ImageIO.write(bufferedImage, "jpg", imageFile);
         Image image2 = new Image(imageFile.toURI().toString());
 
-            zdjecie = new ImageView();
-            zdjecie.setImage(image2);
-            zdjecie.setFitWidth(320);
-            zdjecie.setFitHeight(180);
-            System.out.println(bytes);
-            System.out.println(zdjecie);
+        zdjecie = new ImageView();
+        zdjecie.setImage(image2);
+        zdjecie.setFitWidth(320);
+        zdjecie.setFitHeight(180);
+        System.out.println(bytes);
+        System.out.println(zdjecie);
 
 
     }
-
-
-
-
-    }
+}
 

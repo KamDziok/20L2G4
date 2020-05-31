@@ -17,7 +17,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.util.Iterator;
 import java.util.List;
 
 public class PanelOsobyOdNagrodController extends BulidStage implements SetStartValues {
@@ -35,20 +34,34 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
     private String surnameN;
     private String cityN;
     private String streetN;
-    /** Numer domu wczytany z pola tekstowego jako String. */
+    /**
+     * Numer domu wczytany z pola tekstowego jako String.
+     */
     private String numberHouseStringN;
-    /** Numer lokalu wczytany z pola tekstowego jako String. */
+    /**
+     * Numer lokalu wczytany z pola tekstowego jako String.
+     */
     private String numberFlatStringN;
-    /** Pierwsza część kodu pocztowego wczytany z pola tekstowego jako String. */
+    /**
+     * Pierwsza część kodu pocztowego wczytany z pola tekstowego jako String.
+     */
     private String postCodeFirstStringN;
-    /** Druga część kodu pocztowego wczytany z pola tekstowego jako String. */
+    /**
+     * Druga część kodu pocztowego wczytany z pola tekstowego jako String.
+     */
     private String postCodeSecondStringN;
 
-    /** Pierwsza część kodu pocztowego przekształconego na int. */
+    /**
+     * Pierwsza część kodu pocztowego przekształconego na int.
+     */
     private int postCodeFirstIntN;
-    /** Druga część kodu pocztowego przekształconego na int. */
+    /**
+     * Druga część kodu pocztowego przekształconego na int.
+     */
     private int postCodeSecondIntN;
-    /** Minimalna długośc hasłą. */
+    /**
+     * Minimalna długośc hasłą.
+     */
     private final int minSizePasswordN = 3;
 
     @FXML
@@ -107,18 +120,30 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
     @FXML
     private Label imie_nazwisko_rola2;
 
-    @FXML private TextField email;
-    @FXML private TextField haslo;
-    @FXML private TextField nowehaslo;
-    @FXML private TextField hasloznowu;
-    @FXML private TextField imie;
-    @FXML private TextField nazwisko;
-    @FXML private TextField miejscowosc;
-    @FXML private TextField ulica;
-    @FXML private TextField budynek;
-    @FXML private TextField lokal;
-    @FXML private TextField kod1;
-    @FXML private TextField kod2;
+    @FXML
+    private TextField email;
+    @FXML
+    private TextField haslo;
+    @FXML
+    private TextField nowehaslo;
+    @FXML
+    private TextField hasloznowu;
+    @FXML
+    private TextField imie;
+    @FXML
+    private TextField nazwisko;
+    @FXML
+    private TextField miejscowosc;
+    @FXML
+    private TextField ulica;
+    @FXML
+    private TextField budynek;
+    @FXML
+    private TextField lokal;
+    @FXML
+    private TextField kod1;
+    @FXML
+    private TextField kod2;
 
 
     @FXML
@@ -142,7 +167,7 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
      *
      * @return true jeśli wszystkie pola obowiązkowe są uzupełnione, w przeciwnym wypadku false
      */
-    private boolean compulsoryFildNotNullN(){
+    private boolean compulsoryFildNotNullN() {
         return (!mailN.isEmpty() && !nameN.isEmpty() &&
                 !surnameN.isEmpty() && !cityN.isEmpty() && !streetN.isEmpty() && !numberHouseStringN.isEmpty() &&
                 !postCodeFirstStringN.isEmpty() && !postCodeSecondStringN.isEmpty());
@@ -151,22 +176,22 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
     /**
      * Metoda sprawdza czy kod pocztowy składa się z liczb i czy ma odpowiedznią długość.
      *
-     * @author KamDziok
      * @return true jeśli kod pocztowy jest poprawny, w przeciwnym razie false
+     * @author KamDziok
      */
-    private boolean postCodeIsNumberN(){
-        try{
-            if(postCodeFirstStringN.length() == 2 && postCodeSecondStringN.length() == 3) {
+    private boolean postCodeIsNumberN() {
+        try {
+            if (postCodeFirstStringN.length() == 2 && postCodeSecondStringN.length() == 3) {
                 postCodeFirstIntN = Integer.parseInt(postCodeFirstStringN);
                 postCodeSecondIntN = Integer.parseInt(postCodeSecondStringN);
                 return true;
-            }else{
+            } else {
                 panelNagrodLabelError.setText("Kod pocztowy ma niepoprawną długość!");
             }
-        }catch(IllegalArgumentException argumentException){
+        } catch (IllegalArgumentException argumentException) {
             panelNagrodLabelError.setText("Kod pocztowy jest niepoprawny!");
             System.out.println(argumentException.getMessage());
-        }catch(Exception exception){
+        } catch (Exception exception) {
             System.out.println(exception.getMessage());
         }
         return false;
@@ -179,22 +204,21 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
      * @return true jeśli hasło ma odpowiednią długość i jest takie samo jak powtórz hasło i dotychczasowe hasło
      * zostało podane poprawnie, w przeciwnym wypadku false.
      */
-    private boolean checkPasswordN(){
-        if(((passwordRepeatN.length() < minSizePasswordN) || (passwordNewN.length() < minSizePasswordN)) && (!passwordN.isEmpty())){
+    private boolean checkPasswordN() {
+        if (((passwordRepeatN.length() < minSizePasswordN) || (passwordNewN.length() < minSizePasswordN)) && (!passwordN.isEmpty())) {
 
-            sprawdzhaslo ="Hasło jest za krótkie lub nie wypełniłeś wszystkich pól!";
-        }else {
-            if(!passwordNewN.equals(passwordRepeatN)){
-                sprawdzhaslo ="Hasła nie są takie same!";
-            }else{
-              if(passwordN.equals(curentUser.getHaslo())){
-                  return true;
-              }
-              else if(passwordN.isEmpty() && passwordNewN.isEmpty() && passwordRepeatN.isEmpty()){
-                  return true;
+            sprawdzhaslo = "Hasło jest za krótkie lub nie wypełniłeś wszystkich pól!";
+        } else {
+            if (!passwordNewN.equals(passwordRepeatN)) {
+                sprawdzhaslo = "Hasła nie są takie same!";
+            } else {
+                if (passwordN.equals(curentUser.getHaslo())) {
+                    return true;
+                } else if (passwordN.isEmpty() && passwordNewN.isEmpty() && passwordRepeatN.isEmpty()) {
+                    return true;
+                } else {
+                    sprawdzhaslo = "Podałeś niepoprawne hasło do konta!";
                 }
-                    else{
-                sprawdzhaslo ="Podałeś niepoprawne hasło do konta!";}
             }
         }
         return false;
@@ -205,15 +229,15 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
      *
      * @return true jeśli sdres e-mail posiada @, w przeciwnym wypadku false.
      */
-    private boolean chechEmailN(){
-        if(mailN.indexOf('@') != -1){
+    private boolean chechEmailN() {
+        if (mailN.indexOf('@') != -1) {
             return true;
         }
         return false;
     }
 
     @FXML
-    void panelOsobyOdNagrodButtonZmienUstawienia(ActionEvent event){
+    void panelOsobyOdNagrodButtonZmienUstawienia(ActionEvent event) {
         mailN = email.getText();
         passwordN = haslo.getText();
         passwordNewN = nowehaslo.getText();
@@ -226,38 +250,38 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
         numberFlatStringN = lokal.getText();
         postCodeFirstStringN = kod1.getText();
         postCodeSecondStringN = kod2.getText();
-        if(compulsoryFildNotNullN()){
-            if(postCodeIsNumberN()){
-                if(checkPasswordN()){
-                    if(chechEmailN()) {
-                          UzytkownicyQuery update = new UzytkownicyQuery();
-                          String postCode = postCodeFirstIntN + "-" + postCodeSecondIntN;
-                          curentUser.setMail(mailN);
-                          curentUser.setImie(nameN);
-                          if(!passwordN.isEmpty()){
-                              curentUser.setHaslo(passwordRepeatN);
-                          }
-                          curentUser.setNazwisko(surnameN);
-                          curentUser.setMiejscowosc(cityN);
-                          curentUser.setUlica(streetN);
-                          curentUser.setNumerBudynku(numberHouseStringN);
-                          curentUser.setNumerLokalu(numberFlatStringN);
-                          curentUser.setKodPocztowy(postCode);
-                          update.updateUzytkownicy(curentUser);
-                          imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - konto zarządzania nagrodami";
-                          imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
-                          imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
-                          panelNagrodLabelError.setText("Profil został pomyślnie zaktualizowany.");
-                   }else{
+        if (compulsoryFildNotNullN()) {
+            if (postCodeIsNumberN()) {
+                if (checkPasswordN()) {
+                    if (chechEmailN()) {
+                        UzytkownicyQuery update = new UzytkownicyQuery();
+                        String postCode = postCodeFirstIntN + "-" + postCodeSecondIntN;
+                        curentUser.setMail(mailN);
+                        curentUser.setImie(nameN);
+                        if (!passwordN.isEmpty()) {
+                            curentUser.setHaslo(passwordRepeatN);
+                        }
+                        curentUser.setNazwisko(surnameN);
+                        curentUser.setMiejscowosc(cityN);
+                        curentUser.setUlica(streetN);
+                        curentUser.setNumerBudynku(numberHouseStringN);
+                        curentUser.setNumerLokalu(numberFlatStringN);
+                        curentUser.setKodPocztowy(postCode);
+                        update.updateUzytkownicy(curentUser);
+                        imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko() + " - konto zarządzania nagrodami";
+                        imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
+                        imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
+                        panelNagrodLabelError.setText("Profil został pomyślnie zaktualizowany.");
+                    } else {
                         panelNagrodLabelError.setText("Podany adres e-mail jest nieprawidłowy!");
                     }
-                }else{
+                } else {
                     panelNagrodLabelError.setText(sprawdzhaslo);
                 }
-            }else{
+            } else {
                 panelNagrodLabelError.setText("Nieprawidłowy kod pocztowy!");
             }
-        }else{
+        } else {
             panelNagrodLabelError.setText("Wymagane pola są puste!");
         }
     }
@@ -266,9 +290,9 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
         NagrodyQuery query = new NagrodyQuery();
         List<Nagrody> nagrodies = query.selectAllActive();
         dane = FXCollections.observableArrayList();
-        for (Nagrody nagrod:nagrodies
+        for (Nagrody nagrod : nagrodies
         ) {
-            dane.add(new NagrodyTabelka (nagrod, curentUser,this));
+            dane.add(new NagrodyTabelka(nagrod, curentUser, this));
         }
         tableNagrody.itemsProperty().setValue(dane);
         nagrody.setCellValueFactory(new PropertyValueFactory("tytul"));
@@ -297,7 +321,7 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
     @Override
     public void setStartValues(Uzytkownicy user) {
         this.curentUser = user;
-        imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko()+ " - konto zarządzania nagrodami";
+        imie_nazwisko_rola_tmp = curentUser.getImie() + " " + curentUser.getNazwisko() + " - konto zarządzania nagrodami";
         imie_nazwisko_rola.setText(imie_nazwisko_rola_tmp);
         imie_nazwisko_rola2.setText(imie_nazwisko_rola_tmp);
         setNagrody();

@@ -8,7 +8,6 @@ public class Uzytkownik {
     private String mail;
     private String haslo;
 
-
     public Uzytkownik(int id, String imie, String nazwisko, String mail, String haslo) {
         this.id = id;
         this.imie = imie;
@@ -16,7 +15,6 @@ public class Uzytkownik {
         this.mail = mail;
         this.haslo = haslo;
     }
-
 
     public boolean zmienHaslo(String stare, String nowe) {
         if (stare.equals(nowe)) {
@@ -65,6 +63,7 @@ public class Uzytkownik {
     public String getNazwisko() {
         return nazwisko;
     }
+
     public String getMail() {
         return mail;
     }

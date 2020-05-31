@@ -12,31 +12,23 @@ import java.util.List;
 import java.util.Set;
 
 
-public class OdpowiedziTabelka extends BulidStage{
+public class OdpowiedziTabelka extends BulidStage {
     public String treść;
     public Button buttonUsun;
 
 
-    OdpowiedziTabelka(Odpowiedzi odpowiedzi, Ankiety ankieta, Uzytkownicy user, List<Odpowiedzi> odp , List<Pytania> pyt, Set usu, Boolean edycja2, DodawaniepytaniaController dod) {
+    OdpowiedziTabelka(Odpowiedzi odpowiedzi, Ankiety ankieta, Uzytkownicy user, List<Odpowiedzi> odp, List<Pytania> pyt, Set usu, Boolean edycja2, DodawaniepytaniaController dod) {
         treść = odpowiedzi.getOdpowiedz();
         buttonUsun = new Button("Usuń");
         buttonUsun.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-               // usu.remove(odpowiedzi);
-              //  if(pytania.getRodzajPytania() == TypeOfQuestion.OPEN )
-               // {dod.Inicjajca();}
-              //  else dod.InicjajcaZ(pytania);
                 usu.add(odpowiedzi);
                 dod.SetAnuluj(usu);
                 dod.getListaOdpTego().remove(odpowiedzi);
-                //dod.SetAnuluj(odpowiedzi);
                 dod.DaneUsniecia(pyt, odp);
                 dod.Edycja(true);
-                //dod.SetEdycja(edycja2);
                 dod.setOdpowiedziSS((dod.getListaOdpTego()));
-               // dod.setStartValuesPytanie(pytania);
-
             }
         });
 

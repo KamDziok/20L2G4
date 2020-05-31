@@ -10,72 +10,88 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxWidth="600.0" minWidth="600.0" prefHeight="850.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Ankiety_PZ.test.PanelRegiController">
-   <bottom>
-      <Pane prefHeight="74.0" prefWidth="578.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="panelRegiButtonRegi" layoutX="465.0" layoutY="15.0" mnemonicParsing="false" onAction="#panelRegiButtonRegiAction" prefHeight="50.0" prefWidth="125.0" text="Zarejestruj">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Label fx:id="panelRegiLabelError" layoutX="5.0" layoutY="23.0" prefHeight="17.0" prefWidth="435.0" styleClass="error" textFill="#dd1010" />
-         </children>
-      </Pane>
-   </bottom>
-   <center>
-      <ScrollPane prefHeight="964.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <content>
-            <BorderPane prefHeight="945.0" prefWidth="583.0">
-               <top>
-                  <Pane maxWidth="1.7976931348623157E308" prefHeight="286.0" prefWidth="583.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <Label layoutX="10.0" styleClass="labelbold" text="Dane do logowania">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Line endX="437.0" layoutX="126.0" layoutY="16.0" startX="102.0" />
-                        <Label layoutX="10.0" layoutY="35.0" text="E-mail*:" />
-                        <TextField fx:id="paneliRegiTFEmail" layoutX="10.0" layoutY="65.0" prefHeight="25.0" prefWidth="564.0" />
-                        <Label layoutX="10.0" layoutY="115.0" text="Hasło*:" />
-                        <PasswordField fx:id="panelRegiPFPassword" layoutX="10.0" layoutY="145.0" prefHeight="25.0" prefWidth="564.0" />
-                        <Label layoutX="10.0" layoutY="195.0" text="Powtórz hasło*:" />
-                        <PasswordField fx:id="panelRegiPFPasswordRepeat" layoutX="10.0" layoutY="225.0" prefHeight="25.0" prefWidth="564.0" />
-                     </children>
-                  </Pane>
-               </top>
-               <center>
-                  <Pane prefHeight="620.0" prefWidth="583.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <Label layoutX="10.0" styleClass="labelbold" text="Dane konta">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Line endX="463.0" layoutX="96.0" layoutY="16.0" startX="130.0" />
-                        <Label layoutX="10.0" layoutY="35.0" text="Imię*:" />
-                        <TextField fx:id="panelRegiTFName" layoutX="10.0" layoutY="65.0" prefHeight="25.0" prefWidth="564.0" />
-                        <Label layoutX="10.0" layoutY="115.0" text="Nazwisko*:" />
-                        <TextField fx:id="panelRegiTFSurname" layoutX="10.0" layoutY="145.0" prefHeight="25.0" prefWidth="564.0" />
-                        <Label layoutX="10.0" layoutY="195.0" text="Miejscowość*:" />
-                        <TextField fx:id="panelRegiTFCity" layoutX="10.0" layoutY="225.0" prefHeight="25.0" prefWidth="564.0" />
-                        <Label layoutX="10.0" layoutY="275.0" text="Ulica*:" />
-                        <TextField fx:id="panelRegiTFStreet" layoutX="10.0" layoutY="305.0" prefHeight="25.0" prefWidth="564.0" />
-                        <Label layoutX="10.0" layoutY="355.0" text="Numer budynku*:" />
-                        <TextField fx:id="panelRegiTFNumberHouse" layoutX="10.0" layoutY="385.0" prefHeight="25.0" prefWidth="564.0" />
-                        <Label layoutX="10.0" layoutY="435.0" text="Numer lokalu:" />
-                        <TextField fx:id="panelRegiTFNumberFlat" layoutX="10.0" layoutY="465.0" prefHeight="25.0" prefWidth="564.0" />
-                        <Label layoutX="10.0" layoutY="515.0" text="Kod pocztowy*:" />
-                        <TextField fx:id="panelRegiTFPostCodeFirst" layoutX="10.0" layoutY="545.0" prefHeight="47.0" prefWidth="50.0" />
-                        <Label layoutX="65.0" layoutY="552.0" text="-" />
-                        <TextField fx:id="panelRegiTFPostCodeSecond" layoutX="80.0" layoutY="545.0" prefHeight="25.0" prefWidth="74.0" />
-                        <Label layoutX="10.0" layoutY="607.0" text="* - pola wymagane" />
-                     </children>
-                  </Pane>
-               </center>
-            </BorderPane>
-         </content>
-      </ScrollPane>
-   </center>
+<BorderPane maxWidth="600.0" minWidth="600.0" prefHeight="850.0" prefWidth="600.0" stylesheets="@style.css"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.Ankiety_PZ.test.PanelRegiController">
+    <bottom>
+        <Pane prefHeight="74.0" prefWidth="578.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="panelRegiButtonRegi" layoutX="465.0" layoutY="15.0" mnemonicParsing="false"
+                        onAction="#panelRegiButtonRegiAction" prefHeight="50.0" prefWidth="125.0" text="Zarejestruj">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Button>
+                <Label fx:id="panelRegiLabelError" layoutX="5.0" layoutY="23.0" prefHeight="17.0" prefWidth="435.0"
+                       styleClass="error" textFill="#dd1010"/>
+            </children>
+        </Pane>
+    </bottom>
+    <center>
+        <ScrollPane prefHeight="964.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <content>
+                <BorderPane prefHeight="945.0" prefWidth="583.0">
+                    <top>
+                        <Pane maxWidth="1.7976931348623157E308" prefHeight="286.0" prefWidth="583.0"
+                              BorderPane.alignment="CENTER">
+                            <children>
+                                <Label layoutX="10.0" styleClass="labelbold" text="Dane do logowania">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Label>
+                                <Line endX="437.0" layoutX="126.0" layoutY="16.0" startX="102.0"/>
+                                <Label layoutX="10.0" layoutY="35.0" text="E-mail*:"/>
+                                <TextField fx:id="paneliRegiTFEmail" layoutX="10.0" layoutY="65.0" prefHeight="25.0"
+                                           prefWidth="564.0"/>
+                                <Label layoutX="10.0" layoutY="115.0" text="Hasło*:"/>
+                                <PasswordField fx:id="panelRegiPFPassword" layoutX="10.0" layoutY="145.0"
+                                               prefHeight="25.0" prefWidth="564.0"/>
+                                <Label layoutX="10.0" layoutY="195.0" text="Powtórz hasło*:"/>
+                                <PasswordField fx:id="panelRegiPFPasswordRepeat" layoutX="10.0" layoutY="225.0"
+                                               prefHeight="25.0" prefWidth="564.0"/>
+                            </children>
+                        </Pane>
+                    </top>
+                    <center>
+                        <Pane prefHeight="620.0" prefWidth="583.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <Label layoutX="10.0" styleClass="labelbold" text="Dane konta">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Label>
+                                <Line endX="463.0" layoutX="96.0" layoutY="16.0" startX="130.0"/>
+                                <Label layoutX="10.0" layoutY="35.0" text="Imię*:"/>
+                                <TextField fx:id="panelRegiTFName" layoutX="10.0" layoutY="65.0" prefHeight="25.0"
+                                           prefWidth="564.0"/>
+                                <Label layoutX="10.0" layoutY="115.0" text="Nazwisko*:"/>
+                                <TextField fx:id="panelRegiTFSurname" layoutX="10.0" layoutY="145.0" prefHeight="25.0"
+                                           prefWidth="564.0"/>
+                                <Label layoutX="10.0" layoutY="195.0" text="Miejscowość*:"/>
+                                <TextField fx:id="panelRegiTFCity" layoutX="10.0" layoutY="225.0" prefHeight="25.0"
+                                           prefWidth="564.0"/>
+                                <Label layoutX="10.0" layoutY="275.0" text="Ulica*:"/>
+                                <TextField fx:id="panelRegiTFStreet" layoutX="10.0" layoutY="305.0" prefHeight="25.0"
+                                           prefWidth="564.0"/>
+                                <Label layoutX="10.0" layoutY="355.0" text="Numer budynku*:"/>
+                                <TextField fx:id="panelRegiTFNumberHouse" layoutX="10.0" layoutY="385.0"
+                                           prefHeight="25.0" prefWidth="564.0"/>
+                                <Label layoutX="10.0" layoutY="435.0" text="Numer lokalu:"/>
+                                <TextField fx:id="panelRegiTFNumberFlat" layoutX="10.0" layoutY="465.0"
+                                           prefHeight="25.0" prefWidth="564.0"/>
+                                <Label layoutX="10.0" layoutY="515.0" text="Kod pocztowy*:"/>
+                                <TextField fx:id="panelRegiTFPostCodeFirst" layoutX="10.0" layoutY="545.0"
+                                           prefHeight="47.0" prefWidth="50.0"/>
+                                <Label layoutX="65.0" layoutY="552.0" text="-"/>
+                                <TextField fx:id="panelRegiTFPostCodeSecond" layoutX="80.0" layoutY="545.0"
+                                           prefHeight="25.0" prefWidth="74.0"/>
+                                <Label layoutX="10.0" layoutY="607.0" text="* - pola wymagane"/>
+                            </children>
+                        </Pane>
+                    </center>
+                </BorderPane>
+            </content>
+        </ScrollPane>
+    </center>
 </BorderPane>

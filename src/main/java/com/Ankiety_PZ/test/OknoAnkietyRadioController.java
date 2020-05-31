@@ -179,7 +179,7 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
             if (button.isSelected())
                 return true;
         }
-        oknoAnkietyLabelError.setText("Wybierz odpowiedz");
+        oknoAnkietyLabelError.setText("Wybierz odpowiedź!");
         return false;
     }
 
@@ -189,13 +189,13 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
             if (box.isSelected())
                 return true;
         }
-        oknoAnkietyLabelError.setText("Wybierz co najmniej jedną odpowiedz");
+        oknoAnkietyLabelError.setText("Wybierz co najmniej jedną odpowiedź!");
         return false;
     }
 
     private boolean isOpenComplete() {
         if (odpowiedzOtwarta.getText().equals("")) {
-            oknoAnkietyLabelError.setText("Wpisz odpowiedz");
+            oknoAnkietyLabelError.setText("Podaj odpowiedź!");
             return false;
         } else return true;
     }
@@ -208,18 +208,18 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
             ) {
                 pole = Integer.parseInt(field.getText());
                 if (pole < 0) {
-                    oknoAnkietyLabelError.setText("Wpisana wartość musi być większa lub równa 0");
+                    oknoAnkietyLabelError.setText("Wpisana wartość musi być większa lub równa 0!");
                     return false;
                 }
                 suma += pole;
             }
             if (suma == punkty) return true;
             else {
-                oknoAnkietyLabelError.setText("Musisz rozdzielić dokładnie " + punkty + " punktów");
+                oknoAnkietyLabelError.setText("Musisz rozdzielić dokładnie " + punkty + " punktów!");
                 return false;
             }
         } catch (Exception e) {
-            oknoAnkietyLabelError.setText("Coś poszło nie tak");
+            oknoAnkietyLabelError.setText("Błąd aplikacji, coś poszło nie tak!");
             return false;
         }
     }
@@ -229,11 +229,11 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
             if (Integer.parseInt(odpowiedzProcentowa.getText()) >= 0 &&
                     Integer.parseInt(odpowiedzProcentowa.getText()) <= 100) return true;
             else {
-                oknoAnkietyLabelError.setText("Podana wartość musi być z przedziału od 0 do 100");
+                oknoAnkietyLabelError.setText("Podana wartość musi być z przedziału od 0 do 100!");
                 return false;
             }
         } catch (Exception e) {
-            oknoAnkietyLabelError.setText("Coś poszło nie tak - upewnij się, że podałeś liczbę bez znaku %");
+            oknoAnkietyLabelError.setText("Coś poszło nie tak, upewnij się, że podałeś liczbę bez znaku %!");
             return false;
         }
     }
@@ -292,7 +292,7 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                             radioController.setStartValuesPanelUzytkownikaController(controller);
                             activeScene(event, false, false);
                         } catch (Exception e) {
-                            oknoAnkietyLabelError.setText("Coś poszło nie tak, sprubój ponownie puźniej");
+                            oknoAnkietyLabelError.setText("Coś poszło nie tak, spróbuj ponownie później!");
                         }
                     }
                 }
@@ -312,7 +312,7 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                             controller.updatePkt(String.valueOf(curentUser.getLiczbaPunktow()));
                             controller.setAnkiety();
                         } catch (Exception e) {
-                            controller.getPanelUzytkownikaLabelErrorAnkiety().setText("Wypełnianie ostatniej ankiety nie powiodło się");
+                            controller.getPanelUzytkownikaLabelErrorAnkiety().setText("Wypełnianie ostatniej ankiety nie powiodło się!");
                         } finally {
                             deleteStage(event);
                         }

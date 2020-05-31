@@ -13,12 +13,11 @@ public class UzytkownicyZablokowaniTabelka extends BulidStage {
     private String mail_z;
     private int liczbaPunktow_z;
     private Button odblokuj;
-
     private Uzytkownicy user;
 
     UzytkownicyZablokowaniTabelka(Uzytkownicy uzytkownik, PanelAdminaController panel) {
         this.user = uzytkownik;
-        imie_i_nazwisko_z = uzytkownik.getImie()+" "+uzytkownik.getNazwisko();
+        imie_i_nazwisko_z = uzytkownik.getImie() + " " + uzytkownik.getNazwisko();
         liczbaPunktow_z = uzytkownik.getLiczbaPunktow();
         id = uzytkownik.getIdUzytkownika();
         mail_z = uzytkownik.getMail();

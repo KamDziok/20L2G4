@@ -12,15 +12,13 @@ import javafx.scene.control.Button;
 import java.util.Date;
 import java.util.Iterator;
 
-public class AnikieterTabelka extends BulidStage implements SetStartValues{
+public class AnikieterTabelka extends BulidStage implements SetStartValues {
     public String tytul;
     public int liczbaPunktow;
     public Date dataZakonczenia;
     public Button buttonUsun;
     public Button buttonEdycja;
     public Button buttonAnaliza;
-
-
 
     AnikieterTabelka(Ankiety ankieta, Uzytkownicy curentUser) {
         tytul = ankieta.getTytul();
@@ -44,23 +42,23 @@ public class AnikieterTabelka extends BulidStage implements SetStartValues{
             @Override
             public void handle(ActionEvent event) {
                 Date data = new Date();
-                if(data.compareTo(ankieta.getDataRozpoczecia())==-1){
-                loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
-                PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
-                panelTworzeniaankietyController.SetEdycja(true);
-                panelTworzeniaankietyController.setPytdoUsuniecia();
-                panelTworzeniaankietyController.setStartValues(curentUser);
-                panelTworzeniaankietyController.setStartValuesEdytujAnkiety(ankieta);
-                activeScene(event, false, false);
-                System.out.println("przekazanie ankiety do edycji");
-                System.out.println(ankieta);}
-                else{
+                if (data.compareTo(ankieta.getDataRozpoczecia()) == -1) {
+                    loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
+                    PanelTworzeniaankietyController panelTworzeniaankietyController = load.getController();
+                    panelTworzeniaankietyController.SetEdycja(true);
+                    panelTworzeniaankietyController.setPytdoUsuniecia();
+                    panelTworzeniaankietyController.setStartValues(curentUser);
+                    panelTworzeniaankietyController.setStartValuesEdytujAnkiety(ankieta);
+                    activeScene(event, false, false);
+                    System.out.println("przekazanie ankiety do edycji");
+                    System.out.println(ankieta);
+                } else {
                     loadingFXML(event, SceneFXML.PANEL_ANKIETERA);
                     PanelAnkieterController panelAnkieterController = load.getController();
                     panelAnkieterController.ankietawtoku();
                     panelAnkieterController.setStartValuesAnkiety(ankieta);
                     panelAnkieterController.setStartValues(curentUser);
-                   activeScene(event, false, false);
+                    activeScene(event, false, false);
                 }
             }
         });
@@ -71,7 +69,6 @@ public class AnikieterTabelka extends BulidStage implements SetStartValues{
                 loadingFXML(event, SceneFXML.OKNO_ANKIETA_ANALIZA);
                 AnalizaAnkietController analizaAnkietController = load.getController();
                 analizaAnkietController.setStartValuesAnkiety(ankieta);
-//                analizaAnkietController.setStartValues(curentUser);
                 activeScene(event, false, true);
             }
         });
@@ -97,11 +94,12 @@ public class AnikieterTabelka extends BulidStage implements SetStartValues{
         return buttonUsun;
     }
 
-    public Button getButtonAnaliza() { return buttonAnaliza; }
+    public Button getButtonAnaliza() {
+        return buttonAnaliza;
+    }
 
     @Override
     public void setStartValues(Uzytkownicy user) {
-
 
 
     }

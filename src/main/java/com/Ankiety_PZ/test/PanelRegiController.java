@@ -4,21 +4,17 @@
 
 package com.Ankiety_PZ.test;
 
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.util.ResourceBundle;
-
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.UzytkownicyQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Klasa kontroler do ramki 'PanelRegi.fxml', jest potomkiem klasy {@link BulidStage}.
@@ -35,30 +31,46 @@ public class PanelRegiController extends BulidStage {
     private String surname;
     private String city;
     private String street;
-    /** Numer domu wczytany z pola tekstowego jako String. */
+    /**
+     * Numer domu wczytany z pola tekstowego jako String.
+     */
     private String numberHouseString;
-    /** Numer lokalu wczytany z pola tekstowego jako String. */
+    /**
+     * Numer lokalu wczytany z pola tekstowego jako String.
+     */
     private String numberFlatString;
-    /** Pierwsza część kodu pocztowego wczytany z pola tekstowego jako String. */
+    /**
+     * Pierwsza część kodu pocztowego wczytany z pola tekstowego jako String.
+     */
     private String postCodeFirstString;
-    /** Druga część kodu pocztowego wczytany z pola tekstowego jako String. */
+    /**
+     * Druga część kodu pocztowego wczytany z pola tekstowego jako String.
+     */
     private String postCodeSecondString;
-    /** Numer lokalu przekształcony na int, jeśli wartość tej zmiennej jest -1 to pole jest puste. */
+    /**
+     * Numer lokalu przekształcony na int, jeśli wartość tej zmiennej jest -1 to pole jest puste.
+     */
     private int numberFlatInt = -1;
-    /** Pierwsza część kodu pocztowego przekształconego na int. */
+    /**
+     * Pierwsza część kodu pocztowego przekształconego na int.
+     */
     private int postCodeFirstInt;
-    /** Druga część kodu pocztowego przekształconego na int. */
+    /**
+     * Druga część kodu pocztowego przekształconego na int.
+     */
     private int postCodeSecondInt;
-    /** Minimalna długośc hasłą. */
+    /**
+     * Minimalna długośc hasłą.
+     */
     private final int minSizePassword = 3;
 
     /**
      * Metoda sprawdzenie czy obowiązkowe pola nie są puste.
      *
-     * @author KamDziok
      * @return true jeśli wszystkie pola obowiązkowe są uzupełnione, w przeciwnym wypadku false
+     * @author KamDziok
      */
-    private boolean compulsoryFildNotNull(){
+    private boolean compulsoryFildNotNull() {
         return (!email.isEmpty() && !password.isEmpty() && !passwordRepeat.isEmpty() && !name.isEmpty() &&
                 !surname.isEmpty() && !city.isEmpty() && !street.isEmpty() && !numberHouseString.isEmpty() &&
                 !postCodeFirstString.isEmpty() && !postCodeSecondString.isEmpty());
@@ -67,20 +79,20 @@ public class PanelRegiController extends BulidStage {
     /**
      * Metoda sprawdzenie czy numer mieszkania jest liczbą, jeśli poje nie jest puste.
      *
-     * @author KamDziok
      * @return true jeśli numer lokalu jest podany i jest liczbą, lub jeśli numer lokalu jest pusty, w przeciwnym wypadku false
+     * @author KamDziok
      */
-    private boolean numberFlatIsNumber(){
-        try{
-            if(!numberFlatString.isEmpty()) {
+    private boolean numberFlatIsNumber() {
+        try {
+            if (!numberFlatString.isEmpty()) {
                 numberFlatInt = Integer.parseInt(numberFlatString);
                 return true;
             }
             return true;
-        }catch(IllegalArgumentException argumentException){
+        } catch (IllegalArgumentException argumentException) {
             panelRegiLabelError.setText("Numer lokalu nie jest liczbą!");
             System.out.println(argumentException.getMessage());
-        }catch(Exception exception){
+        } catch (Exception exception) {
             System.out.println(exception.getMessage());
         }
         return false;
@@ -89,22 +101,22 @@ public class PanelRegiController extends BulidStage {
     /**
      * Metoda sprawdza czy kod pocztowy składa się z liczb i czy ma odpowiedznią długość.
      *
-     * @author KamDziok
      * @return true jeśli kod pocztowy jest poprawny, w przeciwnym razie false
+     * @author KamDziok
      */
-    private boolean postCodeIsNumber(){
-        try{
-            if(postCodeFirstString.length() == 2 && postCodeSecondString.length() == 3) {
+    private boolean postCodeIsNumber() {
+        try {
+            if (postCodeFirstString.length() == 2 && postCodeSecondString.length() == 3) {
                 postCodeFirstInt = Integer.parseInt(postCodeFirstString);
                 postCodeSecondInt = Integer.parseInt(postCodeSecondString);
                 return true;
-            }else{
+            } else {
                 panelRegiLabelError.setText("Kod pocztowy ma niepoprawną długość!");
             }
-        }catch(IllegalArgumentException argumentException){
+        } catch (IllegalArgumentException argumentException) {
             panelRegiLabelError.setText("Kod pocztowy jest niepoprawny!");
             System.out.println(argumentException.getMessage());
-        }catch(Exception exception){
+        } catch (Exception exception) {
             System.out.println(exception.getMessage());
         }
         return false;
@@ -115,13 +127,13 @@ public class PanelRegiController extends BulidStage {
      *
      * @return true jeśli hasło ma odpowiednią długość i jest takie samo jak powtórz hasło, w przeciwnym wypadku false.
      */
-    private boolean checkPassword(){
-        if(password.length() < minSizePassword){
+    private boolean checkPassword() {
+        if (password.length() < minSizePassword) {
             panelRegiLabelError.setText("Hasło jest za krótkie!");
-        }else {
-            if(password.equals(passwordRepeat)){
+        } else {
+            if (password.equals(passwordRepeat)) {
                 return true;
-            }else{
+            } else {
                 panelRegiLabelError.setText("Hasła nie są takie same!");
             }
         }
@@ -133,8 +145,8 @@ public class PanelRegiController extends BulidStage {
      *
      * @return true jeśli sdres e-mail posiada @, w przeciwnym wypadku false.
      */
-    private boolean chechEmail(){
-        if(email.indexOf('@') != -1){
+    private boolean chechEmail() {
+        if (email.indexOf('@') != -1) {
             return true;
         }
         return false;
@@ -146,10 +158,10 @@ public class PanelRegiController extends BulidStage {
      * @param query obiekt klasy UzytkownicyQuery.
      * @return true jeśli nie ma użytkownika o podanym adresie e-mail w bazie, w przeciwnym wypadku false.
      */
-    private boolean userExist(UzytkownicyQuery query){
+    private boolean userExist(UzytkownicyQuery query) {
         Uzytkownicy user = query.selectByMail(email);
         System.out.println(user);
-        if(user == null) {
+        if (user == null) {
             return true;
         }
         return false;
@@ -220,10 +232,10 @@ public class PanelRegiController extends BulidStage {
         postCodeFirstString = panelRegiTFPostCodeFirst.getText();
         postCodeSecondString = panelRegiTFPostCodeSecond.getText();
 
-        if(compulsoryFildNotNull()){
-            if(postCodeIsNumber()){
-                if(checkPassword()){
-                    if(chechEmail()) {
+        if (compulsoryFildNotNull()) {
+            if (postCodeIsNumber()) {
+                if (checkPassword()) {
+                    if (chechEmail()) {
                         UzytkownicyQuery query = new UzytkownicyQuery();
                         if (userExist(query)) {
                             String postCode = postCodeFirstInt + "-" + postCodeSecondInt;
@@ -236,21 +248,22 @@ public class PanelRegiController extends BulidStage {
                         } else {
                             panelRegiLabelError.setText("Istnieje użytkownik o tym e-mailu!");
                         }
-                    }else{
+                    } else {
                         panelRegiLabelError.setText("Podany adres e-mailu jest nieprawidłowy!");
                     }
-                }else{
+                } else {
                     panelRegiLabelError.setText("Podane hasłą różnią się od siebie!");
                 }
-            }else{
+            } else {
                 panelRegiLabelError.setText("Nieprawidłowy kod pocztowy!");
             }
-        }else{
+        } else {
             panelRegiLabelError.setText("Wymagane pola są puste!");
         }
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    @FXML
+        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert paneliRegiTFEmail != null : "fx:id=\"paneliRegiTFEmail\" was not injected: check your FXML file 'PanelRegi.fxml'.";
         assert panelRegiPFPassword != null : "fx:id=\"panelRegiPFPassword\" was not injected: check your FXML file 'PanelRegi.fxml'.";

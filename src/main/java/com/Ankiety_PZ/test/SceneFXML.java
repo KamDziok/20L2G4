@@ -27,27 +27,43 @@ public class SceneFXML {
      */
     public static final String PANEL_REGI = "PanelRegi";
 
-    /** Odnośnik do pliku z panelem admina */
-    public static  final String PANEL_ADMINA = "PanelAdmina";
+    /**
+     * Odnośnik do pliku z panelem admina
+     */
+    public static final String PANEL_ADMINA = "PanelAdmina";
 
-    /** Odnośnik do pliku z panelem ankietera */
-    public static  final String PANEL_ANKIETERA = "PanelAnkieter";
+    /**
+     * Odnośnik do pliku z panelem ankietera
+     */
+    public static final String PANEL_ANKIETERA = "PanelAnkieter";
 
-    /** Odnośnik do pliku z panelem uzytkownika */
-    public static  final String PANEL_UZYTKOWNIKA = "panelUzytkownika";
+    /**
+     * Odnośnik do pliku z panelem uzytkownika
+     */
+    public static final String PANEL_UZYTKOWNIKA = "panelUzytkownika";
 
-    /** Odnośnik do pliku z oknem ankiety z testem jednokrotnego wyboru */
-    public static  final String OKNO_ANKIETA_RADIO = "oknoAnkietyRadio";
+    /**
+     * Odnośnik do pliku z oknem ankiety z testem jednokrotnego wyboru
+     */
+    public static final String OKNO_ANKIETA_RADIO = "oknoAnkietyRadio";
 
-    /** Odnośnik do pliku z panelem towrzenia ankiety */
-    public static  final String TWORZENIE_ANKIETY = "PanelTworzeniaankiety";
+    /**
+     * Odnośnik do pliku z panelem towrzenia ankiety
+     */
+    public static final String TWORZENIE_ANKIETY = "PanelTworzeniaankiety";
 
-    /** Odnośnik do pliku z panelem dodawania pytań do ankiety */
-    public static  final String DODAJ_PYTANIE = "Dodawaniepytania";
+    /**
+     * Odnośnik do pliku z panelem dodawania pytań do ankiety
+     */
+    public static final String DODAJ_PYTANIE = "Dodawaniepytania";
 
-    /** Odnośnik do pliku z panelem edycji uzytkownika przez administratora */
-    public static  final String PANEL_EDIT_USER = "PanelEdycjiUzytkownika";
+    /**
+     * Odnośnik do pliku z panelem edycji uzytkownika przez administratora
+     */
+    public static final String PANEL_EDIT_USER = "PanelEdycjiUzytkownika";
 
-    /** Odnośnik do pliku z oknem ankiety z pytaniem otwartym */
-    public static  final String OKNO_ANKIETA_ANALIZA = "AnalizaAnkiet";
+    /**
+     * Odnośnik do pliku z oknem ankiety z pytaniem otwartym
+     */
+    public static final String OKNO_ANKIETA_ANALIZA = "AnalizaAnkiet";
 }

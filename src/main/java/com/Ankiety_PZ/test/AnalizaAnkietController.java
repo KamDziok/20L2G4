@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-public class AnalizaAnkietController implements SetStartValues{
+public class AnalizaAnkietController implements SetStartValues {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -33,8 +33,10 @@ public class AnalizaAnkietController implements SetStartValues{
 
 //    pola FXML
 
-    @FXML private AnchorPane panel;
-    @FXML private Label tytulAnkiety;
+    @FXML
+    private AnchorPane panel;
+    @FXML
+    private Label tytulAnkiety;
 
 //    pola klasy
 
@@ -50,8 +52,8 @@ public class AnalizaAnkietController implements SetStartValues{
     void analizaPytaniaRadioCheck(Pytania pytanie, int y) {
         Set<Odpowiedzi> odpowiedzi = pytanie.getOdpowiedzis();
         XYChart.Series series1 = new XYChart.Series();
-        for (Odpowiedzi odpowiedz:odpowiedzi
-             ) {
+        for (Odpowiedzi odpowiedz : odpowiedzi
+        ) {
             series1.getData().add(new XYChart.Data(odpowiedz.getOdpowiedz(), odpowiedz.getCount()));
         }
         CategoryAxis xAxis = new CategoryAxis();
@@ -81,7 +83,7 @@ public class AnalizaAnkietController implements SetStartValues{
         TableColumn odpowiedzi = new TableColumn();
         tabelka.getColumns().add(odpowiedzi);
         ObservableList<DoAnalizy> dane = FXCollections.observableArrayList();
-        for (PytaniaUzytkownicy odpowiedz:pytanie.getPytaniaUzytkownicy()
+        for (PytaniaUzytkownicy odpowiedz : pytanie.getPytaniaUzytkownicy()
         ) {
             dane.add(new DoAnalizy(odpowiedz.getOdpowiedz()));
         }
@@ -105,8 +107,8 @@ public class AnalizaAnkietController implements SetStartValues{
 
     private KlasaPomicnicza funkcjaPomocnicza(OdpowiedziUzytkownicy odpowiedzi, List<OdpowiedziUzytkownicy> lista) {
         KlasaPomicnicza klasa = new KlasaPomicnicza(odpowiedzi.getPunktowe());
-        for (OdpowiedziUzytkownicy odpowiedz:lista
-             ) {
+        for (OdpowiedziUzytkownicy odpowiedz : lista
+        ) {
             if (klasa.getPunktowe() == odpowiedz.getPunktowe())
                 klasa.update();
         }
@@ -115,19 +117,19 @@ public class AnalizaAnkietController implements SetStartValues{
 
     void analizaPytaniaProcentowePkt(Pytania pytanie, int y) {
         Set<Odpowiedzi> odpowiedzi = pytanie.getOdpowiedzis();
-        LinkedList<XYChart.Series> lista  = new LinkedList();
+        LinkedList<XYChart.Series> lista = new LinkedList();
         NumberAxis xAxis = new NumberAxis();
         NumberAxis yAxis = new NumberAxis();
         LineChart<Number, Number> wykres = new LineChart(xAxis, yAxis);
         xAxis.setLabel("odpowiedzi");
         yAxis.setLabel("ilosc odpowiedzi");
-        for (Odpowiedzi odpowiedz:odpowiedzi
+        for (Odpowiedzi odpowiedz : odpowiedzi
         ) {
             lista.add(new XYChart.Series());
             XYChart.Series series = lista.getLast();
             series.setName(odpowiedz.getOdpowiedz());
-            for (OdpowiedziUzytkownicy odpowiedzUzytkownika:odpowiedz.getOdpowiedziUzytkownicy()
-                 ) {
+            for (OdpowiedziUzytkownicy odpowiedzUzytkownika : odpowiedz.getOdpowiedziUzytkownicy()
+            ) {
                 series.getData().add(new XYChart.Data(odpowiedzUzytkownika.getPunktowe(), funkcjaPomocnicza(odpowiedzUzytkownika, odpowiedz.getOdpowiedziUzytkownicy()).getCount()));
             }
             wykres.getData().add(series);
@@ -150,7 +152,8 @@ public class AnalizaAnkietController implements SetStartValues{
 
 //    metody FXML i interfejsow
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    @FXML
+        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
 
     }
@@ -167,8 +170,8 @@ public class AnalizaAnkietController implements SetStartValues{
         Set<Pytania> pytania = this.ankieta.getPytanias();
         tytulAnkiety.setText(this.ankieta.getTytul());
         int y = 0;
-        for (Pytania pytanie:pytania
-             ) {
+        for (Pytania pytanie : pytania
+        ) {
             switch (pytanie.getRodzajPytania()) {
                 case TypeOfQuestion.ONE_CHOICE:
                     analizaPytaniaRadioCheck(pytanie, y);

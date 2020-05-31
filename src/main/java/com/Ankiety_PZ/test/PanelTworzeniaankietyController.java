@@ -6,7 +6,6 @@ package com.Ankiety_PZ.test;
 
 import com.Ankiety_PZ.hibernate.*;
 import com.Ankiety_PZ.query.AnkietyQuery;
-import com.Ankiety_PZ.query.PytaniaQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -26,11 +26,11 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     ObservableList listMM = FXCollections.observableArrayList();
     ObservableList listRRRR = FXCollections.observableArrayList();
     private String dataoddd;
-    private String dataodmm ;
-    private String dataodrrrr ;
-    private String datadodd ;
-    private String datadomm ;
-    private String datadorrrr ;
+    private String dataodmm;
+    private String dataodrrrr;
+    private String datadodd;
+    private String datadomm;
+    private String datadorrrr;
     private int liczpytania = 0;
     private int liczpytaniaB = 0;
     private int liczbapytan = 0;
@@ -42,7 +42,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     private String tytul;
     private int liczbaPunktow;
     private String liczbaPunktowS;
-    private Uzytkownicy  curetUser;
+    private Uzytkownicy curetUser;
     private Date dataRozpoczecia;
     private Date dataZakonczenia;
     private Ankiety ankiety;
@@ -52,11 +52,16 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     public List<Pytania> listaPytaU;
     private Set<Pytania> pytaniaDoUsuniecia;
     public List<Odpowiedzi> listaOdpU;
-    @FXML private TableView pytanieTabele;
-    @FXML private TableColumn treść;
-    @FXML private TableColumn Rpytanie;
-    @FXML private TableColumn przyciskEdycja;
-    @FXML private TableColumn przyciskUsun;
+    @FXML
+    private TableView pytanieTabele;
+    @FXML
+    private TableColumn treść;
+    @FXML
+    private TableColumn Rpytanie;
+    @FXML
+    private TableColumn przyciskEdycja;
+    @FXML
+    private TableColumn przyciskUsun;
     @FXML
     private Label panelTworzeniaAnkietyLabelError;
 
@@ -85,15 +90,15 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     private Set<Pytania> ListaPytan;
     private Set<Pytania> pytdoUsuniecia;
 
-    public void SetEdycja(Boolean wyb)
-    {
+    public void SetEdycja(Boolean wyb) {
         edycja2 = wyb;
     }
+
     /**
      * Metoda obsługująca przyciśk wyloguj.
      *
-     * @author HubertJakobsze
      * @param event zdarzenie, po którym funkcja ma się wywołać
+     * @author HubertJakobsze
      */
 
     @FXML
@@ -106,8 +111,8 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
     /**
      * Metoda obsługująca przyciśk anuluj.
      *
-     * @author HubertJakobsze
      * @param event zdarzenie, po którym funkcja ma się wywołać
+     * @author HubertJakobsze
      */
 
     @FXML
@@ -115,20 +120,20 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         loadingFXML(event, SceneFXML.PANEL_ANKIETERA);
         PanelAnkieterController panelAnkieterController = load.getController();
         panelAnkieterController.setStartValues(curetUser);
-       activeScene(event, false, false);
+        activeScene(event, false, false);
     }
 
     /**
      * Metoda obsługująca przyciśk dodaj pytanie.
      *
-     * @author HubertJakobsze
      * @param event zdarzenie, po którym funkcja ma się wywołać
+     * @author HubertJakobsze
      */
 
     @FXML
     void dodajpytanieAction(ActionEvent event) {
         loadingFXML(event, SceneFXML.DODAJ_PYTANIE);
-        DodawaniepytaniaController dodawaniepytaniaController  = load.getController();
+        DodawaniepytaniaController dodawaniepytaniaController = load.getController();
         ankiety.setTytul(trescTytulu.getText());
         DateFormat dateFrm = new SimpleDateFormat("yyyy-MM-dd");
         dataoddd = dataODDD.getValue();
@@ -137,8 +142,8 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         datadodd = dataDODD.getValue();
         datadomm = dataDOMM.getValue();
         datadorrrr = dataDORRRR.getValue();
-        dataod = dataodrrrr+"-"+dataodmm+"-"+dataoddd;
-        datado = datadorrrr+"-"+datadomm+"-"+datadodd;
+        dataod = dataodrrrr + "-" + dataodmm + "-" + dataoddd;
+        datado = datadorrrr + "-" + datadomm + "-" + datadodd;
         tytul = trescTytulu.getText();
         liczbaPunktowS = punkty.getText();
 
@@ -155,13 +160,11 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
             e.printStackTrace();
         }
         ankiety.setDataZakonczenia(dataZakonczenia);
-        try{
-        ankiety.setLiczbaPunktow(Integer.parseInt(punkty.getText()));
-        }
-        catch(Exception e){
+        try {
+            ankiety.setLiczbaPunktow(Integer.parseInt(punkty.getText()));
+        } catch (Exception e) {
             ankiety.setLiczbaPunktow(0);
-        }
-        finally {
+        } finally {
             dodawaniepytaniaController.Inicjajca();
             dodawaniepytaniaController.setLisaPytanPrzekazana(ListaPytan);
             dodawaniepytaniaController.DaneUsniecia(listaPytaU, listaOdpU);
@@ -187,8 +190,7 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
 
 
     @Override
-    public void setStartValuesAnkiety(Ankiety ankieta)
-    {
+    public void setStartValuesAnkiety(Ankiety ankieta) {
         this.ankiety = ankieta;
         System.out.println("ankiety setStartValuesAnkiety");
         System.out.println(ankiety);
@@ -214,16 +216,17 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         SimpleDateFormat simpleDateFormatdatazakMM = new SimpleDateFormat(datazakMM);
         String datazMM = simpleDateFormatdatazakMM.format((ankiety.getDataZakonczenia()));
         String datzRRRR = "yyyy";
-        SimpleDateFormat simpleDateFormatdatazakRRRR= new SimpleDateFormat(datzRRRR);
+        SimpleDateFormat simpleDateFormatdatazakRRRR = new SimpleDateFormat(datzRRRR);
         String datazakRRRR = simpleDateFormatdatazakRRRR.format((ankiety.getDataZakonczenia()));
         dataDOMM.setValue(datazMM);
         dataDORRRR.setValue(datazakRRRR);
 
         setPytanieB(ListaPytan);
-        liczbapytan =liczpytania+liczpytaniaB;
+        liczbapytan = liczpytania + liczpytaniaB;
 
     }
-    public void setStartValuesEdytujAnkiety (Ankiety ankieta){
+
+    public void setStartValuesEdytujAnkiety(Ankiety ankieta) {
         AnkietyQuery query1 = new AnkietyQuery();
         this.ankiety = query1.selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(ankieta);
         this.ankiety.setUzytkownicy(curetUser);
@@ -251,35 +254,36 @@ public class PanelTworzeniaankietyController extends BulidStage implements SetSt
         SimpleDateFormat simpleDateFormatdatazakMM = new SimpleDateFormat(datazakMM);
         String datazMM = simpleDateFormatdatazakMM.format((ankiety.getDataZakonczenia()));
         String datzRRRR = "yyyy";
-        SimpleDateFormat simpleDateFormatdatazakRRRR= new SimpleDateFormat(datzRRRR);
+        SimpleDateFormat simpleDateFormatdatazakRRRR = new SimpleDateFormat(datzRRRR);
         String datazakRRRR = simpleDateFormatdatazakRRRR.format((ankiety.getDataZakonczenia()));
         dataDOMM.setValue(datazMM);
         dataDORRRR.setValue(datazakRRRR);
         listaPytaU = new ArrayList<>();
-        listaOdpU = new  ArrayList<>();
+        listaOdpU = new ArrayList<>();
         setPytanieB(ListaPytan);
-        liczbapytan =liczpytania+liczpytaniaB;
+        liczbapytan = liczpytania + liczpytaniaB;
     }
 
 
-public void SetStart()
-{
+    public void SetStart() {
 
-    listaPytaU = new ArrayList<>();
-    listaOdpU = new ArrayList<>();
-}
+        listaPytaU = new ArrayList<>();
+        listaOdpU = new ArrayList<>();
+    }
+
     @Override
     public void setStartValuesPytanie(Pytania pytania) {
 
     }
 
     @Override
-    public void setStartValuesNagroda(Nagrody nagroda) { }
+    public void setStartValuesNagroda(Nagrody nagroda) {
+    }
 
 
     @Override
-    public void setStartValuesIerator(Iterator iterator) { }
-
+    public void setStartValuesIerator(Iterator iterator) {
+    }
 
 
     /**
@@ -287,7 +291,7 @@ public void SetStart()
      *
      * @return true jeśli wszystkie pola obowiązkowe są uzupełnione, w przeciwnym wypadku false
      */
-    private boolean compulsoryFildNotEmpty(){
+    private boolean compulsoryFildNotEmpty() {
         return (!tytul.isEmpty() && !liczbaPunktowS.isEmpty());
     }
 
@@ -296,8 +300,8 @@ public void SetStart()
      *
      * @return true jeśli wszystkie pola obowiązkowe są uzupełnione, w przeciwnym wypadku false
      */
-    private boolean compulsoryFildNotNull(){
-        return (tytul != null && liczbaPunktowS != null );
+    private boolean compulsoryFildNotNull() {
+        return (tytul != null && liczbaPunktowS != null);
     }
 
 
@@ -306,8 +310,8 @@ public void SetStart()
      *
      * @return 1 jeśli wszystkie pola obowiązkowe są uzupełnione, w przeciwnym wypadku -1
      */
-    private int czyNieStarszaData(){
-  return dataZakonczenia.compareTo(dataRozpoczecia);
+    private int czyNieStarszaData() {
+        return dataZakonczenia.compareTo(dataRozpoczecia);
 
     }
 
@@ -317,10 +321,10 @@ public void SetStart()
      * @return true jeśli wszystkie daty są poprawne, w przeciwnym wypadku false
      */
 
-    private boolean czyNieistniejacaData(){
-        if((dataoddd.equals("31") && dataodmm.equals("02")) ||
-           (dataoddd.equals("30") && dataodmm.equals("02")) ||
-           (dataoddd.equals("29") && dataodmm.equals("02") && dataodrrrr.equals("2021")) ||
+    private boolean czyNieistniejacaData() {
+        if ((dataoddd.equals("31") && dataodmm.equals("02")) ||
+                (dataoddd.equals("30") && dataodmm.equals("02")) ||
+                (dataoddd.equals("29") && dataodmm.equals("02") && dataodrrrr.equals("2021")) ||
                 (dataoddd.equals("29") && dataodmm.equals("02") && dataodrrrr.equals("2022")) ||
                 (dataoddd.equals("29") && dataodmm.equals("02") && dataodrrrr.equals("2023")) ||
                 (dataoddd.equals("29") && dataodmm.equals("02") && dataodrrrr.equals("2025")) ||
@@ -348,10 +352,9 @@ public void SetStart()
                 (datadodd.equals("31") && datadomm.equals("09")) ||
                 (datadodd.equals("31") && datadomm.equals("11"))
 
-        ){
+        ) {
             return false;
-        }
-        else return true;
+        } else return true;
     }
 
     /**
@@ -359,16 +362,17 @@ public void SetStart()
      *
      * @return true jeśli punkty są podane poprawnie, w przeciwnym razie false
      */
-    private boolean punktyIsNumber(){
-        try{
+    private boolean punktyIsNumber() {
+        try {
 
-                liczbaPunktow = Integer.parseInt(liczbaPunktowS);
-                if(liczbaPunktow >= 0 ){
-                return true;}
+            liczbaPunktow = Integer.parseInt(liczbaPunktowS);
+            if (liczbaPunktow >= 0) {
+                return true;
+            }
 
-        }catch(IllegalArgumentException argumentException){
+        } catch (IllegalArgumentException argumentException) {
             System.out.println(argumentException.getMessage());
-        }catch(Exception exception){
+        } catch (Exception exception) {
             System.out.println(exception.getMessage());
         }
         return false;
@@ -379,15 +383,15 @@ public void SetStart()
      *
      * @return true jeśli są przynajmniej 2 pytania, w przeciwnym razie false
      */
-    private boolean min2pytania(){
+    private boolean min2pytania() {
         return liczbapytan >= 2;
     }
-public void StartListaPytan()
-{
-    ListaPytan = new HashSet<>();
+
+    public void StartListaPytan() {
+        ListaPytan = new HashSet<>();
 
 
-}
+    }
 
     public Set<Pytania> getListaPytan() {
         return ListaPytan;
@@ -402,8 +406,8 @@ public void StartListaPytan()
         datadodd = dataDODD.getValue();
         datadomm = dataDOMM.getValue();
         datadorrrr = dataDORRRR.getValue();
-         dataod = dataodrrrr+"-"+dataodmm+"-"+dataoddd;
-         datado = datadorrrr+"-"+datadomm+"-"+datadodd;
+        dataod = dataodrrrr + "-" + dataodmm + "-" + dataoddd;
+        datado = datadorrrr + "-" + datadomm + "-" + datadodd;
         tytul = trescTytulu.getText();
         liczbaPunktowS = punkty.getText();
 
@@ -418,11 +422,11 @@ public void StartListaPytan()
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        if(compulsoryFildNotNull()) {
+        if (compulsoryFildNotNull()) {
             if (compulsoryFildNotEmpty()) {
                 if (czyNieStarszaData() == 1) {
-                    if(czyNieistniejacaData()){
-                        if(punktyIsNumber()) {
+                    if (czyNieistniejacaData()) {
+                        if (punktyIsNumber()) {
                             if (min2pytania()) {
                                 ankiety.setTytul(tytul);
                                 ankiety.setLiczbaPunktow(liczbaPunktow);
@@ -444,17 +448,13 @@ public void StartListaPytan()
                                 panelAnkieterController.setStartValues(curetUser);
                                 activeScene(event, false, false);
 
-                            }
-                            else {
+                            } else {
                                 panelTworzeniaAnkietyLabelError.setText("Ankieta musi zawierać przynajmniej 2 pytania!");
                             }
-                        }
-                        else {
+                        } else {
                             panelTworzeniaAnkietyLabelError.setText("Punktacja za ankietę jest nieprawidłowa!");
                         }
-                    }
-
-                    else {
+                    } else {
                         panelTworzeniaAnkietyLabelError.setText("Podana data nie istnieje!");
                     }
                 } else {
@@ -463,19 +463,19 @@ public void StartListaPytan()
             } else {
                 panelTworzeniaAnkietyLabelError.setText("Wymagane pola są puste!");
             }
-        }else{
+        } else {
             panelTworzeniaAnkietyLabelError.setText("Wymagane pola są puste!");
         }
 
 
     }
-    public void setPytdoUsuniecia()
-    {
-        pytdoUsuniecia= new HashSet<Pytania>();
+
+    public void setPytdoUsuniecia() {
+        pytdoUsuniecia = new HashSet<Pytania>();
 
     }
-    public void setPytdoUsunieciaUs(Set<Pytania> pyt)
-    {
+
+    public void setPytdoUsunieciaUs(Set<Pytania> pyt) {
         pytdoUsuniecia = pyt;
 
     }
@@ -485,7 +485,7 @@ public void StartListaPytan()
         ListaPytan = lista;
         ObservableList<PytanieTabelka> dane = FXCollections.observableArrayList();
         ListaPytan.forEach(pytanie -> {
-           Pytania pytania2 = (Pytania) pytanie;
+            Pytania pytania2 = (Pytania) pytanie;
             dane.add(new PytanieTabelka(ankiety, pytanie, curetUser, listaOdpU, pytdoUsuniecia, listaPytaU, this));
             liczpytaniaB++;
         });
@@ -496,14 +496,14 @@ public void StartListaPytan()
         pytanieTabele.itemsProperty().setValue(dane);
     }
 
-    private void loadData(){
+    private void loadData() {
 
         listDD.removeAll(listDD);
-        listDD.addAll("01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31");
+        listDD.addAll("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31");
         listMM.removeAll(listMM);
-        listMM.addAll("01","02","03","04","05","06","07","08","09","10","11","12");
+        listMM.addAll("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
         listRRRR.removeAll(listRRRR);
-        listRRRR.addAll("2020","2021","2022","2023","2024","2025","2026","2027","2028","2029","2030");
+        listRRRR.addAll("2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030");
         dataODDD.getItems().addAll(listDD);
         dataODMM.getItems().addAll(listMM);
         dataODRRRR.getItems().addAll(listRRRR);
@@ -513,18 +513,14 @@ public void StartListaPytan()
     }
 
 
-    public void DaneUsniecia(List<Pytania> pyt, List<Odpowiedzi> odp){
+    public void DaneUsniecia(List<Pytania> pyt, List<Odpowiedzi> odp) {
         this.listaPytaU = pyt;
-        this.listaOdpU= odp;
-
-
+        this.listaOdpU = odp;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadData();
     }
-
-
 
 }

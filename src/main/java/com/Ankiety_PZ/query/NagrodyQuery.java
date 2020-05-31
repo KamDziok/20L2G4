@@ -18,19 +18,19 @@ import java.util.List;
  *
  * @author KamDziok
  */
-public class NagrodyQuery extends OperationInSession{
+public class NagrodyQuery extends OperationInSession {
 
     private OperationsOnDataInEntity<Nagrody> modifyNagrody;
 
-    public NagrodyQuery(){
+    public NagrodyQuery() {
         this.modifyNagrody = new OperationsOnDataInEntity<>();
     }
-    
+
     public List<Nagrody> selectAll() throws HibernateException {
         return modifyNagrody.selectListHQL(("from Nagrody"));
     }
 
-    public Nagrody selectByID(int id){
+    public Nagrody selectByID(int id) {
         return modifyNagrody.selectObjectHQL(("from Nagrody where ID = " + id));
     }
 
@@ -38,39 +38,39 @@ public class NagrodyQuery extends OperationInSession{
         return modifyNagrody.selectListHQL(("from Nagrody as n where n.liczbaPunktow>=0"));
     }
 
-    public Boolean addNagrody(Nagrody nagrody){
+    public Boolean addNagrody(Nagrody nagrody) {
         return modifyNagrody.add(nagrody);
     }
 
-    Boolean addNagrodyWithOutTransaction(Nagrody nagrody, Session session){
+    Boolean addNagrodyWithOutTransaction(Nagrody nagrody, Session session) {
         return modifyNagrody.addWithOutTransaction(nagrody, session);
     }
 
-    public Boolean updateNagrody(Nagrody nagrody){
+    public Boolean updateNagrody(Nagrody nagrody) {
         return modifyNagrody.update(nagrody);
     }
 
-    Boolean updateNagrodyWithOutTransaction(Nagrody nagrody, Session session){
+    Boolean updateNagrodyWithOutTransaction(Nagrody nagrody, Session session) {
         return modifyNagrody.updateWithOutTransaction(nagrody, session);
     }
 
-    public Boolean deleteNagrody(Nagrody nagrody){
+    public Boolean deleteNagrody(Nagrody nagrody) {
         return modifyNagrody.delete(nagrody);
     }
 
-    Boolean deleteNagrodyWithOutTransaction(Nagrody nagrody, Session session){
+    Boolean deleteNagrodyWithOutTransaction(Nagrody nagrody, Session session) {
         return modifyNagrody.deleteWithOutTransaction(nagrody, session);
     }
 
-    public Boolean deactivateNagrody(Nagrody nagrody){
+    public Boolean deactivateNagrody(Nagrody nagrody) {
         nagrody.setLiczbaPunktow(-1);
         //sprawdzic czy istnieje w uzytkownicy_nagrody
         return updateNagrody(nagrody);
     }
 
-    public Boolean getNagrodyToUzytkownicy(Nagrody nagrody, Uzytkownicy uzytkownicy){
+    public Boolean getNagrodyToUzytkownicy(Nagrody nagrody, Uzytkownicy uzytkownicy) {
         boolean result = false;
-        if(uzytkownicy.getLiczbaPunktow() >= nagrody.getLiczbaPunktow()) {
+        if (uzytkownicy.getLiczbaPunktow() >= nagrody.getLiczbaPunktow()) {
             try {
                 session = openSession();
                 transaction = beginTransaction(session);

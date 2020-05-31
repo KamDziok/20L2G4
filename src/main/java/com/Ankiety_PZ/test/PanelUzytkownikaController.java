@@ -28,7 +28,7 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
     @FXML // URL location of the FXML file that was given to the FXMLLoader
-     private String textPkt;
+    private String textPkt;
     private URL location;
     private String sprawdzhaslo;
     private String mailUser;
@@ -39,52 +39,98 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     private String surnameUser;
     private String cityUser;
     private String streetUser;
-    /** Numer domu wczytany z pola tekstowego jako String. */
+    /**
+     * Numer domu wczytany z pola tekstowego jako String.
+     */
     private String numberHouseStringUser;
-    /** Numer lokalu wczytany z pola tekstowego jako String. */
+    /**
+     * Numer lokalu wczytany z pola tekstowego jako String.
+     */
     private String numberFlatStringUser;
-    /** Pierwsza część kodu pocztowego wczytany z pola tekstowego jako String. */
+    /**
+     * Pierwsza część kodu pocztowego wczytany z pola tekstowego jako String.
+     */
     private String postCodeFirstStringUser;
-    /** Druga część kodu pocztowego wczytany z pola tekstowego jako String. */
+    /**
+     * Druga część kodu pocztowego wczytany z pola tekstowego jako String.
+     */
     private String postCodeSecondStringUser;
-    /** Pierwsza część kodu pocztowego przekształconego na int. */
+    /**
+     * Pierwsza część kodu pocztowego przekształconego na int.
+     */
     private int postCodeFirstIntUser;
-    /** Druga część kodu pocztowego przekształconego na int. */
+    /**
+     * Druga część kodu pocztowego przekształconego na int.
+     */
     private int postCodeSecondIntUser;
-    /** Minimalna długośc hasłą. */
+    /**
+     * Minimalna długośc hasłą.
+     */
     private final int minSizePasswordUser = 3;
-    @FXML private Label panelUzytkownikaLabelError;
-    @FXML private Label panelUzytkownikaLabelErrorNagrody;
-    @FXML private Button wyloguj;
-    @FXML private Label punkty;
-    @FXML private Label labelPunkty;
-    @FXML private Label punktyNagrody;
-    @FXML private Label labelPunktyNagrody;
-    @FXML private Label punktyUstawienia;
-    @FXML private Label labelPunktyUstawienia;
-    @FXML private TextField email;
-    @FXML private TextField haslo;
-    @FXML private TextField nowehaslo;
-    @FXML private TextField hasloznowu;
-    @FXML private TextField imie;
-    @FXML private TextField nazwisko;
-    @FXML private TextField miejscowosc;
-    @FXML private TextField ulica;
-    @FXML private TextField budynek;
-    @FXML private TextField lokal;
-    @FXML private TextField kod1;
-    @FXML private TextField kod2;
-    @FXML private TableView tableAnkiety;
-    @FXML private TableColumn tytul;
-    @FXML private TableColumn wygasa;
-    @FXML private TableColumn pkt;
-    @FXML private TableColumn przycisk;
-    @FXML private TableView tableNagrody;
-    @FXML private TableColumn nazwa;
-    @FXML private TableColumn cena;
-    @FXML private TableColumn obrazek;
-    @FXML private TableColumn kup;
-    @FXML private Label panelUzytkownikaLabelErrorAnkiety;
+    @FXML
+    private Label panelUzytkownikaLabelError;
+    @FXML
+    private Label panelUzytkownikaLabelErrorNagrody;
+    @FXML
+    private Button wyloguj;
+    @FXML
+    private Label punkty;
+    @FXML
+    private Label labelPunkty;
+    @FXML
+    private Label punktyNagrody;
+    @FXML
+    private Label labelPunktyNagrody;
+    @FXML
+    private Label punktyUstawienia;
+    @FXML
+    private Label labelPunktyUstawienia;
+    @FXML
+    private TextField email;
+    @FXML
+    private TextField haslo;
+    @FXML
+    private TextField nowehaslo;
+    @FXML
+    private TextField hasloznowu;
+    @FXML
+    private TextField imie;
+    @FXML
+    private TextField nazwisko;
+    @FXML
+    private TextField miejscowosc;
+    @FXML
+    private TextField ulica;
+    @FXML
+    private TextField budynek;
+    @FXML
+    private TextField lokal;
+    @FXML
+    private TextField kod1;
+    @FXML
+    private TextField kod2;
+    @FXML
+    private TableView tableAnkiety;
+    @FXML
+    private TableColumn tytul;
+    @FXML
+    private TableColumn wygasa;
+    @FXML
+    private TableColumn pkt;
+    @FXML
+    private TableColumn przycisk;
+    @FXML
+    private TableView tableNagrody;
+    @FXML
+    private TableColumn nazwa;
+    @FXML
+    private TableColumn cena;
+    @FXML
+    private TableColumn obrazek;
+    @FXML
+    private TableColumn kup;
+    @FXML
+    private Label panelUzytkownikaLabelErrorAnkiety;
 
     @FXML
     void wyloguj(ActionEvent event) {
@@ -103,7 +149,7 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
      *
      * @return true jeśli wszystkie pola obowiązkowe są uzupełnione, w przeciwnym wypadku false
      */
-    private boolean compulsoryFildNotNullUser(){
+    private boolean compulsoryFildNotNullUser() {
         return (!mailUser.isEmpty() && !nameUser.isEmpty() &&
                 !surnameUser.isEmpty() && !cityUser.isEmpty() &&
                 !streetUser.isEmpty() && !numberHouseStringUser.isEmpty() &&
@@ -113,22 +159,22 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     /**
      * Metoda sprawdza czy kod pocztowy składa się z liczb i czy ma odpowiedznią długość.
      *
-     * @author KamDziok
      * @return true jeśli kod pocztowy jest poprawny, w przeciwnym razie false
+     * @author KamDziok
      */
-    private boolean postCodeIsNumberUser(){
-        try{
-            if(postCodeFirstStringUser.length() == 2 && postCodeSecondStringUser.length() == 3) {
+    private boolean postCodeIsNumberUser() {
+        try {
+            if (postCodeFirstStringUser.length() == 2 && postCodeSecondStringUser.length() == 3) {
                 postCodeFirstIntUser = Integer.parseInt(postCodeFirstStringUser);
                 postCodeSecondIntUser = Integer.parseInt(postCodeSecondStringUser);
                 return true;
-            }else{
+            } else {
                 panelUzytkownikaLabelError.setText("Kod pocztowy ma niepoprawną długość!");
             }
-        }catch(IllegalArgumentException argumentException){
+        } catch (IllegalArgumentException argumentException) {
             panelUzytkownikaLabelError.setText("Kod pocztowy jest niepoprawny!");
             System.out.println(argumentException.getMessage());
-        }catch(Exception exception){
+        } catch (Exception exception) {
             System.out.println(exception.getMessage());
         }
         return false;
@@ -141,24 +187,23 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
      * @return true jeśli hasło ma odpowiednią długość i jest takie samo jak powtórz hasło i dotychczasowe hasło
      * zostało podane poprawnie, w przeciwnym wypadku false.
      */
-    private boolean checkPasswordUser(){
-        if(((passwordRepeatUser.length() < minSizePasswordUser) ||
+    private boolean checkPasswordUser() {
+        if (((passwordRepeatUser.length() < minSizePasswordUser) ||
                 (passwordNewUser.length() < minSizePasswordUser)) &&
-                (!passwordUser.isEmpty())){
+                (!passwordUser.isEmpty())) {
 
-            sprawdzhaslo ="Hasło jest za krótkie lub nie wypełniłeś wszystkich pól!";
-        }else {
-            if(!passwordNewUser.equals(passwordRepeatUser)){
-                sprawdzhaslo ="Hasła nie są takie same!";
-            }else{
-                if(passwordUser.equals(curentUser.getHaslo())){
+            sprawdzhaslo = "Hasło jest za krótkie lub nie wypełniłeś wszystkich pól!";
+        } else {
+            if (!passwordNewUser.equals(passwordRepeatUser)) {
+                sprawdzhaslo = "Hasła nie są takie same!";
+            } else {
+                if (passwordUser.equals(curentUser.getHaslo())) {
                     return true;
-                }
-                else if(passwordUser.isEmpty() && passwordNewUser.isEmpty() && passwordRepeatUser.isEmpty()){
+                } else if (passwordUser.isEmpty() && passwordNewUser.isEmpty() && passwordRepeatUser.isEmpty()) {
                     return true;
+                } else {
+                    sprawdzhaslo = "Podałeś niepoprawne hasło do konta!";
                 }
-                else{
-                    sprawdzhaslo ="Podałeś niepoprawne hasło do konta!";}
             }
         }
         return false;
@@ -169,8 +214,8 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
      *
      * @return true jeśli sdres e-mail posiada @, w przeciwnym wypadku false.
      */
-    private boolean chechEmailUser(){
-        if(mailUser.indexOf('@') != -1){
+    private boolean chechEmailUser() {
+        if (mailUser.indexOf('@') != -1) {
             return true;
         }
         return false;
@@ -190,15 +235,15 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
         numberFlatStringUser = lokal.getText();
         postCodeFirstStringUser = kod1.getText();
         postCodeSecondStringUser = kod2.getText();
-        if(compulsoryFildNotNullUser()){
-            if(postCodeIsNumberUser()){
-                if(checkPasswordUser()){
-                    if(chechEmailUser()) {
+        if (compulsoryFildNotNullUser()) {
+            if (postCodeIsNumberUser()) {
+                if (checkPasswordUser()) {
+                    if (chechEmailUser()) {
                         UzytkownicyQuery update = new UzytkownicyQuery();
                         String postCode = postCodeFirstIntUser + "-" + postCodeSecondIntUser;
                         curentUser.setMail(mailUser);
                         curentUser.setImie(nameUser);
-                        if(!passwordUser.isEmpty()){
+                        if (!passwordUser.isEmpty()) {
                             curentUser.setHaslo(passwordRepeatUser);
                         }
                         curentUser.setNazwisko(surnameUser);
@@ -208,28 +253,29 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
                         curentUser.setNumerLokalu(numberFlatStringUser);
                         curentUser.setKodPocztowy(postCode);
                         update.updateUzytkownicy(curentUser);
-                        textPkt = curentUser.getImie() + " " + curentUser.getNazwisko()+ " posiadasz ";
+                        textPkt = curentUser.getImie() + " " + curentUser.getNazwisko() + " posiadasz ";
                         labelPunkty.setText(textPkt);
                         labelPunktyUstawienia.setText(textPkt);
                         labelPunktyNagrody.setText(textPkt);
                         panelUzytkownikaLabelError.setText("Profil został pomyślnie zaktualizowany.");
-                    }else{
+                    } else {
                         panelUzytkownikaLabelError.setText("Podany adres e-mail jest nieprawidłowy!");
                     }
-                }else{
+                } else {
                     panelUzytkownikaLabelError.setText(sprawdzhaslo);
                 }
-            }else{
+            } else {
                 panelUzytkownikaLabelError.setText("Nieprawidłowy kod pocztowy!");
             }
-        }else{
+        } else {
             panelUzytkownikaLabelError.setText("Wymagane pola są puste!");
         }
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    @FXML
+        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-            assert wyloguj != null : "fx:id=\"wyloguj\" was not injected: check your FXML file 'panelUzytkownika.fxml'.";
+        assert wyloguj != null : "fx:id=\"wyloguj\" was not injected: check your FXML file 'panelUzytkownika.fxml'.";
     }
 
     public void updatePkt(String punkty) {
@@ -266,8 +312,8 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
         AnkietyQuery query = new AnkietyQuery();
         List<Ankiety> ankiety = query.selectAllActiveAndNotDoAnkiety(curentUser);
         ObservableList<AnikietaTabelka> dane = FXCollections.observableArrayList();
-        for (Ankiety ankieta:ankiety
-             ) {
+        for (Ankiety ankieta : ankiety
+        ) {
             dane.add(new AnikietaTabelka(ankieta, this));
         }
         tableAnkiety.itemsProperty().setValue(dane);
@@ -281,7 +327,7 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
         NagrodyQuery query = new NagrodyQuery();
         List<Nagrody> nagrody = query.selectAllActive();
         ObservableList<NagrodaTabelka> dane = FXCollections.observableArrayList();
-        for (Nagrody nagroda:nagrody
+        for (Nagrody nagroda : nagrody
         ) {
             dane.add(new NagrodaTabelka(nagroda, this));
         }
@@ -295,7 +341,6 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     @Override
     public void setStartValues(Uzytkownicy user) {
         curentUser = user;
-
         setUstawienia();
         setAnkiety();
         setNagrody();

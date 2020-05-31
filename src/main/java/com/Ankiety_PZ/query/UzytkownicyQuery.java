@@ -15,7 +15,7 @@ public class UzytkownicyQuery extends OperationInSession {
 
     private OperationsOnDataInEntity<Uzytkownicy> modifyUzytkownik;
 
-    public UzytkownicyQuery(){
+    public UzytkownicyQuery() {
         this.modifyUzytkownik = new OperationsOnDataInEntity<>();
     }
 
@@ -26,60 +26,60 @@ public class UzytkownicyQuery extends OperationInSession {
     /**
      * Odczyt pojedynczego użytkownika z bazy.
      *
-     * @author KamDziok
      * @param id identyfikarot użytkownika.
      * @return obiekt Uzytkownicy jeśli istnieje w zazie użytkownika o podanym id, w przeciwnym wypadku null.
+     * @author KamDziok
      */
-    public Uzytkownicy selectById(int id){
+    public Uzytkownicy selectById(int id) {
         return modifyUzytkownik.selectObjectHQL(("from Uzytkownicy as u where u.idUzytkownika=" + id));
     }
 
-    public Boolean addUzytkownicy(Uzytkownicy uzytkownicy){
+    public Boolean addUzytkownicy(Uzytkownicy uzytkownicy) {
         return modifyUzytkownik.add(uzytkownicy);
     }
 
-    Boolean addUzytkownicyWithOutTransaction(Uzytkownicy uzytkownicy, Session session){
+    Boolean addUzytkownicyWithOutTransaction(Uzytkownicy uzytkownicy, Session session) {
         return modifyUzytkownik.addWithOutTransaction(uzytkownicy, session);
     }
 
-    public Boolean updateUzytkownicy(Uzytkownicy uzytkownicy){
+    public Boolean updateUzytkownicy(Uzytkownicy uzytkownicy) {
         return modifyUzytkownik.update(uzytkownicy);
     }
 
-    Boolean updateUzytkownicyWithOutTransaction(Uzytkownicy uzytkownicy, Session session){
+    Boolean updateUzytkownicyWithOutTransaction(Uzytkownicy uzytkownicy, Session session) {
         return modifyUzytkownik.updateWithOutTransaction(uzytkownicy, session);
     }
 
-    public Boolean deleteUzytkownicy(Uzytkownicy uzytkownicy){
+    public Boolean deleteUzytkownicy(Uzytkownicy uzytkownicy) {
         return modifyUzytkownik.delete(uzytkownicy);
     }
 
-    Boolean deleteUzytkownicyWithOutTransaction(Uzytkownicy uzytkownicy, Session session){
+    Boolean deleteUzytkownicyWithOutTransaction(Uzytkownicy uzytkownicy, Session session) {
         return modifyUzytkownik.deleteWithOutTransaction(uzytkownicy, session);
     }
 
-    public Uzytkownicy selectByMail(String mail){
+    public Uzytkownicy selectByMail(String mail) {
         return modifyUzytkownik.selectObjectHQL(("from Uzytkownicy where mail=\"" + mail + "\""));
     }
 
-    public Uzytkownicy selectByMailAndPassword(String mail, String password){
-        return modifyUzytkownik.selectObjectHQL(("from Uzytkownicy where mail = '" + mail + "' and haslo ='" + password +"'"));
+    public Uzytkownicy selectByMailAndPassword(String mail, String password) {
+        return modifyUzytkownik.selectObjectHQL(("from Uzytkownicy where mail = '" + mail + "' and haslo ='" + password + "'"));
     }
 
     /**
      * Zablokowanie konta użytkownika.
      *
-     * @author KamDziok
      * @param user obiet Uzytkownicy, który chcemy zablokować.
      * @return true jeśli operacja się udała, w przeciwnym wypadku false.
+     * @author KamDziok
      */
 
-    public boolean ban(Uzytkownicy user){
+    public boolean ban(Uzytkownicy user) {
         user.setUprawnienia(Permissions.BAN);
         return updateUzytkownicy(user);
     }
 
-    public boolean unban(Uzytkownicy user){
+    public boolean unban(Uzytkownicy user) {
         user.setUprawnienia(Permissions.KLIENT);
         return updateUzytkownicy(user);
     }
@@ -87,31 +87,31 @@ public class UzytkownicyQuery extends OperationInSession {
     /**
      * Wyszukanie użytkowników pod względem uprawnień.
      *
-     * @author KamDziok
      * @param ban true jeśli chcemy, żeby wyszukało nam użytkowników zablokowanych,
      *            false jeśli chcemu listę użytkowników niezblokowanych.
      * @return listę użytkowników spełniajaćych kryterium, jeśli lista jest pusta nie znaleziono określonych użytkowników
+     * @author KamDziok
      */
 
-    public List<Uzytkownicy> selectBy(boolean ban, Uzytkownicy user){
-        if(ban){
+    public List<Uzytkownicy> selectBy(boolean ban, Uzytkownicy user) {
+        if (ban) {
             return new OperationsOnDataInEntity<Uzytkownicy>().selectListHQL(
                     ("from Uzytkownicy as u where u.uprawnienia<=" + Permissions.BAN + " and u.idUzytkownika<>" + user.getIdUzytkownika()));
-        }else{
+        } else {
             return new OperationsOnDataInEntity<Uzytkownicy>().selectListHQL(
                     ("from Uzytkownicy as u where u.uprawnienia>" + Permissions.BAN + " and u.idUzytkownika<>" + user.getIdUzytkownika()));
         }
     }
 
-    public Boolean addOdpowiedziUzytkownika(List<OdpowiedziUzytkownicy> usersAnswers, List<PytaniaUzytkownicy> userOpenAnswers, Ankiety ankiety, Uzytkownicy user){
+    public Boolean addOdpowiedziUzytkownika(List<OdpowiedziUzytkownicy> usersAnswers, List<PytaniaUzytkownicy> userOpenAnswers, Ankiety ankiety, Uzytkownicy user) {
         boolean result = false;
-        try{
+        try {
             session = openSession();
             transaction = beginTransaction(session);
             usersAnswers.forEach(userAnswers ->
             {
                 Integer points = null;
-                if(userAnswers.getPunktowe() != TypeOfQuestion.USER_ANSWER_NULL){
+                if (userAnswers.getPunktowe() != TypeOfQuestion.USER_ANSWER_NULL) {
                     points = userAnswers.getPunktowe();
                 }
                 session.createSQLQuery("INSERT INTO `odpowiedzi_uzytkownicy`(`ID_odpowiedzi`, `ID_uzytkownika`, `punktowe`) " +
@@ -133,10 +133,10 @@ public class UzytkownicyQuery extends OperationInSession {
             new AnkietyQuery().updateAnkietyWithOutTransaction(ankiety, session);
             commitTransaction(transaction);
             result = true;
-        }catch(Exception e){
+        } catch (Exception e) {
             rollbackTransaction(transaction);
             logException(e);
-        }finally {
+        } finally {
             closeSession(session);
         }
         return result;
