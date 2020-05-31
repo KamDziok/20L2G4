@@ -91,15 +91,15 @@ public class PanelLoginController extends BulidStage {
                         activeScene(event, false, false);
                         break;
                     default:
-                        panelLoginLabelError.setText("Twoje konto zaostało zawieszone.");
+                        panelLoginLabelError.setText("Twoje konto zostało zablokowane!");
 
                 }
             } else {
-                panelLoginLabelError.setText("Błędny e-mail lub hasło.");
+                panelLoginLabelError.setText("Błędny mail lub hasło!");
             }
 
         } else {
-            panelLoginLabelError.setText("Nie podałeś wszystkich danych.");
+            panelLoginLabelError.setText("Nie podałeś wszystkich danych!");
         }
     }
 
@@ -125,7 +125,6 @@ public class PanelLoginController extends BulidStage {
         assert panelLoginButtonLogin != null : "fx:id=\"panelLoginButtonLogin\" was not injected: check your FXML file 'PanelLogin.fxml'.";
         assert panelLoginButtonRegi != null : "fx:id=\"panelLoginButtonRegi\" was not injected: check your FXML file 'PanelLogin.fxml'.";
         assert panelLoginLabelError != null : "fx:id=\"panelLoginLabelError\" was not injected: check your FXML file 'PanelLogin.fxml'.";
-
         panelLoginLabelError.setText("");
     }
 }
