@@ -1,21 +1,21 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2020-04-16 17:34:00 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.Ankiety_PZ.hibernate.Nagrody" table="nagrody" catalog="ankiety" optimistic-lock="version">
         <id name="idNagrody" type="java.lang.Integer">
-            <column name="ID" />
-            <generator class="identity" />
+            <column name="ID"/>
+            <generator class="identity"/>
         </id>
         <property name="liczbaPunktow" type="int">
-            <column name="liczba_punktow" not-null="true" />
+            <column name="liczba_punktow" not-null="true"/>
         </property>
         <property name="nazwa" type="string">
-            <column name="nazwa" length="150" not-null="true" />
+            <column name="nazwa" length="150" not-null="true"/>
         </property>
         <property name="zdjecie" type="binary">
-            <column name="zdjecie" />
+            <column name="zdjecie"/>
         </property>
     </class>
 </hibernate-mapping>

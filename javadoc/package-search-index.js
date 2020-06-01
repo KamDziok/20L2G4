@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.Ankiety_PZ.biznes"},{"l":"com.Ankiety_PZ.hibernate"},{"l":"com.Ankiety_PZ.query"},{"l":"com.Ankiety_PZ.test"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.Ankiety_PZ.generowaniePDF"},{"l":"com.Ankiety_PZ.hibernate"},{"l":"com.Ankiety_PZ.panele"},{"l":"com.Ankiety_PZ.query"}]

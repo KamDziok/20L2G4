@@ -1,45 +1,45 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2020-04-16 17:34:00 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.Ankiety_PZ.hibernate.Uzytkownicy" table="uzytkownicy" catalog="ankiety" optimistic-lock="version">
         <id name="idUzytkownika" type="java.lang.Integer">
-            <column name="ID" />
-            <generator class="identity" />
+            <column name="ID"/>
+            <generator class="identity"/>
         </id>
         <property name="imie" type="string">
-            <column name="imie" length="80" not-null="true" />
+            <column name="imie" length="80" not-null="true"/>
         </property>
         <property name="nazwisko" type="string">
-            <column name="nazwisko" length="80" not-null="true" />
+            <column name="nazwisko" length="80" not-null="true"/>
         </property>
         <property name="mail" type="string">
-            <column name="mail" length="150" not-null="true" />
+            <column name="mail" length="150" not-null="true"/>
         </property>
         <property name="haslo" type="string">
-            <column name="haslo" length="150" not-null="true" />
+            <column name="haslo" length="150" not-null="true"/>
         </property>
         <property name="uprawnienia" type="int">
-            <column name="uprawnienia" not-null="true" />
+            <column name="uprawnienia" not-null="true"/>
         </property>
         <property name="miejscowosc" type="string">
-            <column name="miejscowosc" length="80" not-null="true" />
+            <column name="miejscowosc" length="80" not-null="true"/>
         </property>
         <property name="ulica" type="string">
-            <column name="ulica" length="80" not-null="true" />
+            <column name="ulica" length="80" not-null="true"/>
         </property>
         <property name="numerBudynku" type="string">
-            <column name="numer_budynku" length="10" not-null="true" />
+            <column name="numer_budynku" length="10" not-null="true"/>
         </property>
         <property name="numerLokalu" type="string">
-            <column name="numer_lokalu" length="10" />
+            <column name="numer_lokalu" length="10"/>
         </property>
         <property name="kodPocztowy" type="string">
-            <column name="kod_pocztowy" length="6" not-null="true" />
+            <column name="kod_pocztowy" length="6" not-null="true"/>
         </property>
         <property name="liczbaPunktow" type="int">
-            <column name="liczba_punktow" not-null="true" />
+            <column name="liczba_punktow" not-null="true"/>
         </property>
     </class>
 </hibernate-mapping>
