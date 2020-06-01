@@ -1,6 +1,8 @@
 package com.Ankiety_PZ.hibernate;
 
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,10 +12,29 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UzytkownicyTest {
 
-    private Uzytkownicy uzytkownikAdd = new Uzytkownicy("User", "A", "a", "a", 0,
-            "a", "a", "1a", "aa-aaa", 110);
-    private Uzytkownicy uzytkownikSub = new Uzytkownicy("User", "B", "b", "b", 0,
-            "b", "b", "1b", "bb-bbb", 90);
+    private static Uzytkownicy uzytkownikAdd;
+    private static Uzytkownicy uzytkownikSub;
+
+    static void setUzytkownikAdd(){
+        uzytkownikAdd = new Uzytkownicy("User", "A", "a", "a", 0,
+                "a", "a", "1a", "aa-aaa", 110);
+    }
+
+    static void setUzytkownikSub(){
+        uzytkownikSub = new Uzytkownicy("User", "B", "b", "b", 0,
+                "b", "b", "1b", "bb-bbb", 90);
+    }
+
+    @BeforeAll
+    static void setValuesInObcejt(){
+        setUzytkownikAdd();
+        setUzytkownikSub();
+    }
+
+    @BeforeEach
+    void clearUzytkownikSub(){
+        setUzytkownikSub();
+    }
 
     @Test
     void updatePunktyTestAdd(){
