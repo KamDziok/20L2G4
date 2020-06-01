@@ -129,7 +129,7 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
         String postCodeFirstStringAnkieter = kod1.getText();
         String postCodeSecondStringAnkieter = kod2.getText();
         Walidacja walidacja = new Walidacja();
-        if (walidacja.czyUzupelnionePola(mailAnkieter, surnameAnkieter, nameAnkieter, cityAnkieter, streetAnkieter, numberFlatStringAnkieter, postCodeFirstStringAnkieter, postCodeSecondStringAnkieter)) {
+        if (walidacja.czyUzupelnionePola(mailAnkieter, surnameAnkieter, nameAnkieter, cityAnkieter, streetAnkieter, numberHouseStringAnkieter, postCodeFirstStringAnkieter, postCodeSecondStringAnkieter)) {
             if (walidacja.czyPoprawnyKodPocztowy(postCodeFirstStringAnkieter, postCodeSecondStringAnkieter)) {
                 if (walidacja.sprawdzHaslo(passwordAnkieter, passwordRepeatAnkieter, passwordNewAnkieter, curentUser)) {
                     if (walidacja.czyPoprawnyMail(mailAnkieter)) {
