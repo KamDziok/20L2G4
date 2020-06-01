@@ -87,6 +87,11 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
 
     @FXML
     private Label labelPunktyNagrody;
+
+    /**
+     * Etykieta z liczbą punktów użytkownika.
+     */
+
     @FXML
     private Label punktyUstawienia;
 
@@ -395,9 +400,8 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
         przycisk.setCellValueFactory(new PropertyValueFactory("button"));
     }
 
-
     /**
-     * Metoda odpowiada pobranie aktualnych nagród do tabeli.
+     * Metoda odpowiada za pobranie aktualnych nagród do tabeli.
      */
 
     private void setNagrody() {

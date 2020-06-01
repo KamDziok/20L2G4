@@ -12,41 +12,102 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import java.util.List;
+
+
+/**
+ * Klasa dla panelu osoby odpowiedzialnej za nagrody.
+ */
+
 
 public class PanelOsobyOdNagrodController extends BulidStage implements SetStartValues {
 
+    /**
+     * Aktualnie zalogowany użytkownik
+     */
 
     private Uzytkownicy curentUser;
+
+    /**
+     * Obiekt nasłuchujący zmiany w tabeli nagród.
+     */
+
     public ObservableList<NagrodyTabelka> dane;
+
+    /**
+     * String z aktualnym imieniem, nazwiskiem i rolą użytkownika
+     */
+
     private String imie_nazwisko_rola_tmp;
+
+    /**
+     * Etykieta z aktualnym imieniem, nazwiskiem i rolą użytkownika
+     */
 
     @FXML
     private Label imie_nazwisko_rola;
 
+    /**
+     * Etykieta informująca o rodzaju błędu przy edycji użytkownika.
+     */
+
     @FXML
     private Label panelNagrodLabelError;
+
+    /**
+     * Przycisk odpowiedzialny za wylogowywanie.
+     */
 
     @FXML
     private Button wyloguj;
 
+    /**
+     * Przycisk odpowiedzialny za dodawanie nagród.
+     */
+
     @FXML
     private Button panelnagroddodajnagrode;
+
+    /**
+     * Tabela nagród.
+     */
 
     @FXML
     private TableView tableNagrody;
 
+    /**
+     * Kolumna w tabeli nagród, w której pojawia się nazwa nagrody.
+     */
+
     @FXML
     private TableColumn nagrody;
+
+    /**
+     * Kolumna w tabeli nagród, w której pojawia się ilustracja nagrody.
+     */
 
     @FXML
     private TableColumn zdjecie;
 
+
+    /**
+     * Kolumna w tabeli nagród, w której pojawia się liczba punktów potrzebna do wymiany nagrody.
+     */
+
     @FXML
     private TableColumn pkt;
 
+    /**
+     * Kolumna w tabeli nagród, w której pojawia się przycisk <code>usuń</code>.
+     */
+
     @FXML
     private TableColumn usun;
+
+    /**
+     * Kolumna w tabeli nagród, w której pojawia się przycisk <code>edytuj</code>.
+     */
 
     @FXML
     private TableColumn edytuj;
@@ -63,34 +124,101 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
         return pkt;
     }
 
+    /**
+     * Etykieta z aktualnym imieniem, nazwiskiem i rolą użytkownika
+     */
+
     @FXML
     private Label imie_nazwisko_rola2;
 
+    /**
+     * Mail przy edycji profilu.
+     */
+
     @FXML
     private TextField email;
+
+    /**
+     * Aktualne hasło przy edycji profilu.
+     */
+
     @FXML
     private TextField haslo;
+
+    /**
+     * Nowe hasło przy edycji profilu.
+     */
+
     @FXML
     private TextField nowehaslo;
+
+    /**
+     * Powtórnie wprowadzone hasło przy edycji profilu.
+     */
+
     @FXML
     private TextField hasloznowu;
+
+    /**
+     * Imie przy edycji profilu.
+     */
+
     @FXML
     private TextField imie;
+
+    /**
+     * Nazwisko przy edycji profilu.
+     */
+
     @FXML
     private TextField nazwisko;
+
+    /**
+     * Miejscowość przy edycji profilu.
+     */
+
     @FXML
     private TextField miejscowosc;
+
+    /**
+     * Ulica przy edycji profilu.
+     */
+
     @FXML
     private TextField ulica;
+
+    /**
+     * Numer budynku przy edycji profilu.
+     */
+
     @FXML
     private TextField budynek;
+
+    /**
+     * Numer lokalu przy edycji profilu.
+     */
+
     @FXML
     private TextField lokal;
+
+    /**
+     * Dwie pierwsze cyfry kodu pocztowego przy edycji profilu.
+     */
+
     @FXML
     private TextField kod1;
+
+    /**
+     * Trzy ostatnie cyfry kodu pocztowego przy edycji profilu.
+     */
+
     @FXML
     private TextField kod2;
 
+    /**
+     * Metoda otwierająca okno dodawania nagrody po naciśnięciu przycisku <code>dodaj nagrodę</code>.
+     * @param event
+     */
 
     @FXML
     void panelnagroddodajnagrode(ActionEvent event) {
@@ -102,11 +230,24 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
         activeScene(event, false, false);
     }
 
+    /**
+     * Metoda wykonująca akcję wylogowowania użytkownika po naciśnięciu przycisku <code>wyloguj</code>.
+     * @param event
+     */
+
     @FXML
     void wyloguj(ActionEvent event) {
         loadingFXML(event, SceneFXML.PANEL_LOGIN);
         activeScene(event, false, false);
     }
+
+
+    /**
+     * Metoda wykonująca akcję edycji profilu użytkownika wraz ze sprawdzeniem prawidłowości wprowadzonych danch.
+     * Metoda wykona się po wybraniu przycisku <code>zapisz zmiany</code>.
+     *
+     * @param event
+     */
 
     @FXML
     void panelOsobyOdNagrodButtonZmienUstawienia(ActionEvent event) {
@@ -161,6 +302,10 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
         }
     }
 
+    /**
+     * Metoda odpowiada za pobranie aktualnych nagród do tabeli.
+     */
+
     void setNagrody() {
         NagrodyQuery query = new NagrodyQuery();
         List<Nagrody> nagrodies = query.selectAllActive();
@@ -178,6 +323,10 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
         tableNagrody.setItems(dane);
     }
 
+    /**
+     * Metoda odpowiada za ustwienie aktualnych danych przy edycji profilu.
+     */
+
     private void setUstawienia() {
         String imie = curentUser.getImie();
         String nazwisko = curentUser.getNazwisko();
@@ -192,6 +341,10 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
         kod1.setText(kod[0]);
         kod2.setText(kod[1]);
     }
+
+    /**
+     * Metoda wykonuje inicjalizację aktualnych danych użytkownika, nagród i ustawień w edycji profilu.
+     */
 
     @Override
     public void setStartValues(Uzytkownicy user) {
