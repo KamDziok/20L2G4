@@ -31,6 +31,7 @@ import java.util.*;
  */
 
 public class DodawaniePytaniaController extends BulidStage implements SetStartValues {
+
     File file;
 
     private final ToggleGroup radioButtonGroup = new ToggleGroup();
@@ -43,35 +44,35 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
     @FXML
     private TextField odpowiedzi;
 
-    @FXML // ResourceBundle that was given to the FXMLLoader
+    @FXML
     private ResourceBundle resources;
 
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
+    @FXML
     private URL location;
 
-    @FXML // fx:id="dodajzdjecie"
-    private Button dodajzdjecie; // Value injected by FXMLLoader
+    @FXML
+    private Button dodajzdjecie;
 
-    @FXML // fx:id="wyloguj1"
-    private Button wyloguj1; // Value injected by FXMLLoader
+    @FXML
+    private Button wyloguj1;
 
-    @FXML // fx:id="anuluj"
-    private Button anuluj; // Value injected by FXMLLoader
+    @FXML
+    private Button anuluj;
 
-    @FXML // fx:id="dodawaniePytaniaRBQuestionOpen"
-    private RadioButton dodawaniePytaniaRBQuestionOpen; // Value injected by FXMLLoader
+    @FXML
+    private RadioButton dodawaniePytaniaRBQuestionOpen;
 
-    @FXML // fx:id="dodawaniePytaniaRBQuestionCloseMoreThenOne"
-    private RadioButton dodawaniePytaniaRBQuestionCloseMoreThenOne; // Value injected by FXMLLoader
+    @FXML
+    private RadioButton dodawaniePytaniaRBQuestionCloseMoreThenOne;
 
-    @FXML // fx:id="dodawaniePytaniaRBQuestionCloseOnlyOne"
-    private RadioButton dodawaniePytaniaRBQuestionCloseOnlyOne; // Value injected by FXMLLoader
+    @FXML
+    private RadioButton dodawaniePytaniaRBQuestionCloseOnlyOne;
 
-    @FXML // fx:id="dodawaniePytaniaRBQuestionPercentages"
-    private RadioButton dodawaniePytaniaRBQuestionPercentages; // Value injected by FXMLLoader
+    @FXML
+    private RadioButton dodawaniePytaniaRBQuestionPercentages;
 
-    @FXML // fx:id="dodawaniePytaniaRBQuestionPoints"
-    private RadioButton dodawaniePytaniaRBQuestionPoints; // Value injected by FXMLLoader
+    @FXML
+    private RadioButton dodawaniePytaniaRBQuestionPoints;
     @FXML
     private TextField punkty;
     private String punktyS;
@@ -93,14 +94,11 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
     private Integer punktowe;
     private int rodzajPytania;
     private Ankiety ankiety2;
-    private List<String> listaOdp = new ArrayList<String>();
     private Pytania pytania;
     private List<Pytania> listaPytaU;
     private List<Odpowiedzi> listaOdpU;
     private Set listaOdpTego;
     private Boolean edycja = false;
-    private List<Odpowiedzi> listaOdpUAnuluj = new ArrayList<>();
-    private ArrayList<Object> dod;
     private Set<Pytania> lisaPytanPrzekazana;
 
     @Override
@@ -115,10 +113,7 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
     @Override
     public void setStartValuesAnkiety(Ankiety ankieta) {
         this.ankiety2 = ankieta;
-
-        System.out.println("ankiety setStartValuesAnkiety dpc");
         System.out.println(ankiety2);
-
     }
 
     @Override
@@ -159,8 +154,6 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
                 setOdpowiedziSS(listaOdpTego);
             }
-
-
         }
     }
 
@@ -169,7 +162,6 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
     public void setStartValuesNagroda(Nagrody nagroda) {
 
     }
-
 
     @Override
     public void setStartValuesIerator(Iterator iterator) {
@@ -199,7 +191,6 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
     }
 
-
     @FXML
     void anulujAction(ActionEvent event) {
         loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
@@ -224,7 +215,6 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
      * Metoda obsługująca przyciśk dodaj zdjecie.
      *
      * @param event zdarzenie, po którym funkcja ma się wywołać
-     * @author HubertJakobsze
      */
 
     @FXML
@@ -248,6 +238,10 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
     }
 
+    /**
+     * Metoda służąca do conversji zdjecia .jpg na bajty.
+     */
+
     public void conversja(File file) throws FileNotFoundException, IOException {
         FileInputStream fis = new FileInputStream(file);
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -264,24 +258,21 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
         pytania.setZdjecie(zdjecie);
     }
 
+    /**
+     * Metoda służąca do conversji bajtów z bazy danych na zdjęcie.
+     */
 
     public void conversjaNaZ(byte[] bytes) throws IOException {
-
-
         ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
         Iterator<?> readers = ImageIO.getImageReadersByFormatName("jpg");
-
         ImageReader reader = (ImageReader) readers.next();
         Object source = bis;
         ImageInputStream iis = ImageIO.createImageInputStream(source);
         reader.setInput(iis, true);
         ImageReadParam param = reader.getDefaultReadParam();
-
         BufferedImage image = reader.read(0, param);
-
         BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
         String directory = System.getProperty("user.home") + "\\Documents\\Zdjęcia";
-        String directory2 = directory + "\\pdf";
         if (!(new File(directory).exists())) {
             new File(directory).mkdir();
         }
@@ -291,10 +282,7 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
         ImageIO.write(bufferedImage, "jpg", imageFile);
         Image image2 = new Image(imageFile.toURI().toString());
         imageview.setImage(image2);
-
-
     }
-
 
     /**
      * Metoda obsługująca przyciśk wyloguj.
@@ -315,6 +303,7 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
      *
      * @return true jeśli punkty są poprawne, w przeciwnym razie false
      */
+
     private boolean punktyisnumber() {
         try {
             punktyS = punkty.getText();
@@ -333,6 +322,9 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
         return false;
     }
 
+    /**
+     * Metoda obsługująca dodanie obietku pytanie wraz z odpowiedziami do obiektu ankiety.
+     */
 
     @FXML
     void dodajPytanie(ActionEvent event) {
@@ -360,9 +352,7 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
                         panelTworzeniaankietyController.SetEdycja(edycja2);
                         panelTworzeniaankietyController.setPytanieB(lisaPytanPrzekazana);
                         activeScene(event, false, false);
-
                     } else {
-
                         panelTworzeniaPytanLabelError.setText("Pytanie otwarte nie może zawierać odpowiedzi!");
                     }
                 } else edycja = false;
@@ -371,15 +361,11 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
             if (!edycja) {
 
                 if ((aktualnaliczbaodpowiedzi == 0 && dodawaniePytaniaRBQuestionOpen.isSelected()) ||
-
                         (aktualnaliczbaodpowiedzi > 1 &&
-                                (dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected() || dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected() ||
-                                        (dodawaniePytaniaRBQuestionPoints.isSelected() && punktyisnumber())
-                                ))
-                        ||
-                        (aktualnaliczbaodpowiedzi == 1 &&
-                                (dodawaniePytaniaRBQuestionPercentages.isSelected()))
-                ) {
+                                (dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected() ||
+                                        dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected() ||
+                                        (dodawaniePytaniaRBQuestionPoints.isSelected() && punktyisnumber()))) ||
+                        (aktualnaliczbaodpowiedzi == 1 && (dodawaniePytaniaRBQuestionPercentages.isSelected()))) {
 
                     pytania.setTresc(trescPytania.getText());
                     pytania.setRodzajPytania(rodzajPytania);
@@ -398,8 +384,6 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
                     panelTworzeniaankietyController.SetEdycja(edycja2);
                     panelTworzeniaankietyController.setPytanieB(lisaPytanPrzekazana);
                     activeScene(event, false, false);
-                    //PytaniaQuery query = new PytaniaQuery();
-                    // query.updatePytania(pytania);
                     try {
                         listaOdpU.addAll(listaOdpTego);
                         listaOdpTego = new HashSet();
@@ -439,12 +423,8 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
                     pytania.setPunktowe(punktowe);
                     pytania.setAnkiety(ankiety2);
                     pytania.setOdpowiedzis(listaOdpTego);
-                    //lisaPytanPrzekazana.add(pytania);
-                    // ankiety2.getPytanias().add(pytania);
-
                     loadingFXML(event, SceneFXML.TWORZENIE_ANKIETY);
                     PanelTworzeniaAnkietyController panelTworzeniaankietyController = load.getController();
-                    // panelTworzeniaankietyController.setPytania();
                     lisaPytanPrzekazana.add(pytania);
                     panelTworzeniaankietyController.setListaPytan(lisaPytanPrzekazana);
                     panelTworzeniaankietyController.SetStart();
@@ -472,6 +452,10 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
             panelTworzeniaPytanLabelError.setText("Tytuł pytania nie może być pusty!");
         }
     }
+
+    /**
+     * Metoda obsługująca przycisk zapisz ustawiajaca wartości dla rodzaju pytania, oraz ilość punktów do rozdania w pytaniu.
+     */
 
     @FXML
     void dodajpytanieAction(ActionEvent event) {
@@ -540,7 +524,6 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
         assert dodawaniePytaniaRBQuestionCloseOnlyOne != null : "fx:id=\"dodawaniePytaniaRBQuestionCloseOnlyOne\" was not injected: check your FXML file 'DodawaniePytania.fxml'.";
         assert dodawaniePytaniaRBQuestionPercentages != null : "fx:id=\"dodawaniePytaniaRBQuestionPercentages\" was not injected: check your FXML file 'DodawaniePytania.fxml'.";
         assert dodawaniePytaniaRBQuestionPoints != null : "fx:id=\"dodawaniePytaniaRBQuestionPoints\" was not injected: check your FXML file 'DodawaniePytania.fxml'.";
-
         dodawaniePytaniaRBQuestionOpen.setToggleGroup(radioButtonGroup);
         dodawaniePytaniaRBQuestionCloseMoreThenOne.setToggleGroup(radioButtonGroup);
         dodawaniePytaniaRBQuestionCloseOnlyOne.setToggleGroup(radioButtonGroup);
@@ -550,6 +533,10 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
 
     }
+
+    /**
+     * Metoda obsługująca przycisk dodaj, czyli dodanie obietku odpowiedz do listy odpowiedzi.
+     */
 
     public void dodajOdpAction(ActionEvent event) {
         if (!dodawaniePytaniaRBQuestionOpen.isSelected()) {
@@ -591,9 +578,17 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
     }
 
+    /**
+     * Metoda ustawiająca wartość sprawdzającą czy dana ankietajest nowa czy edytowana.
+     */
+
     public void Edycja(Boolean e) {
         this.edycja = e;
     }
+
+    /**
+     * Metoda wypisująca liste odpowiedzi w panelu dodawania pytania.
+     */
 
     public void setOdpowiedziSS(Set<Odpowiedzi> listaOdpTego) {
         ObservableList<OdpowiedziTabelka> dane = FXCollections.observableArrayList();
@@ -607,6 +602,10 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
         aktualnaliczbaodpowiedzi = dane.size();
 
     }
+
+    /**
+     * Metoda służąca zapisania list pytań i odpowiedzi do usunięcia.
+     */
 
     public void DaneUsniecia(List<Pytania> pyt, List<Odpowiedzi> odp) {
         this.listaPytaU = pyt;

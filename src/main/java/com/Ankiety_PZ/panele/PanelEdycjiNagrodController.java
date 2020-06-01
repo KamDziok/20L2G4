@@ -7,7 +7,6 @@ import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.query.NagrodyQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -23,48 +22,121 @@ import javax.imageio.stream.ImageInputStream;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.net.URL;
 import java.util.Iterator;
-import java.util.ResourceBundle;
+
+/**
+ * Klasa odpowiedzialna za dodawanie i edycję nagród.
+ */
+
+public class PanelEdycjiNagrodController extends BulidStage implements SetStartValues {
 
 
-public class PanelEdycjiNagrodController extends BulidStage implements Initializable, SetStartValues {
+    /**
+     * Nagroda do edycji
+     */
 
     private Nagrody nagrody;
+
+    /**
+     * Aktualnie zalogowany użytkownik
+     */
+
     private Uzytkownicy curentUser;
+
+    /**
+     * Liczba punktów dla nagrody
+     */
+
     int liczba_punktow;
+
+    /**
+     * Liczba punktów dla nagrody, napis
+     */
+
     String liczba_punktowS;
+
+    /**
+     * Nazwa nagrody
+     */
+
     String nazwa_nagrody;
 
+    /**
+     * Plik dla zdjęcia
+     */
+
     File file;
+
+    /**
+     * Przycisk wylogowywania
+     */
 
     @FXML
     private Button wyloguj;
 
+    /**
+     * Przycisk zapisywania zmian lub dodwania nagrody
+     */
+
     @FXML
     private Button panelEdycjiNagrodButtonEdytuj;
+
+    /**
+     * Przycisk anulowania zmian lub dodwania nagrody
+     */
 
     @FXML
     private Button panelEdycjiNagrodButtonAnuluj;
 
+    /**
+     * Pole tekstowe z nazwą nagrody
+     */
+
     @FXML
     private TextField nag;
+
+    /**
+     * Pole tekstowe z liczbą punktów za nagrodę
+     */
 
     @FXML
     private TextField pkt;
 
+    /**
+     * Widok zdjęcia dla nagrody
+     */
+
     @FXML
     private ImageView imageview;
 
-    @FXML
-    private Button PanelEdycjiNagrod;
+    /**
+     * Etykieta z aktualnym imieniem, nazwiskiem i rolą użytkownika
+     */
 
     @FXML
     private Label imie_nazwisko_rola;
 
+    /**
+     * Etykieta informująca o rodzaju błędu przy edycji nagrody.
+     */
+
     @FXML
     private Label panelEdycjiNagrodLabelError;
+
+    /**
+     * Tablica byte przechowująca zdjęcie z bazy.
+     */
+
     private byte[] zdjecie;
+
+    @FXML
+    private Button PanelEdycjiNagrod;
+
+    /**
+     * Metoda wykonująca akcję wylogowowania użytkownika po naciśnięciu przycisku <code>wyloguj</code>.
+     *
+     * @param event zdarzenie, po którym funkcja ma się wywołać.
+     */
 
     @FXML
     void wyloguj(ActionEvent event) {
@@ -72,9 +144,19 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         activeScene(event, false, false);
     }
 
+    /**
+     * Metoda zmienia nazwę przycisku w przypadku dodawania a nie edycji nagrody.
+     */
+
     void ustawZapisz() {
         panelEdycjiNagrodButtonEdytuj.setText("Dodaj");
     }
+
+    /**
+     * Metoda wykonująca akcję uruchomienia okna wyboru zdjęcia po naciśnięciu przycisku <code>dodaj zdjęcie</code>.
+     *
+     * @param event zdarzenie, po którym funkcja ma się wywołać.
+     */
 
     @FXML
     void panelEdycjiNagrodButtonDodajZdjecie(ActionEvent event) {
@@ -95,6 +177,12 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
             System.out.println(e.getMessage());
         }
     }
+
+    /**
+     * Metoda wykonująca akcję uruchomienia okna wyboru zdjęcia po naciśnięciu przycisku <code>dodaj zdjęcie</code>.
+     *
+     * @param file plik wczytany za pomocą {@link #panelEdycjiNagrodButtonDodajZdjecie(ActionEvent)}
+     */
 
     public void conversja(File file) throws FileNotFoundException, IOException {
         FileInputStream fis = new FileInputStream(file);
@@ -117,10 +205,15 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
 
     }
 
+    /**
+     * Metoda konwertuje tablicę byte na Image
+     *
+     * @param bytes   tablica byte ze zdjęciem w formacie jpg.
+     */
+
     public void conversjaNaZ(byte[] bytes) throws IOException {
         ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
         Iterator<?> readers = ImageIO.getImageReadersByFormatName("jpg");
-
         ImageReader reader = (ImageReader) readers.next();
         Object source = bis;
         ImageInputStream iis = ImageIO.createImageInputStream(source);
@@ -129,7 +222,6 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         BufferedImage image = reader.read(0, param);
         BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
         String directory = System.getProperty("user.home") + "\\Documents\\Zdjęcia";
-        String directory2 = directory + "\\pdf";
         if (!(new File(directory).exists())) {
             new File(directory).mkdir();
         }
@@ -142,6 +234,11 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         System.out.println(imageFile);
     }
 
+    /**
+     * Metoda wykonująca akcję powrotu do panelu nagród za pomocą przycisku <code>anuluj</code>.
+     *
+     * @param event zdarzenie, po którym funkcja ma się wywołać.
+     */
 
     @FXML
     void panelEdycjiNagrodButtonAnuluj(ActionEvent event) {
@@ -156,6 +253,7 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
      *
      * @return true jeśli wszystkie pola obowiązkowe są uzupełnione, w przeciwnym wypadku false
      */
+
     private boolean compulsoryFildNotNull() {
         return (!liczba_punktowS.isEmpty() && !nazwa_nagrody.isEmpty());
     }
@@ -165,6 +263,7 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
      *
      * @return true jeśli liczba punków jest poprawna, w przeciwnym razie false
      */
+
     private boolean pktIsNumber() {
         try {
             liczba_punktow = Integer.parseInt(liczba_punktowS);
@@ -181,6 +280,12 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         }
         return false;
     }
+
+    /**
+     * Metoda wykonująca dodawania nagrody lub edycji po wybraniu odpowiedniego przycisku.
+     * W przypadku  edycji wykona się blok try, a przy dodawaniu blok catch i utworzy nowy obiekt nagrody.
+     * @param event zdarzenie, po którym funkcja ma się wywołać.
+     */
 
     @FXML
     void panelEdycjiNagrodButtonEdytuj(ActionEvent event) {
@@ -215,6 +320,10 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         }
     }
 
+    /**
+     * Metoda wykonuje inicjalizację aktualnych danych użytkownika.
+     */
+
     @Override
     public void setStartValues(Uzytkownicy user) {
         this.curentUser = user;
@@ -234,6 +343,10 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
 
     }
 
+    /**
+     * Metoda wykonuje inicjalizację aktualnie edytowanej nagrody.
+     */
+
     @Override
     public void setStartValuesNagroda(Nagrody nagroda) {
 
@@ -251,7 +364,6 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
     }
 
     @FXML
-        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert PanelEdycjiNagrod != null : "fx:id=\"panelEdycjiNagrodButtonDodajZdjecie\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
         assert panelEdycjiNagrodButtonEdytuj != null : "fx:id=\"panelEdycjiNagrodButtonUsun\" was not injected: check your FXML file 'PanelEdycjiNagrod.fxml'.";
@@ -261,13 +373,4 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
 
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-
-        Image image = new Image(file.toURI().toString());
-        imageview.setImage(image);
-
-
-    }
 }

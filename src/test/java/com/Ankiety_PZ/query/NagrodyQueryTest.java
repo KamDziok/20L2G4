@@ -9,6 +9,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Klasa testująca dla NagrodyQuery
+ */
+
 public class NagrodyQueryTest {
 
     private static NagrodyQuery nq;
@@ -17,18 +21,18 @@ public class NagrodyQueryTest {
     private static Uzytkownicy uzytkownikTrue;
     private static Uzytkownicy uzytkownikFalse;
 
-    static void setUzytkownikTrue(){
+    static void setUzytkownikTrue() {
         uzytkownikTrue = new Uzytkownicy("User", "A", "a", "a", 0,
                 "a", "a", "1a", "aa-aaa", 110);
     }
 
-    static void setUzytkownikFalse(){
+    static void setUzytkownikFalse() {
         uzytkownikFalse = new Uzytkownicy("User", "B", "b", "b", 0,
                 "b", "b", "1b", "bb-bbb", 90);
     }
 
     @BeforeAll
-    static void setValuesInObcejt(){
+    static void setValuesInObcejt() {
         nq = new NagrodyQuery();
         nagrody = new Nagrody(100, "Nagroda test");
         setUzytkownikTrue();
@@ -36,18 +40,18 @@ public class NagrodyQueryTest {
     }
 
     @BeforeEach
-    void clearUzytkownicy(){
+    void clearUzytkownicy() {
         setUzytkownikTrue();
         setUzytkownikFalse();
     }
 
     @Test
-    void checkUzytkownikCanGetNagrodyTestTrue(){
+    void checkUzytkownikCanGetNagrodyTestTrue() {
         assertTrue(nq.checkUzytkownikCanGetNagrody(nagrody, uzytkownikTrue));
     }
 
     @Test
-    void checkUzytkownikCanGetNagrodyTestFalse(){
+    void checkUzytkownikCanGetNagrodyTestFalse() {
         assertFalse(nq.checkUzytkownikCanGetNagrody(nagrody, uzytkownikFalse));
     }
 

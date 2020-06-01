@@ -19,6 +19,7 @@ public abstract class BulidStage {
 
     /**
      * Metoda ładująca odpowiednia scenę fxml'ową.
+     *
      * @param event     zdarzenie na rzecz, którego została wywołana funkcja
      * @param sceneFXML nazwa pliku ze sceną.
      */
@@ -37,10 +38,12 @@ public abstract class BulidStage {
 
     /**
      * Metoda do tworzenia okna z załadowaną sceną.
+     *
      * @param event     zdarzenie na rzecz, którego została wywołana funkcja.
      * @param maximized ustawienie czy okno ma być maksymalnego rozmiaru.
      * @param newStage  ustawienie czy scena zostanie załadowana w nowym oknie, czy w aktualnym.
      */
+
     protected void activeScene(ActionEvent event, Boolean maximized, Boolean newStage) {
 
         try {
@@ -63,8 +66,10 @@ public abstract class BulidStage {
 
     /**
      * Metoda do usuwania okna.
+     *
      * @param event zdarzenie na rzecz, którego została wywołana funkcja.
      */
+
     protected void deleteStage(ActionEvent event) {
         try {
             app = (Stage) ((Node) event.getSource()).getScene().getWindow();

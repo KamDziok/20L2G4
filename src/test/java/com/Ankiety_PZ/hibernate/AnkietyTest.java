@@ -10,6 +10,9 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Klasa testująca dla Ankiety
+ */
 
 public class AnkietyTest {
 
@@ -17,18 +20,18 @@ public class AnkietyTest {
     private static Ankiety anietaACopy;
     private static Ankiety anietaB;
 
-    static void setAnkietyA(Date date){
+    static void setAnkietyA(Date date) {
         anietaA = new Ankiety("AnkietaA", 10, date, date, 0);
         anietaA.setIdAnkiety(1);
     }
 
-    static void setAnkietyACopy(Date date){
+    static void setAnkietyACopy(Date date) {
         anietaACopy = new Ankiety("AnkietaA", 10, date, date, 0);
         anietaACopy.setIdAnkiety(1);
     }
 
     @BeforeAll
-    static void setValuesInObcejt(){
+    static void setValuesInObcejt() {
         Date date = new Date();
         setAnkietyA(date);
         setAnkietyACopy(date);
@@ -37,7 +40,7 @@ public class AnkietyTest {
     }
 
     @BeforeEach
-    void clearAnkietyACopy(){
+    void clearAnkietyACopy() {
         setAnkietyACopy(anietaA.getDataZakonczenia());
     }
 
@@ -45,7 +48,7 @@ public class AnkietyTest {
      * Sprawdzenie czy funkcja isTheSame zwraca true, jeśli obie ankiety mają te mase wartości pól
      */
     @Test
-    void isTheSameTrue(){
+    void isTheSameTrue() {
         assertTrue(anietaA.isTheSame(anietaACopy));
     }
 
@@ -53,7 +56,7 @@ public class AnkietyTest {
      * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli obie ankiety mają wszystkie wartości pól różne
      */
     @Test
-    void isTheSameDifferentAll(){
+    void isTheSameDifferentAll() {
         assertFalse(anietaA.isTheSame(anietaB));
     }
 
@@ -61,7 +64,7 @@ public class AnkietyTest {
      * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli ankiety mają różne id
      */
     @Test
-    void isTheSameDifferentId(){
+    void isTheSameDifferentId() {
         anietaACopy.setIdAnkiety(2);
         assertFalse(anietaA.isTheSame(anietaACopy));
     }
@@ -70,7 +73,7 @@ public class AnkietyTest {
      * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli ankiety mają różne tytuły
      */
     @Test
-    void isTheSameDifferentTytul(){
+    void isTheSameDifferentTytul() {
         anietaACopy.setTytul("AnkietaB");
         assertFalse(anietaA.isTheSame(anietaACopy));
     }
@@ -79,7 +82,7 @@ public class AnkietyTest {
      * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli ankiety mają różne liczbę punktów
      */
     @Test
-    void isTheSameDifferentLiczbaPunktow(){
+    void isTheSameDifferentLiczbaPunktow() {
         anietaACopy.setLiczbaPunktow(12);
         assertFalse(anietaA.isTheSame(anietaACopy));
     }
@@ -88,7 +91,7 @@ public class AnkietyTest {
      * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli ankiety mają różną liczbę wypełnień
      */
     @Test
-    void isTheSameDifferentLiczbaWypelnien(){
+    void isTheSameDifferentLiczbaWypelnien() {
         anietaACopy.setLiczbaWypelnien(12);
         assertFalse(anietaA.isTheSame(anietaACopy));
     }

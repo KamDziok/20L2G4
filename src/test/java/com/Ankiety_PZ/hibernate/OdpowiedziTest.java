@@ -7,20 +7,24 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Klasa testująca dla Odpowiedzi
+ */
+
 public class OdpowiedziTest {
 
     private static Odpowiedzi odpowiedziA;
     private static Odpowiedzi odpowiedziACopy;
     private static Odpowiedzi odpowiedziB;
 
-    static void setOdpowiedziACopy(Odpowiedzi odpowiedz){
+    static void setOdpowiedziACopy(Odpowiedzi odpowiedz) {
         odpowiedziACopy = new Odpowiedzi();
         odpowiedziACopy.setIdOdpowiedzi(odpowiedz.getIdOdpowiedzi());
         odpowiedziACopy.setOdpowiedz(odpowiedz.getOdpowiedz());
     }
 
     @BeforeAll
-    static void setValuesInObcejt(){
+    static void setValuesInObcejt() {
         odpowiedziA = new Odpowiedzi();
         odpowiedziA.setIdOdpowiedzi(1);
         odpowiedziA.setOdpowiedz("odpowiedzA");
@@ -31,28 +35,28 @@ public class OdpowiedziTest {
     }
 
     @BeforeEach
-    void clearOdpowiedziACopy(){
+    void clearOdpowiedziACopy() {
         setOdpowiedziACopy(odpowiedziA);
     }
 
     @Test
-    void isTheSameTrue(){
+    void isTheSameTrue() {
         assertTrue(odpowiedziA.isTheSame(odpowiedziACopy));
     }
 
     @Test
-    void isTheSameDifferentAll(){
+    void isTheSameDifferentAll() {
         assertFalse(odpowiedziA.isTheSame(odpowiedziB));
     }
 
     @Test
-    void isTheSameDifferentId(){
+    void isTheSameDifferentId() {
         odpowiedziACopy.setIdOdpowiedzi(23);
         assertFalse(odpowiedziA.isTheSame(odpowiedziACopy));
     }
 
     @Test
-    void isTheSameDifferentOdpowiedz(){
+    void isTheSameDifferentOdpowiedz() {
         odpowiedziACopy.setOdpowiedz("odpowiedzACopy");
         assertFalse(odpowiedziA.isTheSame(odpowiedziACopy));
     }

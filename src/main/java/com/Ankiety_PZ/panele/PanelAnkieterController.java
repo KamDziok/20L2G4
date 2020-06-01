@@ -21,8 +21,11 @@ import java.util.*;
  */
 
 public class PanelAnkieterController extends BulidStage implements SetStartValues {
+
     private Uzytkownicy curentUser;
+
     private Ankiety ankiety;
+
     private String imie_nazwisko_rola_tmp;
     @FXML
     private Label panelAnkieterLabelError;
@@ -30,14 +33,14 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
     private Label imie_nazwisko_rola;
     @FXML
     private Label imie_nazwisko_rola2;
-    @FXML // ResourceBundle that was given to the FXMLLoaddsdssds
+    @FXML
     private ResourceBundle resources;
-    @FXML // URL location of the FXML file that was given dsdssdsoader
+    @FXML
     private URL location;
     @FXML
     private Button wyloguj1;
-    @FXML // fx:id="panelAnkietButtonDodaj"
-    private Button panelAnkietButtonDodaj; // Value injected by FXMLLoader
+    @FXML
+    private Button panelAnkietButtonDodaj;
     @FXML
     private TableView tableAnkiety;
     @FXML
