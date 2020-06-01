@@ -1,6 +1,11 @@
 package com.Ankiety_PZ.panele;
 
+/**
+ * Klasa odpowiada za pytania z rozdzielaną liczbą punków.
+ */
+
 public class KlasaPomocnicza {
+
     private int count;
     private int punktowe;
 

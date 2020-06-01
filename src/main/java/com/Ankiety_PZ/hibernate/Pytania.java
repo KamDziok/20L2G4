@@ -32,6 +32,11 @@ public class Pytania implements java.io.Serializable {
         this.odpowiedzis = new HashSet<Odpowiedzi>();
     }
 
+    public Pytania(String tresc, Integer punktowe, int rodzajPytania) {
+        this.tresc = tresc;
+        this.punktowe = punktowe;
+        this.rodzajPytania = rodzajPytania;
+    }
 
     public Pytania(Ankiety ankiety, String tresc, byte[] zdjecie, int rodzajPytania, Integer punktowe) {
         this.ankiety = ankiety;
@@ -120,11 +125,11 @@ public class Pytania implements java.io.Serializable {
     public boolean isTheSame(Pytania pytania) {
         boolean result = false;
         if (idPytania.intValue() == pytania.getIdPytania().intValue()) {
-
             if (tresc.equals(pytania.tresc)) {
-
-                if (rodzajPytania == pytania.getRodzajPytania()) {
-                    result = true;
+                if (punktowe.intValue() == pytania.getPunktowe().intValue()){
+                    if (rodzajPytania == pytania.getRodzajPytania()) {
+                        result = true;
+                    }
                 }
             }
         }
