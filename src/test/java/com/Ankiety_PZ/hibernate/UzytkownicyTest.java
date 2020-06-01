@@ -4,6 +4,9 @@ import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UzytkownicyTest {
 
@@ -14,13 +17,24 @@ public class UzytkownicyTest {
 
     @Test
     void updatePunktyTestAdd(){
-        uzytkownikAdd.updatePunkty(10, true);
-        assertEquals(uzytkownikAdd.getLiczbaPunktow(), 120);
+        boolean result = uzytkownikAdd.updatePunkty(10, true);
+        assertAll("userAdd",
+                () -> assertEquals(uzytkownikAdd.getLiczbaPunktow(), 120),
+                () -> assertTrue(result)
+        );
     }
 
     @Test
-    void updatePunktyTestSub(){
-        uzytkownikSub.updatePunkty(10, false);
-        assertEquals(uzytkownikSub.getLiczbaPunktow(), 80);
+    void updatePunktyTestSubTrue(){
+        boolean result = uzytkownikSub.updatePunkty(10, false);
+        assertAll("userAdd",
+                () -> assertEquals(uzytkownikSub.getLiczbaPunktow(), 80),
+                () -> assertTrue(result)
+        );
+    }
+
+    @Test
+    void updatePunktyTestSubFalse(){
+        assertFalse(uzytkownikSub.updatePunkty(130, false));
     }
 }

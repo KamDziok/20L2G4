@@ -4,7 +4,8 @@ import com.Ankiety_PZ.hibernate.Nagrody;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class NagrodyQueryTest {
 
@@ -18,12 +19,12 @@ public class NagrodyQueryTest {
 
     @Test
     void checkUzytkownikCanGetNagrodyTestTrue(){
-        assertEquals(nq.checkUzytkownikCanGetNagrody(nagrody, uzytkownikTrue), true);
+        assertTrue(nq.checkUzytkownikCanGetNagrody(nagrody, uzytkownikTrue));
     }
 
     @Test
     void checkUzytkownikCanGetNagrodyTestFalse(){
-        assertEquals(nq.checkUzytkownikCanGetNagrody(nagrody, uzytkownikFalse), false);
+        assertFalse(nq.checkUzytkownikCanGetNagrody(nagrody, uzytkownikFalse));
     }
 
 }
