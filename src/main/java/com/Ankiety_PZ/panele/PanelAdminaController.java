@@ -16,78 +16,254 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Klasa odpowiada za panel administratora.
+ */
+
 public class PanelAdminaController extends BulidStage implements SetStartValues {
 
+    /**
+     * Obiekt nasłuchujący zmiany w tabeli aktywnych użytkowników.
+     */
+
     public ObservableList<UzytkownicyTabelka> dane;
+
+    /**
+     * Obiekt nasłuchujący zmiany w tabeli zablokowanych użytkowników.
+     */
+
     public ObservableList<UzytkownicyZablokowaniTabelka> dane2;
+
+    /**
+     * String z aktualnym imieniem, nazwiskiem i rolą użytkownika
+     */
+
     private String imie_nazwisko_rola_tmp;
+
+    /**
+     * Aktualnie zalogowany użytkownik
+     */
+
     private Uzytkownicy curentUser;
+
+    /**
+     * Etykieta z aktualnym imieniem, nazwiskiem i rolą użytkownika
+     */
+
     @FXML
     private Label imie_nazwisko_rola;
+
+    /**
+     * Etykieta z aktualnym imieniem, nazwiskiem i rolą użytkownika
+     */
+
     @FXML
     private Label imie_nazwisko_rola2;
+
+    /**
+     * Etykieta z aktualnym imieniem, nazwiskiem i rolą użytkownika
+     */
+
     @FXML
     private Label imie_nazwisko_rola3;
+
+    /**
+     * Etykieta informująca o rodzaju błędu przy edycji własnego profilu przez administratora.
+     */
+
     @FXML
     private Label panelAdminaLabelError;
-    @FXML // ResourceBundle that was given to the FXMLLoader
+    @FXML
     private ResourceBundle resources;
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
+    @FXML
     private URL location;
+
+    /**
+     * Przycisk odpowiedzialny za wylogowywanie.
+     */
+
     @FXML
     private Button wyloguj;
+
+    /**
+     * Tabela aktywnych użytkowników.
+     */
+
     @FXML
     TableView tableUzytkownicy;
+
+    /**
+     * Tabela zablokowanych użytkowników.
+     */
+
     @FXML
     TableView tableUzytkownicyZablokowani;
+
+    /**
+     * Kolumna w tabeli użytkowników aktywnych z imieniem i nazwiskiem.
+     */
+
     @FXML
     private TableColumn imie_i_nazwisko;
+
+    /**
+     * Kolumna w tabeli użytkowników aktywnych z mailem użytkownika.
+     */
+
     @FXML
     private TableColumn mail;
+
+    /**
+     * Kolumna w tabeli użytkowników aktywnych z punktami użytkownika.
+     */
+
     @FXML
     private TableColumn pkt;
+
+    /**
+     * Kolumna w tabeli użytkowników aktywnych z przyciskiem do blokowania użytkownika.
+     */
+
     @FXML
     private TableColumn przycisk;
+
+    /**
+     * Kolumna w tabeli użytkowników zablokowanych z imieniem i nazwiskiem.
+     */
+
     @FXML
     private TableColumn imie_i_nazwisko_z;
+
+    /**
+     * Kolumna w tabeli użytkowników zablokowanych z mailem użytkownika.
+     */
+
     @FXML
     private TableColumn mail_z;
+
+    /**
+     * Kolumna w tabeli zablokowanych użytkowników z punktami użytkownika.
+     */
+
     @FXML
     private TableColumn pkt_z;
+
+    /**
+     * Kolumna w tabeli użytkowników zablokowanych z przyciskiem do odblokowywania użytkownika.
+     */
+
     @FXML
     private TableColumn przycisk3;
+
+    /**
+     * Kolumna w tabeli użytkowników aktywnych z przyciskiem do edycji użytkownika.
+     */
+
     @FXML
     private TableColumn przycisk2;
+
+    /**
+     * Mail przy edycji profilu.
+     */
+
     @FXML
     private TextField email;
+
+    /**
+     * Aktualne hasło przy edycji profilu.
+     */
+
     @FXML
     private TextField haslo;
+
+    /**
+     * Nowe hasło przy edycji profilu.
+     */
+
     @FXML
     private TextField nowehaslo;
+
+    /**
+     * Powtórnie wprowadzone hasło przy edycji profilu.
+     */
+
     @FXML
     private TextField hasloznowu;
+
+    /**
+     * Imie przy edycji profilu.
+     */
+
     @FXML
     private TextField imie;
+
+    /**
+     * Nazwisko przy edycji profilu.
+     */
+
     @FXML
     private TextField nazwisko;
+
+    /**
+     * Miejscowość przy edycji profilu.
+     */
+
     @FXML
     private TextField miejscowosc;
+
+    /**
+     * Ulica przy edycji profilu.
+     */
+
     @FXML
     private TextField ulica;
+
+    /**
+     * Numer budynku przy edycji profilu.
+     */
+
     @FXML
     private TextField budynek;
+
+    /**
+     * Numer lokalu przy edycji profilu.
+     */
+
     @FXML
     private TextField lokal;
+
+    /**
+     * Dwie pierwsze cyfry kodu pocztowego przy edycji profilu.
+     */
+
     @FXML
     private TextField kod1;
+
+    /**
+     * Trzy ostatnie cyfry kodu pocztowego przy edycji profilu.
+     */
+
     @FXML
     private TextField kod2;
+
+    /**
+     * Metoda wykonująca akcję wylogowowania użytkownika po naciśnięciu przycisku <code>wyloguj</code>.
+     *
+     * @param event zdarzenie, po którym funkcja ma się wywołać.
+     */
 
     @FXML
     void wyloguj(ActionEvent event) {
         loadingFXML(event, SceneFXML.PANEL_LOGIN);
         activeScene(event, false, false);
     }
+
+    /**
+     * Metoda wykonująca akcję edycji profilu własnego profilu przez administratora wraz ze sprawdzeniem prawidłowości
+     * wprowadzonych danch. Metoda wykona się po wybraniu przycisku <code>zapisz zmiany</code>.
+     *
+     * @param event zdarzenie, po którym funkcja ma się wywołać.
+     */
 
     @FXML
     void panelAdminaButtonZmienUstawienia(ActionEvent event) {
@@ -143,6 +319,10 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
         }
     }
 
+    /**
+     * Metoda odpowiada pobranie aktualnych aktywnych użytkowników do tabeli.
+     */
+
     void setUzytkownicy() {
         UzytkownicyQuery query = new UzytkownicyQuery();
         List<Uzytkownicy> uzytkownicy = query.selectBy(false, curentUser);
@@ -159,6 +339,10 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
         tableUzytkownicy.setItems(dane);
     }
 
+    /**
+     * Metoda odpowiada pobranie aktualnych zablokowanych użytkowników do tabeli.
+     */
+
     void setUzytkownicyZablokowani() {
         UzytkownicyQuery query = new UzytkownicyQuery();
         List<Uzytkownicy> uzytkownicy = query.selectBy(true, curentUser);
@@ -173,6 +357,10 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
         przycisk3.setCellValueFactory(new PropertyValueFactory("odblokuj"));
         tableUzytkownicyZablokowani.setItems(dane2);
     }
+
+    /**
+     * Metoda odpowiada za ustwienie aktualnych danych przy własnego edycji profilu przez administratora.
+     */
 
     private void setUstawienia() {
         String imie = curentUser.getImie();
@@ -190,6 +378,9 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
         kod2.setText(kod[1]);
     }
 
+    /**
+     * Metoda wykonuje inicjalizację aktualnych danych użytkownika, użytkowników aktywnych i zablokowanych.
+     */
 
     @Override
     public void setStartValues(Uzytkownicy user) {
@@ -221,7 +412,6 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
     }
 
     @FXML
-        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert wyloguj != null : "fx:id=\"wyloguj\" was not injected: check your FXML file 'PanelAdmina.fxml'.";
         assert imie_nazwisko_rola != null : "fx:id=\"imie_nazwisko_rola\" was not injected: check your FXML file 'PanelAdmina.fxml'.";
