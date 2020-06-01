@@ -51,7 +51,7 @@ public class SceneFXML {
      * Odnośnik do pliku z oknem ankiety z testem jednokrotnego wyboru
      */
 
-    public static final String OKNO_ANKIETA_RADIO = "oknoAnkietyRadio";
+    public static final String OKNO_ANKIETA_RADIO = "AnkietyRadio";
 
     /**
      * Odnośnik do pliku z panelem tworzenia ankiety
