@@ -1,9 +1,12 @@
 package com.Ankiety_PZ.query;
 
 import org.hibernate.Session;
-
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * Klasa odpowiada za operacje na danych.
+ */
 
 class OperationsOnDataInEntity<Type> extends OperationInSession {
 

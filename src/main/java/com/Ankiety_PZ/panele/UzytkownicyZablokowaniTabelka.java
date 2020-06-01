@@ -51,8 +51,9 @@ public class UzytkownicyZablokowaniTabelka extends BulidStage {
     /**
      * Metoda ustawia pojedynczego użytkownika w tabeli zablokowanych użytkowników.
      * Metoda obsługuje również akcje odblokowania użytkownika przyciskiem <code>odblokuj</code>.
+     *
      * @param uzytkownik obiekt użytkownika do wypisania w tabeli.
-     * @param panel PanelAdminaController.
+     * @param panel      PanelAdminaController.
      */
 
     UzytkownicyZablokowaniTabelka(Uzytkownicy uzytkownik, PanelAdminaController panel) {

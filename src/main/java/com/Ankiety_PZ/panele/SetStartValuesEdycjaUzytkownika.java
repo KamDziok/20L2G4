@@ -11,6 +11,7 @@ public interface SetStartValuesEdycjaUzytkownika {
     /**
      * Metoda abstrakcyjna stworzona dla ustawienie przez jej nadpisanie edytowanego
      * użytkownika w panelu edycji użytkownika, edytowanego przez administratora.
+     *
      * @param user obiekt użytkownika.
      */
 

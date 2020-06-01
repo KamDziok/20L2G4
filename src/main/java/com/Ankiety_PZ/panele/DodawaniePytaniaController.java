@@ -1,8 +1,3 @@
-
-/**
- * Sample Skeleton for 'DodawaniePytania.fxml' Controller Class
- */
-
 package com.Ankiety_PZ.panele;
 
 import com.Ankiety_PZ.hibernate.*;
@@ -33,7 +28,7 @@ import java.util.*;
 
 
 public class DodawaniePytaniaController extends BulidStage implements SetStartValues {
-    File file = new File("C:\\Users\\wlasciciel\\Pictures\\a.jpg");
+    File file;
 
     private final ToggleGroup radioButtonGroup = new ToggleGroup();
 

@@ -58,9 +58,10 @@ public class UzytkownicyTabelka extends BulidStage {
      * Metoda ustawia pojedynczego użytkownika w tabeli użytkowników.
      * Metoda obsługuje również akcje blokowania użytkownika przyciskiem <code>zablokuj</code>
      * oraz edycję użytkownika przyciskiem <code>edytuj</code>.
-     * @param uzytkownik obiekt użytkownika do wypisania w tabeli.
+     *
+     * @param uzytkownik            obiekt użytkownika do wypisania w tabeli.
      * @param uzytkownik_zalogowany obiekt użytkownika zalogowanego do przekazania do panelu edycji.
-     * @param panel PanelAdminaController.
+     * @param panel                 PanelAdminaController.
      */
 
     UzytkownicyTabelka(Uzytkownicy uzytkownik, Uzytkownicy uzytkownik_zalogowany, PanelAdminaController panel) {

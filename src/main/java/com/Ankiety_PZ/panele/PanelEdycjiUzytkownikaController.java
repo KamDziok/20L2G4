@@ -13,102 +13,223 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Klasa odpowiada za edycję użytkownika przez administratora z możliwością zmiany uprawnień.
+ */
+
 public class PanelEdycjiUzytkownikaController extends BulidStage implements SetStartValues, SetStartValuesEdycjaUzytkownika, Initializable {
 
+    /**
+     * Aktualnie zalogowany użytkownik
+     */
+
     Uzytkownicy curentUser;
+
+    /**
+     * Edytowany użytkownik
+     */
+
     Uzytkownicy edycja;
+
+    /**
+     * Obiekt nasłuchujący zmiany w ChoiceBox z uprawnieniami.
+     */
+
     ObservableList list = FXCollections.observableArrayList();
+
+    /**
+     * String z aktualnym imieniem, nazwiskiem i rolą użytkownika
+     */
+
     private String imie_nazwisko_rola_tmp;
+
+    /**
+     * Mail przy edycji profilu.
+     */
+
     private String mail;
+
+    /**
+     * Uprawnienia użytkownika edytowanego.
+     */
+
     private int uprawnienia_i;
+
+    /**
+     * Nowe hasło nadane przez administratora.
+     */
+
     private String password;
+
+    /**
+     * Imie edytowanego użytkownika
+     */
+
     private String name;
+
+    /**
+     * Nazwisko użytkownika edytowanego.
+     */
+
     private String surname;
+
+    /**
+     * Miasto użytkownika edytowanego.
+     */
+
     private String city;
+
+    /**
+     * Ulica użytkownika edytowanego.
+     */
+
     private String street;
     /**
-     * Numer domu wczytany z pola tekstowego jako String.
+     * Numer domu wczytany z pola tekstowego jako String użytkownika edytowanego.
      */
 
     private String numberHouseString;
 
     /**
-     * Numer lokalu wczytany z pola tekstowego jako String.
+     * Numer lokalu wczytany z pola tekstowego jako String użytkownika edytowanego.
      */
 
     private String numberFlatString;
 
     /**
-     * Pierwsza część kodu pocztowego wczytany z pola tekstowego jako String.
+     * Pierwsza część kodu pocztowego wczytany z pola tekstowego jako String użytkownika edytowanego.
      */
 
     private String postCodeFirstString;
 
     /**
-     * Druga część kodu pocztowego wczytany z pola tekstowego jako String.
+     * Druga część kodu pocztowego wczytany z pola tekstowego jako String użytkownika edytowanego.
      */
 
     private String postCodeSecondString;
 
     /**
-     * Pierwsza część kodu pocztowego przekształconego na int.
+     * Pierwsza część kodu pocztowego przekształconego na int użytkownika edytowanego.
      */
 
     private int postCodeFirstInt;
 
     /**
-     * Druga część kodu pocztowego przekształconego na int.
+     * Druga część kodu pocztowego przekształconego na int użytkownika edytowanego.
      */
 
     private int postCodeSecondInt;
 
     /**
-     * Minimalna długośc hasłą.
+     * Minimalna długośc hasła użytkownika edytowanego.
      */
 
     private final int minSizePassword = 3;
 
+    /**
+     * Etykieta informująca o rodzaju błędu przy edycji użytkownika.
+     */
+
     @FXML
     private Label panelEdycjiUzytkownikaLabelError;
+
+    /**
+     * Etykieta z aktualnym imieniem, nazwiskiem i rolą użytkownika
+     */
 
     @FXML
     private Label imie_nazwisko_rola;
 
-    @FXML
-    private TextField email;
 
-    @FXML
-    private TextField haslo;
+    /**
+     * ChoiceBox z aktualnymi uprawnieniami edytowanego użytkownika.
+     */
 
     @FXML
     private ChoiceBox<String> uprawnienia;
 
+    /**
+     * Mail przy edycji profilu.
+     */
+
+
+    @FXML
+    private TextField email;
+
+    /**
+     * Aktualne hasło przy edycji profilu.
+     */
+
+    @FXML
+    private TextField haslo;
+
+
+    /**
+     * Imie przy edycji profilu.
+     */
+
     @FXML
     private TextField imie;
+
+    /**
+     * Nazwisko przy edycji profilu.
+     */
 
     @FXML
     private TextField nazwisko;
 
+    /**
+     * Miejscowość przy edycji profilu.
+     */
+
     @FXML
     private TextField miejscowosc;
+
+    /**
+     * Ulica przy edycji profilu.
+     */
 
     @FXML
     private TextField ulica;
 
+    /**
+     * Numer budynku przy edycji profilu.
+     */
+
     @FXML
     private TextField budynek;
+
+    /**
+     * Numer lokalu przy edycji profilu.
+     */
 
     @FXML
     private TextField lokal;
 
+    /**
+     * Dwie pierwsze cyfry kodu pocztowego przy edycji profilu.
+     */
+
     @FXML
     private TextField kod1;
 
+    /**
+     * Trzy ostatnie cyfry kodu pocztowego przy edycji profilu.
+     */
+
     @FXML
     private TextField kod2;
+
+    /**
+     * Metoda wykonująca akcję anulowania edycji użytkownika po naciśnięciu przycisku <code>anuluj</code>.
+     * Powraca do panelu administratora.
+     *
+     * @param event zdarzenie, po którym funkcja ma się wywołać.
+     */
 
     @FXML
     void panelEdycjiUzytkownikowButtonAnuluj(ActionEvent event) {
@@ -123,6 +244,7 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
      *
      * @return true jeśli wszystkie pola obowiązkowe są uzupełnione, w przeciwnym wypadku false
      */
+
     private boolean compulsoryFildNotNull() {
         return (!mail.isEmpty() && !name.isEmpty() && !surname.isEmpty() && !city.isEmpty() && !street.isEmpty()
                 && !numberHouseString.isEmpty() && !postCodeFirstString.isEmpty() && !postCodeSecondString.isEmpty());
@@ -130,10 +252,10 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
 
 
     /**
-     * Metoda pobiera uprawnienia z ChoiceBoxa, jeśli nie zostały zmienione ustawia uprawnienia_i na dotychczasową wartość.
-     *
-     * @author Krzysztof Banaś
+     * Metoda pobiera uprawnienia z ChoiceBoxa,
+     * jeśli nie zostały zmienione ustawia uprawnienia_i na dotychczasową wartość.
      */
+
     private void checkUprawnienia() {
         String ustaw = uprawnienia.getValue();
         try {
@@ -152,10 +274,11 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
     }
 
     /**
-     * Metoda sprawdza, czy hasło ma odpowiednia ilośc znaków i czy potwórz hasło jest takie samo jak hasło.
+     * Metoda sprawdza, czy hasło ma odpowiednia ilośc znaków.
      *
-     * @return true jeśli hasło ma odpowiednią długość i jest takie samo jak powtórz hasło, w przeciwnym wypadku false.
+     * @return true jeśli hasło ma odpowiednią długość, w przeciwnym wypadku false.
      */
+
     private boolean checkPassword() {
         if ((password.length() < minSizePassword) && (password.length() != 0)) {
             return false;
@@ -164,6 +287,12 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
         }
     }
 
+    /**
+     * Metoda wykonująca akcję zapisu edycji profilu użytkownika wraz ze sprawdzeniem prawidłowości wprowadzonych danch.
+     * Metoda wykona się po wybraniu przycisku <code>zapisz zmiany</code>.
+     *
+     * @param event zdarzenie, po którym funkcja ma się wywołać.
+     */
 
     @FXML
     void panelEdycjiUzytkownikowButtonZapisz(ActionEvent event) {
@@ -218,11 +347,21 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
         }
     }
 
+    /**
+     * Metoda wykonująca akcję wylogowowania użytkownika po naciśnięciu przycisku <code>wyloguj</code>.
+     *
+     * @param event zdarzenie, po którym funkcja ma się wywołać.
+     */
+
     @FXML
     void wyloguj(ActionEvent event) {
         loadingFXML(event, SceneFXML.PANEL_LOGIN);
         activeScene(event, false, false);
     }
+
+    /**
+     * Metoda wykonuje inicjalizację aktualnych danych użytkownika.
+     */
 
     @Override
     public void setStartValues(Uzytkownicy user) {
@@ -234,11 +373,19 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
 
     }
 
+    /**
+     * Metoda wykonuje inicjalizację aktualnych danych użytkownika edytowanego.
+     */
+
     @Override
     public void SetStartValuesEdycjaUzytkownika(Uzytkownicy user) {
         this.edycja = user;
         setUstawienia();
     }
+
+    /**
+     * Metoda odpowiada za ustwienie aktualnych danych przy edycji profilu.
+     */
 
     private void setUstawienia() {
         String imie = edycja.getImie();
@@ -267,6 +414,10 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
         kod1.setText(kod[0]);
         kod2.setText(kod[1]);
     }
+
+    /**
+     * Metoda odpowiada za ustwienie aktualnych listy uprawnień w ChoiceBox.
+     */
 
     private void loadUprawnienia() {
 

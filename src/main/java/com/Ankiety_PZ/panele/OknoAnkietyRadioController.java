@@ -33,7 +33,7 @@ import java.util.LinkedList;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-public class OknoAnkietyRadioController extends BulidStage implements SetStartValues{
+public class OknoAnkietyRadioController extends BulidStage implements SetStartValues {
 
     private Uzytkownicy curentUser;
 
@@ -81,8 +81,8 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
         for (Odpowiedzi odpowiedz : odpowiedzi) {
             radioButtons.add(new RadioButton(odpowiedz.getOdpowiedz()));
         }
-        for (RadioButton radio:radioButtons
-             ) {
+        for (RadioButton radio : radioButtons
+        ) {
             radio.setLayoutX(37);
             radio.setLayoutY(y);
             radio.setToggleGroup(radioButtonGroup);
@@ -98,7 +98,7 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
         for (Odpowiedzi odpowiedz : odpowiedzi) {
             checkBox.add(new CheckBox(odpowiedz.getOdpowiedz()));
         }
-        for (CheckBox check:checkBox
+        for (CheckBox check : checkBox
         ) {
             check.setLayoutX(37);
             check.setLayoutY(y);
@@ -119,7 +119,7 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
         odpowiedzOtwarta.setVisible(true);
     }
 
-    private void setPktOdpowiedzi(Set<Odpowiedzi> odpowiedzi,int pkt) {
+    private void setPktOdpowiedzi(Set<Odpowiedzi> odpowiedzi, int pkt) {
         punktoweOdpowiedzi = new LinkedList();
         punktowePola = new LinkedList();
         int y = 172;
@@ -127,7 +127,7 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
             punktowePola.add(new TextField());
             punktoweOdpowiedzi.add(new Label(odpowiedz.getOdpowiedz()));
         }
-        for (TextField field:punktowePola
+        for (TextField field : punktowePola
         ) {
             field.setLayoutX(37);
             field.setLayoutY(y);
@@ -137,7 +137,7 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
             y += 50;
         }
         y = 172;
-        for (Label label:punktoweOdpowiedzi
+        for (Label label : punktoweOdpowiedzi
         ) {
             label.setLayoutX(200);
             label.setLayoutY(y);
@@ -174,7 +174,7 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
     }
 
     private boolean isRadioComplete() {
-        for (RadioButton button:radioButtons
+        for (RadioButton button : radioButtons
         ) {
             if (button.isSelected())
                 return true;
@@ -184,8 +184,8 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
     }
 
     private boolean isCheckComplete() {
-        for (CheckBox box:checkBox
-             ) {
+        for (CheckBox box : checkBox
+        ) {
             if (box.isSelected())
                 return true;
         }
@@ -204,7 +204,7 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
         int suma = 0;
         int pole = 0;
         try {
-            for (TextField field:punktowePola
+            for (TextField field : punktowePola
             ) {
                 pole = Integer.parseInt(field.getText());
                 if (pole < 0) {
@@ -241,15 +241,15 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
     private void addAnswer(Set<Odpowiedzi> odpowiedzi, Pytania pytanie) {
         switch (rodzajPytania) {
             case 0:
-                for (RadioButton button:radioButtons
-                     ) {
+                for (RadioButton button : radioButtons
+                ) {
                     if (button.isSelected())
                         odpowiedziDoWyslania.add(new OdpowiedziUzytkownicy(odpowiedzi.iterator().next(), curentUser));
                 }
                 break;
             case 1:
                 Iterator iteratorek = odpowiedzi.iterator();
-                for (CheckBox box:checkBox
+                for (CheckBox box : checkBox
                 ) {
                     if (box.isSelected()) {
                         Odpowiedzi odp = (Odpowiedzi) iteratorek.next();
@@ -262,7 +262,7 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                 break;
             case 3:
                 Iterator iteratorki = odpowiedzi.iterator();
-                for (TextField field:punktowePola
+                for (TextField field : punktowePola
                 ) {
                     Odpowiedzi odp = (Odpowiedzi) iteratorki.next();
                     odpowiedziDoWyslania.add(new OdpowiedziUzytkownicy(odp, curentUser, Integer.parseInt(field.getText())));
@@ -326,7 +326,8 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
         dalej.setVisible(true);
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    @FXML
+        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
 
     }
@@ -354,13 +355,14 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
     @Override
     public void setStartValuesIerator(Iterator<Pytania> iterator) {
         Pytania pytanie = iterator.next();
-        if(pytanie.getZdjecie()!= null){
-        try {
-            conversjaNaZ(pytanie.getZdjecie());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }}
-      ankietaTytul.setText(pytanie.getAnkiety().getTytul());
+        if (pytanie.getZdjecie() != null) {
+            try {
+                conversjaNaZ(pytanie.getZdjecie());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        ankietaTytul.setText(pytanie.getAnkiety().getTytul());
         punkty = pytanie.getPunktowe();
         rodzajPytania = pytanie.getRodzajPytania();
         switch (rodzajPytania) {
@@ -387,6 +389,7 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
         }
         setButton(iterator, pytanie);
     }
+
     public void conversjaNaZ(byte[] bytes) throws IOException {
 
 
@@ -409,7 +412,7 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
         }
         Graphics2D g2 = bufferedImage.createGraphics();
         g2.drawImage(image, null, null);
-        File imageFile = new File(directory + "\\" + bytes );
+        File imageFile = new File(directory + "\\" + bytes);
         ImageIO.write(bufferedImage, "jpg", imageFile);
         javafx.scene.image.Image image2 = new Image(imageFile.toURI().toString());
         obrazek.setImage(image2);
@@ -429,5 +432,7 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
     }
 
     @Override
-    public void setStartValuesPanelUzytkownikaController(PanelUzytkownikaController controller) { this.controller = controller; }
+    public void setStartValuesPanelUzytkownikaController(PanelUzytkownikaController controller) {
+        this.controller = controller;
+    }
 }

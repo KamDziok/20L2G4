@@ -11,6 +11,10 @@ import org.hibernate.Session;
 
 import java.util.List;
 
+/**
+ * Klasa zawiera metody do przesyłu danych z bazą danych dla tabeli Uzytkownicy.
+ */
+
 public class UzytkownicyQuery extends OperationInSession {
 
     private OperationsOnDataInEntity<Uzytkownicy> modifyUzytkownik;
@@ -28,8 +32,8 @@ public class UzytkownicyQuery extends OperationInSession {
      *
      * @param id identyfikarot użytkownika.
      * @return obiekt Uzytkownicy jeśli istnieje w zazie użytkownika o podanym id, w przeciwnym wypadku null.
-     * @author KamDziok
      */
+
     public Uzytkownicy selectById(int id) {
         return modifyUzytkownik.selectObjectHQL(("from Uzytkownicy as u where u.idUzytkownika=" + id));
     }
@@ -71,7 +75,6 @@ public class UzytkownicyQuery extends OperationInSession {
      *
      * @param user obiet Uzytkownicy, który chcemy zablokować.
      * @return true jeśli operacja się udała, w przeciwnym wypadku false.
-     * @author KamDziok
      */
 
     public boolean ban(Uzytkownicy user) {

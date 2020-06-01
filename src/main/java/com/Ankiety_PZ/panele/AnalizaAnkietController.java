@@ -12,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
@@ -54,8 +55,9 @@ public class AnalizaAnkietController implements SetStartValues {
 
     /**
      * Metoda rysuje wykres dla pytań jednokrotnego wyboru i wielokrotnego wyboru.
+     *
      * @param pytanie obiekt pytania.
-     * @param y paramter odpowiadający za położenie ukłaldu.
+     * @param y       paramter odpowiadający za położenie ukłaldu.
      */
 
     void analizaPytaniaRadioCheck(Pytania pytanie, int y) {
@@ -88,8 +90,9 @@ public class AnalizaAnkietController implements SetStartValues {
 
     /**
      * Metoda wypisuje wszystkie odpowiedzi otwarte w tabeli.
+     *
      * @param pytanie obiekt pytania.
-     * @param y paramter odpowiadający za położenie ukłaldu.
+     * @param y       paramter odpowiadający za położenie ukłaldu.
      */
 
     void analizaPytaniaOtwarte(Pytania pytanie, int y) {
@@ -130,8 +133,9 @@ public class AnalizaAnkietController implements SetStartValues {
 
     /**
      * Metoda rysuje wykres dla pytań procentowych i punktowych.
+     *
      * @param pytanie obiekt pytania.
-     * @param y paramter odpowiadający za położenie ukłaldu.
+     * @param y       paramter odpowiadający za położenie ukłaldu.
      */
 
     void analizaPytaniaProcentowePkt(Pytania pytanie, int y) {
@@ -170,7 +174,8 @@ public class AnalizaAnkietController implements SetStartValues {
     }
 
     @FXML
-    void initialize() {}
+    void initialize() {
+    }
 
     @Override
     public void setStartValues(Uzytkownicy user) {

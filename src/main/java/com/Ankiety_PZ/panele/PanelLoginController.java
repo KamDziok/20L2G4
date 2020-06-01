@@ -1,7 +1,3 @@
-/**
- * Sample Skeleton for 'PanelLogin.fxml' Controller Class
- */
-
 package com.Ankiety_PZ.panele;
 
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
@@ -12,14 +8,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
+ * Klasa odpowiada za logowanie użytkownika.
  * Klasa kontroler do ramki 'PanelLogin.fxml', jest potomkiem klasy {@link BulidStage}.
- *
- * @author KamDziok
  */
 
 public class PanelLoginController extends BulidStage {
@@ -51,7 +45,7 @@ public class PanelLoginController extends BulidStage {
     /**
      * Metoda obsługi przycisku zaloguj.
      *
-     * @param event zdarzenie, po którym funkcja ma się wywołać
+     * @param event zdarzenie, po którym funkcja ma się wywołać.
      * @author KamDziok
      */
 
@@ -105,9 +99,7 @@ public class PanelLoginController extends BulidStage {
 
     /**
      * Metoda obsługi przycisku zarejestruj.
-     *
      * @param event zdarzenie, po którym funkcja ma się wywołać
-     * @author KamDziok
      */
 
     @FXML

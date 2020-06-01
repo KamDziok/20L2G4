@@ -29,11 +29,6 @@ public class OdpowiedziTabelka extends BulidStage {
 
     public Button buttonUsun;
 
-    /**
-     * Metoda ustawia pojedynczą odpowiedź w tabeli odpowiedzi.
-     * Metoda obsługuje również akcje usunięcia odpowiedzi przyciskiem <code>usuń</code>.
-     */
-
     OdpowiedziTabelka(Odpowiedzi odpowiedzi, Ankiety ankieta, Uzytkownicy user, List<Odpowiedzi> odp, List<Pytania> pyt, Set usu, Boolean edycja2, DodawaniePytaniaController dod) {
         tresc = odpowiedzi.getOdpowiedz();
         buttonUsun = new Button("Usuń");

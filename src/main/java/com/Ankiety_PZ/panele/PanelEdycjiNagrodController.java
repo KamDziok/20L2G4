@@ -27,20 +27,17 @@ import java.net.URL;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 
-/**
- * Sample Skeleton for 'PanelEdycjiNagrod.fxml' Controller Class
- */
 
 public class PanelEdycjiNagrodController extends BulidStage implements Initializable, SetStartValues {
 
     private Nagrody nagrody;
     private Uzytkownicy curentUser;
-    Image image;
     int liczba_punktow;
     String liczba_punktowS;
     String nazwa_nagrody;
 
-    File file = new File("C:\\Users\\Banan\\Pictures\\a.jpg");
+    File file;
+
     @FXML
     private Button wyloguj;
 
@@ -129,9 +126,7 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
         ImageInputStream iis = ImageIO.createImageInputStream(source);
         reader.setInput(iis, true);
         ImageReadParam param = reader.getDefaultReadParam();
-
         BufferedImage image = reader.read(0, param);
-
         BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
         String directory = System.getProperty("user.home") + "\\Documents\\Zdjęcia";
         String directory2 = directory + "\\pdf";

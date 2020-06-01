@@ -9,6 +9,9 @@ import org.hibernate.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Klasa zawiera metody do przesyłu danych z bazą danych dla tabeli Pytania.
+ */
 
 public class PytaniaQuery extends OperationInSession {
 
