@@ -44,34 +44,52 @@ public class PytaniaTest {
         setPytaniaACopy(pytaniaA);
     }
 
+    /**
+     * Sprawdzenie czy funkcja isTheSame zwraca true, jeśli obie Pytania mają te mase wartości pól
+     */
     @Test
     void isTehSameTrue() {
         assertTrue(pytaniaA.isTheSame(pytaniaACopy));
     }
 
+    /**
+     * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli obie Pytania mają wszystkie wartości pól różne
+     */
     @Test
     void isTheSameFalse() {
         assertFalse(pytaniaA.isTheSame(pytaniaB));
     }
 
+    /**
+     * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli obie Odpowiedzi mają różne id
+     */
     @Test
     void isTheSameDifferentId() {
         pytaniaACopy.setIdPytania(23);
         assertFalse(pytaniaA.isTheSame(pytaniaACopy));
     }
 
+    /**
+     * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli obie Odpowiedzi mają różne treści
+     */
     @Test
     void isTheSameDifferentTresc() {
         pytaniaACopy.setTresc("pytanieACopy");
         assertFalse(pytaniaA.isTheSame(pytaniaACopy));
     }
 
+    /**
+     * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli obie Odpowiedzi mają różne wartości pola punktowe
+     */
     @Test
     void isTheSameDifferentPunktowe() {
         pytaniaACopy.setPunktowe(pytaniaACopy.getPunktowe() + 50);
         assertFalse(pytaniaA.isTheSame(pytaniaACopy));
     }
 
+    /**
+     * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli obie Odpowiedzi mają różne rodzaje pytania
+     */
     @Test
     void isTheSameDifferentRodzajPytania() {
         pytaniaACopy.setRodzajPytania(3);

@@ -76,6 +76,12 @@ public class Odpowiedzi implements java.io.Serializable {
         odpowiedziUzytkownicy = new ArrayList<>();
     }
 
+    /**
+     * Sprawdzenie czy pola obiektu Odpowiedzi mają te same wartości pól prostych.
+     *
+     * @param odpowiedzi Odpowiedz do porównania
+     * @return zwraca true, jeśli są równe w przeciwnym razie false
+     */
     public boolean isTheSame(Odpowiedzi odpowiedzi) {
         boolean result = false;
         if (idOdpowiedzi.intValue() == odpowiedzi.getIdOdpowiedzi().intValue()) {

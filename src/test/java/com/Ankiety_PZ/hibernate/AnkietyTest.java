@@ -45,7 +45,7 @@ public class AnkietyTest {
     }
 
     /**
-     * Sprawdzenie czy funkcja isTheSame zwraca true, jeśli obie ankiety mają te mase wartości pól
+     * Sprawdzenie czy funkcja isTheSame zwraca true, jeśli obie Ankiety mają te mase wartości pól
      */
     @Test
     void isTheSameTrue() {
@@ -53,7 +53,7 @@ public class AnkietyTest {
     }
 
     /**
-     * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli obie ankiety mają wszystkie wartości pól różne
+     * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli obie Ankiety mają wszystkie wartości pól różne
      */
     @Test
     void isTheSameDifferentAll() {
@@ -61,7 +61,7 @@ public class AnkietyTest {
     }
 
     /**
-     * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli ankiety mają różne id
+     * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli Ankiety mają różne id
      */
     @Test
     void isTheSameDifferentId() {
@@ -70,7 +70,7 @@ public class AnkietyTest {
     }
 
     /**
-     * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli ankiety mają różne tytuły
+     * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli Ankiety mają różne tytuły
      */
     @Test
     void isTheSameDifferentTytul() {
@@ -79,7 +79,7 @@ public class AnkietyTest {
     }
 
     /**
-     * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli ankiety mają różne liczbę punktów
+     * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli Ankiety mają różne liczbę punktów
      */
     @Test
     void isTheSameDifferentLiczbaPunktow() {
@@ -88,7 +88,7 @@ public class AnkietyTest {
     }
 
     /**
-     * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli ankiety mają różną liczbę wypełnień
+     * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli Ankiety mają różną liczbę wypełnień
      */
     @Test
     void isTheSameDifferentLiczbaWypelnien() {
