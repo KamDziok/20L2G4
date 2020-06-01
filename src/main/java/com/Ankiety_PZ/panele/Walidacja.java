@@ -71,7 +71,6 @@ public class Walidacja {
         return false;
     }
 
-
     /**
      * Metoda sprawdza, czy hasło ma odpowiednią ilość znaków i czy nowe hasło jest takie samo jak powtórz hasło.
      * Sprawdza również czy dotychczasowe hasło zostało podane poprawnie, albo nie jest zmieniane i zostało puste.

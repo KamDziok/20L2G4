@@ -10,7 +10,6 @@ import java.util.List;
 
 public class Uzytkownicy implements java.io.Serializable {
 
-
     private Integer idUzytkownika;
     private String imie;
     private String nazwisko;

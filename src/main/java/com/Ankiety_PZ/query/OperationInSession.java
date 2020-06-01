@@ -6,6 +6,10 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+/**
+ * Klasa odpowiada za operacje w sesji.
+ */
+
 public abstract class OperationInSession {
 
     protected Session session = null;

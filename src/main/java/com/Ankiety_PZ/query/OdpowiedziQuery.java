@@ -10,6 +10,10 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Klasa zawiera metody do przesyłu danych z bazą danych dla tabeli Odpowiedzi.
+ */
+
 public class OdpowiedziQuery extends OperationInSession {
 
     private OperationsOnDataInEntity<Odpowiedzi> modifyOdpowiedzi;

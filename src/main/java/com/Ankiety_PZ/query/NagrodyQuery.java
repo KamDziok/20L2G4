@@ -15,8 +15,6 @@ import java.util.List;
 
 /**
  * Klasa zawiera metody do przesyłu danych z bazą danych dla tabeli Nagrody.
- *
- * @author KamDziok
  */
 public class NagrodyQuery extends OperationInSession {
 

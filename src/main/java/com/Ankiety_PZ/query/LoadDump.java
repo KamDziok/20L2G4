@@ -3,7 +3,12 @@ package com.Ankiety_PZ.query;
 import java.io.File;
 import java.util.Scanner;
 
+/**
+ * Klasa odpowiedzialna za wczytywanie przykładowych danych aplikacji do bazy.
+ */
+
 public class LoadDump extends OperationInSession {
+
     public void loadDump(String sciezka) throws Exception {
         try {
             String komendy = "";

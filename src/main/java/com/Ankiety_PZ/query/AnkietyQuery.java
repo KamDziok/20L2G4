@@ -34,6 +34,12 @@ public class AnkietyQuery extends OperationInSession {
         return modifyAnkiety.selectListHQL("from Ankiety");
     }
 
+    /**
+     * Metoda przesyła Ankietę podaną jako id w parametrze.
+     * @param id identyfikator Ankiety.
+     * @return zwraca obiekt Ankiety.
+     */
+
     public Ankiety selectById(Integer id) {
         return modifyAnkiety.selectObjectHQL(("from Ankiety where ID=" + id));
     }
