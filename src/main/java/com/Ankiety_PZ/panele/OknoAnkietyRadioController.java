@@ -37,14 +37,14 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
 
     private Uzytkownicy curentUser;
 
-    @FXML // ResourceBundle that was given to the FXMLLoader
+    @FXML
     private ResourceBundle resources;
 
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
+    @FXML
     private URL location;
 
-    @FXML // fx:id="radioButtonGroup"
-    private ToggleGroup radioButtonGroup = new ToggleGroup(); // Value injected by FXMLLoader
+    @FXML
+    private ToggleGroup radioButtonGroup = new ToggleGroup();
 
     @FXML
     private AnchorPane panel;
@@ -327,7 +327,6 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
     }
 
     @FXML
-        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
 
     }
@@ -389,6 +388,12 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
         }
         setButton(iterator, pytanie);
     }
+
+    /**
+     * Metoda konwertuje tablicę byte na Image
+     *
+     * @param bytes   tablica byte ze zdjęciem w formacie jpg.
+     */
 
     public void conversjaNaZ(byte[] bytes) throws IOException {
 

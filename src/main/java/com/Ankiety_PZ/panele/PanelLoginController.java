@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -21,26 +22,26 @@ public class PanelLoginController extends BulidStage {
     private String email;
     private String password;
 
-    @FXML // ResourceBundle that was given to the FXMLLoader
+    @FXML
     private ResourceBundle resources;
 
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
+    @FXML
     private URL location;
 
-    @FXML // fx:id="panelLoginTFEmail"
-    private TextField panelLoginTFEmail; // Value injected by FXMLLoader
+    @FXML
+    private TextField panelLoginTFEmail;
 
-    @FXML // fx:id="panelLoginPFPassword"
-    private PasswordField panelLoginPFPassword; // Value injected by FXMLLoader
+    @FXML
+    private PasswordField panelLoginPFPassword;
 
-    @FXML // fx:id="panelLoginButtonLogin"
-    private Button panelLoginButtonLogin; // Value injected by FXMLLoader
+    @FXML
+    private Button panelLoginButtonLogin;
 
-    @FXML // fx:id="panelLoginButtonRegi"
-    private Button panelLoginButtonRegi; // Value injected by FXMLLoader
+    @FXML
+    private Button panelLoginButtonRegi;
 
-    @FXML // fx:id="panelLoginLabelError"
-    private Label panelLoginLabelError; // Value injected by FXMLLoader
+    @FXML
+    private Label panelLoginLabelError;
 
     /**
      * Metoda obsługi przycisku zaloguj.
@@ -99,6 +100,7 @@ public class PanelLoginController extends BulidStage {
 
     /**
      * Metoda obsługi przycisku zarejestruj.
+     *
      * @param event zdarzenie, po którym funkcja ma się wywołać
      */
 

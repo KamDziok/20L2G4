@@ -265,7 +265,7 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
         String postCodeFirstStringN = kod1.getText();
         String postCodeSecondStringN = kod2.getText();
         Walidacja walidacja = new Walidacja();
-        if (walidacja.czyUzupelnionePola(mailN, surnameN, nameN, cityN, streetN, numberFlatStringN, postCodeFirstStringN, postCodeSecondStringN)) {
+        if (walidacja.czyUzupelnionePola(mailN, surnameN, nameN, cityN, streetN, numberHouseStringN, postCodeFirstStringN, postCodeSecondStringN)) {
             if (walidacja.czyPoprawnyKodPocztowy(postCodeFirstStringN, postCodeSecondStringN)) {
                 if (walidacja.sprawdzHaslo(passwordN, passwordRepeatN, passwordNewN, curentUser)) {
                     if (walidacja.czyPoprawnyMail(mailN)) {

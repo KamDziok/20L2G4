@@ -122,6 +122,12 @@ public class Pytania implements java.io.Serializable {
         this.pytaniaUzytkownicy = pytaniaUzytkownicy;
     }
 
+    /**
+     * Sprawdzenie czy pola obiektu Pytania mają te same wartości pól prostych.
+     *
+     * @param pytania Pytania do porównania
+     * @return zwraca true, jeśli są równe w przeciwnym razie false
+     */
     public boolean isTheSame(Pytania pytania) {
         boolean result = false;
         if (idPytania.intValue() == pytania.getIdPytania().intValue()) {

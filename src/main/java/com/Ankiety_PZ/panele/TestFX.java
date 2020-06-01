@@ -34,7 +34,6 @@ public class TestFX extends Application {
     }
 
     public static void main(String[] args) {
-        ConnectToDataBase.connectToDataBase();
         launch();
     }
 }

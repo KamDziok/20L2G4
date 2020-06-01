@@ -71,7 +71,7 @@
                                         <TableColumn fx:id="kup" maxWidth="100.0" minWidth="70.0" prefWidth="100.0" />
                                     </columns>
                                 </TableView>
-                                <Label fx:id="panelUzytkownikaLabelErrorNagrody" alignment="CENTER" layoutX="219.0" layoutY="642.0" prefHeight="29.0" prefWidth="763.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
+                                <Label fx:id="panelUzytkownikaLabelError" alignment="CENTER" layoutX="219.0" layoutY="642.0" prefHeight="29.0" prefWidth="763.0" styleClass="error" stylesheets="@style.css" textFill="#dd1010">
                                     <font>
                                         <Font size="24.0" />
                                     </font>

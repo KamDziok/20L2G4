@@ -79,9 +79,9 @@ public class NagrodaTabelka {
                     UzytkownicyQuery query = new UzytkownicyQuery();
                     query.updateUzytkownicy(curentUser);
                     controller.updatePkt(String.valueOf(curentUser.getLiczbaPunktow()));
-                    controller.getPanelUzytkownikaLabelErrorNagrody().setText("Nagroda dodana pomyślnie!");
+                    controller.getPanelUzytkownikaLabelError().setText("Nagroda dodana pomyślnie!");
                 } else {
-                    controller.getPanelUzytkownikaLabelErrorNagrody().setText("Dodanie nagrody nie powiodło się!");
+                    controller.getPanelUzytkownikaLabelError().setText("Dodanie nagrody nie powiodło się!");
                 }
             }
         });
@@ -91,16 +91,16 @@ public class NagrodaTabelka {
         return nazwa;
     }
 
-    public int getCena() {
-        return cena;
-    }
-
     public ImageView getObrazek() {
         return obrazek;
     }
 
     public Button getButton() {
         return button;
+    }
+
+    public int getCena() {
+        return cena;
     }
 
     /**
@@ -113,18 +113,14 @@ public class NagrodaTabelka {
     public void conversjaNaZ(byte[] bytes, Nagrody nagrody) throws IOException {
         ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
         Iterator<?> readers = ImageIO.getImageReadersByFormatName("jpg");
-
         ImageReader reader = (ImageReader) readers.next();
         Object source = bis;
         ImageInputStream iis = ImageIO.createImageInputStream(source);
         reader.setInput(iis, true);
         ImageReadParam param = reader.getDefaultReadParam();
-
         BufferedImage image = reader.read(0, param);
-
         BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
         String directory = System.getProperty("user.home") + "\\Documents\\Zdjęcia";
-        String directory2 = directory + "\\pdf";
         if (!(new File(directory).exists())) {
             new File(directory).mkdir();
         }
@@ -133,7 +129,6 @@ public class NagrodaTabelka {
         File imageFile = new File(directory + "\\" + nagrody.getIdNagrody());
         ImageIO.write(bufferedImage, "jpg", imageFile);
         javafx.scene.image.Image image2 = new Image(imageFile.toURI().toString());
-
         obrazek = new ImageView();
         obrazek.setImage(image2);
         obrazek.setFitWidth(320);

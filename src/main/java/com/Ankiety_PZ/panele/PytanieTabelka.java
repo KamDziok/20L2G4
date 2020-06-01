@@ -12,6 +12,7 @@ import java.util.Set;
 /**
  * Klasa osługująca tworzenie tabelki z pytaniami w panelu tworzenia ankiety
  */
+
 public class PytanieTabelka extends BulidStage implements SetStartValues {
 
     public String tresc;
