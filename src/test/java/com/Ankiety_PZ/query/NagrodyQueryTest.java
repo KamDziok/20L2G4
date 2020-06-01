@@ -2,28 +2,53 @@ package com.Ankiety_PZ.query;
 
 import com.Ankiety_PZ.hibernate.Nagrody;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class NagrodyQueryTest {
 
-    private NagrodyQuery nq = new NagrodyQuery();
+    private static NagrodyQuery nq;
 
-    private Nagrody nagrody = new Nagrody(100, "Nagroda test");
-    private Uzytkownicy uzytkownikTrue = new Uzytkownicy("User", "A", "a", "a", 0,
-            "a", "a", "1a", "aa-aaa", 110);
-    private Uzytkownicy uzytkownikFalse = new Uzytkownicy("User", "B", "b", "b", 0,
-            "b", "b", "1b", "bb-bbb", 90);
+    private static Nagrody nagrody;
+    private static Uzytkownicy uzytkownikTrue;
+    private static Uzytkownicy uzytkownikFalse;
+
+    static void setUzytkownikTrue(){
+        uzytkownikTrue = new Uzytkownicy("User", "A", "a", "a", 0,
+                "a", "a", "1a", "aa-aaa", 110);
+    }
+
+    static void setUzytkownikFalse(){
+        uzytkownikFalse = new Uzytkownicy("User", "B", "b", "b", 0,
+                "b", "b", "1b", "bb-bbb", 90);
+    }
+
+    @BeforeAll
+    static void setValuesInObcejt(){
+        nq = new NagrodyQuery();
+        nagrody = new Nagrody(100, "Nagroda test");
+        setUzytkownikTrue();
+        setUzytkownikFalse();
+    }
+
+    @BeforeEach
+    void clearUzytkownicy(){
+        setUzytkownikTrue();
+        setUzytkownikFalse();
+    }
 
     @Test
     void checkUzytkownikCanGetNagrodyTestTrue(){
-        assertEquals(nq.checkUzytkownikCanGetNagrody(nagrody, uzytkownikTrue), true);
+        assertTrue(nq.checkUzytkownikCanGetNagrody(nagrody, uzytkownikTrue));
     }
 
     @Test
     void checkUzytkownikCanGetNagrodyTestFalse(){
-        assertEquals(nq.checkUzytkownikCanGetNagrody(nagrody, uzytkownikFalse), false);
+        assertFalse(nq.checkUzytkownikCanGetNagrody(nagrody, uzytkownikFalse));
     }
 
 }
