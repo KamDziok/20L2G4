@@ -44,29 +44,74 @@ public class AnkietyQuery extends OperationInSession {
         return modifyAnkiety.selectObjectHQL(("from Ankiety where ID=" + id));
     }
 
+    /**
+     * Metoda odpowiada za dodawanie ankiety.
+     * @param ankiety nowa ankieta.
+     * @return zwraca true, jeśli operacja się powiodła, w przeciwnym wypadku false.
+     */
+
     public Boolean addAnkiety(Ankiety ankiety) {
         return modifyAnkiety.add(ankiety);
     }
+
+    /**
+     * Metoda odpowiada za dodawanie ankiety.
+     * @param ankiety nowa ankieta.
+     * @param session sesja.
+     * @return zwraca true, jeśli operacja się powiodła, w przeciwnym wypadku false.
+     */
 
     Boolean addAnkietyWithOutTransaction(Ankiety ankiety, Session session) {
         return modifyAnkiety.addWithOutTransaction(ankiety, session);
     }
 
+    /**
+     * Metoda odpowiada za edycję ankiety.
+     * @param ankiety usuwana ankieta.
+     * @return zwraca true, jeśli operacja się powiodła, w przeciwnym wypadku false.
+     */
+
     public Boolean updateAnkiety(Ankiety ankiety) {
         return modifyAnkiety.update(ankiety);
     }
+
+    /**
+     * Metoda odpowiada za edycję ankiety.
+     * @param ankiety usuwana ankieta.
+     * @param session sesja.
+     * @return zwraca true, jeśli operacja się powiodła, w przeciwnym wypadku false.
+     */
 
     Boolean updateAnkietyWithOutTransaction(Ankiety ankiety, Session session) {
         return modifyAnkiety.updateWithOutTransaction(ankiety, session);
     }
 
+    /**
+     * Metoda odpowiada za usuwanie ankiety.
+     * @param ankiety usuwana ankieta.
+     * @return zwraca true, jeśli operacja się powiodła, w przeciwnym wypadku false.
+     */
+
     public Boolean deleteAnkiety(Ankiety ankiety) {
         return modifyAnkiety.delete(ankiety);
     }
 
+    /**
+     * Metoda odpowiada za usuwanie ankiety.
+     * @param ankiety usuwana ankieta.
+     * @param session sesja.
+     * @return zwraca true, jeśli operacja się powiodła, w przeciwnym wypadku false.
+     */
+
     Boolean deleteAnkietyWithOutTransaction(Ankiety ankiety, Session session) {
         return modifyAnkiety.deleteWithOutTransaction(ankiety, session);
     }
+
+    /**
+     * Metoda odpowiada za dodawanie ankiety, pytań i odpowiedzi.
+     * @param ankiety nowa ankieta.
+     * @return zwraca true, jeśli operacja się powiodła, w przeciwnym wypadku false.
+     */
 
     public Boolean addAnkietyWithPytaniaAndOdpowiedzi(Ankiety ankiety) {
         Boolean result = false;
@@ -97,6 +142,12 @@ public class AnkietyQuery extends OperationInSession {
         }
         return result;
     }
+
+    /**
+     * Metoda odpowiada za edycję pytań i odpowiedzi z ankiety.
+     * @param ankiety ankieta, w której ma nastąpić zmiana.
+     * @return zwraca true, jeśli operacja się powiodła, w przeciwnym wypadku false.
+     */
 
     public Boolean updateAnkietyWithPytaniaAndOdpowiedzi(Ankiety ankiety) {
         Boolean result = false;
@@ -154,6 +205,13 @@ public class AnkietyQuery extends OperationInSession {
         return result;
     }
 
+    /**
+     * Metoda odpowiada za usuwanie pytań i odpowiedzi z ankiety.
+     * @param odpowiedziList lista odpowiedzi do usunięcia,
+     * @param pytaniaList lista pytań do usunięcia.
+     * @return zwraca true, jeśli operacja się powiodła, w przeciwnym wypadku false.
+     */
+
     public Boolean deletePytaniaAndOdpowiedziInAnkiety(List<Pytania> pytaniaList, List<Odpowiedzi> odpowiedziList) {
         Boolean result = false;
         try {
@@ -172,16 +230,23 @@ public class AnkietyQuery extends OperationInSession {
         return result;
     }
 
+    /**
+     * Metoda listę ankiet, których podany użytkownik jest właścicielem
+     * @param user obiekt użytkownika, ankietera.
+     * @return lista Ankiet należących do danego ankietera.
+     */
+
     public List<Ankiety> selectAllUzytkownik(Uzytkownicy user) {
-        return modifyAnkiety.selectListHQL(("from Ankiety AS a where a.uzytkownicy.idUzytkownika=" + user.getIdUzytkownika()));
+        return modifyAnkiety.selectListHQL(("from Ankiety AS a where a.uzytkownicy.idUzytkownika=" +
+                user.getIdUzytkownika()));
     }
 
     /**
      * Metoda przesyła listę Ankiet aktywnych.
      *
      * @return lista aktywnych Ankiet, jeśli rozmiar listy wynosi 0 znaczy, że nie ma dostępnych ankiet.
-     * @author KamDziok
      */
+
     public List<Ankiety> selectAllActiveAnkiety() {
         List<Ankiety> ankiety = new ArrayList<>();
         try {
@@ -206,8 +271,8 @@ public class AnkietyQuery extends OperationInSession {
      *
      * @param ankiety Podajemy ankiete, do której chcemy otrzymac pytania i mozliwe odpowiedzi.
      * @return Obiekt {@link Ankiety ankiet} wraz ze zbiorami {@link Pytania pytan} i {@link Odpowiedzi odpowiedziami}, w przeciwnym wypadku obiekt Ankiety z pustym zbiorem Pytanias.
-     * @author KamDziok
      */
+
     public Ankiety selectAnkietaWithPytaniaAndOdpowiedziByAnkiety(Ankiety ankiety) {
         try {
             PytaniaQuery pq = new PytaniaQuery();
@@ -229,6 +294,13 @@ public class AnkietyQuery extends OperationInSession {
         }
         return ankiety;
     }
+
+    /**
+     * Metoda wyciąga dane z bazy o ankietach do wypełnienia, które nie zostały wypełnione przez użytkownika
+     * lub które jeszcze nie uległy przeterminowaniu.
+     * @param user obiekt użytkownika dla którego mają być wyciągnięte dane.
+     * @return zwraca listę Ankiet.
+     */
 
     public List<Ankiety> selectAllActiveAndNotDoAnkiety(Uzytkownicy user) {
         List<Ankiety> ankiety = new ArrayList<>();
@@ -257,6 +329,12 @@ public class AnkietyQuery extends OperationInSession {
         }
         return ankiety;
     }
+
+    /**
+     * Metoda wyciąga dane z bazy do przeprowadzania analizy wyników ankiety.
+     * @param ankiety obiekt ankiety do analizy
+     * @return zwraca Ankietę.
+     */
 
     public Ankiety selectToAnalysis(Ankiety ankiety) {
         try {
