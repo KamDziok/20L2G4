@@ -110,7 +110,12 @@ public class Ankiety implements java.io.Serializable {
         this.uzytkownicy = uzytkownicy;
     }
 
-
+    /**
+     * Sprawdzenie czy pola obiektu Ankiety mają te same wartości pól prostych.
+     *
+     * @param ankiety Ankieta do porównania
+     * @return zwraca true, jeśli są równe w przeciwnym razie false
+     */
     public boolean isTheSame(Ankiety ankiety) {
         boolean result = false;
         if (idAnkiety.intValue() == ankiety.getIdAnkiety().intValue()) {
