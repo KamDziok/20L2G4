@@ -23,6 +23,7 @@ public class SceneFXML {
      */
 
     public static final String PANEL_LOGIN = "PanelLogin";
+
     /**
      * Odnośnik do pliku z panele rejestracji
      */
@@ -45,25 +46,25 @@ public class SceneFXML {
      * Odnośnik do pliku z panelem użytkownika
      */
 
-    public static final String PANEL_UZYTKOWNIKA = "panelUzytkownika";
+    public static final String PANEL_UZYTKOWNIKA = "PanelUzytkownika";
 
     /**
      * Odnośnik do pliku z oknem ankiety z testem jednokrotnego wyboru
      */
 
-    public static final String OKNO_ANKIETA_RADIO = "oknoAnkietyRadio";
+    public static final String OKNO_ANKIETA_RADIO = "AnkietyRadio";
 
     /**
      * Odnośnik do pliku z panelem tworzenia ankiety
      */
 
-    public static final String TWORZENIE_ANKIETY = "PanelTworzeniaankiety";
+    public static final String TWORZENIE_ANKIETY = "PanelTworzeniaAnkiety";
 
     /**
      * Odnośnik do pliku z panelem dodawania pytań do ankiety
      */
 
-    public static final String DODAJ_PYTANIE = "Dodawaniepytania";
+    public static final String DODAJ_PYTANIE = "DodawaniePytania";
 
     /**
      * Odnośnik do pliku z panelem edycji uzytkownika przez administratora
