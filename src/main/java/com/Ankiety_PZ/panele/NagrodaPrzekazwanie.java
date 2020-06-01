@@ -7,7 +7,6 @@ public class NagrodaPrzekazwanie extends BulidStage {
     public String tytul;
     public int liczbaPunktow;
 
-
     NagrodaPrzekazwanie(Nagrody nagroda) {
         tytul = nagroda.getNazwa();
         liczbaPunktow = nagroda.getLiczbaPunktow();

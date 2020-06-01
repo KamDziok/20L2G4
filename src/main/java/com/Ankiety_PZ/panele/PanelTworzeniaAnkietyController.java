@@ -188,7 +188,6 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
 
     }
 
-
     @Override
     public void setStartValuesAnkiety(Ankiety ankieta) {
         this.ankiety = ankieta;
@@ -264,7 +263,6 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
         liczbapytan = liczpytania + liczpytaniaB;
     }
 
-
     public void SetStart() {
 
         listaPytaU = new ArrayList<>();
@@ -291,6 +289,7 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
      *
      * @return true jeśli wszystkie pola obowiązkowe są uzupełnione, w przeciwnym wypadku false
      */
+
     private boolean compulsoryFildNotEmpty() {
         return (!tytul.isEmpty() && !liczbaPunktowS.isEmpty());
     }
@@ -300,6 +299,7 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
      *
      * @return true jeśli wszystkie pola obowiązkowe są uzupełnione, w przeciwnym wypadku false
      */
+
     private boolean compulsoryFildNotNull() {
         return (tytul != null && liczbaPunktowS != null);
     }
@@ -310,6 +310,7 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
      *
      * @return 1 jeśli wszystkie pola obowiązkowe są uzupełnione, w przeciwnym wypadku -1
      */
+
     private int czyNieStarszaData() {
         return dataZakonczenia.compareTo(dataRozpoczecia);
 
