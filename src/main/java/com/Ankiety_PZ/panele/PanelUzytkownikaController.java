@@ -47,14 +47,6 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     private Label panelUzytkownikaLabelError;
 
     /**
-     * Etykieta informująca o rodzaju błędu przy wymianie punktów na nagrody.
-     */
-
-    @FXML
-    private Label panelUzytkownikaLabelErrorNagrody;
-
-
-    /**
      * Przycisk odpowiedzialny za wylogowywanie.
      */
 
@@ -298,7 +290,7 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
         String postCodeFirstStringUser = kod1.getText();
         String postCodeSecondStringUser = kod2.getText();
         Walidacja walidacja = new Walidacja();
-        if (walidacja.czyUzupelnionePola(mailUser, surnameUser, nameUser, cityUser, streetUser, numberFlatStringUser, postCodeFirstStringUser, postCodeSecondStringUser)) {
+        if (walidacja.czyUzupelnionePola(mailUser, surnameUser, nameUser, cityUser, streetUser, numberHouseStringUser, postCodeFirstStringUser, postCodeSecondStringUser)) {
             if (walidacja.czyPoprawnyKodPocztowy(postCodeFirstStringUser, postCodeSecondStringUser)) {
                 if (walidacja.sprawdzHaslo(passwordUser, passwordRepeatUser, passwordNewUser, curentUser)) {
                     if (walidacja.czyPoprawnyMail(mailUser)) {
@@ -452,8 +444,8 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
         return curentUser;
     }
 
-    Label getPanelUzytkownikaLabelErrorNagrody() {
-        return panelUzytkownikaLabelErrorNagrody;
+    Label getPanelUzytkownikaLabelError() {
+        return panelUzytkownikaLabelError;
     }
 
     public Label getPanelUzytkownikaLabelErrorAnkiety() {

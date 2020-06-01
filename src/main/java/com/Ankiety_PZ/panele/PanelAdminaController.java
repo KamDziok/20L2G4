@@ -280,7 +280,7 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
         String postCodeFirstStringAdmin = kod1.getText();
         String postCodeSecondStringAdmin = kod2.getText();
         Walidacja walidacja = new Walidacja();
-        if (walidacja.czyUzupelnionePola(mailAdmin, surnameAdmin, nameAdmin, cityAdmin, streetAdmin, numberFlatStringAdmin, postCodeFirstStringAdmin, postCodeSecondStringAdmin)) {
+        if (walidacja.czyUzupelnionePola(mailAdmin, surnameAdmin, nameAdmin, cityAdmin, streetAdmin, numberHouseStringAdmin, postCodeFirstStringAdmin, postCodeSecondStringAdmin)) {
             if (walidacja.czyPoprawnyKodPocztowy(postCodeFirstStringAdmin, postCodeSecondStringAdmin)) {
                 if (walidacja.sprawdzHaslo(passwordAdmin, passwordRepeatAdmin, passwordNewAdmin, curentUser)) {
                     if (walidacja.czyPoprawnyMail(mailAdmin)) {

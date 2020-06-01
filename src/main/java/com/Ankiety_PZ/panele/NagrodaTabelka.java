@@ -79,9 +79,9 @@ public class NagrodaTabelka {
                     UzytkownicyQuery query = new UzytkownicyQuery();
                     query.updateUzytkownicy(curentUser);
                     controller.updatePkt(String.valueOf(curentUser.getLiczbaPunktow()));
-                    controller.getPanelUzytkownikaLabelErrorNagrody().setText("Nagroda dodana pomyślnie!");
+                    controller.getPanelUzytkownikaLabelError().setText("Nagroda dodana pomyślnie!");
                 } else {
-                    controller.getPanelUzytkownikaLabelErrorNagrody().setText("Dodanie nagrody nie powiodło się!");
+                    controller.getPanelUzytkownikaLabelError().setText("Dodanie nagrody nie powiodło się!");
                 }
             }
         });
@@ -97,6 +97,10 @@ public class NagrodaTabelka {
 
     public Button getButton() {
         return button;
+    }
+
+    public int getCena() {
+        return cena;
     }
 
     /**
