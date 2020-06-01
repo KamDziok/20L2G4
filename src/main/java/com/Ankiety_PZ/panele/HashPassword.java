@@ -5,6 +5,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
+/**
+ * Klasa odpowiada za kodowanie hasła.
+ */
+
 public class HashPassword {
 
     static String hashPassword(String password) {
