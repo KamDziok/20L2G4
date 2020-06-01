@@ -6,6 +6,10 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
 
+/**
+ * Klasa odpowiada scenę do wyboru zdjęcia.
+ */
+
 public class FileChooser extends Application {
 
     @Override
