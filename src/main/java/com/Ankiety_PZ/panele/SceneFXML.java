@@ -23,6 +23,7 @@ public class SceneFXML {
      */
 
     public static final String PANEL_LOGIN = "PanelLogin";
+
     /**
      * Odnośnik do pliku z panele rejestracji
      */

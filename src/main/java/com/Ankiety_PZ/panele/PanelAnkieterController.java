@@ -16,6 +16,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.net.URL;
 import java.util.*;
 
+/**
+ * Klasa odpowiedzialna za obsługe listy ankiet przynależnych do osoby je tworzącej
+ */
+
 public class PanelAnkieterController extends BulidStage implements SetStartValues {
     private Uzytkownicy curentUser;
     private Ankiety ankiety;

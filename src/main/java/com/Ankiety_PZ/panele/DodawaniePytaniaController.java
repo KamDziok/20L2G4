@@ -26,6 +26,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.*;
 
+/**
+ * Klasa odpowiedzialna za dodawanie odpowiedzi do pytani oraz gotowych już pytań do ankiety
+ */
 
 public class DodawaniePytaniaController extends BulidStage implements SetStartValues {
     File file;
