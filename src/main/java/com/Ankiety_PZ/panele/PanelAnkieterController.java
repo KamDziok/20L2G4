@@ -26,9 +26,9 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
     private Label imie_nazwisko_rola;
     @FXML
     private Label imie_nazwisko_rola2;
-    @FXML // ResourceBundle that was given to the FXMLLoader
+    @FXML // ResourceBundle that was given to the FXMLLoaddsdssds
     private ResourceBundle resources;
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
+    @FXML // URL location of the FXML file that was given dsdssdsoader
     private URL location;
     @FXML
     private Button wyloguj1;

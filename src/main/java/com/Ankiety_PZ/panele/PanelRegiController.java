@@ -1,7 +1,3 @@
-/**
- * Sample Skeleton for 'PanelRegi.fxml' Controller Class
- */
-
 package com.Ankiety_PZ.panele;
 
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
@@ -18,58 +14,106 @@ import java.util.ResourceBundle;
 
 /**
  * Klasa kontroler do ramki 'PanelRegi.fxml', jest potomkiem klasy {@link BulidStage}.
- *
- * @author KamDziok
  */
 
 public class PanelRegiController extends BulidStage {
 
+    /**
+     * Mail wczytany z pola tekstowego jako String.
+     */
+
     private String email;
+
+    /**
+     * Hasło wczytane z pola tekstowego jako String.
+     */
+
     private String password;
+
+    /**
+     * Powtórnie wprowadzone hasło wczytane z pola tekstowego jako String.
+     */
+
     private String passwordRepeat;
+
+    /**
+     * Imię wczytane z pola tekstowego jako String.
+     */
+
     private String name;
+
+    /**
+     * Nazwisko wczytane z pola tekstowego jako String.
+     */
+
     private String surname;
+
+    /**
+     * Miasto wczytane z pola tekstowego jako String.
+     */
+
     private String city;
+
+    /**
+     * Ulica wczytana z pola tekstowego jako String.
+     */
+
     private String street;
+
     /**
      * Numer domu wczytany z pola tekstowego jako String.
      */
+
     private String numberHouseString;
+
     /**
      * Numer lokalu wczytany z pola tekstowego jako String.
      */
+
     private String numberFlatString;
+
     /**
      * Pierwsza część kodu pocztowego wczytany z pola tekstowego jako String.
      */
+
     private String postCodeFirstString;
+
     /**
      * Druga część kodu pocztowego wczytany z pola tekstowego jako String.
      */
+
     private String postCodeSecondString;
+
     /**
      * Numer lokalu przekształcony na int, jeśli wartość tej zmiennej jest -1 to pole jest puste.
      */
+
     private int numberFlatInt = -1;
+
     /**
      * Pierwsza część kodu pocztowego przekształconego na int.
      */
+
     private int postCodeFirstInt;
+
     /**
      * Druga część kodu pocztowego przekształconego na int.
      */
+
     private int postCodeSecondInt;
+
     /**
      * Minimalna długośc hasłą.
      */
+
     private final int minSizePassword = 3;
 
     /**
      * Metoda sprawdzenie czy obowiązkowe pola nie są puste.
      *
      * @return true jeśli wszystkie pola obowiązkowe są uzupełnione, w przeciwnym wypadku false
-     * @author KamDziok
      */
+
     private boolean compulsoryFildNotNull() {
         return (!email.isEmpty() && !password.isEmpty() && !passwordRepeat.isEmpty() && !name.isEmpty() &&
                 !surname.isEmpty() && !city.isEmpty() && !street.isEmpty() && !numberHouseString.isEmpty() &&
@@ -77,33 +121,11 @@ public class PanelRegiController extends BulidStage {
     }
 
     /**
-     * Metoda sprawdzenie czy numer mieszkania jest liczbą, jeśli poje nie jest puste.
-     *
-     * @return true jeśli numer lokalu jest podany i jest liczbą, lub jeśli numer lokalu jest pusty, w przeciwnym wypadku false
-     * @author KamDziok
-     */
-    private boolean numberFlatIsNumber() {
-        try {
-            if (!numberFlatString.isEmpty()) {
-                numberFlatInt = Integer.parseInt(numberFlatString);
-                return true;
-            }
-            return true;
-        } catch (IllegalArgumentException argumentException) {
-            panelRegiLabelError.setText("Numer lokalu nie jest liczbą!");
-            System.out.println(argumentException.getMessage());
-        } catch (Exception exception) {
-            System.out.println(exception.getMessage());
-        }
-        return false;
-    }
-
-    /**
      * Metoda sprawdza czy kod pocztowy składa się z liczb i czy ma odpowiedznią długość.
      *
      * @return true jeśli kod pocztowy jest poprawny, w przeciwnym razie false
-     * @author KamDziok
      */
+
     private boolean postCodeIsNumber() {
         try {
             if (postCodeFirstString.length() == 2 && postCodeSecondString.length() == 3) {
@@ -127,6 +149,7 @@ public class PanelRegiController extends BulidStage {
      *
      * @return true jeśli hasło ma odpowiednią długość i jest takie samo jak powtórz hasło, w przeciwnym wypadku false.
      */
+
     private boolean checkPassword() {
         if (password.length() < minSizePassword) {
             panelRegiLabelError.setText("Hasło jest za krótkie!");
@@ -145,6 +168,7 @@ public class PanelRegiController extends BulidStage {
      *
      * @return true jeśli sdres e-mail posiada @, w przeciwnym wypadku false.
      */
+
     private boolean chechEmail() {
         if (email.indexOf('@') != -1) {
             return true;
@@ -158,6 +182,7 @@ public class PanelRegiController extends BulidStage {
      * @param query obiekt klasy UzytkownicyQuery.
      * @return true jeśli nie ma użytkownika o podanym adresie e-mail w bazie, w przeciwnym wypadku false.
      */
+
     private boolean userExist(UzytkownicyQuery query) {
         Uzytkownicy user = query.selectByMail(email);
         System.out.println(user);
@@ -167,56 +192,57 @@ public class PanelRegiController extends BulidStage {
         return false;
     }
 
-    @FXML // ResourceBundle that was given to the FXMLLoader
+    @FXML
     private ResourceBundle resources;
 
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
+    @FXML
     private URL location;
 
-    @FXML // fx:id="paneliRegiTFEmail"
-    private TextField paneliRegiTFEmail; // Value injected by FXMLLoader
+    @FXML
+    private TextField paneliRegiTFEmail;
 
-    @FXML // fx:id="panelRegiPFPassword"
-    private PasswordField panelRegiPFPassword; // Value injected by FXMLLoader
+    @FXML
+    private PasswordField panelRegiPFPassword;
 
-    @FXML // fx:id="panelRegiPFPasswordRepeat"
-    private PasswordField panelRegiPFPasswordRepeat; // Value injected by FXMLLoader
+    @FXML
+    private PasswordField panelRegiPFPasswordRepeat;
 
-    @FXML // fx:id="panelRegiTFName"
-    private TextField panelRegiTFName; // Value injected by FXMLLoader
+    @FXML
+    private TextField panelRegiTFName;
 
-    @FXML // fx:id="panelRegiTFSurname"
-    private TextField panelRegiTFSurname; // Value injected by FXMLLoader
+    @FXML
+    private TextField panelRegiTFSurname;
 
-    @FXML // fx:id="panelRegiTFCity"
-    private TextField panelRegiTFCity; // Value injected by FXMLLoader
+    @FXML
+    private TextField panelRegiTFCity;
 
-    @FXML // fx:id="panelRegiTFStreet"
-    private TextField panelRegiTFStreet; // Value injected by FXMLLoader
+    @FXML
+    private TextField panelRegiTFStreet;
 
-    @FXML // fx:id="panelRegiTFNumberHouse"
-    private TextField panelRegiTFNumberHouse; // Value injected by FXMLLoader
+    @FXML
+    private TextField panelRegiTFNumberHouse;
 
-    @FXML // fx:id="panelRegiTFNumberFlat"
-    private TextField panelRegiTFNumberFlat; // Value injected by FXMLLoader
+    @FXML
+    private TextField panelRegiTFNumberFlat;
 
-    @FXML // fx:id="panelRegiTFPostCodeFirst"
-    private TextField panelRegiTFPostCodeFirst; // Value injected by FXMLLoader
+    @FXML
+    private TextField panelRegiTFPostCodeFirst;
 
-    @FXML // fx:id="panelRegiTFPostCodeSecond"
-    private TextField panelRegiTFPostCodeSecond; // Value injected by FXMLLoader
+    @FXML
+    private TextField panelRegiTFPostCodeSecond;
 
-    @FXML // fx:id="panelRegiButtonRegi"
-    private Button panelRegiButtonRegi; // Value injected by FXMLLoader
+    @FXML
+    private Button panelRegiButtonRegi;
 
-    @FXML // fx:id="panelRegiLabelError"
-    private Label panelRegiLabelError; // Value injected by FXMLLoader
+    @FXML
+    private Label panelRegiLabelError;
 
     /**
      * Metoda obsługująca wciśnięcie przycisku zarejestruj.
      *
      * @param event zdarzenie, po którym funkcja ma się wywołać
      */
+
     @FXML
     void panelRegiButtonRegiAction(ActionEvent event) {
 
@@ -240,7 +266,8 @@ public class PanelRegiController extends BulidStage {
                         if (userExist(query)) {
                             String postCode = postCodeFirstInt + "-" + postCodeSecondInt;
 
-                            Uzytkownicy user = new Uzytkownicy(name, surname, email, password, Permissions.KLIENT, city, street, numberHouseString, numberFlatString, postCode, 0);
+                            Uzytkownicy user = new Uzytkownicy(name, surname, email, password, Permissions.KLIENT,
+                                    city, street, numberHouseString, numberFlatString, postCode, 0);
                             query.addUzytkownicy(user);
 
                             loadingFXML(event, SceneFXML.PANEL_LOGIN);
@@ -263,7 +290,6 @@ public class PanelRegiController extends BulidStage {
     }
 
     @FXML
-        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert paneliRegiTFEmail != null : "fx:id=\"paneliRegiTFEmail\" was not injected: check your FXML file 'PanelRegi.fxml'.";
         assert panelRegiPFPassword != null : "fx:id=\"panelRegiPFPassword\" was not injected: check your FXML file 'PanelRegi.fxml'.";
@@ -278,7 +304,6 @@ public class PanelRegiController extends BulidStage {
         assert panelRegiTFPostCodeSecond != null : "fx:id=\"panelRegiTFPostCodeSecond\" was not injected: check your FXML file 'PanelRegi.fxml'.";
         assert panelRegiButtonRegi != null : "fx:id=\"panelRegiButtonRegi\" was not injected: check your FXML file 'PanelRegi.fxml'.";
         assert panelRegiLabelError != null : "fx:id=\"panelRegiLabelError\" was not injected: check your FXML file 'PanelRegi.fxml'.";
-
         panelRegiLabelError.setText("");
     }
 

@@ -13,80 +13,255 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Klasa odpowiada za panel użytkownika.
+ */
+
 public class PanelUzytkownikaController extends BulidStage implements SetStartValues {
 
+    /**
+     * Aktualnie zalogowany użytkownik
+     */
+
     private Uzytkownicy curentUser;
-    @FXML // ResourceBundle that was given to the FXMLLoader
+    @FXML
     private ResourceBundle resources;
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
+
+    /**
+     * Aktualna liczba punktów zalogowanego użytkownika.
+     */
+
+    @FXML
     private String textPkt;
+
+    /**
+     * Etykieta informująca o rodzaju błędu przy edycji profilu użytkownika.
+     */
+
     @FXML
     private Label panelUzytkownikaLabelError;
+
+    /**
+     * Etykieta informująca o rodzaju błędu przy wymianie punktów na nagrody.
+     */
+
     @FXML
     private Label panelUzytkownikaLabelErrorNagrody;
+
+
+    /**
+     * Przycisk odpowiedzialny za wylogowywanie.
+     */
+
     @FXML
     private Button wyloguj;
+
+    /**
+     * Etykieta z liczbą punktów użytkownika.
+     */
+
     @FXML
     private Label punkty;
+
+    /**
+     * Etykieta z liczbą punktów użytkownika.
+     */
+
     @FXML
     private Label labelPunkty;
+
+    /**
+     * Etykieta z liczbą punktów użytkownika.
+     */
+
     @FXML
     private Label punktyNagrody;
+
+    /**
+     * Etykieta z liczbą punktów użytkownika przy nagrodach.
+     */
+
     @FXML
     private Label labelPunktyNagrody;
     @FXML
     private Label punktyUstawienia;
+
+    /**
+     * Etykieta z liczbą punktów użytkownika przy edycji profilu.
+     */
+
     @FXML
     private Label labelPunktyUstawienia;
+
+    /**
+     * Mail przy edycji profilu.
+     */
+
     @FXML
     private TextField email;
+
+    /**
+     * Aktualne hasło przy edycji profilu.
+     */
+
     @FXML
     private TextField haslo;
+
+    /**
+     * Nowe hasło przy edycji profilu.
+     */
+
     @FXML
     private TextField nowehaslo;
+
+    /**
+     * Powtórnie wprowadzone hasło przy edycji profilu.
+     */
+
     @FXML
     private TextField hasloznowu;
+
+    /**
+     * Imie przy edycji profilu.
+     */
+
     @FXML
     private TextField imie;
+
+    /**
+     * Nazwisko przy edycji profilu.
+     */
+
     @FXML
     private TextField nazwisko;
+
+    /**
+     * Miejscowość przy edycji profilu.
+     */
+
     @FXML
     private TextField miejscowosc;
+
+    /**
+     * Ulica przy edycji profilu.
+     */
+
     @FXML
     private TextField ulica;
+
+    /**
+     * Numer budynku przy edycji profilu.
+     */
+
     @FXML
     private TextField budynek;
+
+    /**
+     * Numer lokalu przy edycji profilu.
+     */
+
     @FXML
     private TextField lokal;
+
+    /**
+     * Dwie pierwsze cyfry kodu pocztowego przy edycji profilu.
+     */
+
     @FXML
     private TextField kod1;
+
+    /**
+     * Trzy ostatnie cyfry kodu pocztowego przy edycji profilu.
+     */
+
     @FXML
     private TextField kod2;
+
+    /**
+     * Tabela ankiet.
+     */
+
     @FXML
     private TableView tableAnkiety;
+
+    /**
+     * Kolumna w tabeli ankiet z tytułem ankiety.
+     */
+
     @FXML
     private TableColumn tytul;
+
+    /**
+     * Kolumna w tabeli ankiet z datą ważności ankiety.
+     */
+
     @FXML
     private TableColumn wygasa;
+
+    /**
+     * Kolumna w tabeli ankiet, w której pojawia się liczba punktów doliczonych do konta po wypełnieniu ankiety.
+     */
+
     @FXML
     private TableColumn pkt;
+
+    /**
+     * Kolumna w tabeli ankiet, w której pojawia się przycisk <code>wypełnij</code>.
+     */
+
     @FXML
     private TableColumn przycisk;
+
+    /**
+     * Tabela nagród.
+     */
+
     @FXML
     private TableView tableNagrody;
+
+    /**
+     * Kolumna w tabeli nagród, w której pojawia się nazwa nagrody.
+     */
+
     @FXML
     private TableColumn nazwa;
+
+    /**
+     * Kolumna w tabeli nagród, w której pojawia się liczba punktów potrzebna do wymiany nagrody.
+     */
+
     @FXML
     private TableColumn cena;
+
+    /**
+     * Kolumna w tabeli nagród, w której pojawia się ilustracja nagrody.
+     */
+
     @FXML
     private TableColumn obrazek;
+
+    /**
+     * Kolumna w tabeli nagród, w której pojawia się przycisk <code>wymień</code>.
+     */
+
     @FXML
     private TableColumn kup;
+
+    /**
+     * Etykieta informująca o rodzaju błędu przy wypełnianiu ankiety przez użytkownika.
+     */
+
     @FXML
     private Label panelUzytkownikaLabelErrorAnkiety;
+
+    /**
+     * Metoda wykonująca akcję wylogowowania użytkownika po naciśnięciu przycisku <code>wyloguj</code>.
+     * @param event
+     */
 
     @FXML
     void wyloguj(ActionEvent event) {
@@ -94,11 +269,12 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
         activeScene(event, false, false);
     }
 
-    @FXML
-    void panelUzytkownikaButtonMakeAnkiet(ActionEvent event) {
-        loadingFXML(event, SceneFXML.OKNO_ANKIETA_RADIO);
-        activeScene(event, false, true);
-    }
+    /**
+     * Metoda wykonująca akcję edycji profilu użytkownika wraz ze sprawdzeniem prawidłowości wprowadzonych danch.
+     * Metoda wykona się po wybraniu przycisku <code>zapisz zmiany</code>.
+     *
+     * @param event
+     */
 
     @FXML
     void panelUzytkownikaButtonZmienUstawienia(ActionEvent event) {
@@ -155,16 +331,26 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
     }
 
     @FXML
-        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert wyloguj != null : "fx:id=\"wyloguj\" was not injected: check your FXML file 'PanelUzytkownika.fxml'.";
     }
+
+    /**
+     * Metoda odpowiada za akutalizację liczby punktów użytkownika po wypełnieniu ankiety lub wymianie punktów na
+     * nagrody.
+     *
+     * @param punkty aktualna liczba punktów użytkownika zalogowanego.
+     */
 
     public void updatePkt(String punkty) {
         this.punkty.setText(punkty + "pkt");
         punktyUstawienia.setText(punkty + "pkt");
         punktyNagrody.setText(punkty + "pkt");
     }
+
+    /**
+     * Metoda odpowiada za ustwienie aktualnych danych przy edycji profilu.
+     */
 
     private void setUstawienia() {
         String imie = curentUser.getImie();
@@ -190,6 +376,10 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
         kod2.setText(kod[1]);
     }
 
+    /**
+     * Metoda odpowiada pobranie aktualnych i nie wypełnionych przez użytkownika ankiet do tabeli.
+     */
+
     void setAnkiety() {
         AnkietyQuery query = new AnkietyQuery();
         List<Ankiety> ankiety = query.selectAllActiveAndNotDoAnkiety(curentUser);
@@ -205,6 +395,11 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
         przycisk.setCellValueFactory(new PropertyValueFactory("button"));
     }
 
+
+    /**
+     * Metoda odpowiada pobranie aktualnych nagród do tabeli.
+     */
+
     private void setNagrody() {
         NagrodyQuery query = new NagrodyQuery();
         List<Nagrody> nagrody = query.selectAllActive();
@@ -219,6 +414,10 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
         obrazek.setCellValueFactory(new PropertyValueFactory("obrazek"));
         kup.setCellValueFactory(new PropertyValueFactory("button"));
     }
+
+    /**
+     * Metoda wykonuje inicjalizację aktualnych danych użytkownika, ankiet, nagród i ustawień w edycji profilu.
+     */
 
     @Override
     public void setStartValues(Uzytkownicy user) {
