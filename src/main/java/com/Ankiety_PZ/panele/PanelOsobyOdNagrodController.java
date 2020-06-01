@@ -241,7 +241,6 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
         activeScene(event, false, false);
     }
 
-
     /**
      * Metoda wykonująca akcję edycji profilu użytkownika wraz ze sprawdzeniem prawidłowości wprowadzonych danch.
      * Metoda wykona się po wybraniu przycisku <code>zapisz zmiany</code>.
