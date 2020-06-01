@@ -23,6 +23,12 @@ public class UzytkownicyQuery extends OperationInSession {
         this.modifyUzytkownik = new OperationsOnDataInEntity<>();
     }
 
+    /**
+     * Wypisuje wszystkie {@link Uzytkownicy użytkowników} z bazy
+     *
+     * @return lista wszystkich {@link Uzytkownicy użytkowników} z bazyt
+     * @throws HibernateException
+     */
     public List<Uzytkownicy> selectAll() throws HibernateException {
         return modifyUzytkownik.selectListHQL(("from Uzytkownicy"));
     }
@@ -38,34 +44,86 @@ public class UzytkownicyQuery extends OperationInSession {
         return modifyUzytkownik.selectObjectHQL(("from Uzytkownicy as u where u.idUzytkownika=" + id));
     }
 
+    /**
+     * Dodanie {@link Uzytkownicy użytkownika} do bazy danych.
+     *
+     * @param uzytkownicy {@link Uzytkownicy użytkownika}, którego chcemy dodać
+     * @return true jeśli się powiodło, w przeciwnym wypadku false
+     */
     public Boolean addUzytkownicy(Uzytkownicy uzytkownicy) {
         return modifyUzytkownik.add(uzytkownicy);
     }
 
+    /**
+     * Dodanie {@link Uzytkownicy użytkownika} do bazy danych w ramach zewnętrznej sesji.
+     *
+     * @param uzytkownicy {@link Uzytkownicy użytkownika}, którego chcemy dodać
+     * @param session sesja z bazą w ramach, której ma zostać dodana nagroda do bazy.
+     * @return true jeśli się powiodło, w przeciwnym wypadku false
+     */
     Boolean addUzytkownicyWithOutTransaction(Uzytkownicy uzytkownicy, Session session) {
         return modifyUzytkownik.addWithOutTransaction(uzytkownicy, session);
     }
 
+    /**
+     * Modyfikacja {@link Uzytkownicy użytkownika} w bazy danych.
+     *
+     * @param uzytkownicy {@link Uzytkownicy użytkownika}, którego chcemy zmodyfikować
+     * @return true jeśli się powiodło, w przeciwnym wypadku false
+     */
     public Boolean updateUzytkownicy(Uzytkownicy uzytkownicy) {
         return modifyUzytkownik.update(uzytkownicy);
     }
 
+    /**
+     * Modyfikacja {@link Uzytkownicy użytkownika} w bazy danych w ramach zewnętrznej sesji.
+     *
+     * @param uzytkownicy {@link Uzytkownicy użytkownika}, którego chcemy zmodyfikować
+     * @param session sesja z bazą w ramach, której ma zostać dodana nagroda do bazy.
+     * @return true jeśli się powiodło, w przeciwnym wypadku false
+     */
     Boolean updateUzytkownicyWithOutTransaction(Uzytkownicy uzytkownicy, Session session) {
         return modifyUzytkownik.updateWithOutTransaction(uzytkownicy, session);
     }
 
+    /**
+     * Usunięcie {@link Uzytkownicy użytkownika} z bazy danych.
+     *
+     * @param uzytkownicy {@link Uzytkownicy użytkownika}, którego chcemy usunąć
+     * @return true jeśli się powiodło, w przeciwnym wypadku false
+     */
     public Boolean deleteUzytkownicy(Uzytkownicy uzytkownicy) {
         return modifyUzytkownik.delete(uzytkownicy);
     }
 
+    /**
+     * Usunięcie {@link Uzytkownicy użytkownika} z bazy danych w ramach zewnętrznej sesji.
+     *
+     * @param uzytkownicy {@link Uzytkownicy użytkownika}, którego chcemy usunąć
+     * @param session sesja z bazą w ramach, której ma zostać dodana nagroda do bazy.
+     * @return true jeśli się powiodło, w przeciwnym wypadku false
+     */
     Boolean deleteUzytkownicyWithOutTransaction(Uzytkownicy uzytkownicy, Session session) {
         return modifyUzytkownik.deleteWithOutTransaction(uzytkownicy, session);
     }
 
+    /**
+     * Wyszukanie {@link Uzytkownicy użytkownika} po adresie e-mail.
+     *
+     * @param mail adres e-mail, po którym szukamy {@link Uzytkownicy użytkownika}
+     * @return obiekt {@link Uzytkownicy użytkownik}
+     */
     public Uzytkownicy selectByMail(String mail) {
         return modifyUzytkownik.selectObjectHQL(("from Uzytkownicy where mail=\"" + mail + "\""));
     }
 
+    /**
+     * Wyszukanie {@link Uzytkownicy użytkownika} po adresie e-mail i haśle.
+     *
+     * @param mail adres e-mail, po którym szukamy {@link Uzytkownicy użytkownika}
+     * @param password hasło {@link Uzytkownicy użytkownika}
+     * @return obiekt {@link Uzytkownicy użytkownik}
+     */
     public Uzytkownicy selectByMailAndPassword(String mail, String password) {
         return modifyUzytkownik.selectObjectHQL(("from Uzytkownicy where mail = '" + mail + "' and haslo ='" + password + "'"));
     }
@@ -82,6 +140,12 @@ public class UzytkownicyQuery extends OperationInSession {
         return updateUzytkownicy(user);
     }
 
+    /**
+     * Odblokowanie konta użytkownika i nadanie mu uprawnień podstawowych.
+     *
+     * @param user obiet Uzytkownicy, który chcemy zablokować.
+     * @return true jeśli operacja się udała, w przeciwnym wypadku false.
+     */
     public boolean unban(Uzytkownicy user) {
         user.setUprawnienia(Permissions.KLIENT);
         return updateUzytkownicy(user);
@@ -106,6 +170,15 @@ public class UzytkownicyQuery extends OperationInSession {
         }
     }
 
+    /**
+     * Metoda zapisuje do bazy danych odpowiedzi użytkownika na pytania w ankiecie.
+     *
+     * @param usersAnswers Odpowiedzi udzielone przez użytkownika
+     * @param userOpenAnswers Odpowiedzi otware udzielone przez użytkownika
+     * @param ankiety Ankieta do której należy zapisać odpowiedzi
+     * @param user Użytkownik odpowiadający na ankietę
+     * @return true jeśli operacja się udała, w przeciwnym wypadku false.
+     */
     public Boolean addOdpowiedziUzytkownika(List<OdpowiedziUzytkownicy> usersAnswers, List<PytaniaUzytkownicy> userOpenAnswers, Ankiety ankiety, Uzytkownicy user) {
         boolean result = false;
         try {
