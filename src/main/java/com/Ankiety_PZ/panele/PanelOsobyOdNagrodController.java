@@ -217,7 +217,8 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
 
     /**
      * Metoda otwierająca okno dodawania nagrody po naciśnięciu przycisku <code>dodaj nagrodę</code>.
-     * @param event
+     *
+     * @param event zdarzenie, po którym funkcja ma się wywołać.
      */
 
     @FXML
@@ -232,7 +233,8 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
 
     /**
      * Metoda wykonująca akcję wylogowowania użytkownika po naciśnięciu przycisku <code>wyloguj</code>.
-     * @param event
+     *
+     * @param event zdarzenie, po którym funkcja ma się wywołać.
      */
 
     @FXML
@@ -245,7 +247,7 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
      * Metoda wykonująca akcję edycji profilu użytkownika wraz ze sprawdzeniem prawidłowości wprowadzonych danch.
      * Metoda wykona się po wybraniu przycisku <code>zapisz zmiany</code>.
      *
-     * @param event
+     * @param event zdarzenie, po którym funkcja ma się wywołać.
      */
 
     @FXML

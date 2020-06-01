@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -226,7 +227,8 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
     /**
      * Metoda wykonująca akcję anulowania edycji użytkownika po naciśnięciu przycisku <code>anuluj</code>.
      * Powraca do panelu administratora.
-     * @param event
+     *
+     * @param event zdarzenie, po którym funkcja ma się wywołać.
      */
 
     @FXML
@@ -289,7 +291,7 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
      * Metoda wykonująca akcję zapisu edycji profilu użytkownika wraz ze sprawdzeniem prawidłowości wprowadzonych danch.
      * Metoda wykona się po wybraniu przycisku <code>zapisz zmiany</code>.
      *
-     * @param event
+     * @param event zdarzenie, po którym funkcja ma się wywołać.
      */
 
     @FXML
@@ -347,7 +349,8 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
 
     /**
      * Metoda wykonująca akcję wylogowowania użytkownika po naciśnięciu przycisku <code>wyloguj</code>.
-     * @param event
+     *
+     * @param event zdarzenie, po którym funkcja ma się wywołać.
      */
 
     @FXML

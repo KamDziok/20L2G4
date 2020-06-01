@@ -13,8 +13,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
+ * Klasa odpowiwada ze rejestrację użytkownika.
  * Klasa kontroler do ramki 'PanelRegi.fxml', jest potomkiem klasy {@link BulidStage}.
- * Klasa odpowiwada ze rejestracje użytkownika.
  */
 
 public class PanelRegiController extends BulidStage {

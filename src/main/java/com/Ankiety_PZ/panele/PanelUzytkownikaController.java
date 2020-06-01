@@ -265,7 +265,8 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
 
     /**
      * Metoda wykonująca akcję wylogowowania użytkownika po naciśnięciu przycisku <code>wyloguj</code>.
-     * @param event
+     *
+     * @param event zdarzenie, po którym funkcja ma się wywołać.
      */
 
     @FXML
@@ -278,7 +279,7 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
      * Metoda wykonująca akcję edycji profilu użytkownika wraz ze sprawdzeniem prawidłowości wprowadzonych danch.
      * Metoda wykona się po wybraniu przycisku <code>zapisz zmiany</code>.
      *
-     * @param event
+     * @param event zdarzenie, po którym funkcja ma się wywołać.
      */
 
     @FXML

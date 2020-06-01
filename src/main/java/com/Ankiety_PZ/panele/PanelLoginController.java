@@ -12,8 +12,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Klasa kontroler do ramki 'PanelLogin.fxml', jest potomkiem klasy {@link BulidStage}.
  * Klasa odpowiada za logowanie użytkownika.
+ * Klasa kontroler do ramki 'PanelLogin.fxml', jest potomkiem klasy {@link BulidStage}.
  */
 
 public class PanelLoginController extends BulidStage {
@@ -45,7 +45,7 @@ public class PanelLoginController extends BulidStage {
     /**
      * Metoda obsługi przycisku zaloguj.
      *
-     * @param event zdarzenie, po którym funkcja ma się wywołać
+     * @param event zdarzenie, po którym funkcja ma się wywołać.
      * @author KamDziok
      */
 
@@ -99,9 +99,7 @@ public class PanelLoginController extends BulidStage {
 
     /**
      * Metoda obsługi przycisku zarejestruj.
-     *
      * @param event zdarzenie, po którym funkcja ma się wywołać
-     * @author KamDziok
      */
 
     @FXML

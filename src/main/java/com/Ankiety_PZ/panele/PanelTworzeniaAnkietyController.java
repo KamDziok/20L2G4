@@ -98,7 +98,6 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
      * Metoda obsługująca przyciśk wyloguj.
      *
      * @param event zdarzenie, po którym funkcja ma się wywołać
-     * @author HubertJakobsze
      */
 
     @FXML
@@ -112,7 +111,6 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
      * Metoda obsługująca przyciśk anuluj.
      *
      * @param event zdarzenie, po którym funkcja ma się wywołać
-     * @author HubertJakobsze
      */
 
     @FXML
@@ -127,7 +125,6 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
      * Metoda obsługująca przyciśk dodaj pytanie.
      *
      * @param event zdarzenie, po którym funkcja ma się wywołać
-     * @author HubertJakobsze
      */
 
     @FXML

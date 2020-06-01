@@ -28,14 +28,15 @@ public class Walidacja {
 
     /**
      * Metoda sprawdzenie czy obowiązkowe pola nie są puste.
-     * @param mail adres mail użytkownika.
+     *
+     * @param mail             adres mail użytkownika.
      * @param kod_pocztowy_cz1 dwie pierwsze cyfry kodu pocztowego.
      * @param kod_pocztowy_cz2 trzy ostatnie cyfry kodu pocztowego.
-     * @param imie imię użytkownika.
-     * @param miasto miasto użytkownika.
-     * @param nazwisko nazwisko użytkownika.
-     * @param numer_domu numer domu użytkownika.
-     * @param ulica ulica użytkownika.
+     * @param imie             imię użytkownika.
+     * @param miasto           miasto użytkownika.
+     * @param nazwisko         nazwisko użytkownika.
+     * @param numer_domu       numer domu użytkownika.
+     * @param ulica            ulica użytkownika.
      * @return true jeśli wszystkie pola obowiązkowe są uzupełnione, w przeciwnym wypadku false
      */
 
@@ -48,6 +49,7 @@ public class Walidacja {
 
     /**
      * Metoda sprawdza czy kod pocztowy składa się z liczb i czy ma odpowiedznią długość.
+     *
      * @param kod_pocztowy_cz1 dwie pierwsze cyfry kodu pocztowego.
      * @param kod_pocztowy_cz2 trzy ostatnie cyfry kodu pocztowego.
      * @return true jeśli kod pocztowy jest poprawny, w przeciwnym razie false
@@ -73,10 +75,11 @@ public class Walidacja {
     /**
      * Metoda sprawdza, czy hasło ma odpowiednią ilość znaków i czy nowe hasło jest takie samo jak powtórz hasło.
      * Sprawdza również czy dotychczasowe hasło zostało podane poprawnie, albo nie jest zmieniane i zostało puste.
-     * @param haslo aktualne hasło użytkownika.
-     * @param nowe_haslo nowe hasło.
+     *
+     * @param haslo         aktualne hasło użytkownika.
+     * @param nowe_haslo    nowe hasło.
      * @param powtorz_haslo nowe hasło powtórnie wprowadzone przez użytkownika.
-     * @param uzytkownik aktualnie zalogowany użytkownik.
+     * @param uzytkownik    aktualnie zalogowany użytkownik.
      * @return true jeśli hasło ma odpowiednią długość i jest takie samo jak powtórz hasło i dotychczasowe hasło
      * zostało podane poprawnie, w przeciwnym wypadku false.
      */
@@ -103,6 +106,7 @@ public class Walidacja {
 
     /**
      * Metoda sprawdza, czy w podanym adresie e-mail znajduje się @.
+     *
      * @param mail adres mail użytkownika.
      * @return true jeśli sdres e-mail posiada @, w przeciwnym wypadku false.
      */

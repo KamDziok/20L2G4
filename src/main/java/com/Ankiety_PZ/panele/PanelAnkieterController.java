@@ -77,7 +77,6 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
      * Metoda obsługująca przyciśk Dodaj
      *
      * @param event zdarzenie, po którym funkcja ma się wywołać
-     * @author HubertJakobsze
      */
 
     @FXML
@@ -181,7 +180,6 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
      * Metoda obsługująca przyciśk wyloguj1.
      *
      * @param event zdarzenie, po którym funkcja ma się wywołać
-     * @author HubertJakobsze
      */
 
     @FXML
@@ -242,7 +240,6 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
     }
 
     @FXML
-        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert panelAnkietButtonDodaj != null : "fx:id=\"panelAnkietButtonDodaj\" was not injected: check your FXML file 'PanelAnkieter.fxml'.";
         assert wyloguj1 != null : "fx:id=\"wyloguj1\" was not injected: check your FXML file 'PanelAnkieter.fxml'.";
