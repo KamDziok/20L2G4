@@ -387,6 +387,10 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
         return liczbapytan >= 2;
     }
 
+    /**
+     * Metoda służąca inicjalizacji listy pytań.
+     */
+
     public void StartListaPytan() {
         ListaPytan = new HashSet<>();
 
@@ -396,6 +400,10 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
     public Set<Pytania> getListaPytan() {
         return ListaPytan;
     }
+
+    /**
+     * Metoda obsługująca przycisk zapisz, czyli zapis ankiety do bazy danych
+     */
 
     @FXML
     void ZapiszAction(ActionEvent event) {
@@ -470,6 +478,8 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
 
     }
 
+
+
     public void setPytdoUsuniecia() {
         pytdoUsuniecia = new HashSet<Pytania>();
 
@@ -480,6 +490,9 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
 
     }
 
+    /**
+     * Metoda wypisująca liste pytań w panelu tworzenia ankiet
+     */
 
     public void setPytanieB(Set lista) {
         ListaPytan = lista;
@@ -495,6 +508,9 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
         przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
         pytanieTabele.itemsProperty().setValue(dane);
     }
+    /**
+     * Metoda służąca do ładowania choice box miesiecy, dni i lat.
+     */
 
     private void loadData() {
 
@@ -512,6 +528,9 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
         dataDORRRR.getItems().addAll(listRRRR);
     }
 
+    /**
+     * Metoda służąca zapisania list pytań i odpowiedzi do usunięcia.
+     */
 
     public void DaneUsniecia(List<Pytania> pyt, List<Odpowiedzi> odp) {
         this.listaPytaU = pyt;

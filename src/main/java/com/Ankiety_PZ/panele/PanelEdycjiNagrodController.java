@@ -28,7 +28,7 @@ import java.util.Iterator;
 import java.util.ResourceBundle;
 
 
-public class PanelEdycjiNagrodController extends BulidStage implements Initializable, SetStartValues {
+public class PanelEdycjiNagrodController extends BulidStage implements SetStartValues {
 
     private Nagrody nagrody;
     private Uzytkownicy curentUser;
@@ -261,13 +261,4 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
 
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-
-       // Image image = new Image(file.toURI().toString());
-       // imageview.setImage(image);
-
-
-    }
 }

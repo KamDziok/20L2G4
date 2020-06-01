@@ -247,6 +247,9 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
         }
 
     }
+    /**
+     * Metoda służąca do conversji zdjecia .jpg na bajty.
+     */
 
     public void conversja(File file) throws FileNotFoundException, IOException {
         FileInputStream fis = new FileInputStream(file);
@@ -264,6 +267,9 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
         pytania.setZdjecie(zdjecie);
     }
 
+    /**
+     * Metoda służąca do conversji bajtów z bazy danych na zdjęcie.
+     */
 
     public void conversjaNaZ(byte[] bytes) throws IOException {
 
@@ -333,6 +339,9 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
         return false;
     }
 
+    /**
+     * Metoda obsługująca dodanie obietku pytanie wraz z odpowiedziami do obiektu ankiety.
+     */
 
     @FXML
     void dodajPytanie(ActionEvent event) {
@@ -472,7 +481,9 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
             panelTworzeniaPytanLabelError.setText("Tytuł pytania nie może być pusty!");
         }
     }
-
+    /**
+     * Metoda obsługująca przycisk zapisz ustawiajaca wartości dla rodzaju pytania, oraz ilość punktów do rozdania w pytaniu.
+     */
     @FXML
     void dodajpytanieAction(ActionEvent event) {
 
@@ -550,6 +561,9 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
 
     }
+    /**
+     * Metoda obsługująca przycisk dodaj, czyli dodanie obietku odpowiedz do listy odpowiedzi.
+     */
 
     public void dodajOdpAction(ActionEvent event) {
         if (!dodawaniePytaniaRBQuestionOpen.isSelected()) {
@@ -590,10 +604,17 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
         }
 
     }
+    /**
+     * Metoda ustawiająca wartość sprawdzającą czy dana ankietajest nowa czy edytowana.
+     */
 
     public void Edycja(Boolean e) {
         this.edycja = e;
     }
+
+    /**
+     * Metoda wypisująca liste odpowiedzi w panelu dodawania pytania.
+     */
 
     public void setOdpowiedziSS(Set<Odpowiedzi> listaOdpTego) {
         ObservableList<OdpowiedziTabelka> dane = FXCollections.observableArrayList();
@@ -607,6 +628,10 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
         aktualnaliczbaodpowiedzi = dane.size();
 
     }
+
+    /**
+     * Metoda służąca zapisania list pytań i odpowiedzi do usunięcia.
+     */
 
     public void DaneUsniecia(List<Pytania> pyt, List<Odpowiedzi> odp) {
         this.listaPytaU = pyt;
