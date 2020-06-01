@@ -265,8 +265,8 @@ public class PanelEdycjiNagrodController extends BulidStage implements Initializ
     public void initialize(URL location, ResourceBundle resources) {
 
 
-        Image image = new Image(file.toURI().toString());
-        imageview.setImage(image);
+       // Image image = new Image(file.toURI().toString());
+       // imageview.setImage(image);
 
 
     }
