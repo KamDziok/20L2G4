@@ -28,6 +28,7 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
      */
 
     private Uzytkownicy curentUser;
+
     @FXML
     private ResourceBundle resources;
 
