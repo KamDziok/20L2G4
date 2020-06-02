@@ -1,7 +1,7 @@
 package com.Ankiety_PZ.panele;
 
 /**
- * Klasa odpowiada przygotowanie danych odpowiedzi do analizy ankiety.
+ * Klasa jest szablonem danych dla tabelki z odpowiedziami otwartymi w analizie ankiet.
  */
 
 public class DoAnalizy {

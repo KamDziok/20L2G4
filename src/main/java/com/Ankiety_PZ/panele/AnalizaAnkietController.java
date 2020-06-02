@@ -31,6 +31,10 @@ public class AnalizaAnkietController implements SetStartValues {
     @FXML
     private URL location;
 
+    /**
+     * Główny AnchorPane okna, do, którego dodawana jest reszta komponentów.
+     */
+
     @FXML
     private AnchorPane panel;
 
@@ -121,14 +125,22 @@ public class AnalizaAnkietController implements SetStartValues {
         panel.getChildren().add(border);
     }
 
-    private KlasaPomocnicza funkcjaPomocnicza(OdpowiedziUzytkownicy odpowiedzi, List<OdpowiedziUzytkownicy> lista) {
+    /**
+     * Metoda liczy ilość wystąpień tej samej odpowiedzi typu punktowego i procentowego
+     *
+     * @param odpowiedzi odpowiedz użytkownika z, którą beda porównywane inne odpowiedzi
+     * @param lista      lista odpowiedzi innych uzytkowników
+     * @return zwraca ilosc wystąpień tej samej odpowiedzi
+     */
+
+    private int funkcjaPomocnicza(OdpowiedziUzytkownicy odpowiedzi, List<OdpowiedziUzytkownicy> lista) {
         KlasaPomocnicza klasa = new KlasaPomocnicza(odpowiedzi.getPunktowe());
         for (OdpowiedziUzytkownicy odpowiedz : lista
         ) {
             if (klasa.getPunktowe() == odpowiedz.getPunktowe())
                 klasa.update();
         }
-        return klasa;
+        return klasa.getCount();
     }
 
     /**
@@ -153,7 +165,7 @@ public class AnalizaAnkietController implements SetStartValues {
             series.setName(odpowiedz.getOdpowiedz());
             for (OdpowiedziUzytkownicy odpowiedzUzytkownika : odpowiedz.getOdpowiedziUzytkownicy()
             ) {
-                series.getData().add(new XYChart.Data(odpowiedzUzytkownika.getPunktowe(), funkcjaPomocnicza(odpowiedzUzytkownika, odpowiedz.getOdpowiedziUzytkownicy()).getCount()));
+                series.getData().add(new XYChart.Data(odpowiedzUzytkownika.getPunktowe(), funkcjaPomocnicza(odpowiedzUzytkownika, odpowiedz.getOdpowiedziUzytkownicy())));
             }
             wykres.getData().add(series);
         }
@@ -177,10 +189,21 @@ public class AnalizaAnkietController implements SetStartValues {
     void initialize() {
     }
 
+    /**
+     * Metoda dostarcza obiekt bieżącego użytkownika z panelu ankietera.
+     */
+
     @Override
     public void setStartValues(Uzytkownicy user) {
         curentUser = user;
     }
+
+    /**
+     * Metoda dostarcza obiekt ankiety wybranej do analizy z panelu ankietera,
+     * i wywołuje odpowiednie metody dla każdego pytania w zależności od jego typu
+     *
+     * @param  ankieta jest używany do wyszukania odpowiedzi na daną ankietę z bazy danych.
+     */
 
     @Override
     public void setStartValuesAnkiety(Ankiety ankieta) {

@@ -1,7 +1,7 @@
 package com.Ankiety_PZ.panele;
 
 /**
- * Klasa odpowiada za pytania z rozdzielaną liczbą punków.
+ * Klasa jest wykorzystywana do liczenia ilości wystąpień takich samych odpowiedzi typu punktowego i procentowego.
  */
 
 public class KlasaPomocnicza {

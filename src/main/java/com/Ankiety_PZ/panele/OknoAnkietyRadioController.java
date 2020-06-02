@@ -35,45 +35,145 @@ import java.util.Set;
 
 public class OknoAnkietyRadioController extends BulidStage implements SetStartValues {
 
-    private Uzytkownicy curentUser;
-
     @FXML
     private ResourceBundle resources;
 
     @FXML
     private URL location;
 
+    /**
+     * Grupa przycisków typu RadioButton.
+     */
+
     @FXML
     private ToggleGroup radioButtonGroup = new ToggleGroup();
+
+    /**
+     * Obiekt typu AnchorPane ("tło okna") do, którego są dodawane kolejne elementy JavaFX.
+     */
 
     @FXML
     private AnchorPane panel;
 
+    /**
+     * Etykieta z tytułem ankiety
+     */
+
     @FXML
     private Label ankietaTytul;
+
+    /**
+     * Etykieta z treścią pytania.
+     */
 
     @FXML
     private Label trescPytania;
 
+    /**
+     * Pole do, którego dodawany jest obrazek.
+     */
+
     @FXML
     private ImageView obrazek;
+
+    /**
+     * Etykieta z treścią odpowiedniego błędu.
+     * Wyświetlana jeśli odpowiedz nie jest zaznaczona lub odpowiedz nie spełnia kryteriów.
+     */
 
     @FXML
     private Label oknoAnkietyLabelError;
 
+    /**
+     * Lista odpowiedzi na pytanie jednokrotnego wyboru.
+     */
+
     private LinkedList<RadioButton> radioButtons;
+
+    /**
+     * Lista odpowiedzi na pytanie wielokrotnego wyboru.
+     */
+
     private LinkedList<CheckBox> checkBox;
+
+    /**
+     * Lista pól do przypisania punktów w pytaniu punktowym.
+     */
+
     private LinkedList<TextField> punktowePola;
+
+    /**
+     * Lista odpowiedzi na pytanie punktowe.
+     */
+
     private LinkedList<Label> punktoweOdpowiedzi;
+
+    /**
+     * Pole do wpisania odpowiedzi otwartej.
+     */
+
     private TextArea odpowiedzOtwarta;
+
+    /**
+     * Pole do wpisania odpowiedzi procentowej.
+     */
+
     private TextField odpowiedzProcentowa;
+
+    /**
+     * Przycisk odpowiadający za przejście do następnego pytania, lub zakończenia ankiety.
+     */
+
     private Button dalej;
+
+    /**
+     * Lista odpowiedzi użytkownika (każdego rodzaju poza otwartymi)
+     * przeznaczona do wysłania do bazy danych.
+     */
+
     private LinkedList<OdpowiedziUzytkownicy> odpowiedziDoWyslania = new LinkedList();
+
+    /**
+     * Lista odpowiedzi użytkownika na pytania otwarte przeznaczona do wysłania do bazy danych.
+     */
+
     private LinkedList<PytaniaUzytkownicy> odpowiedziDoWyslaniaOtwarte = new LinkedList();
+
+    /**
+     * Aktualnie zalogowany użytkownik.
+     */
+
+    private Uzytkownicy curentUser;
+
+    /**
+     * Pole przechowywujące rodzaj pytania
+     */
+
     private int rodzajPytania;
+
+    /**
+     * Ilość punktów do rozdzielenia przy pytaniu punktowym.
+     */
+
     private Integer punkty;
+
+    /**
+     * Ilość punktów do zdobycią za wypełnienie całej ankiety.
+     */
+
     private int punktyZaAnkiete;
+
+    /**
+     * Obiekt kontrolera panelu użytkownika, wykorzystywany np. do aktualizacji ilości punktów po wypełnieniu ankiety.
+     */
+
     private PanelUzytkownikaController controller;
+
+    /**
+     * Metoda tworzy i wyświetla pola odpowiedzi dla pytania typu jednokrotnego wyboru.
+     *
+     * @param odpowiedzi lista odpowiedzi na pytanie.
+     */
 
     private void setRadioOdpowiedzi(Set<Odpowiedzi> odpowiedzi) {
         radioButtons = new LinkedList();
@@ -92,6 +192,12 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
         }
     }
 
+    /**
+     * Metoda tworzy i wyświetla pola odpowiedzi dla pytania typu wielokrotnego wyboru.
+     *
+     * @param odpowiedzi lista odpowiedzi na pytanie.
+     */
+
     private void setCheckOdpowiedzi(Set<Odpowiedzi> odpowiedzi) {
         checkBox = new LinkedList();
         int y = 172;
@@ -108,6 +214,10 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
         }
     }
 
+    /**
+     * Metoda tworzy i wyświetla pole przeznaczone na odpowiedz do pytania otwartego.
+     */
+
     private void setOpenOdpowiedzi() {
         int y = 172;
         odpowiedzOtwarta = new TextArea();
@@ -119,7 +229,13 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
         odpowiedzOtwarta.setVisible(true);
     }
 
-    private void setPktOdpowiedzi(Set<Odpowiedzi> odpowiedzi, int pkt) {
+    /**
+     * Metoda tworzy i wyświetla pola odpowiedzi dla pytania typu punktowego.
+     *
+     * @param odpowiedzi lista odpowiedzi na pytanie.
+     */
+
+    private void setPktOdpowiedzi(Set<Odpowiedzi> odpowiedzi) {
         punktoweOdpowiedzi = new LinkedList();
         punktowePola = new LinkedList();
         int y = 172;
@@ -147,6 +263,10 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
         }
     }
 
+    /**
+     * Metoda tworzy i wyświetla pole przeznaczone na odpowiedz do pytania procentowego.
+     */
+
     private void setProcentOdpowiedzi() {
         int y = 172;
         odpowiedzProcentowa = new TextField();
@@ -156,22 +276,34 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
         odpowiedzProcentowa.setVisible(true);
     }
 
+    /**
+     * Metoda sprawdza rodzaj pytania i wywołuje odpowiednią funkcje sprawdzającą poprawność.
+     *
+     * @return zwraca true jesli odpowiedz jest poprawna, w przeciwnym wypadku false.
+     */
+
     private boolean isQuestionComplete() {
         switch (rodzajPytania) {
-            case 0:
+            case TypeOfQuestion.ONE_CHOICE:
                 return isRadioComplete();
-            case 1:
+            case TypeOfQuestion.MANY_CHOICE:
                 return isCheckComplete();
-            case 2:
+            case TypeOfQuestion.OPEN:
                 return isOpenComplete();
-            case 3:
+            case TypeOfQuestion.POINTS:
                 return isPktComplete();
-            case 4:
+            case TypeOfQuestion.PERCENT:
                 return isPercentComplete();
             default:
-                return true;
+                return false;
         }
     }
+
+    /**
+     * Metoda sprawdza czy jest zaznaczona odpowiedz.
+     *
+     * @return zwraca true jesli odpowiedz jest zaznaczona, w przeciwnym wypadku false.
+     */
 
     private boolean isRadioComplete() {
         for (RadioButton button : radioButtons
@@ -183,6 +315,12 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
         return false;
     }
 
+    /**
+     * Metoda sprawdza czy jest zaznaczona co najmniej jedna odpowiedz.
+     *
+     * @return zwraca true jesli co najmniej jedna odpowiedz jest zaznaczona, w przeciwnym wypadku false.
+     */
+
     private boolean isCheckComplete() {
         for (CheckBox box : checkBox
         ) {
@@ -193,12 +331,25 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
         return false;
     }
 
+    /**
+     * Metoda sprawdza czy odpowiedz na pytanie otwarte nie jest pustym łańcuchem znaków.
+     *
+     * @return zwraca true jesli odpowiedz jest nie pustym łańcuchem znaków, w przeciwnym wypadku false.
+     */
+
     private boolean isOpenComplete() {
         if (odpowiedzOtwarta.getText().equals("")) {
             oknoAnkietyLabelError.setText("Podaj odpowiedź!");
             return false;
         } else return true;
     }
+
+    /**
+     * Metoda sprawdza czy odpowiedz na pytanie procentowe jest poprawna.
+     *
+     * @return zwraca true jesli odpowiedz jest nie mniejsza od 0 i suma rozdzielonych punktów zgadza się z
+     * liczbą ustawioną przez ankietera, w przeciwnym wypadku false.
+     */
 
     private boolean isPktComplete() {
         int suma = 0;
@@ -219,10 +370,16 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                 return false;
             }
         } catch (Exception e) {
-            oknoAnkietyLabelError.setText("Błąd aplikacji, coś poszło nie tak!");
+            oknoAnkietyLabelError.setText("Błąd aplikacji, coś poszło nie tak! Upewnij się, że podałeś liczbę całkowitą");
             return false;
         }
     }
+
+    /**
+     * Metoda sprawdza czy odpowiedz na pytanie procentowe jest poprawne.
+     *
+     * @return zwraca true jesli odpowiedz jest z przedziału od 0 do 100, w przeciwnym wypadku false.
+     */
 
     private boolean isPercentComplete() {
         try {
@@ -233,21 +390,28 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                 return false;
             }
         } catch (Exception e) {
-            oknoAnkietyLabelError.setText("Coś poszło nie tak, upewnij się, że podałeś liczbę bez znaku %!");
+            oknoAnkietyLabelError.setText("Coś poszło nie tak, upewnij się, że podałeś liczbę całkowitą bez znaku %!");
             return false;
         }
     }
 
+    /**
+     * Metoda dodaje odpowiedzi użytkownika do odpowiedzniej listy.
+     *
+     * @param  odpowiedzi odpowiedzi udzielone przez użytkownika.
+     * @param  pytanie    obiekt wymagany przy dodawaniu odpowiedzi do pytania otwartego.
+     */
+
     private void addAnswer(Set<Odpowiedzi> odpowiedzi, Pytania pytanie) {
         switch (rodzajPytania) {
-            case 0:
+            case TypeOfQuestion.ONE_CHOICE:
                 for (RadioButton button : radioButtons
                 ) {
                     if (button.isSelected())
                         odpowiedziDoWyslania.add(new OdpowiedziUzytkownicy(odpowiedzi.iterator().next(), curentUser));
                 }
                 break;
-            case 1:
+            case TypeOfQuestion.MANY_CHOICE:
                 Iterator iteratorek = odpowiedzi.iterator();
                 for (CheckBox box : checkBox
                 ) {
@@ -257,10 +421,10 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                     }
                 }
                 break;
-            case 2:
+            case TypeOfQuestion.OPEN:
                 odpowiedziDoWyslaniaOtwarte.add(new PytaniaUzytkownicy(pytanie, curentUser, odpowiedzOtwarta.getText()));
                 break;
-            case 3:
+            case TypeOfQuestion.POINTS:
                 Iterator iteratorki = odpowiedzi.iterator();
                 for (TextField field : punktowePola
                 ) {
@@ -268,11 +432,24 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                     odpowiedziDoWyslania.add(new OdpowiedziUzytkownicy(odp, curentUser, Integer.parseInt(field.getText())));
                 }
                 break;
-            case 4:
-                odpowiedziDoWyslania.add(new OdpowiedziUzytkownicy(odpowiedzi.iterator().next(), curentUser, Integer.valueOf(odpowiedzProcentowa.getText())));
+            case TypeOfQuestion.PERCENT:
+                odpowiedziDoWyslania.add(new OdpowiedziUzytkownicy(odpowiedzi.iterator().next(),
+                        curentUser, Integer.valueOf(odpowiedzProcentowa.getText())));
                 break;
         }
     }
+
+    /**
+     * Metoda przypisuje odpowiednie funkcje przyciskowi dalej i dodaje odpowiedz na pytanie.
+     * Jeśli jest to ostatnie pytanie, wtedy przycisk zmienia swoją funkcję i nazwe na Zakończ.
+     * W takim przypadku wywoływana jest metoda zapisująca odpowiedzi do bazy danych,
+     * metoda aktualizująca iloś punktów użytkownika orazmetoda aktualizująca tabelę dostępnych ankiet.
+     *
+     * W przeciwnym wypadku jest to przycisk do następnego pytania, który przekazuje niezbędne parametry dalej.
+     *
+     * @param  iterator jest to obiekt dzięki, któremu poruszamy się po zbiorze pytań.
+     * @param  pytanie  obiekt wymagany przy dodawaniu odpowiedzi do listy.
+     */
 
     private void setButton(Iterator iterator, Pytania pytanie) {
         if (iterator.hasNext()) {
@@ -331,6 +508,10 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
 
     }
 
+    /**
+     * Metoda przekazująca obecnie zalogowanego użytkownika
+     */
+
     @Override
     public void setStartValues(Uzytkownicy user) {
         curentUser = user;
@@ -350,6 +531,13 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
     public void setStartValuesNagroda(Nagrody nagroda) {
 
     }
+
+    /**
+     * Metoda przekazująca Iterator do następnego lub pierwszego pytania.
+     * Zaraz po przekazaniu pytania, twożone i wyświetlane są odpowiedznie elementy JavaFX
+     *
+     * @param iterator jest to obiekt dzięki, któremu poruszamy się po zbiorze pytań.
+     */
 
     @Override
     public void setStartValuesIerator(Iterator<Pytania> iterator) {
@@ -378,7 +566,7 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                 trescPytania.setText(pytanie.getTresc());
                 break;
             case TypeOfQuestion.POINTS:
-                setPktOdpowiedzi(pytanie.getOdpowiedzis(), punkty);
+                setPktOdpowiedzi(pytanie.getOdpowiedzis());
                 trescPytania.setText(pytanie.getTresc() + " Rozdziel " + pytanie.getPunktowe() + " punktów.");
                 break;
             case TypeOfQuestion.PERCENT:
@@ -425,16 +613,35 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
 
     }
 
+    /**
+     * Metoda przekazująca listy odpowiedzi.
+     *
+     * @param odpowiedziDoWyslania        lista odpowiedzi użytkownika (każdego rodzaju poza otwartymi).
+     * @param odpowiedziDoWyslaniaOtwarte lista odpowiedzi użytkownika na pytania otwarte.
+     */
+
     @Override
     public void setStartValuesListOdpowiedzi(LinkedList<OdpowiedziUzytkownicy> odpowiedziDoWyslania, LinkedList<PytaniaUzytkownicy> odpowiedziDoWyslaniaOtwarte) {
         this.odpowiedziDoWyslania = odpowiedziDoWyslania;
         this.odpowiedziDoWyslaniaOtwarte = odpowiedziDoWyslaniaOtwarte;
     }
 
+    /**
+     * Metoda przekazująca ilość punktów do zdobycia za wypełnienie ankiety.
+     *
+     * @param punkty liczba punktów.
+     */
+
     @Override
     public void setStartValuesPkt(int punkty) {
         punktyZaAnkiete = punkty;
     }
+
+    /**
+     * Metoda przekazująca kontroler panelu użytkownika.
+     *
+     * @param controller obiekt kontrolera panelu użytkownika.
+     */
 
     @Override
     public void setStartValuesPanelUzytkownikaController(PanelUzytkownikaController controller) {
