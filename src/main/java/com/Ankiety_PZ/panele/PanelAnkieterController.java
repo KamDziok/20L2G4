@@ -22,61 +22,194 @@ import java.util.*;
 
 public class PanelAnkieterController extends BulidStage implements SetStartValues {
 
+
+    /**
+     * Obiekt przechowujący uzytkownika.
+     */
+
     private Uzytkownicy curentUser;
+
+    /**
+     * Obiekt przechowujący ankiete.
+     */
 
     private Ankiety ankiety;
 
+    /**
+     * Obiekt imie i nazwisko uzytkownika.
+     */
+
     private String imie_nazwisko_rola_tmp;
+
+    /**
+     * Obiekt przechowujący uzytkownika.
+     */
+
     @FXML
     private Label panelAnkieterLabelError;
+
+    /**
+     * Widok wiświetlajacy imie i nazwisko uzytkownika.
+     */
+
     @FXML
     private Label imie_nazwisko_rola;
+
+    /**
+     * Widok wiświetlajacy imie i nazwisko uzytkownika.
+     */
+
     @FXML
     private Label imie_nazwisko_rola2;
     @FXML
     private ResourceBundle resources;
     @FXML
     private URL location;
+
+    /**
+     * Przycisk wyloguj.
+     */
+
+
     @FXML
     private Button wyloguj1;
+
+    /**
+     * Przycisk Dodaj.
+     */
+
     @FXML
     private Button panelAnkietButtonDodaj;
+
+    /**
+     * Widok tabeli ankiet.
+     */
+
     @FXML
     private TableView tableAnkiety;
+
+    /**
+     * Widok tytułu ankiety.
+     */
+
     @FXML
     private TableColumn tytul;
+
+    /**
+     * Widok daty zakończenia ankiety.
+     */
+
     @FXML
     private TableColumn wygasa;
+
+    /**
+     * Widok punktów danej ankiety.
+     */
+
     @FXML
     private TableColumn pkt;
+
+    /**
+     * Przycisk Edytuj.
+     */
+
     @FXML
     private TableColumn przyciskEdycja;
+
+    /**
+     * Przycisk usuń.
+     */
+
     @FXML
     private TableColumn przyciskUsun;
+
+    /**
+     * Przycisk Analizuj.
+     */
     @FXML
     private TableColumn przyciskAnaliza;
+
+    /**
+     * Przycisk Edytuj.
+     */
+
     @FXML
     private TextField email;
+
+    /**
+     * Aktualne hasło przy edycji profilu.
+     */
+
     @FXML
     private TextField haslo;
+
+    /**
+     * Nowe hasło przy edycji profilu.
+     */
+
     @FXML
     private TextField nowehaslo;
+
+    /**
+     * Powtórnie wprowadzone hasło przy edycji profilu.
+     */
+
     @FXML
     private TextField hasloznowu;
+
+    /**
+     * Imie przy edycji profilu.
+     */
+
     @FXML
     private TextField imie;
+
+    /**
+     * Nazwisko przy edycji profilu.
+     */
+
     @FXML
     private TextField nazwisko;
+
+    /**
+     * Miejscowość przy edycji profilu.
+     */
+
     @FXML
     private TextField miejscowosc;
+
+    /**
+     * Ulica przy edycji profilu.
+     */
+
     @FXML
     private TextField ulica;
+
+    /**
+     * Numer budynku przy edycji profilu.
+     */
+
     @FXML
     private TextField budynek;
+
+    /**
+     * Numer lokalu przy edycji profilu.
+     */
+
     @FXML
     private TextField lokal;
+
+    /**
+     * Dwie pierwsze cyfry kodu pocztowego przy edycji profilu.
+     */
+
     @FXML
     private TextField kod1;
+
+    /**
+     * Trzy ostatnie cyfry kodu pocztowego przy edycji profilu.
+     */
+
     @FXML
     private TextField kod2;
 
@@ -113,6 +246,10 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
         panelTworzeniaankietyController.setStartValues(curentUser);
         activeScene(event, false, false);
     }
+
+    /**
+     * Metoda obsługująca przycisk Zapisz ustawienia
+     */
 
     @FXML
     void panelAnkieteraButtonZmienUstawienia(ActionEvent event) {
@@ -168,6 +305,10 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
         }
     }
 
+    /**
+     * metoda ustwaiajaca dane zalogowanego użytkownika w widoku konta uzytkownika
+     */
+
     private void setUstawienia() {
         String imie = curentUser.getImie();
         String nazwisko = curentUser.getNazwisko();
@@ -196,9 +337,17 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
         activeScene(event, false, false);
     }
 
+    /**
+     * Metoda wyświetlająca błąd zwiazany z próbą edycji rozpoczetej ankiety.
+     */
+
     void ankietawtoku() {
         panelAnkieterLabelError.setText("Nie można edytować ankiety, która się rozpoczęła.");
     }
+
+    /**
+     * Metoda wypisująca to tabeli ankiet ankiety.
+     */
 
     private void setAnkiety() {
         AnkietyQuery query = new AnkietyQuery();
@@ -218,6 +367,10 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
 
     }
 
+    /**
+     * metoda przechwytująca aktualnego uzytkownika
+     */
+
     @Override
     public void setStartValues(Uzytkownicy user) {
         this.curentUser = user;
@@ -227,6 +380,11 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
         setUstawienia();
         setAnkiety();
     }
+
+
+    /**
+     * metoda przechwytująca aktualnie wybraną ankiete.
+     */
 
     @Override
     public void setStartValuesAnkiety(Ankiety ankieta) {

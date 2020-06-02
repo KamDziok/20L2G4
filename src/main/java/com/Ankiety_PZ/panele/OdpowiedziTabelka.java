@@ -28,6 +28,9 @@ public class OdpowiedziTabelka extends BulidStage {
      */
 
     public Button buttonUsun;
+    /**
+     * Metoda obsługująca tworzenie tabelki z odpowiedziami.
+     */
 
     OdpowiedziTabelka(Odpowiedzi odpowiedzi, Ankiety ankieta, Uzytkownicy user, List<Odpowiedzi> odp, List<Pytania> pyt, Set usu, Boolean edycja2, DodawaniePytaniaController dod) {
         tresc = odpowiedzi.getOdpowiedz();
