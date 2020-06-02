@@ -25,7 +25,7 @@ public class PytaniaQuery extends OperationInSession {
      * Wypisuje wszystkie {@link Pytania pytań} z bazy
      *
      * @return lista wszystkich {@link Pytania pytań} z bazyt
-     * @throws HibernateException
+     * @throws HibernateException wyjątek Hibernate
      */
     public List<Pytania> selectAll() throws HibernateException {
         return modifyPytania.selectListHQL("from Pytania");

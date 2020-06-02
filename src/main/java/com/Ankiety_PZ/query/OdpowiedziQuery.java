@@ -26,7 +26,7 @@ public class OdpowiedziQuery extends OperationInSession {
      * Wypisuje wszystkie {@link Odpowiedzi odpowiedzi} z bazy
      *
      * @return Lista {@link Odpowiedzi odpowiedzi}, jeśli w bazie nie ma {@link Odpowiedzi odpowiedzi} lista będzie pusta
-     * @throws HibernateException
+     * @throws HibernateException wyjątek Hibernate
      */
     public List<Odpowiedzi> selestAll() throws HibernateException {
         return modifyOdpowiedzi.selectListHQL(("from Odpowiedzi"));
