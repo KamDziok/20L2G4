@@ -1,6 +1,4 @@
-/**
- * Sample Skeleton for 'DodawaniePytania.fxml' Controller Class
- */
+
 package com.Ankiety_PZ.panele;
 
 
@@ -19,6 +17,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
 /**
  * Klasa odpowiedzialna za edycje wybranej ankiety
  */
@@ -288,8 +287,8 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
 
     /**
      * Metoda ustawiająca stan ankiety.
+     * @param wyb czy wybór jest true, czy false.
      */
-
 
     public void SetEdycja(Boolean wyb) {
         edycja2 = wyb;
@@ -377,7 +376,8 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
     }
 
     /**
-     * metoda ustwiająca wartość ListaPytan
+     * Metoda ustwiająca wartość ListaPytan.
+     * @param listaPytan lista obiektów Pytania.
      */
 
 
@@ -387,7 +387,7 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
 
 
     /**
-     * metoda ustwiająca aktualnego uzytkownika
+     * Metoda ustwiająca aktualnego uzytkownika
      */
 
     @Override
@@ -395,8 +395,9 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
         this.curetUser = user;
 
     }
+
     /**
-     * metoda wypisująca dane do tableli ankiet
+     * Metoda wypisująca dane do tableli ankiet
      */
 
     @Override
@@ -435,8 +436,11 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
         liczbapytan = liczpytania + liczpytaniaB;
 
     }
+
     /**
-     * metoda ustwiająca wartość tabeli ankiet z bazy danych
+     * Metoda ustwiająca wartość tabeli ankiet z bazy danych.
+     *
+     * @param ankieta obiekt ankiety do edycji.
      */
 
     public void setStartValuesEdytujAnkiety(Ankiety ankieta) {
@@ -479,7 +483,7 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
 
 
     /**
-     * inicjalizacja listyPytaU i listaOdpU
+     * Inicjalizacja listyPytaU i listaOdpU.
      */
 
     public void SetStart() {
@@ -623,6 +627,8 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
 
     /**
      * Metoda obsługująca przycisk zapisz, czyli zapis ankiety do bazy danych
+     *
+     * @param event zdarzenie, po którym funkcja ma się wywołać
      */
 
     @FXML
@@ -699,7 +705,6 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
     }
 
 
-
     public void setPytdoUsuniecia() {
         pytdoUsuniecia = new HashSet<Pytania>();
 
@@ -711,7 +716,9 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
     }
 
     /**
-     * Metoda wypisująca liste pytań w panelu tworzenia ankiet
+     * Metoda wypisująca liste pytań w panelu tworzenia ankiet.
+     *
+     * @param lista lista pytań.
      */
 
     public void setPytanieB(Set lista) {
@@ -728,6 +735,7 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
         przyciskUsun.setCellValueFactory(new PropertyValueFactory("buttonUsun"));
         pytanieTabele.itemsProperty().setValue(dane);
     }
+
     /**
      * Metoda służąca do ładowania choice box miesiecy, dni i lat.
      */
@@ -750,6 +758,9 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
 
     /**
      * Metoda służąca zapisania list pytań i odpowiedzi do usunięcia.
+     *
+     * @param pyt pytania usnięte przez użytkownika.
+     * @param odp odpowiedzi usunięte przez użytkownika.
      */
 
     public void DaneUsniecia(List<Pytania> pyt, List<Odpowiedzi> odp) {

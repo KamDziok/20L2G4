@@ -202,7 +202,7 @@ public class AnalizaAnkietController implements SetStartValues {
      * Metoda dostarcza obiekt ankiety wybranej do analizy z panelu ankietera,
      * i wywołuje odpowiednie metody dla każdego pytania w zależności od jego typu
      *
-     * @param  ankieta jest używany do wyszukania odpowiedzi na daną ankietę z bazy danych.
+     * @param ankieta jest używany do wyszukania odpowiedzi na daną ankietę z bazy danych.
      */
 
     @Override

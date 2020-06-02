@@ -1,9 +1,7 @@
 package com.Ankiety_PZ.panele;
 
-import com.Ankiety_PZ.hibernate.Ankiety;
 import com.Ankiety_PZ.hibernate.Odpowiedzi;
 import com.Ankiety_PZ.hibernate.Pytania;
-import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -28,11 +26,17 @@ public class OdpowiedziTabelka extends BulidStage {
      */
 
     public Button buttonUsun;
+
     /**
-     * Metoda obsługująca tworzenie tabelki z odpowiedziami.
+     * Metoda tworząca elemety tabeliu z odpoweidziami.
+     * @param odpowiedzi obiekt pojedynczej odpowiedzi.
+     * @param odp lista odpowiedzi utworzonych przez użytkownika.
+     * @param pyt lista pytań utworzonych przez użytkownika.
+     * @param usu  odpowiedzi do usunięcia.
+     * @param dod DodawaniePytaniaController.
      */
 
-    OdpowiedziTabelka(Odpowiedzi odpowiedzi, Ankiety ankieta, Uzytkownicy user, List<Odpowiedzi> odp, List<Pytania> pyt, Set usu, Boolean edycja2, DodawaniePytaniaController dod) {
+    OdpowiedziTabelka(Odpowiedzi odpowiedzi, List<Odpowiedzi> odp, List<Pytania> pyt, Set usu, DodawaniePytaniaController dod) {
         tresc = odpowiedzi.getOdpowiedz();
         buttonUsun = new Button("Usuń");
         buttonUsun.setOnAction(new EventHandler<ActionEvent>() {

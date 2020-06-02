@@ -35,8 +35,9 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
     private ResourceBundle resources;
     @FXML
     private URL location;
+
     /**
-     *  Plik przechowujący zdjecie.
+     * Plik przechowujący zdjecie.
      */
 
     File file;
@@ -152,7 +153,7 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
     private TextField trescPytania;
 
     /**
-     *widok treść błedu przy tworzeniu pytania.
+     * widok treść błedu przy tworzeniu pytania.
      */
 
     @FXML
@@ -226,7 +227,7 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
     private Pytania pytania;
 
     /**
-     *lista przechowująca pytania.
+     * lista przechowująca pytania.
      */
 
     private List<Pytania> listaPytaU;
@@ -265,7 +266,8 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
     }
 
     /**
-     * metoda przechwytująca aktualną liste pytań do ankiety.
+     * Metoda przechwytująca aktualną liste pytań do ankiety.
+     *
      */
 
     public void setLisaPytanPrzekazana(Set<Pytania> lisaPytanPrzekazana) {
@@ -273,7 +275,7 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
     }
 
     /**
-     * metoda przechwytująca aktualną edytowaną/tworzoną ankietę.
+     * Metoda przechwytująca aktualną edytowaną/tworzoną ankietę.
      */
 
     @Override
@@ -281,8 +283,9 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
         this.ankiety2 = ankieta;
         System.out.println(ankiety2);
     }
+
     /**
-     * metoda wypisująca informacje danego pytania w momęcie jego edycji.
+     * Metoda wypisująca informacje danego pytania w momęcie jego edycji.
      */
 
 
@@ -328,8 +331,6 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
     }
 
 
-
-
     @Override
     public void setStartValuesNagroda(Nagrody nagroda) {
 
@@ -347,6 +348,7 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
     public void SetEdycja(Boolean wyb) {
         edycja2 = wyb;
     }
+
     /**
      * metoda przechowująca pytania których nie należy dodawać w przypdaku kliknięcia anuluj.
      */
@@ -354,6 +356,7 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
     public void SetAnuluj(Set odp) {
         this.listaOdpTego = odp;
     }
+
     /**
      * metoda inicjująca wartość początkową dla listaOdpTego dla pytań otwartych.
      */
@@ -376,6 +379,7 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
         listaOdpTego = new HashSet<Odpowiedzi>(pytania.getOdpowiedzis());
 
     }
+
     /**
      * metoda obsługująca przycisk anuluj.
      */
@@ -513,6 +517,7 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
     /**
      * Metoda obsługująca dodanie obietku pytanie wraz z odpowiedziami do obiektu ankiety.
+     * @param event zdarzenie, po którym funkcja ma się wywołać
      */
 
     @FXML
@@ -593,11 +598,11 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
             } else {
                 if ((aktualnaliczbaodpowiedzi == 0 &&
                         (dodawaniePytaniaRBQuestionOpen.isSelected() ||
-                         dodawaniePytaniaRBQuestionPercentages.isSelected())) ||
-                    (aktualnaliczbaodpowiedzi >  1 &&
-                        (dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected() ||
-                         dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected() ||
-                        (dodawaniePytaniaRBQuestionPoints.isSelected() && punktyisnumber())))) {
+                                dodawaniePytaniaRBQuestionPercentages.isSelected())) ||
+                        (aktualnaliczbaodpowiedzi > 1 &&
+                                (dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected() ||
+                                        dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected() ||
+                                        (dodawaniePytaniaRBQuestionPoints.isSelected() && punktyisnumber())))) {
 
                     if (edycja2) pytania.setIdPytania(-1);
                     pytania.setTresc(trescPytania.getText());
@@ -618,7 +623,7 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
                     panelTworzeniaankietyController.SetEdycja(edycja2);
                     activeScene(event, false, false);
                 } else {
-                   if (dodawaniePytaniaRBQuestionOpen.isSelected()||dodawaniePytaniaRBQuestionPercentages.isSelected()) {
+                    if (dodawaniePytaniaRBQuestionOpen.isSelected() || dodawaniePytaniaRBQuestionPercentages.isSelected()) {
                         panelTworzeniaPytanLabelError.setText("To pytanie nie może mieć odpowiedzi!");
                     } else {
                         panelTworzeniaPytanLabelError.setText("To pytanie musi mieć przynajmniej 2 odpowiedzi!");
@@ -636,6 +641,7 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
     /**
      * Metoda obsługująca przycisk zapisz ustawiajaca wartości dla rodzaju pytania, oraz ilość punktów do rozdania w pytaniu.
+     * @param event zdarzenie, po którym funkcja ma się wywołać
      */
 
     @FXML
@@ -717,6 +723,7 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
     /**
      * Metoda obsługująca przycisk dodaj, czyli dodanie obietku odpowiedz do listy odpowiedzi.
+     * @param event zdarzenie, po którym funkcja ma się wywołać
      */
 
     public void dodajOdpAction(ActionEvent event) {
@@ -769,13 +776,14 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
     /**
      * Metoda wypisująca liste odpowiedzi w panelu dodawania pytania.
+     * @param listaOdpTego lista odpowiedzi.
      */
 
     public void setOdpowiedziSS(Set<Odpowiedzi> listaOdpTego) {
         ObservableList<OdpowiedziTabelka> dane = FXCollections.observableArrayList();
         listaOdpTego.forEach(odpowiedz -> {
             Odpowiedzi JednaOdp = (Odpowiedzi) odpowiedz;
-            dane.add(new OdpowiedziTabelka(JednaOdp, ankiety2, curetUser, listaOdpU, listaPytaU, listaOdpTego, edycja2, this));
+            dane.add(new OdpowiedziTabelka(JednaOdp, listaOdpU, listaPytaU, listaOdpTego, this));
         });
         odpowiedziTabelka.itemsProperty().setValue(dane);
         tresc.setCellValueFactory(new PropertyValueFactory("tresc"));
