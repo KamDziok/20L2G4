@@ -287,11 +287,7 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
 
     /**
      * Metoda ustawiająca stan ankiety.
-<<<<<<< HEAD
      * @param wyb Wartość true/false
-=======
-     * @param wyb czy wybór jest true, czy false.
->>>>>>> 01d442b59e52a5f91c3f316690367fcbae76df5a
      */
 
     public void SetEdycja(Boolean wyb) {
@@ -380,13 +376,8 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
     }
 
     /**
-<<<<<<< HEAD
      * metoda ustwiająca wartość ListaPytan
-     * @param listaPytan Lista pytań
-=======
-     * Metoda ustwiająca wartość ListaPytan.
      * @param listaPytan lista obiektów Pytania.
->>>>>>> 01d442b59e52a5f91c3f316690367fcbae76df5a
      */
 
 
@@ -447,14 +438,8 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
     }
 
     /**
-<<<<<<< HEAD
      * metoda ustwiająca wartość tabeli ankiet z bazy danych
      * @param ankieta Obiekt ankiety
-=======
-     * Metoda ustwiająca wartość tabeli ankiet z bazy danych.
-     *
-     * @param ankieta obiekt ankiety do edycji.
->>>>>>> 01d442b59e52a5f91c3f316690367fcbae76df5a
      */
 
     public void setStartValuesEdytujAnkiety(Ankiety ankieta) {
@@ -641,12 +626,7 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
 
     /**
      * Metoda obsługująca przycisk zapisz, czyli zapis ankiety do bazy danych
-<<<<<<< HEAD
      * @param event wywołanie przycisku zapisz
-=======
-     *
-     * @param event zdarzenie, po którym funkcja ma się wywołać
->>>>>>> 01d442b59e52a5f91c3f316690367fcbae76df5a
      */
 
     @FXML
@@ -734,14 +714,10 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
     }
 
     /**
-<<<<<<< HEAD
+
      * Metoda wypisująca liste pytań w panelu tworzenia ankiet
      * @param lista lista pytań
-=======
-     * Metoda wypisująca liste pytań w panelu tworzenia ankiet.
-     *
-     * @param lista lista pytań.
->>>>>>> 01d442b59e52a5f91c3f316690367fcbae76df5a
+
      */
 
     public void setPytanieB(Set lista) {
@@ -781,14 +757,9 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
 
     /**
      * Metoda służąca zapisania list pytań i odpowiedzi do usunięcia.
-<<<<<<< HEAD
      * @param odp lista odpowiedzi
      * @param pyt lista pytań
-=======
-     *
-     * @param pyt pytania usnięte przez użytkownika.
-     * @param odp odpowiedzi usunięte przez użytkownika.
->>>>>>> 01d442b59e52a5f91c3f316690367fcbae76df5a
+
      */
 
     public void DaneUsniecia(List<Pytania> pyt, List<Odpowiedzi> odp) {

@@ -249,11 +249,7 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
 
     /**
      * Metoda obsługująca przycisk Zapisz ustawienia
-<<<<<<< HEAD
-     * @param event wywołanie przycisku zapisz
-=======
      * @param event zdarzenie, po którym funkcja ma się wywołać
->>>>>>> 01d442b59e52a5f91c3f316690367fcbae76df5a
      */
 
     @FXML

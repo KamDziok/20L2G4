@@ -28,24 +28,12 @@ public class OdpowiedziTabelka extends BulidStage {
     public Button buttonUsun;
 
     /**
-<<<<<<< HEAD
-     * Metoda obsługująca tworzenie tabelki z odpowiedziami.
-     * @param pyt Lista pytań
-     * @param odp Lista odpowiedzi
-     * @param ankieta Obiekt ankiety
-     * @param dod Obiekt classy dodawaniePytaniaContrller
-     * @param edycja2 wartość true/false
-     * @param odpowiedzi Obiekt odpowiedzi
-     * @param user Obiekt uzytkownika
-     * @param usu lista odpowiedzi
-=======
      * Metoda tworząca elemety tabeliu z odpoweidziami.
      * @param odpowiedzi obiekt pojedynczej odpowiedzi.
      * @param odp lista odpowiedzi utworzonych przez użytkownika.
      * @param pyt lista pytań utworzonych przez użytkownika.
      * @param usu  odpowiedzi do usunięcia.
      * @param dod DodawaniePytaniaController.
->>>>>>> 01d442b59e52a5f91c3f316690367fcbae76df5a
      */
 
     OdpowiedziTabelka(Odpowiedzi odpowiedzi, List<Odpowiedzi> odp, List<Pytania> pyt, Set usu, DodawaniePytaniaController dod) {

@@ -39,16 +39,6 @@ public class PytanieTabelka extends BulidStage implements SetStartValues {
     public Button buttonEdycja;
 
     /**
-<<<<<<< HEAD
-     * metoda tworząca elemety tableki z pytaniami.
-     * @param odp Lista odpowiedzi
-     * @param pyt Lista pytań
-     * @param ankieta Obiekt ankiety
-     * @param user Obiekt uzytkownika
-     * @param listaPytaU Lista pytań
-     * @param pytanie Obietk pytanie
-     * @param two Obiekt classy PanelTworzeniaAnkietyController
-=======
      * Metoda tworząca elemety tabeliu z pytaniami.
      * @param ankieta obiekt pojedynczej ankiety.
      * @param listaPytaU lista wszystkich pytań.
@@ -57,7 +47,6 @@ public class PytanieTabelka extends BulidStage implements SetStartValues {
      * @param pytanie obiekt pojedynczego pytania.
      * @param two PanelTworzeniaAnkietyController
      * @param user aktualnie zalogowany użytkownik.
->>>>>>> 01d442b59e52a5f91c3f316690367fcbae76df5a
      */
 
     PytanieTabelka(Ankiety ankieta, Pytania pytanie, Uzytkownicy user, List<Odpowiedzi> odp,

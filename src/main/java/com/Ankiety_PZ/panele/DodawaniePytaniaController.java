@@ -266,13 +266,8 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
     }
 
     /**
-<<<<<<< HEAD
      * metoda przechwytująca aktualną liste pytań do ankiety.
      * @param lisaPytanPrzekazana Lista pytań do przekazania
-=======
-     * Metoda przechwytująca aktualną liste pytań do ankiety.
-     *
->>>>>>> 01d442b59e52a5f91c3f316690367fcbae76df5a
      */
 
     public void setLisaPytanPrzekazana(Set<Pytania> lisaPytanPrzekazana) {
@@ -532,11 +527,7 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
     /**
      * Metoda obsługująca dodanie obietku pytanie wraz z odpowiedziami do obiektu ankiety.
-<<<<<<< HEAD
-     * @param event wywołanie przycisku dodaj
-=======
      * @param event zdarzenie, po którym funkcja ma się wywołać
->>>>>>> 01d442b59e52a5f91c3f316690367fcbae76df5a
      */
 
     @FXML
@@ -605,29 +596,26 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
                         panelTworzeniaPytanLabelError.setText("Pytanie otwarte nie może zawierać odpowiedzi!");
                     }
                 } else {
-<<<<<<< HEAD
                     if (dodawaniePytaniaRBQuestionPercentages.isSelected()) {
                         panelTworzeniaPytanLabelError.setText("To pytanie musi mieć 1 odpowiedź!");
                     } else if (dodawaniePytaniaRBQuestionOpen.isSelected()) {
-=======
-                    if (dodawaniePytaniaRBQuestionOpen.isSelected() || dodawaniePytaniaRBQuestionPercentages.isSelected()) {
->>>>>>> 01d442b59e52a5f91c3f316690367fcbae76df5a
+
                         panelTworzeniaPytanLabelError.setText("To pytanie nie może mieć odpowiedzi!");
                     } else {
                         panelTworzeniaPytanLabelError.setText("To pytanie musi mieć przynajmniej 2 odpowiedzi!");
                     }
 
                 }
-
-
             } else {
-                if ((aktualnaliczbaodpowiedzi == 0 &&
-                        (dodawaniePytaniaRBQuestionOpen.isSelected() ||
-                                dodawaniePytaniaRBQuestionPercentages.isSelected())) ||
+                if ((aktualnaliczbaodpowiedzi == 0 && dodawaniePytaniaRBQuestionOpen.isSelected()) ||
                         (aktualnaliczbaodpowiedzi > 1 &&
-                                (dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected() ||
-                                        dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected() ||
-                                        (dodawaniePytaniaRBQuestionPoints.isSelected() && punktyisnumber())))) {
+                                (dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected() || dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected() ||
+                                        (dodawaniePytaniaRBQuestionPoints.isSelected() && punktyisnumber())
+                                ))
+                        ||
+                        (aktualnaliczbaodpowiedzi == 1 &&
+                                (dodawaniePytaniaRBQuestionPercentages.isSelected()))
+                ) {
 
                     if (edycja2) pytania.setIdPytania(-1);
                     pytania.setTresc(trescPytania.getText());
@@ -648,42 +636,37 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
                     panelTworzeniaankietyController.SetEdycja(edycja2);
                     activeScene(event, false, false);
                 } else {
-<<<<<<< HEAD
                     if (dodawaniePytaniaRBQuestionPercentages.isSelected()) {
                         panelTworzeniaPytanLabelError.setText("To pytanie  musi mieć 1 odpowiedź!");
                     } else if (dodawaniePytaniaRBQuestionOpen.isSelected()) {
-=======
-                    if (dodawaniePytaniaRBQuestionOpen.isSelected() || dodawaniePytaniaRBQuestionPercentages.isSelected()) {
->>>>>>> 01d442b59e52a5f91c3f316690367fcbae76df5a
-                        panelTworzeniaPytanLabelError.setText("To pytanie nie może mieć odpowiedzi!");
-                    } else {
-                        panelTworzeniaPytanLabelError.setText("To pytanie musi mieć przynajmniej 2 odpowiedzi!");
+                        if (dodawaniePytaniaRBQuestionOpen.isSelected() || dodawaniePytaniaRBQuestionPercentages.isSelected()) {
+                            panelTworzeniaPytanLabelError.setText("To pytanie nie może mieć odpowiedzi!");
+                        } else {
+                            panelTworzeniaPytanLabelError.setText("To pytanie musi mieć przynajmniej 2 odpowiedzi!");
+                        }
+
                     }
 
+
                 }
-
-
             }
-
         } else {
             panelTworzeniaPytanLabelError.setText("Tytuł pytania nie może być pusty!");
         }
     }
 
+
     /**
      * Metoda obsługująca przycisk zapisz ustawiajaca wartości dla rodzaju pytania, oraz ilość punktów do rozdania w pytaniu.
-<<<<<<< HEAD
-     * @param event wywołanie przycisku zapisz
-=======
      * @param event zdarzenie, po którym funkcja ma się wywołać
->>>>>>> 01d442b59e52a5f91c3f316690367fcbae76df5a
+
      */
 
     @FXML
     void dodajpytanieAction(ActionEvent event) {
 
 
-        if (dodawaniePytaniaRBQuestionOpen.isSelected() || dodawaniePytaniaRBQuestionPercentages.isSelected()) {
+        if (dodawaniePytaniaRBQuestionOpen.isSelected()) {
             if (aktualnaliczbaodpowiedzi <= 0) {
                 rodzajPytania = TypeOfQuestion.OPEN;
 
@@ -758,11 +741,7 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
     /**
      * Metoda obsługująca przycisk dodaj, czyli dodanie obietku odpowiedz do listy odpowiedzi.
-<<<<<<< HEAD
-     * @param event wywołanie przycisku dodaj
-=======
      * @param event zdarzenie, po którym funkcja ma się wywołać
->>>>>>> 01d442b59e52a5f91c3f316690367fcbae76df5a
      */
 
     public void dodajOdpAction(ActionEvent event) {
@@ -816,11 +795,7 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
     /**
      * Metoda wypisująca liste odpowiedzi w panelu dodawania pytania.
-<<<<<<< HEAD
-     * @param listaOdpTego lista odpowiedzi
-=======
      * @param listaOdpTego lista odpowiedzi.
->>>>>>> 01d442b59e52a5f91c3f316690367fcbae76df5a
      */
 
     public void setOdpowiedziSS(Set<Odpowiedzi> listaOdpTego) {
