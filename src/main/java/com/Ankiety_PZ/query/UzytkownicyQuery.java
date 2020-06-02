@@ -28,7 +28,7 @@ public class UzytkownicyQuery extends OperationInSession {
      * Wypisuje wszystkie {@link Uzytkownicy użytkowników} z bazy
      *
      * @return lista wszystkich {@link Uzytkownicy użytkowników} z bazyt
-     * @throws HibernateException
+     * @throws HibernateException wyjątek Hibernate
      */
     public List<Uzytkownicy> selectAll() throws HibernateException {
         return modifyUzytkownik.selectListHQL(("from Uzytkownicy"));

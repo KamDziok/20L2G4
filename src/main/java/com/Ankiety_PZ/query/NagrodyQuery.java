@@ -28,7 +28,7 @@ public class NagrodyQuery extends OperationInSession {
      * Wypisuje wszystkie {@link Nagrody nagrody} z bazy
      *
      * @return Lista {@link Nagrody nagród}, jeśli w bazie nie ma {@link Nagrody nagród} lista będzie pusta
-     * @throws HibernateException
+     * @throws HibernateException wyjątek Hibernate
      */
     public List<Nagrody> selectAll() throws HibernateException {
         return modifyNagrody.selectListHQL(("from Nagrody"));
