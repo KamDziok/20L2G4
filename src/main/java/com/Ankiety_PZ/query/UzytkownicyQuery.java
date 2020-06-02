@@ -6,6 +6,7 @@ import com.Ankiety_PZ.hibernate.PytaniaUzytkownicy;
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
 import com.Ankiety_PZ.panele.Permissions;
 import com.Ankiety_PZ.panele.TypeOfQuestion;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
@@ -51,6 +52,7 @@ public class UzytkownicyQuery extends OperationInSession {
      * @return true jeśli się powiodło, w przeciwnym wypadku false
      */
     public Boolean addUzytkownicy(Uzytkownicy uzytkownicy) {
+        uzytkownicy.setHaslo(DigestUtils.shaHex(uzytkownicy.getHaslo()));
         return modifyUzytkownik.add(uzytkownicy);
     }
 
@@ -62,6 +64,7 @@ public class UzytkownicyQuery extends OperationInSession {
      * @return true jeśli się powiodło, w przeciwnym wypadku false
      */
     Boolean addUzytkownicyWithOutTransaction(Uzytkownicy uzytkownicy, Session session) {
+        uzytkownicy.setHaslo(DigestUtils.shaHex(uzytkownicy.getHaslo()));
         return modifyUzytkownik.addWithOutTransaction(uzytkownicy, session);
     }
 
@@ -125,6 +128,7 @@ public class UzytkownicyQuery extends OperationInSession {
      * @return obiekt {@link Uzytkownicy użytkownik}
      */
     public Uzytkownicy selectByMailAndPassword(String mail, String password) {
+        password = DigestUtils.shaHex(password);
         return modifyUzytkownik.selectObjectHQL(("from Uzytkownicy where mail = '" + mail + "' and haslo ='" + password + "'"));
     }
 
