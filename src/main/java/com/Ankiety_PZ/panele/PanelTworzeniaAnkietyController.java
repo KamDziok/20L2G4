@@ -25,73 +25,271 @@ import java.util.*;
 
 public class PanelTworzeniaAnkietyController extends BulidStage implements SetStartValues, Initializable {
 
+    /**
+     * Obiekt przechowujący liste dostepnych dni
+     */
+
     ObservableList listDD = FXCollections.observableArrayList();
+
+    /**
+     * Obiekt przechowujący liste dostepnych miesięcy
+     */
+
     ObservableList listMM = FXCollections.observableArrayList();
+
+    /**
+     * obiekt przechowujący liste dostepnych lat
+     */
+
     ObservableList listRRRR = FXCollections.observableArrayList();
+
+    /**
+     * Obiekt przechowujący dzień rozpoczęcia
+     */
+
     private String dataoddd;
+
+    /**
+     * Obiekt przechowujący miesiąc rozpoczęcia
+     */
+
     private String dataodmm;
+
+    /**
+     * Obiekt przechowujący rok rozpoczęcia
+     */
+
     private String dataodrrrr;
+
+    /**
+     * Obiekt przechowujący dzień zakończenia
+     */
+
     private String datadodd;
+
+    /**
+     * Obiekt przechowujący miesiąc zakończenia
+     */
+
     private String datadomm;
+
+    /**
+     * Obiekt przechowujący rok zakończenia
+     */
+
     private String datadorrrr;
+
+    /**
+     * Obiekt przechowujacy liczbe pytań przochowywanch w bazie.
+     */
+
     private int liczpytania = 0;
+
+    /**
+     * Obiekt przechowujacy liczbe pytań dodanych.
+     */
+
     private int liczpytaniaB = 0;
+
+    /**
+     * Obiekt przechowujacy liczbe pytań.
+     */
+
     private int liczbapytan = 0;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
+
+    /**
+     * Tytuł ankiety.
+     */
+
     private String tytul;
+
+    /**
+     * Obiekt przechowujący ilość punktów za ankiete.
+     */
+
     private int liczbaPunktow;
+
+    /**
+     * Obiekt przechowujący ilość punktów za ankiete w formacie String.
+     */
+
     private String liczbaPunktowS;
+
+    /**
+     * Obiekt przechowujący aktualne zalogowanego uzytkownika.
+     */
+
     private Uzytkownicy curetUser;
+
+    /**
+     * Obiekt przechowujący date rozpoczęcia ankiety.
+     */
+
     private Date dataRozpoczecia;
+
+    /**
+     * Obiekt przechowujący date zakończenia ankiety.
+     */
+
     private Date dataZakonczenia;
+
+    /**
+     * Obiekt przechowujący aktualne przetwarzana ankiete.
+     */
+
     private Ankiety ankiety;
+
+    /**
+     * Obiekt przechowujący stan ankiety.
+     */
+
     public Boolean edycja2 = true;
+
+    /**
+     * Obiekt przechowujący date rozpoczęcia ankiety.
+     */
     private String dataod;
+
+    /**
+     * Obiekt przechowujący date zakończenia ankiety.
+     */
+
     private String datado;
+
+    /**
+     * Obiekt przechowujący liste pytań do usunięcia ankiety.
+     */
+
     public List<Pytania> listaPytaU;
-    private Set<Pytania> pytaniaDoUsuniecia;
+
+    /**
+     * Obiekt przechowujący liste odpowiedzi pytań do usunięcia.
+     */
+
     public List<Odpowiedzi> listaOdpU;
+
+    /**
+     * Widok tabeli Pytań.
+     */
+
     @FXML
     private TableView pytanieTabele;
+
+    /**
+     * Widok treści Pytań.
+     */
+
     @FXML
     private TableColumn tresc;
+
+    /**
+     * Widok rodzaju Pytań.
+     */
+
     @FXML
     private TableColumn Rpytanie;
+
+    /**
+     * Widok przycisku edytuj w tabeli pytań.
+     */
+
     @FXML
     private TableColumn przyciskEdycja;
+
+    /**
+     * Widok przycisku usuń w tabeli pytań.
+     */
+
     @FXML
     private TableColumn przyciskUsun;
+
+    /**
+     * Widok błędu w panelu tworzeniu ankiety.
+     */
+
     @FXML
     private Label panelTworzeniaAnkietyLabelError;
+
+    /**
+     * Pole na Tytuł ankiety
+     */
 
     @FXML
     private TextField trescTytulu;
 
+    /**
+     * Pole na ilość punktów ankiety
+     */
+
+
     @FXML
     private TextField punkty;
+
+    /**
+     * Pole na dzień rozpoczęcia ankiety
+     */
+
     @FXML
     private ChoiceBox<String> dataODDD;
+
+    /**
+     * Pole na miesiąc rozpoczęcia ankiety
+     */
 
     @FXML
     private ChoiceBox<String> dataODMM;
 
+    /**
+     * Pole na rok rozpoczęcia ankiety
+     */
+
     @FXML
     private ChoiceBox<String> dataODRRRR;
+
+    /**
+     * Pole na dzień zakończenia ankiety
+     */
 
     @FXML
     private ChoiceBox<String> dataDODD;
 
+    /**
+     * Pole na miesiąc zakończenia ankiety
+     */
+
+
     @FXML
     private ChoiceBox<String> dataDOMM;
 
+    /**
+     * Pole na rok zakończenia ankiety
+     */
+
+
     @FXML
     private ChoiceBox<String> dataDORRRR;
+
+    /**
+     * Obiek przechowujący liste pytań
+     */
+
     private Set<Pytania> ListaPytan;
+
+    /**
+     * Obiekt przechowujący liste pytań do usunięcia
+     */
+
     private Set<Pytania> pytdoUsuniecia;
+
+    /**
+     * Metoda ustawiająca stan ankiety.
+     */
+
 
     public void SetEdycja(Boolean wyb) {
         edycja2 = wyb;
@@ -178,15 +376,28 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
 
     }
 
+    /**
+     * metoda ustwiająca wartość ListaPytan
+     */
+
+
     public void setListaPytan(Set<Pytania> listaPytan) {
         this.ListaPytan = listaPytan;
     }
+
+
+    /**
+     * metoda ustwiająca aktualnego uzytkownika
+     */
 
     @Override
     public void setStartValues(Uzytkownicy user) {
         this.curetUser = user;
 
     }
+    /**
+     * metoda wypisująca dane do tableli ankiet
+     */
 
     @Override
     public void setStartValuesAnkiety(Ankiety ankieta) {
@@ -224,6 +435,9 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
         liczbapytan = liczpytania + liczpytaniaB;
 
     }
+    /**
+     * metoda ustwiająca wartość tabeli ankiet z bazy danych
+     */
 
     public void setStartValuesEdytujAnkiety(Ankiety ankieta) {
         AnkietyQuery query1 = new AnkietyQuery();
@@ -262,6 +476,11 @@ public class PanelTworzeniaAnkietyController extends BulidStage implements SetSt
         setPytanieB(ListaPytan);
         liczbapytan = liczpytania + liczpytaniaB;
     }
+
+
+    /**
+     * inicjalizacja listyPytaU i listaOdpU
+     */
 
     public void SetStart() {
 

@@ -15,10 +15,32 @@ import java.util.Set;
 
 public class PytanieTabelka extends BulidStage implements SetStartValues {
 
+    /**
+     * Treść pytania.
+     */
+
     public String tresc;
+
+    /**
+     * rodzja pytania.
+     */
     public String Rpytanie;
+
+    /**
+     * przycisk usuń.
+     */
+
     public Button buttonUsun;
+
+    /**
+     * przycisk edytuj.
+     */
+
     public Button buttonEdycja;
+
+    /**
+     * metoda tworząca elemety tableki z pytaniami.
+     */
 
     PytanieTabelka(Ankiety ankieta, Pytania pytanie, Uzytkownicy user, List<Odpowiedzi> odp,
                    Set<Pytania> pyt, List<Pytania> listaPytaU, PanelTworzeniaAnkietyController two) {
@@ -26,6 +48,9 @@ public class PytanieTabelka extends BulidStage implements SetStartValues {
         Rpytanie = pytanie.getRodzajPytania() + " ";
         buttonUsun = new Button("Usuń");
         buttonUsun.setOnAction(new EventHandler<ActionEvent>() {
+            /**
+             * metoda obsługująca przycisk usuń.
+             */
             @Override
             public void handle(ActionEvent event) {
                 pyt.add(pytanie);
@@ -37,6 +62,9 @@ public class PytanieTabelka extends BulidStage implements SetStartValues {
         });
         buttonEdycja = new Button("Edytuj");
         buttonEdycja.setOnAction(new EventHandler<ActionEvent>() {
+            /**
+             * metoda obsługująca przycisk edytuj.
+             */
             @Override
             public void handle(ActionEvent event) {
                 loadingFXML(event, SceneFXML.DODAJ_PYTANIE);

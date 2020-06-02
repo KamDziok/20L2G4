@@ -31,90 +31,260 @@ import java.util.*;
  */
 
 public class DodawaniePytaniaController extends BulidStage implements SetStartValues {
+    @FXML
+    private ResourceBundle resources;
+    @FXML
+    private URL location;
+    /**
+     *  Plik przechowujący zdjecie.
+     */
 
     File file;
 
+    /**
+     * obiekt przechowujący grupe przycisków radio box.
+     */
+
     private final ToggleGroup radioButtonGroup = new ToggleGroup();
+    /**
+     * obiekt aktualną liczbe wypełnień ankiety.
+     */
 
     private int aktualnaliczbaodpowiedzi = 0;
+
+    /**
+     * widok zdjecia dla pytania
+     */
 
     @FXML
     private ImageView imageview;
 
+    /**
+     * pole na treść odpowiedzi.
+     */
+
     @FXML
     private TextField odpowiedzi;
 
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
+    /**
+     * przycisk służacy do dadawania zdjęcia.
+     */
 
     @FXML
     private Button dodajzdjecie;
 
+    /**
+     * przycisk służacy do wylogowywania.
+     */
+
     @FXML
     private Button wyloguj1;
+
+    /**
+     * przycisk służacy do anulowania zmian.
+     */
 
     @FXML
     private Button anuluj;
 
+    /**
+     * przycisk Radio box służący do zaznaczenia pytania Otwartego.
+     */
+
     @FXML
     private RadioButton dodawaniePytaniaRBQuestionOpen;
+
+    /**
+     * przycisk Radio box służący do zaznaczenia pytania Otwartego.
+     */
 
     @FXML
     private RadioButton dodawaniePytaniaRBQuestionCloseMoreThenOne;
 
+    /**
+     * przycisk Radio box służący do zaznaczenia pytania zmkniętego wielokrotnego wyboru.
+     */
+
     @FXML
     private RadioButton dodawaniePytaniaRBQuestionCloseOnlyOne;
+
+    /**
+     * przycisk Radio box służący do zaznaczenia pytania zamkniętego jednokrotnego wyboru.
+     */
 
     @FXML
     private RadioButton dodawaniePytaniaRBQuestionPercentages;
 
+    /**
+     * przycisk Radio box służący do zaznaczenia pytania procentowego.
+     */
+
     @FXML
     private RadioButton dodawaniePytaniaRBQuestionPoints;
+
+    /**
+     * przycisk Radio box służący do zaznaczenia pytania punktowego.
+     */
+
+    /**
+     * pole do wpisania ilości punktów w pytaniu punktowym.
+     */
     @FXML
     private TextField punkty;
+
+    /**
+     * liczba punktów w formacie String.
+     */
+
     private String punktyS;
+
+    /**
+     * liczba punktów w formacie int.
+     */
+
     private int punktyi;
+
+    /**
+     * pole na treść pytania.
+     */
+
     @FXML
     private TextField trescPytania;
+
+    /**
+     *widok treść błedu przy tworzeniu pytania.
+     */
+
     @FXML
     private Label panelTworzeniaPytanLabelError;
+
+    /**
+     * widok tableki z odopwiedziami.
+     */
+
     @FXML
     private TableView odpowiedziTabelka;
+
+    /**
+     * widok column tableki z treścią odpowiedzi.
+     */
+
     @FXML
     private TableColumn tresc;
+
+    /**
+     * widok column tableki z przyciskiem usuń.
+     */
+
     @FXML
     private TableColumn przyciskUsun;
+
+    /**
+     * obiek przechowujący bajty zdjecia.
+     */
+
     private byte[] zdjecie;
+
+    /**
+     * obiek przechowujący stan ankiety.
+     */
+
     private Boolean edycja2;
+
+    /**
+     * treść odpowiedzi.
+     */
     private String odp;
+
+    /**
+     * obiek przechowujący aktualnego uzytkownika.
+     */
+
     private Uzytkownicy curetUser;
+
+    /**
+     * obiek przechowujący ilość punktów wartych za pytanie.
+     */
+
     private Integer punktowe;
+
+    /**
+     * obiek przechowujący rodzaj pytania.
+     */
+
     private int rodzajPytania;
+
+    /**
+     * obiek przechowujący aktualną ankiete.
+     */
+
     private Ankiety ankiety2;
+
+    /**
+     * obiek przechowujący aktualne pytanie.
+     */
     private Pytania pytania;
+
+    /**
+     *lista przechowująca pytania.
+     */
+
     private List<Pytania> listaPytaU;
+
+    /**
+     * lista przechowująca odpowiedzi.
+     */
     private List<Odpowiedzi> listaOdpU;
+
+    /**
+     * lista przechowująca odpowiedzi aktualne dodawane.
+     */
+
     private Set listaOdpTego;
+
+    /**
+     * obiek przechowujący stan pytania (edytowany/tworzony).
+     */
+
     private Boolean edycja = false;
+
+    /**
+     * lista przechowująca pytania do przekazania dalej.
+     */
+
     private Set<Pytania> lisaPytanPrzekazana;
 
+    /**
+     * metoda przechwytującego aktualne zalogowaniego uzytkownika.
+     */
+
     @Override
+
     public void setStartValues(Uzytkownicy user) {
         this.curetUser = user;
     }
 
+    /**
+     * metoda przechwytująca aktualną liste pytań do ankiety.
+     */
+
     public void setLisaPytanPrzekazana(Set<Pytania> lisaPytanPrzekazana) {
         this.lisaPytanPrzekazana = lisaPytanPrzekazana;
     }
+
+    /**
+     * metoda przechwytująca aktualną edytowaną/tworzoną ankietę.
+     */
 
     @Override
     public void setStartValuesAnkiety(Ankiety ankieta) {
         this.ankiety2 = ankieta;
         System.out.println(ankiety2);
     }
+    /**
+     * metoda wypisująca informacje danego pytania w momęcie jego edycji.
+     */
+
 
     @Override
     public void setStartValuesPytanie(Pytania pytanie) {
@@ -158,6 +328,8 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
     }
 
 
+
+
     @Override
     public void setStartValuesNagroda(Nagrody nagroda) {
 
@@ -168,13 +340,23 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
     }
 
+    /**
+     * metoda przechwytująca stan danego pytania czy jest tworzone czy edytowane.
+     */
+
     public void SetEdycja(Boolean wyb) {
         edycja2 = wyb;
     }
+    /**
+     * metoda przechowująca pytania których nie należy dodawać w przypdaku kliknięcia anuluj.
+     */
 
     public void SetAnuluj(Set odp) {
         this.listaOdpTego = odp;
     }
+    /**
+     * metoda inicjująca wartość początkową dla listaOdpTego dla pytań otwartych.
+     */
 
     public void Inicjajca() {
         listaOdpTego = new HashSet();
@@ -185,11 +367,18 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
         return listaOdpTego;
     }
 
+    /**
+     * metoda inicjująca wartość początkową dla listaOdpTego dla pytań innych niż otwarte.
+     */
+
     public void InicjajcaZ(Pytania pytania) {
 
         listaOdpTego = new HashSet<Odpowiedzi>(pytania.getOdpowiedzis());
 
     }
+    /**
+     * metoda obsługująca przycisk anuluj.
+     */
 
     @FXML
     void anulujAction(ActionEvent event) {
