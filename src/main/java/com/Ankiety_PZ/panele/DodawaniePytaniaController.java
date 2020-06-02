@@ -35,8 +35,9 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
     private ResourceBundle resources;
     @FXML
     private URL location;
+
     /**
-     *  Plik przechowujący zdjecie.
+     * Plik przechowujący zdjecie.
      */
 
     File file;
@@ -152,7 +153,7 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
     private TextField trescPytania;
 
     /**
-     *widok treść błedu przy tworzeniu pytania.
+     * widok treść błedu przy tworzeniu pytania.
      */
 
     @FXML
@@ -226,7 +227,7 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
     private Pytania pytania;
 
     /**
-     *lista przechowująca pytania.
+     * lista przechowująca pytania.
      */
 
     private List<Pytania> listaPytaU;
@@ -265,7 +266,13 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
     }
 
     /**
+<<<<<<< HEAD
      * metoda przechwytująca aktualną liste pytań do ankiety.
+     * @param lisaPytanPrzekazana Lista pytań do przekazania
+=======
+     * Metoda przechwytująca aktualną liste pytań do ankiety.
+     *
+>>>>>>> 01d442b59e52a5f91c3f316690367fcbae76df5a
      */
 
     public void setLisaPytanPrzekazana(Set<Pytania> lisaPytanPrzekazana) {
@@ -273,7 +280,7 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
     }
 
     /**
-     * metoda przechwytująca aktualną edytowaną/tworzoną ankietę.
+     * Metoda przechwytująca aktualną edytowaną/tworzoną ankietę.
      */
 
     @Override
@@ -281,8 +288,9 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
         this.ankiety2 = ankieta;
         System.out.println(ankiety2);
     }
+
     /**
-     * metoda wypisująca informacje danego pytania w momęcie jego edycji.
+     * Metoda wypisująca informacje danego pytania w momęcie jego edycji.
      */
 
 
@@ -328,8 +336,6 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
     }
 
 
-
-
     @Override
     public void setStartValuesNagroda(Nagrody nagroda) {
 
@@ -342,18 +348,22 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
     /**
      * metoda przechwytująca stan danego pytania czy jest tworzone czy edytowane.
+     * @param wyb Wartość true/false.
      */
 
     public void SetEdycja(Boolean wyb) {
         edycja2 = wyb;
     }
+
     /**
      * metoda przechowująca pytania których nie należy dodawać w przypdaku kliknięcia anuluj.
+     * @param odp Wartość true/false.
      */
 
     public void SetAnuluj(Set odp) {
         this.listaOdpTego = odp;
     }
+
     /**
      * metoda inicjująca wartość początkową dla listaOdpTego dla pytań otwartych.
      */
@@ -369,6 +379,7 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
     /**
      * metoda inicjująca wartość początkową dla listaOdpTego dla pytań innych niż otwarte.
+     * @param pytania Obiekt pytania.
      */
 
     public void InicjajcaZ(Pytania pytania) {
@@ -376,8 +387,10 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
         listaOdpTego = new HashSet<Odpowiedzi>(pytania.getOdpowiedzis());
 
     }
+
     /**
      * metoda obsługująca przycisk anuluj.
+     * @param event wywołanie przycisku anuluj
      */
 
     @FXML
@@ -429,6 +442,9 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
     /**
      * Metoda służąca do conversji zdjecia .jpg na bajty.
+     * @param file Obiekt zawierajacy bajty.
+     * @throws  FileNotFoundException  Brak pliku
+     * @throws  IOException Błąd odczytu
      */
 
     public void conversja(File file) throws FileNotFoundException, IOException {
@@ -449,6 +465,9 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
     /**
      * Metoda służąca do conversji bajtów z bazy danych na zdjęcie.
+     * @param bytes  Obiekt z bajtami do przetworzenia.
+     * @throws  IllegalArgumentException Błedne dane
+     * @throws  IOException Błąd odczytu
      */
 
     public void conversjaNaZ(byte[] bytes) throws IOException {
@@ -513,6 +532,11 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
     /**
      * Metoda obsługująca dodanie obietku pytanie wraz z odpowiedziami do obiektu ankiety.
+<<<<<<< HEAD
+     * @param event wywołanie przycisku dodaj
+=======
+     * @param event zdarzenie, po którym funkcja ma się wywołać
+>>>>>>> 01d442b59e52a5f91c3f316690367fcbae76df5a
      */
 
     @FXML
@@ -581,9 +605,13 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
                         panelTworzeniaPytanLabelError.setText("Pytanie otwarte nie może zawierać odpowiedzi!");
                     }
                 } else {
+<<<<<<< HEAD
                     if (dodawaniePytaniaRBQuestionPercentages.isSelected()) {
-                        panelTworzeniaPytanLabelError.setText("To pytanie musi może mieć 1 odpowiedź!");
+                        panelTworzeniaPytanLabelError.setText("To pytanie musi mieć 1 odpowiedź!");
                     } else if (dodawaniePytaniaRBQuestionOpen.isSelected()) {
+=======
+                    if (dodawaniePytaniaRBQuestionOpen.isSelected() || dodawaniePytaniaRBQuestionPercentages.isSelected()) {
+>>>>>>> 01d442b59e52a5f91c3f316690367fcbae76df5a
                         panelTworzeniaPytanLabelError.setText("To pytanie nie może mieć odpowiedzi!");
                     } else {
                         panelTworzeniaPytanLabelError.setText("To pytanie musi mieć przynajmniej 2 odpowiedzi!");
@@ -593,17 +621,13 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
 
             } else {
-                if ((aktualnaliczbaodpowiedzi == 0 && dodawaniePytaniaRBQuestionOpen.isSelected()) ||
-
+                if ((aktualnaliczbaodpowiedzi == 0 &&
+                        (dodawaniePytaniaRBQuestionOpen.isSelected() ||
+                                dodawaniePytaniaRBQuestionPercentages.isSelected())) ||
                         (aktualnaliczbaodpowiedzi > 1 &&
-                                (dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected() || dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected() ||
-                                        (dodawaniePytaniaRBQuestionPoints.isSelected() && punktyisnumber())
-                                ))
-                        ||
-                        (aktualnaliczbaodpowiedzi == 1 &&
-                                (dodawaniePytaniaRBQuestionPercentages.isSelected()))
-                ) {
-
+                                (dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected() ||
+                                        dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected() ||
+                                        (dodawaniePytaniaRBQuestionPoints.isSelected() && punktyisnumber())))) {
 
                     if (edycja2) pytania.setIdPytania(-1);
                     pytania.setTresc(trescPytania.getText());
@@ -624,9 +648,13 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
                     panelTworzeniaankietyController.SetEdycja(edycja2);
                     activeScene(event, false, false);
                 } else {
+<<<<<<< HEAD
                     if (dodawaniePytaniaRBQuestionPercentages.isSelected()) {
-                        panelTworzeniaPytanLabelError.setText("To pytanie musi może mieć 1 odpowiedź!");
+                        panelTworzeniaPytanLabelError.setText("To pytanie  musi mieć 1 odpowiedź!");
                     } else if (dodawaniePytaniaRBQuestionOpen.isSelected()) {
+=======
+                    if (dodawaniePytaniaRBQuestionOpen.isSelected() || dodawaniePytaniaRBQuestionPercentages.isSelected()) {
+>>>>>>> 01d442b59e52a5f91c3f316690367fcbae76df5a
                         panelTworzeniaPytanLabelError.setText("To pytanie nie może mieć odpowiedzi!");
                     } else {
                         panelTworzeniaPytanLabelError.setText("To pytanie musi mieć przynajmniej 2 odpowiedzi!");
@@ -644,20 +672,25 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
     /**
      * Metoda obsługująca przycisk zapisz ustawiajaca wartości dla rodzaju pytania, oraz ilość punktów do rozdania w pytaniu.
+<<<<<<< HEAD
+     * @param event wywołanie przycisku zapisz
+=======
+     * @param event zdarzenie, po którym funkcja ma się wywołać
+>>>>>>> 01d442b59e52a5f91c3f316690367fcbae76df5a
      */
 
     @FXML
     void dodajpytanieAction(ActionEvent event) {
 
 
-        if (dodawaniePytaniaRBQuestionOpen.isSelected()) {
+        if (dodawaniePytaniaRBQuestionOpen.isSelected() || dodawaniePytaniaRBQuestionPercentages.isSelected()) {
             if (aktualnaliczbaodpowiedzi <= 0) {
                 rodzajPytania = TypeOfQuestion.OPEN;
 
                 punktowe = 0;
                 dodajPytanie(event);
             } else {
-                panelTworzeniaPytanLabelError.setText("Pytanie otwarte nie może zawierać odpowiedzi!");
+                panelTworzeniaPytanLabelError.setText("To pytanie nie może zawierać odpowiedzi!");
             }
         } else {
             if (dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected()) {
@@ -725,6 +758,11 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
     /**
      * Metoda obsługująca przycisk dodaj, czyli dodanie obietku odpowiedz do listy odpowiedzi.
+<<<<<<< HEAD
+     * @param event wywołanie przycisku dodaj
+=======
+     * @param event zdarzenie, po którym funkcja ma się wywołać
+>>>>>>> 01d442b59e52a5f91c3f316690367fcbae76df5a
      */
 
     public void dodajOdpAction(ActionEvent event) {
@@ -769,6 +807,7 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
     /**
      * Metoda ustawiająca wartość sprawdzającą czy dana ankietajest nowa czy edytowana.
+     * @param e Wartość true/false.
      */
 
     public void Edycja(Boolean e) {
@@ -777,13 +816,18 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
     /**
      * Metoda wypisująca liste odpowiedzi w panelu dodawania pytania.
+<<<<<<< HEAD
+     * @param listaOdpTego lista odpowiedzi
+=======
+     * @param listaOdpTego lista odpowiedzi.
+>>>>>>> 01d442b59e52a5f91c3f316690367fcbae76df5a
      */
 
     public void setOdpowiedziSS(Set<Odpowiedzi> listaOdpTego) {
         ObservableList<OdpowiedziTabelka> dane = FXCollections.observableArrayList();
         listaOdpTego.forEach(odpowiedz -> {
             Odpowiedzi JednaOdp = (Odpowiedzi) odpowiedz;
-            dane.add(new OdpowiedziTabelka(JednaOdp, ankiety2, curetUser, listaOdpU, listaPytaU, listaOdpTego, edycja2, this));
+            dane.add(new OdpowiedziTabelka(JednaOdp, listaOdpU, listaPytaU, listaOdpTego, this));
         });
         odpowiedziTabelka.itemsProperty().setValue(dane);
         tresc.setCellValueFactory(new PropertyValueFactory("tresc"));
@@ -794,6 +838,8 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
     /**
      * Metoda służąca zapisania list pytań i odpowiedzi do usunięcia.
+     * @param odp lista odpowiedzi
+     * @param pyt lista pytań
      */
 
     public void DaneUsniecia(List<Pytania> pyt, List<Odpowiedzi> odp) {
