@@ -581,9 +581,7 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
                         panelTworzeniaPytanLabelError.setText("Pytanie otwarte nie może zawierać odpowiedzi!");
                     }
                 } else {
-                    if (dodawaniePytaniaRBQuestionPercentages.isSelected()) {
-                        panelTworzeniaPytanLabelError.setText("To pytanie musi może mieć 1 odpowiedź!");
-                    } else if (dodawaniePytaniaRBQuestionOpen.isSelected()) {
+                    if (dodawaniePytaniaRBQuestionOpen.isSelected() || dodawaniePytaniaRBQuestionPercentages.isSelected()) {
                         panelTworzeniaPytanLabelError.setText("To pytanie nie może mieć odpowiedzi!");
                     } else {
                         panelTworzeniaPytanLabelError.setText("To pytanie musi mieć przynajmniej 2 odpowiedzi!");
@@ -593,17 +591,13 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
 
 
             } else {
-                if ((aktualnaliczbaodpowiedzi == 0 && dodawaniePytaniaRBQuestionOpen.isSelected()) ||
-
-                        (aktualnaliczbaodpowiedzi > 1 &&
-                                (dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected() || dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected() ||
-                                        (dodawaniePytaniaRBQuestionPoints.isSelected() && punktyisnumber())
-                                ))
-                        ||
-                        (aktualnaliczbaodpowiedzi == 1 &&
-                                (dodawaniePytaniaRBQuestionPercentages.isSelected()))
-                ) {
-
+                if ((aktualnaliczbaodpowiedzi == 0 &&
+                        (dodawaniePytaniaRBQuestionOpen.isSelected() ||
+                         dodawaniePytaniaRBQuestionPercentages.isSelected())) ||
+                    (aktualnaliczbaodpowiedzi >  1 &&
+                        (dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected() ||
+                         dodawaniePytaniaRBQuestionCloseOnlyOne.isSelected() ||
+                        (dodawaniePytaniaRBQuestionPoints.isSelected() && punktyisnumber())))) {
 
                     if (edycja2) pytania.setIdPytania(-1);
                     pytania.setTresc(trescPytania.getText());
@@ -624,9 +618,7 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
                     panelTworzeniaankietyController.SetEdycja(edycja2);
                     activeScene(event, false, false);
                 } else {
-                    if (dodawaniePytaniaRBQuestionPercentages.isSelected()) {
-                        panelTworzeniaPytanLabelError.setText("To pytanie musi może mieć 1 odpowiedź!");
-                    } else if (dodawaniePytaniaRBQuestionOpen.isSelected()) {
+                   if (dodawaniePytaniaRBQuestionOpen.isSelected()||dodawaniePytaniaRBQuestionPercentages.isSelected()) {
                         panelTworzeniaPytanLabelError.setText("To pytanie nie może mieć odpowiedzi!");
                     } else {
                         panelTworzeniaPytanLabelError.setText("To pytanie musi mieć przynajmniej 2 odpowiedzi!");
@@ -650,14 +642,14 @@ public class DodawaniePytaniaController extends BulidStage implements SetStartVa
     void dodajpytanieAction(ActionEvent event) {
 
 
-        if (dodawaniePytaniaRBQuestionOpen.isSelected()) {
+        if (dodawaniePytaniaRBQuestionOpen.isSelected() || dodawaniePytaniaRBQuestionPercentages.isSelected()) {
             if (aktualnaliczbaodpowiedzi <= 0) {
                 rodzajPytania = TypeOfQuestion.OPEN;
 
                 punktowe = 0;
                 dodajPytanie(event);
             } else {
-                panelTworzeniaPytanLabelError.setText("Pytanie otwarte nie może zawierać odpowiedzi!");
+                panelTworzeniaPytanLabelError.setText("To pytanie nie może zawierać odpowiedzi!");
             }
         } else {
             if (dodawaniePytaniaRBQuestionCloseMoreThenOne.isSelected()) {
