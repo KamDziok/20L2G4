@@ -39,22 +39,34 @@ public class OdpowiedziTest {
         setOdpowiedziACopy(odpowiedziA);
     }
 
+    /**
+     * Sprawdzenie czy funkcja isTheSame zwraca true, jeśli obie Odpowiedzi mają te mase wartości pól
+     */
     @Test
     void isTheSameTrue() {
         assertTrue(odpowiedziA.isTheSame(odpowiedziACopy));
     }
 
+    /**
+     * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli obie Odpowiedzi mają wszystkie wartości pól różne
+     */
     @Test
     void isTheSameDifferentAll() {
         assertFalse(odpowiedziA.isTheSame(odpowiedziB));
     }
 
+    /**
+     * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli obie Odpowiedzi mają różne id
+     */
     @Test
     void isTheSameDifferentId() {
         odpowiedziACopy.setIdOdpowiedzi(23);
         assertFalse(odpowiedziA.isTheSame(odpowiedziACopy));
     }
 
+    /**
+     * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli obie Odpowiedzi mają różne treści odpowiedzi
+     */
     @Test
     void isTheSameDifferentOdpowiedz() {
         odpowiedziACopy.setOdpowiedz("odpowiedzACopy");

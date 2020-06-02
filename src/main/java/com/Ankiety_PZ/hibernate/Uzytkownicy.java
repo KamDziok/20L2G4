@@ -78,6 +78,13 @@ public class Uzytkownicy implements java.io.Serializable {
         this.liczbaPunktow = liczbaPunktow;
     }
 
+    /**
+     * Metoda modyfikuje liczbę punktów obiektowi Uzytkownicy.
+     *
+     * @param punkty ilośc punktów do zmodyfikowania
+     * @param dodanie jeśli true to dodajemy punkty, jeśli false odejmujemy
+     * @return true jeśli operacja powiodłą się, w przeciwnym wypadku false
+     */
     public boolean updatePunkty(int punkty, boolean dodanie) {
         if (dodanie) {
             liczbaPunktow += punkty;

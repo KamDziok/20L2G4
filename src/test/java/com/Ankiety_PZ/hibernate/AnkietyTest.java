@@ -1,5 +1,6 @@
 package com.Ankiety_PZ.hibernate;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -43,34 +44,52 @@ public class AnkietyTest {
         setAnkietyACopy(anietaA.getDataZakonczenia());
     }
 
+    /**
+     * Sprawdzenie czy funkcja isTheSame zwraca true, jeśli obie Ankiety mają te mase wartości pól
+     */
     @Test
     void isTheSameTrue() {
         assertTrue(anietaA.isTheSame(anietaACopy));
     }
 
+    /**
+     * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli obie Ankiety mają wszystkie wartości pól różne
+     */
     @Test
     void isTheSameDifferentAll() {
         assertFalse(anietaA.isTheSame(anietaB));
     }
 
+    /**
+     * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli Ankiety mają różne id
+     */
     @Test
     void isTheSameDifferentId() {
         anietaACopy.setIdAnkiety(2);
         assertFalse(anietaA.isTheSame(anietaACopy));
     }
 
+    /**
+     * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli Ankiety mają różne tytuły
+     */
     @Test
     void isTheSameDifferentTytul() {
         anietaACopy.setTytul("AnkietaB");
         assertFalse(anietaA.isTheSame(anietaACopy));
     }
 
+    /**
+     * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli Ankiety mają różne liczbę punktów
+     */
     @Test
     void isTheSameDifferentLiczbaPunktow() {
         anietaACopy.setLiczbaPunktow(12);
         assertFalse(anietaA.isTheSame(anietaACopy));
     }
 
+    /**
+     * Sprawdzenie czy funkcja isTheSame zwraca false, jeśli Ankiety mają różną liczbę wypełnień
+     */
     @Test
     void isTheSameDifferentLiczbaWypelnien() {
         anietaACopy.setLiczbaWypelnien(12);

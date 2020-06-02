@@ -21,26 +21,52 @@ public abstract class OperationInSession {
         return HibernateUtil.getSessionFactory().openSession();
     }
 
+    /**
+     * Otorzenie sesji
+     *
+     * @param session sesja, którą chcemy otworzyć
+     */
     protected static void closeSession(Session session) {
         if (session.isOpen()) {
             session.close();
         }
     }
 
+    /**
+     * Rozpoczęcie transakcji
+     *
+     * @param session sesja w ramach której ma odbywać się tranzakcja.
+     * @return tranzakcja
+     */
     protected static Transaction beginTransaction(Session session) {
         return session.beginTransaction();
     }
 
+    /**
+     * Zatwierdzenie tranzakcji
+     *
+     * @param transaction tranzakcja, którą mamy zatwierdzić.
+     */
     protected static void commitTransaction(Transaction transaction) {
         transaction.commit();
     }
 
+    /**
+     * Cofnięcie tranzakcji
+     *
+     * @param transaction tranzakcja, którą chcemy cofnąć
+     */
     protected static void rollbackTransaction(Transaction transaction) {
         if (transaction.isActive()) {
             transaction.rollback();
         }
     }
 
+    /**
+     * Wyświetlenie informacji o błędach.
+     *
+     * @param e wyjątek, który nastąpił
+     */
     protected static void logException(Exception e) {
         System.out.println("-- exception --");
         System.err.println("Exception: " + e.getClass().getName());

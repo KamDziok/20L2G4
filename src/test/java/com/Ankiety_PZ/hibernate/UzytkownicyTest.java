@@ -36,6 +36,9 @@ public class UzytkownicyTest {
         setUzytkownikSub();
     }
 
+    /**
+     * Sprawdzenie czy dodawanie punktów do obiektu Uzytkownicy działa poprawnie, to znaczy czy zwraca true i wartość licxbowa jest poprawna.
+     */
     @Test
     void updatePunktyTestAdd() {
         boolean result = uzytkownikAdd.updatePunkty(10, true);
@@ -45,6 +48,9 @@ public class UzytkownicyTest {
         );
     }
 
+    /**
+     * Sprawdzenie czy odejmowanie punktów do obiektu Uzytkownicy działa poprawnie, to znaczy czy zwraca true i wartość licxbowa jest poprawna.
+     */
     @Test
     void updatePunktyTestSubTrue() {
         boolean result = uzytkownikSub.updatePunkty(10, false);
@@ -54,6 +60,9 @@ public class UzytkownicyTest {
         );
     }
 
+    /**
+     * Sprawdzenie czy odejmowanie nie powiedzi się, jeśli obiekt Uzytkownicy nie posiada odpowiedniej liczby punktów.
+     */
     @Test
     void updatePunktyTestSubFalse() {
         assertFalse(uzytkownikSub.updatePunkty(130, false));

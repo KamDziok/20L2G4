@@ -45,11 +45,19 @@ public class NagrodyQueryTest {
         setUzytkownikFalse();
     }
 
+    /**
+     * Sprawdzeni, czy metoda checkUzytkownikCanGetNagrody zwraca true, jeśli {@link Uzytkownicy uzytkownik} ma
+     * wystarczającą ilość punktów, aby odebrać nagrodę.
+     */
     @Test
     void checkUzytkownikCanGetNagrodyTestTrue() {
         assertTrue(nq.checkUzytkownikCanGetNagrody(nagrody, uzytkownikTrue));
     }
 
+    /**
+     * Sprawdzeni, czy metoda checkUzytkownikCanGetNagrody zwraca false, jeśli {@link Uzytkownicy uzytkownik} nie
+     * ma wystarczającą ilość punktów, aby odebrać nagrodę.
+     */
     @Test
     void checkUzytkownikCanGetNagrodyTestFalse() {
         assertFalse(nq.checkUzytkownikCanGetNagrody(nagrody, uzytkownikFalse));
