@@ -107,7 +107,7 @@ public class PytaniaQuery extends OperationInSession {
     /**
      * Usuwanie listy {@link Pytania pytań} z bazy danych w ramach zewnętrznej sesji.
      *
-     * @param pytaniaList lista {@link Pytania pytań, które chcemy usunąć
+     * @param pytaniaList lista {@link Pytania pytania}, które chcemy usunąć
      * @param session sesja z bazą w ramach, której ma zostać dodana nagroda do bazy.
      * @return true jeśli się powiodło, w przeciwnym wypadku false
      */
@@ -140,7 +140,7 @@ public class PytaniaQuery extends OperationInSession {
     /**
      * Wyszukanie odpowiedzi {@link com.Ankiety_PZ.hibernate.Uzytkownicy użytkowników} na {@link PytaniaUzytkownicy pytania otwarte}.
      *
-     * @param pytania @link Pytania pytanie}, na które chcemy uzyskać {@link PytaniaUzytkownicy odpowiedzi użytkowników}.
+     * @param pytania {@link Pytania pytanie}, na które chcemy uzyskać {@link PytaniaUzytkownicy odpowiedzi użytkowników}.
      * @return listę {@link PytaniaUzytkownicy odpowiedzi użytkowników}, w przypadku braku takich danych w bazie zostanie zwrócona lista pusta.
      */
     public List<PytaniaUzytkownicy> selectPytaniaUzytkownicy(Pytania pytania) {

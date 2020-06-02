@@ -1,7 +1,3 @@
-/**
- * Sample Skeleton for 'AnkietyRadio.fxml' Controller Class
- */
-
 package com.Ankiety_PZ.panele;
 
 import com.Ankiety_PZ.hibernate.*;
@@ -32,6 +28,10 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 import java.util.Set;
+
+/**
+ * Klasa odpowiada za panel wypełniania ankiety.
+ */
 
 public class OknoAnkietyRadioController extends BulidStage implements SetStartValues {
 
