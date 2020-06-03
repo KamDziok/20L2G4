@@ -51,9 +51,9 @@ public interface SetStartValues {
     }
 
     /**
-     * @param odpowiedziDoWyslania
-     * @param odpowiedziDoWyslaniaOtwarte
-     */
+     * @param odpowiedziDoWyslania Obiekt z pytaniami do wysłania
+     * @param odpowiedziDoWyslaniaOtwarte Obiekt z pytaniami otwartymi do wysłania
+        */
 
     default void setStartValuesListOdpowiedzi(LinkedList<OdpowiedziUzytkownicy> odpowiedziDoWyslania,
                                               LinkedList<PytaniaUzytkownicy> odpowiedziDoWyslaniaOtwarte) {
@@ -67,7 +67,7 @@ public interface SetStartValues {
     }
 
     /**
-     * @param controller
+     * @param controller PanelUzytkownikaController.
      */
 
     default void setStartValuesPanelUzytkownikaController(PanelUzytkownikaController controller) {

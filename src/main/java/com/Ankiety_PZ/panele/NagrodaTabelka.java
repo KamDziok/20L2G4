@@ -108,6 +108,8 @@ public class NagrodaTabelka {
      *
      * @param bytes   tablica byte ze zdjęciem w formacie jpg.
      * @param nagrody obiekt nagrody.
+     * @throws  IllegalArgumentException Błedne dane
+     * @throws  IOException Błąd odczytu
      */
 
     public void conversjaNaZ(byte[] bytes, Nagrody nagrody) throws IOException {

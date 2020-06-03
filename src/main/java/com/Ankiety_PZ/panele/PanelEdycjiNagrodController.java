@@ -182,6 +182,9 @@ public class PanelEdycjiNagrodController extends BulidStage implements SetStartV
      * Metoda wykonująca akcję uruchomienia okna wyboru zdjęcia po naciśnięciu przycisku <code>dodaj zdjęcie</code>.
      *
      * @param file plik wczytany za pomocą {@link #panelEdycjiNagrodButtonDodajZdjecie(ActionEvent)}
+     * @throws  FileNotFoundException Brak pliku
+     * @throws  IllegalArgumentException Błedne dane
+     * @throws  IOException Błąd odczytu
      */
 
     public void conversja(File file) throws FileNotFoundException, IOException {
@@ -209,6 +212,8 @@ public class PanelEdycjiNagrodController extends BulidStage implements SetStartV
      * Metoda konwertuje tablicę byte na Image
      *
      * @param bytes   tablica byte ze zdjęciem w formacie jpg.
+     * @throws  IllegalArgumentException Błedne dane
+     * @throws  IOException Błąd odczytu
      */
 
     public void conversjaNaZ(byte[] bytes) throws IOException {
