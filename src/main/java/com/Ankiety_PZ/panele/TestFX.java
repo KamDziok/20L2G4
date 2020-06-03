@@ -21,6 +21,8 @@ public class TestFX extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML(SceneFXML.PANEL_LOGIN));
         stage.setScene(scene);
+        stage.setTitle("Ankiety");
+        stage.setResizable(false);
         stage.show();
     }
 
