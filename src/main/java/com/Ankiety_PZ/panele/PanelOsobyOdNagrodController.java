@@ -143,21 +143,21 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
      */
 
     @FXML
-    private TextField haslo;
+    private PasswordField haslo;
 
     /**
      * Nowe hasło przy edycji profilu.
      */
 
     @FXML
-    private TextField nowehaslo;
+    private PasswordField nowehaslo;
 
     /**
      * Powtórnie wprowadzone hasło przy edycji profilu.
      */
 
     @FXML
-    private TextField hasloznowu;
+    private PasswordField hasloznowu;
 
     /**
      * Imie przy edycji profilu.
