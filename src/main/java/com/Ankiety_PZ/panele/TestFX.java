@@ -6,7 +6,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import javax.swing.*;
@@ -39,17 +38,25 @@ public class TestFX extends Application {
     }
 
     public static void main(String[] args) {
+        LoadDump dump = new LoadDump();
         if(ConnectToDataBase.connectToDataBase()){
-            launch();
+            try {
+                dump.loadDump("baza_danych/bazadanychtest/ankiety.sql");
+            } catch(Exception e) {
+                System.out.println(e.getMessage());
+            } finally {
+                launch();
+            }
         }else {
             JOptionPane.showMessageDialog(null, "Brak połączenia z bazą dancyh.");
+            try {
+                dump.loadDump("baza_danych/ankiety.sql");
+                dump.loadDump("baza_danych/bazadanychtest/ankiety.sql");
+            } catch(Exception e) {
+                System.out.println(e.getMessage());
+            } finally {
+                launch();
+            }
         }
-        LoadDump dump = new LoadDump();
-        try {
-            dump.loadDump("baza_danych/bazadanychtest/ankiety.sql");
-        } catch(Exception e) {
-            System.out.println(e.getMessage());
-        }
-        launch();
     }
 }
