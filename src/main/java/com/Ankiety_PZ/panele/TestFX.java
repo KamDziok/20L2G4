@@ -50,12 +50,14 @@ public class TestFX extends Application {
         }else {
             JOptionPane.showMessageDialog(null, "Brak połączenia z bazą dancyh.");
             try {
-                dump.loadDump("baza_danych/ankiety.sql");
-                dump.loadDump("baza_danych/bazadanychtest/ankiety.sql");
+                System.out.println("podaj haslo do uzytkownika root");
+//                RunningScripts.exeSqlFile("baza_danych/ankiety.sql");
+//                RunningScripts.exeSqlFile("baza_danych/ankiety_uzytkownik.sql");
+//                dump.loadDump("baza_danych/bazadanychtest/ankiety.sql");
+                launch();
             } catch(Exception e) {
                 System.out.println(e.getMessage());
             } finally {
-                launch();
             }
         }
     }
