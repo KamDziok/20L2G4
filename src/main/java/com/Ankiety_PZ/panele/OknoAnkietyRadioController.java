@@ -581,6 +581,8 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
      * Metoda konwertuje tablicę byte na Image
      *
      * @param bytes   tablica byte ze zdjęciem w formacie jpg.
+     * @throws  IllegalArgumentException Błedne dane
+     * @throws  IOException Błąd odczytu
      */
 
     public void conversjaNaZ(byte[] bytes) throws IOException {

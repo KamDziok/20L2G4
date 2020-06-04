@@ -141,21 +141,21 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
      */
 
     @FXML
-    private TextField haslo;
+    private PasswordField haslo;
 
     /**
      * Nowe hasło przy edycji profilu.
      */
 
     @FXML
-    private TextField nowehaslo;
+    private PasswordField nowehaslo;
 
     /**
      * Powtórnie wprowadzone hasło przy edycji profilu.
      */
 
     @FXML
-    private TextField hasloznowu;
+    private PasswordField hasloznowu;
 
     /**
      * Imie przy edycji profilu.
@@ -249,6 +249,7 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
 
     /**
      * Metoda obsługująca przycisk Zapisz ustawienia
+     * @param event zdarzenie, po którym funkcja ma się wywołać
      */
 
     @FXML

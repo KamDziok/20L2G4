@@ -139,6 +139,7 @@ public class NagrodyTabelka extends BulidStage {
      *
      * @param bytes   tablica byte ze zdjęciem w formacie jpg.
      * @param nagrody obiekt nagrody.
+     * @throws  IOException Błąd odczytu
      */
 
     public void conversjaNaZ(byte[] bytes, Nagrody nagrody) throws IOException {

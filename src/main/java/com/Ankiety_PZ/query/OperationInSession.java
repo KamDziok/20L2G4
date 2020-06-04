@@ -17,14 +17,19 @@ public abstract class OperationInSession {
     protected Criteria criteria = null;
     protected Transaction transaction = null;
 
+    /**
+     * Otorzenie sesji
+     *
+     * @return sesja, którą otworzyliśmy
+     */
     protected static Session openSession() {
         return HibernateUtil.getSessionFactory().openSession();
     }
 
     /**
-     * Otorzenie sesji
+     * Zamknięcie sesji
      *
-     * @param session sesja, którą chcemy otworzyć
+     * @param session sesja, którą chcemy zakończyć
      */
     protected static void closeSession(Session session) {
         if (session.isOpen()) {

@@ -193,6 +193,16 @@ public class PanelRegiController extends BulidStage {
         return false;
     }
 
+    /**
+     * Załadowanie panelu logowania.
+     *
+     * @param event akcja po której ma wykonać się zmiana sceny
+     */
+    private void backToLogin(ActionEvent event){
+        loadingFXML(event, SceneFXML.PANEL_LOGIN);
+        activeScene(event, false, false);
+    }
+
     @FXML
     private ResourceBundle resources;
 
@@ -236,6 +246,9 @@ public class PanelRegiController extends BulidStage {
     private Button panelRegiButtonRegi;
 
     @FXML
+    private Button panelRegiButtonCanel;
+
+    @FXML
     private Label panelRegiLabelError;
 
     /**
@@ -247,6 +260,7 @@ public class PanelRegiController extends BulidStage {
     @FXML
     void panelRegiButtonRegiAction(ActionEvent event) {
 
+        panelRegiLabelError.setText("");
         email = paneliRegiTFEmail.getText();
         password = panelRegiPFPassword.getText();
         passwordRepeat = panelRegiPFPasswordRepeat.getText();
@@ -271,8 +285,7 @@ public class PanelRegiController extends BulidStage {
                                     city, street, numberHouseString, numberFlatString, postCode, 0);
                             query.addUzytkownicy(user);
 
-                            loadingFXML(event, SceneFXML.PANEL_LOGIN);
-                            activeScene(event, false, false);
+                            backToLogin(event);
                         } else {
                             panelRegiLabelError.setText("Istnieje użytkownik o tym e-mailu!");
                         }
@@ -291,6 +304,11 @@ public class PanelRegiController extends BulidStage {
     }
 
     @FXML
+    void panelRegiButtonCanelAction(ActionEvent event) {
+        backToLogin(event);
+    }
+
+    @FXML
     void initialize() {
         assert paneliRegiTFEmail != null : "fx:id=\"paneliRegiTFEmail\" was not injected: check your FXML file 'PanelRegi.fxml'.";
         assert panelRegiPFPassword != null : "fx:id=\"panelRegiPFPassword\" was not injected: check your FXML file 'PanelRegi.fxml'.";
@@ -304,6 +322,7 @@ public class PanelRegiController extends BulidStage {
         assert panelRegiTFPostCodeFirst != null : "fx:id=\"panelRegiTFPostCodeFirst\" was not injected: check your FXML file 'PanelRegi.fxml'.";
         assert panelRegiTFPostCodeSecond != null : "fx:id=\"panelRegiTFPostCodeSecond\" was not injected: check your FXML file 'PanelRegi.fxml'.";
         assert panelRegiButtonRegi != null : "fx:id=\"panelRegiButtonRegi\" was not injected: check your FXML file 'PanelRegi.fxml'.";
+        assert panelRegiButtonCanel != null : "fx:id=\"panelRegiButtonCanel\" was not injected: check your FXML file 'PanelRegi.fxml'.";
         assert panelRegiLabelError != null : "fx:id=\"panelRegiLabelError\" was not injected: check your FXML file 'PanelRegi.fxml'.";
         panelRegiLabelError.setText("");
     }

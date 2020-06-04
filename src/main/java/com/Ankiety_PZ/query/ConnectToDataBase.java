@@ -8,10 +8,17 @@ import org.hibernate.Session;
 
 public class ConnectToDataBase extends OperationInSession {
 
-    public static final void connectToDataBase() {
-        Session session;
-        session = openSession();
-        closeSession(session);
+    public static final boolean connectToDataBase() {
+        boolean result = false;
+        Session session = null;
+        try {
+            session = openSession();
+            closeSession(session);
+            result = true;
+        }catch (Exception e) {
+            result = false;
+        }
+        return result;
     }
 
 }
