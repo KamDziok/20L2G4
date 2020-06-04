@@ -75,6 +75,8 @@ public class UzytkownicyQuery extends OperationInSession {
      * @return true jeśli się powiodło, w przeciwnym wypadku false
      */
     public Boolean updateUzytkownicy(Uzytkownicy uzytkownicy) {
+
+        uzytkownicy.setHaslo(DigestUtils.shaHex(uzytkownicy.getHaslo()));
         return modifyUzytkownik.update(uzytkownicy);
     }
 
@@ -86,6 +88,7 @@ public class UzytkownicyQuery extends OperationInSession {
      * @return true jeśli się powiodło, w przeciwnym wypadku false
      */
     Boolean updateUzytkownicyWithOutTransaction(Uzytkownicy uzytkownicy, Session session) {
+        uzytkownicy.setHaslo(DigestUtils.shaHex(uzytkownicy.getHaslo()));
         return modifyUzytkownik.updateWithOutTransaction(uzytkownicy, session);
     }
 
