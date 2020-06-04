@@ -37,16 +37,6 @@ public class TestFX extends Application {
         return fxmlLoader.load();
     }
 
-    public static Alert createDialogAlert(String massage){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Ankiety");
-        alert.setHeaderText(null);
-        alert.setContentText(massage);
-
-        alert.showAndWait();
-        return alert;
-    }
-
     public static void main(String[] args) {
         if(ConnectToDataBase.connectToDataBase()){
             launch();
