@@ -177,7 +177,7 @@
                             <outputDirectory>target/jre</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>jre-10</directory>
+                                    <directory>jdk-14.0.1</directory>
                                 </resource>
                             </resources>
                         </configuration>
