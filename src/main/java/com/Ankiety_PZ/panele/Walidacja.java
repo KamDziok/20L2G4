@@ -1,6 +1,7 @@
 package com.Ankiety_PZ.panele;
 
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  * Klasa służy do walidacji edycji użytkownika.
@@ -91,6 +92,8 @@ public class Walidacja {
             if (!nowe_haslo.equals(powtorz_haslo)) {
                 blad_haslo = ("Hasła nie są takie same!");
             } else {
+                haslo = DigestUtils.shaHex(haslo);
+                nowe_haslo = DigestUtils.shaHex(nowe_haslo);
                 if (haslo.equals(uzytkownik.getHaslo())) {
                     return true;
                 } else if (haslo.isEmpty() && nowe_haslo.isEmpty() && powtorz_haslo.isEmpty()) {
