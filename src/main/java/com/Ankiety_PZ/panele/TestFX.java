@@ -5,8 +5,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 
 /**
@@ -35,7 +37,21 @@ public class TestFX extends Application {
         return fxmlLoader.load();
     }
 
+    public static Alert createDialogAlert(String massage){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Ankiety");
+        alert.setHeaderText(null);
+        alert.setContentText(massage);
+
+        alert.showAndWait();
+        return alert;
+    }
+
     public static void main(String[] args) {
-        launch();
+        if(ConnectToDataBase.connectToDataBase()){
+            launch();
+        }else {
+            JOptionPane.showMessageDialog(null, "Brak połączenia z bazą dancyh.");
+        }
     }
 }
