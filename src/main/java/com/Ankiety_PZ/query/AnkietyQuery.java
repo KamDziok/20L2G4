@@ -315,7 +315,12 @@ public class AnkietyQuery extends OperationInSession {
                             "inner join odpowiedzi as o ON p.ID=o.ID_pytania " +
                             "inner join odpowiedzi_uzytkownicy as ou ON o.ID=ou.ID_odpowiedzi " +
                             "WHERE ou.ID_uzytkownika=:id) " +
-                            "AND :date between ao.data_rozpoczecia and ao.data_zakonczenia")
+                            "AND ao.id not in " +
+                            "( select distinct a.ID from ankiety AS a " +
+                            "inner join pytania as p ON a.ID=p.ID_ankiety " +
+                            "inner join pytania_uzytkownicy as pu ON p.ID=pu.ID_pytania " +
+                            "WHERE pu.ID_uzytkownika=:id) " +
+                            "AND :date between ao.data_rozpoczecia and ao.data_zakonczenia ")
                     .setParameter("date", date)
                     .setParameter("id", user.getIdUzytkownika())
                     .list();

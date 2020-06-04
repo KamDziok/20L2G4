@@ -54,6 +54,8 @@ public abstract class BulidStage {
                 app = (Stage) ((Node) event.getSource()).getScene().getWindow();
             }
             app.setMaximized(maximized);
+            app.setResizable(false);
+            app.setTitle("Ankiety");
             app.hide();
             app.setScene(homeScene);
             app.show();

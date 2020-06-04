@@ -5,8 +5,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 
 /**
@@ -21,6 +23,8 @@ public class TestFX extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML(SceneFXML.PANEL_LOGIN));
         stage.setScene(scene);
+        stage.setTitle("Ankiety");
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -34,6 +38,10 @@ public class TestFX extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+        if(ConnectToDataBase.connectToDataBase()){
+            launch();
+        }else {
+            JOptionPane.showMessageDialog(null, "Brak połączenia z bazą dancyh.");
+        }
     }
 }
