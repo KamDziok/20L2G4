@@ -8,10 +8,9 @@ import com.Ankiety_PZ.query.RunningScripts;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
+import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -68,11 +67,26 @@ public class LadowanieBazyController extends BulidStage{
     @FXML
     private TextField link;
 
+
+
+    @FXML
+    private ToggleGroup radioButtonsGroup = new ToggleGroup();
+
+
+
+    @FXML
+    private RadioButton yes;
+
+
+
+    @FXML
+    private RadioButton no;
+
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         info.setAlignment(Pos.CENTER);
         error.setAlignment(Pos.CENTER);
-        link.setText("jdbc:mysql://localhost/");
+        link.setText("localhost/");
         info.setVisible(false);
     }
 
@@ -96,16 +110,12 @@ public class LadowanieBazyController extends BulidStage{
             RunningScripts.exeSqlFile(link.getText(),login.getText(),haslo.getText(),"baza_danych/ankiety.sql");
             info.setText("Dodawanie użytkownika.");
             RunningScripts.exeSqlFile(link.getText(),login.getText(),haslo.getText(),"baza_danych/ankiety_uzytkownik.sql");
-            info.setText("Zapełnianie bazy danymi.");
-            try {
+            if (yes.isSelected()){
+                info.setText("Zapełnianie bazy danymi.");
                 RunningScripts.exeSqlFile(link.getText(),login.getText(),haslo.getText(),"baza_danych/bazadanychtest/ankiety.sql");
-                loadingFXML(event, SceneFXML.PANEL_LOGIN);
-                activeScene(event, false, false);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                error.setText("Ladowanie danych nie powiodło się. Zresetuj aplikacje");
-                setAllVisible(true);
             }
+            JOptionPane.showMessageDialog(null, "Baza dodana pomyślnie. Proszę zrestartować aplikację");
+            deleteStage(event);
         } catch (Exception e) {
             error.setText("Podany użytkownik nie istnieje lub nie ma uprawnień," +
                     " podany adres jest błędny, lub server mySQL jest wyłączony.");
