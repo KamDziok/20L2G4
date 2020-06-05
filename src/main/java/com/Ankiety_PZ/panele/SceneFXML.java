@@ -77,4 +77,10 @@ public class SceneFXML {
      */
 
     public static final String OKNO_ANKIETA_ANALIZA = "AnalizaAnkiet";
+
+    /**
+     * Odnośnik do pliku z oknem ładowania bazy
+     */
+
+    public static final String OKNO_INICJALIZACJI_BAZY = "LadowanieBazy";
 }

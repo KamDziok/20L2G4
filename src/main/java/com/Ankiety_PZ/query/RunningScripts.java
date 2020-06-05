@@ -8,10 +8,10 @@ import java.sql.DriverManager;
 
 public class RunningScripts {
 
-    public static void exeSqlFile(String source) throws Exception {
+    public static void exeSqlFile(String link, String user, String haslo, String source) throws Exception {
         DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-        String mysqlUrl = "jdbc:mysql://localhost/";
-        Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
+        String mysqlUrl = link;
+        Connection con = DriverManager.getConnection(mysqlUrl, user, haslo);
         ScriptRunner sr = new ScriptRunner(con);
         Reader reader = new BufferedReader(new FileReader(source));
         sr.runScript(reader);

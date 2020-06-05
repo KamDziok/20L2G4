@@ -1,7 +1,6 @@
 package com.Ankiety_PZ.panele;
 
 import com.Ankiety_PZ.query.ConnectToDataBase;
-import com.Ankiety_PZ.query.LoadDump;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,10 +17,11 @@ import java.io.IOException;
 public class TestFX extends Application {
 
     private static Scene scene;
+    private static String oknoDoOtwarcia = SceneFXML.PANEL_LOGIN;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML(SceneFXML.PANEL_LOGIN));
+        scene = new Scene(loadFXML(oknoDoOtwarcia));
         stage.setScene(scene);
         stage.setTitle("Ankiety");
         stage.setResizable(false);
@@ -38,10 +38,10 @@ public class TestFX extends Application {
     }
 
     public static void main(String[] args) {
-        LoadDump dump = new LoadDump();
+//        LoadDump dump = new LoadDump();
         if(ConnectToDataBase.connectToDataBase()){
             try {
-                dump.loadDump("baza_danych/bazadanychtest/ankiety.sql");
+//                dump.loadDump("baza_danych/bazadanychtest/ankiety.sql");
             } catch(Exception e) {
                 System.out.println(e.getMessage());
             } finally {
@@ -49,16 +49,8 @@ public class TestFX extends Application {
             }
         }else {
             JOptionPane.showMessageDialog(null, "Brak połączenia z bazą dancyh.");
-            try {
-                System.out.println("podaj haslo do uzytkownika root");
-//                RunningScripts.exeSqlFile("baza_danych/ankiety.sql");
-//                RunningScripts.exeSqlFile("baza_danych/ankiety_uzytkownik.sql");
-//                dump.loadDump("baza_danych/bazadanychtest/ankiety.sql");
-                launch();
-            } catch(Exception e) {
-                System.out.println(e.getMessage());
-            } finally {
-            }
+            oknoDoOtwarcia = SceneFXML.OKNO_INICJALIZACJI_BAZY;
+            launch();
         }
     }
 }
