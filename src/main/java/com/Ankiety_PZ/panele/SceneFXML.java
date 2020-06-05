@@ -83,4 +83,5 @@ public class SceneFXML {
      */
 
     public static final String OKNO_INICJALIZACJI_BAZY = "LadowanieBazy";
+
 }
