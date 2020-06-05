@@ -7,7 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.IOException;
 
 /**
@@ -48,7 +47,6 @@ public class TestFX extends Application {
                 launch();
             }
         }else {
-            JOptionPane.showMessageDialog(null, "Brak połączenia z bazą dancyh.");
             oknoDoOtwarcia = SceneFXML.OKNO_INICJALIZACJI_BAZY;
             launch();
         }

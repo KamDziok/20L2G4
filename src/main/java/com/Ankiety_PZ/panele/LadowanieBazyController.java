@@ -14,7 +14,9 @@ import java.util.ResourceBundle;
  * Klasa odpowiada za panel Ladowania bazy
  */
 
-public class LadowanieBazyController extends BulidStage{
+public class LadowanieBazyController extends BulidStage {
+
+    String blad;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -106,12 +108,13 @@ public class LadowanieBazyController extends BulidStage{
     @FXML
     private RadioButton no;
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    @FXML
     void initialize() {
         info.setAlignment(Pos.CENTER);
         error.setAlignment(Pos.CENTER);
         link.setText("localhost/");
         info.setVisible(false);
+        error.setText("Brak połączenia z bazą danych!");
     }
 
     /**
@@ -142,19 +145,21 @@ public class LadowanieBazyController extends BulidStage{
     void dalejButtonClick(ActionEvent event) {
         try {
             setAllVisible(false);
-            info.setText("Ladowanie bazy danych, to może zająć ok minuty.");
-            RunningScripts.exeSqlFile(link.getText(),login.getText(),haslo.getText(),"baza_danych/ankiety.sql");
+            info.setText("Ładowanie bazy, proszę czekać!");
+            RunningScripts.exeSqlFile(link.getText(), login.getText(), haslo.getText(), "baza_danych/ankiety.sql");
             info.setText("Dodawanie użytkownika.");
-            RunningScripts.exeSqlFile(link.getText(),login.getText(),haslo.getText(),"baza_danych/ankiety_uzytkownik.sql");
+            RunningScripts.exeSqlFile(link.getText(), login.getText(), haslo.getText(), "baza_danych/ankiety_uzytkownik.sql");
             if (yes.isSelected()){
                 info.setText("Zapełnianie bazy danymi.");
+                setAllVisible(true);
+                setAllVisible(false);
                 RunningScripts.exeSqlFile(link.getText(),login.getText(),haslo.getText(),"baza_danych/bazadanychtest/ankiety.sql");
             }
+            info.setText("Instalacja przebiegła pomyślnie, zrestartuj aplikację!");
             JOptionPane.showMessageDialog(null, "Baza dodana pomyślnie. Proszę zrestartować aplikację");
             deleteStage(event);
         } catch (Exception e) {
-            error.setText("Podany użytkownik nie istnieje lub nie ma uprawnień," +
-                    " podany adres jest błędny, lub server mySQL jest wyłączony.");
+            error.setText("Podane dane są nieprawidłowe lub serwer jest wyłączony!");
             setAllVisible(true);
         }
     }
