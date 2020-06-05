@@ -1,7 +1,3 @@
-/**
- * Sample Skeleton for 'LadowanieBazy.fxml' Controller Class
- */
-
 package com.Ankiety_PZ.panele;
 
 import com.Ankiety_PZ.query.RunningScripts;
@@ -14,6 +10,10 @@ import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Klasa odpowiada za panel Ladowania bazy
+ */
+
 public class LadowanieBazyController extends BulidStage{
 
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -22,62 +22,86 @@ public class LadowanieBazyController extends BulidStage{
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
 
-
+    /**
+     * Przycisk odpowiadający za wykonanie operacji dodania bazzy
+     */
 
     @FXML
     private Button dalej;
 
-
+    /**
+     * Etykieta do pola nazwy użytkownika
+     */
 
     @FXML
     private Label loginLabel;
 
-
+    /**
+     * Etykieta do pola hasło
+     */
 
     @FXML
     private Label hasloLabel;
 
-
+    /**
+     * Etykieta do pola link
+     */
 
     @FXML
     private Label linkLabel;
 
-
+    /**
+     * Etykieta do wyswietlania wykonywanych procesów
+     */
 
     @FXML
     private Label info;
 
-
+    /**
+     * Etykieta do wyswietlania komunikatów
+     */
 
     @FXML
     private Label error;
 
-
+    /**
+     * Pole tekstowe do wprowadzenia nazwy użytkownika
+     */
 
     @FXML
     private TextField login;
 
-
+    /**
+     * Pole tekstowe do wprowadzenia hasła
+     */
 
     @FXML
     private TextField haslo;
 
-
+    /**
+     * Pole tekstowe do wprowadzenia adresu servera MySql
+     */
 
     @FXML
     private TextField link;
 
-
+    /**
+     * Grupa przycisków typu RadioButton.
+     */
 
     @FXML
     private ToggleGroup radioButtonsGroup = new ToggleGroup();
 
-
+    /**
+     * Radio button z bazą
+     */
 
     @FXML
     private RadioButton yes;
 
-
+    /**
+     * Radio button bez bazy
+     */
 
     @FXML
     private RadioButton no;
@@ -90,6 +114,13 @@ public class LadowanieBazyController extends BulidStage{
         info.setVisible(false);
     }
 
+    /**
+     * Metoda do wyłączania/włączania niektórych elementów okna
+     *
+     * @param akcja true    jesli obiekty mają sie pojawić (info schować)
+     *              false   jesli mają sie schować (info pojawić)
+     */
+
     private void setAllVisible(boolean akcja) {
         dalej.setVisible(akcja);
         linkLabel.setVisible(akcja);
@@ -101,6 +132,11 @@ public class LadowanieBazyController extends BulidStage{
         error.setVisible(akcja);
         info.setVisible(!akcja);
     }
+
+    /**
+     * Metoda odpala pliki .sql ze skryptami dodającymi bazę danych,
+     * i rekordy jesli zaznaczony jest odpowiedni radioBox
+     */
 
     @FXML
     void dalejButtonClick(ActionEvent event) {
