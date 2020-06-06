@@ -65,43 +65,25 @@ public class PanelRegiController extends BulidStage {
      * Numer domu wczytany z pola tekstowego jako String.
      */
 
-    private String numberHouseString;
+    private String numberHouse;
 
     /**
      * Numer lokalu wczytany z pola tekstowego jako String.
      */
 
-    private String numberFlatString;
+    private String numberFlat;
 
     /**
      * Pierwsza część kodu pocztowego wczytany z pola tekstowego jako String.
      */
 
-    private String postCodeFirstString;
+    private String postCodeFirst;
 
     /**
      * Druga część kodu pocztowego wczytany z pola tekstowego jako String.
      */
 
-    private String postCodeSecondString;
-
-    /**
-     * Numer lokalu przekształcony na int, jeśli wartość tej zmiennej jest -1 to pole jest puste.
-     */
-
-    private int numberFlatInt = -1;
-
-    /**
-     * Pierwsza część kodu pocztowego przekształconego na int.
-     */
-
-    private int postCodeFirstInt;
-
-    /**
-     * Druga część kodu pocztowego przekształconego na int.
-     */
-
-    private int postCodeSecondInt;
+    private String postCodeSecond;
 
     /**
      * Minimalna długośc hasłą.
@@ -117,8 +99,8 @@ public class PanelRegiController extends BulidStage {
 
     private boolean compulsoryFildNotNull() {
         return (!email.isEmpty() && !password.isEmpty() && !passwordRepeat.isEmpty() && !name.isEmpty() &&
-                !surname.isEmpty() && !city.isEmpty() && !street.isEmpty() && !numberHouseString.isEmpty() &&
-                !postCodeFirstString.isEmpty() && !postCodeSecondString.isEmpty());
+                !surname.isEmpty() && !city.isEmpty() && !street.isEmpty() && !numberHouse.isEmpty() &&
+                !postCodeFirst.isEmpty() && !postCodeSecond.isEmpty());
     }
 
     /**
@@ -129,10 +111,14 @@ public class PanelRegiController extends BulidStage {
 
     private boolean postCodeIsNumber() {
         try {
-            if (postCodeFirstString.length() == 2 && postCodeSecondString.length() == 3) {
-                postCodeFirstInt = Integer.parseInt(postCodeFirstString);
-                postCodeSecondInt = Integer.parseInt(postCodeSecondString);
-                return true;
+            if (postCodeFirst.length() == 2 && postCodeSecond.length() == 3) {
+                try {
+                    int postCodeFirstInt = Integer.parseInt(postCodeFirst);
+                    int ostCodeSecondInt = Integer.parseInt(postCodeSecond);
+                    return true;
+                }catch (Exception e){
+                    panelRegiLabelError.setText("Kod pocztowy posiada niepoprawne znaki!");
+                }
             } else {
                 panelRegiLabelError.setText("Kod pocztowy ma niepoprawną długość!");
             }
@@ -268,10 +254,10 @@ public class PanelRegiController extends BulidStage {
         surname = panelRegiTFSurname.getText();
         city = panelRegiTFCity.getText();
         street = panelRegiTFStreet.getText();
-        numberHouseString = panelRegiTFNumberHouse.getText();
-        numberFlatString = panelRegiTFNumberFlat.getText();
-        postCodeFirstString = panelRegiTFPostCodeFirst.getText();
-        postCodeSecondString = panelRegiTFPostCodeSecond.getText();
+        numberHouse = panelRegiTFNumberHouse.getText();
+        numberFlat = panelRegiTFNumberFlat.getText();
+        postCodeFirst = panelRegiTFPostCodeFirst.getText();
+        postCodeSecond = panelRegiTFPostCodeSecond.getText();
 
         if (compulsoryFildNotNull()) {
             if (postCodeIsNumber()) {
@@ -279,10 +265,10 @@ public class PanelRegiController extends BulidStage {
                     if (chechEmail()) {
                         UzytkownicyQuery query = new UzytkownicyQuery();
                         if (userExist(query)) {
-                            String postCode = postCodeFirstInt + "-" + postCodeSecondInt;
+                            String postCode = postCodeFirst + "-" + postCodeSecond;
 
                             Uzytkownicy user = new Uzytkownicy(name, surname, email, password, Permissions.KLIENT,
-                                    city, street, numberHouseString, numberFlatString, postCode, 0);
+                                    city, street, numberHouse, numberFlat, postCode, 0);
                             query.addUzytkownicy(user);
 
                             backToLogin(event);
