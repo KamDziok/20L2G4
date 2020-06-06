@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import java.util.List;
 
@@ -274,7 +275,7 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
                         curentUser.setMail(mailN);
                         curentUser.setImie(nameN);
                         if (!passwordN.isEmpty()) {
-                            curentUser.setHaslo(passwordRepeatN);
+                            curentUser.setHaslo(DigestUtils.shaHex(passwordRepeatN));
                         }
                         curentUser.setNazwisko(surnameN);
                         curentUser.setMiejscowosc(cityN);

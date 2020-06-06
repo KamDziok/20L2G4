@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import java.util.List;
 import java.util.ResourceBundle;
@@ -299,7 +300,7 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
                         curentUser.setMail(mailUser);
                         curentUser.setImie(nameUser);
                         if (!passwordUser.isEmpty()) {
-                            curentUser.setHaslo(passwordRepeatUser);
+                            curentUser.setHaslo(DigestUtils.shaHex(passwordRepeatUser));
                         }
                         curentUser.setNazwisko(surnameUser);
                         curentUser.setMiejscowosc(cityUser);
