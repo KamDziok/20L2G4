@@ -6,12 +6,11 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 
-import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Klasa odpowiada za panel Ladowania bazy
+ * Klasa odpowiada za panel odpowiedzialny za wczytanie bazy danych
  */
 
 public class LadowanieBazyController extends BulidStage {
@@ -23,6 +22,13 @@ public class LadowanieBazyController extends BulidStage {
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
+
+    /**
+     * Przycisk odpowiadający za zamknięcie aplikacji
+     */
+
+    @FXML
+    private Button zamknij;
 
     /**
      * Przycisk odpowiadający za wykonanie operacji dodania bazzy
@@ -114,6 +120,7 @@ public class LadowanieBazyController extends BulidStage {
         error.setAlignment(Pos.CENTER);
         link.setText("localhost/");
         info.setVisible(false);
+        zamknij.setVisible(false);
         error.setText("Brak połączenia z bazą danych!");
     }
 
@@ -133,12 +140,24 @@ public class LadowanieBazyController extends BulidStage {
         hasloLabel.setVisible(akcja);
         haslo.setVisible(akcja);
         error.setVisible(akcja);
+        yes.setVisible(akcja);
+        no.setVisible(akcja);
+        zamknij.setVisible(!akcja);
         info.setVisible(!akcja);
     }
 
     /**
-     * Metoda odpala pliki .sql ze skryptami dodającymi bazę danych,
-     * i rekordy jesli zaznaczony jest odpowiedni radioBox
+     * Metoda służy do zamknięcia aplikacji po kliknięciu przycisku <code>zamknij</code>.
+     */
+
+    @FXML
+    void zamknijButtonClick(ActionEvent event) {
+        deleteStage(event);
+    }
+
+    /**
+     * Metoda uruchamia pliki .sql ze skryptami dodającymi bazę danych,
+     * i rekordy jeśli zaznaczony jest odpowiedni radioBox
      */
 
     @FXML
@@ -156,9 +175,7 @@ public class LadowanieBazyController extends BulidStage {
                 RunningScripts.exeSqlFile(link.getText(),login.getText(),haslo.getText(),"baza_danych/bazadanychtest/ankiety.sql");
             }
             info.setText("Instalacja przebiegła pomyślnie, zrestartuj aplikację!");
-            JOptionPane.showMessageDialog(null, "Baza dodana pomyślnie. Proszę zrestartować aplikację");
-            deleteStage(event);
-        } catch (Exception e) {
+            } catch (Exception e) {
             error.setText("Podane dane są nieprawidłowe lub serwer jest wyłączony!");
             setAllVisible(true);
         }
