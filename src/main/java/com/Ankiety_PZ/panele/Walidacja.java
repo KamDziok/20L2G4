@@ -1,6 +1,7 @@
 package com.Ankiety_PZ.panele;
 
 import com.Ankiety_PZ.hibernate.Uzytkownicy;
+import com.Ankiety_PZ.query.UzytkownicyQuery;
 import org.apache.commons.codec.digest.DigestUtils;
 
 /**
@@ -87,6 +88,9 @@ public class Walidacja {
      */
 
     public boolean sprawdzHaslo(String haslo, String powtorz_haslo, String nowe_haslo, Uzytkownicy uzytkownik) {
+        if (haslo.isEmpty() && nowe_haslo.isEmpty() && powtorz_haslo.isEmpty()) {
+            return true;
+        }
         if (((powtorz_haslo.length() < dlugoscHasla) || (nowe_haslo.length() < dlugoscHasla)) && (!haslo.isEmpty())) {
 
             blad_haslo = ("Hasło jest za krótkie lub nie wypełniłeś wszystkich pól!");
@@ -94,10 +98,8 @@ public class Walidacja {
             if (!nowe_haslo.equals(powtorz_haslo)) {
                 blad_haslo = ("Hasła nie są takie same!");
             } else {
-                nowe_haslo = DigestUtils.shaHex(nowe_haslo);
-                if (haslo.equals(uzytkownik.getHaslo())) {
-                    return true;
-                } else if (haslo.isEmpty() && nowe_haslo.isEmpty() && powtorz_haslo.isEmpty()) {
+                Uzytkownicy user = new UzytkownicyQuery().selectByMailAndPassword(uzytkownik.getMail(), haslo);
+                if (uzytkownik.getIdUzytkownika().intValue() == user.getIdUzytkownika().intValue()) {
                     return true;
                 } else {
                     blad_haslo = ("Podałeś niepoprawne hasło do konta!");
