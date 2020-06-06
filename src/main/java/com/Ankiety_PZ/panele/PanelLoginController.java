@@ -57,6 +57,8 @@ public class PanelLoginController extends BulidStage {
         password = panelLoginPFPassword.getText();
 
         if (!email.isEmpty() && !password.isEmpty()) {
+            System.out.println(email);
+            System.out.println(password);
             UzytkownicyQuery query = new UzytkownicyQuery();
             Uzytkownicy user = query.selectByMailAndPassword(email, password);
             System.out.println(user);

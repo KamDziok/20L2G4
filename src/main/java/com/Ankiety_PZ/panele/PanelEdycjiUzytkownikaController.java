@@ -14,6 +14,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -316,7 +317,7 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
                         String postCode = postCodeFirstString + "-" + postCodeSecondString;
                         edycja.setMail(mail);
                         if (!password.isEmpty()) {
-                            edycja.setHaslo(password);
+                            edycja.setHaslo(DigestUtils.shaHex(password));
                         }
                         checkUprawnienia();
                         edycja.setUprawnienia(uprawnienia_i);

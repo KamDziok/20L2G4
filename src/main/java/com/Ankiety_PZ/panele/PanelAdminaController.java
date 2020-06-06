@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import java.net.URL;
 import java.util.List;
@@ -289,7 +290,7 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
                         curentUser.setMail(mailAdmin);
                         curentUser.setImie(nameAdmin);
                         if (!passwordAdmin.isEmpty()) {
-                            curentUser.setHaslo(passwordRepeatAdmin);
+                            curentUser.setHaslo(DigestUtils.shaHex(passwordRepeatAdmin));
                         }
                         curentUser.setNazwisko(surnameAdmin);
                         curentUser.setMiejscowosc(cityAdmin);
