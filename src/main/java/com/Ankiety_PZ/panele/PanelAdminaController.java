@@ -285,9 +285,7 @@ public class PanelAdminaController extends BulidStage implements SetStartValues 
                 if (walidacja.sprawdzHaslo(passwordAdmin, passwordRepeatAdmin, passwordNewAdmin, curentUser)) {
                     if (walidacja.czyPoprawnyMail(mailAdmin)) {
                         UzytkownicyQuery update = new UzytkownicyQuery();
-                        int postCodeFirstIntAdmin = Integer.parseInt(postCodeFirstStringAdmin);
-                        int postCodeSecondIntAdmin = Integer.parseInt(postCodeSecondStringAdmin);
-                        String postCode = postCodeFirstIntAdmin + "-" + postCodeSecondIntAdmin;
+                        String postCode = postCodeFirstStringAdmin + "-" + postCodeSecondStringAdmin;
                         curentUser.setMail(mailAdmin);
                         curentUser.setImie(nameAdmin);
                         if (!passwordAdmin.isEmpty()) {

@@ -313,9 +313,7 @@ public class PanelEdycjiUzytkownikaController extends BulidStage implements SetS
                 if (checkPassword()) {
                     if (walidacja.czyPoprawnyMail(mail)) {
                         UzytkownicyQuery update = new UzytkownicyQuery();
-                        postCodeFirstInt = Integer.parseInt(postCodeFirstString);
-                        postCodeSecondInt = Integer.parseInt(postCodeSecondString);
-                        String postCode = postCodeFirstInt + "-" + postCodeSecondInt;
+                        String postCode = postCodeFirstString + "-" + postCodeSecondString;
                         edycja.setMail(mail);
                         if (!password.isEmpty()) {
                             edycja.setHaslo(password);

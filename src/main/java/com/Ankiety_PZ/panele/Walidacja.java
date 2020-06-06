@@ -59,12 +59,14 @@ public class Walidacja {
     public boolean czyPoprawnyKodPocztowy(String kod_pocztowy_cz1, String kod_pocztowy_cz2) {
         try {
             if (kod_pocztowy_cz1.length() == 2 && kod_pocztowy_cz2.length() == 3) {
+                int postCodeFirstInt = Integer.parseInt(kod_pocztowy_cz1);
+                int postCodeSecondInt = Integer.parseInt(kod_pocztowy_cz2);
                 return true;
             } else {
                 blad_kod_pocztowy = ("Kod pocztowy ma nieodpowiednią długość lub jest niepoprawny!");
             }
         } catch (IllegalArgumentException argumentException) {
-            blad_kod_pocztowy = ("Kod pocztowy jest niepoprawny!");
+            blad_kod_pocztowy = ("Kod pocztowy jest niepoprawny, podaj cyfry!");
             System.out.println(argumentException.getMessage());
         } catch (Exception exception) {
             System.out.println(exception.getMessage());
