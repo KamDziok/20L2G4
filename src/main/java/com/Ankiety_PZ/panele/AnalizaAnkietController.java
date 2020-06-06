@@ -175,11 +175,11 @@ public class AnalizaAnkietController implements SetStartValues {
         Label label = new Label(pytanie.getTresc());
         label.setPrefWidth(1180);
         label.setAlignment(Pos.CENTER);
-        label.setLayoutY(30);
-        wykres.setLayoutY(140);
+        label.setLayoutY(0);
+        wykres.setLayoutY(50);
         wykres.setLayoutX(300);
-        wykres.setScaleX(1.3);
-        wykres.setScaleY(1.3);
+        wykres.setScaleX(1.1);
+        wykres.setScaleY(1.0);
         border.getChildren().addAll(label, wykres);
         border.setLayoutY(y);
         panel.getChildren().add(border);
@@ -231,7 +231,7 @@ public class AnalizaAnkietController implements SetStartValues {
                     analizaPytaniaProcentowePkt(pytanie, y);
                     break;
             }
-            y += 750;
+            y += 650;
         }
     }
 

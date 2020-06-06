@@ -170,8 +170,6 @@ public class LadowanieBazyController extends BulidStage {
             RunningScripts.exeSqlFile(link.getText(), login.getText(), haslo.getText(), "baza_danych/ankiety_uzytkownik.sql");
             if (yes.isSelected()){
                 info.setText("Zapełnianie bazy danymi.");
-                setAllVisible(true);
-                setAllVisible(false);
                 RunningScripts.exeSqlFile(link.getText(),login.getText(),haslo.getText(),"baza_danych/bazadanychtest/ankiety.sql");
             }
             info.setText("Instalacja przebiegła pomyślnie, zrestartuj aplikację!");

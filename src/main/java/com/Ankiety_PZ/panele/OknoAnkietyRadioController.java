@@ -267,8 +267,14 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
      * Metoda tworzy i wyświetla pole przeznaczone na odpowiedz do pytania procentowego.
      */
 
-    private void setProcentOdpowiedzi() {
+    private void setProcentOdpowiedzi(Set<Odpowiedzi> odpowiedzi) {
         int y = 172;
+        for (Odpowiedzi odpowiedz : odpowiedzi) {
+            Label procentowe = new Label(odpowiedz.getOdpowiedz());
+            procentowe.setLayoutX(350);
+            procentowe.setLayoutY(y);
+            panel.getChildren().add(procentowe);
+        }
         odpowiedzProcentowa = new TextField();
         odpowiedzProcentowa.setLayoutX(37);
         odpowiedzProcentowa.setLayoutY(y);
@@ -572,7 +578,7 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                 trescPytania.setText(pytanie.getTresc() + " Rozdziel " + pytanie.getPunktowe() + "pkt.");
                 break;
             case TypeOfQuestion.PERCENT:
-                setProcentOdpowiedzi();
+                setProcentOdpowiedzi(pytanie.getOdpowiedzis());
                 trescPytania.setText(pytanie.getTresc() + " Podaj liczbę z przedziału od 0 do 100.");
                 break;
         }
