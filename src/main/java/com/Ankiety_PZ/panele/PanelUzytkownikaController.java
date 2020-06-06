@@ -295,9 +295,7 @@ public class PanelUzytkownikaController extends BulidStage implements SetStartVa
                 if (walidacja.sprawdzHaslo(passwordUser, passwordRepeatUser, passwordNewUser, curentUser)) {
                     if (walidacja.czyPoprawnyMail(mailUser)) {
                         UzytkownicyQuery update = new UzytkownicyQuery();
-                        int postCodeFirstIntUser = Integer.parseInt(postCodeFirstStringUser);
-                        int postCodeSecondIntUser = Integer.parseInt(postCodeSecondStringUser);
-                        String postCode = postCodeFirstIntUser + "-" + postCodeSecondIntUser;
+                         String postCode = postCodeFirstStringUser + "-" + postCodeSecondStringUser;
                         curentUser.setMail(mailUser);
                         curentUser.setImie(nameUser);
                         if (!passwordUser.isEmpty()) {

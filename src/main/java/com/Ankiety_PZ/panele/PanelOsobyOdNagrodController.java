@@ -270,9 +270,7 @@ public class PanelOsobyOdNagrodController extends BulidStage implements SetStart
                 if (walidacja.sprawdzHaslo(passwordN, passwordRepeatN, passwordNewN, curentUser)) {
                     if (walidacja.czyPoprawnyMail(mailN)) {
                         UzytkownicyQuery update = new UzytkownicyQuery();
-                        int postCodeFirstIntN = Integer.parseInt(postCodeFirstStringN);
-                        int postCodeSecondIntN = Integer.parseInt(postCodeSecondStringN);
-                        String postCode = postCodeFirstIntN + "-" + postCodeSecondIntN;
+                        String postCode = postCodeFirstStringN + "-" + postCodeSecondStringN;
                         curentUser.setMail(mailN);
                         curentUser.setImie(nameN);
                         if (!passwordN.isEmpty()) {

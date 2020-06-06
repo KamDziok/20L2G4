@@ -272,9 +272,7 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
                 if (walidacja.sprawdzHaslo(passwordAnkieter, passwordRepeatAnkieter, passwordNewAnkieter, curentUser)) {
                     if (walidacja.czyPoprawnyMail(mailAnkieter)) {
                         UzytkownicyQuery update = new UzytkownicyQuery();
-                        int postCodeFirstIntN = Integer.parseInt(postCodeFirstStringAnkieter);
-                        int postCodeSecondIntN = Integer.parseInt(postCodeSecondStringAnkieter);
-                        String postCode = postCodeFirstIntN + "-" + postCodeSecondIntN;
+                        String postCode = postCodeFirstStringAnkieter + "-" + postCodeSecondStringAnkieter;
                         curentUser.setMail(mailAnkieter);
                         curentUser.setImie(nameAnkieter);
                         if (!passwordAnkieter.isEmpty()) {
