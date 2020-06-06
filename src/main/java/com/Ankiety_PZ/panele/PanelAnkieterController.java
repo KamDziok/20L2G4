@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import java.net.URL;
 import java.util.*;
@@ -276,7 +277,7 @@ public class PanelAnkieterController extends BulidStage implements SetStartValue
                         curentUser.setMail(mailAnkieter);
                         curentUser.setImie(nameAnkieter);
                         if (!passwordAnkieter.isEmpty()) {
-                            curentUser.setHaslo(passwordRepeatAnkieter);
+                            curentUser.setHaslo(DigestUtils.shaHex(passwordRepeatAnkieter));
                         }
                         curentUser.setNazwisko(surnameAnkieter);
                         curentUser.setMiejscowosc(cityAnkieter);

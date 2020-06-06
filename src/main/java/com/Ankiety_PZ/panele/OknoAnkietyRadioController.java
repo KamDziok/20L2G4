@@ -503,8 +503,10 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                 }
             });
         }
-        dalej.setLayoutX(1090);
-        dalej.setLayoutY(665);
+        dalej.setLayoutX(1062);
+        dalej.setLayoutY(660);
+        dalej.setPrefWidth(125);
+        dalej.setPrefHeight(50);
         panel.getChildren().add(dalej);
         dalej.setVisible(true);
     }
@@ -573,11 +575,11 @@ public class OknoAnkietyRadioController extends BulidStage implements SetStartVa
                 break;
             case TypeOfQuestion.POINTS:
                 setPktOdpowiedzi(pytanie.getOdpowiedzis());
-                trescPytania.setText(pytanie.getTresc() + " Rozdziel " + pytanie.getPunktowe() + " punktów.");
+                trescPytania.setText(pytanie.getTresc() + " Rozdziel " + pytanie.getPunktowe() + "pkt.");
                 break;
             case TypeOfQuestion.PERCENT:
                 setProcentOdpowiedzi(pytanie.getOdpowiedzis());
-                trescPytania.setText(pytanie.getTresc() + " Podaj liczbe z przedziału od 0 do 100.");
+                trescPytania.setText(pytanie.getTresc() + " Podaj liczbę z przedziału od 0 do 100.");
                 break;
         }
         setButton(iterator, pytanie);
