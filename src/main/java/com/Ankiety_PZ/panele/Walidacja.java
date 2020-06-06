@@ -94,7 +94,6 @@ public class Walidacja {
             if (!nowe_haslo.equals(powtorz_haslo)) {
                 blad_haslo = ("Hasła nie są takie same!");
             } else {
-                haslo = DigestUtils.shaHex(haslo);
                 nowe_haslo = DigestUtils.shaHex(nowe_haslo);
                 if (haslo.equals(uzytkownik.getHaslo())) {
                     return true;
