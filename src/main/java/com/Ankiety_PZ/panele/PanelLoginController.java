@@ -52,6 +52,7 @@ public class PanelLoginController extends BulidStage {
 
     @FXML
     void panelLoginButtonLoginAcept(ActionEvent event) {
+        panelLoginLabelError.setText("");
         email = panelLoginTFEmail.getText();
         password = panelLoginPFPassword.getText();
 
